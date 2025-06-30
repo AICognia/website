@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
-import { BsWhatsapp, BsInstagram, BsLinkedin } from 'react-icons/bs';
+import { BsWhatsapp, BsInstagram } from 'react-icons/bs';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,34 +11,67 @@ const Contact: React.FC = () => {
     company: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{type: 'success' | 'error' | null, message: string}>({
+    type: null,
+    message: ''
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
     
-    // Prepare email content
-    const subject = `Yeni İletişim Formu - ${formData.name}`;
-    const body = `Ad Soyad: ${formData.name}
-E-posta: ${formData.email}
-Telefon: ${formData.phone}
-Şirket: ${formData.company}
-
-Mesaj:
-${formData.message}`;
-
-    // Create mailto link
-    const mailtoLink = `mailto:admin@cogniaai.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      message: ''
-    });
+    try {
+      // Using Formspree as an alternative (free tier available)
+      // You can sign up at https://formspree.io/ and get your form ID
+      // const formspreeEndpoint = 'https://formspree.io/f/YOUR_FORM_ID'; // Replace with your Formspree form ID
+      
+      // For demonstration, we'll use a webhook service that can forward to email
+      const response = await fetch('https://formspree.io/f/xnnjjqvk', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          name: formData.name,
+          phone: formData.phone,
+          company: formData.company,
+          message: formData.message,
+          _replyto: formData.email,
+          _subject: `Yeni İletişim Formu - ${formData.name}`,
+          _cc: 'admin@cogniaai.com'
+        })
+      });
+      
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.'
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: 'Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin veya direkt admin@cogniaai.com adresine mail atın.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -71,8 +104,7 @@ ${formData.message}`;
 
   const socialLinks = [
     { icon: <BsWhatsapp className="text-xl" />, link: 'https://wa.me/905317739053', color: 'hover:text-green-500' },
-    { icon: <BsInstagram className="text-xl" />, link: 'https://instagram.com/cogniaai', color: 'hover:text-pink-500' },
-    { icon: <BsLinkedin className="text-xl" />, link: 'https://linkedin.com/company/cogniaai', color: 'hover:text-blue-600' }
+    { icon: <BsInstagram className="text-xl" />, link: 'https://instagram.com/cognia_ai', color: 'hover:text-pink-500' }
   ];
 
   return (
@@ -179,11 +211,26 @@ ${formData.message}`;
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="w-full bg-gradient-primary text-white py-3 rounded-lg font-medium flex items-center justify-center space-x-2 hover:opacity-90 transition-opacity"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-primary text-white py-3 rounded-lg font-medium flex items-center justify-center space-x-2 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span>Mesaj Gönder</span>
+                <span>{isSubmitting ? 'Gönderiliyor...' : 'Mesaj Gönder'}</span>
                 <FiSend />
               </motion.button>
+              
+              {submitStatus.type && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`mt-4 p-4 rounded-lg ${
+                    submitStatus.type === 'success' 
+                      ? 'bg-green-100 text-green-700 border border-green-200' 
+                      : 'bg-red-100 text-red-700 border border-red-200'
+                  }`}
+                >
+                  {submitStatus.message}
+                </motion.div>
+              )}
             </form>
           </motion.div>
 

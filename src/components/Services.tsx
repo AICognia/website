@@ -33,13 +33,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
           </li>
         ))}
       </ul>
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className={`mt-6 w-full ${color} text-white py-3 rounded-lg font-medium hover:opacity-90 transition-opacity`}
-      >
-        Detaylı Bilgi
-      </motion.button>
     </motion.div>
   );
 };

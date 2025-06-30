@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import { BsWhatsapp, BsInstagram, BsLinkedin, BsTwitter } from 'react-icons/bs';
+import { BsWhatsapp, BsInstagram, BsTwitter } from 'react-icons/bs';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -29,8 +29,7 @@ const Footer: React.FC = () => {
 
   const socialLinks = [
     { icon: <BsWhatsapp />, href: 'https://wa.me/905317739053', label: 'WhatsApp' },
-    { icon: <BsInstagram />, href: 'https://instagram.com/cogniaai', label: 'Instagram' },
-    { icon: <BsLinkedin />, href: 'https://linkedin.com/company/cogniaai', label: 'LinkedIn' },
+    { icon: <BsInstagram />, href: 'https://instagram.com/cognia_ai', label: 'Instagram' },
     { icon: <BsTwitter />, href: 'https://twitter.com/cogniaai', label: 'Twitter' }
   ];
 

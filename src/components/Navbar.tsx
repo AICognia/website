@@ -43,6 +43,12 @@ const Navbar: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navItems.length * 0.1 }}
                 className="bg-gradient-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
               >
                 Ücretsiz Demo
               </motion.button>
@@ -77,7 +83,16 @@ const Navbar: React.FC = () => {
                 {item.name}
               </a>
             ))}
-            <button className="w-full bg-gradient-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity">
+            <button 
+              className="w-full bg-gradient-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
+              onClick={() => {
+                setIsOpen(false);
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
               Ücretsiz Demo
             </button>
           </div>
