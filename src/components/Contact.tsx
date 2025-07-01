@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
       // const formspreeEndpoint = 'https://formspree.io/f/YOUR_FORM_ID'; // Replace with your Formspree form ID
       
       // For demonstration, we'll use a webhook service that can forward to email
-      const response = await fetch('https://formspree.io/f/xnnjjqvk', {
+      const response = await fetch('https://formspree.io/f/xkgbykwq', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
