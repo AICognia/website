@@ -41,8 +41,7 @@ const Contact: React.FC = () => {
           company: formData.company,
           message: formData.message,
           _replyto: formData.email,
-          _subject: `Yeni İletişim Formu - ${formData.name}`,
-          _cc: 'admin@cogniaai.com'
+          _subject: `Yeni İletişim Formu - ${formData.name}`
         })
       });
       
