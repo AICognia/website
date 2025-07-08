@@ -74,7 +74,7 @@ const ContactCTA: React.FC = () => {
   return (
     <section className="py-16 bg-gradient-to-br from-primary to-primary/80 contact-cta-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+        <div className="bg-darkBlue/50 backdrop-blur-lg border border-secondary/30 rounded-3xl shadow-2xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -83,10 +83,10 @@ const ContactCTA: React.FC = () => {
               viewport={{ once: true }}
               className="p-8 lg:p-12"
             >
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-                Hemen <span className="text-primary">İletişime Geçin</span>
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
+              <h3 className="text-3xl font-bold mb-2 text-white text-glow">
+                Hemen İletişime Geçin
+              </h3>
+              <p className="text-lg text-white/80 mb-8">
                 AI dönüşümünüz için ilk adımı atın. Uzman ekibimiz size özel çözümler sunmak için hazır.
               </p>
 
@@ -99,7 +99,7 @@ const ContactCTA: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Adınız Soyadınız"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="mt-1 block w-full rounded-lg bg-white/10 backdrop-blur-sm border border-secondary/30 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300 hover:bg-white/15 hover:border-secondary/40"
                   />
                   <input
                     type="email"
@@ -108,7 +108,7 @@ const ContactCTA: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="E-posta adresiniz"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="mt-1 block w-full rounded-lg bg-white/10 backdrop-blur-sm border border-secondary/30 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300 hover:bg-white/15 hover:border-secondary/40"
                   />
                 </div>
                 <input
@@ -117,7 +117,7 @@ const ContactCTA: React.FC = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="Telefon numaranız (opsiyonel)"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="mt-1 block w-full rounded-lg bg-white/10 backdrop-blur-sm border border-secondary/30 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent resize-none transition-all duration-300 hover:bg-white/15 hover:border-secondary/40"
                 />
                 <textarea
                   name="message"
@@ -126,14 +126,14 @@ const ContactCTA: React.FC = () => {
                   onChange={handleChange}
                   rows={3}
                   placeholder="Projeniz hakkında kısaca bilgi verin..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="mt-1 block w-full rounded-lg bg-white/10 backdrop-blur-sm border border-secondary/30 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent resize-none transition-all duration-300 hover:bg-white/15 hover:border-secondary/40"
                 />
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-primary text-white py-3 rounded-lg font-medium flex items-center justify-center space-x-2 hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  className="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105 hover:shadow-xl hover:shadow-secondary/30"
                 >
                   <span>{isSubmitting ? 'Gönderiliyor...' : 'Gönder'}</span>
                   <FiSend />
@@ -160,58 +160,58 @@ const ContactCTA: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-primary/5 p-8 lg:p-12 flex flex-col justify-center"
+              className="bg-darkBlue/30 p-8 lg:p-12 flex flex-col justify-center"
             >
-              <h3 className="text-2xl font-bold mb-6">Hızlı İletişim Kanallarımız</h3>
+              <h3 className="text-2xl font-bold mb-6 text-white">Hızlı İletişim Kanallarımız</h3>
               
               <div className="space-y-4 mb-8">
                 <a
                   href="https://wa.me/905317739053"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
+                  className="flex items-center space-x-4 p-4 bg-white/10 backdrop-blur-sm border border-secondary/20 rounded-lg hover:shadow-md transition-shadow"
                 >
                   <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center">
                     <BsWhatsapp className="text-green-500 text-2xl" />
                   </div>
                   <div>
-                    <p className="font-semibold">WhatsApp</p>
-                    <p className="text-sm text-gray-600">Hızlı yanıt için</p>
+                    <p className="font-semibold text-white">WhatsApp</p>
+                    <p className="text-sm text-white/70">Hızlı yanıt için</p>
                   </div>
                 </a>
                 
                 <a
                   href="tel:+905317739053"
-                  className="flex items-center space-x-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
+                  className="flex items-center space-x-4 p-4 bg-white/10 backdrop-blur-sm border border-secondary/20 rounded-lg hover:shadow-md transition-shadow"
                 >
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <FiPhone className="text-primary text-2xl" />
+                  <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center">
+                    <FiPhone className="text-secondary text-2xl" />
                   </div>
                   <div>
-                    <p className="font-semibold">+90 531 773 9053</p>
-                    <p className="text-sm text-gray-600">Direkt arama</p>
+                    <p className="font-semibold text-white">+90 531 773 9053</p>
+                    <p className="text-sm text-white/70">Direkt arama</p>
                   </div>
                 </a>
                 
                 <a
                   href="mailto:admin@cogniaai.com"
-                  className="flex items-center space-x-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
+                  className="flex items-center space-x-4 p-4 bg-white/10 backdrop-blur-sm border border-secondary/20 rounded-lg hover:shadow-md transition-shadow"
                 >
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <FiMail className="text-primary text-2xl" />
+                  <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center">
+                    <FiMail className="text-secondary text-2xl" />
                   </div>
                   <div>
-                    <p className="font-semibold">admin@cogniaai.com</p>
-                    <p className="text-sm text-gray-600">E-posta gönder</p>
+                    <p className="font-semibold text-white">admin@cogniaai.com</p>
+                    <p className="text-sm text-white/70">E-posta gönder</p>
                   </div>
                 </a>
               </div>
 
-              <div className="bg-white rounded-lg p-6">
-                <h4 className="font-semibold mb-2">Çalışma Saatlerimiz</h4>
-                <p className="text-gray-600">Pazartesi - Cuma: 09:00 - 18:00</p>
-                <p className="text-gray-600">Cumartesi: 10:00 - 16:00</p>
-                <p className="text-sm text-gray-500 mt-2">AI asistanlarımız 7/24 hizmetinizde</p>
+              <div className="bg-white/10 backdrop-blur-sm border border-secondary/20 rounded-lg p-6">
+                <h4 className="font-semibold mb-2 text-white">Çalışma Saatlerimiz</h4>
+                <p className="text-white/70">Pazartesi - Cuma: 09:00 - 18:00</p>
+                <p className="text-white/70">Cumartesi: 10:00 - 16:00</p>
+                <p className="text-sm text-white/60 mt-2">AI asistanlarımız 7/24 hizmetinizde</p>
               </div>
             </motion.div>
           </div>

@@ -5,7 +5,7 @@
 
 @layer base {
   body {
-    @apply antialiased;
+    @apply antialiased bg-gradient-to-br from-darkBlue via-primary to-lightBlue min-h-screen;
   }
 }
 
@@ -20,5 +20,102 @@
   
   .glass-effect {
     @apply bg-white/10 backdrop-blur-lg border border-white/20;
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+  }
+  
+  .floating {
+    animation: floating 6s ease-in-out infinite;
+  }
+  
+  @keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .shimmer {
+    background: linear-gradient(105deg, transparent 40%, rgba(0, 212, 255, 0.7) 50%, transparent 60%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -100% 0; }
+    100% { background-position: 100% 0; }
+  }
+  
+  .pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(0, 212, 255, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), 0 0 30px rgba(0, 212, 255, 0.2); }
+  }
+  
+  .gradient-shift {
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .slide-in {
+    animation: slideIn 0.6s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .hover-lift {
+    transition: all 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.15);
+  }
+  
+  /* Smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #0A1628;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #00D4FF;
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00ACC1;
+  }
+  
+  /* Subtle dot pattern */
+  .dot-pattern {
+    background-image: radial-gradient(circle, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
   }
 }

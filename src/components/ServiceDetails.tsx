@@ -116,6 +116,28 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ isOpen, onClose, servic
             </div>
           )}
 
+          {service.title === 'E-Ticaret Sistemi' && (
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Demo Videolar</h3>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-lg font-medium mb-2">Giyim Sektörü Demo</h4>
+                  <div className="flex justify-center">
+                    <video 
+                      className="max-w-2xl w-full rounded-lg shadow-lg"
+                      controls
+                      preload="metadata"
+                      style={{ maxHeight: '500px' }}
+                    >
+                      <source src="/videos/Giyim Demo Video.mp4" type="video/mp4" />
+                      Tarayıcınız video oynatmayı desteklemiyor.
+                    </video>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="bg-primary/5 rounded-lg p-6">
             <h3 className="text-lg font-semibold mb-2">Hemen Başlayın</h3>
             <p className="text-gray-600 mb-4">

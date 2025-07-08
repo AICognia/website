@@ -20,18 +20,18 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
-      className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow"
+      className="bg-darkBlue/50 backdrop-blur-lg border border-secondary/30 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 group hover:scale-105 hover:border-secondary/50 hover:bg-darkBlue/60 glow-effect"
     >
-      <div className={`w-16 h-16 ${color} rounded-xl flex items-center justify-center mb-6`}>
+      <div className={`w-16 h-16 ${color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 pulse-glow`}>
         {icon}
       </div>
-      <h3 className="text-2xl font-bold mb-4">{title}</h3>
-      <p className="text-gray-600 mb-6">{description}</p>
+      <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-secondary transition-colors">{title}</h3>
+      <p className="text-white/80 mb-6">{description}</p>
       <ul className="space-y-3">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start">
             <span className="text-secondary mr-2">•</span>
-            <span className="text-gray-700">{feature}</span>
+            <span className="text-white/70">{feature}</span>
           </li>
         ))}
       </ul>
@@ -39,7 +39,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={onDetailsClick}
-        className="mt-6 w-full bg-primary text-white py-2 rounded-lg font-medium flex items-center justify-center space-x-2 hover:bg-primary/90 transition-colors"
+        className="mt-6 w-full bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-xl font-medium flex items-center justify-center space-x-2 hover:scale-105 hover:shadow-lg hover:shadow-secondary/30 transition-all duration-300"
       >
         <span>Detaylı Bilgi</span>
         <FiArrowRight />
@@ -98,7 +98,7 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-light">
+    <section id="services" className="py-20 bg-gradient-to-br from-lightBlue to-primary dot-pattern relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -107,10 +107,10 @@ const Services: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            AI Destekli <span className="text-gradient">Çözümlerimiz</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            AI Destekli <span className="text-secondary">Çözümlerimiz</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto">
             İşletmenizin ihtiyaçlarına özel tasarlanmış yapay zeka sistemlerimizle 
             rekabet avantajı elde edin ve müşteri memnuniyetini artırın.
           </p>
@@ -134,28 +134,28 @@ const Services: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
-          className="mt-16 bg-white rounded-2xl shadow-xl p-8"
+          className="mt-16 bg-darkBlue/50 backdrop-blur-lg border border-secondary/30 rounded-2xl shadow-xl p-8 glow-effect hover:scale-[1.02] transition-transform duration-300"
         >
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold mb-4">Neden Cognia AI?</h3>
-            <p className="text-gray-600">Türkiye'nin dijital dönüşüm yolculuğunda güvenilir partneriniz</p>
+            <h3 className="text-2xl font-bold mb-4 text-white">Neden Cognia AI?</h3>
+            <p className="text-white/80">Türkiye'nin dijital dönüşüm yolculuğunda güvenilir partneriniz</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">%95</div>
-              <p className="text-gray-600">Müşteri Memnuniyeti</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            <div className="text-center group cursor-pointer">
+              <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">%95</div>
+              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">Müşteri Memnuniyeti</p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-secondary mb-2">7/24</div>
-              <p className="text-gray-600">Kesintisiz Hizmet</p>
+            <div className="text-center group cursor-pointer">
+              <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">7/24</div>
+              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">Kesintisiz Hizmet</p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">500+</div>
-              <p className="text-gray-600">Aktif Kullanıcı</p>
+            <div className="text-center group cursor-pointer">
+              <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">500+</div>
+              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">Aktif Kullanıcı</p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-secondary mb-2">48 Saat</div>
-              <p className="text-gray-600">Kurulum Süresi</p>
+            <div className="text-center group cursor-pointer">
+              <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">48 Saat</div>
+              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">Kurulum Süresi</p>
             </div>
           </div>
         </motion.div>

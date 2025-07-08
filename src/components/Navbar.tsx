@@ -4,6 +4,7 @@ import { FiMenu, FiX } from 'react-icons/fi';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const scrolled = false;
 
   const navItems = [
     { name: 'Ana Sayfa', href: '#home' },
@@ -13,7 +14,7 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-lg shadow-sm">
+    <nav className="fixed w-full top-0 z-50 bg-darkBlue/95 backdrop-blur-lg shadow-lg border-b border-secondary/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <motion.div
@@ -21,22 +22,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center"
           >
-            <div className="bg-primary rounded-lg p-2">
-              <img 
-                src="/cognia-logo.svg" 
-                alt="Cognia AI" 
-                className="h-10 w-auto"
-                onError={(e) => {
-                  const target = e.currentTarget as HTMLImageElement;
-                  target.style.display = 'none';
-                  const nextElement = target.parentElement?.nextElementSibling as HTMLElement;
-                  if (nextElement) {
-                    nextElement.style.display = 'block';
-                  }
-                }}
-              />
-            </div>
-            <h1 className="text-2xl font-bold text-gradient hidden ml-3">Cognia AI</h1>
+            <span className="text-2xl font-bold text-white text-glow">Cognia AI</span>
           </motion.div>
 
           <div className="hidden md:block">
@@ -48,7 +34,11 @@ const Navbar: React.FC = () => {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    item.href === '#home' && scrolled === false
+                      ? 'text-secondary bg-secondary/10'
+                      : 'text-white hover:text-secondary hover:bg-secondary/10'
+                  }`}
                 >
                   {item.name}
                 </motion.a>
@@ -57,7 +47,7 @@ const Navbar: React.FC = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navItems.length * 0.1 }}
-                className="bg-gradient-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
+                className="bg-gradient-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-secondary/25"
                 onClick={() => {
                   const contactCTA = document.querySelector('.contact-cta-section');
                   if (contactCTA) {
@@ -73,7 +63,7 @@ const Navbar: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-primary focus:outline-none"
+              className="text-white hover:text-gray-200 focus:outline-none"
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
@@ -85,14 +75,14 @@ const Navbar: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-white/95 backdrop-blur-lg"
+          className="md:hidden bg-darkBlue/95 backdrop-blur-lg border-t border-secondary/20"
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium"
+                className="text-white hover:text-gray-200 block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}

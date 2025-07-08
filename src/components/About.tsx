@@ -35,7 +35,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-light">
+    <section id="about" className="py-20 bg-gradient-to-br from-primary to-darkBlue">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <motion.div
@@ -44,16 +44,16 @@ const About: React.FC = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Türkiye'nin <span className="text-gradient">AI Öncüsü</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              Türkiye'nin <span className="text-secondary">AI Öncüsü</span>
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-lg text-white/80 mb-6">
               Cognia AI olarak, Türkiye'deki işletmelerin dijital dönüşüm yolculuğunda 
               güvenilir partneri olmayı hedefliyoruz. Yapay zeka teknolojilerini, yerel 
               pazarın dinamiklerini anlayarak ve işletmelerin gerçek ihtiyaçlarına odaklanarak 
               geliştiriyoruz.
             </p>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-lg text-white/80 mb-6">
               Uzman ekibimiz, dünya standartlarındaki AI teknolojilerini Türkiye'nin 
               kendine özgü iş yapış şekillerine uyarlayarak, işletmelerin verimliliğini 
               artırmalarına ve müşteri deneyimlerini iyileştirmelerine yardımcı oluyor.
@@ -68,8 +68,8 @@ const About: React.FC = () => {
                   viewport={{ once: true }}
                   className="text-center"
                 >
-                  <div className="text-3xl font-bold text-primary mb-1">{stat.number}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
+                  <div className="text-3xl font-bold text-secondary mb-1">{stat.number}</div>
+                  <div className="text-sm text-white/70">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -82,15 +82,15 @@ const About: React.FC = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-2xl font-bold mb-6">Vizyonumuz</h3>
-              <p className="text-gray-600 mb-6">
+            <div className="bg-darkBlue/50 backdrop-blur-lg border border-secondary/30 rounded-2xl shadow-xl p-8">
+              <h3 className="text-2xl font-bold mb-6 text-white">Vizyonumuz</h3>
+              <p className="text-white/80 mb-6">
                 Türkiye'deki her işletmenin yapay zeka teknolojilerinden faydalanabileceği 
                 bir gelecek inşa etmek. KOBİ'lerden büyük ölçekli işletmelere kadar herkesin 
                 erişebileceği, kullanımı kolay ve etkili AI çözümleri sunmak.
               </p>
-              <h3 className="text-2xl font-bold mb-6">Misyonumuz</h3>
-              <p className="text-gray-600">
+              <h3 className="text-2xl font-bold mb-6 text-white">Misyonumuz</h3>
+              <p className="text-white/80">
                 İşletmelerin dijital dönüşüm süreçlerinde yanlarında olmak, yapay zeka 
                 teknolojilerini demokratikleştirerek rekabet güçlerini artırmalarına 
                 yardımcı olmak ve Türkiye'nin teknoloji alanındaki gelişimine katkıda bulunmak.
@@ -107,7 +107,7 @@ const About: React.FC = () => {
           viewport={{ once: true }}
           className="mt-16"
         >
-          <h3 className="text-3xl font-bold text-center mb-12">Değerlerimiz</h3>
+          <h3 className="text-3xl font-bold text-center mb-12 text-white">Değerlerimiz</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <motion.div
@@ -116,38 +116,16 @@ const About: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
+                className="bg-darkBlue/50 backdrop-blur-lg border border-secondary/30 rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
               >
                 <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4 text-white">
                   {value.icon}
                 </div>
-                <h4 className="text-xl font-semibold mb-2">{value.title}</h4>
-                <p className="text-gray-600">{value.description}</p>
+                <h4 className="text-xl font-semibold mb-2 text-white">{value.title}</h4>
+                <p className="text-white/70">{value.description}</p>
               </motion.div>
             ))}
           </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-16 bg-gradient-primary rounded-2xl p-8 text-white text-center"
-        >
-          <h3 className="text-3xl font-bold mb-4">Birlikte Büyüyelim</h3>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            İşletmenizin AI dönüşümünde yanınızdayız. Uzman ekibimizle tanışın ve 
-            size özel çözümlerimizi keşfedin.
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-white text-primary px-8 py-3 rounded-lg font-medium hover:bg-light transition-colors"
-          >
-            Ekibimizle Tanışın
-          </motion.button>
         </motion.div>
       </div>
     </section>

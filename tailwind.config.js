@@ -6,10 +6,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#12294A',
+        primary: '#0A1628',
         secondary: '#00D4FF',
         dark: '#1F2937',
         light: '#F9FAFB',
+        darkBlue: '#0A1628',
+        lightBlue: '#162B4D',
       },
       fontFamily: {
         'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],

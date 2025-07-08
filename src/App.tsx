@@ -3,9 +3,10 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ContactCTA from './components/ContactCTA';
 import Services from './components/Services';
+import Testimonials from './components/Testimonials';
 import Features from './components/Features';
 import About from './components/About';
-import Contact from './components/Contact';
+import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
 function App() {
@@ -15,9 +16,10 @@ function App() {
       <Hero />
       <ContactCTA />
       <Services />
+      <Testimonials />
       <Features />
       <About />
-      <Contact />
+      <FAQ />
       <Footer />
     </div>
   );

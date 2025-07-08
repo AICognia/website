@@ -49,7 +49,7 @@ const Features: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gradient-to-br from-darkBlue to-lightBlue">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -58,10 +58,10 @@ const Features: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Güçlü <span className="text-gradient">Entegrasyonlar</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            Güçlü <span className="text-secondary">Entegrasyonlar</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto">
             Mevcut sistemlerinizle sorunsuz entegrasyon sağlayarak iş süreçlerinizi 
             kesintiye uğratmadan dijital dönüşümünüzü tamamlayın.
           </p>
@@ -73,9 +73,9 @@ const Features: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-light rounded-2xl p-8"
+            className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-secondary/20 glow-effect hover:scale-[1.02] transition-transform duration-300"
           >
-            <h3 className="text-2xl font-bold text-center mb-8">Desteklenen Platformlar</h3>
+            <h3 className="text-2xl font-bold text-center mb-8 text-white">Desteklenen Platformlar</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
               {integrations.map((integration, index) => (
                 <motion.div
@@ -84,9 +84,9 @@ const Features: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="flex flex-col items-center"
+                  className="flex flex-col items-center group cursor-pointer"
                 >
-                  <div className="w-20 h-20 bg-white rounded-xl shadow-lg flex items-center justify-center mb-3">
+                  <div className="w-20 h-20 bg-darkBlue/70 backdrop-blur-sm border border-secondary/30 rounded-xl shadow-lg flex items-center justify-center mb-3 group-hover:scale-110 group-hover:border-secondary/50 transition-all duration-300 pulse-glow">
                     {integration.icon ? (
                       <div className={integration.color}>{integration.icon}</div>
                     ) : (
@@ -95,7 +95,7 @@ const Features: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  <span className="text-sm font-medium text-gray-700">{integration.name}</span>
+                  <span className="text-sm font-medium text-white/80">{integration.name}</span>
                 </motion.div>
               ))}
             </div>
@@ -110,13 +110,13 @@ const Features: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-light rounded-xl p-6 hover:shadow-lg transition-shadow"
+              className="bg-darkBlue/50 backdrop-blur-lg border border-secondary/30 rounded-xl p-6 hover:shadow-lg transition-all duration-300 group hover:scale-105 hover:border-secondary/50 hover:bg-darkBlue/60"
             >
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary">
+              <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mb-4 text-secondary group-hover:bg-secondary/30 group-hover:scale-110 transition-all duration-300">
                 {feature.icon}
               </div>
-              <h4 className="text-lg font-semibold mb-2">{feature.title}</h4>
-              <p className="text-gray-600 text-sm">{feature.description}</p>
+              <h4 className="text-lg font-semibold mb-2 text-white group-hover:text-secondary transition-colors">{feature.title}</h4>
+              <p className="text-white/70 text-sm">{feature.description}</p>
             </motion.div>
           ))}
         </div>
@@ -128,18 +128,23 @@ const Features: React.FC = () => {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <h3 className="text-2xl font-bold mb-6">
+          <h3 className="text-2xl font-bold mb-6 text-white">
             İşletmenize Özel AI Çözümleri
           </h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-white/80 mb-8 max-w-2xl mx-auto">
             Sektörünüze ve iş modelinize özel geliştirilmiş yapay zeka çözümlerimizle 
             rakiplerinizin bir adım önünde olun.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-gradient-primary text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity"
+            onClick={() => {
+              const contactCTA = document.querySelector('.contact-cta-section');
+              if (contactCTA) {
+                contactCTA.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="bg-gradient-primary text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-secondary/30"
           >
             Özel Çözüm Talep Et
           </motion.button>
