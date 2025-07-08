@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiShoppingCart, FiCalendar, FiHeart } from 'react-icons/fi';
+import { FiShoppingCart, FiCalendar, FiHeart, FiArrowRight } from 'react-icons/fi';
+import ServiceDetails from './ServiceDetails';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -9,9 +10,10 @@ interface ServiceCardProps {
   features: string[];
   color: string;
   delay: number;
+  onDetailsClick: () => void;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, features, color, delay }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, features, color, delay, onDetailsClick }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -33,11 +35,23 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
           </li>
         ))}
       </ul>
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={onDetailsClick}
+        className="mt-6 w-full bg-primary text-white py-2 rounded-lg font-medium flex items-center justify-center space-x-2 hover:bg-primary/90 transition-colors"
+      >
+        <span>Detaylı Bilgi</span>
+        <FiArrowRight />
+      </motion.button>
     </motion.div>
   );
 };
 
 const Services: React.FC = () => {
+  const [selectedService, setSelectedService] = useState<any>(null);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+
   const services = [
     {
       icon: <FiShoppingCart className="text-white text-3xl" />,
@@ -104,7 +118,14 @@ const Services: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+            <ServiceCard 
+              key={index} 
+              {...service} 
+              onDetailsClick={() => {
+                setSelectedService(service);
+                setIsDetailsOpen(true);
+              }}
+            />
           ))}
         </div>
 
@@ -139,6 +160,11 @@ const Services: React.FC = () => {
           </div>
         </motion.div>
       </div>
+      <ServiceDetails 
+        isOpen={isDetailsOpen}
+        onClose={() => setIsDetailsOpen(false)}
+        service={selectedService}
+      />
     </section>
   );
 };
