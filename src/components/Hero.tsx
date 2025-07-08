@@ -17,7 +17,6 @@ const Hero: React.FC = () => {
 
   const trustBadges = [
     { icon: <BsShieldCheck />, text: 'KVKK Uyumlu' },
-    { icon: <BsStarFill />, text: '4.9/5 Puan' },
   ];
 
   const aiAssistants = [
@@ -205,23 +204,6 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              {/* Floating Demo Button */}
-              <motion.div
-                animate={{
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="absolute -top-4 -right-4 z-10"
-              >
-                <div className="bg-secondary text-darkBlue px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                  🎥 Canlı Demo
-                </div>
-              </motion.div>
-
               <div className="relative z-10">
                 <div className="bg-gradient-to-br from-darkBlue/80 to-lightBlue/80 backdrop-blur-xl border border-secondary/40 rounded-3xl shadow-2xl p-10 glow-effect hover:scale-[1.02] transition-transform duration-300">
                   <motion.div 

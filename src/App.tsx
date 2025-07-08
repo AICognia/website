@@ -1,26 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import ContactCTA from './components/ContactCTA';
-import Services from './components/Services';
-import Testimonials from './components/Testimonials';
-import Features from './components/Features';
-import About from './components/About';
-import FAQ from './components/FAQ';
-import Footer from './components/Footer';
+import LoadingScreen from './components/LoadingScreen';
+
+// Lazy load heavy components
+const Partners = React.lazy(() => import('./components/Partners'));
+const ContactCTA = React.lazy(() => import('./components/ContactCTA'));
+const Services = React.lazy(() => import('./components/Services'));
+const Testimonials = React.lazy(() => import('./components/Testimonials'));
+const Features = React.lazy(() => import('./components/Features'));
+const About = React.lazy(() => import('./components/About'));
+const FAQ = React.lazy(() => import('./components/FAQ'));
+const Footer = React.lazy(() => import('./components/Footer'));
+const StickyChat = React.lazy(() => import('./components/StickyChat'));
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
     <div className="min-h-screen">
       <Navbar />
       <Hero />
-      <ContactCTA />
-      <Services />
-      <Testimonials />
-      <Features />
-      <About />
-      <FAQ />
-      <Footer />
+      <Suspense fallback={<div className="h-16"></div>}>
+        <Partners />
+        <ContactCTA />
+        <Services />
+        <Testimonials />
+        <Features />
+        <About />
+        <FAQ />
+        <Footer />
+        <StickyChat />
+      </Suspense>
     </div>
   );
 }
