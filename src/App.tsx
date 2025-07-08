@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import LoadingScreen from './components/LoadingScreen';
 
 // Lazy load heavy components
-const Partners = React.lazy(() => import('./components/Partners'));
 const ContactCTA = React.lazy(() => import('./components/ContactCTA'));
 const Services = React.lazy(() => import('./components/Services'));
 const Testimonials = React.lazy(() => import('./components/Testimonials'));
@@ -35,7 +34,6 @@ function App() {
       <Navbar />
       <Hero />
       <Suspense fallback={<div className="h-16"></div>}>
-        <Partners />
         <ContactCTA />
         <Services />
         <Testimonials />

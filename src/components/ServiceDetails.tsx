@@ -118,20 +118,32 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ isOpen, onClose, servic
 
           {service.title === 'E-Ticaret Sistemi' && (
             <div>
-              <h3 className="text-xl font-semibold mb-4">Demo Videolar</h3>
+              <h3 className="text-xl font-semibold mb-4">Demo Video</h3>
               <div className="space-y-4">
                 <div>
                   <h4 className="text-lg font-medium mb-2">Giyim Sektörü Demo</h4>
-                  <div className="flex justify-center">
-                    <video 
-                      className="max-w-2xl w-full rounded-lg shadow-lg"
-                      controls
-                      preload="metadata"
-                      style={{ maxHeight: '500px' }}
-                    >
-                      <source src="/videos/Giyim Demo Video.mp4" type="video/mp4" />
-                      Tarayıcınız video oynatmayı desteklemiyor.
-                    </video>
+                  <div className="bg-gray-100 rounded-lg p-8 text-center">
+                    <div className="max-w-md mx-auto">
+                      <svg className="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                      <p className="text-gray-600 mb-2 font-medium">Demo Video Yakında Eklenecek</p>
+                      <p className="text-sm text-gray-500">
+                        E-ticaret AI sistemimizin nasıl çalıştığını görmek için bizimle iletişime geçin. 
+                        Size özel bir demo sunmaktan mutluluk duyarız.
+                      </p>
+                      <button
+                        onClick={() => {
+                          const contactCTA = document.querySelector('.contact-cta-section');
+                          if (contactCTA) {
+                            contactCTA.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }}
+                        className="mt-4 text-primary hover:text-primary/80 font-medium text-sm"
+                      >
+                        Demo Talep Et →
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

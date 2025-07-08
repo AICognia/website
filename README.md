@@ -9,6 +9,8 @@ Türkiye'nin önde gelen yapay zeka danışmanlık firması Cognia AI'nin kurums
 - **Framer Motion**: Akıcı animasyonlar ve geçişler
 - **TypeScript**: Tip güvenli kod yapısı
 - **React Icons**: Modern ikon seti
+- **Lazy Loading**: Performans optimizasyonu
+- **SEO Optimizasyonu**: Meta tags ve structured data
 
 ## 💼 Hizmetlerimiz
 
@@ -43,8 +45,9 @@ npm run build
 ## 📱 İletişim
 
 - **Web**: cogniaai.com.tr
-- **Email**: info@cogniaai.com.tr
-- **Telefon**: +90 212 123 45 67
+- **Email**: admin@cogniaai.com
+- **Telefon**: +90 531 773 9053
+- **WhatsApp**: +90 531 773 9053
 
 ## 🔧 Teknolojiler
 

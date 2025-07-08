@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiCheckCircle, FiPlay } from 'react-icons/fi';
-import { BsShieldCheck, BsStarFill } from 'react-icons/bs';
+import { BsShieldCheck } from 'react-icons/bs';
 import ServiceDetails from './ServiceDetails';
 
 const Hero: React.FC = () => {
