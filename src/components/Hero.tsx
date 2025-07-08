@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi';
-import { BsRobot } from 'react-icons/bs';
 
 const Hero: React.FC = () => {
   const benefits = [
@@ -12,9 +11,9 @@ const Hero: React.FC = () => {
   ];
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    const contactCTA = document.querySelector('.contact-cta-section');
+    if (contactCTA) {
+      contactCTA.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -82,9 +81,11 @@ const Hero: React.FC = () => {
             <div className="relative z-10">
               <div className="bg-white rounded-2xl shadow-2xl p-8">
                 <div className="flex items-center justify-center mb-6">
-                  <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center">
-                    <BsRobot className="text-white text-4xl" />
-                  </div>
+                  <img 
+                    src="/cognia-logo.svg" 
+                    alt="Cognia AI" 
+                    className="h-16 w-auto rounded-lg"
+                  />
                 </div>
                 <h3 className="text-2xl font-bold text-center mb-4">AI Asistanlarımız</h3>
                 <div className="space-y-4">

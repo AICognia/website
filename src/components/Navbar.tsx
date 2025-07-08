@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
             className="flex items-center"
           >
             <img 
-              src="/cognia-logo.png" 
+              src="/cognia-logo.svg" 
               alt="Cognia AI" 
               className="h-10 w-auto"
               onError={(e) => {
@@ -57,9 +57,9 @@ const Navbar: React.FC = () => {
                 transition={{ delay: navItems.length * 0.1 }}
                 className="bg-gradient-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
                 onClick={() => {
-                  const contactSection = document.getElementById('contact');
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  const contactCTA = document.querySelector('.contact-cta-section');
+                  if (contactCTA) {
+                    contactCTA.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
               >
@@ -100,9 +100,9 @@ const Navbar: React.FC = () => {
               className="w-full bg-gradient-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
               onClick={() => {
                 setIsOpen(false);
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                const contactCTA = document.querySelector('.contact-cta-section');
+                if (contactCTA) {
+                  contactCTA.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
             >

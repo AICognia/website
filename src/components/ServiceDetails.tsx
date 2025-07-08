@@ -124,9 +124,9 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ isOpen, onClose, servic
             <button
               onClick={() => {
                 onClose();
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                const contactCTA = document.querySelector('.contact-cta-section');
+                if (contactCTA) {
+                  contactCTA.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
               className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
