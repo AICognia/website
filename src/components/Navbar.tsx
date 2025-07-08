@@ -21,20 +21,22 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center"
           >
-            <img 
-              src="/cognia-logo.svg" 
-              alt="Cognia AI" 
-              className="h-10 w-auto"
-              onError={(e) => {
-                const target = e.currentTarget as HTMLImageElement;
-                target.style.display = 'none';
-                const nextElement = target.nextElementSibling as HTMLElement;
-                if (nextElement) {
-                  nextElement.style.display = 'block';
-                }
-              }}
-            />
-            <h1 className="text-2xl font-bold text-gradient hidden">Cognia AI</h1>
+            <div className="bg-primary rounded-lg p-2">
+              <img 
+                src="/cognia-logo.svg" 
+                alt="Cognia AI" 
+                className="h-10 w-auto"
+                onError={(e) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  target.style.display = 'none';
+                  const nextElement = target.parentElement?.nextElementSibling as HTMLElement;
+                  if (nextElement) {
+                    nextElement.style.display = 'block';
+                  }
+                }}
+              />
+            </div>
+            <h1 className="text-2xl font-bold text-gradient hidden ml-3">Cognia AI</h1>
           </motion.div>
 
           <div className="hidden md:block">
