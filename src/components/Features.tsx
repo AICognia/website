@@ -22,8 +22,9 @@ const Features: React.FC = () => {
     { 
       name: 'Trendyol', 
       icon: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="#FF6600">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-13h4v2h-4v6h-2V7zm6 0h2v8h-2V7z"/>
+        <svg viewBox="0 0 100 100" className="w-10 h-10">
+          <rect width="100" height="100" rx="20" fill="#FF6600"/>
+          <text x="50" y="60" textAnchor="middle" fill="white" fontSize="36" fontWeight="bold">T</text>
         </svg>
       ),
       color: 'text-orange-500',
@@ -32,9 +33,9 @@ const Features: React.FC = () => {
     { 
       name: 'Hepsiburada', 
       icon: (
-        <svg viewBox="0 0 100 100" className="w-10 h-10" fill="#FF6000">
-          <circle cx="50" cy="50" r="45" fill="#FF6000"/>
-          <text x="50" y="65" textAnchor="middle" fill="white" fontSize="40" fontWeight="bold">H</text>
+        <svg viewBox="0 0 100 100" className="w-10 h-10">
+          <rect width="100" height="100" rx="20" fill="#FF6000"/>
+          <text x="50" y="60" textAnchor="middle" fill="white" fontSize="36" fontWeight="bold">H</text>
         </svg>
       ),
       color: 'text-orange-600',
@@ -45,7 +46,7 @@ const Features: React.FC = () => {
       icon: (
         <svg viewBox="0 0 100 100" className="w-10 h-10">
           <rect width="100" height="100" rx="20" fill="#D41F38"/>
-          <text x="50" y="65" textAnchor="middle" fill="white" fontSize="32" fontWeight="bold">n11</text>
+          <text x="50" y="60" textAnchor="middle" fill="white" fontSize="28" fontWeight="bold">n11</text>
         </svg>
       ),
       color: 'text-red-600',
@@ -56,7 +57,8 @@ const Features: React.FC = () => {
       icon: (
         <svg viewBox="0 0 100 100" className="w-10 h-10">
           <circle cx="50" cy="50" r="45" fill="#FF1744"/>
-          <text x="50" y="60" textAnchor="middle" fill="white" fontSize="24" fontWeight="bold">ÇS</text>
+          <path d="M50 25 C35 25 25 35 25 50 C25 65 50 75 50 75 C50 75 75 65 75 50 C75 35 65 25 50 25 Z" fill="white" opacity="0.9"/>
+          <circle cx="50" cy="45" r="8" fill="#FF1744"/>
         </svg>
       ),
       color: 'text-pink-600',

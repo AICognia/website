@@ -7,7 +7,7 @@ const Testimonials: React.FC = () => {
     {
       name: 'Ahmet Yılmaz',
       company: 'Yılmaz Tekstil',
-      image: 'https://i.pravatar.cc/150?img=12',
+      image: 'https://ui-avatars.com/api/?name=Ahmet+Yilmaz&background=0D8ABC&color=fff&size=150',
       rating: 5,
       text: 'Başta biraz tereddütlerim vardı açıkçası, ama Cognia AI gerçekten işimizi değiştirdi! WhatsApp\'tan gelen siparişleri kaçırmıyoruz artık, gece gündüz müşteri sorularına anında cevap veriliyor. Geçen ay satışlarımız %40 arttı, inanılmaz!',
       highlight: 'Satışlarda %40 Artış'
@@ -15,7 +15,7 @@ const Testimonials: React.FC = () => {
     {
       name: 'Ayşe Demir',
       company: 'Demir Restaurant',
-      image: 'https://i.pravatar.cc/150?img=5',
+      image: 'https://ui-avatars.com/api/?name=Ayse+Demir&background=E91E63&color=fff&size=150',
       rating: 5,
       text: 'Instagram DM\'lerden rezervasyon almak tam bir kabustu, sürekli mesajları kaçırıyorduk. Şimdi Cognia AI var, misafirlerimiz anında rezervasyon yapabiliyor. Hem de Türkçe konuşuyor sanki gerçek bir insan gibi! Müşterilerimiz çok memnun.',
       highlight: '7/24 Otomatik Rezervasyon'
@@ -23,7 +23,7 @@ const Testimonials: React.FC = () => {
     {
       name: 'Dr. Mehmet Kaya',
       company: 'Kaya Medikal',
-      image: 'https://i.pravatar.cc/150?img=33',
+      image: 'https://ui-avatars.com/api/?name=Mehmet+Kaya&background=2196F3&color=fff&size=150',
       rating: 5,
       text: 'Yurtdışından gelen hastalarla iletişim kurmak çok zordu, sürekli tercüman arıyorduk. Cognia AI sayesinde İngilizce, Arapça, Rusça... 5 dilde anında destek sağlıyoruz. Hasta memnuniyeti arttı, işimiz kolaylaştı. Keşke daha önce tanışsaydık!',
       highlight: '5 Dilde Destek'
@@ -96,11 +96,11 @@ const Testimonials: React.FC = () => {
         >
           <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-secondary/20">
             <div className="flex -space-x-2">
-              {[1, 2, 3, 4].map((i) => (
+              {['Ali+Ozturk', 'Fatma+Yildiz', 'Mustafa+Celik', 'Zeynep+Sahin'].map((name, i) => (
                 <img 
                   key={i} 
-                  src={`https://i.pravatar.cc/150?img=${i + 40}`}
-                  alt={`Customer ${i}`}
+                  src={`https://ui-avatars.com/api/?name=${name}&background=${['4CAF50', 'FF5722', '673AB7', 'FFC107'][i]}&color=fff&size=150`}
+                  alt={`Customer ${i + 1}`}
                   className="w-10 h-10 rounded-full border-2 border-darkBlue object-cover"
                 />
               ))}
