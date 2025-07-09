@@ -7,12 +7,61 @@ import { HiOutlineDocumentReport, HiOutlineUserGroup } from 'react-icons/hi';
 
 const Features: React.FC = () => {
   const integrations = [
-    { name: 'WhatsApp', icon: <BsWhatsapp className="text-3xl" />, color: 'text-green-500' },
-    { name: 'Instagram', icon: <BsInstagram className="text-3xl" />, color: 'text-pink-500' },
-    { name: 'Trendyol', text: 'T', color: 'text-orange-500' },
-    { name: 'Hepsiburada', text: 'H', color: 'text-orange-600' },
-    { name: 'N11', text: 'N11', color: 'text-purple-600' },
-    { name: 'Çiçeksepeti', text: 'ÇS', color: 'text-pink-600' },
+    { 
+      name: 'WhatsApp', 
+      icon: <BsWhatsapp className="text-4xl" />, 
+      color: 'text-green-500',
+      bgColor: 'bg-green-500/10 hover:bg-green-500/20'
+    },
+    { 
+      name: 'Instagram', 
+      icon: <BsInstagram className="text-4xl" />, 
+      color: 'text-pink-500',
+      bgColor: 'bg-pink-500/10 hover:bg-pink-500/20'
+    },
+    { 
+      name: 'Trendyol', 
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="#FF6600">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-13h4v2h-4v6h-2V7zm6 0h2v8h-2V7z"/>
+        </svg>
+      ),
+      color: 'text-orange-500',
+      bgColor: 'bg-orange-500/10 hover:bg-orange-500/20'
+    },
+    { 
+      name: 'Hepsiburada', 
+      icon: (
+        <svg viewBox="0 0 100 100" className="w-10 h-10" fill="#FF6000">
+          <circle cx="50" cy="50" r="45" fill="#FF6000"/>
+          <text x="50" y="65" textAnchor="middle" fill="white" fontSize="40" fontWeight="bold">H</text>
+        </svg>
+      ),
+      color: 'text-orange-600',
+      bgColor: 'bg-orange-600/10 hover:bg-orange-600/20'
+    },
+    { 
+      name: 'N11', 
+      icon: (
+        <svg viewBox="0 0 100 100" className="w-10 h-10">
+          <rect width="100" height="100" rx="20" fill="#D41F38"/>
+          <text x="50" y="65" textAnchor="middle" fill="white" fontSize="32" fontWeight="bold">n11</text>
+        </svg>
+      ),
+      color: 'text-red-600',
+      bgColor: 'bg-red-600/10 hover:bg-red-600/20'
+    },
+    { 
+      name: 'Çiçeksepeti', 
+      icon: (
+        <svg viewBox="0 0 100 100" className="w-10 h-10">
+          <circle cx="50" cy="50" r="45" fill="#FF1744"/>
+          <text x="50" y="60" textAnchor="middle" fill="white" fontSize="24" fontWeight="bold">ÇS</text>
+        </svg>
+      ),
+      color: 'text-pink-600',
+      bgColor: 'bg-pink-600/10 hover:bg-pink-600/20'
+    },
   ];
 
   const additionalFeatures = [
@@ -86,14 +135,8 @@ const Features: React.FC = () => {
                   viewport={{ once: true }}
                   className="flex flex-col items-center group cursor-pointer"
                 >
-                  <div className="w-20 h-20 bg-darkBlue/70 backdrop-blur-sm border border-secondary/30 rounded-xl shadow-lg flex items-center justify-center mb-3 group-hover:scale-110 group-hover:border-secondary/50 transition-all duration-300 pulse-glow">
-                    {integration.icon ? (
-                      <div className={integration.color}>{integration.icon}</div>
-                    ) : (
-                      <span className={`text-2xl font-bold ${integration.color}`}>
-                        {integration.text}
-                      </span>
-                    )}
+                  <div className={`w-20 h-20 ${integration.bgColor} backdrop-blur-sm border border-secondary/30 rounded-xl shadow-lg flex items-center justify-center mb-3 group-hover:scale-110 group-hover:border-secondary/50 transition-all duration-300 pulse-glow`}>
+                    {integration.icon}
                   </div>
                   <span className="text-sm font-medium text-white/80">{integration.name}</span>
                 </motion.div>

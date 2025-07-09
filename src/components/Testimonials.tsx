@@ -7,25 +7,25 @@ const Testimonials: React.FC = () => {
     {
       name: 'Ahmet Yılmaz',
       company: 'Yılmaz Tekstil',
-      image: '/api/placeholder/60/60',
+      image: 'https://i.pravatar.cc/150?img=12',
       rating: 5,
-      text: 'Cognia AI sayesinde e-ticaret satışlarımız %40 arttı. WhatsApp üzerinden gelen müşteri sorularına anında yanıt verebiliyoruz. Harika bir yatırım oldu!',
+      text: 'Başta biraz tereddütlerim vardı açıkçası, ama Cognia AI gerçekten işimizi değiştirdi! WhatsApp\'tan gelen siparişleri kaçırmıyoruz artık, gece gündüz müşteri sorularına anında cevap veriliyor. Geçen ay satışlarımız %40 arttı, inanılmaz!',
       highlight: 'Satışlarda %40 Artış'
     },
     {
       name: 'Ayşe Demir',
       company: 'Demir Restaurant',
-      image: '/api/placeholder/60/60',
+      image: 'https://i.pravatar.cc/150?img=5',
       rating: 5,
-      text: 'Rezervasyon sistemleri tam bir kaos halindeydi. Cognia AI ile artık Instagram ve WhatsApp üzerinden otomatik rezervasyon alıyoruz. Müşteri memnuniyeti tavan yaptı!',
+      text: 'Instagram DM\'lerden rezervasyon almak tam bir kabustu, sürekli mesajları kaçırıyorduk. Şimdi Cognia AI var, misafirlerimiz anında rezervasyon yapabiliyor. Hem de Türkçe konuşuyor sanki gerçek bir insan gibi! Müşterilerimiz çok memnun.',
       highlight: '7/24 Otomatik Rezervasyon'
     },
     {
       name: 'Dr. Mehmet Kaya',
       company: 'Kaya Medikal',
-      image: '/api/placeholder/60/60',
+      image: 'https://i.pravatar.cc/150?img=33',
       rating: 5,
-      text: 'Medikal turizm hastalarımızla iletişimimiz çok zordu. Artık 5 dilde otomatik destek sağlıyoruz. Hasta memnuniyeti ve gelirlerimiz önemli ölçüde arttı.',
+      text: 'Yurtdışından gelen hastalarla iletişim kurmak çok zordu, sürekli tercüman arıyorduk. Cognia AI sayesinde İngilizce, Arapça, Rusça... 5 dilde anında destek sağlıyoruz. Hasta memnuniyeti arttı, işimiz kolaylaştı. Keşke daha önce tanışsaydık!',
       highlight: '5 Dilde Destek'
     }
   ];
@@ -61,7 +61,11 @@ const Testimonials: React.FC = () => {
               className="bg-white/10 backdrop-blur-lg border border-secondary/20 rounded-2xl p-8 hover:scale-105 transition-all duration-300"
             >
               <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-secondary/20 rounded-full mr-4"></div>
+                <img 
+                  src={testimonial.image} 
+                  alt={testimonial.name}
+                  className="w-12 h-12 rounded-full mr-4 object-cover border-2 border-secondary/30"
+                />
                 <div>
                   <h4 className="font-semibold text-white">{testimonial.name}</h4>
                   <p className="text-white/70 text-sm">{testimonial.company}</p>
@@ -93,7 +97,12 @@ const Testimonials: React.FC = () => {
           <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-secondary/20">
             <div className="flex -space-x-2">
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-10 h-10 bg-secondary/30 rounded-full border-2 border-darkBlue"></div>
+                <img 
+                  key={i} 
+                  src={`https://i.pravatar.cc/150?img=${i + 40}`}
+                  alt={`Customer ${i}`}
+                  className="w-10 h-10 rounded-full border-2 border-darkBlue object-cover"
+                />
               ))}
             </div>
             <span className="text-white font-medium">+96 mutlu müşteri daha</span>

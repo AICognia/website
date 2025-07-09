@@ -4,29 +4,6 @@ import { FiUsers, FiTrendingUp } from 'react-icons/fi';
 import { BsLightbulb, BsShieldCheck } from 'react-icons/bs';
 
 const About: React.FC = () => {
-  const values = [
-    {
-      icon: <BsLightbulb className="text-3xl" />,
-      title: 'İnovasyon',
-      description: 'En güncel AI teknolojilerini Türkiye pazarına uyarlıyoruz'
-    },
-    {
-      icon: <FiUsers className="text-3xl" />,
-      title: 'Müşteri Odaklılık',
-      description: 'Çözümlerimizi müşterilerimizin gerçek ihtiyaçlarına göre şekillendiriyoruz'
-    },
-    {
-      icon: <BsShieldCheck className="text-3xl" />,
-      title: 'Güvenilirlik',
-      description: 'KVKK uyumlu, güvenli ve sürdürülebilir çözümler sunuyoruz'
-    },
-    {
-      icon: <FiTrendingUp className="text-3xl" />,
-      title: 'Sürekli Gelişim',
-      description: 'AI modellerimizi sürekli güncelleyerek en iyi performansı sağlıyoruz'
-    }
-  ];
-
   const stats = [
     { number: '2021', label: 'Kuruluş Yılı' },
     { number: '25+', label: 'Uzman Kadro' },
@@ -99,34 +76,6 @@ const About: React.FC = () => {
             <div className="absolute -top-4 -right-4 w-64 h-64 bg-primary/10 rounded-full filter blur-3xl"></div>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-16"
-        >
-          <h3 className="text-3xl font-bold text-center mb-12 text-white">Değerlerimiz</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-darkBlue/50 backdrop-blur-lg border border-secondary/30 rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
-              >
-                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4 text-white">
-                  {value.icon}
-                </div>
-                <h4 className="text-xl font-semibold mb-2 text-white">{value.title}</h4>
-                <p className="text-white/70">{value.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

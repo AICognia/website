@@ -6,6 +6,7 @@ import LoadingScreen from './components/LoadingScreen';
 // Lazy load heavy components
 const ContactCTA = React.lazy(() => import('./components/ContactCTA'));
 const Services = React.lazy(() => import('./components/Services'));
+const DemoVideos = React.lazy(() => import('./components/DemoVideos'));
 const Testimonials = React.lazy(() => import('./components/Testimonials'));
 const Features = React.lazy(() => import('./components/Features'));
 const About = React.lazy(() => import('./components/About'));
@@ -36,6 +37,7 @@ function App() {
       <Suspense fallback={<div className="h-16"></div>}>
         <ContactCTA />
         <Services />
+        <DemoVideos />
         <Testimonials />
         <Features />
         <About />
