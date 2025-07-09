@@ -1,16 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiPlay } from 'react-icons/fi';
+import { FiPlay, FiShoppingCart } from 'react-icons/fi';
 import { BsWhatsapp } from 'react-icons/bs';
 
 const DemoVideos: React.FC = () => {
-  const demo = {
-    title: 'WhatsApp Müşteri Destek Demo',
-    description: 'WhatsApp üzerinden 7/24 otomatik müşteri desteği sağlayan AI asistanımızı keşfedin. Anlık yanıtlar, sipariş takibi ve müşteri memnuniyeti.',
-    icon: <BsWhatsapp className="text-3xl" />,
-    videoUrl: 'https://www.youtube.com/embed/ri36iweXRJs',
-    color: 'from-green-500 to-green-600'
-  };
+  const demos = [
+    {
+      title: 'E-Ticaret AI Sistemi - Kuyumcu Bot Demo',
+      description: 'Kuyumculuk sektöründe WhatsApp üzerinden otomatik satış yapan AI botumuz. Müşteri sorularına anında yanıt verir, ürün önerir, sipariş alır ve ödeme yönlendirmesi yapar.',
+      icon: <FiShoppingCart className="text-3xl" />,
+      videoUrl: 'Kuyumcu Bot Demo.mp4',
+      isLocal: true,
+      color: 'from-purple-500 to-purple-600',
+      features: ['Ürün Sorgulama', 'Fiyat Bilgisi', 'Stok Kontrolü', 'Sipariş Alma', 'Ödeme Yönlendirme']
+    },
+    {
+      title: 'WhatsApp Müşteri Destek Demo',
+      description: 'WhatsApp üzerinden 7/24 otomatik müşteri desteği sağlayan AI asistanımızı keşfedin. Anlık yanıtlar, sipariş takibi ve müşteri memnuniyeti.',
+      icon: <BsWhatsapp className="text-3xl" />,
+      videoUrl: 'https://www.youtube.com/embed/ri36iweXRJs',
+      isLocal: false,
+      color: 'from-green-500 to-green-600',
+      features: ['Anlık Yanıt', 'Sipariş Takibi', 'Müşteri Memnuniyeti']
+    }
+  ];
 
   return (
     <section className="py-20 bg-gradient-to-br from-lightBlue to-darkBlue">
@@ -23,53 +36,77 @@ const DemoVideos: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Canlı <span className="text-secondary">Demo Video</span>
+            Canlı <span className="text-secondary">Demo Videolar</span>
           </h2>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            AI destekli müşteri hizmetlerimizi canlı olarak görün
+            AI destekli sistemlerimizin gerçek kullanım örneklerini izleyin
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="bg-white/10 backdrop-blur-lg border border-secondary/20 rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300"
-          >
-            <div className={`h-2 bg-gradient-to-r ${demo.color}`}></div>
-            
-            <div className="p-8">
-              <div className="flex items-center mb-6">
-                <div className={`w-16 h-16 bg-gradient-to-r ${demo.color} rounded-full flex items-center justify-center text-white mr-4`}>
-                  {demo.icon}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white">{demo.title}</h3>
-                </div>
-              </div>
+        <div className="grid gap-8 lg:grid-cols-2">
+          {demos.map((demo, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white/10 backdrop-blur-lg border border-secondary/20 rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
+            >
+              <div className={`h-2 bg-gradient-to-r ${demo.color}`}></div>
               
-              <p className="text-white/80 mb-6">{demo.description}</p>
-              
-              <div className="relative aspect-video bg-darkBlue/50 rounded-lg overflow-hidden group cursor-pointer">
-                <iframe
-                  src={demo.videoUrl}
-                  title={demo.title}
-                  className="w-full h-full"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <div className={`w-14 h-14 bg-gradient-to-r ${demo.color} rounded-full flex items-center justify-center text-white mr-4`}>
+                    {demo.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white">{demo.title}</h3>
+                  </div>
+                </div>
                 
-                <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    <FiPlay className="text-3xl text-white ml-1" />
+                <p className="text-white/80 mb-4 text-sm">{demo.description}</p>
+                
+                {demo.features && (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {demo.features.map((feature, idx) => (
+                      <span key={idx} className="text-xs bg-white/10 text-white/90 px-2 py-1 rounded">
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                
+                <div className="relative aspect-video bg-darkBlue/50 rounded-lg overflow-hidden group cursor-pointer">
+                  {demo.isLocal ? (
+                    <video 
+                      controls
+                      className="w-full h-full object-cover"
+                      poster="/poster-image.jpg"
+                    >
+                      <source src={`/${demo.videoUrl}`} type="video/mp4" />
+                      Tarayıcınız video etiketini desteklemiyor.
+                    </video>
+                  ) : (
+                    <iframe
+                      src={demo.videoUrl}
+                      title={demo.title}
+                      className="w-full h-full"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  )}
+                  
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                    <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                      <FiPlay className="text-2xl text-white ml-1" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
 
         <motion.div
@@ -93,7 +130,7 @@ const DemoVideos: React.FC = () => {
             }}
             className="bg-gradient-primary text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-secondary/30"
           >
-            Demo Talep Et
+            Özel Demo Talep Et
           </motion.button>
         </motion.div>
       </div>

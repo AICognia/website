@@ -26,8 +26,9 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ isOpen, onClose, servic
       ve sipariş takibi yapar.
       
       Türk muhasebe sistemleriyle tam uyumlu e-fatura entegrasyonumuz sayesinde, tüm satış işlemleriniz 
-      otomatik olarak faturalandırılır. Trendyol, Hepsiburada, N11 gibi platformlardaki mağazalarınızı 
-      tek bir panelden yönetebilir, envanter senkronizasyonu yapabilirsiniz.
+      otomatik olarak faturalandırılır. Trendyol, Hepsiburada, N11, Çiçeksepeti, Amazon Türkiye, 
+      GittiGidiyor gibi önde gelen e-ticaret platformlarındaki mağazalarınızı tek bir panelden yönetebilir, 
+      envanter senkronizasyonu yapabilirsiniz.
       
       AI destekli ürün öneri sistemimiz, müşteri davranışlarını analiz ederek kişiselleştirilmiş öneriler sunar 
       ve satışlarınızı artırır.
@@ -118,35 +119,33 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ isOpen, onClose, servic
 
           {service.title === 'E-Ticaret Sistemi' && (
             <div>
-              <h3 className="text-xl font-semibold mb-4">Demo Video</h3>
-              <div className="space-y-4">
-                <div>
-                  <h4 className="text-lg font-medium mb-2">Giyim Sektörü Demo</h4>
-                  <div className="bg-gray-100 rounded-lg p-8 text-center">
-                    <div className="max-w-md mx-auto">
-                      <svg className="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                      <p className="text-gray-600 mb-2 font-medium">Demo Video Yakında Eklenecek</p>
-                      <p className="text-sm text-gray-500">
-                        E-ticaret AI sistemimizin nasıl çalıştığını görmek için bizimle iletişime geçin. 
-                        Size özel bir demo sunmaktan mutluluk duyarız.
-                      </p>
-                      <button
-                        onClick={() => {
-                          const contactCTA = document.querySelector('.contact-cta-section');
-                          if (contactCTA) {
-                            contactCTA.scrollIntoView({ behavior: 'smooth' });
-                          }
-                        }}
-                        className="mt-4 text-primary hover:text-primary/80 font-medium text-sm"
-                      >
-                        Demo Talep Et →
-                      </button>
-                    </div>
-                  </div>
+              <h3 className="text-xl font-semibold mb-4">Güçlü Entegrasyonlar</h3>
+              <p className="text-gray-600 mb-4">
+                Türkiye'nin önde gelen e-ticaret platformlarıyla tam entegrasyon
+              </p>
+              <div className="grid grid-cols-3 md:grid-cols-6 gap-4 mb-6">
+                <div className="bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow">
+                  <img src="/trendyol-logo.svg" alt="Trendyol" className="w-full h-8 object-contain" />
+                </div>
+                <div className="bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow">
+                  <img src="/hepsiburada-logo.svg" alt="Hepsiburada" className="w-full h-8 object-contain" />
+                </div>
+                <div className="bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow">
+                  <img src="/n11-logo.svg" alt="N11" className="w-full h-8 object-contain" />
+                </div>
+                <div className="bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow">
+                  <img src="/ciceksepeti-logo.svg" alt="Çiçeksepeti" className="w-full h-8 object-contain" />
+                </div>
+                <div className="bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow">
+                  <img src="/amazon-logo.svg" alt="Amazon" className="w-full h-8 object-contain" />
+                </div>
+                <div className="bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow">
+                  <img src="/gittigidiyor-logo.svg" alt="GittiGidiyor" className="w-full h-8 object-contain" />
                 </div>
               </div>
+              <p className="text-sm text-gray-500">
+                Ve daha fazla platform için entegrasyon desteği...
+              </p>
             </div>
           )}
 

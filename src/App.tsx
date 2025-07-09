@@ -35,9 +35,9 @@ function App() {
       <Navbar />
       <Hero />
       <Suspense fallback={<div className="h-16"></div>}>
+        <DemoVideos />
         <ContactCTA />
         <Services />
-        <DemoVideos />
         <Testimonials />
         <Features />
         <About />
