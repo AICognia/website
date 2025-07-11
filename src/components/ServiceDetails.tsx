@@ -38,6 +38,17 @@ ve VIP müşteri yönetimi özellikleriyle işletmenizin prestijini artırır.
 
 Menü bilgileri, fiyatlar ve özel kampanyalar hakkında bilgi verir, müşteri tercihlerini kaydeder ve 
 kişiselleştirilmiş öneriler sunar. Rezervasyon iptali ve değişikliği de tamamen otomatiktir.
+    `,
+    'Özel AI Çözümleri': `
+Her işletmenin kendine özgü ihtiyaçları vardır. Cognia AI olarak, sektörünüze ve iş modelinize özel 
+yapay zeka çözümleri geliştiriyoruz. E-ticaret, lojistik, sağlık, eğitim, turizm ve daha birçok sektörde 
+özel AI asistanları tasarlıyoruz.
+
+Uzman ekibimiz önce işletmenizin süreçlerini detaylıca analiz eder, ardından size özel bir AI stratejisi 
+oluşturur. Mevcut sistemlerinizle tam uyumlu, ölçeklenebilir ve sürekli öğrenen AI çözümleri geliştiririz.
+
+İster müşteri hizmetleri, ister satış otomasyonu, ister operasyon yönetimi olsun, her türlü iş sürecinizi 
+AI ile güçlendirebiliriz. Rakiplerinizden bir adım önde olmanız için size özel çözümler üretiyoruz.
     `
   };
 

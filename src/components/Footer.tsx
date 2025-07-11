@@ -9,7 +9,8 @@ const Footer: React.FC = () => {
   const footerLinks = {
     services: [
       { name: 'Müşteri Destek Sistemi', href: '#services' },
-      { name: 'Rezervasyon Sistemi', href: '#services' }
+      { name: 'Rezervasyon Sistemi', href: '#services' },
+      { name: 'Özel Çözümler', href: '#contact' }
     ],
     company: [
       { name: 'Hakkımızda', href: '#about' },

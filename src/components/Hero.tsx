@@ -51,6 +51,22 @@ const Hero: React.FC = () => {
           'Müşteri bilgilendirme ve hatırlatma'
         ]
       }
+    },
+    {
+      number: '3',
+      title: 'Özel Çözüm Asistanı',
+      description: 'İşletmenize özel AI çözümleri',
+      service: {
+        title: 'Özel AI Çözümleri',
+        description: 'Sektörünüze ve iş süreçlerinize özel tasarlanmış yapay zeka asistanları geliştiriyoruz.',
+        features: [
+          'İhtiyaç analizi ve özel tasarım',
+          'Sektöre özel AI modelleri',
+          'Mevcut sistemlerle tam entegrasyon',
+          'Özelleştirilebilir iş akışları',
+          'Sürekli öğrenme ve gelişim'
+        ]
+      }
     }
   ];
 
