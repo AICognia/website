@@ -8,10 +8,8 @@ const Footer: React.FC = () => {
 
   const footerLinks = {
     services: [
-      { name: 'E-Ticaret Sistemi', href: '#services' },
-      { name: 'Rezervasyon Sistemi', href: '#services' },
-      { name: 'Medikal Turizm', href: '#services' },
-      { name: 'Özel Çözümler', href: '#contact' }
+      { name: 'Müşteri Destek Sistemi', href: '#services' },
+      { name: 'Rezervasyon Sistemi', href: '#services' }
     ],
     company: [
       { name: 'Hakkımızda', href: '#about' },

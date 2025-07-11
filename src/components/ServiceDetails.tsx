@@ -17,49 +17,27 @@ interface ServiceDetailsProps {
 const ServiceDetails: React.FC<ServiceDetailsProps> = ({ isOpen, onClose, service }) => {
   if (!isOpen || !service) return null;
 
-  const detailedDescriptions: { [key: string]: string } = {
-    'E-Ticaret Sistemi': `
-      E-Ticaret AI Sistemimiz, online satış süreçlerinizi baştan sona otomatikleştirir ve optimize eder. 
-      
-      WhatsApp ve Instagram üzerinden gelen müşteri mesajlarına anında yanıt veren chatbot sistemimiz, 
-      7/24 müşteri desteği sağlar. Müşterilerinizin ürün sorularını yanıtlar, stok durumu hakkında bilgi verir 
-      ve sipariş takibi yapar.
-      
-      Türk muhasebe sistemleriyle tam uyumlu e-fatura entegrasyonumuz sayesinde, tüm satış işlemleriniz 
-      otomatik olarak faturalandırılır. Trendyol, Hepsiburada, N11, Çiçeksepeti, Amazon Türkiye, 
-      GittiGidiyor gibi önde gelen e-ticaret platformlarındaki mağazalarınızı tek bir panelden yönetebilir, 
-      envanter senkronizasyonu yapabilirsiniz.
-      
-      AI destekli ürün öneri sistemimiz, müşteri davranışlarını analiz ederek kişiselleştirilmiş öneriler sunar 
-      ve satışlarınızı artırır.
+  const details: { [key: string]: string } = {
+    'Müşteri Destek Sistemi': `
+Müşteri Destek AI Sistemimiz, müşterilerinizle olan iletişimi 7/24 kesintisiz ve profesyonel bir şekilde yönetir.
+WhatsApp ve Instagram üzerinden gelen tüm müşteri sorularını anında yanıtlar, karmaşık talepleri canlı desteğe yönlendirir.
+
+Sistem, sık sorulan soruları otomatik olarak yanıtlar, ürün ve hizmet bilgilerini paylaşır, sipariş takibi yapar ve 
+müşteri memnuniyetini sürekli ölçer. Çoklu dil desteği sayesinde global müşteri kitlenize ulaşabilirsiniz.
+
+AI destekli analizlerle müşteri davranışlarını öğrenir, kişiselleştirilmiş yanıtlar verir ve müşteri deneyimini
+sürekli iyileştirir. Tüm konuşmalar kayıt altına alınır ve detaylı raporlarla sunulur.
     `,
     'Rezervasyon Sistemi': `
-      Restoran ve işletmeniz için geliştirdiğimiz AI Rezervasyon Sistemi, müşterilerinizin rezervasyon 
-      deneyimini tamamen değiştirir.
-      
-      WhatsApp ve Instagram üzerinden doğal dilde rezervasyon alabilir, müşterileriniz sadece 
-      "Bu akşam 4 kişilik masa var mı?" diye sorarak rezervasyon yapabilir. Sistem otomatik olarak 
-      uygun masaları kontrol eder ve anında onay verir.
-      
-      Menü bilgileri, özel istekler, alerji bilgileri gibi detayları da yönetebilen sistemimiz, 
-      rezervasyon hatırlatmaları gönderir ve iptal/değişiklik taleplerini kolayca işler.
-      
-      Restoran doluluk oranlarını optimize eder, no-show oranlarını düşürür ve müşteri memnuniyetini artırır.
-    `,
-    'Medikal Turizm Sistemi': `
-      Medikal Turizm AI Sistemimiz, yurtdışından gelen hastaların tüm süreçlerini kolaylaştırır ve 
-      hasta memnuniyetini maksimize eder.
-      
-      Çoklu dil desteği (İngilizce, Arapça, Rusça ve daha fazlası) ile hastalarınız kendi dillerinde 
-      iletişim kurabilir. AI destekli danışmanlık chatbotu, tedavi seçenekleri hakkında bilgi verir, 
-      fiyatlandırma yapar ve ön değerlendirme sağlar.
-      
-      Operasyon planlaması, hastane rezervasyonları, konaklama organizasyonu, havaalanı transferleri 
-      gibi tüm lojistik süreçler sistem üzerinden yönetilir. Hasta dosyaları, tıbbi raporlar ve 
-      tedavi süreçleri dijital olarak takip edilir.
-      
-      Tedavi sonrası takip sistemi ile hastalarınızla iletişimi sürdürür, memnuniyet anketleri yapar 
-      ve referans ağınızı genişletirsiniz.
+Rezervasyon AI Sistemimiz, restoran ve işletmeniz için tam otomatik rezervasyon yönetimi sağlar.
+Müşterileriniz WhatsApp veya Instagram üzerinden doğal dilde yazarak kolayca rezervasyon yapabilir.
+
+Sistem, müsait masa ve saatleri otomatik kontrol eder, rezervasyon onaylarını anında gönderir ve 
+hatırlatma mesajları ile no-show oranlarını minimize eder. Özel gün rezervasyonları, grup rezervasyonları 
+ve VIP müşteri yönetimi özellikleriyle işletmenizin prestijini artırır.
+
+Menü bilgileri, fiyatlar ve özel kampanyalar hakkında bilgi verir, müşteri tercihlerini kaydeder ve 
+kişiselleştirilmiş öneriler sunar. Rezervasyon iptali ve değişikliği de tamamen otomatiktir.
     `
   };
 
@@ -92,7 +70,7 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ isOpen, onClose, servic
           <div>
             <h3 className="text-xl font-semibold mb-4">Detaylı Bilgi</h3>
             <div className="text-gray-600 whitespace-pre-line">
-              {detailedDescriptions[service.title] || service.description}
+              {details[service.title] || service.description}
             </div>
           </div>
 
@@ -117,35 +95,26 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ isOpen, onClose, servic
             </div>
           )}
 
-          {service.title === 'E-Ticaret Sistemi' && (
+          {service.title === 'Müşteri Destek Sistemi' && (
             <div>
               <h3 className="text-xl font-semibold mb-4">Güçlü Entegrasyonlar</h3>
               <p className="text-gray-600 mb-4">
-                Türkiye'nin önde gelen e-ticaret platformlarıyla tam entegrasyon
+                Müşteri destek sistemimiz tüm iletişim kanallarınızla sorunsuz entegre olur
               </p>
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-4 mb-6">
-                <div className="bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow">
-                  <img src="/trendyol-logo.svg" alt="Trendyol" className="w-full h-8 object-contain" />
+              <div className="flex flex-wrap gap-4">
+                <div className="bg-gray-50 rounded-lg p-4 flex items-center justify-center hover:bg-gray-100 transition-colors">
+                  <span className="text-green-600 font-bold text-lg">WhatsApp Business</span>
                 </div>
-                <div className="bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow">
-                  <img src="/hepsiburada-logo.svg" alt="Hepsiburada" className="w-full h-8 object-contain" />
+                <div className="bg-gray-50 rounded-lg p-4 flex items-center justify-center hover:bg-gray-100 transition-colors">
+                  <span className="text-pink-600 font-bold text-lg">Instagram DM</span>
                 </div>
-                <div className="bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow">
-                  <img src="/n11-logo.svg" alt="N11" className="w-full h-8 object-contain" />
+                <div className="bg-gray-50 rounded-lg p-4 flex items-center justify-center hover:bg-gray-100 transition-colors">
+                  <span className="text-blue-600 font-bold text-lg">Facebook Messenger</span>
                 </div>
-                <div className="bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow">
-                  <img src="/ciceksepeti-logo.svg" alt="Çiçeksepeti" className="w-full h-8 object-contain" />
-                </div>
-                <div className="bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow">
-                  <img src="/amazon-logo.svg" alt="Amazon" className="w-full h-8 object-contain" />
-                </div>
-                <div className="bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow">
-                  <img src="/gittigidiyor-logo.svg" alt="GittiGidiyor" className="w-full h-8 object-contain" />
+                <div className="bg-gray-50 rounded-lg p-4 flex items-center justify-center hover:bg-gray-100 transition-colors">
+                  <span className="text-purple-600 font-bold text-lg">Web Chat</span>
                 </div>
               </div>
-              <p className="text-sm text-gray-500">
-                Ve daha fazla platform için entegrasyon desteği...
-              </p>
             </div>
           )}
 

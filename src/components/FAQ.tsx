@@ -19,8 +19,8 @@ const FAQ: React.FC = () => {
       answer: 'Sistemlerimiz sürekli öğrenen yapay zeka modelleri kullanır ve %95+ doğruluk oranına sahiptir. Yine de, kritik konularda sistem otomatik olarak insan müdahalesine yönlendirir. Ayrıca tüm yanıtları önceden onaylayabilir ve özelleştirebilirsiniz.'
     },
     {
-      question: 'Mevcut sistemlerimle entegre olabilir mi?',
-      answer: 'Evet! E-ticaret platformları (Trendyol, Hepsiburada, N11), muhasebe yazılımları, CRM sistemleri ve daha birçok platformla sorunsuz entegrasyon sağlıyoruz. API desteği olan her sistemle çalışabiliriz.'
+      question: 'Mevcut sistemlerimle entegrasyon sağlanabilir mi?',
+      answer: 'Evet! WhatsApp Business, Instagram, Facebook Messenger gibi iletişim kanalları, CRM sistemleri, muhasebe yazılımları ve daha birçok platformla sorunsuz entegrasyon sağlıyoruz. API desteği olan her sistemle çalışabiliriz.'
     },
     {
       question: 'Veri güvenliği nasıl sağlanıyor?',

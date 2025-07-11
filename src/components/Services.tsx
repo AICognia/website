@@ -55,14 +55,14 @@ const Services: React.FC = () => {
   const services = [
     {
       icon: <FiShoppingCart className="text-white text-3xl" />,
-      title: 'E-Ticaret Sistemi',
-      description: 'Online satışlarınızı yapay zeka ile güçlendirin. Müşteri deneyimini artırırken operasyonel verimliliğinizi maksimize edin.',
+      title: 'Müşteri Destek Sistemi',
+      description: 'AI destekli müşteri destek sistemiyle müşterilerinizin sorularını anında yanıtlayın. WhatsApp ve Instagram üzerinden 7/24 otomatik destek sağlayın.',
       features: [
         'WhatsApp/Instagram müşteri destek chatbotu',
-        'Türk muhasebe sistemleriyle e-fatura entegrasyonu',
-        'Çoklu platform envanter takibi (Trendyol, Hepsiburada, N11)',
-        'Otomatik sipariş yönetimi ve takibi',
-        'Kişiselleştirilmiş ürün önerileri'
+        'Sık sorulan sorulara otomatik yanıt',
+        'Canlı destek yönlendirmesi',
+        'Müşteri memnuniyeti takibi',
+        'Çoklu dil desteği ile global erişim'
       ],
       color: 'bg-primary',
       delay: 0
@@ -80,20 +80,6 @@ const Services: React.FC = () => {
       ],
       color: 'bg-secondary',
       delay: 0.2
-    },
-    {
-      icon: <FiHeart className="text-white text-3xl" />,
-      title: 'Medikal Turizm Sistemi',
-      description: 'Sağlık turizminde hasta deneyimini baştan sona yönetin. Operasyon planlamasından konaklama organizasyonuna kadar her detay kontrol altında.',
-      features: [
-        'Hasta iletişim ve danışmanlık chatbotu',
-        'Operasyon ve tedavi planlaması',
-        'Konaklama ve transfer organizasyonu',
-        'Çoklu dil desteği (İngilizce, Arapça, Rusça)',
-        'Hasta takip ve raporlama sistemi'
-      ],
-      color: 'bg-gradient-primary',
-      delay: 0.4
     }
   ];
 
@@ -116,7 +102,7 @@ const Services: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {services.map((service, index) => (
             <ServiceCard 
               key={index} 

@@ -22,17 +22,17 @@ const Hero: React.FC = () => {
   const aiAssistants = [
     {
       number: '1',
-      title: 'E-Ticaret Asistanı',
-      description: 'Satış ve müşteri desteği',
+      title: 'Müşteri Destek Asistanı',
+      description: '7/24 otomatik destek',
       service: {
-        title: 'E-Ticaret Sistemi',
-        description: 'Online satışlarınızı yapay zeka ile güçlendirin.',
+        title: 'Müşteri Destek Sistemi',
+        description: 'AI destekli müşteri destek sistemiyle müşterilerinizin sorularını anında yanıtlayın.',
         features: [
           'WhatsApp/Instagram müşteri destek chatbotu',
-          'Türk muhasebe sistemleriyle e-fatura entegrasyonu',
-          'Çoklu platform envanter takibi',
-          'Otomatik sipariş yönetimi ve takibi',
-          'Kişiselleştirilmiş ürün önerileri'
+          'Sık sorulan sorulara otomatik yanıt',
+          'Canlı destek yönlendirmesi',
+          'Müşteri memnuniyeti takibi',
+          'Çoklu dil desteği ile global erişim'
         ]
       }
     },
@@ -49,22 +49,6 @@ const Hero: React.FC = () => {
           'Menü bilgisi ve özel istek yönetimi',
           'Rezervasyon iptali ve değişikliği',
           'Müşteri bilgilendirme ve hatırlatma'
-        ]
-      }
-    },
-    {
-      number: '3',
-      title: 'Medikal Turizm Asistanı',
-      description: 'Hasta yönlendirme ve planlama',
-      service: {
-        title: 'Medikal Turizm Sistemi',
-        description: 'Sağlık turizminde hasta deneyimini baştan sona yönetin.',
-        features: [
-          'Hasta iletişim ve danışmanlık chatbotu',
-          'Operasyon ve tedavi planlaması',
-          'Konaklama ve transfer organizasyonu',
-          'Çoklu dil desteği',
-          'Hasta takip ve raporlama sistemi'
         ]
       }
     }
@@ -155,7 +139,7 @@ const Hero: React.FC = () => {
               </h1>
               <p className="text-lg md:text-xl text-white/90 mb-8">
                 Türkiye'nin önde gelen AI danışmanlık firması olarak, işletmenize özel yapay zeka çözümleri sunuyoruz. 
-                E-ticaret, rezervasyon ve medikal turizm sistemlerimizle verimliliğinizi artırın.
+                Müşteri destek ve rezervasyon sistemlerimizle verimliliğinizi artırın.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -187,8 +171,10 @@ const Hero: React.FC = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => {
-                    setSelectedService(aiAssistants[0].service);
-                    setIsDetailsOpen(true);
+                    const demoVideosSection = document.getElementById('demo-videos');
+                    if (demoVideosSection) {
+                      demoVideosSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                   }}
                   className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-white/20 transition-all duration-300 border border-white/20"
                 >
