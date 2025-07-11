@@ -151,8 +151,8 @@ const Services: React.FC = () => {
               <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">Kesintisiz Hizmet</p>
             </div>
             <div className="text-center group cursor-pointer">
-              <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">500+</div>
-              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">Aktif Kullanıcı</p>
+              <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">100+</div>
+              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">İşletme Bizi Tercih Etti</p>
             </div>
             <div className="text-center group cursor-pointer">
               <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">48 Saat</div>

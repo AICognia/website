@@ -8,9 +8,11 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { name: 'Ana Sayfa', href: '#home' },
+    { name: 'Demo Videolar', href: '#demo-videos' },
     { name: 'Hizmetlerimiz', href: '#services' },
+    { name: 'Özellikler', href: '#features' },
     { name: 'Hakkımızda', href: '#about' },
-    { name: 'İletişim', href: '#contact' },
+    { name: 'İletişim', href: '.contact-cta-section' },
   ];
 
   return (
@@ -32,7 +34,7 @@ const Navbar: React.FC = () => {
                   key={item.name}
                   href={item.href}
                   onClick={(e) => {
-                    if (item.href.startsWith('#')) {
+                    if (item.href.startsWith('#') || item.href.startsWith('.')) {
                       e.preventDefault();
                       const element = document.querySelector(item.href);
                       if (element) {
@@ -93,7 +95,7 @@ const Navbar: React.FC = () => {
                 href={item.href}
                 className="text-white hover:text-gray-200 block px-3 py-2 rounded-md text-base font-medium"
                 onClick={(e) => {
-                  if (item.href.startsWith('#')) {
+                  if (item.href.startsWith('#') || item.href.startsWith('.')) {
                     e.preventDefault();
                     const element = document.querySelector(item.href);
                     if (element) {
