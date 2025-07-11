@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiShoppingCart, FiCalendar, FiHeart, FiArrowRight } from 'react-icons/fi';
+import { FiShoppingCart, FiCalendar, FiHeart, FiArrowRight, FiTool } from 'react-icons/fi';
 import ServiceDetails from './ServiceDetails';
 
 interface ServiceCardProps {
@@ -80,6 +80,20 @@ const Services: React.FC = () => {
       ],
       color: 'bg-secondary',
       delay: 0.2
+    },
+    {
+      icon: <FiTool className="text-white text-3xl" />,
+      title: 'İşletmenize Özel Çözümler',
+      description: 'Sektörünüze ve iş modelinize özel AI çözümleri geliştiriyoruz. E-ticaret, sağlık, eğitim, turizm ve daha fazlası için özelleştirilmiş sistemler.',
+      features: [
+        'Sektöre özel AI model geliştirme',
+        'Mevcut sistemlerle %100 entegrasyon',
+        'Özel chatbot ve otomasyon çözümleri',
+        'Veri analizi ve tahminleme sistemleri',
+        'Rekabet avantajı sağlayan özel özellikler'
+      ],
+      color: 'bg-gradient-to-r from-purple-600 to-pink-600',
+      delay: 0.4
     }
   ];
 
@@ -97,12 +111,13 @@ const Services: React.FC = () => {
             AI Destekli <span className="text-secondary">Çözümlerimiz</span>
           </h2>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            İşletmenizin ihtiyaçlarına özel tasarlanmış yapay zeka sistemlerimizle 
-            rekabet avantajı elde edin ve müşteri memnuniyetini artırın.
+            <span className="font-bold">Sadece 48 saat</span> içinde işletmenizi dijital dönüşüme hazırlayın! 
+            İhtiyacınıza özel AI sistemlerimizle <span className="font-semibold">rakiplerinizin önüne geçin</span>, 
+            müşteri memnuniyetini zirveye taşıyın.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <ServiceCard 
               key={index} 

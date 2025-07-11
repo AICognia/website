@@ -54,17 +54,17 @@ const Hero: React.FC = () => {
     },
     {
       number: '3',
-      title: 'Özel Çözüm Asistanı',
+      title: 'Özel Çözümler',
       description: 'İşletmenize özel AI çözümleri',
       service: {
-        title: 'Özel AI Çözümleri',
-        description: 'Sektörünüze ve iş süreçlerinize özel tasarlanmış yapay zeka asistanları geliştiriyoruz.',
+        title: 'İşletmenize Özel AI Çözümleri',
+        description: 'Sektörünüze ve iş modelinize %100 uyumlu, size özel tasarlanmış yapay zeka sistemleri geliştiriyoruz.',
         features: [
-          'İhtiyaç analizi ve özel tasarım',
-          'Sektöre özel AI modelleri',
-          'Mevcut sistemlerle tam entegrasyon',
-          'Özelleştirilebilir iş akışları',
-          'Sürekli öğrenme ve gelişim'
+          'Sektör liderleri için özel AI modelleri',
+          'Rakiplerinizden bir adım önde olmanızı sağlayan çözümler',
+          'Tam entegrasyon ve özelleştirme',
+          'Ölçeklenebilir ve esnek yapı',
+          'Sürekli güncelleme ve destek'
         ]
       }
     }
@@ -145,7 +145,7 @@ const Hero: React.FC = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
                 </span>
-                <span className="text-white text-sm">100+ İşletme Bizi Tercih Etti</span>
+                <span className="text-white text-sm">🚀 %300 Verimlilik Artışı Garantisi</span>
               </motion.div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -154,8 +154,10 @@ const Hero: React.FC = () => {
                 ile Geleceğe Taşıyın
               </h1>
               <p className="text-lg md:text-xl text-white/90 mb-8">
+                <span className="font-bold text-secondary">48 saat içinde kurulum</span>, anında sonuç! 
                 Türkiye'nin önde gelen AI danışmanlık firması olarak, işletmenize özel yapay zeka çözümleri sunuyoruz. 
-                Müşteri destek ve rezervasyon sistemlerimizle verimliliğinizi artırın.
+                Müşteri destek ve rezervasyon sistemlerimizle <span className="font-semibold">maliyetlerinizi %70 azaltın</span>, 
+                <span className="font-semibold"> müşteri memnuniyetini %95'e çıkarın</span>.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">

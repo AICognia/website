@@ -84,10 +84,11 @@ const ContactCTA: React.FC = () => {
               className="p-8 lg:p-12"
             >
               <h3 className="text-3xl font-bold mb-2 text-white text-glow">
-                Hemen İletişime Geçin
+                🎯 Ücretsiz Demo İsteyin - Sadece 48 Saat İçinde Kurulum!
               </h3>
               <p className="text-lg text-white/80 mb-8">
-                AI dönüşümünüz için ilk adımı atın. Uzman ekibimiz size özel çözümler sunmak için hazır.
+                <span className="font-bold text-secondary">Bugün başvurun</span>, yarın AI asistanınız hazır olsun! 
+                İlk 10 başvuruya <span className="font-bold">%20 indirim</span> + ücretsiz 1 aylık destek.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">

@@ -39,16 +39,29 @@ ve VIP müşteri yönetimi özellikleriyle işletmenizin prestijini artırır.
 Menü bilgileri, fiyatlar ve özel kampanyalar hakkında bilgi verir, müşteri tercihlerini kaydeder ve 
 kişiselleştirilmiş öneriler sunar. Rezervasyon iptali ve değişikliği de tamamen otomatiktir.
     `,
-    'Özel AI Çözümleri': `
-Her işletmenin kendine özgü ihtiyaçları vardır. Cognia AI olarak, sektörünüze ve iş modelinize özel 
-yapay zeka çözümleri geliştiriyoruz. E-ticaret, lojistik, sağlık, eğitim, turizm ve daha birçok sektörde 
-özel AI asistanları tasarlıyoruz.
+    'İşletmenize Özel Çözümler': `
+Cognia AI olarak, her işletmenin benzersiz olduğunu biliyoruz. İşte bu yüzden tek tip çözümler sunmuyoruz. 
+Sizin için özel olarak tasarlanmış, rakiplerinizden bir adım önde olmanızı sağlayacak AI sistemleri geliştiriyoruz.
 
-Uzman ekibimiz önce işletmenizin süreçlerini detaylıca analiz eder, ardından size özel bir AI stratejisi 
-oluşturur. Mevcut sistemlerinizle tam uyumlu, ölçeklenebilir ve sürekli öğrenen AI çözümleri geliştiririz.
+E-ticaret sektöründeyseniz, satış süreçlerinizi otomatikleştirebilir, stok yönetimini optimize edebilir ve 
+müşteri deneyimini zirveye taşıyabiliriz. Sağlık sektöründeyseniz, hasta kayıt sistemlerinden randevu yönetimine, 
+tıbbi görüntü analizinden hasta takip sistemlerine kadar her türlü çözümü geliştirebiliriz.
 
-İster müşteri hizmetleri, ister satış otomasyonu, ister operasyon yönetimi olsun, her türlü iş sürecinizi 
-AI ile güçlendirebiliriz. Rakiplerinizden bir adım önde olmanız için size özel çözümler üretiyoruz.
+Eğitim, turizm, lojistik, finans... Hangi sektörde olursanız olun, AI'nın gücünü işletmenize entegre ediyoruz. 
+Sizinle beraber çalışarak, iş süreçlerinizi analiz ediyor ve size özel bir AI stratejisi oluşturuyoruz. 
+Yatırımınız her zaman karşılığını bulacak şekilde, ölçülebilir ve sürdürülebilir çözümler sunuyoruz.
+    `,
+    'İşletmenize Özel AI Çözümleri': `
+Cognia AI olarak, her işletmenin benzersiz olduğunu biliyoruz. İşte bu yüzden tek tip çözümler sunmuyoruz. 
+Sizin için özel olarak tasarlanmış, rakiplerinizden bir adım önde olmanızı sağlayacak AI sistemleri geliştiriyoruz.
+
+E-ticaret sektöründeyseniz, satış süreçlerinizi otomatikleştirebilir, stok yönetimini optimize edebilir ve 
+müşteri deneyimini zirveye taşıyabiliriz. Sağlık sektöründeyseniz, hasta kayıt sistemlerinden randevu yönetimine, 
+tıbbi görüntü analizinden hasta takip sistemlerine kadar her türlü çözümü geliştirebiliriz.
+
+Eğitim, turizm, lojistik, finans... Hangi sektörde olursanız olun, AI'nın gücünü işletmenize entegre ediyoruz. 
+Sizinle beraber çalışarak, iş süreçlerinizi analiz ediyor ve size özel bir AI stratejisi oluşturuyoruz. 
+Yatırımınız her zaman karşılığını bulacak şekilde, ölçülebilir ve sürdürülebilir çözümler sunuyoruz.
     `
   };
 
