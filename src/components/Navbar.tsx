@@ -31,6 +31,15 @@ const Navbar: React.FC = () => {
                 <motion.a
                   key={item.name}
                   href={item.href}
+                  onClick={(e) => {
+                    if (item.href.startsWith('#')) {
+                      e.preventDefault();
+                      const element = document.querySelector(item.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }
+                  }}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -83,7 +92,16 @@ const Navbar: React.FC = () => {
                 key={item.name}
                 href={item.href}
                 className="text-white hover:text-gray-200 block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  if (item.href.startsWith('#')) {
+                    e.preventDefault();
+                    const element = document.querySelector(item.href);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                  setIsOpen(false);
+                }}
               >
                 {item.name}
               </a>
