@@ -125,30 +125,30 @@ const VoiceAgent: React.FC = () => {
             viewport={{ once: true }}
           >
             <div className="bg-darkBlue/40 backdrop-blur-lg border border-secondary/30 rounded-2xl p-8 shadow-xl">
-              <div className="text-center mb-6">
+              <div className="text-center mb-8">
                 <FiHeadphones className="text-5xl text-secondary mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-white mb-2">
+                <h3 className="text-2xl font-bold text-white mb-3">
                   Hemen Deneyin
                 </h3>
-                <p className="text-white/80">
-                  Aşağıdaki butona tıklayarak Voice Agent'ımızla konuşmaya başlayın
+                <p className="text-white/80 mb-2">
+                  Voice Agent'ımızla konuşmaya başlayın
                 </p>
               </div>
 
               {/* Widget Container */}
               <div className="bg-white/5 border border-secondary/20 rounded-xl p-6">
                 {!isWidgetLoaded && (
-                  <div className="text-center text-white/60 mb-4">
+                  <div className="text-center text-white/60 mb-6">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary mx-auto mb-2"></div>
                     Voice Agent yükleniyor...
                   </div>
                 )}
                 
-                <div className="flex justify-center">
+                <div className="flex justify-center min-h-[80px] items-center">
                   {React.createElement('elevenlabs-convai', { 'agent-id': 'agent_8901k1raws42edfb7egfm21788dc' })}
                 </div>
 
-                <div className="mt-4 text-center text-sm text-white/60">
+                <div className="mt-6 text-center text-sm text-white/60 pt-4 border-t border-white/10">
                   <p>Mikrofonunuza izin verin ve doğal bir şekilde konuşun</p>
                 </div>
               </div>
