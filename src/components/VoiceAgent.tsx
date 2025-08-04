@@ -1,36 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { FiPhone, FiHeadphones, FiMic, FiZap, FiGlobe, FiClock } from 'react-icons/fi';
+import { FiPhone, FiHeadphones, FiZap, FiGlobe } from 'react-icons/fi';
 import { BsArrowRight } from 'react-icons/bs';
 
 const VoiceAgent: React.FC = () => {
-  const [isWidgetLoaded, setIsWidgetLoaded] = useState(false);
-
-  useEffect(() => {
-    // Load ElevenLabs script
-    const script = document.createElement('script');
-    script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
-    script.async = true;
-    script.type = 'text/javascript';
-    script.onload = () => {
-      setIsWidgetLoaded(true);
-      // Ensure widget doesn't overlap
-      setTimeout(() => {
-        const widget = document.querySelector('elevenlabs-convai');
-        if (widget) {
-          (widget as HTMLElement).style.position = 'relative';
-          (widget as HTMLElement).style.zIndex = '1';
-        }
-      }, 100);
-    };
-    document.body.appendChild(script);
-
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
 
   const features = [
     {
@@ -143,16 +116,11 @@ const VoiceAgent: React.FC = () => {
 
                 {/* Widget with proper spacing */}
                 <div className="relative min-h-[150px] flex items-center justify-center mt-8">
-                  {!isWidgetLoaded ? (
-                    <div className="text-center text-white/60">
-                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary mx-auto mb-2"></div>
-                      Voice Agent yükleniyor...
-                    </div>
-                  ) : (
-                    React.createElement('elevenlabs-convai', { 
-                      'agent-id': 'agent_8901k1raws42edfb7egfm21788dc'
-                    })
-                  )}
+                  <div 
+                    dangerouslySetInnerHTML={{ 
+                      __html: '<elevenlabs-convai agent-id="agent_8901k1raws42edfb7egfm21788dc"></elevenlabs-convai>' 
+                    }} 
+                  />
                 </div>
               </div>
             </div>
