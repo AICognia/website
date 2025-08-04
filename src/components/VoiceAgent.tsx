@@ -12,7 +12,19 @@ const VoiceAgent: React.FC = () => {
     script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
     script.async = true;
     script.type = 'text/javascript';
-    script.onload = () => setIsWidgetLoaded(true);
+    script.onload = () => {
+      setIsWidgetLoaded(true);
+      // Add CSS to center the widget
+      const style = document.createElement('style');
+      style.textContent = `
+        elevenlabs-convai {
+          position: relative !important;
+          inset: auto !important;
+          margin: 0 !important;
+        }
+      `;
+      document.head.appendChild(style);
+    };
     document.body.appendChild(script);
 
     return () => {
@@ -136,17 +148,17 @@ const VoiceAgent: React.FC = () => {
               </div>
 
               {/* Widget Container */}
-              <div className="bg-white/5 border border-secondary/20 rounded-xl p-8 min-h-[120px] flex items-center justify-center">
-                {!isWidgetLoaded && (
+              <div className="bg-white/5 border border-secondary/20 rounded-xl p-8 min-h-[180px] flex items-center justify-center">
+                {!isWidgetLoaded ? (
                   <div className="text-center text-white/60">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary mx-auto mb-2"></div>
                     Voice Agent yükleniyor...
                   </div>
-                )}
-                
-                {isWidgetLoaded && (
-                  <div className="flex justify-center items-center">
-                    {React.createElement('elevenlabs-convai', { 'agent-id': 'agent_8901k1raws42edfb7egfm21788dc' })}
+                ) : (
+                  <div className="flex items-center justify-center">
+                    {React.createElement('elevenlabs-convai', { 
+                      'agent-id': 'agent_8901k1raws42edfb7egfm21788dc'
+                    })}
                   </div>
                 )}
               </div>
