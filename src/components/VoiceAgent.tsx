@@ -136,21 +136,19 @@ const VoiceAgent: React.FC = () => {
               </div>
 
               {/* Widget Container */}
-              <div className="bg-white/5 border border-secondary/20 rounded-xl p-6">
+              <div className="bg-white/5 border border-secondary/20 rounded-xl p-8 min-h-[120px] flex items-center justify-center">
                 {!isWidgetLoaded && (
-                  <div className="text-center text-white/60 mb-6">
+                  <div className="text-center text-white/60">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary mx-auto mb-2"></div>
                     Voice Agent yükleniyor...
                   </div>
                 )}
                 
-                <div className="flex justify-center min-h-[80px] items-center">
-                  {React.createElement('elevenlabs-convai', { 'agent-id': 'agent_8901k1raws42edfb7egfm21788dc' })}
-                </div>
-
-                <div className="mt-6 text-center text-sm text-white/60 pt-4 border-t border-white/10">
-                  <p>Mikrofonunuza izin verin ve doğal bir şekilde konuşun</p>
-                </div>
+                {isWidgetLoaded && (
+                  <div className="flex justify-center items-center">
+                    {React.createElement('elevenlabs-convai', { 'agent-id': 'agent_8901k1raws42edfb7egfm21788dc' })}
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
