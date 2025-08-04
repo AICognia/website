@@ -8,8 +8,6 @@ const ContactCTA = React.lazy(() => import('./components/ContactCTA'));
 const Services = React.lazy(() => import('./components/Services'));
 const DemoVideos = React.lazy(() => import('./components/DemoVideos'));
 const VoiceAgent = React.lazy(() => import('./components/VoiceAgent'));
-const Testimonials = React.lazy(() => import('./components/Testimonials'));
-const Features = React.lazy(() => import('./components/Features'));
 const About = React.lazy(() => import('./components/About'));
 const FAQ = React.lazy(() => import('./components/FAQ'));
 const Footer = React.lazy(() => import('./components/Footer'));
@@ -40,8 +38,6 @@ function App() {
         <DemoVideos />
         <ContactCTA />
         <Services />
-        <Testimonials />
-        <Features />
         <About />
         <FAQ />
         <Footer />

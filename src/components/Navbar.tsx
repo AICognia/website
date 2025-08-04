@@ -11,7 +11,6 @@ const Navbar: React.FC = () => {
     { name: 'Voice Agent', href: '#voice-agent' },
     { name: 'Demo Videolar', href: '#demo-videos' },
     { name: 'Hizmetlerimiz', href: '#services' },
-    { name: 'Özellikler', href: '#features' },
     { name: 'Hakkımızda', href: '#about' },
     { name: 'İletişim', href: '.contact-cta-section' },
   ];
