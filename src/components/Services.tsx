@@ -56,12 +56,12 @@ const Services: React.FC = () => {
     {
       icon: <FiShoppingCart className="text-white text-3xl" />,
       title: 'Müşteri Destek Sistemi',
-      description: 'AI destekli müşteri destek sistemiyle müşterilerinizin sorularını anında yanıtlayın. WhatsApp ve Instagram üzerinden 7/24 otomatik destek sağlayın.',
+      description: 'AI destekli chatbot ve voice agent ile müşterilerinizin sorularını anında yanıtlayın. WhatsApp, Instagram ve telefon üzerinden 7/24 otomatik destek sağlayın.',
       features: [
         'WhatsApp/Instagram müşteri destek chatbotu',
+        'AI Voice Agent ile telefon desteği',
         'Sık sorulan sorulara otomatik yanıt',
         'Canlı destek yönlendirmesi',
-        'Müşteri memnuniyeti takibi',
         'Çoklu dil desteği ile global erişim'
       ],
       color: 'bg-primary',
@@ -70,11 +70,11 @@ const Services: React.FC = () => {
     {
       icon: <FiCalendar className="text-white text-3xl" />,
       title: 'Rezervasyon Sistemi',
-      description: 'Restoran ve işletmeniz için akıllı rezervasyon yönetimi. Müşterileriniz WhatsApp ve Instagram üzerinden kolayca rezervasyon yapabilir.',
+      description: 'Restoran ve işletmeniz için akıllı rezervasyon yönetimi. Müşterileriniz WhatsApp, Instagram veya telefon üzerinden kolayca rezervasyon yapabilir.',
       features: [
         'WhatsApp/Instagram rezervasyon chatbotu',
+        'Voice Agent ile telefon rezervasyonu',
         'Otomatik masa ve zaman yönetimi',
-        'Menü bilgisi ve özel istek yönetimi',
         'Rezervasyon iptali ve değişikliği',
         'Müşteri bilgilendirme ve hatırlatma'
       ],
@@ -112,8 +112,8 @@ const Services: React.FC = () => {
           </h2>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
             <span className="font-bold">Sadece 48 saat</span> içinde işletmenizi dijital dönüşüme hazırlayın! 
-            İhtiyacınıza özel AI sistemlerimizle <span className="font-semibold">rakiplerinizin önüne geçin</span>, 
-            müşteri memnuniyetini zirveye taşıyın.
+            <span className="font-bold">Chatbot + Voice Agent</span> çözümlerimizle tüm iletişim kanallarınızı otomatikleştirin.
+            <span className="font-semibold">Rakiplerinizin önüne geçin</span>, müşteri memnuniyetini zirveye taşıyın.
           </p>
         </motion.div>
 

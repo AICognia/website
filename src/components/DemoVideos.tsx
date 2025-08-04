@@ -32,10 +32,11 @@ const DemoVideos: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Canlı <span className="text-secondary">Demo Videolar</span>
+            Chatbot <span className="text-secondary">Demo Videolar</span>
           </h2>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            AI destekli hizmetlerimizi canlı olarak görün
+            WhatsApp ve Instagram chatbot'larımızı canlı olarak görün. 
+            <span className="font-semibold text-secondary">Voice Agent'ımızı yukarıda deneyebildiniz!</span>
           </p>
         </motion.div>
 

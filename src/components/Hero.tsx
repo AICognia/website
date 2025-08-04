@@ -9,9 +9,9 @@ const Hero: React.FC = () => {
   const [isDetailsOpen, setIsDetailsOpen] = React.useState(false);
 
   const benefits = [
-    'WhatsApp & Instagram Entegrasyonu',
-    'Türkiye\'ye Özel Çözümler',
-    '7/24 Müşteri Desteği',
+    'WhatsApp & Instagram Chatbot',
+    'AI Voice Agent ile Sesli Destek',
+    '7/24 Tam Otomasyon',
     'Hızlı Kurulum ve Entegrasyon'
   ];
 
@@ -29,9 +29,9 @@ const Hero: React.FC = () => {
         description: 'AI destekli müşteri destek sistemiyle müşterilerinizin sorularını anında yanıtlayın.',
         features: [
           'WhatsApp/Instagram müşteri destek chatbotu',
+          'AI Voice Agent ile telefon desteği',
           'Sık sorulan sorulara otomatik yanıt',
           'Canlı destek yönlendirmesi',
-          'Müşteri memnuniyeti takibi',
           'Çoklu dil desteği ile global erişim'
         ]
       }
@@ -45,8 +45,8 @@ const Hero: React.FC = () => {
         description: 'Restoran ve işletmeniz için akıllı rezervasyon yönetimi.',
         features: [
           'WhatsApp/Instagram rezervasyon chatbotu',
+          'Voice Agent ile telefon rezervasyonu',
           'Otomatik masa ve zaman yönetimi',
-          'Menü bilgisi ve özel istek yönetimi',
           'Rezervasyon iptali ve değişikliği',
           'Müşteri bilgilendirme ve hatırlatma'
         ]
@@ -155,8 +155,9 @@ const Hero: React.FC = () => {
               </h1>
               <p className="text-lg md:text-xl text-white/90 mb-8">
                 <span className="font-bold text-secondary">48 saat içinde kurulum</span>, anında sonuç! 
-                Türkiye'nin önde gelen AI danışmanlık firması olarak, işletmenize özel yapay zeka çözümleri sunuyoruz. 
-                Müşteri destek ve rezervasyon sistemlerimizle <span className="font-semibold">maliyetlerinizi %70 azaltın</span>, 
+                Türkiye'nin önde gelen AI danışmanlık firması olarak, <span className="font-bold">Chatbot + Voice Agent</span> çözümlerimizle 
+                tüm iletişim kanallarınızı otomatikleştirin. 
+                <span className="font-semibold">Maliyetlerinizi %70 azaltın</span>, 
                 <span className="font-semibold"> müşteri memnuniyetini %95'e çıkarın</span>.
               </p>
 
@@ -197,7 +198,7 @@ const Hero: React.FC = () => {
                   className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-white/20 transition-all duration-300 border border-white/20"
                 >
                   <FiPlay />
-                  <span>Demo İzle</span>
+                  <span>Chatbot Demo İzle</span>
                 </motion.button>
               </div>
             </motion.div>

@@ -8,6 +8,7 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { name: 'Ana Sayfa', href: '#home' },
+    { name: 'Voice Agent', href: '#voice-agent' },
     { name: 'Demo Videolar', href: '#demo-videos' },
     { name: 'Hizmetlerimiz', href: '#services' },
     { name: 'Özellikler', href: '#features' },
