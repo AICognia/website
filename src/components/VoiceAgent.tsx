@@ -12,19 +12,7 @@ const VoiceAgent: React.FC = () => {
     script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
     script.async = true;
     script.type = 'text/javascript';
-    script.onload = () => {
-      setIsWidgetLoaded(true);
-      // Add CSS to center the widget
-      const style = document.createElement('style');
-      style.textContent = `
-        elevenlabs-convai {
-          position: relative !important;
-          inset: auto !important;
-          margin: 0 !important;
-        }
-      `;
-      document.head.appendChild(style);
-    };
+    script.onload = () => setIsWidgetLoaded(true);
     document.body.appendChild(script);
 
     return () => {
@@ -137,25 +125,23 @@ const VoiceAgent: React.FC = () => {
             viewport={{ once: true }}
           >
             <div className="bg-darkBlue/40 backdrop-blur-lg border border-secondary/30 rounded-2xl p-8 shadow-xl">
-              <div className="text-center mb-8">
+              <div className="text-center">
                 <FiHeadphones className="text-5xl text-secondary mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-white mb-3">
                   Hemen Deneyin
                 </h3>
-                <p className="text-white/80 mb-2">
+                <p className="text-white/80 mb-6">
                   Voice Agent'ımızla konuşmaya başlayın
                 </p>
-              </div>
 
-              {/* Widget Container */}
-              <div className="bg-white/5 border border-secondary/20 rounded-xl p-8 min-h-[180px] flex items-center justify-center">
+                {/* Widget directly placed */}
                 {!isWidgetLoaded ? (
-                  <div className="text-center text-white/60">
+                  <div className="text-center text-white/60 my-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary mx-auto mb-2"></div>
                     Voice Agent yükleniyor...
                   </div>
                 ) : (
-                  <div className="flex items-center justify-center">
+                  <div className="flex justify-center my-6">
                     {React.createElement('elevenlabs-convai', { 
                       'agent-id': 'agent_8901k1raws42edfb7egfm21788dc'
                     })}
