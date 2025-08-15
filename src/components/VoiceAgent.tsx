@@ -114,13 +114,20 @@ const VoiceAgent: React.FC = () => {
                   Hemen Deneyin
                 </h3>
 
-                {/* Widget with proper spacing */}
-                <div className="relative min-h-[150px] flex items-center justify-center mt-8">
-                  <div 
-                    dangerouslySetInnerHTML={{ 
-                      __html: '<elevenlabs-convai agent-id="agent_8901k1raws42edfb7egfm21788dc"></elevenlabs-convai>' 
-                    }} 
-                  />
+                {/* Phone Number */}
+                <div className="mt-8 space-y-4">
+                  <p className="text-white/90 text-lg mb-6">
+                    Sesli asistanımızı denemek için arayabilirsiniz
+                  </p>
+                  <div className="bg-gradient-primary p-6 rounded-xl">
+                    <a href="tel:08508402689" className="flex items-center justify-center space-x-3 text-white hover:scale-105 transition-transform">
+                      <FiPhone className="text-3xl" />
+                      <span className="text-2xl font-bold">0 850 840 26 89</span>
+                    </a>
+                  </div>
+                  <p className="text-white/70 text-sm mt-4">
+                    Hemen arayın ve AI sesli asistanımızı kendiniz deneyin
+                  </p>
                 </div>
               </div>
             </div>
