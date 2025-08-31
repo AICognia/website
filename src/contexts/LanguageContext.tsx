@@ -141,15 +141,42 @@ const translations = {
     'services.feature.updates': 'Continuous updates and support',
     
     // Demo Videos
-    'demo.title': 'See AI in Action',
-    'demo.subtitle': 'Watch how our AI assistants transform customer experience',
+    'demo.title': 'Chatbot Demo Videos',
+    'demo.subtitle': 'See our WhatsApp and Instagram chatbots in action. You already tried our Voice Agent above!',
+    'demo.whatsapp.title': 'WhatsApp Customer Support Demo',
+    'demo.whatsapp.desc': 'Discover our AI assistant that provides 24/7 automatic customer support via WhatsApp. Instant responses, order tracking, and customer satisfaction.',
+    'demo.reservation.title': 'AI Appointment System Demo',
+    'demo.reservation.desc': 'With our smart appointment system, your customers can easily book appointments 24/7. This demo was prepared for restaurant reservations but can be easily integrated into all businesses requiring appointments such as barbers, massage parlors, clinics, and beauty centers. Your AI assistant checks availability, automatically adds appointments to your calendar, and sends reminders.',
+    'demo.customDemo': 'Would you like to see a custom demo for your industry?',
+    'demo.requestDemo': 'Request Demo',
     'demo.whatsapp': 'WhatsApp AI Assistant',
     'demo.instagram': 'Instagram AI Assistant',
     'demo.voice': 'Voice AI Assistant',
     'demo.tryLive': 'Try Live Demo',
     
-    // FAQ
+    // Services Additional
+    'services.whyCognia': 'Why Choose Cognia AI?',
+    'services.trustedPartner': 'Your trusted partner in digital transformation across the US and Turkey',
+    'services.satisfaction': 'Customer Satisfaction',
+    'services.support247': 'Continuous Service',
+    'services.businesses': 'Businesses Trust Us',
+    'services.setupTime': 'Setup Time',
+    'services.learnMore': 'Learn More',
+    
+    // About Additional
+    'about.founded': 'Founded',
+    'about.experts': 'Expert Team',
+    'about.clients': 'Happy Clients',
+    'about.messages': 'Messages Processed',
+    'about.vision': 'Our Vision',
+    'about.visionText': 'To empower businesses globally with cutting-edge AI solutions that transform how they operate, compete, and grow in the digital age.',
+    'about.mission': 'Our Mission',
+    'about.missionText': 'To democratize AI technology by making it accessible, affordable, and easy to implement for businesses of all sizes across the US and Turkey.',
+    
+    // FAQ Additional
     'faq.title': 'Frequently Asked Questions',
+    'faq.moreQuestions': 'Have more questions?',
+    'faq.talkToExperts': 'Talk to Our Experts',
     'faq.q1': 'How quickly can the system be set up?',
     'faq.a1': 'We complete the setup within 48 hours. After analyzing your business needs, we configure and activate your AI assistant.',
     'faq.q2': 'Which languages are supported?',
@@ -293,15 +320,42 @@ const translations = {
     'services.feature.updates': 'Sürekli güncelleme ve destek',
     
     // Demo Videos
-    'demo.title': 'AI\'yı İş Başında Görün',
-    'demo.subtitle': 'AI asistanlarımızın müşteri deneyimini nasıl dönüştürdüğünü izleyin',
+    'demo.title': 'Chatbot Demo Videolar',
+    'demo.subtitle': 'WhatsApp ve Instagram chatbot\'larımızı canlı olarak görün. Voice Agent\'ımızı yukarıda deneyebildiniz!',
+    'demo.whatsapp.title': 'WhatsApp Müşteri Destek Demo',
+    'demo.whatsapp.desc': 'WhatsApp üzerinden 7/24 otomatik müşteri desteği sağlayan AI asistanımızı keşfedin. Anlık yanıtlar, sipariş takibi ve müşteri memnuniyeti.',
+    'demo.reservation.title': 'AI Randevu Sistemi Demo',
+    'demo.reservation.desc': 'Akıllı randevu sistemimiz ile müşterileriniz 7/24 kolayca randevu alabilir. Bu demo restoran rezervasyonu üzerinden hazırlanmıştır ancak berber, masaj salonu, klinik, güzellik merkezi gibi randevu gerektiren tüm işletmelere kolayca entegre edilebilir. AI asistanınız müsaitlik kontrolü yapar, randevuları otomatik olarak takviminize ekler ve hatırlatmalar gönderir.',
+    'demo.customDemo': 'Kendi sektörünüz için özel bir demo görmek ister misiniz?',
+    'demo.requestDemo': 'Demo Talep Et',
     'demo.whatsapp': 'WhatsApp AI Asistan',
     'demo.instagram': 'Instagram AI Asistan',
     'demo.voice': 'Sesli AI Asistan',
     'demo.tryLive': 'Canlı Demo Deneyin',
     
-    // FAQ
+    // Services Additional
+    'services.whyCognia': 'Neden Cognia AI?',
+    'services.trustedPartner': 'ABD ve Türkiye\'de dijital dönüşüm yolculuğunuzda güvenilir partneriniz',
+    'services.satisfaction': 'Müşteri Memnuniyeti',
+    'services.support247': 'Kesintisiz Hizmet',
+    'services.businesses': 'İşletme Bizi Tercih Etti',
+    'services.setupTime': 'Kurulum Süresi',
+    'services.learnMore': 'Detaylı Bilgi',
+    
+    // About Additional
+    'about.founded': 'Kuruluş Yılı',
+    'about.experts': 'Uzman Kadro',
+    'about.clients': 'Mutlu Müşteri',
+    'about.messages': 'İşlenen Mesaj',
+    'about.vision': 'Vizyonumuz',
+    'about.visionText': 'Türkiye\'deki ve dünyadaki her işletmenin yapay zeka teknolojilerinden faydalanabileceği bir gelecek inşa etmek. KOBİ\'lerden büyük ölçekli işletmelere kadar herkesin erişebileceği, kullanımı kolay ve etkili AI çözümleri sunmak.',
+    'about.mission': 'Misyonumuz',
+    'about.missionText': 'İşletmelerin dijital dönüşüm süreçlerinde yanlarında olmak, yapay zeka teknolojilerini demokratikleştirerek rekabet güçlerini artırmalarına yardımcı olmak ve Türkiye\'nin teknoloji alanındaki gelişimine katkıda bulunmak.',
+    
+    // FAQ Additional
     'faq.title': 'Sıkça Sorulan Sorular',
+    'faq.moreQuestions': 'Başka sorularınız mı var?',
+    'faq.talkToExperts': 'Uzmanlarımızla Konuşun',
     'faq.q1': 'Sistem ne kadar sürede kurulur?',
     'faq.a1': 'Kurulumu 48 saat içinde tamamlıyoruz. İşletmenizin ihtiyaçlarını analiz ettikten sonra AI asistanınızı yapılandırıp aktif hale getiriyoruz.',
     'faq.q2': 'Hangi diller destekleniyor?',

@@ -2,19 +2,22 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FiPlay, FiCalendar } from 'react-icons/fi';
 import { BsWhatsapp } from 'react-icons/bs';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const DemoVideos: React.FC = () => {
+  const { t } = useLanguage();
+  
   const demos = [
     {
-      title: 'WhatsApp Müşteri Destek Demo',
-      description: 'WhatsApp üzerinden 7/24 otomatik müşteri desteği sağlayan AI asistanımızı keşfedin. Anlık yanıtlar, sipariş takibi ve müşteri memnuniyeti.',
+      title: t('demo.whatsapp.title'),
+      description: t('demo.whatsapp.desc'),
       icon: <BsWhatsapp className="text-3xl" />,
       videoUrl: 'https://www.youtube.com/embed/ri36iweXRJs',
       color: 'from-green-500 to-green-600'
     },
     {
-      title: 'AI Randevu Sistemi Demo',
-      description: 'Akıllı randevu sistemimiz ile müşterileriniz 7/24 kolayca randevu alabilir. Bu demo restoran rezervasyonu üzerinden hazırlanmıştır ancak berber, masaj salonu, klinik, güzellik merkezi gibi randevu gerektiren tüm işletmelere kolayca entegre edilebilir. AI asistanınız müsaitlik kontrolü yapar, randevuları otomatik olarak takviminize ekler ve hatırlatmalar gönderir.',
+      title: t('demo.reservation.title'),
+      description: t('demo.reservation.desc'),
       icon: <FiCalendar className="text-3xl" />,
       videoUrl: 'https://www.youtube.com/embed/gQypluas63E',
       color: 'from-blue-500 to-purple-600'
@@ -32,11 +35,10 @@ const DemoVideos: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Chatbot <span className="text-secondary">Demo Videolar</span>
+            <span className="text-secondary">{t('demo.title')}</span>
           </h2>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            WhatsApp ve Instagram chatbot'larımızı canlı olarak görün. 
-            <span className="font-semibold text-secondary">Voice Agent'ımızı yukarıda deneyebildiniz!</span>
+            {t('demo.subtitle')}
           </p>
         </motion.div>
 
@@ -93,7 +95,7 @@ const DemoVideos: React.FC = () => {
           className="mt-12 text-center"
         >
           <p className="text-white/80 mb-6">
-            Kendi sektörünüz için özel bir demo görmek ister misiniz?
+            {t('demo.customDemo')}
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -106,7 +108,7 @@ const DemoVideos: React.FC = () => {
             }}
             className="bg-gradient-primary text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-secondary/30"
           >
-            Demo Talep Et
+            {t('demo.requestDemo')}
           </motion.button>
         </motion.div>
       </div>
@@ -114,4 +116,4 @@ const DemoVideos: React.FC = () => {
   );
 };
 
-export default DemoVideos; 
+export default DemoVideos;
