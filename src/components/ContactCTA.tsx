@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiSend, FiPhone, FiMail } from 'react-icons/fi';
 import { BsWhatsapp } from 'react-icons/bs';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ContactCTA: React.FC = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -41,7 +43,7 @@ const ContactCTA: React.FC = () => {
       if (response.ok) {
         setSubmitStatus({
           type: 'success',
-          message: 'Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.'
+          message: t('contact.successMessage')
         });
         
         setFormData({
@@ -57,7 +59,7 @@ const ContactCTA: React.FC = () => {
       console.error('Form submission error:', error);
       setSubmitStatus({
         type: 'error',
-        message: 'Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.'
+        message: t('contact.errorMessage')
       });
     } finally {
       setIsSubmitting(false);
@@ -84,11 +86,10 @@ const ContactCTA: React.FC = () => {
               className="p-8 lg:p-12"
             >
               <h3 className="text-3xl font-bold mb-2 text-white text-glow">
-                🎯 Ücretsiz Demo İsteyin - Sadece 48 Saat İçinde Kurulum!
+                {t('contact.title')}
               </h3>
               <p className="text-lg text-white/80 mb-8">
-                <span className="font-bold text-secondary">Bugün başvurun</span>, yarın AI asistanınız hazır olsun! 
-                İlk 10 başvuruya <span className="font-bold">%20 indirim</span> + ücretsiz 1 aylık destek.
+                {t('contact.subtitle')}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -99,7 +100,7 @@ const ContactCTA: React.FC = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Adınız Soyadınız"
+                    placeholder={t('contact.name')}
                     className="mt-1 block w-full rounded-lg bg-white/10 backdrop-blur-sm border border-secondary/30 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300 hover:bg-white/15 hover:border-secondary/40"
                   />
                   <input
@@ -108,7 +109,7 @@ const ContactCTA: React.FC = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="E-posta adresiniz"
+                    placeholder={t('contact.email')}
                     className="mt-1 block w-full rounded-lg bg-white/10 backdrop-blur-sm border border-secondary/30 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300 hover:bg-white/15 hover:border-secondary/40"
                   />
                 </div>
@@ -117,7 +118,7 @@ const ContactCTA: React.FC = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="Telefon numaranız (opsiyonel)"
+                  placeholder={t('contact.phone')}
                   className="mt-1 block w-full rounded-lg bg-white/10 backdrop-blur-sm border border-secondary/30 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent resize-none transition-all duration-300 hover:bg-white/15 hover:border-secondary/40"
                 />
                 <textarea
@@ -126,7 +127,7 @@ const ContactCTA: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={3}
-                  placeholder="Projeniz hakkında kısaca bilgi verin..."
+                  placeholder={t('contact.message')}
                   className="mt-1 block w-full rounded-lg bg-white/10 backdrop-blur-sm border border-secondary/30 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent resize-none transition-all duration-300 hover:bg-white/15 hover:border-secondary/40"
                 />
                 <motion.button
@@ -136,7 +137,7 @@ const ContactCTA: React.FC = () => {
                   disabled={isSubmitting}
                   className="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105 hover:shadow-xl hover:shadow-secondary/30"
                 >
-                  <span>{isSubmitting ? 'Gönderiliyor...' : 'Gönder'}</span>
+                  <span>{isSubmitting ? t('contact.sending') : t('contact.send')}</span>
                   <FiSend />
                 </motion.button>
               </form>
@@ -163,7 +164,7 @@ const ContactCTA: React.FC = () => {
               viewport={{ once: true }}
               className="bg-darkBlue/30 p-8 lg:p-12 flex flex-col justify-center"
             >
-              <h3 className="text-2xl font-bold mb-6 text-white">Hızlı İletişim Kanallarımız</h3>
+              <h3 className="text-2xl font-bold mb-6 text-white">{t('contact.quickChannels')}</h3>
               
               <div className="space-y-4 mb-8">
                 <a
@@ -176,8 +177,8 @@ const ContactCTA: React.FC = () => {
                     <BsWhatsapp className="text-green-500 text-2xl" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">WhatsApp</p>
-                    <p className="text-sm text-white/70">Hızlı yanıt için</p>
+                    <p className="font-semibold text-white">{t('contact.whatsapp')}</p>
+                    <p className="text-sm text-white/70">{t('contact.whatsappDesc')}</p>
                   </div>
                 </a>
                 
@@ -190,7 +191,7 @@ const ContactCTA: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-white">+90 531 773 9053</p>
-                    <p className="text-sm text-white/70">Direkt arama</p>
+                    <p className="text-sm text-white/70">{t('contact.directCall')}</p>
                   </div>
                 </a>
                 
@@ -203,16 +204,16 @@ const ContactCTA: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-white">admin@cogniaai.com</p>
-                    <p className="text-sm text-white/70">E-posta gönder</p>
+                    <p className="text-sm text-white/70">{t('contact.emailUs')}</p>
                   </div>
                 </a>
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm border border-secondary/20 rounded-lg p-6">
-                <h4 className="font-semibold mb-2 text-white">Çalışma Saatlerimiz</h4>
-                <p className="text-white/70">Pazartesi - Cuma: 09:00 - 18:00</p>
-                <p className="text-white/70">Cumartesi: 10:00 - 16:00</p>
-                <p className="text-sm text-white/60 mt-2">AI asistanlarımız 7/24 hizmetinizde</p>
+                <h4 className="font-semibold mb-2 text-white">{t('contact.workingHours')}</h4>
+                <p className="text-white/70">{t('contact.weekdays')}</p>
+                <p className="text-white/70">{t('contact.saturday')}</p>
+                <p className="text-sm text-white/60 mt-2">{t('contact.aiAvailable')}</p>
               </div>
             </motion.div>
           </div>

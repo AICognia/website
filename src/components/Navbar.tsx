@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const scrolled = false;
+  const { t } = useLanguage();
 
   const navItems = [
-    { name: 'Ana Sayfa', href: '#home' },
-    { name: 'Voice Agent', href: '#voice-agent' },
-    { name: 'Demo Videolar', href: '#demo-videos' },
-    { name: 'Hizmetlerimiz', href: '#services' },
-    { name: 'Hakkımızda', href: '#about' },
-    { name: 'İletişim', href: '.contact-cta-section' },
+    { name: t('nav.home'), href: '#home' },
+    { name: t('nav.voiceAgent'), href: '#voice-agent' },
+    { name: t('nav.demoVideos'), href: '#demo-videos' },
+    { name: t('nav.services'), href: '#services' },
+    { name: t('nav.about'), href: '#about' },
+    { name: t('nav.contact'), href: '.contact-cta-section' },
   ];
 
   return (
@@ -54,6 +57,7 @@ const Navbar: React.FC = () => {
                   {item.name}
                 </motion.a>
               ))}
+              <LanguageSelector />
               <motion.button
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -66,7 +70,7 @@ const Navbar: React.FC = () => {
                   }
                 }}
               >
-                Ücretsiz Demo
+                {t('nav.freeDemo')}
               </motion.button>
             </div>
           </div>
@@ -118,7 +122,7 @@ const Navbar: React.FC = () => {
                 }
               }}
             >
-              Ücretsiz Demo
+              {t('nav.freeDemo')}
             </button>
           </div>
         </motion.div>

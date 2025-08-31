@@ -1,34 +1,28 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiPlus, FiMinus } from 'react-icons/fi';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { t } = useLanguage();
 
   const faqs = [
     {
-      question: 'Cognia AI sistemleri ne kadar sürede kurulur?',
-      answer: 'Standart sistemlerimiz ortalama 48 saat içinde kurulup aktif hale getirilebilir. Özel entegrasyonlar gerektiren projeler için süre 1-2 hafta arasında değişebilir. Kurulum sürecinde işletmenizin normal operasyonları kesintiye uğramaz.'
+      question: t('faq.q1'),
+      answer: t('faq.a1')
     },
     {
-      question: 'WhatsApp ve Instagram entegrasyonu nasıl çalışır?',
-      answer: 'Meta Business API kullanarak WhatsApp Business ve Instagram hesaplarınızı sistemimize bağlıyoruz. Müşterileriniz size mesaj attığında, AI asistanımız otomatik olarak yanıt verir. Tüm konuşmalar kayıt altına alınır ve istediğiniz zaman müdahale edebilirsiniz.'
+      question: t('faq.q2'),
+      answer: t('faq.a2')
     },
     {
-      question: 'AI yanlış bilgi verirse ne olur?',
-      answer: 'Sistemlerimiz sürekli öğrenen yapay zeka modelleri kullanır ve %95+ doğruluk oranına sahiptir. Yine de, kritik konularda sistem otomatik olarak insan müdahalesine yönlendirir. Ayrıca tüm yanıtları önceden onaylayabilir ve özelleştirebilirsiniz.'
+      question: t('faq.q3'),
+      answer: t('faq.a3')
     },
     {
-      question: 'Mevcut sistemlerimle entegrasyon sağlanabilir mi?',
-      answer: 'Evet! WhatsApp Business, Instagram, Facebook Messenger gibi iletişim kanalları, CRM sistemleri, muhasebe yazılımları ve daha birçok platformla sorunsuz entegrasyon sağlıyoruz. API desteği olan her sistemle çalışabiliriz.'
-    },
-    {
-      question: 'Veri güvenliği nasıl sağlanıyor?',
-      answer: 'KVKK ve GDPR uyumlu sistemlerimiz, 256-bit SSL şifreleme kullanır. Verileriniz Türkiye\'deki güvenli sunucularda saklanır. ISO 27001 sertifikasına sahibiz ve düzenli güvenlik denetimleri yapılır.'
-    },
-    {
-      question: 'Destek hizmeti nasıl işliyor?',
-      answer: '7/24 teknik destek sağlıyoruz. WhatsApp, telefon ve e-posta üzerinden ulaşabilirsiniz. Ayrıca her müşterimize özel bir başarı yöneticisi atanır ve düzenli performans raporları paylaşılır.'
+      question: t('faq.q4'),
+      answer: t('faq.a4')
     }
   ];
 
@@ -43,11 +37,8 @@ const FAQ: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Sıkça Sorulan <span className="text-gradient">Sorular</span>
+            <span className="text-gradient">{t('faq.title')}</span>
           </h2>
-          <p className="text-xl text-gray-600">
-            Merak ettiğiniz her şeyi yanıtladık
-          </p>
         </motion.div>
 
         <div className="space-y-4">
@@ -104,7 +95,7 @@ const FAQ: React.FC = () => {
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <p className="text-gray-600 mb-4">Başka sorularınız mı var?</p>
+          <p className="text-gray-600 mb-4">{t('faq.moreQuestions') || 'Have more questions?'}</p>
           <button
             onClick={() => {
               const contactCTA = document.querySelector('.contact-cta-section');
@@ -114,7 +105,7 @@ const FAQ: React.FC = () => {
             }}
             className="bg-gradient-primary text-white px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-secondary/30"
           >
-            Uzmanlarımızla Konuşun
+            {t('faq.talkToExperts') || 'Talk to Our Experts'}
           </button>
         </motion.div>
       </div>
@@ -122,4 +113,4 @@ const FAQ: React.FC = () => {
   );
 };
 
-export default FAQ; 
+export default FAQ;

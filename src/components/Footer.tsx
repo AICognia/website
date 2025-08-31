@@ -1,28 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
 import { BsWhatsapp, BsInstagram, BsTwitter } from 'react-icons/bs';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   const footerLinks = {
     services: [
-      { name: 'Müşteri Destek Sistemi', href: '#services' },
-      { name: 'Rezervasyon Sistemi', href: '#services' },
-      { name: 'Özel Çözümler', href: '#contact' }
+      { name: t('footer.customerSupport'), href: '#services' },
+      { name: t('footer.reservationSystem'), href: '#services' },
+      { name: t('footer.customSolutions'), href: '#contact' }
     ],
     company: [
-      { name: 'Hakkımızda', href: '#about' },
-      { name: 'Ekibimiz', href: '#about' },
-      { name: 'Kariyer', href: '#' },
-      { name: 'Blog', href: '#' }
+      { name: t('footer.aboutUs'), href: '#about' },
+      { name: t('footer.ourTeam'), href: '#about' },
+      { name: t('footer.career'), href: '#' },
+      { name: t('footer.blog'), href: '#' }
     ],
     support: [
-      { name: 'Dokümantasyon', href: '#' },
-      { name: 'SSS', href: '#' },
-      { name: 'Destek Merkezi', href: '#' },
-      { name: 'İletişim', href: '#contact' }
+      { name: t('footer.documentation'), href: '#' },
+      { name: t('footer.faq'), href: '#' },
+      { name: t('footer.supportCenter'), href: '#' },
+      { name: t('footer.contact'), href: '#contact' }
     ]
   };
 
@@ -45,8 +46,7 @@ const Footer: React.FC = () => {
           >
             <h3 className="text-2xl font-bold mb-4">Cognia AI</h3>
             <p className="text-gray-400 mb-6">
-              Türkiye'nin önde gelen yapay zeka danışmanlık firması olarak, 
-              işletmelerin dijital dönüşümünde güvenilir partneriniziz.
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold mb-4">Hizmetler</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.services')}</h4>
             <ul className="space-y-2">
               {footerLinks.services.map((link, index) => (
                 <li key={index}>
@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold mb-4">Kurumsal</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.company')}</h4>
             <ul className="space-y-2">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
@@ -114,7 +114,7 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold mb-4">Destek</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.support')}</h4>
             <ul className="space-y-2">
               {footerLinks.support.map((link, index) => (
                 <li key={index}>
@@ -140,7 +140,7 @@ const Footer: React.FC = () => {
               className="text-center md:text-left"
             >
               <p className="text-gray-400">
-                © {currentYear} Cognia AI. Tüm hakları saklıdır.
+                © {currentYear} Cognia AI. {t('footer.rights')}
               </p>
             </motion.div>
             <motion.div
@@ -154,13 +154,13 @@ const Footer: React.FC = () => {
                 onClick={() => console.log('Gizlilik Politikası')}
                 className="text-gray-400 hover:text-primary transition-colors mr-4"
               >
-                Gizlilik Politikası
+                {t('footer.privacy')}
               </button>
               <button 
                 onClick={() => console.log('Kullanım Şartları')}
                 className="text-gray-400 hover:text-primary transition-colors"
               >
-                Kullanım Şartları
+                {t('footer.terms')}
               </button>
             </motion.div>
           </div>

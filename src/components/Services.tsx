@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiShoppingCart, FiCalendar, FiHeart, FiArrowRight, FiTool } from 'react-icons/fi';
 import ServiceDetails from './ServiceDetails';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -14,6 +15,8 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, features, color, delay, onDetailsClick }) => {
+  const { t } = useLanguage();
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -41,7 +44,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
         onClick={onDetailsClick}
         className="mt-6 w-full bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-xl font-medium flex items-center justify-center space-x-2 hover:scale-105 hover:shadow-lg hover:shadow-secondary/30 transition-all duration-300"
       >
-        <span>Detaylı Bilgi</span>
+        <span>{t('services.learnMore') || 'Learn More'}</span>
         <FiArrowRight />
       </motion.button>
     </motion.div>
@@ -51,46 +54,47 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
 const Services: React.FC = () => {
   const [selectedService, setSelectedService] = useState<any>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const { t } = useLanguage();
 
   const services = [
     {
       icon: <FiShoppingCart className="text-white text-3xl" />,
-      title: 'Müşteri Destek Sistemi',
-      description: 'AI destekli chatbot ve voice agent ile müşterilerinizin sorularını anında yanıtlayın. WhatsApp, Instagram ve telefon üzerinden 7/24 otomatik destek sağlayın.',
+      title: t('services.customerSupport.title'),
+      description: t('services.customerSupport.desc'),
       features: [
-        'WhatsApp/Instagram müşteri destek chatbotu',
-        'AI Voice Agent ile telefon desteği',
-        'Sık sorulan sorulara otomatik yanıt',
-        'Canlı destek yönlendirmesi',
-        'Çoklu dil desteği ile global erişim'
+        t('services.feature.whatsapp'),
+        t('services.feature.voicePhone'),
+        t('services.feature.autoReply'),
+        t('services.feature.liveSupport'),
+        t('services.feature.multilingual')
       ],
       color: 'bg-primary',
       delay: 0
     },
     {
       icon: <FiCalendar className="text-white text-3xl" />,
-      title: 'Rezervasyon Sistemi',
-      description: 'Restoran ve işletmeniz için akıllı rezervasyon yönetimi. Müşterileriniz WhatsApp, Instagram veya telefon üzerinden kolayca rezervasyon yapabilir.',
+      title: t('services.reservation.title'),
+      description: t('services.reservation.desc'),
       features: [
-        'WhatsApp/Instagram rezervasyon chatbotu',
-        'Voice Agent ile telefon rezervasyonu',
-        'Otomatik masa ve zaman yönetimi',
-        'Rezervasyon iptali ve değişikliği',
-        'Müşteri bilgilendirme ve hatırlatma'
+        t('services.feature.reservation'),
+        t('services.feature.phoneReservation'),
+        t('services.feature.tableManagement'),
+        t('services.feature.cancellation'),
+        t('services.feature.reminder')
       ],
       color: 'bg-secondary',
       delay: 0.2
     },
     {
       icon: <FiTool className="text-white text-3xl" />,
-      title: 'İşletmenize Özel Çözümler',
-      description: 'Sektörünüze ve iş modelinize özel AI çözümleri geliştiriyoruz. E-ticaret, sağlık, eğitim, turizm ve daha fazlası için özelleştirilmiş sistemler.',
+      title: t('services.custom.title'),
+      description: t('services.custom.desc'),
       features: [
-        'Sektöre özel AI model geliştirme',
-        'Mevcut sistemlerle %100 entegrasyon',
-        'Özel chatbot ve otomasyon çözümleri',
-        'Veri analizi ve tahminleme sistemleri',
-        'Rekabet avantajı sağlayan özel özellikler'
+        t('services.feature.customAI'),
+        t('services.feature.integration'),
+        t('services.feature.competitive'),
+        t('services.feature.scalable'),
+        t('services.feature.updates')
       ],
       color: 'bg-gradient-to-r from-purple-600 to-pink-600',
       delay: 0.4
@@ -108,12 +112,10 @@ const Services: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            AI Destekli <span className="text-secondary">Çözümlerimiz</span>
+            {t('services.title')}
           </h2>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            <span className="font-bold">Sadece 48 saat</span> içinde işletmenizi dijital dönüşüme hazırlayın! 
-            <span className="font-bold">Chatbot + Voice Agent</span> çözümlerimizle tüm iletişim kanallarınızı otomatikleştirin.
-            <span className="font-semibold">Rakiplerinizin önüne geçin</span>, müşteri memnuniyetini zirveye taşıyın.
+            {t('services.subtitle')}
           </p>
         </motion.div>
 
@@ -138,25 +140,25 @@ const Services: React.FC = () => {
           className="mt-16 bg-darkBlue/50 backdrop-blur-lg border border-secondary/30 rounded-2xl shadow-xl p-8 glow-effect hover:scale-[1.02] transition-transform duration-300"
         >
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold mb-4 text-white">Neden Cognia AI?</h3>
-            <p className="text-white/80">Türkiye'nin dijital dönüşüm yolculuğunda güvenilir partneriniz</p>
+            <h3 className="text-2xl font-bold mb-4 text-white">{t('services.whyCognia') || 'Why Choose Cognia AI?'}</h3>
+            <p className="text-white/80">{t('services.trustedPartner') || 'Your trusted partner in digital transformation'}</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             <div className="text-center group cursor-pointer">
-              <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">%95</div>
-              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">Müşteri Memnuniyeti</p>
+              <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">95%</div>
+              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">{t('services.satisfaction') || 'Customer Satisfaction'}</p>
             </div>
             <div className="text-center group cursor-pointer">
-              <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">7/24</div>
-              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">Kesintisiz Hizmet</p>
+              <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">24/7</div>
+              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">{t('services.support247') || 'Continuous Service'}</p>
             </div>
             <div className="text-center group cursor-pointer">
               <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">100+</div>
-              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">İşletme Bizi Tercih Etti</p>
+              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">{t('services.businesses') || 'Businesses Trust Us'}</p>
             </div>
             <div className="text-center group cursor-pointer">
-              <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">48 Saat</div>
-              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">Kurulum Süresi</p>
+              <div className="text-3xl md:text-5xl font-bold text-secondary mb-2 text-glow group-hover:scale-110 transition-transform duration-300">48h</div>
+              <p className="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">{t('services.setupTime') || 'Setup Time'}</p>
             </div>
           </div>
         </motion.div>

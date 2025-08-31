@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Suspense } from 'react';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import LoadingScreen from './components/LoadingScreen';
@@ -30,20 +31,22 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <Hero />
-      <Suspense fallback={<div className="h-16"></div>}>
-        <VoiceAgent />
-        <DemoVideos />
-        <ContactCTA />
-        <Services />
-        <About />
-        <FAQ />
-        <Footer />
-        <StickyChat />
-      </Suspense>
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen">
+        <Navbar />
+        <Hero />
+        <Suspense fallback={<div className="h-16"></div>}>
+          <VoiceAgent />
+          <DemoVideos />
+          <ContactCTA />
+          <Services />
+          <About />
+          <FAQ />
+          <Footer />
+          <StickyChat />
+        </Suspense>
+      </div>
+    </LanguageProvider>
   );
 }
 

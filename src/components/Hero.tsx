@@ -3,68 +3,70 @@ import { motion } from 'framer-motion';
 import { FiArrowRight, FiCheckCircle, FiPlay } from 'react-icons/fi';
 import { BsShieldCheck } from 'react-icons/bs';
 import ServiceDetails from './ServiceDetails';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Hero: React.FC = () => {
   const [selectedService, setSelectedService] = React.useState<any>(null);
   const [isDetailsOpen, setIsDetailsOpen] = React.useState(false);
+  const { t, language } = useLanguage();
 
   const benefits = [
-    'WhatsApp & Instagram Chatbot',
-    'AI Voice Agent ile Sesli Destek',
-    '7/24 Tam Otomasyon',
-    'Hızlı Kurulum ve Entegrasyon'
+    t('hero.benefit1'),
+    t('hero.benefit2'),
+    t('hero.benefit3'),
+    t('hero.benefit4')
   ];
 
   const trustBadges = [
-    { icon: <BsShieldCheck />, text: 'KVKK Uyumlu' },
+    { icon: <BsShieldCheck />, text: t('hero.trustBadge') },
   ];
 
   const aiAssistants = [
     {
       number: '1',
-      title: 'Müşteri Destek Asistanı',
-      description: '7/24 otomatik destek',
+      title: t('hero.assistant1.title'),
+      description: t('hero.assistant1.desc'),
       service: {
-        title: 'Müşteri Destek Sistemi',
-        description: 'AI destekli müşteri destek sistemiyle müşterilerinizin sorularını anında yanıtlayın.',
+        title: t('services.customerSupport.title'),
+        description: t('services.customerSupport.desc'),
         features: [
-          'WhatsApp/Instagram müşteri destek chatbotu',
-          'AI Voice Agent ile telefon desteği',
-          'Sık sorulan sorulara otomatik yanıt',
-          'Canlı destek yönlendirmesi',
-          'Çoklu dil desteği ile global erişim'
+          t('services.feature.whatsapp'),
+          t('services.feature.voicePhone'),
+          t('services.feature.autoReply'),
+          t('services.feature.liveSupport'),
+          t('services.feature.multilingual')
         ]
       }
     },
     {
       number: '2',
-      title: 'Rezervasyon Asistanı',
-      description: 'Otomatik rezervasyon yönetimi',
+      title: t('hero.assistant2.title'),
+      description: t('hero.assistant2.desc'),
       service: {
-        title: 'Rezervasyon Sistemi',
-        description: 'Restoran ve işletmeniz için akıllı rezervasyon yönetimi.',
+        title: t('services.reservation.title'),
+        description: t('services.reservation.desc'),
         features: [
-          'WhatsApp/Instagram rezervasyon chatbotu',
-          'Voice Agent ile telefon rezervasyonu',
-          'Otomatik masa ve zaman yönetimi',
-          'Rezervasyon iptali ve değişikliği',
-          'Müşteri bilgilendirme ve hatırlatma'
+          t('services.feature.reservation'),
+          t('services.feature.phoneReservation'),
+          t('services.feature.tableManagement'),
+          t('services.feature.cancellation'),
+          t('services.feature.reminder')
         ]
       }
     },
     {
       number: '3',
-      title: 'Özel Çözümler',
-      description: 'İşletmenize özel AI çözümleri',
+      title: t('hero.assistant3.title'),
+      description: t('hero.assistant3.desc'),
       service: {
-        title: 'İşletmenize Özel AI Çözümleri',
-        description: 'Sektörünüze ve iş modelinize %100 uyumlu, size özel tasarlanmış yapay zeka sistemleri geliştiriyoruz.',
+        title: t('services.custom.title'),
+        description: t('services.custom.desc'),
         features: [
-          'Sektör liderleri için özel AI modelleri',
-          'Rakiplerinizden bir adım önde olmanızı sağlayan çözümler',
-          'Tam entegrasyon ve özelleştirme',
-          'Ölçeklenebilir ve esnek yapı',
-          'Sürekli güncelleme ve destek'
+          t('services.feature.customAI'),
+          t('services.feature.competitive'),
+          t('services.feature.integration'),
+          t('services.feature.scalable'),
+          t('services.feature.updates')
         ]
       }
     }
@@ -145,20 +147,16 @@ const Hero: React.FC = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
                 </span>
-                <span className="text-white text-sm">100+ İşletme Bizi Tercih Etti</span>
+                <span className="text-white text-sm">{t('hero.badge')}</span>
               </motion.div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                İşletmenizi{' '}
-                <span className="text-secondary font-extrabold text-glow">Yapay Zeka</span>{' '}
-                ile Geleceğe Taşıyın
+                {t('hero.title1')}{' '}
+                <span className="text-secondary font-extrabold text-glow">{t('hero.title2')}</span>{' '}
+                {t('hero.title3')}
               </h1>
               <p className="text-lg md:text-xl text-white/90 mb-8">
-                <span className="font-bold text-secondary">48 saat içinde kurulum</span>, anında sonuç! 
-                Türkiye'nin önde gelen AI danışmanlık firması olarak, <span className="font-bold">Chatbot + Voice Agent</span> çözümlerimizle 
-                tüm iletişim kanallarınızı otomatikleştirin. 
-                <span className="font-semibold">Maliyetlerinizi %70 azaltın</span>, 
-                <span className="font-semibold"> müşteri memnuniyetini %95'e çıkarın</span>.
+                {t('hero.subtitle')}
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -183,7 +181,7 @@ const Hero: React.FC = () => {
                   onClick={scrollToContact}
                   className="bg-gradient-primary text-white px-8 py-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-secondary/30 group"
                 >
-                  <span>Ücretsiz Demo Al</span>
+                  <span>{t('hero.demoButton')}</span>
                   <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
                 </motion.button>
                 <motion.button
@@ -198,7 +196,7 @@ const Hero: React.FC = () => {
                   className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-white/20 transition-all duration-300 border border-white/20"
                 >
                   <FiPlay />
-                  <span>Chatbot Demo İzle</span>
+                  <span>{t('hero.watchDemo')}</span>
                 </motion.button>
               </div>
             </motion.div>
@@ -245,7 +243,7 @@ const Hero: React.FC = () => {
                       </div>
                       <div className="text-5xl font-light text-white">Cognia</div>
                     </div>
-                    <h3 className="text-3xl font-bold text-center text-white">AI Asistanlarımız</h3>
+                    <h3 className="text-3xl font-bold text-center text-white">{t('hero.aiAssistants')}</h3>
                   </motion.div>
                   <div className="space-y-4">
                     {aiAssistants.map((assistant, index) => (

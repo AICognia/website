@@ -118,4 +118,57 @@
     background-size: 30px 30px;
     background-position: 0 0, 15px 15px;
   }
+  
+  /* Professional Enhancement Styles */
+  .professional-card {
+    @apply bg-darkBlue/40 backdrop-blur-lg border border-secondary/20 rounded-2xl p-8;
+    @apply hover:border-secondary/40 hover:shadow-2xl hover:shadow-secondary/20;
+    @apply transition-all duration-500 hover:translate-y-[-4px];
+  }
+  
+  .cta-primary {
+    @apply bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-xl font-semibold;
+    @apply hover:scale-105 hover:shadow-2xl hover:shadow-secondary/40 transition-all duration-300;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cta-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .cta-primary:hover::before {
+    left: 100%;
+  }
+  
+  .trust-indicator {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full;
+    @apply bg-gradient-to-r from-secondary/10 to-primary/10 border border-secondary/30;
+    @apply hover:border-secondary/50 transition-all duration-300;
+  }
+  
+  .conversion-banner {
+    @apply bg-gradient-to-r from-secondary to-primary p-6 rounded-2xl;
+    @apply shadow-xl shadow-secondary/30 border border-white/20;
+  }
+  
+  .urgency-text {
+    @apply text-yellow-300 font-bold animate-pulse;
+  }
+  
+  @keyframes professional-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .professional-float {
+    animation: professional-float 3s ease-in-out infinite;
+  }
 }

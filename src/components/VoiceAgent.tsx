@@ -2,24 +2,26 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FiPhone, FiHeadphones, FiZap, FiGlobe } from 'react-icons/fi';
 import { BsArrowRight } from 'react-icons/bs';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const VoiceAgent: React.FC = () => {
+  const { t } = useLanguage();
 
   const features = [
     {
       icon: <FiPhone className="text-2xl" />,
-      title: 'Telefon Desteği',
-      description: 'Müşterileriniz telefon ile 7/24 destek alabilir'
+      title: t('voice.feature1.title'),
+      description: t('voice.feature1.desc')
     },
     {
       icon: <FiGlobe className="text-2xl" />,
-      title: 'Çoklu Dil',
-      description: 'Türkçe dahil 20+ dilde doğal konuşma'
+      title: t('voice.feature2.title'),
+      description: t('voice.feature2.desc')
     },
     {
       icon: <FiZap className="text-2xl" />,
-      title: 'Anlık Yanıt',
-      description: 'İnsan gibi hızlı ve doğru yanıtlar'
+      title: t('voice.feature3.title'),
+      description: t('voice.feature3.desc')
     }
   ];
 
@@ -35,11 +37,10 @@ const VoiceAgent: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            AI <span className="text-secondary">Voice Agent</span>
+            {t('voice.title')}
           </h2>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            Telefon üzerinden müşterilerinize 7/24 otomatik destek sağlayan, 
-            insan gibi konuşan ve anlayan AI asistanınız
+            {t('voice.subtitle')}
           </p>
         </motion.div>
 
@@ -53,12 +54,10 @@ const VoiceAgent: React.FC = () => {
           >
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-white mb-4">
-                Voice Agent Nedir?
+                {t('voice.whatIs')}
               </h3>
               <p className="text-white/80 mb-6 leading-relaxed">
-                Voice Agent, işletmenizin telefon sistemine entegre olan ve müşterilerinizle 
-                doğal bir şekilde konuşabilen yapay zeka destekli ses asistanıdır. 
-                Sipariş takibi, randevu alma, bilgi verme gibi işlemleri otomatik olarak gerçekleştirir.
+                {t('voice.description')}
               </p>
             </div>
 
@@ -95,7 +94,7 @@ const VoiceAgent: React.FC = () => {
               }}
               className="mt-8 bg-gradient-primary text-white px-8 py-4 rounded-xl font-semibold flex items-center space-x-2 hover:shadow-xl hover:shadow-secondary/30 transition-all duration-300 group"
             >
-              <span>Demo Talep Et</span>
+              <span>{t('voice.requestDemo')}</span>
               <BsArrowRight className="group-hover:translate-x-1 transition-transform" />
             </motion.button>
           </motion.div>
@@ -111,22 +110,39 @@ const VoiceAgent: React.FC = () => {
               <div className="text-center">
                 <FiHeadphones className="text-5xl text-secondary mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-white mb-6">
-                  Hemen Deneyin
+                  {t('voice.tryNow')}
                 </h3>
 
-                {/* Phone Number */}
+                {/* Phone Numbers */}
                 <div className="mt-8 space-y-4">
                   <p className="text-white/90 text-lg mb-6">
-                    Sesli asistanımızı denemek için arayabilirsiniz
+                    {t('voice.callDemo')}
                   </p>
-                  <div className="bg-gradient-primary p-6 rounded-xl">
-                    <a href="tel:08508402689" className="flex items-center justify-center space-x-3 text-white hover:scale-105 transition-transform">
-                      <FiPhone className="text-3xl" />
-                      <span className="text-2xl font-bold">0 850 840 26 89</span>
-                    </a>
+                  
+                  {/* US Phone Number */}
+                  <div className="space-y-3">
+                    <p className="text-secondary font-semibold">{t('voice.demoUS')}</p>
+                    <div className="bg-gradient-primary p-5 rounded-xl">
+                      <a href="tel:+16163263328" className="flex items-center justify-center space-x-3 text-white hover:scale-105 transition-transform">
+                        <FiPhone className="text-2xl" />
+                        <span className="text-xl font-bold">+1 616 326-3328</span>
+                      </a>
+                    </div>
                   </div>
+                  
+                  {/* Turkey Phone Number */}
+                  <div className="space-y-3">
+                    <p className="text-secondary font-semibold">{t('voice.demoTR')}</p>
+                    <div className="bg-gradient-primary p-5 rounded-xl">
+                      <a href="tel:+908508402689" className="flex items-center justify-center space-x-3 text-white hover:scale-105 transition-transform">
+                        <FiPhone className="text-2xl" />
+                        <span className="text-xl font-bold">+90 850 840 26 89</span>
+                      </a>
+                    </div>
+                  </div>
+                  
                   <p className="text-white/70 text-sm mt-4">
-                    Hemen arayın ve AI sesli asistanımızı kendiniz deneyin
+                    {t('voice.callNow')}
                   </p>
                 </div>
               </div>
@@ -143,12 +159,10 @@ const VoiceAgent: React.FC = () => {
           className="mt-16 bg-darkBlue/30 backdrop-blur-lg border border-secondary/20 rounded-2xl p-8 text-center"
         >
           <h3 className="text-2xl font-bold text-white mb-4">
-            Chatbot + Voice Agent = Tam Otomasyon
+            {t('voice.fullAutomation')}
           </h3>
           <p className="text-white/80 max-w-3xl mx-auto">
-            WhatsApp ve Instagram üzerinden chatbot, telefon üzerinden voice agent ile 
-            tüm iletişim kanallarınızı otomatikleştirin. Müşteri memnuniyetini artırın, 
-            maliyetlerinizi düşürün.
+            {t('voice.fullAutomationDesc')}
           </p>
         </motion.div>
       </div>
