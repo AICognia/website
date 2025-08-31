@@ -183,6 +183,19 @@ const ContactCTA: React.FC = () => {
                 </a>
                 
                 <a
+                  href="tel:+12176938413"
+                  className="flex items-center space-x-4 p-4 bg-white/10 backdrop-blur-sm border border-secondary/20 rounded-lg hover:shadow-md transition-shadow"
+                >
+                  <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center">
+                    <FiPhone className="text-secondary text-2xl" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">+1 217 693 8413</p>
+                    <p className="text-sm text-white/70">US {t('contact.directCall')}</p>
+                  </div>
+                </a>
+                
+                <a
                   href="tel:+905317739053"
                   className="flex items-center space-x-4 p-4 bg-white/10 backdrop-blur-sm border border-secondary/20 rounded-lg hover:shadow-md transition-shadow"
                 >
@@ -191,7 +204,7 @@ const ContactCTA: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-white">+90 531 773 9053</p>
-                    <p className="text-sm text-white/70">{t('contact.directCall')}</p>
+                    <p className="text-sm text-white/70">TR {t('contact.directCall')}</p>
                   </div>
                 </a>
                 
