@@ -102,8 +102,8 @@ const Contact: React.FC = () => {
                     <FaPhone className="text-[#162B4D] text-xl mt-1" />
                     <div>
                       <p className="font-semibold text-gray-900">Phone</p>
-                      <p className="text-gray-600">Turkey: +90 531 773 9053</p>
-                      <p className="text-gray-600">US: +1 217 693 8413</p>
+                      <a href="tel:+908508402689" className="block text-gray-600 hover:text-[#162B4D] transition-colors">Turkey: +90 850 840 2689</a>
+                      <a href="tel:+16163263328" className="block text-gray-600 hover:text-[#162B4D] transition-colors">US: +1 616 326-3328</a>
                     </div>
                   </div>
                   

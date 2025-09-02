@@ -55,17 +55,21 @@ const Home: React.FC = () => {
             <div className="flex flex-wrap justify-center gap-8">
               <motion.div 
                 whileHover={{ scale: 1.05 }}
-                className="bg-white px-10 py-6 rounded-xl shadow-xl"
+                className="bg-white px-10 py-6 rounded-xl shadow-xl cursor-pointer"
               >
                 <p className="text-gray-600 mb-3 font-semibold">{t('voice.demoTR')}</p>
-                <p className="text-2xl font-bold text-[#162B4D]">+90 531 773 9053</p>
+                <a href="tel:+908508402689" className="text-2xl font-bold text-[#162B4D] hover:text-[#2A4A7C] transition-colors">
+                  +90 850 840 2689
+                </a>
               </motion.div>
               <motion.div 
                 whileHover={{ scale: 1.05 }}
-                className="bg-white px-10 py-6 rounded-xl shadow-xl"
+                className="bg-white px-10 py-6 rounded-xl shadow-xl cursor-pointer"
               >
                 <p className="text-gray-600 mb-3 font-semibold">{t('voice.demoUS')}</p>
-                <p className="text-2xl font-bold text-[#162B4D]">+1 217 693 8413</p>
+                <a href="tel:+16163263328" className="text-2xl font-bold text-[#162B4D] hover:text-[#2A4A7C] transition-colors">
+                  +1 616 326-3328
+                </a>
               </motion.div>
             </div>
             <div className="mt-10">
