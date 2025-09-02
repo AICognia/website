@@ -37,12 +37,10 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <span 
-              className="text-2xl md:text-3xl text-[#162B4D] transition-all duration-300"
+              className="text-3xl md:text-4xl font-semibold text-[#162B4D] transition-all duration-300"
               style={{
-                fontFamily: '"Playfair Display", Georgia, serif',
-                fontWeight: '600',
-                letterSpacing: '0.02em',
-                textShadow: '0 0 10px rgba(22, 43, 77, 0.3), 0 0 20px rgba(22, 43, 77, 0.2)'
+                fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+                letterSpacing: '-0.02em'
               }}
             >
               Cognia AI

@@ -14,12 +14,10 @@ const Footer: React.FC = () => {
           <div className="col-span-1">
             <div className="flex items-center mb-4">
               <span 
-                className="text-xl text-[#162B4D]"
+                className="text-2xl font-semibold text-[#162B4D]"
                 style={{
-                  fontFamily: '"Playfair Display", Georgia, serif',
-                  fontWeight: '600',
-                  letterSpacing: '0.02em',
-                  textShadow: '0 0 10px rgba(22, 43, 77, 0.3), 0 0 20px rgba(22, 43, 77, 0.2)'
+                  fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+                  letterSpacing: '-0.02em'
                 }}
               >
                 Cognia AI
