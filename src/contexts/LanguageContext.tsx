@@ -194,7 +194,7 @@ const translations = {
   tr: {
     // Navbar
     'nav.home': 'Ana Sayfa',
-    'nav.voiceAgent': 'Voice Agent',
+    'nav.voiceAgent': 'Sesli Asistan',
     'nav.demoVideos': 'Demo Videolar',
     'nav.services': 'Hizmetlerimiz',
     'nav.about': 'Hakkımızda',
@@ -206,9 +206,9 @@ const translations = {
     'hero.title1': 'İşletmenizi',
     'hero.title2': 'Yapay Zeka',
     'hero.title3': 'ile Geleceğe Taşıyın',
-    'hero.subtitle': '48 saat içinde kurulum, anında sonuç! ABD ve Türkiye\'de faaliyet gösteren uluslararası AI danışmanlık firması olarak, Chatbot + Voice Agent çözümlerimizle tüm iletişim kanallarınızı otomatikleştirin. Maliyetlerinizi %70 azaltın, müşteri memnuniyetini %95\'e çıkarın.',
+    'hero.subtitle': '48 saat içinde kurulum, anında sonuç! ABD ve Türkiye\'de faaliyet gösteren uluslararası AI danışmanlık firması olarak, Chatbot + Sesli Asistan çözümlerimizle tüm iletişim kanallarınızı otomatikleştirin. Maliyetlerinizi %70 azaltın, müşteri memnuniyetini %95\'e çıkarın.',
     'hero.benefit1': 'WhatsApp & Instagram Chatbot',
-    'hero.benefit2': 'AI Voice Agent ile Sesli Destek',
+    'hero.benefit2': 'AI Sesli Asistan ile Sesli Destek',
     'hero.benefit3': '7/24 Tam Otomasyon',
     'hero.benefit4': 'Hızlı Kurulum ve Entegrasyon',
     'hero.trustBadge': 'KVKK Uyumlu',
@@ -223,10 +223,10 @@ const translations = {
     'hero.assistant3.desc': 'İşletmenize özel AI çözümleri',
     
     // Voice Agent
-    'voice.title': 'AI Voice Agent',
+    'voice.title': 'AI Sesli Asistan',
     'voice.subtitle': 'Telefon üzerinden müşterilerinize 7/24 otomatik destek sağlayan, insan gibi konuşan ve anlayan AI asistanınız',
-    'voice.whatIs': 'Voice Agent Nedir?',
-    'voice.description': 'Voice Agent, işletmenizin telefon sistemine entegre olan ve müşterilerinizle doğal bir şekilde konuşabilen yapay zeka destekli ses asistanıdır. Sipariş takibi, randevu alma, bilgi verme gibi işlemleri otomatik olarak gerçekleştirir.',
+    'voice.whatIs': 'Sesli Asistan Nedir?',
+    'voice.description': 'Sesli Asistan, işletmenizin telefon sistemine entegre olan ve müşterilerinizle doğal bir şekilde konuşabilen yapay zeka destekli ses asistanıdır. Sipariş takibi, randevu alma, bilgi verme gibi işlemleri otomatik olarak gerçekleştirir.',
     'voice.feature1.title': 'Telefon Desteği',
     'voice.feature1.desc': 'Müşterileriniz telefon ile 7/24 destek alabilir',
     'voice.feature2.title': 'Çoklu Dil',
@@ -237,10 +237,10 @@ const translations = {
     'voice.callDemo': 'Sesli asistanımızı denemek için arayabilirsiniz',
     'voice.callNow': 'Hemen arayın ve AI sesli asistanımızı kendiniz deneyin',
     'voice.requestDemo': 'Demo Talep Et',
-    'voice.fullAutomation': 'Chatbot + Voice Agent = Tam Otomasyon',
-    'voice.fullAutomationDesc': 'WhatsApp ve Instagram üzerinden chatbot, telefon üzerinden voice agent ile tüm iletişim kanallarınızı otomatikleştirin. Müşteri memnuniyetini artırın, maliyetlerinizi düşürün.',
-    'voice.demoUS': 'ABD Voice Agent Demo',
-    'voice.demoTR': 'Türkiye Voice Agent Demo',
+    'voice.fullAutomation': 'Chatbot + Sesli Asistan = Tam Otomasyon',
+    'voice.fullAutomationDesc': 'WhatsApp ve Instagram üzerinden chatbot, telefon üzerinden sesli asistan ile tüm iletişim kanallarınızı otomatikleştirin. Müşteri memnuniyetini artırın, maliyetlerinizi düşürün.',
+    'voice.demoUS': 'ABD Sesli Asistan Demo',
+    'voice.demoTR': 'Türkiye Sesli Asistan Demo',
     
     // Contact CTA
     'contact.title': '🎯 Ücretsiz Demo İsteyin - Sadece 48 Saat İçinde Kurulum!',
@@ -304,12 +304,12 @@ const translations = {
     'services.custom.title': 'İşletmenize Özel AI Çözümleri',
     'services.custom.desc': 'Sektörünüze ve iş modelinize %100 uyumlu, size özel tasarlanmış yapay zeka sistemleri geliştiriyoruz.',
     'services.feature.whatsapp': 'WhatsApp/Instagram müşteri destek chatbotu',
-    'services.feature.voicePhone': 'AI Voice Agent ile telefon desteği',
+    'services.feature.voicePhone': 'AI Sesli Asistan ile telefon desteği',
     'services.feature.autoReply': 'Sık sorulan sorulara otomatik yanıt',
     'services.feature.liveSupport': 'Canlı destek yönlendirmesi',
     'services.feature.multilingual': 'Çoklu dil desteği ile global erişim',
     'services.feature.reservation': 'WhatsApp/Instagram rezervasyon chatbotu',
-    'services.feature.phoneReservation': 'Voice Agent ile telefon rezervasyonu',
+    'services.feature.phoneReservation': 'Sesli Asistan ile telefon rezervasyonu',
     'services.feature.tableManagement': 'Otomatik masa ve zaman yönetimi',
     'services.feature.cancellation': 'Rezervasyon iptali ve değişikliği',
     'services.feature.reminder': 'Müşteri bilgilendirme ve hatırlatma',
@@ -321,7 +321,7 @@ const translations = {
     
     // Demo Videos
     'demo.title': 'Chatbot Demo Videolar',
-    'demo.subtitle': 'WhatsApp ve Instagram chatbot\'larımızı canlı olarak görün. Voice Agent\'ımızı yukarıda deneyebildiniz!',
+    'demo.subtitle': 'WhatsApp ve Instagram chatbot\'larımızı canlı olarak görün. Sesli Asistan\'ımızı yukarıda deneyebildiniz!',
     'demo.whatsapp.title': 'WhatsApp Müşteri Destek Demo',
     'demo.whatsapp.desc': 'WhatsApp üzerinden 7/24 otomatik müşteri desteği sağlayan AI asistanımızı keşfedin. Anlık yanıtlar, sipariş takibi ve müşteri memnuniyeti.',
     'demo.reservation.title': 'AI Randevu Sistemi Demo',
@@ -330,7 +330,7 @@ const translations = {
     'demo.requestDemo': 'Demo Talep Et',
     'demo.whatsapp': 'WhatsApp AI Asistan',
     'demo.instagram': 'Instagram AI Asistan',
-    'demo.voice': 'Sesli AI Asistan',
+    'demo.voice': 'Sesli Asistan',
     'demo.tryLive': 'Canlı Demo Deneyin',
     
     // Services Additional

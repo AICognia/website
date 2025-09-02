@@ -1,51 +1,46 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import LoadingScreen from './components/LoadingScreen';
+import Footer from './components/Footer';
 
-// Lazy load heavy components
-const ContactCTA = React.lazy(() => import('./components/ContactCTA'));
-const Services = React.lazy(() => import('./components/Services'));
-const DemoVideos = React.lazy(() => import('./components/DemoVideos'));
-const VoiceAgent = React.lazy(() => import('./components/VoiceAgent'));
-const About = React.lazy(() => import('./components/About'));
-const FAQ = React.lazy(() => import('./components/FAQ'));
-const Footer = React.lazy(() => import('./components/Footer'));
-const StickyChat = React.lazy(() => import('./components/StickyChat'));
+// Pages
+import Home from './pages/Home';
+import Solutions from './pages/Solutions';
+import Platform from './pages/Platform';
+import Company from './pages/Company';
+import Contact from './pages/Contact';
 
-function App() {
-  const [isLoading, setIsLoading] = useState(true);
+// Scroll to top component
+function ScrollToTop() {
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    // Simulate loading time
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
-    return () => clearTimeout(timer);
-  }, []);
+  return null;
+}
 
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
+function App() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen">
-        <Navbar />
-        <Hero />
-        <Suspense fallback={<div className="h-16"></div>}>
-          <VoiceAgent />
-          <DemoVideos />
-          <ContactCTA />
-          <Services />
-          <About />
-          <FAQ />
+      <Router>
+        <ScrollToTop />
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-grow pt-20">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/solutions" element={<Solutions />} />
+              <Route path="/platform" element={<Platform />} />
+              <Route path="/company" element={<Company />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </main>
           <Footer />
-          <StickyChat />
-        </Suspense>
-      </div>
+        </div>
+      </Router>
     </LanguageProvider>
   );
 }

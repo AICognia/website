@@ -1,132 +1,124 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FiMenu, FiX } from 'react-icons/fi';
-import { useLanguage } from '../contexts/LanguageContext';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import LanguageSelector from './LanguageSelector';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const scrolled = false;
-  const { t } = useLanguage();
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const { t, language } = useLanguage();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
-    { name: t('nav.home'), href: '#home' },
-    { name: t('nav.voiceAgent'), href: '#voice-agent' },
-    { name: t('nav.demoVideos'), href: '#demo-videos' },
-    { name: t('nav.services'), href: '#services' },
-    { name: t('nav.about'), href: '#about' },
-    { name: t('nav.contact'), href: '.contact-cta-section' },
+    { name: t('nav.home'), path: '/' },
+    { name: language === 'tr' ? 'Çözümler' : 'Solutions', path: '/solutions' },
+    { name: language === 'tr' ? 'Platform' : 'Platform', path: '/platform' },
+    { name: t('nav.about'), path: '/company' },
+    { name: t('nav.contact'), path: '/contact' }
   ];
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-darkBlue/95 backdrop-blur-lg shadow-lg border-b border-secondary/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center"
-          >
-            <span className="text-2xl font-bold text-white text-glow">Cognia AI</span>
-          </motion.div>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${
+      scrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-md'
+    }`}>
+      <div className="container mx-auto px-6">
+        <div className="flex justify-between items-center h-20">
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <span 
+              className="text-2xl md:text-3xl text-[#162B4D] transition-all duration-300"
+              style={{
+                fontFamily: '"Playfair Display", Georgia, serif',
+                fontWeight: '600',
+                letterSpacing: '0.02em',
+                textShadow: '0 0 10px rgba(22, 43, 77, 0.3), 0 0 20px rgba(22, 43, 77, 0.2)'
+              }}
+            >
+              Cognia AI
+            </span>
+          </Link>
 
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              {navItems.map((item, index) => (
-                <motion.a
-                  key={item.name}
-                  href={item.href}
-                  onClick={(e) => {
-                    if (item.href.startsWith('#') || item.href.startsWith('.')) {
-                      e.preventDefault();
-                      const element = document.querySelector(item.href);
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }
-                  }}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                    item.href === '#home' && scrolled === false
-                      ? 'text-secondary bg-secondary/10'
-                      : 'text-white hover:text-secondary hover:bg-secondary/10'
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`text-lg font-medium transition-colors hover:text-[#162B4D] ${
+                  location.pathname === item.path
+                    ? 'text-[#162B4D]'
+                    : 'text-gray-700'
                   }`}
                 >
                   {item.name}
-                </motion.a>
+              </Link>
               ))}
               <LanguageSelector />
-              <motion.button
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navItems.length * 0.1 }}
-                className="bg-gradient-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-secondary/25"
-                onClick={() => {
-                  const contactCTA = document.querySelector('.contact-cta-section');
-                  if (contactCTA) {
-                    contactCTA.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-              >
-                {t('nav.freeDemo')}
-              </motion.button>
-            </div>
-          </div>
-
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-white hover:text-gray-200 focus:outline-none"
-            >
-              {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-darkBlue/95 backdrop-blur-lg border-t border-secondary/20"
-        >
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-white hover:text-gray-200 block px-3 py-2 rounded-md text-base font-medium"
-                onClick={(e) => {
-                  if (item.href.startsWith('#') || item.href.startsWith('.')) {
-                    e.preventDefault();
-                    const element = document.querySelector(item.href);
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }
-                  setIsOpen(false);
-                }}
-              >
-                {item.name}
-              </a>
-            ))}
-            <button 
-              className="w-full bg-gradient-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
-              onClick={() => {
-                setIsOpen(false);
-                const contactCTA = document.querySelector('.contact-cta-section');
-                if (contactCTA) {
-                  contactCTA.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
+            <Link
+              to="/contact"
+              className="ml-4 px-6 py-2.5 bg-gradient-to-r from-[#162B4D] to-[#0A1628] text-white font-semibold rounded-lg hover:shadow-lg transition-all transform hover:scale-105"
             >
               {t('nav.freeDemo')}
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-gray-700 hover:text-[#162B4D] transition-colors"
+            >
+            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
+      </div>
+
+        {/* Mobile Navigation */}
+        <AnimatePresence>
+      {isOpen && (
+        <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="py-4 space-y-2">
+            {navItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`block px-4 py-3 rounded-lg text-lg font-medium transition-colors ${
+                      location.pathname === item.path
+                        ? 'bg-gray-100 text-[#162B4D]'
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#162B4D]'
+                    }`}
+              >
+                {item.name}
+                  </Link>
+                ))}
+                <Link
+                  to="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className="block mx-4 mt-4 px-6 py-3 bg-gradient-to-r from-[#162B4D] to-[#0A1628] text-white text-center font-semibold rounded-lg hover:shadow-lg transition-all"
+                >
+                  Request Demo
+                </Link>
           </div>
         </motion.div>
       )}
+        </AnimatePresence>
+      </div>
     </nav>
   );
 };

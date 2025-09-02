@@ -15,6 +15,7 @@ module.exports = {
       },
       fontFamily: {
         'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        'inter': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
