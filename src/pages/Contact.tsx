@@ -87,7 +87,9 @@ const Contact: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 className="md:col-span-1"
               >
-                <h2 className="text-3xl font-bold mb-8 text-gray-900">Get in Touch</h2>
+                <h2 className="text-3xl font-bold mb-8 text-gray-900">
+                  {language === 'tr' ? 'Bize Ulaşın' : 'Get in Touch'}
+                </h2>
                 
                 <div className="space-y-6 mb-8">
                   <div className="flex items-start gap-4">
@@ -101,9 +103,9 @@ const Contact: React.FC = () => {
                   <div className="flex items-start gap-4">
                     <FaPhone className="text-[#162B4D] text-xl mt-1" />
                     <div>
-                      <p className="font-semibold text-gray-900">Phone</p>
-                      <a href="tel:+905317739053" className="block text-gray-600 hover:text-[#162B4D] transition-colors">Turkey: +90 531 773 9053</a>
-                      <a href="tel:+12176938413" className="block text-gray-600 hover:text-[#162B4D] transition-colors">US: +1 217 693 8413</a>
+                      <p className="font-semibold text-gray-900">{language === 'tr' ? 'Telefon' : 'Phone'}</p>
+                      <a href="tel:+905317739053" className="block text-gray-600 hover:text-[#162B4D] transition-colors">{language === 'tr' ? 'Türkiye' : 'Turkey'}: +90 531 773 9053</a>
+                      <a href="tel:+12176938413" className="block text-gray-600 hover:text-[#162B4D] transition-colors">{language === 'tr' ? 'ABD' : 'US'}: +1 217 693 8413</a>
                     </div>
                   </div>
                   
@@ -111,7 +113,7 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div className="border-t pt-8">
-                  <p className="font-semibold text-gray-900 mb-4">Follow Us</p>
+                  <p className="font-semibold text-gray-900 mb-4">{language === 'tr' ? 'Bizi Takip Edin' : 'Follow Us'}</p>
                   <div className="flex gap-4">
                     <a href="#" className="text-gray-400 hover:text-[#162B4D] transition-colors">
                       <FaLinkedin className="text-2xl" />
