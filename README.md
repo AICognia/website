@@ -46,8 +46,8 @@ npm run build
 
 - **Web**: cogniaai.com.tr
 - **Email**: admin@cogniaai.com
-- **Telefon**: +90 850 840 2689
-- **WhatsApp**: +90 850 840 2689
+- **Telefon**: +90 531 773 9053
+- **WhatsApp**: +90 531 773 9053
 
 ## 🔧 Teknolojiler
 
