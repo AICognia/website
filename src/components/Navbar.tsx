@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       scrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-md'
     }`}>
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto pl-3 pr-6">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
