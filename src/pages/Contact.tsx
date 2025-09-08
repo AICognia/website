@@ -96,7 +96,7 @@ const Contact: React.FC = () => {
                     <FaEnvelope className="text-[#162B4D] text-xl mt-1" />
                     <div>
                       <p className="font-semibold text-gray-900">Email</p>
-                      <p className="text-gray-600">admin@cogniaai.com</p>
+                      <p className="text-gray-600">emrebenian@cogniaai.com</p>
                     </div>
                   </div>
                   
