@@ -37,4 +37,4 @@ User-agent: ClaudeBot
 Allow: /
 
 # Sitemap location
-Sitemap: https://cogniaai.com.tr/sitemap.xml
+Sitemap: https://cogniaai.com/sitemap.xml

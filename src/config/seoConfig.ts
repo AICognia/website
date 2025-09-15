@@ -107,8 +107,8 @@ export const structuredDataTemplates = {
     '@type': 'Organization',
     name: 'Cognia AI',
     alternateName: 'Cognia Artificial Intelligence',
-    url: 'https://cogniaai.com.tr',
-    logo: 'https://cogniaai.com.tr/logo512.png',
+    url: 'https://cogniaai.com',
+    logo: 'https://cogniaai.com/logo512.png',
     description: 'International AI consultancy operating in the US and Turkey',
     foundingDate: '2023',
     founders: [
@@ -172,12 +172,12 @@ export const structuredDataTemplates = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Cognia AI',
-    url: 'https://cogniaai.com.tr',
+    url: 'https://cogniaai.com',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://cogniaai.com.tr/search?q={search_term_string}'
+        urlTemplate: 'https://cogniaai.com/search?q={search_term_string}'
       },
       'query-input': 'required name=search_term_string'
     }
@@ -279,9 +279,9 @@ export const structuredDataTemplates = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'Cognia AI Turkey',
-    image: 'https://cogniaai.com.tr/logo512.png',
-    '@id': 'https://cogniaai.com.tr',
-    url: 'https://cogniaai.com.tr',
+    image: 'https://cogniaai.com/logo512.png',
+    '@id': 'https://cogniaai.com',
+    url: 'https://cogniaai.com',
     telephone: '+90-531-773-9053',
     address: {
       '@type': 'PostalAddress',

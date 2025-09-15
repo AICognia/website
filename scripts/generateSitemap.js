@@ -13,7 +13,7 @@ const routes = [
 // Define supported languages
 const languages = ['tr', 'en'];
 const defaultLanguage = 'en';
-const baseUrl = 'https://cogniaai.com.tr';
+const baseUrl = 'https://cogniaai.com';
 
 // Get current date in YYYY-MM-DD format
 const getCurrentDate = () => {

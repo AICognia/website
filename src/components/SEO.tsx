@@ -31,7 +31,7 @@ const SEO: React.FC<SEOProps> = ({
   const title = customTitle || pageConfig.title[lang];
   const description = customDescription || pageConfig.description[lang];
   const keywords = customKeywords || pageConfig.keywords[lang];
-  const canonical = customCanonical || `https://cogniaai.com.tr${pageConfig.canonicalPath}`;
+  const canonical = customCanonical || `https://cogniaai.com${pageConfig.canonicalPath}`;
   const ogImage = pageConfig.ogImage || '/og-image.png';
   
   // Create breadcrumb structured data if provided
@@ -42,7 +42,7 @@ const SEO: React.FC<SEOProps> = ({
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: `https://cogniaai.com.tr${item.url}`
+      item: `https://cogniaai.com${item.url}`
     }))
   } : null;
   
@@ -74,7 +74,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:url" content={canonical} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={`https://cogniaai.com.tr${ogImage}`} />
+      <meta property="og:image" content={`https://cogniaai.com${ogImage}`} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content="Cognia AI" />
@@ -84,7 +84,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="twitter:url" content={canonical} />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={`https://cogniaai.com.tr${ogImage}`} />
+      <meta property="twitter:image" content={`https://cogniaai.com${ogImage}`} />
       <meta name="twitter:creator" content="@cognia_ai" />
       <meta name="twitter:site" content="@cognia_ai" />
       

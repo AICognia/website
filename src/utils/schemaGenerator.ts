@@ -19,7 +19,7 @@ export const generateArticleSchema = (article: {
   },
   datePublished: article.datePublished,
   dateModified: article.dateModified || article.datePublished,
-  image: article.image || 'https://cogniaai.com.tr/og-image.png',
+  image: article.image || 'https://cogniaai.com/og-image.png',
   mainEntityOfPage: {
     '@type': 'WebPage',
     '@id': article.url
@@ -29,7 +29,7 @@ export const generateArticleSchema = (article: {
     name: 'Cognia AI',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://cogniaai.com.tr/logo512.png'
+      url: 'https://cogniaai.com/logo512.png'
     }
   }
 });
@@ -61,7 +61,7 @@ export const generateEventSchema = (event: {
     } : undefined
   } : {
     '@type': 'VirtualLocation',
-    url: event.url || 'https://cogniaai.com.tr'
+    url: event.url || 'https://cogniaai.com'
   },
   organizer: {
     '@type': 'Organization',
@@ -143,7 +143,7 @@ export const generateVideoSchema = (video: {
     name: 'Cognia AI',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://cogniaai.com.tr/logo512.png'
+      url: 'https://cogniaai.com/logo512.png'
     }
   }
 });
@@ -171,8 +171,8 @@ export const generateSoftwareApplicationSchema = () => ({
   },
   softwareVersion: '2.0',
   datePublished: '2023-01-01',
-  downloadUrl: 'https://cogniaai.com.tr/platform',
-  screenshot: 'https://cogniaai.com.tr/screenshot.png',
+  downloadUrl: 'https://cogniaai.com/platform',
+  screenshot: 'https://cogniaai.com/screenshot.png',
   featureList: [
     'AI Voice Agents',
     'Multi-channel Chatbots',
