@@ -3,12 +3,61 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaRobot, FaPhone, FaChartLine, FaShieldAlt, FaBrain, FaGlobe, FaClock, FaCheckCircle, FaMicrophone, FaComments, FaDatabase, FaCloud } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
+import SEO from '../components/SEO';
+import { structuredDataTemplates } from '../config/seoConfig';
 
 const Home: React.FC = () => {
   const { t, language } = useLanguage();
   
+  // FAQ structured data for the home page
+  const faqStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: language === 'tr' ? 'Kurulum ne kadar sürer?' : 'How long does setup take?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: language === 'tr' 
+            ? '48 saat içinde sisteminizi kuruyoruz. İhtiyaçlarınızı analiz ettikten sonra AI asistanınızı yapılandırıp aktif hale getiriyoruz.' 
+            : 'We set up your system within 48 hours. After analyzing your needs, we configure and activate your AI assistant.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: language === 'tr' ? 'Hangi dilleri destekliyorsunuz?' : 'Which languages do you support?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: language === 'tr' 
+            ? 'Türkçe ve İngilizce dahil 20\'den fazla dili destekliyoruz. AI asistanınız müşterilerinizin tercih ettiği dilde doğal bir şekilde iletişim kurabilir.' 
+            : 'We support over 20 languages including Turkish and English. Your AI assistant can communicate naturally in your customers\' preferred language.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: language === 'tr' ? 'Mevcut sistemlerimle entegre olur mu?' : 'Does it integrate with existing systems?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: language === 'tr' 
+            ? 'Evet, CRM, ERP ve diğer iş sistemlerinizle sorunsuz entegre olur. API desteği sağlıyoruz.' 
+            : 'Yes, it integrates seamlessly with your CRM, ERP, and other business systems. We provide API support.'
+        }
+      }
+    ]
+  };
+  
   return (
     <div className="min-h-screen">
+      <SEO 
+        page="home" 
+        structuredData={[
+          structuredDataTemplates.organization,
+          structuredDataTemplates.webSite,
+          structuredDataTemplates.service,
+          faqStructuredData
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#162B4D] via-[#0A1628] to-[#162B4D] text-white">
         <div className="absolute inset-0 bg-black opacity-20"></div>

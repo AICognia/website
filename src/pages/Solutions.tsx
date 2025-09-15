@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaPhone, FaComments, FaCheck, FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import SEO from '../components/SEO';
 
 const Solutions: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'voice' | 'chatbot'>('voice');
@@ -40,8 +41,36 @@ const Solutions: React.FC = () => {
     "Seamless handoff"
   ];
 
+  const breadcrumbs = [
+    { name: language === 'tr' ? 'Ana Sayfa' : 'Home', url: '/' },
+    { name: language === 'tr' ? 'Çözümler' : 'Solutions', url: '/solutions' }
+  ];
+
+  const serviceStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: language === 'tr' ? 'AI Çözümleri' : 'AI Solutions',
+    description: language === 'tr' 
+      ? 'Kurumsal AI çözümleri: Sesli asistanlar ve chatbotlar' 
+      : 'Enterprise AI solutions: Voice agents and chatbots',
+    provider: {
+      '@type': 'Organization',
+      name: 'Cognia AI'
+    },
+    serviceType: [
+      language === 'tr' ? 'Sesli AI Asistanlar' : 'Voice AI Agents',
+      language === 'tr' ? 'Chatbot Çözümleri' : 'Chatbot Solutions',
+      language === 'tr' ? 'Çok Kanallı Destek' : 'Omnichannel Support'
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO 
+        page="solutions" 
+        breadcrumbs={breadcrumbs}
+        structuredData={[serviceStructuredData]}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-[#162B4D] to-[#0A1628] text-white py-20">
         <div className="container mx-auto px-6">

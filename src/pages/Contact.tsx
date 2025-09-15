@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
+import SEO from '../components/SEO';
 
 const Contact: React.FC = () => {
   const { language } = useLanguage();
@@ -56,8 +57,44 @@ const Contact: React.FC = () => {
     }
   };
 
+  const breadcrumbs = [
+    { name: language === 'tr' ? 'Ana Sayfa' : 'Home', url: '/' },
+    { name: language === 'tr' ? 'İletişim' : 'Contact', url: '/contact' }
+  ];
+
+  const contactStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'Cognia AI',
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          telephone: '+90-531-773-9053',
+          contactType: 'sales',
+          areaServed: 'TR',
+          availableLanguage: ['Turkish', 'English']
+        },
+        {
+          '@type': 'ContactPoint',
+          telephone: '+1-217-693-8413',
+          contactType: 'sales',
+          areaServed: 'US',
+          availableLanguage: ['English', 'Turkish']
+        }
+      ],
+      email: 'emrebenian@cogniaai.com'
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO 
+        page="contact" 
+        breadcrumbs={breadcrumbs}
+        structuredData={[contactStructuredData]}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-[#162B4D] to-[#0A1628] text-white py-20">
         <div className="container mx-auto px-6">

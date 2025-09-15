@@ -36,5 +36,5 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-# Sitemap location (update when available)
-Sitemap: https://cogniaai.com/sitemap.xml
+# Sitemap location
+Sitemap: https://cogniaai.com.tr/sitemap.xml

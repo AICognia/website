@@ -3,12 +3,39 @@ import { motion } from 'framer-motion';
 import { FaRocket, FaUsers, FaGlobeAmericas, FaTrophy } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import SEO from '../components/SEO';
 
 const Company: React.FC = () => {
   const { t, language } = useLanguage();
   
+  const breadcrumbs = [
+    { name: language === 'tr' ? 'Ana Sayfa' : 'Home', url: '/' },
+    { name: language === 'tr' ? 'Hakkımızda' : 'About', url: '/company' }
+  ];
+
+  const aboutStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'Cognia AI',
+      description: language === 'tr' 
+        ? 'Uluslararası AI danışmanlık şirketi' 
+        : 'International AI consultancy company',
+      foundingDate: '2023',
+      mission: language === 'tr'
+        ? 'Her işletmeyi anlayan, yanıt veren ve ölçekte olağanüstü deneyimler sunan AI ile güçlendirmek.'
+        : 'To empower every business with AI that understands, responds, and delivers exceptional experiences at scale.'
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        page="company" 
+        breadcrumbs={breadcrumbs}
+        structuredData={[aboutStructuredData]}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-gray-900 to-blue-900 text-white py-20">
         <div className="container mx-auto px-6">

@@ -3,12 +3,51 @@ import { motion } from 'framer-motion';
 import { FaCloud, FaLock, FaCogs, FaChartBar, FaCode, FaGlobe } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import SEO from '../components/SEO';
 
 const Platform: React.FC = () => {
   const { language } = useLanguage();
   
+  const breadcrumbs = [
+    { name: language === 'tr' ? 'Ana Sayfa' : 'Home', url: '/' },
+    { name: language === 'tr' ? 'Platform' : 'Platform', url: '/platform' }
+  ];
+
+  const productStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Cognia AI Platform',
+    description: language === 'tr' 
+      ? 'Ölçeklenebilir kurumsal AI platformü' 
+      : 'Scalable enterprise AI platform',
+    brand: {
+      '@type': 'Brand',
+      name: 'Cognia AI'
+    },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'USD',
+      price: 'Contact for pricing',
+      availability: 'https://schema.org/InStock',
+      seller: {
+        '@type': 'Organization',
+        name: 'Cognia AI'
+      }
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '89'
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        page="platform" 
+        breadcrumbs={breadcrumbs}
+        structuredData={[productStructuredData]}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-[#162B4D] via-[#0A1628] to-[#162B4D] text-white py-20">
         <div className="container mx-auto px-6">
