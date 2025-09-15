@@ -111,8 +111,8 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="geo.region" content={lang === 'tr' ? 'TR' : 'US'} />
       <meta name="geo.placename" content={lang === 'tr' ? 'Turkey' : 'United States'} />
       
-      {/* Verification Tags (add your actual verification codes) */}
-      {/* <meta name="google-site-verification" content="your-google-verification-code" /> */}
+      {/* Verification Tags */}
+      <meta name="google-site-verification" content="googlea9ba80c2320d77e2" />
       {/* <meta name="msvalidate.01" content="your-bing-verification-code" /> */}
       {/* <meta name="yandex-verification" content="your-yandex-verification-code" /> */}
       
