@@ -36,15 +36,11 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span 
-              className="text-3xl md:text-4xl font-semibold text-[#162B4D] transition-all duration-300"
-              style={{
-                fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-                letterSpacing: '-0.02em'
-              }}
-            >
-              Cognia AI
-            </span>
+            <img 
+              src="/cognia_logo_final.svg" 
+              alt="Cognia AI" 
+              className="h-12 md:h-14 w-auto transition-all duration-300 hover:scale-105"
+            />
           </Link>
 
           {/* Desktop Navigation */}

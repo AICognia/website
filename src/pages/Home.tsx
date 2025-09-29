@@ -59,47 +59,75 @@ const Home: React.FC = () => {
         ]}
       />
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#162B4D] via-[#0A1628] to-[#162B4D] text-white">
+      <section className="relative bg-gradient-to-br from-[#162B4D] via-[#0A1628] to-[#162B4D] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="relative container mx-auto px-6 py-32 md:py-40">
+        {/* Abstract Pattern Background */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-400 rounded-full filter blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400 rounded-full filter blur-3xl"></div>
+        </div>
+        <div className="relative container mx-auto px-6 py-24 md:py-32">
+          {/* Logo Hero */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="flex justify-center mb-12"
+          >
+            <img 
+              src="/cognia_logo_final.svg" 
+              alt="Cognia AI" 
+              className="h-24 md:h-32 w-auto"
+            />
+          </motion.div>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-5xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              {language === 'tr' ? 'İşletmenizi Yapay Zeka ile Geleceğe Taşıyın' : 'Transform Customer Experience with AI'}
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent">
+              {language === 'tr' ? 'Hiç Kaçırmayan AI Resepsiyonist' : 'AI Receptionist That Never Misses a Call'}
             </h1>
-            <p className="text-xl md:text-2xl mb-10 text-blue-100 max-w-3xl mx-auto">
-              {language === 'tr' ? '48 saat içinde kurulum, anında sonuç!' : 'Enterprise-grade conversational AI that scales infinitely'}
+            <p className="text-xl md:text-2xl mb-4 text-blue-100 max-w-3xl mx-auto">
+              {language === 'tr' ? '7/24 müşteri çağrılarını yanıtlayın. %70 maliyet tasarrufu.' : 'Answer every call 24/7. Save 70% on staffing costs.'}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <p className="text-lg text-cyan-200 mb-10">
+              {language === 'tr' ? '⚡ 48 saat içinde kurulum • 🎯 %99 doğruluk • 🌍 20+ dil desteği' : '⚡ Setup in 48 hours • 🎯 99% accuracy • 🌍 20+ languages'}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link 
                 to="/contact"
-                className="inline-flex items-center px-8 py-4 bg-white text-[#0A1628] font-semibold rounded-lg hover:bg-blue-50 transition-all transform hover:scale-105"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-400 text-[#0A1628] font-bold rounded-lg hover:from-cyan-300 hover:to-blue-300 transition-all transform hover:scale-105 shadow-xl"
               >
-                {t('nav.freeDemo')}
+                {language === 'tr' ? '🚀 Ücretsiz Demo Başlat' : '🚀 Start Free Demo'}
                 <FaArrowRight className="ml-2" />
               </Link>
-              <Link 
-                to="/platform"
+              <a 
+                href="tel:+908508402689"
                 className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-[#0A1628] transition-all"
               >
-                {language === 'tr' ? 'Platformu Keşfet' : 'Explore Platform'}
-              </Link>
+                📞 {language === 'tr' ? 'Hemen Arayın' : 'Call Now'}: +90 850 840 2689
+              </a>
             </div>
+            {/* Value Proposition */}
+            <p className="text-sm text-cyan-200">
+              💰 {language === 'tr' ? 'Personel maliyetlerinizden %70\'e kadar tasarruf edin' : 'Save up to 70% on staffing costs'}
+            </p>
           </motion.div>
         </div>
       </section>
 
       {/* Voice Agent Demo Numbers */}
-      <section className="bg-gradient-to-r from-[#162B4D] to-[#0A1628] -mt-1 py-16">
+      <section className="bg-gradient-to-r from-[#162B4D] to-[#0A1628] py-16">
         <div className="container mx-auto px-6">
           <div className="text-center">
-            <h3 className="text-3xl font-bold text-white mb-8">{t('voice.title')}</h3>
+            <div className="inline-flex items-center bg-green-500/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+              <span className="text-sm font-medium text-green-300">🔴 {language === 'tr' ? 'CANLI - Şu an test edebilirsiniz!' : 'LIVE - Test it right now!'}</span>
+            </div>
+            <h3 className="text-3xl font-bold text-white mb-4">{t('voice.title')}</h3>
             <p className="text-xl text-gray-200 mb-10">
-              {language === 'tr' ? 'Hemen arayın ve AI sesli asistanımızı deneyin' : 'Call now and experience our AI voice assistant'}
+              {language === 'tr' ? '🎆 Hemen arayın ve AI sesli asistanımızı deneyin' : '🎆 Call now and experience our AI voice assistant'}
             </p>
             <div className="flex flex-wrap justify-center gap-8">
               <motion.div 
@@ -157,7 +185,7 @@ const Home: React.FC = () => {
               {
                 icon: <FaMicrophone className="text-3xl" />,
                 title: language === 'tr' ? 'Ses Tanıma' : 'Speech Recognition',
-                description: language === 'tr' ? '99% doğruluk oranıyla ses tanıma' : '99% accuracy speech recognition'
+                description: language === 'tr' ? 'Gürültülü ortamlarda bile mükemmel performans' : 'Perfect performance even in noisy environments'
               },
               {
                 icon: <FaComments className="text-3xl" />,
@@ -263,39 +291,84 @@ const Home: React.FC = () => {
       </section>
 
 
-      {/* Benefits Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-50 to-blue-50">
+      {/* ROI & Benefits Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-50">
         <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-              {language === 'tr' ? 'Temel Avantajlar' : 'Key Benefits'}
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8 text-center">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16"
+            >
+              <div className="inline-flex items-center bg-green-100 px-4 py-2 rounded-full mb-4">
+                <span className="text-sm font-semibold text-green-700">📈 {language === 'tr' ? 'KANITLANMIŞ SONUÇLAR' : 'PROVEN RESULTS'}</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                {language === 'tr' ? 'Yatırımınızın Karşılığını Alın' : 'Real ROI, Real Results'}
+              </h2>
+              <p className="text-xl text-gray-600">
+                {language === 'tr' ? 'Hızlı kurulum, hemen tasarruf başlat' : 'Quick setup, immediate cost savings'}
+              </p>
+            </motion.div>
+            <div className="grid md:grid-cols-3 gap-8">
               <motion.div 
-                whileInView={{ scale: [0.8, 1] }}
+                whileInView={{ scale: [0.9, 1] }}
                 transition={{ duration: 0.5 }}
-                className="bg-white p-8 rounded-xl shadow-lg"
+                className="bg-gradient-to-br from-green-500 to-emerald-600 p-8 rounded-2xl text-white shadow-xl"
               >
-                <div className="text-5xl font-bold text-[#162B4D] mb-2">24/7</div>
-                <p className="text-gray-600">{language === 'tr' ? 'Kesintisiz Hizmet' : 'Availability'}</p>
+                <div className="text-5xl font-bold mb-3">70%</div>
+                <h3 className="text-xl font-semibold mb-2">{language === 'tr' ? 'Maliyet Tasarrufu' : 'Cost Reduction'}</h3>
+                <p className="text-green-100">{language === 'tr' ? 'Personel maliyetlerinde potansiyel tasarruf' : 'Potential savings on staffing costs'}</p>
+                <div className="mt-4 text-sm text-green-200">
+                  💵 {language === 'tr' ? 'Önemli maliyet avantajı' : 'Significant cost advantage'}
+                </div>
               </motion.div>
               <motion.div 
-                whileInView={{ scale: [0.8, 1] }}
+                whileInView={{ scale: [0.9, 1] }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-white p-8 rounded-xl shadow-lg"
+                className="bg-gradient-to-br from-blue-500 to-indigo-600 p-8 rounded-2xl text-white shadow-xl"
               >
-                <div className="text-5xl font-bold text-[#162B4D] mb-2">{language === 'tr' ? 'Çoklu' : 'Multi'}</div>
-                <p className="text-gray-600">{language === 'tr' ? 'Dil Desteği' : 'Language Support'}</p>
+                <div className="text-5xl font-bold mb-3">3x</div>
+                <h3 className="text-xl font-semibold mb-2">{language === 'tr' ? 'Daha Fazla Lead' : 'More Leads'}</h3>
+                <p className="text-blue-100">{language === 'tr' ? 'Hiçbir çağrı kaçırmayın' : 'Never miss a potential customer'}</p>
+                <div className="mt-4 text-sm text-blue-200">
+                  📞 {language === 'tr' ? '7/24 erişilebilirlik' : '24/7 availability'}
+                </div>
               </motion.div>
               <motion.div 
-                whileInView={{ scale: [0.8, 1] }}
+                whileInView={{ scale: [0.9, 1] }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-white p-8 rounded-xl shadow-lg"
+                className="bg-gradient-to-br from-purple-500 to-pink-600 p-8 rounded-2xl text-white shadow-xl"
               >
-                <div className="text-5xl font-bold text-[#162B4D] mb-2">{language === 'tr' ? 'Anında' : 'Instant'}</div>
-                <p className="text-gray-600">{language === 'tr' ? 'Yanıt Süresi' : 'Response Time'}</p>
+                <div className="text-5xl font-bold mb-3">98%</div>
+                <h3 className="text-xl font-semibold mb-2">{language === 'tr' ? 'Müşteri Memnuniyeti' : 'Satisfaction Rate'}</h3>
+                <p className="text-purple-100">{language === 'tr' ? 'Daha hızlı ve doğru yanıtlar' : 'Faster and accurate responses'}</p>
+                <div className="mt-4 text-sm text-purple-200">
+                  ⏱️ {language === 'tr' ? '<2 saniye yanıt süresi' : '<2 second response time'}
+                </div>
               </motion.div>
             </div>
+            {/* ROI Calculator CTA */}
+            <motion.div
+              whileInView={{ opacity: [0, 1], y: [20, 0] }}
+              transition={{ duration: 0.5 }}
+              className="mt-12 text-center bg-gradient-to-r from-yellow-50 to-orange-50 p-8 rounded-2xl border-2 border-orange-200"
+            >
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                🧮 {language === 'tr' ? 'Ne Kadar Tasarruf Edebilirsiniz?' : 'Calculate Your Savings'}
+              </h3>
+              <p className="text-gray-600 mb-6">
+                {language === 'tr' ? 'Özel ROI hesaplaması için bize ulaşın' : 'Get a personalized ROI calculation'}
+              </p>
+              <Link
+                to="/contact"
+                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-orange-400 to-red-400 text-white font-bold rounded-lg hover:from-orange-500 hover:to-red-500 transition-all transform hover:scale-105 shadow-lg"
+              >
+                {language === 'tr' ? 'ROI Hesaplayıcı' : 'ROI Calculator'}
+                <FaChartLine className="ml-2" />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
