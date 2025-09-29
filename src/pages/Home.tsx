@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaRobot, FaPhone, FaChartLine, FaShieldAlt, FaBrain, FaGlobe, FaClock, FaCheckCircle, FaMicrophone, FaComments, FaDatabase, FaCloud } from 'react-icons/fa';
+import { FaArrowRight, FaRobot, FaPhone, FaChartLine, FaShieldAlt, FaBrain, FaGlobe, FaClock, FaCheckCircle, FaMicrophone, FaComments, FaDatabase, FaCloud, FaCalculator } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import ROICalculator from '../components/ROICalculator';
 import ROIModal from '../components/ROIModal';
@@ -10,14 +10,6 @@ import { structuredDataTemplates } from '../config/seoConfig';
 const Home: React.FC = () => {
   const [showCalculator, setShowCalculator] = useState(false);
   const [showROIModal, setShowROIModal] = useState(false);
-  
-  // Auto-open ROI modal after 3 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowROIModal(true);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
   
   // FAQ structured data for the home page
   const faqStructuredData = {
@@ -124,6 +116,31 @@ const Home: React.FC = () => {
               💰 Every missed call = Lost revenue. We never miss.
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ROI Calculator CTA Section */}
+      <section className="bg-gradient-to-r from-teal-600 to-cyan-600 py-8">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col items-center"
+            >
+              <h2 className="text-3xl font-bold text-white mb-3">
+                💰 See How Much Revenue You're Losing
+              </h2>
+              <button
+                onClick={() => setShowROIModal(true)}
+                className="px-8 py-4 bg-white text-teal-700 font-bold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl flex items-center"
+              >
+                <FaCalculator className="mr-2" />
+                Calculate Your Lost Revenue Now
+              </button>
+            </motion.div>
+          </div>
         </div>
       </section>
 
