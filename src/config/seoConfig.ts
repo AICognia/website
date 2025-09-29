@@ -20,12 +20,12 @@ export interface PageSEO {
 export const seoConfig: Record<string, PageSEO> = {
   home: {
     title: {
-      tr: 'Cognia AI - Türkiye ve Amerika\'da AI Danışmanlık | WhatsApp Bot, Sesli Asistan',
-      en: 'Cognia AI - International AI Consultancy | Chatbots, Voice Agents & Automation'
+      tr: 'Cognia AI - AI Receptionist & Voice Agents | 24/7 Müşteri Hizmetleri',
+      en: 'Cognia AI - AI Receptionist & Voice Agents | Never Miss a Call, Book 24/7'
     },
     description: {
-      tr: 'Uluslararası AI danışmanlık şirketi. WhatsApp ve Instagram chatbot entegrasyonu, AI sesli asistanlar ve özel iş otomasyonu. 48 saatte kurulum, %95 müşteri memnuniyeti.',
-      en: 'International AI consultancy operating in US & Turkey. WhatsApp & Instagram chatbot integration, AI Voice Agents, and custom business automation. Setup in 48 hours, 95% customer satisfaction.'
+      tr: 'AI receptionist ve sesli asistan çözümleri. 24/7 otomatik randevu alma, hiç kaçırılmayan aramalar. %10-20 daha fazla müşteri garantisi. Amerika ve Türkiye\'de hizmet. 48 saatte kurulum.',
+      en: 'AI receptionist and voice agent solutions. Never miss a call, book appointments 24/7. Guaranteed 10-20% more customers. Operating in US & Turkey. Enterprise voice AI, custom integrations. Setup in 48 hours.'
     },
     keywords: {
       tr: ['AI danışmanlık', 'yapay zeka', 'chatbot', 'WhatsApp bot', 'Instagram bot', 'sesli asistan', 'AI otomasyon', 'iş otomasyonu', 'Türkiye AI', 'Amerika AI şirketi', 'Cognia AI', 'müşteri desteği otomasyonu', 'AI çözümleri'],
@@ -109,7 +109,7 @@ export const structuredDataTemplates = {
     alternateName: 'Cognia Artificial Intelligence',
     url: 'https://cogniaai.com',
     logo: 'https://cogniaai.com/logo512.png',
-    description: 'International AI consultancy operating in the US and Turkey',
+    description: 'AI receptionist and voice agent solutions for businesses. Never miss a call, book 24/7.',
     foundingDate: '2023',
     founders: [
       {
@@ -186,7 +186,7 @@ export const structuredDataTemplates = {
   service: {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    serviceType: 'AI Consultancy and Solutions',
+    serviceType: 'AI Receptionist and Voice Agent Solutions',
     provider: {
       '@type': 'Organization',
       name: 'Cognia AI'
@@ -209,8 +209,8 @@ export const structuredDataTemplates = {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Voice AI Agents',
-            description: 'Intelligent voice agents for customer support'
+            name: 'AI Receptionist',
+            description: '24/7 AI receptionist that never misses calls and books appointments automatically'
           }
         },
         {

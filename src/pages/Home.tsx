@@ -103,7 +103,7 @@ const Home: React.FC = () => {
                 href="tel:+16163263328"
                 className="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-cyan-900 transition-all"
               >
-                Call the AI: +1 616 326-3328
+                Call AI Receptionist: +1 616 326-3328
               </a>
             </div>
             {/* Value Proposition */}
