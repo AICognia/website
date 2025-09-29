@@ -163,7 +163,7 @@ const Company: React.FC = () => {
           <div className="flex gap-4 justify-center">
             <a
               href="#"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#162B4D] to-[#162B4D] text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-700 to-cyan-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
             >
               {language === 'tr' ? 'Kariyer Fırsatları' : 'View Careers'}
             </a>

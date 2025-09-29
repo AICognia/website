@@ -72,7 +72,7 @@ const Solutions: React.FC = () => {
         structuredData={[serviceStructuredData]}
       />
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#162B4D] to-[#0A1628] text-white py-20">
+      <section className="bg-gradient-to-r from-cyan-700 to-[#0A1628] text-white py-20">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -98,8 +98,8 @@ const Solutions: React.FC = () => {
                 onClick={() => setActiveTab('voice')}
                 className={`px-8 py-4 rounded-lg font-semibold transition-all ${
                   activeTab === 'voice'
-                    ? 'bg-gradient-to-r from-[#162B4D] to-[#162B4D] text-white'
-                    : 'text-gray-600 hover:text-[#162B4D]'
+                    ? 'bg-gradient-to-r from-cyan-700 to-cyan-600 text-white'
+                    : 'text-gray-600 hover:text-cyan-800'
                 }`}
               >
                 <FaPhone className="inline mr-2" />
@@ -109,8 +109,8 @@ const Solutions: React.FC = () => {
                 onClick={() => setActiveTab('chatbot')}
                 className={`px-8 py-4 rounded-lg font-semibold transition-all ${
                   activeTab === 'chatbot'
-                    ? 'bg-gradient-to-r from-[#162B4D] to-[#162B4D] text-white'
-                    : 'text-gray-600 hover:text-[#162B4D]'
+                    ? 'bg-gradient-to-r from-cyan-700 to-cyan-600 text-white'
+                    : 'text-gray-600 hover:text-cyan-800'
                 }`}
               >
                 <FaComments className="inline mr-2" />
@@ -153,7 +153,7 @@ const Solutions: React.FC = () => {
                   </ul>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#162B4D] to-[#162B4D] text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-700 to-cyan-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
                   >
                     {language === 'tr' ? 'Daha Fazla Bilgi' : 'Learn More'}
                     <FaArrowRight className="ml-2" />
@@ -161,7 +161,7 @@ const Solutions: React.FC = () => {
                 </div>
                 <div className="bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl p-12 flex items-center justify-center">
                   <div className="text-center">
-                    <FaPhone className="text-6xl text-[#162B4D] mb-4 mx-auto" />
+                    <FaPhone className="text-6xl text-cyan-800 mb-4 mx-auto" />
                     <div className="bg-white rounded-lg p-6 shadow-lg">
                       <div className="text-3xl font-bold text-gray-900 mb-2">95%</div>
                       <div className="text-gray-600">{language === 'tr' ? 'İlk aramada çözüm' : 'First-call resolution'}</div>
@@ -206,7 +206,7 @@ const Solutions: React.FC = () => {
                   </ul>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#162B4D] to-[#162B4D] text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-700 to-cyan-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
                   >
                     {language === 'tr' ? 'Daha Fazla Bilgi' : 'Learn More'}
                     <FaArrowRight className="ml-2" />
@@ -276,7 +276,7 @@ const Solutions: React.FC = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-[#162B4D] to-[#0A1628] text-white">
+      <section className="py-20 bg-gradient-to-r from-cyan-700 to-[#0A1628] text-white">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-6">{language === 'tr' ? 'Çözümlerimizi İş Başında Görün' : 'See Our Solutions in Action'}</h2>
           <p className="text-xl mb-8 text-blue-100">
@@ -284,7 +284,7 @@ const Solutions: React.FC = () => {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center px-8 py-4 bg-white text-[#162B4D] font-semibold rounded-lg hover:bg-blue-50 transition-all"
+            className="inline-flex items-center px-8 py-4 bg-white text-cyan-800 font-semibold rounded-lg hover:bg-blue-50 transition-all"
           >
             {language === 'tr' ? 'Demo Planla' : 'Schedule a Demo'}
             <FaArrowRight className="ml-2" />

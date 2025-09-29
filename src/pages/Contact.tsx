@@ -96,7 +96,7 @@ const Contact: React.FC = () => {
         structuredData={[contactStructuredData]}
       />
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#162B4D] to-[#0A1628] text-white py-20">
+      <section className="bg-gradient-to-r from-cyan-700 to-cyan-800 text-white py-20">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -270,7 +270,7 @@ const Contact: React.FC = () => {
                     <div>
                       <button
                         type="submit"
-                        className="w-full px-8 py-4 bg-gradient-to-r from-[#162B4D] to-[#162B4D] text-white font-semibold rounded-lg hover:shadow-lg transition-all transform hover:scale-[1.02]"
+                        className="w-full px-8 py-4 bg-gradient-to-r from-cyan-700 to-cyan-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all transform hover:scale-[1.02]"
                       >
                         {language === 'tr' ? 'Mesaj Gönder' : 'Send Message'}
                       </button>

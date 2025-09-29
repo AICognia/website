@@ -59,15 +59,15 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
           
           {/* Modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className="fixed inset-x-4 top-20 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:max-w-4xl w-full z-50"
+            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-4xl z-50"
           >
             <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
               {/* Header */}
-              <div className="bg-gradient-to-r from-cyan-600 to-teal-600 p-6 text-white relative">
+              <div className="bg-gradient-to-r from-slate-800 to-cyan-800 p-6 text-white relative">
                 <button
                   onClick={onClose}
                   className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
@@ -94,7 +94,7 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                   {/* Input Section */}
                   <div className="space-y-6">
                       <h3 className="text-xl font-bold text-gray-900 flex items-center">
-                        <FaCalculator className="mr-2 text-cyan-600" />
+                        <FaCalculator className="mr-2 text-cyan-700" />
                         Quick Calculator
                       </h3>
                     
@@ -108,11 +108,11 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                         max="50"
                         value={missedCallsPerDay}
                         onChange={(e) => setMissedCallsPerDay(Number(e.target.value))}
-                        className="w-full accent-cyan-500"
+                        className="w-full accent-cyan-600"
                       />
                       <div className="flex justify-between text-sm text-gray-600">
                         <span>1</span>
-                        <span className="font-bold text-2xl text-cyan-600">{missedCallsPerDay}</span>
+                        <span className="font-bold text-2xl text-cyan-700">{missedCallsPerDay}</span>
                         <span>50</span>
                       </div>
                     </div>
@@ -128,11 +128,11 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                         step="50"
                         value={avgCustomerValue}
                         onChange={(e) => setAvgCustomerValue(Number(e.target.value))}
-                        className="w-full accent-cyan-500"
+                        className="w-full accent-cyan-600"
                       />
                       <div className="flex justify-between text-sm text-gray-600">
                         <span>$50</span>
-                        <span className="font-bold text-2xl text-cyan-600">${avgCustomerValue}</span>
+                        <span className="font-bold text-2xl text-cyan-700">${avgCustomerValue}</span>
                         <span>$1000</span>
                       </div>
                     </div>
@@ -148,11 +148,11 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                         step="5"
                         value={conversionRate}
                         onChange={(e) => setConversionRate(Number(e.target.value))}
-                        className="w-full accent-cyan-500"
+                        className="w-full accent-cyan-600"
                       />
                       <div className="flex justify-between text-sm text-gray-600">
                         <span>10%</span>
-                        <span className="font-bold text-2xl text-cyan-600">{conversionRate}%</span>
+                        <span className="font-bold text-2xl text-cyan-700">{conversionRate}%</span>
                         <span>70%</span>
                       </div>
                     </div>
@@ -173,7 +173,7 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="bg-red-50 border-2 border-red-300 p-4 rounded-xl"
+                            className="bg-red-50 border-2 border-red-200 p-4 rounded-xl"
                           >
                             <h4 className="font-semibold text-red-700 mb-2">
                               ❌ You're Currently Losing:
@@ -191,7 +191,7 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-300 p-4 rounded-xl"
+                            className="bg-gradient-to-br from-cyan-50 to-teal-50 border-2 border-cyan-200 p-4 rounded-xl"
                           >
                             <h4 className="font-semibold text-green-700 mb-2">
                               ✅ With Cognia AI You'll Gain:
@@ -219,7 +219,7 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                     >
                       <a
                         href="tel:+16163263328"
-                        className="w-full block text-center px-6 py-4 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-bold rounded-xl hover:from-cyan-600 hover:to-teal-600 transition-all transform hover:scale-105 shadow-lg"
+                        className="w-full block text-center px-6 py-4 bg-gradient-to-r from-cyan-700 to-cyan-600 text-white font-bold rounded-xl hover:from-cyan-800 hover:to-cyan-700 transition-all transform hover:scale-105 shadow-lg"
                       >
                         📞 Call Now: +1 616 326-3328
                       </a>
