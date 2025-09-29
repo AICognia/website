@@ -32,15 +32,11 @@ const Navbar: React.FC = () => {
     }`}>
       <div className="container mx-auto pl-3 pr-6">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="bg-white p-1.5 rounded-lg shadow-sm">
-              <img 
-                src="/cognia_logo_final.svg" 
-                alt="Cognia AI" 
-                className="h-10 md:h-12 w-auto"
-              />
-            </div>
+          {/* Logo Text */}
+          <Link to="/" className="flex items-center">
+            <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-500 to-teal-400 bg-clip-text text-transparent">
+              Cognia AI
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -60,7 +56,7 @@ const Navbar: React.FC = () => {
               ))}
             <Link
               to="/contact"
-              className="ml-4 px-6 py-2.5 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-lg hover:shadow-xl hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105"
+              className="ml-4 px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-bold rounded-lg hover:shadow-xl hover:from-cyan-600 hover:to-teal-600 transition-all transform hover:scale-105"
             >
               Start Free Demo
             </Link>
@@ -103,7 +99,7 @@ const Navbar: React.FC = () => {
                 <Link
                   to="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="block mx-4 mt-4 px-6 py-3 bg-gradient-to-r from-[#162B4D] to-[#0A1628] text-white text-center font-semibold rounded-lg hover:shadow-lg transition-all"
+                  className="block mx-4 mt-4 px-6 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-center font-semibold rounded-lg hover:shadow-lg transition-all"
                 >
                   Request Demo
                 </Link>

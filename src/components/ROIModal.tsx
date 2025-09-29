@@ -67,7 +67,7 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
           >
             <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
               {/* Header */}
-              <div className="bg-gradient-to-r from-orange-500 to-red-500 p-6 text-white relative">
+              <div className="bg-gradient-to-r from-cyan-600 to-teal-600 p-6 text-white relative">
                 <button
                   onClick={onClose}
                   className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
@@ -93,10 +93,10 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                 <div className="grid md:grid-cols-2 gap-8">
                   {/* Input Section */}
                   <div className="space-y-6">
-                    <h3 className="text-xl font-bold text-gray-900 flex items-center">
-                      <FaCalculator className="mr-2 text-orange-500" />
-                      Quick Calculator
-                    </h3>
+                      <h3 className="text-xl font-bold text-gray-900 flex items-center">
+                        <FaCalculator className="mr-2 text-cyan-600" />
+                        Quick Calculator
+                      </h3>
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -108,11 +108,11 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                         max="50"
                         value={missedCallsPerDay}
                         onChange={(e) => setMissedCallsPerDay(Number(e.target.value))}
-                        className="w-full accent-orange-500"
+                        className="w-full accent-cyan-500"
                       />
                       <div className="flex justify-between text-sm text-gray-600">
                         <span>1</span>
-                        <span className="font-bold text-2xl text-orange-600">{missedCallsPerDay}</span>
+                        <span className="font-bold text-2xl text-cyan-600">{missedCallsPerDay}</span>
                         <span>50</span>
                       </div>
                     </div>
@@ -128,11 +128,11 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                         step="50"
                         value={avgCustomerValue}
                         onChange={(e) => setAvgCustomerValue(Number(e.target.value))}
-                        className="w-full accent-orange-500"
+                        className="w-full accent-cyan-500"
                       />
                       <div className="flex justify-between text-sm text-gray-600">
                         <span>$50</span>
-                        <span className="font-bold text-2xl text-orange-600">${avgCustomerValue}</span>
+                        <span className="font-bold text-2xl text-cyan-600">${avgCustomerValue}</span>
                         <span>$1000</span>
                       </div>
                     </div>
@@ -148,11 +148,11 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                         step="5"
                         value={conversionRate}
                         onChange={(e) => setConversionRate(Number(e.target.value))}
-                        className="w-full accent-orange-500"
+                        className="w-full accent-cyan-500"
                       />
                       <div className="flex justify-between text-sm text-gray-600">
                         <span>10%</span>
-                        <span className="font-bold text-2xl text-orange-600">{conversionRate}%</span>
+                        <span className="font-bold text-2xl text-cyan-600">{conversionRate}%</span>
                         <span>70%</span>
                       </div>
                     </div>
@@ -219,7 +219,7 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                     >
                       <a
                         href="tel:+16163263328"
-                        className="w-full block text-center px-6 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-xl hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105 shadow-lg"
+                        className="w-full block text-center px-6 py-4 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-bold rounded-xl hover:from-cyan-600 hover:to-teal-600 transition-all transform hover:scale-105 shadow-lg"
                       >
                         📞 Call Now: +1 616 326-3328
                       </a>

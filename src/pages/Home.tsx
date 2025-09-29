@@ -66,12 +66,12 @@ const Home: React.FC = () => {
       <ROIModal isOpen={showROIModal} onClose={() => setShowROIModal(false)} />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 text-white overflow-hidden">
+      <section className="relative bg-gradient-to-br from-slate-900 via-cyan-900 to-teal-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         {/* Abstract Pattern Background */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-400 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400 rounded-full filter blur-3xl"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400 rounded-full filter blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-400 rounded-full filter blur-3xl"></div>
         </div>
         <div className="relative container mx-auto px-6 py-24 md:py-32">
           {/* Logo Hero - Enlarged and Enhanced */}
@@ -95,32 +95,32 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="max-w-5xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight bg-gradient-to-r from-white to-yellow-200 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
               Never Miss a Lead. Book 24/7.
             </h1>
-            <p className="text-xl md:text-2xl mb-4 text-purple-100 max-w-3xl mx-auto">
-              Book appointments while you sleep. <span className="text-yellow-300 font-bold">3x more customers, guaranteed.</span>
+            <p className="text-xl md:text-2xl mb-4 text-cyan-100 max-w-3xl mx-auto">
+              Book appointments while you sleep. <span className="text-cyan-300 font-bold">10-20% more customers, guaranteed.</span>
             </p>
-            <p className="text-lg text-purple-200 mb-10">
-              📈 3x more bookings • ⚡ 48hr setup • 🌍 20+ languages
+            <p className="text-lg text-cyan-200 mb-10">
+              📈 10-20% more bookings • ⚡ 48hr setup • 🌍 20+ languages
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link 
                 to="/contact"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-lg hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105 shadow-xl"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-bold rounded-lg hover:from-cyan-600 hover:to-teal-600 transition-all transform hover:scale-105 shadow-xl"
               >
                 🚀 Start Free Demo
                 <FaArrowRight className="ml-2" />
               </Link>
               <a 
                 href="tel:+16163263328"
-                className="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-purple-900 transition-all"
+                className="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-cyan-900 transition-all"
               >
                 📞 Call Now: +1 616 326-3328
               </a>
             </div>
             {/* Value Proposition */}
-            <p className="text-sm text-yellow-200">
+            <p className="text-sm text-cyan-200">
               💰 Every missed call = Lost revenue. We never miss.
             </p>
           </motion.div>
@@ -128,7 +128,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Voice Agent Demo */}
-      <section className="bg-gradient-to-r from-orange-500 to-red-500 py-16">
+      <section className="bg-gradient-to-r from-cyan-600 to-teal-600 py-16">
         <div className="container mx-auto px-6">
           <div className="text-center">
             <motion.div
@@ -148,9 +148,9 @@ const Home: React.FC = () => {
               className="inline-block bg-white px-16 py-10 rounded-2xl shadow-2xl"
             >
               <p className="text-gray-700 mb-4 font-bold text-xl">US Demo Line</p>
-              <a href="tel:+16163263328" className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent hover:from-orange-600 hover:to-red-600 transition-all">
-                  +1 616 326-3328
-                </a>
+              <a href="tel:+16163263328" className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-teal-600 bg-clip-text text-transparent hover:from-cyan-700 hover:to-teal-700 transition-all">
+                +1 616 326-3328
+              </a>
               <p className="text-gray-500 mt-4 text-sm">🇺🇸 Available 24/7 • Instant Response</p>
               </motion.div>
           </div>
@@ -158,7 +158,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* ROI & Benefits Section - MOVED UP FOR BETTER CONVERSION */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 via-white to-orange-50">
+      <section className="py-20 bg-gradient-to-br from-cyan-50 via-white to-teal-50">
         <div className="container mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0 }}
@@ -224,7 +224,7 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all hover:-translate-y-1"
               >
-                <div className="text-purple-600 mb-4">{feature.icon}</div>
+                <div className="text-cyan-600 mb-4">{feature.icon}</div>
                 <h3 className="text-lg font-semibold mb-2 text-gray-900">{feature.title}</h3>
                 <p className="text-sm text-gray-600">{feature.description}</p>
               </motion.div>
@@ -278,9 +278,9 @@ const Home: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-white to-orange-50 p-8 rounded-xl hover:shadow-xl transition-all border border-orange-100 hover:border-orange-300"
+                className="bg-gradient-to-br from-white to-cyan-50 p-8 rounded-xl hover:shadow-xl transition-all border border-cyan-100 hover:border-cyan-300"
               >
-                <div className="text-4xl text-orange-500 mb-4">{feature.icon}</div>
+                <div className="text-4xl text-cyan-600 mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
               </motion.div>
@@ -290,7 +290,7 @@ const Home: React.FC = () => {
       </section>
 
 
-      <section className="py-20 bg-gradient-to-br from-orange-50 via-white to-purple-50">
+      <section className="py-20 bg-gradient-to-br from-cyan-50 via-white to-teal-50">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -313,10 +313,10 @@ const Home: React.FC = () => {
               <motion.div 
                 whileInView={{ scale: [0.9, 1] }}
                 transition={{ duration: 0.5 }}
-                className="bg-gradient-to-br from-green-500 to-emerald-600 p-8 rounded-2xl text-white shadow-xl"
+                className="bg-gradient-to-br from-cyan-500 to-teal-600 p-8 rounded-2xl text-white shadow-xl"
               >
-                <div className="text-5xl font-bold mb-3">3x</div>
-                <h3 className="text-xl font-semibold mb-2">More Bookings</h3>
+                <div className="text-5xl font-bold mb-3">10-20%</div>
+                <h3 className="text-xl font-semibold mb-2">More Customers</h3>
                 <p className="text-green-100">Book appointments 24/7, including nights & weekends</p>
                 <div className="mt-4 text-sm text-green-200">
                   📈 Guaranteed revenue increase
@@ -354,7 +354,7 @@ const Home: React.FC = () => {
               className="mt-12"
             >
               {!showCalculator ? (
-                <div className="text-center bg-gradient-to-r from-yellow-50 to-orange-50 p-8 rounded-2xl border-2 border-orange-200">
+                <div className="text-center bg-gradient-to-r from-cyan-50 to-teal-50 p-8 rounded-2xl border-2 border-cyan-200">
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">
                     🧮 How Much Revenue Are You Losing?
                   </h3>
@@ -363,7 +363,7 @@ const Home: React.FC = () => {
                   </p>
                   <button
                     onClick={() => setShowCalculator(true)}
-                    className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-orange-400 to-red-400 text-white font-bold rounded-lg hover:from-orange-500 hover:to-red-500 transition-all transform hover:scale-105 shadow-lg"
+                    className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-bold rounded-lg hover:from-cyan-600 hover:to-teal-600 transition-all transform hover:scale-105 shadow-lg"
                   >
                     📊 Open ROI Calculator
                     <FaChartLine className="ml-2" />
@@ -393,7 +393,7 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="text-center"
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                <div className="w-20 h-20 bg-gradient-to-br from-cyan-600 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
                   1
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">
@@ -408,7 +408,7 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-center"
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                <div className="w-20 h-20 bg-gradient-to-br from-cyan-600 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
                   2
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">
@@ -423,7 +423,7 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-center"
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                <div className="w-20 h-20 bg-gradient-to-br from-cyan-600 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
                   3
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">
@@ -510,7 +510,7 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all hover:-translate-y-1"
               >
-                <div className="text-purple-600 mb-4">{feature.icon}</div>
+                <div className="text-cyan-600 mb-4">{feature.icon}</div>
                 <h3 className="text-lg font-semibold mb-2 text-gray-900">{feature.title}</h3>
                 <p className="text-sm text-gray-600">{feature.description}</p>
                 {feature.stat && (
