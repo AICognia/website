@@ -90,13 +90,6 @@ const Home: React.FC = () => {
               <span className="text-cyan-300 font-bold">10-20% more customers, guaranteed.</span>
             </p>
             
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center gap-6 mb-8 text-cyan-200">
-              <div className="flex items-center">
-                <span className="text-green-400 mr-2">✓</span>
-                <span>Setup in 48 hours</span>
-              </div>
-            </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link 
@@ -138,12 +131,9 @@ const Home: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center"
             >              
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
-                Calculate Your Revenue Opportunity
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
+                How Much Money You Are Losing
               </h2>
-              <p className="text-xl md:text-2xl text-cyan-100 mb-8 max-w-3xl">
-                Discover how much additional revenue your business could generate with AI-powered call handling
-              </p>
               
               {!showCalculator ? (
                 <motion.button
@@ -163,17 +153,6 @@ const Home: React.FC = () => {
                 </button>
               )}
               
-              {/* Info text */}
-              {!showCalculator && (
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="mt-4 text-cyan-100 text-sm"
-                >
-                  Takes only 30 seconds • No email required • Instant results
-                </motion.p>
-              )}
             </motion.div>
             
             {/* Calculator Display */}
@@ -204,10 +183,7 @@ const Home: React.FC = () => {
               <div className="w-3 h-3 bg-white rounded-full animate-pulse mr-3"></div>
               <span className="text-lg font-bold text-white">LIVE DEMO AVAILABLE</span>
             </motion.div>
-            <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">Try Before You Buy</h3>
-            <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-              Experience firsthand how our AI handles real customer conversations with natural, human-like interactions
-            </p>
+            <h3 className="text-4xl md:text-5xl font-bold text-white mb-10">Try Before You Buy</h3>
               <motion.div 
                 whileHover={{ scale: 1.05 }}
               className="inline-block bg-white px-16 py-10 rounded-2xl shadow-2xl"
