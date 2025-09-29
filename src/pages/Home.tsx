@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaRobot, FaPhone, FaChartLine, FaShieldAlt, FaBrain, FaGlobe, FaClock, FaCheckCircle, FaMicrophone, FaComments, FaDatabase, FaCloud, FaCalculator } from 'react-icons/fa';
 import SEO from '../components/SEO';
-import ROIModal from '../components/ROIModal';
+import ROICalculator from '../components/ROICalculator';
 import { structuredDataTemplates } from '../config/seoConfig';
 
 const Home: React.FC = () => {
-  const [showROIModal, setShowROIModal] = useState(false);
+  const [showCalculator, setShowCalculator] = useState(false);
   
   // FAQ structured data for the home page
   const faqStructuredData = {
@@ -52,8 +52,6 @@ const Home: React.FC = () => {
           faqStructuredData
         ]}
       />
-      {/* ROI Modal */}
-      <ROIModal isOpen={showROIModal} onClose={() => setShowROIModal(false)} />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-cyan-900 text-white overflow-hidden">
@@ -117,8 +115,8 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ROI Calculator CTA Section */}
-      <section className="bg-gradient-to-r from-teal-600 to-cyan-600 py-8">
+      {/* ROI Calculator Section */}
+      <section className="bg-gradient-to-r from-teal-600 to-cyan-600 py-12">
         <div className="container mx-auto px-6">
           <div className="text-center">
             <motion.div
@@ -127,17 +125,38 @@ const Home: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center"
             >
-              <h2 className="text-3xl font-bold text-white mb-3">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 💰 See How Much Revenue You're Losing
               </h2>
-              <button
-                onClick={() => setShowROIModal(true)}
-                className="px-8 py-4 bg-white text-teal-700 font-bold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl flex items-center"
-              >
-                <FaCalculator className="mr-2" />
-                Calculate Your Lost Revenue Now
-              </button>
+              {!showCalculator ? (
+                <button
+                  onClick={() => setShowCalculator(true)}
+                  className="px-8 py-4 bg-white text-teal-700 font-bold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl flex items-center"
+                >
+                  <FaCalculator className="mr-2" />
+                  Calculate Your Lost Revenue Now
+                </button>
+              ) : (
+                <button
+                  onClick={() => setShowCalculator(false)}
+                  className="mb-6 px-6 py-2 bg-white/20 text-white font-semibold rounded-lg hover:bg-white/30 transition-all"
+                >
+                  Hide Calculator
+                </button>
+              )}
             </motion.div>
+            
+            {/* Calculator Display */}
+            {showCalculator && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mt-8 max-w-6xl mx-auto"
+              >
+                <ROICalculator />
+              </motion.div>
+            )}
           </div>
         </div>
       </section>
