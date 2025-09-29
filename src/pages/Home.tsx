@@ -131,41 +131,23 @@ const Home: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center"
             >              
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
-                Calculate ROI
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-3">
+                Calculate How Much Money Our AI Receptionist
               </h2>
-              
-              {!showCalculator ? (
-                <motion.button
-                  onClick={() => setShowCalculator(true)}
-                  whileHover={{ scale: 1.05 }}
-                  className="group px-10 py-5 bg-white text-teal-700 font-bold text-lg rounded-xl hover:bg-gray-50 transition-all shadow-2xl flex items-center"
-                >
-                  <FaCalculator className="mr-3 text-2xl group-hover:rotate-6 transition-transform" />
-                  Open Revenue Calculator
-                </motion.button>
-              ) : (
-                <button
-                  onClick={() => setShowCalculator(false)}
-                  className="mb-6 px-6 py-2 bg-white/20 text-white font-semibold rounded-lg hover:bg-white/30 transition-all"
-                >
-                  Hide Calculator
-                </button>
-              )}
-              
+              <h3 className="text-2xl md:text-4xl font-bold text-cyan-100 mb-8">
+                Is Going To Make for You
+              </h3>
             </motion.div>
             
-            {/* Calculator Display */}
-            {showCalculator && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="mt-8 max-w-6xl mx-auto"
-              >
-                <ROICalculator />
-              </motion.div>
-            )}
+            {/* Calculator Display - Always Visible */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-8 max-w-6xl mx-auto"
+            >
+              <ROICalculator />
+            </motion.div>
           </div>
         </div>
       </section>
