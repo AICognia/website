@@ -103,7 +103,7 @@ const Home: React.FC = () => {
                 href="tel:+16163263328"
                 className="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-cyan-900 transition-all"
               >
-                Call Now: +1 616 326-3328
+                Try AI Demo: +1 616 326-3328
               </a>
             </div>
             {/* Value Proposition */}
@@ -184,11 +184,12 @@ const Home: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
               className="inline-block bg-white px-16 py-10 rounded-2xl shadow-2xl"
             >
-              <p className="text-gray-700 mb-4 font-bold text-xl">US Demo Line</p>
+              <p className="text-gray-700 mb-4 font-bold text-xl">Call Our AI Receptionist Demo</p>
               <a href="tel:+16163263328" className="text-4xl font-bold bg-gradient-to-r from-cyan-700 to-cyan-500 bg-clip-text text-transparent hover:from-cyan-800 hover:to-cyan-600 transition-all">
                 +1 616 326-3328
               </a>
-              <p className="text-gray-500 mt-4 text-sm">🇺🇸 Available 24/7 • Instant Response</p>
+              <p className="text-gray-600 mt-4 text-base font-medium">🤖 Experience our AI receptionist in action</p>
+              <p className="text-gray-500 mt-2 text-sm italic">This is a demo line showcasing our AI technology</p>
               </motion.div>
           </div>
         </div>
@@ -461,7 +462,7 @@ const Home: React.FC = () => {
                 href="tel:+16163263328"
                 className="inline-flex items-center px-12 py-5 bg-white/10 backdrop-blur border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/20 transition-all text-lg"
               >
-                Schedule a Demo Call
+                Try AI Receptionist Demo: +1 616 326-3328
               </a>
             </div>
             

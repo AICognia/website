@@ -225,10 +225,10 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                     href="tel:+16163263328"
                     className="inline-block px-8 py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-bold rounded-xl hover:from-teal-700 hover:to-cyan-700 transition-all transform hover:scale-105 shadow-lg"
                   >
-                    📞 Call Now to Start Saving: +1 616 326-3328
+                    🤖 Try Our AI Receptionist Demo: +1 616 326-3328
                   </a>
                   <p className="text-sm text-gray-500 mt-3">
-                    Start capturing this revenue today!
+                    Experience how our AI captures revenue for you!
                   </p>
                 </motion.div>
               </div>
