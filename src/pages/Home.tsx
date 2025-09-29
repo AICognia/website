@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaRobot, FaPhone, FaChartLine, FaShieldAlt, FaBrain, FaGlobe, FaClock, FaCheckCircle, FaMicrophone, FaComments, FaDatabase, FaCloud, FaCalculator } from 'react-icons/fa';
+import { FaArrowRight, FaRobot, FaPhone, FaChartLine, FaShieldAlt, FaCalculator } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import ROICalculator from '../components/ROICalculator';
 import { structuredDataTemplates } from '../config/seoConfig';
@@ -86,30 +86,27 @@ const Home: React.FC = () => {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
               Never Miss a Lead. Book 24/7.
             </h1>
-            <p className="text-xl md:text-2xl mb-4 text-cyan-100 max-w-3xl mx-auto">
-              Book appointments while you sleep. <span className="text-cyan-300 font-bold">10-20% more customers, guaranteed.</span>
-            </p>
-            <p className="text-lg text-cyan-200 mb-10">
-              📈 10-20% more bookings • ⚡ 48hr setup • 🌍 20+ languages
+            <p className="text-xl md:text-2xl mb-10 text-cyan-100 max-w-3xl mx-auto">
+              <span className="text-cyan-300 font-bold">10-20% more customers, guaranteed.</span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link 
                 to="/contact"
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-500 text-white font-bold rounded-lg hover:from-cyan-700 hover:to-cyan-600 transition-all transform hover:scale-105 shadow-xl"
               >
-                🚀 Start Free Demo
+                Start Free Demo
                 <FaArrowRight className="ml-2" />
               </Link>
               <a 
                 href="tel:+16163263328"
                 className="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-cyan-900 transition-all"
               >
-                📞 Call Now: +1 616 326-3328
+                Call Now: +1 616 326-3328
               </a>
             </div>
             {/* Value Proposition */}
-            <p className="text-sm text-cyan-200">
-              💰 Every missed call = Lost revenue. We never miss.
+            <p className="text-lg md:text-xl font-semibold text-cyan-200">
+              Every missed call = Lost revenue. We never miss.
             </p>
           </motion.div>
         </div>
@@ -126,7 +123,7 @@ const Home: React.FC = () => {
               className="flex flex-col items-center"
             >
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                💰 See How Much Revenue You're Losing
+                See How Much Revenue You're Losing
               </h2>
               {!showCalculator ? (
                 <button
@@ -171,11 +168,11 @@ const Home: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-6"
             >
-              <span className="text-lg font-bold text-white animate-pulse">🔴 LIVE - Test it right now!</span>
+              <span className="text-lg font-bold text-white animate-pulse">LIVE - Test it right now!</span>
             </motion.div>
             <h3 className="text-3xl font-bold text-white mb-4">Experience Our AI Voice Assistant</h3>
             <p className="text-xl text-orange-100 mb-10">
-              🎆 Call now and hear the difference AI makes
+              Call now and hear the difference AI makes
             </p>
               <motion.div 
                 whileHover={{ scale: 1.05 }}
@@ -191,81 +188,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ROI & Benefits Section - MOVED UP FOR BETTER CONVERSION */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-cyan-50">
-        <div className="container mx-auto px-6">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Technology Features
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Advanced AI technologies to empower your business
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: <FaBrain className="text-3xl" />,
-                title: 'Natural Language Processing',
-                description: 'Advanced NLP that understands customer intent'
-              },
-              {
-                icon: <FaMicrophone className="text-3xl" />,
-                title: 'Speech Recognition',
-                description: 'Perfect performance even in noisy environments'
-              },
-              {
-                icon: <FaComments className="text-3xl" />,
-                title: 'Multi-Channel',
-                description: 'WhatsApp, Instagram, Phone, Web'
-              },
-              {
-                icon: <FaGlobe className="text-3xl" />,
-                title: '20+ Languages',
-                description: 'Speak with your global customers'
-              },
-              {
-                icon: <FaClock className="text-3xl" />,
-                title: '24/7 Service',
-                description: 'Uninterrupted customer support'
-              },
-              {
-                icon: <FaDatabase className="text-3xl" />,
-                title: 'CRM Integration',
-                description: 'Integrates with your existing systems'
-              },
-              {
-                icon: <FaCloud className="text-3xl" />,
-                title: 'Cloud Based',
-                description: 'Secure and scalable infrastructure'
-              },
-              {
-                icon: <FaCheckCircle className="text-3xl" />,
-                title: 'Easy Setup',
-                description: 'Go live within 48 hours'
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all hover:-translate-y-1"
-              >
-                <div className="text-cyan-700 mb-4">{feature.icon}</div>
-                <h3 className="text-lg font-semibold mb-2 text-gray-900">{feature.title}</h3>
-                <p className="text-sm text-gray-600">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Key Features */}
       <section className="py-20 bg-white">
@@ -353,7 +275,7 @@ const Home: React.FC = () => {
                 <h3 className="text-xl font-semibold mb-2">More Customers</h3>
                 <p className="text-green-100">Book appointments 24/7, including nights & weekends</p>
                 <div className="mt-4 text-sm text-green-200">
-                  📈 Guaranteed revenue increase
+                  Guaranteed revenue increase
                 </div>
               </motion.div>
               <motion.div 
@@ -365,7 +287,7 @@ const Home: React.FC = () => {
                 <h3 className="text-xl font-semibold mb-2">Conversion Rate</h3>
                 <p className="text-blue-100">Of callers successfully book appointments</p>
                 <div className="mt-4 text-sm text-blue-200">
-                  🔒 Never lose a customer
+                  Never lose a customer
                 </div>
               </motion.div>
               <motion.div 
@@ -377,7 +299,7 @@ const Home: React.FC = () => {
                 <h3 className="text-xl font-semibold mb-2">Additional Revenue</h3>
                 <p className="text-purple-100">Average annual revenue increase per business</p>
                 <div className="mt-4 text-sm text-purple-200">
-                  💰 Turn missed calls into revenue
+                  Turn missed calls into revenue
                 </div>
               </motion.div>
             </div>
@@ -446,89 +368,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Technology Features */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container mx-auto px-6">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center bg-purple-100 px-4 py-2 rounded-full mb-4">
-              <span className="text-sm font-semibold text-purple-700">🌟 {false ? 'EN İYİ ÖZELLİKLER' : 'BEST-IN-CLASS FEATURES'}</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              {false ? 'Rakiplerimizden Farkımız' : 'What Sets Us Apart'}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {false ? 'Gerçek sonuçlar getiren kurumsal düzeyde AI teknolojisi' : 'Enterprise-grade AI technology that delivers real results'}
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: <FaBrain className="text-3xl" />,
-                title: false ? 'Doğal Dil İşleme' : 'Natural Language Processing',
-                description: false ? 'Müşteri niyetini %99 doğrulukla anlar' : 'Understands customer intent with 99% accuracy',
-                stat: '99%'
-              },
-              {
-                icon: <FaMicrophone className="text-3xl" />,
-                title: false ? 'Ses Tanıma' : 'Speech Recognition',
-                description: false ? 'Gürültülü ortamlarda bile mükemmel performans' : 'Perfect performance even in noisy environments'
-              },
-              {
-                icon: <FaComments className="text-3xl" />,
-                title: false ? 'Çok Kanallı' : 'Multi-Channel',
-                description: false ? 'WhatsApp, Instagram, Telefon, Web' : 'WhatsApp, Instagram, Phone, Web'
-              },
-              {
-                icon: <FaGlobe className="text-3xl" />,
-                title: false ? '20+ Dil' : '20+ Languages',
-                description: false ? 'Global müşterilerinizle konuşun' : 'Speak with your global customers'
-              },
-              {
-                icon: <FaClock className="text-3xl" />,
-                title: false ? '7/24 Hizmet' : '24/7 Service',
-                description: false ? 'Yılda 8760 saat kesintisiz hizmet' : '8,760 hours of uptime per year',
-                stat: '99.9%'
-              },
-              {
-                icon: <FaDatabase className="text-3xl" />,
-                title: false ? 'CRM Entegrasyonu' : 'CRM Integration',
-                description: false ? 'Mevcut sistemlerinizle entegre' : 'Integrates with your existing systems'
-              },
-              {
-                icon: <FaCloud className="text-3xl" />,
-                title: false ? 'Bulut Tabanlı' : 'Cloud Based',
-                description: false ? 'Güvenli ve ölçeklenebilir altyapı' : 'Secure and scalable infrastructure'
-              },
-              {
-                icon: <FaCheckCircle className="text-3xl" />,
-                title: false ? 'Kolay Kurulum' : 'Easy Setup',
-                description: false ? '48 saat içinde canlıya alın' : 'Go live within 48 hours'
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all hover:-translate-y-1"
-              >
-                <div className="text-cyan-700 mb-4">{feature.icon}</div>
-                <h3 className="text-lg font-semibold mb-2 text-gray-900">{feature.title}</h3>
-                <p className="text-sm text-gray-600">{feature.description}</p>
-                {feature.stat && (
-                  <div className="mt-3 text-2xl font-bold text-cyan-600">{feature.stat}</div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <section className="py-20 bg-gray-50">
