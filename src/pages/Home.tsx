@@ -131,12 +131,26 @@ const Home: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center"
             >              
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-3">
-                How Much Money Our AI Receptionist
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 text-center max-w-5xl">
+                Calculate How Much Revenue You're Losing to Missed Calls
               </h2>
-              <h3 className="text-2xl md:text-4xl font-bold text-cyan-100 mb-8">
-                Is Going To Make for You
-              </h3>
+              
+              {/* Decorative divider */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-px w-16 bg-gradient-to-r from-transparent to-cyan-300"></div>
+                <div className="h-2 w-2 bg-cyan-300 rounded-full animate-pulse"></div>
+                <div className="h-px w-16 bg-gradient-to-l from-transparent to-cyan-300"></div>
+              </div>
+              
+              {/* Subheadline with enhanced styling */}
+              <motion.p 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="text-lg md:text-2xl text-cyan-100 mb-8 text-center max-w-3xl font-light"
+              >
+                And see how much <span className="font-semibold text-white">Cognia AI</span> can recover for you
+              </motion.p>
             </motion.div>
             
             {/* Calculator Display - Always Visible */}
