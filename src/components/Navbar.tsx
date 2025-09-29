@@ -23,7 +23,6 @@ const Navbar: React.FC = () => {
   const navItems = [
     { name: t('nav.home'), path: '/' },
     { name: language === 'tr' ? 'Çözümler' : 'Solutions', path: '/solutions' },
-    { name: language === 'tr' ? 'Platform' : 'Platform', path: '/platform' },
     { name: t('nav.about'), path: '/company' },
     { name: t('nav.contact'), path: '/contact' }
   ];
@@ -35,12 +34,14 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto pl-3 pr-6">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img 
-              src="/cognia_logo_final.svg" 
-              alt="Cognia AI" 
-              className="h-12 md:h-14 w-auto transition-all duration-300 hover:scale-105"
-            />
+          <Link to="/" className="flex items-center space-x-2">
+            <div className="bg-white p-1.5 rounded-lg shadow-sm">
+              <img 
+                src="/cognia_logo_final.svg" 
+                alt="Cognia AI" 
+                className="h-10 md:h-12 w-auto"
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

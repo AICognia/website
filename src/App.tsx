@@ -8,7 +8,6 @@ import Footer from './components/Footer';
 // Pages
 import Home from './pages/Home';
 import Solutions from './pages/Solutions';
-import Platform from './pages/Platform';
 import Company from './pages/Company';
 import Contact from './pages/Contact';
 
@@ -35,7 +34,6 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/solutions" element={<Solutions />} />
-                <Route path="/platform" element={<Platform />} />
                 <Route path="/company" element={<Company />} />
                 <Route path="/contact" element={<Contact />} />
               </Routes>

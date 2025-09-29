@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaRobot, FaPhone, FaChartLine, FaShieldAlt, FaBrain, FaGlobe, FaClock, FaCheckCircle, FaMicrophone, FaComments, FaDatabase, FaCloud } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import SEO from '../components/SEO';
+import ROICalculator from '../components/ROICalculator';
 import { structuredDataTemplates } from '../config/seoConfig';
 
 const Home: React.FC = () => {
   const { t, language } = useLanguage();
+  const [showCalculator, setShowCalculator] = useState(false);
   
   // FAQ structured data for the home page
   const faqStructuredData = {
@@ -87,13 +89,13 @@ const Home: React.FC = () => {
             className="max-w-5xl mx-auto text-center"
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent">
-              {language === 'tr' ? 'Hiç Kaçırmayan AI Resepsiyonist' : 'AI Receptionist That Never Misses a Call'}
+              {language === 'tr' ? 'Hiç Müşteri Kaçırmayın. 7/24 Randevu Alın.' : 'Never Miss a Lead. Book 24/7.'}
             </h1>
             <p className="text-xl md:text-2xl mb-4 text-blue-100 max-w-3xl mx-auto">
-              {language === 'tr' ? '7/24 müşteri çağrılarını yanıtlayın. %70 maliyet tasarrufu.' : 'Answer every call 24/7. Save 70% on staffing costs.'}
+              {language === 'tr' ? 'Gece, hafta sonu, tatillerde bile müşterilerinizi kaydedin. 3x daha fazla randevu.' : 'Book appointments while you sleep. 3x more customers, guaranteed.'}
             </p>
             <p className="text-lg text-cyan-200 mb-10">
-              {language === 'tr' ? '⚡ 48 saat içinde kurulum • 🎯 %99 doğruluk • 🌍 20+ dil desteği' : '⚡ Setup in 48 hours • 🎯 99% accuracy • 🌍 20+ languages'}
+              {language === 'tr' ? '📈 3x daha fazla müşteri • ⚡ 48 saat kurulum • 🌍 20+ dil' : '📈 3x more bookings • ⚡ 48hr setup • 🌍 20+ languages'}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link 
@@ -104,15 +106,15 @@ const Home: React.FC = () => {
                 <FaArrowRight className="ml-2" />
               </Link>
               <a 
-                href="tel:+908508402689"
+                href="tel:+16163263328"
                 className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-[#0A1628] transition-all"
               >
-                📞 {language === 'tr' ? 'Hemen Arayın' : 'Call Now'}: +90 850 840 2689
+                📞 {language === 'tr' ? 'Hemen Arayın' : 'Call Now'}: +1 616 326-3328
               </a>
             </div>
             {/* Value Proposition */}
             <p className="text-sm text-cyan-200">
-              💰 {language === 'tr' ? 'Personel maliyetlerinizden %70\'e kadar tasarruf edin' : 'Save up to 70% on staffing costs'}
+              💰 {language === 'tr' ? 'Her kaçan çağrı = Kaybedilen müşteri. Biz hiç kaçırmıyoruz.' : 'Every missed call = Lost revenue. We never miss.'}
             </p>
           </motion.div>
         </div>
@@ -132,21 +134,23 @@ const Home: React.FC = () => {
             <div className="flex flex-wrap justify-center gap-8">
               <motion.div 
                 whileHover={{ scale: 1.05 }}
-                className="bg-white px-10 py-6 rounded-xl shadow-xl cursor-pointer"
+                className="bg-gradient-to-r from-cyan-500 to-blue-500 px-12 py-8 rounded-xl shadow-xl cursor-pointer"
               >
-                <p className="text-gray-600 mb-3 font-semibold">{t('voice.demoTR')}</p>
-                <a href="tel:+908508402689" className="text-2xl font-bold text-[#162B4D] hover:text-[#2A4A7C] transition-colors">
-                  +90 850 840 2689
+                <p className="text-white mb-3 font-bold text-lg">{t('voice.demoUS')}</p>
+                <a href="tel:+16163263328" className="text-3xl font-bold text-white hover:text-yellow-200 transition-colors">
+                  +1 616 326-3328
                 </a>
+                <p className="text-cyan-100 mt-2 text-sm">🇺🇸 {language === 'tr' ? 'ABD Numarası' : 'US Number'}</p>
               </motion.div>
               <motion.div 
                 whileHover={{ scale: 1.05 }}
                 className="bg-white px-10 py-6 rounded-xl shadow-xl cursor-pointer"
               >
-                <p className="text-gray-600 mb-3 font-semibold">{t('voice.demoUS')}</p>
-                <a href="tel:+16163263328" className="text-2xl font-bold text-[#162B4D] hover:text-[#2A4A7C] transition-colors">
-                  +1 616 326-3328
+                <p className="text-gray-600 mb-3 font-semibold">{t('voice.demoTR')}</p>
+                <a href="tel:+908508402689" className="text-xl font-bold text-[#162B4D] hover:text-[#2A4A7C] transition-colors">
+                  +90 850 840 2689
                 </a>
+                <p className="text-gray-500 mt-2 text-sm">🇹🇷 {language === 'tr' ? 'Türkiye Numarası' : 'Turkey Number'}</p>
               </motion.div>
             </div>
             <div className="mt-10">
@@ -158,7 +162,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Technology Features */}
+      {/* ROI & Benefits Section - MOVED UP FOR BETTER CONVERSION */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-6">
           <motion.div 
@@ -291,7 +295,6 @@ const Home: React.FC = () => {
       </section>
 
 
-      {/* ROI & Benefits Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-50">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
@@ -317,11 +320,11 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="bg-gradient-to-br from-green-500 to-emerald-600 p-8 rounded-2xl text-white shadow-xl"
               >
-                <div className="text-5xl font-bold mb-3">70%</div>
-                <h3 className="text-xl font-semibold mb-2">{language === 'tr' ? 'Maliyet Tasarrufu' : 'Cost Reduction'}</h3>
-                <p className="text-green-100">{language === 'tr' ? 'Personel maliyetlerinde potansiyel tasarruf' : 'Potential savings on staffing costs'}</p>
+                <div className="text-5xl font-bold mb-3">3x</div>
+                <h3 className="text-xl font-semibold mb-2">{language === 'tr' ? 'Daha Fazla Randevu' : 'More Bookings'}</h3>
+                <p className="text-green-100">{language === 'tr' ? 'Gece ve hafta sonları dahil tüm randevuları alın' : 'Book appointments 24/7, including nights & weekends'}</p>
                 <div className="mt-4 text-sm text-green-200">
-                  💵 {language === 'tr' ? 'Önemli maliyet avantajı' : 'Significant cost advantage'}
+                  📈 {language === 'tr' ? 'Gelir artışı garantili' : 'Guaranteed revenue increase'}
                 </div>
               </motion.div>
               <motion.div 
@@ -329,11 +332,11 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="bg-gradient-to-br from-blue-500 to-indigo-600 p-8 rounded-2xl text-white shadow-xl"
               >
-                <div className="text-5xl font-bold mb-3">3x</div>
-                <h3 className="text-xl font-semibold mb-2">{language === 'tr' ? 'Daha Fazla Lead' : 'More Leads'}</h3>
-                <p className="text-blue-100">{language === 'tr' ? 'Hiçbir çağrı kaçırmayın' : 'Never miss a potential customer'}</p>
+                <div className="text-5xl font-bold mb-3">87%</div>
+                <h3 className="text-xl font-semibold mb-2">{language === 'tr' ? 'Dönüşüm Oranı' : 'Conversion Rate'}</h3>
+                <p className="text-blue-100">{language === 'tr' ? 'Arayan müşterilerin randevuya dönüşümü' : 'Of callers successfully book appointments'}</p>
                 <div className="mt-4 text-sm text-blue-200">
-                  📞 {language === 'tr' ? '7/24 erişilebilirlik' : '24/7 availability'}
+                  🔒 {language === 'tr' ? 'Hiç müşteri kaybetmeyin' : 'Never lose a customer'}
                 </div>
               </motion.div>
               <motion.div 
@@ -341,41 +344,45 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="bg-gradient-to-br from-purple-500 to-pink-600 p-8 rounded-2xl text-white shadow-xl"
               >
-                <div className="text-5xl font-bold mb-3">98%</div>
-                <h3 className="text-xl font-semibold mb-2">{language === 'tr' ? 'Müşteri Memnuniyeti' : 'Satisfaction Rate'}</h3>
-                <p className="text-purple-100">{language === 'tr' ? 'Daha hızlı ve doğru yanıtlar' : 'Faster and accurate responses'}</p>
+                <div className="text-5xl font-bold mb-3">$45K</div>
+                <h3 className="text-xl font-semibold mb-2">{language === 'tr' ? 'Yıllık Ek Gelir' : 'Additional Revenue'}</h3>
+                <p className="text-purple-100">{language === 'tr' ? 'Ortalama işletme başına yıllık artış' : 'Average annual revenue increase per business'}</p>
                 <div className="mt-4 text-sm text-purple-200">
-                  ⏱️ {language === 'tr' ? '<2 saniye yanıt süresi' : '<2 second response time'}
+                  💰 {language === 'tr' ? 'Kaçan çağrıları gelire dönüştürün' : 'Turn missed calls into revenue'}
                 </div>
               </motion.div>
             </div>
-            {/* ROI Calculator CTA */}
+            {/* ROI Calculator Section */}
             <motion.div
               whileInView={{ opacity: [0, 1], y: [20, 0] }}
               transition={{ duration: 0.5 }}
-              className="mt-12 text-center bg-gradient-to-r from-yellow-50 to-orange-50 p-8 rounded-2xl border-2 border-orange-200"
+              className="mt-12"
             >
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                🧮 {language === 'tr' ? 'Ne Kadar Tasarruf Edebilirsiniz?' : 'Calculate Your Savings'}
-              </h3>
-              <p className="text-gray-600 mb-6">
-                {language === 'tr' ? 'Özel ROI hesaplaması için bize ulaşın' : 'Get a personalized ROI calculation'}
-              </p>
-              <Link
-                to="/contact"
-                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-orange-400 to-red-400 text-white font-bold rounded-lg hover:from-orange-500 hover:to-red-500 transition-all transform hover:scale-105 shadow-lg"
-              >
-                {language === 'tr' ? 'ROI Hesaplayıcı' : 'ROI Calculator'}
-                <FaChartLine className="ml-2" />
-              </Link>
+              {!showCalculator ? (
+                <div className="text-center bg-gradient-to-r from-yellow-50 to-orange-50 p-8 rounded-2xl border-2 border-orange-200">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    🧮 {language === 'tr' ? 'Kaç Müşteri Kaybediyorsunuz?' : 'How Much Revenue Are You Losing?'}
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    {language === 'tr' ? 'Özel ROI hesaplamanızı hemen yapın' : 'Calculate your personalized ROI instantly'}
+                  </p>
+                  <button
+                    onClick={() => setShowCalculator(true)}
+                    className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-orange-400 to-red-400 text-white font-bold rounded-lg hover:from-orange-500 hover:to-red-500 transition-all transform hover:scale-105 shadow-lg"
+                  >
+                    {language === 'tr' ? '📊 ROI Hesaplayıcıyı Aç' : '📊 Open ROI Calculator'}
+                    <FaChartLine className="ml-2" />
+                  </button>
+                </div>
+              ) : (
+                <ROICalculator />
+              )}
             </motion.div>
           </div>
         </div>
       </section>
 
-
-
-      {/* Process Section */}
+      {/* Process Section - MOVED UP FOR BETTER FLOW */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
@@ -438,6 +445,90 @@ const Home: React.FC = () => {
                 </p>
               </motion.div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Technology Features */}
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center bg-purple-100 px-4 py-2 rounded-full mb-4">
+              <span className="text-sm font-semibold text-purple-700">🌟 {language === 'tr' ? 'EN İYİ ÖZELLİKLER' : 'BEST-IN-CLASS FEATURES'}</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {language === 'tr' ? 'Rakiplerimizden Farkımız' : 'What Sets Us Apart'}
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              {language === 'tr' ? 'Gerçek sonuçlar getiren kurumsal düzeyde AI teknolojisi' : 'Enterprise-grade AI technology that delivers real results'}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: <FaBrain className="text-3xl" />,
+                title: language === 'tr' ? 'Doğal Dil İşleme' : 'Natural Language Processing',
+                description: language === 'tr' ? 'Müşteri niyetini %99 doğrulukla anlar' : 'Understands customer intent with 99% accuracy',
+                stat: '99%'
+              },
+              {
+                icon: <FaMicrophone className="text-3xl" />,
+                title: language === 'tr' ? 'Ses Tanıma' : 'Speech Recognition',
+                description: language === 'tr' ? 'Gürültülü ortamlarda bile mükemmel performans' : 'Perfect performance even in noisy environments'
+              },
+              {
+                icon: <FaComments className="text-3xl" />,
+                title: language === 'tr' ? 'Çok Kanallı' : 'Multi-Channel',
+                description: language === 'tr' ? 'WhatsApp, Instagram, Telefon, Web' : 'WhatsApp, Instagram, Phone, Web'
+              },
+              {
+                icon: <FaGlobe className="text-3xl" />,
+                title: language === 'tr' ? '20+ Dil' : '20+ Languages',
+                description: language === 'tr' ? 'Global müşterilerinizle konuşun' : 'Speak with your global customers'
+              },
+              {
+                icon: <FaClock className="text-3xl" />,
+                title: language === 'tr' ? '7/24 Hizmet' : '24/7 Service',
+                description: language === 'tr' ? 'Yılda 8760 saat kesintisiz hizmet' : '8,760 hours of uptime per year',
+                stat: '99.9%'
+              },
+              {
+                icon: <FaDatabase className="text-3xl" />,
+                title: language === 'tr' ? 'CRM Entegrasyonu' : 'CRM Integration',
+                description: language === 'tr' ? 'Mevcut sistemlerinizle entegre' : 'Integrates with your existing systems'
+              },
+              {
+                icon: <FaCloud className="text-3xl" />,
+                title: language === 'tr' ? 'Bulut Tabanlı' : 'Cloud Based',
+                description: language === 'tr' ? 'Güvenli ve ölçeklenebilir altyapı' : 'Secure and scalable infrastructure'
+              },
+              {
+                icon: <FaCheckCircle className="text-3xl" />,
+                title: language === 'tr' ? 'Kolay Kurulum' : 'Easy Setup',
+                description: language === 'tr' ? '48 saat içinde canlıya alın' : 'Go live within 48 hours'
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all hover:-translate-y-1"
+              >
+                <div className="text-[#162B4D] mb-4">{feature.icon}</div>
+                <h3 className="text-lg font-semibold mb-2 text-gray-900">{feature.title}</h3>
+                <p className="text-sm text-gray-600">{feature.description}</p>
+                {feature.stat && (
+                  <div className="mt-3 text-2xl font-bold text-cyan-600">{feature.stat}</div>
+                )}
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

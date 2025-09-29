@@ -1,0 +1,190 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { FaCalculator, FaChartLine, FaDollarSign } from 'react-icons/fa';
+import { useLanguage } from '../contexts/LanguageContext';
+
+const ROICalculator: React.FC = () => {
+  const { language } = useLanguage();
+  
+  const [missedCallsPerDay, setMissedCallsPerDay] = useState<number>(5);
+  const [avgCustomerValue, setAvgCustomerValue] = useState<number>(150);
+  const [conversionRate, setConversionRate] = useState<number>(30);
+  
+  // Calculations
+  const missedCallsPerMonth = missedCallsPerDay * 30;
+  const missedCallsPerYear = missedCallsPerDay * 365;
+  const potentialCustomersPerMonth = (missedCallsPerMonth * conversionRate) / 100;
+  const potentialCustomersPerYear = (missedCallsPerYear * conversionRate) / 100;
+  const monthlyRevenueLoss = potentialCustomersPerMonth * avgCustomerValue;
+  const yearlyRevenueLoss = potentialCustomersPerYear * avgCustomerValue;
+  
+  // With AI Receptionist
+  const capturedRate = 0.87; // 87% conversion rate with AI
+  const newCustomersPerMonth = missedCallsPerMonth * capturedRate;
+  const newCustomersPerYear = missedCallsPerYear * capturedRate;
+  const additionalMonthlyRevenue = newCustomersPerMonth * avgCustomerValue;
+  const additionalYearlyRevenue = newCustomersPerYear * avgCustomerValue;
+  
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+
+  return (
+    <div className="bg-gradient-to-br from-blue-50 via-white to-cyan-50 p-8 rounded-2xl shadow-xl">
+      <div className="grid md:grid-cols-2 gap-8">
+        {/* Input Section */}
+        <div className="space-y-6">
+          <h3 className="text-2xl font-bold text-gray-900 flex items-center">
+            <FaCalculator className="mr-3 text-blue-500" />
+            {language === 'tr' ? 'İşletme Bilgileriniz' : 'Your Business Metrics'}
+          </h3>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              {language === 'tr' ? 'Günlük kaçan çağrı sayısı:' : 'Missed calls per day:'}
+            </label>
+            <input
+              type="range"
+              min="1"
+              max="50"
+              value={missedCallsPerDay}
+              onChange={(e) => setMissedCallsPerDay(Number(e.target.value))}
+              className="w-full"
+            />
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>1</span>
+              <span className="font-bold text-lg text-blue-600">{missedCallsPerDay}</span>
+              <span>50</span>
+            </div>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              {language === 'tr' ? 'Ortalama müşteri değeri ($):' : 'Average customer value ($):'}
+            </label>
+            <input
+              type="range"
+              min="50"
+              max="1000"
+              step="50"
+              value={avgCustomerValue}
+              onChange={(e) => setAvgCustomerValue(Number(e.target.value))}
+              className="w-full"
+            />
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>$50</span>
+              <span className="font-bold text-lg text-blue-600">${avgCustomerValue}</span>
+              <span>$1000</span>
+            </div>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              {language === 'tr' ? 'Mevcut dönüşüm oranı (%):' : 'Current conversion rate (%):'}
+            </label>
+            <input
+              type="range"
+              min="10"
+              max="70"
+              step="5"
+              value={conversionRate}
+              onChange={(e) => setConversionRate(Number(e.target.value))}
+              className="w-full"
+            />
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>10%</span>
+              <span className="font-bold text-lg text-blue-600">{conversionRate}%</span>
+              <span>70%</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Results Section */}
+        <div className="space-y-6">
+          <h3 className="text-2xl font-bold text-gray-900 flex items-center">
+            <FaChartLine className="mr-3 text-green-500" />
+            {language === 'tr' ? 'Potansiyel Geliriniz' : 'Your Potential Revenue'}
+          </h3>
+          
+          {/* Current Loss */}
+          <div className="bg-red-50 border-2 border-red-200 p-4 rounded-lg">
+            <h4 className="font-semibold text-red-700 mb-2">
+              {language === 'tr' ? '❌ Şu anda kaybediyorsunuz:' : '❌ Currently losing:'}
+            </h4>
+            <div className="text-3xl font-bold text-red-600">
+              {formatCurrency(monthlyRevenueLoss)}<span className="text-sm font-normal">/month</span>
+            </div>
+            <div className="text-lg text-red-500">
+              {formatCurrency(yearlyRevenueLoss)}<span className="text-sm font-normal">/year</span>
+            </div>
+          </div>
+          
+          {/* With AI Receptionist */}
+          <div className="bg-green-50 border-2 border-green-200 p-4 rounded-lg">
+            <h4 className="font-semibold text-green-700 mb-2">
+              {language === 'tr' ? '✅ Cognia AI ile kazanacağınız:' : '✅ With Cognia AI you\'ll gain:'}
+            </h4>
+            <div className="text-3xl font-bold text-green-600">
+              +{formatCurrency(additionalMonthlyRevenue)}<span className="text-sm font-normal">/month</span>
+            </div>
+            <div className="text-lg text-green-500">
+              +{formatCurrency(additionalYearlyRevenue)}<span className="text-sm font-normal">/year</span>
+            </div>
+          </div>
+          
+          {/* Key Stats */}
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <div className="grid grid-cols-2 gap-4 text-center">
+              <div>
+                <div className="text-2xl font-bold text-blue-600">
+                  {Math.round(newCustomersPerMonth)}
+                </div>
+                <div className="text-xs text-gray-600">
+                  {language === 'tr' ? 'Aylık yeni müşteri' : 'New customers/month'}
+                </div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-blue-600">
+                  {Math.round(newCustomersPerYear)}
+                </div>
+                <div className="text-xs text-gray-600">
+                  {language === 'tr' ? 'Yıllık yeni müşteri' : 'New customers/year'}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* ROI Summary */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="mt-8 p-6 bg-gradient-to-r from-yellow-100 to-orange-100 rounded-xl border-2 border-orange-300"
+      >
+        <div className="text-center">
+          <FaDollarSign className="text-4xl text-orange-500 mx-auto mb-2" />
+          <h3 className="text-xl font-bold text-gray-900 mb-2">
+            {language === 'tr' ? 'Toplam ROI (1 Yıl):' : 'Total ROI (Year 1):'}
+          </h3>
+          <div className="text-4xl font-bold text-orange-600">
+            {formatCurrency(additionalYearlyRevenue - 4200)}
+          </div>
+          <p className="text-sm text-gray-600 mt-2">
+            {language === 'tr' 
+              ? '* Yıllık Cognia AI maliyeti ($350/ay) düşüldükten sonra'
+              : '* After Cognia AI cost ($350/month)'}
+          </p>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+export default ROICalculator;
