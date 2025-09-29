@@ -432,29 +432,16 @@ const Home: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold mb-10">
               Ready to Transform Your Business?
             </h2>
-            <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
-              Start capturing every opportunity with AI-powered customer engagement
-            </p>
-            
-            {/* Trust badges */}
-            <div className="flex justify-center gap-8 mb-10 text-gray-400">
-              <div className="flex items-center">
-                <span className="text-green-400 mr-2">✓</span> No Setup Fees
-              </div>
-              <div className="flex items-center">
-                <span className="text-green-400 mr-2">✓</span> ROI Guarantee
-              </div>
-            </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 to="/contact"
                 className="inline-flex items-center px-12 py-5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold rounded-xl hover:from-cyan-600 hover:to-blue-600 transition-all transform hover:scale-105 text-lg shadow-2xl"
               >
-                Start My Free Trial Now
+                Start Free Trial
                 <FaArrowRight className="ml-3" />
               </Link>
               <a
@@ -464,10 +451,6 @@ const Home: React.FC = () => {
                 Try AI Receptionist Demo: +1 616 326-3328
               </a>
             </div>
-            
-            <p className="mt-6 text-gray-400 text-sm">
-              No credit card required • Setup in 48 hours • Instant ROI
-            </p>
           </motion.div>
         </div>
       </section>
