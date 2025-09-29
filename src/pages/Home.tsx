@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaRobot, FaPhone, FaChartLine, FaShieldAlt, FaBrain, FaGlobe, FaClock, FaCheckCircle, FaMicrophone, FaComments, FaDatabase, FaCloud, FaCalculator } from 'react-icons/fa';
 import SEO from '../components/SEO';
-import ROICalculator from '../components/ROICalculator';
 import ROIModal from '../components/ROIModal';
 import { structuredDataTemplates } from '../config/seoConfig';
 
 const Home: React.FC = () => {
-  const [showCalculator, setShowCalculator] = useState(false);
   const [showROIModal, setShowROIModal] = useState(false);
   
   // FAQ structured data for the home page
@@ -87,7 +85,7 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="max-w-5xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
               Never Miss a Lead. Book 24/7.
             </h1>
             <p className="text-xl md:text-2xl mb-4 text-cyan-100 max-w-3xl mx-auto">
@@ -364,32 +362,6 @@ const Home: React.FC = () => {
                 </div>
               </motion.div>
             </div>
-            {/* ROI Calculator Section */}
-            <motion.div
-              whileInView={{ opacity: [0, 1], y: [20, 0] }}
-              transition={{ duration: 0.5 }}
-              className="mt-12"
-            >
-              {!showCalculator ? (
-                <div className="text-center bg-gradient-to-r from-cyan-50 to-teal-50 p-8 rounded-2xl border-2 border-cyan-200">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                    🧮 How Much Revenue Are You Losing?
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Calculate your personalized ROI instantly
-                  </p>
-                  <button
-                    onClick={() => setShowCalculator(true)}
-                    className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-cyan-700 to-cyan-600 text-white font-bold rounded-lg hover:from-cyan-800 hover:to-cyan-700 transition-all transform hover:scale-105 shadow-lg"
-                  >
-                    📊 Open ROI Calculator
-                    <FaChartLine className="ml-2" />
-                  </button>
-                </div>
-              ) : (
-                <ROICalculator />
-              )}
-            </motion.div>
           </div>
         </div>
       </section>
