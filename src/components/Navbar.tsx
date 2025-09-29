@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import LanguageSelector from './LanguageSelector';
-import { useLanguage } from '../contexts/LanguageContext';
+// Language features removed - US only focus
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const { t, language } = useLanguage();
+  // US-only version
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,15 +20,15 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { name: t('nav.home'), path: '/' },
-    { name: language === 'tr' ? 'Çözümler' : 'Solutions', path: '/solutions' },
-    { name: t('nav.about'), path: '/company' },
-    { name: t('nav.contact'), path: '/contact' }
+    { name: 'Home', path: '/' },
+    { name: 'Solutions', path: '/solutions' },
+    { name: 'About', path: '/company' },
+    { name: 'Contact', path: '/contact' }
   ];
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-md'
+      scrolled ? 'bg-white shadow-xl border-b border-gray-100' : 'bg-white/98 backdrop-blur-md'
     }`}>
       <div className="container mx-auto pl-3 pr-6">
         <div className="flex justify-between items-center h-20">
@@ -59,12 +58,11 @@ const Navbar: React.FC = () => {
                   {item.name}
               </Link>
               ))}
-              <LanguageSelector />
             <Link
               to="/contact"
-              className="ml-4 px-6 py-2.5 bg-gradient-to-r from-[#162B4D] to-[#0A1628] text-white font-semibold rounded-lg hover:shadow-lg transition-all transform hover:scale-105"
+              className="ml-4 px-6 py-2.5 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-lg hover:shadow-xl hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105"
             >
-              {t('nav.freeDemo')}
+              Start Free Demo
             </Link>
           </div>
 
