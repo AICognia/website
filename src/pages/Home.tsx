@@ -448,7 +448,7 @@ const Home: React.FC = () => {
                 href="tel:+16163263328"
                 className="inline-flex items-center px-12 py-5 bg-white/10 backdrop-blur border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/20 transition-all text-lg"
               >
-                Try AI Receptionist Demo: +1 616 326-3328
+                Try the AI Receptionist: +1 616 326-3328
               </a>
             </div>
           </motion.div>
