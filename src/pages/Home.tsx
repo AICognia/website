@@ -96,14 +96,6 @@ const Home: React.FC = () => {
                 <span className="text-green-400 mr-2">✓</span>
                 <span>Setup in 48 hours</span>
               </div>
-              <div className="flex items-center">
-                <span className="text-green-400 mr-2">✓</span>
-                <span>No contracts</span>
-              </div>
-              <div className="flex items-center">
-                <span className="text-green-400 mr-2">✓</span>
-                <span>Cancel anytime</span>
-              </div>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -129,52 +121,13 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Client Logos / Trust Section */}
-      <section className="py-12 bg-white border-b border-gray-200">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center"
-          >
-            <p className="text-gray-600 font-semibold mb-6">TRUSTED BY 500+ BUSINESSES ACROSS THE US</p>
-            <div className="flex flex-wrap justify-center items-center gap-12 opacity-60">
-              {/* Placeholder for client logos - using text for now */}
-              <div className="text-2xl font-bold text-gray-400">Healthcare+</div>
-              <div className="text-2xl font-bold text-gray-400">AutoPro</div>
-              <div className="text-2xl font-bold text-gray-400">LawFirm LLC</div>
-              <div className="text-2xl font-bold text-gray-400">RealEstate Pro</div>
-              <div className="text-2xl font-bold text-gray-400">ServiceMaster</div>
-            </div>
-            <div className="mt-8 flex justify-center gap-8 text-center">
-              <div>
-                <div className="text-3xl font-bold text-gray-900">500+</div>
-                <div className="text-sm text-gray-600">Active Clients</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-gray-900">2M+</div>
-                <div className="text-sm text-gray-600">Calls Handled</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-gray-900">99.9%</div>
-                <div className="text-sm text-gray-600">Uptime</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-gray-900">4.9★</div>
-                <div className="text-sm text-gray-600">Client Rating</div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* ROI Calculator Section - High Conversion Design */}
-      <section className="relative bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 py-16 overflow-hidden">
+      {/* ROI Calculator Section */}
+      <section className="relative bg-gradient-to-br from-teal-700 via-cyan-700 to-blue-800 py-16 overflow-hidden">
         {/* Animated background effect */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-1/4 w-72 h-72 bg-white rounded-full filter blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-yellow-300 rounded-full filter blur-3xl animate-pulse delay-700"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-1/4 w-72 h-72 bg-cyan-300 rounded-full filter blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-blue-300 rounded-full filter blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
@@ -184,34 +137,22 @@ const Home: React.FC = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center"
-            >
-              {/* Urgency Badge */}
-              <motion.div 
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="inline-flex items-center bg-yellow-400 text-gray-900 px-4 py-2 rounded-full font-bold mb-4 shadow-lg"
-              >
-                <span className="animate-pulse mr-2">⚠️</span>
-                WARNING: You're losing money every day
-              </motion.div>
-              
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-3 drop-shadow-2xl">
-                Your Competitors Are Taking Your Customers
+            >              
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
+                Calculate Your Revenue Opportunity
               </h2>
-              <p className="text-xl md:text-2xl text-yellow-100 mb-8 font-semibold">
-                Join 500+ businesses who discovered they were losing $2,000-$10,000/month
+              <p className="text-xl md:text-2xl text-cyan-100 mb-8 max-w-3xl">
+                Discover how much additional revenue your business could generate with AI-powered call handling
               </p>
               
               {!showCalculator ? (
                 <motion.button
                   onClick={() => setShowCalculator(true)}
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  className="group px-10 py-5 bg-white text-red-700 font-black text-lg rounded-xl hover:bg-yellow-50 transition-all transform hover:scale-110 shadow-2xl flex items-center relative"
+                  whileHover={{ scale: 1.05 }}
+                  className="group px-10 py-5 bg-white text-teal-700 font-bold text-lg rounded-xl hover:bg-gray-50 transition-all shadow-2xl flex items-center"
                 >
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full animate-bounce">FREE</span>
-                  <FaCalculator className="mr-3 text-2xl group-hover:rotate-12 transition-transform" />
-                  CALCULATE MY LOST REVENUE NOW →
+                  <FaCalculator className="mr-3 text-2xl group-hover:rotate-6 transition-transform" />
+                  Open Revenue Calculator
                 </motion.button>
               ) : (
                 <button
@@ -222,15 +163,15 @@ const Home: React.FC = () => {
                 </button>
               )}
               
-              {/* Social Proof */}
+              {/* Info text */}
               {!showCalculator && (
                 <motion.p 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="mt-4 text-yellow-100 text-sm"
+                  className="mt-4 text-cyan-100 text-sm"
                 >
-                  ⏱️ Takes only 30 seconds • 🔒 No email required • 📊 Instant results
+                  Takes only 30 seconds • No email required • Instant results
                 </motion.p>
               )}
             </motion.div>
@@ -400,72 +341,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              What Our Clients Say
-            </h2>
-            <p className="text-xl text-gray-600">
-              Real results from real businesses
-            </p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Dr. Sarah Chen",
-                business: "Premier Dental Care",
-                testimonial: "We've seen a 23% increase in new patient appointments since implementing Cognia. The AI handles after-hours calls perfectly.",
-                rating: 5,
-                revenue: "+$8,500/mo"
-              },
-              {
-                name: "Mike Rodriguez",
-                business: "Rodriguez Law Firm",
-                testimonial: "Never miss a potential client again. Cognia has transformed how we handle intake calls. ROI was immediate.",
-                rating: 5,
-                revenue: "+$12,000/mo"
-              },
-              {
-                name: "Jennifer Park",
-                business: "Park Real Estate Group",
-                testimonial: "The AI books showings 24/7 and qualifies leads better than our previous system. Game-changing technology.",
-                rating: 5,
-                revenue: "+$15,000/mo"
-              }
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white p-6 rounded-xl shadow-lg"
-              >
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-xl">★</span>
-                  ))}
-                </div>
-                <p className="text-gray-600 mb-4 italic">"{testimonial.testimonial}"</p>
-                <div className="border-t pt-4">
-                  <div className="font-bold text-gray-900">{testimonial.name}</div>
-                  <div className="text-sm text-gray-600">{testimonial.business}</div>
-                  <div className="mt-2 inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
-                    {testimonial.revenue} revenue increase
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Process Section - MOVED UP FOR BETTER FLOW */}
       <section className="py-20 bg-white">
@@ -585,25 +460,17 @@ const Home: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-block bg-cyan-500/20 px-6 py-2 rounded-full mb-6">
-              <span className="text-cyan-300 font-semibold">LIMITED TIME: First Month 50% Off</span>
-            </div>
-            
-            <h2 className="text-4xl md:text-6xl font-black mb-6">
-              Stop Losing $45,000 Per Year
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              Ready to Transform Your Business?
             </h2>
             <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
-              Every day you wait, competitors are taking your customers. 
-              Join 500+ businesses already growing with Cognia AI.
+              Start capturing every opportunity with AI-powered customer engagement
             </p>
             
             {/* Trust badges */}
             <div className="flex justify-center gap-8 mb-10 text-gray-400">
               <div className="flex items-center">
                 <span className="text-green-400 mr-2">✓</span> No Setup Fees
-              </div>
-              <div className="flex items-center">
-                <span className="text-green-400 mr-2">✓</span> Cancel Anytime
               </div>
               <div className="flex items-center">
                 <span className="text-green-400 mr-2">✓</span> ROI Guarantee
