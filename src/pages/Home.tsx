@@ -132,7 +132,7 @@ const Home: React.FC = () => {
               className="flex flex-col items-center"
             >              
               <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
-                How Much Money You Are Losing
+                Calculate ROI
               </h2>
               
               {!showCalculator ? (

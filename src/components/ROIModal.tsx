@@ -20,10 +20,13 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
   const monthlyRevenueLoss = potentialCustomersPerMonth * avgCustomerValue;
   const yearlyRevenueLoss = potentialCustomersPerYear * avgCustomerValue;
   
-  // With AI Receptionist
-  const capturedRate = 0.87; // 87% conversion rate with AI
-  const newCustomersPerMonth = missedCallsPerMonth * capturedRate;
-  const newCustomersPerYear = missedCallsPerYear * capturedRate;
+  // With AI Receptionist - Capturing previously missed calls
+  const captureRate = 0.95; // AI captures 95% of previously missed calls
+  const capturedCallsPerMonth = missedCallsPerMonth * captureRate;
+  const capturedCallsPerYear = missedCallsPerYear * captureRate;
+  // Apply your existing conversion rate to the captured calls
+  const newCustomersPerMonth = (capturedCallsPerMonth * conversionRate) / 100;
+  const newCustomersPerYear = (capturedCallsPerYear * conversionRate) / 100;
   const additionalMonthlyRevenue = newCustomersPerMonth * avgCustomerValue;
   const additionalYearlyRevenue = newCustomersPerYear * avgCustomerValue;
   
@@ -206,11 +209,8 @@ const ROIModal: React.FC<ROIModalProps> = ({ isOpen, onClose }) => {
                       Total ROI (Year 1):
                     </h3>
                     <div className="text-4xl font-bold text-orange-600">
-                      {formatCurrency(additionalYearlyRevenue - 4200)}
+                      {formatCurrency(additionalYearlyRevenue)}
                     </div>
-                    <p className="text-sm text-gray-600 mt-2">
-                      * After Cognia AI cost ($350/month)
-                    </p>
                   </div>
                 </motion.div>
                 
