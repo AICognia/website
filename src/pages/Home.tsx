@@ -92,13 +92,15 @@ const Home: React.FC = () => {
             
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Link 
-                to="/contact"
+              <a 
+                href="https://calendly.com/emrebenian-cogniaai/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-500 text-white font-bold rounded-lg hover:from-cyan-700 hover:to-cyan-600 transition-all transform hover:scale-105 shadow-xl"
               >
                 Start Free Demo
                 <FaArrowRight className="ml-2" />
-              </Link>
+              </a>
               <a 
                 href="tel:+16163263328"
                 className="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-cyan-900 transition-all"
@@ -437,13 +439,15 @@ const Home: React.FC = () => {
             </h2>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                to="/contact"
+              <a 
+                href="https://calendly.com/emrebenian-cogniaai/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center px-12 py-5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold rounded-xl hover:from-cyan-600 hover:to-blue-600 transition-all transform hover:scale-105 text-lg shadow-2xl"
               >
                 Start Free Trial
                 <FaArrowRight className="ml-3" />
-              </Link>
+              </a>
               <a
                 href="tel:+16163263328"
                 className="inline-flex items-center px-12 py-5 bg-white/10 backdrop-blur border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/20 transition-all text-lg"

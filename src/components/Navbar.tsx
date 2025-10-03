@@ -54,12 +54,14 @@ const Navbar: React.FC = () => {
                   {item.name}
               </Link>
               ))}
-            <Link
-              to="/contact"
+            <a
+              href="https://calendly.com/emrebenian-cogniaai/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               className="ml-4 px-6 py-2.5 bg-gradient-to-r from-cyan-700 to-cyan-600 text-white font-bold rounded-lg hover:shadow-xl hover:from-cyan-800 hover:to-cyan-700 transition-all transform hover:scale-105"
             >
               Start Free Demo
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
