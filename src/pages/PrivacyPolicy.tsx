@@ -12,17 +12,7 @@ const PrivacyPolicy: React.FC = () => {
 
   return (
     <>
-      <SEO 
-        title={language === 'tr' ? 'Gizlilik Politikası | Cognia AI' : 'Privacy Policy | Cognia AI'}
-        description={language === 'tr' ? 
-          'Cognia AI gizlilik politikası - Verilerinizi nasıl topladığımız, kullandığımız ve koruduğumuz hakkında bilgi edinin.' : 
-          'Cognia AI privacy policy - Learn how we collect, use, and protect your data.'
-        }
-        keywords={language === 'tr' ? 
-          'gizlilik politikası, veri koruma, KVKK, GDPR, Cognia AI' : 
-          'privacy policy, data protection, GDPR, Cognia AI'
-        }
-      />
+      <SEO page="privacy" />
       
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container mx-auto px-6 py-12 max-w-4xl">

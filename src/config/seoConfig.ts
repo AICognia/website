@@ -97,6 +97,22 @@ export const seoConfig: Record<string, PageSEO> = {
     },
     canonicalPath: '/contact',
     ogImage: '/og-image-contact.png'
+  },
+  privacy: {
+    title: {
+      tr: 'Gizlilik Politikası | Cognia AI',
+      en: 'Privacy Policy | Cognia AI'
+    },
+    description: {
+      tr: 'Cognia AI gizlilik politikası - Verilerinizi nasıl topladığımız, kullandığımız ve koruduğumuz hakkında bilgi edinin.',
+      en: 'Cognia AI privacy policy - Learn how we collect, use, and protect your data.'
+    },
+    keywords: {
+      tr: ['gizlilik politikası', 'veri koruma', 'KVKK', 'GDPR', 'Cognia AI', 'kişisel veriler', 'veri güvenliği'],
+      en: ['privacy policy', 'data protection', 'GDPR', 'Cognia AI', 'personal data', 'data security', 'privacy']
+    },
+    canonicalPath: '/privacy-policy',
+    ogImage: '/og-image.png'
   }
 };
 
