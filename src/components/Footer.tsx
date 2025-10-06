@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div className="col-span-1">
             <div className="flex items-center mb-4">
@@ -27,13 +27,13 @@ const Footer: React.FC = () => {
               {language === 'tr' ? 'Sınırsız ölçeklenebilir kurumsal konuşma AI platformu.' : 'Enterprise conversational AI that scales infinitely.'}
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-[#162B4D] transition-colors">
+              <a href="https://linkedin.com/company/cognia-ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
                 <FaLinkedin size={20} />
               </a>
               <a href="https://instagram.com/cognia_ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
                 <FaInstagram size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-[#162B4D] transition-colors">
+              <a href="https://github.com/AICognia" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
                 <FaGithub size={20} />
               </a>
               <a href="mailto:admin@cogniaai.com" className="text-gray-400 hover:text-[#162B4D] transition-colors">
@@ -56,16 +56,6 @@ const Footer: React.FC = () => {
                   Chatbots
                 </Link>
               </li>
-              <li>
-                <Link to="/platform" className="text-sm hover:text-[#162B4D] transition-colors">
-                  Platform Overview
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-[#162B4D] transition-colors">
-                  Industries
-                  </a>
-                </li>
             </ul>
           </div>
 
@@ -79,45 +69,8 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-sm hover:text-[#162B4D] transition-colors">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-[#162B4D] transition-colors">
-                  Partners
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-[#162B4D] transition-colors">
-                  Press
-                  </a>
-                </li>
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">{language === 'tr' ? 'Kaynaklar' : 'Resources'}</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-sm hover:text-[#162B4D] transition-colors">
-                  Documentation
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-[#162B4D] transition-colors">
-                  API Reference
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-[#162B4D] transition-colors">
-                  Blog
-                  </a>
-                </li>
-              <li>
                 <Link to="/contact" className="text-sm hover:text-[#162B4D] transition-colors">
-                  Support
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -136,12 +89,18 @@ const Footer: React.FC = () => {
               >
                 Privacy Policy
               </Link>
-              <a href="#" className="text-sm text-gray-400 hover:text-[#162B4D] transition-colors">
+              <button 
+                className="text-sm text-gray-400 hover:text-[#162B4D] transition-colors cursor-pointer"
+                onClick={(e) => e.preventDefault()}
+              >
                 Terms of Service
-              </a>
-              <a href="#" className="text-sm text-gray-400 hover:text-[#162B4D] transition-colors">
+              </button>
+              <button 
+                className="text-sm text-gray-400 hover:text-[#162B4D] transition-colors cursor-pointer"
+                onClick={(e) => e.preventDefault()}
+              >
                 Security
-              </a>
+              </button>
             </div>
           </div>
         </div>
