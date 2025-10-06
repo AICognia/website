@@ -130,9 +130,12 @@ const Footer: React.FC = () => {
               © 2024 Cognia AI. {t('footer.rights')}
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-sm text-gray-400 hover:text-[#162B4D] transition-colors">
+              <Link 
+                to="/privacy-policy"
+                className="text-sm text-gray-400 hover:text-[#162B4D] transition-colors"
+              >
                 Privacy Policy
-              </a>
+              </Link>
               <a href="#" className="text-sm text-gray-400 hover:text-[#162B4D] transition-colors">
                 Terms of Service
               </a>

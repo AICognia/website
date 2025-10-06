@@ -4,12 +4,14 @@ import { HelmetProvider } from 'react-helmet-async';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import CookieConsentBanner from './components/CookieConsent';
 
 // Pages
 import Home from './pages/Home';
 import Solutions from './pages/Solutions';
 import Company from './pages/Company';
 import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 // Scroll to top component
 function ScrollToTop() {
@@ -36,10 +38,12 @@ function App() {
                 <Route path="/solutions" element={<Solutions />} />
                 <Route path="/company" element={<Company />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               </Routes>
             </main>
             <Footer />
           </div>
+          <CookieConsentBanner />
         </Router>
       </LanguageProvider>
     </HelmetProvider>
