@@ -71,13 +71,6 @@ const Contact: React.FC = () => {
       contactPoint: [
         {
           '@type': 'ContactPoint',
-          telephone: '+90-531-773-9053',
-          contactType: 'sales',
-          areaServed: 'TR',
-          availableLanguage: ['Turkish', 'English']
-        },
-        {
-          '@type': 'ContactPoint',
           telephone: '+1-217-693-8413',
           contactType: 'sales',
           areaServed: 'US',
@@ -141,7 +134,6 @@ const Contact: React.FC = () => {
                     <FaPhone className="text-[#162B4D] text-xl mt-1" />
                     <div>
                       <p className="font-semibold text-gray-900">{language === 'tr' ? 'Telefon' : 'Phone'}</p>
-                      <a href="tel:+905317739053" className="block text-gray-600 hover:text-[#162B4D] transition-colors">{language === 'tr' ? 'Türkiye' : 'Turkey'}: +90 531 773 9053</a>
                       <a href="tel:+12176938413" className="block text-gray-600 hover:text-[#162B4D] transition-colors">{language === 'tr' ? 'ABD' : 'US'}: +1 217 693 8413</a>
                     </div>
                   </div>
@@ -152,10 +144,10 @@ const Contact: React.FC = () => {
                 <div className="border-t pt-8">
                   <p className="font-semibold text-gray-900 mb-4">{language === 'tr' ? 'Bizi Takip Edin' : 'Follow Us'}</p>
                   <div className="flex gap-4">
-                    <a href="#" className="text-gray-400 hover:text-[#162B4D] transition-colors">
+                    <a href="https://www.linkedin.com/company/cognia-ai-usa/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
                       <FaLinkedin className="text-2xl" />
                     </a>
-                    <a href="https://instagram.com/cognia_ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
+                    <a href="https://www.instagram.com/cognia.ai/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
                       <FaInstagram className="text-2xl" />
                     </a>
                   </div>

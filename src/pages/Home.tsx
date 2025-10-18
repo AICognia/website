@@ -98,7 +98,7 @@ const Home: React.FC = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-500 text-white font-bold rounded-lg hover:from-cyan-700 hover:to-cyan-600 transition-all transform hover:scale-105 shadow-xl"
               >
-                Start Free Demo
+                Book a Call
                 <FaArrowRight className="ml-2" />
               </a>
               <a 

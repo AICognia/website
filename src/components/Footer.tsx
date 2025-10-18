@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaLinkedin, FaInstagram, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer: React.FC = () => {
@@ -27,17 +27,11 @@ const Footer: React.FC = () => {
               {language === 'tr' ? 'Sınırsız ölçeklenebilir kurumsal konuşma AI platformu.' : 'Enterprise conversational AI that scales infinitely.'}
             </p>
             <div className="flex space-x-4">
-              <a href="https://linkedin.com/company/cognia-ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
+              <a href="https://www.linkedin.com/company/cognia-ai-usa/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
                 <FaLinkedin size={20} />
               </a>
-              <a href="https://instagram.com/cognia_ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
+              <a href="https://www.instagram.com/cognia.ai/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
                 <FaInstagram size={20} />
-              </a>
-              <a href="https://github.com/AICognia" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
-                <FaGithub size={20} />
-              </a>
-              <a href="mailto:admin@cogniaai.com" className="text-gray-400 hover:text-[#162B4D] transition-colors">
-                <FaEnvelope size={20} />
               </a>
             </div>
           </div>
@@ -89,18 +83,6 @@ const Footer: React.FC = () => {
               >
                 Privacy Policy
               </Link>
-              <button 
-                className="text-sm text-gray-400 hover:text-[#162B4D] transition-colors cursor-pointer"
-                onClick={(e) => e.preventDefault()}
-              >
-                Terms of Service
-              </button>
-              <button 
-                className="text-sm text-gray-400 hover:text-[#162B4D] transition-colors cursor-pointer"
-                onClick={(e) => e.preventDefault()}
-              >
-                Security
-              </button>
             </div>
           </div>
         </div>
