@@ -7,11 +7,11 @@ interface WaveAnimationProps {
 }
 
 const WaveAnimation: React.FC<WaveAnimationProps> = ({ 
-  color = '#06b6d4',
-  opacity = 0.1 
+  color = '#94a3b8', // Subtle gray
+  opacity = 0.05 // Much more subtle
 }) => {
   return (
-    <div className="absolute inset-x-0 bottom-0 h-32 overflow-hidden pointer-events-none">
+    <div className="absolute inset-x-0 bottom-0 h-24 overflow-hidden pointer-events-none">
       <svg className="absolute bottom-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 120">
         <motion.path
           d="M0,20 C480,120 960,120 1440,20 L1440,120 L0,120 Z"
@@ -25,7 +25,7 @@ const WaveAnimation: React.FC<WaveAnimationProps> = ({
             ]
           }}
           transition={{
-            duration: 10,
+            duration: 20, // Slower, more professional
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -42,7 +42,7 @@ const WaveAnimation: React.FC<WaveAnimationProps> = ({
             ]
           }}
           transition={{
-            duration: 8,
+            duration: 16, // Slower
             repeat: Infinity,
             ease: "easeInOut",
             delay: 0.5
@@ -60,7 +60,7 @@ const WaveAnimation: React.FC<WaveAnimationProps> = ({
             ]
           }}
           transition={{
-            duration: 6,
+            duration: 12, // Slower
             repeat: Infinity,
             ease: "easeInOut",
             delay: 1

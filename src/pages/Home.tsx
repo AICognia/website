@@ -93,7 +93,7 @@ const Home: React.FC = () => {
               Never Miss a Call. Book 24/7.
             </h1>
             <p className="text-xl md:text-2xl mb-4 text-cyan-100 max-w-3xl mx-auto">
-              AI Receptionist that answers instantly, books appointments, and never takes a break.
+              AI Receptionist that answers instantly and never takes a break.
             </p>
             
             {/* Value Proposition */}
@@ -126,7 +126,7 @@ const Home: React.FC = () => {
           </motion.div>
         </div>
         {/* Animated Wave at bottom */}
-        <WaveAnimation color="#0891b2" opacity={0.15} />
+        <WaveAnimation />
       </section>
 
       {/* ROI Calculator Section */}

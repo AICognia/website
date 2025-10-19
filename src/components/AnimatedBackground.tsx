@@ -24,9 +24,9 @@ const AnimatedBackground: React.FC = () => {
       constructor(canvasWidth: number, canvasHeight: number) {
         this.x = Math.random() * canvasWidth;
         this.y = Math.random() * canvasHeight;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 2 + 1;
+        this.vx = (Math.random() - 0.5) * 0.2; // Slower movement
+        this.vy = (Math.random() - 0.5) * 0.2; // Slower movement
+        this.radius = Math.random() * 1.5 + 0.5; // Smaller particles
       }
 
       update(canvasWidth: number, canvasHeight: number) {
@@ -42,14 +42,14 @@ const AnimatedBackground: React.FC = () => {
         if (!ctx) return;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(6, 182, 212, 0.8)'; // cyan-500
+        ctx.fillStyle = 'rgba(148, 163, 184, 0.3)'; // Subtle gray-blue
         ctx.fill();
       }
     }
 
     // Create particles
     const particles: Particle[] = [];
-    const particleCount = 50;
+    const particleCount = 25; // Fewer particles for cleaner look
     
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle(canvas.width, canvas.height));
@@ -75,12 +75,12 @@ const AnimatedBackground: React.FC = () => {
             Math.pow(particle.y - otherParticle.y, 2)
           );
 
-          if (distance < 150) {
+          if (distance < 120) { // Shorter connection distance
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = `rgba(6, 182, 212, ${0.2 * (1 - distance / 150)})`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(148, 163, 184, ${0.1 * (1 - distance / 120)})`; // Very subtle gray
+            ctx.lineWidth = 0.3; // Thinner lines
             ctx.stroke();
           }
         });
@@ -108,7 +108,7 @@ const AnimatedBackground: React.FC = () => {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none"
-      style={{ opacity: 0.3 }}
+      style={{ opacity: 0.15 }} // Much more subtle
     />
   );
 };
