@@ -14,8 +14,6 @@ const Solutions = lazy(() => import('./pages/Solutions'));
 const Company = lazy(() => import('./pages/Company'));
 const Contact = lazy(() => import('./pages/Contact'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
-const Healthcare = lazy(() => import('./pages/Healthcare'));
-const Hospitality = lazy(() => import('./pages/Hospitality'));
 
 // Scroll to top component
 function ScrollToTop() {
@@ -41,8 +39,6 @@ function AppContent() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/solutions" element={<Solutions />} />
-            <Route path="/healthcare" element={<Healthcare />} />
-            <Route path="/hospitality" element={<Hospitality />} />
             <Route path="/company" element={<Company />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

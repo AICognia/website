@@ -272,61 +272,74 @@ const Solutions: React.FC = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Benefits Section - Enhanced Design */}
       <section className="py-32 bg-gray-900 relative overflow-hidden">
         <GridPattern className="opacity-10" />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-3xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                {language === 'tr' ? 'Neden Cognia AI?' : 'Why Choose Cognia AI?'}
-              </h2>
-              <p className="text-lg text-gray-400 mb-8">
-                {language === 'tr'
-                  ? 'İşletmenizi büyütürken maliyetleri düşürün, müşteri memnuniyetini artırın.'
-                  : 'Reduce costs while growing your business and increasing customer satisfaction.'}
-              </p>
-              
-              <div className="space-y-4">
-                {[
-                  {
-                    stat: '87%',
-                    label: language === 'tr' ? 'Daha Yüksek Dönüşüm' : 'Higher Conversion'
-                  },
-                  {
-                    stat: '24/7',
-                    label: language === 'tr' ? 'Kesintisiz Hizmet' : 'Always Available'
-                  },
-                  {
-                    stat: '60%',
-                    label: language === 'tr' ? 'Maliyet Tasarrufu' : 'Cost Reduction'
-                  },
-                  {
-                    stat: '0.5s',
-                    label: language === 'tr' ? 'Yanıt Süresi' : 'Response Time'
-                  }
-                ].map((benefit, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex items-center gap-4"
-                  >
-                    <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
-                      {benefit.stat}
-                    </div>
-                    <div className="text-gray-400">{benefit.label}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
 
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              {language === 'tr' ? 'Neden Cognia AI?' : 'Why Choose Cognia AI?'}
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              {language === 'tr'
+                ? 'İşletmenizi büyütürken maliyetleri düşürün, müşteri memnuniyetini artırın.'
+                : 'Transform your customer service with AI that delivers measurable results.'}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                stat: '87%',
+                label: language === 'tr' ? 'Dönüşüm Artışı' : 'Conversion Rate',
+                description: language === 'tr' ? 'Müşteri dönüşümünde artış' : 'Increase in customer conversion',
+                color: 'from-cyan-500 to-teal-500',
+                icon: '📈'
+              },
+              {
+                stat: '24/7',
+                label: language === 'tr' ? 'Kesintisiz Hizmet' : 'Always Available',
+                description: language === 'tr' ? 'Gece gündüz aktif' : 'Never miss a call',
+                color: 'from-purple-500 to-pink-500',
+                icon: '🌍'
+              },
+              {
+                stat: '60%',
+                label: language === 'tr' ? 'Maliyet Azalışı' : 'Cost Reduction',
+                description: language === 'tr' ? 'Operasyonel maliyetlerde düşüş' : 'Lower operational costs',
+                color: 'from-green-500 to-emerald-500',
+                icon: '💰'
+              },
+              {
+                stat: '0.5s',
+                label: language === 'tr' ? 'Yanıt Süresi' : 'Response Time',
+                description: language === 'tr' ? 'Anında müşteri yanıtı' : 'Instant customer response',
+                color: 'from-orange-500 to-red-500',
+                icon: '⚡'
+              }
+            ].map((benefit, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <GlassCard className="p-8 h-full text-center hover:scale-105 transition-transform duration-300">
+                  <div className="text-4xl mb-4">{benefit.icon}</div>
+                  <div className={`text-5xl font-bold bg-gradient-to-r ${benefit.color} bg-clip-text text-transparent mb-3`}>
+                    {benefit.stat}
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">{benefit.label}</h3>
+                  <p className="text-gray-400 text-sm">{benefit.description}</p>
+                </GlassCard>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -352,14 +365,16 @@ const Solutions: React.FC = () => {
                 ? '48 saat içinde kurulum, anında sonuç'
                 : 'Setup in 48 hours, immediate results'}
           </p>
-          <Link
-            to="/contact"
+          <a
+            href="https://calendly.com/emrebenian-cogniaai/30min"
+            target="_blank"
+            rel="noopener noreferrer"
               className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold text-lg rounded-xl hover:shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105"
           >
-              <span>{language === 'tr' ? 'Ücretsiz Demo' : 'Free Demo'}</span>
+              <span>{language === 'tr' ? 'Ücretsiz Demo' : 'Schedule Free Demo'}</span>
               <FaPhone className="group-hover:rotate-12 transition-transform" />
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-400 to-pink-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity -z-10" />
-          </Link>
+          </a>
           </motion.div>
         </div>
       </section>

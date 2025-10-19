@@ -60,18 +60,28 @@ const Home: React.FC = () => {
         ]}
       />
       
-      {/* Hero Section - Ultra Modern Design */}
+      {/* Hero Section - Maximum Tech Futuristic Design */}
       <section className="relative min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white overflow-hidden flex items-center">
-        {/* Particle Network Background */}
-        <div className="absolute inset-0 opacity-50">
+        {/* Animated Tech Background Layers */}
+        <div className="absolute inset-0 opacity-30">
           <ParticleNetwork />
         </div>
-        
-        {/* Grid Pattern */}
-        <GridPattern className="opacity-10" />
-        
-        {/* Gradient Orbs */}
+
+        {/* Animated Grid Pattern */}
+        <GridPattern className="opacity-20 animate-pulse-subtle" />
+
+        {/* Dynamic Gradient Orbs */}
         <GradientOrbs />
+
+        {/* Holographic Effect Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/10 via-transparent to-purple-900/10 animate-gradient-slow" />
+
+        {/* Tech Lines Animation */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent animate-pulse" />
+          <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-purple-500/20 to-transparent animate-pulse animation-delay-200" />
+          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-teal-500/20 to-transparent animate-pulse animation-delay-400" />
+        </div>
         
         <div className="relative container mx-auto px-6 py-20">
           {/* Main Content */}
@@ -82,34 +92,66 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-center"
             >
-              {/* Badge */}
+              {/* Enhanced Tech Badge with Animation */}
           <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-8"
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-900/20 to-purple-900/20 border border-cyan-500/30 backdrop-blur-xl mb-10"
               >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-                </span>
-                <span className="text-cyan-300 text-sm font-medium">AI-Powered Reception</span>
+                <div className="relative">
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-50 animation-delay-200"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-gradient-to-r from-cyan-400 to-teal-400"></span>
+                  </span>
+                </div>
+                <span className="text-cyan-300 text-sm font-semibold tracking-wider uppercase">Enterprise AI Technology</span>
+                <span className="text-cyan-500/50">|</span>
+                <span className="text-gray-400 text-xs">v2.0</span>
               </motion.div>
-              
-              {/* Main Headline */}
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8">
-                <span className="block bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">
-                  Never Miss
-                </span>
-                <span className="block bg-gradient-to-r from-cyan-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
-                  Another Call
-                </span>
+
+              {/* Futuristic Main Headline with Glitch Effect */}
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 relative">
+                <motion.span
+                  className="block bg-gradient-to-b from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  AI That Answers
+                </motion.span>
+                <motion.span
+                  className="block relative"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    Every Call
+                  </span>
+                  {/* Animated underline */}
+                  <motion.div
+                    className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 1, delay: 0.8 }}
+                  />
+                </motion.span>
               </h1>
               
-              {/* Subheadline */}
-              <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
-                AI receptionist that answers instantly and schedules appointments.
-              </p>
+              {/* Enhanced Subheadline with Tech Details */}
+              <motion.p
+                className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                Enterprise-grade conversational AI with{" "}
+                <span className="text-cyan-400 font-semibold">natural language processing</span>,{" "}
+                <span className="text-blue-400 font-semibold">real-time scheduling</span>, and{" "}
+                <span className="text-purple-400 font-semibold">CRM integration</span>.
+              </motion.p>
               
               {/* Stats Row - Enhanced Design */}
               <motion.div
@@ -155,7 +197,7 @@ const Home: React.FC = () => {
                   className="group inline-flex items-center justify-center gap-2 px-8 py-4 min-w-[200px] bg-white/5 backdrop-blur-xl border border-white/10 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300"
                 >
                   <FaPhone className="text-cyan-400" />
-                  <span>Call Receptionist</span>
+                  <span>Call AI Receptionist</span>
                 </a>
               </motion.div>
             </motion.div>
@@ -476,72 +518,85 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Final CTA Section - Modern */}
+      {/* Final CTA Section - Professional Enterprise */}
       <section className="relative py-32 bg-gradient-to-b from-gray-950 via-gray-900 to-black overflow-hidden">
         <GradientOrbs />
-        
+
+        {/* Tech Grid Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
+        </div>
+
         <div className="relative container mx-auto px-6 z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-5xl mx-auto text-center"
           >
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-              <span className="block bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                Ready to
+            {/* Professional Headline */}
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
+              <span className="block bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
+                Transform Your
               </span>
-              <span className="block bg-gradient-to-r from-cyan-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
-                10x Your Business?
+              <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Customer Experience
               </span>
             </h2>
-            <p className="text-xl md:text-2xl mb-12 text-gray-400">
-              Join 1,000+ businesses capturing every opportunity
+            <p className="text-xl md:text-2xl mb-16 text-gray-300 max-w-3xl mx-auto">
+              Deploy enterprise-grade AI reception technology in 48 hours.
+              <span className="block mt-2 text-gray-400">No infrastructure required. Immediate ROI.</span>
             </p>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <motion.a 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+
+            {/* Professional CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <motion.a
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
                 href="https://calendly.com/emrebenian-cogniaai/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold text-lg rounded-xl hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
+                className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-lg rounded-xl hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
               >
-                <span>Get Started Now</span>
+                <span>Schedule Demo</span>
                 <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-teal-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity -z-10" />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity -z-10" />
               </motion.a>
-              
-              <div className="text-gray-500 px-4">or</div>
-              
-              <a
-                href="tel:+16163263328"
-                className="inline-flex items-center gap-3 px-8 py-4 text-gray-300 font-medium hover:text-white transition-colors"
-              >
-                <FaPhone className="text-cyan-400" />
-                <span>Call us at +1 616 326-3328</span>
-              </a>
+
+              <div className="flex items-center gap-4">
+                <span className="text-gray-500">or</span>
+                <div className="flex flex-col items-start">
+                  <span className="text-xs text-gray-500 uppercase tracking-wider mb-1">Experience Live AI</span>
+                  <a
+                    href="tel:+16163263328"
+                    className="inline-flex items-center gap-2 text-cyan-400 font-semibold hover:text-cyan-300 transition-colors"
+                  >
+                    <FaPhone className="text-sm" />
+                    <span>+1 616 326-3328</span>
+                  </a>
+                </div>
+              </div>
             </div>
-            
-            {/* Trust Badges */}
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
-              <div className="flex items-center gap-2">
-                <FaCheckCircle className="text-green-500" />
-                <span>Free Setup</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <FaCheckCircle className="text-green-500" />
-                <span>No Credit Card</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <FaCheckCircle className="text-green-500" />
-                <span>Cancel Anytime</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <FaCheckCircle className="text-green-500" />
-                <span>ROI Guaranteed</span>
+
+            {/* Professional Trust Indicators */}
+            <div className="mt-16 pt-8 border-t border-gray-800">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                  <div className="text-2xl font-bold text-cyan-400">48h</div>
+                  <div className="text-sm text-gray-500">Setup Time</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-blue-400">99.9%</div>
+                  <div className="text-sm text-gray-500">Uptime SLA</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-purple-400">SOC2</div>
+                  <div className="text-sm text-gray-500">Compliant</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-green-400">HIPAA</div>
+                  <div className="text-sm text-gray-500">Ready</div>
+                </div>
               </div>
             </div>
           </motion.div>
