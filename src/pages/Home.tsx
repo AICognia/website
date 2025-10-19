@@ -1,14 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaRobot, FaPhone, FaChartLine, FaShieldAlt } from 'react-icons/fa';
+import { FaArrowRight, FaPhone, FaChartLine, FaCheckCircle, FaGlobe, FaLock } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import ROICalculator from '../components/ROICalculator';
 import { structuredDataTemplates } from '../config/seoConfig';
-import AnimatedBackground from '../components/AnimatedBackground';
-import FloatingTechElements from '../components/FloatingTechElements';
-import DataFlowVisualization from '../components/DataFlowVisualization';
-import TechGrid from '../components/TechGrid';
-import WaveAnimation from '../components/WaveAnimation';
+import GradientOrbs from '../components/GradientOrbs';
+import GridPattern from '../components/GridPattern';
+import GlassCard from '../components/GlassCard';
 
 const Home: React.FC = () => {
   
@@ -56,340 +54,493 @@ const Home: React.FC = () => {
         ]}
       />
       
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-cyan-900 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        {/* Animated Tech Background */}
-        <AnimatedBackground />
-        <FloatingTechElements />
-        {/* Abstract Pattern Background */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-400 rounded-full filter blur-3xl"></div>
-        </div>
-        <div className="relative container mx-auto px-6 py-24 md:py-32">
-          {/* Logo Hero - Enlarged and Enhanced */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, type: "spring", bounce: 0.4 }}
-            className="flex justify-center mb-12"
-          >
-            <div className="bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-2xl border border-white/20">
-              <img 
-                src="/cognia_logo_final.svg" 
-                alt="Cognia AI" 
-                className="h-32 md:h-40 w-auto"
-              />
-            </div>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto text-center"
-          >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
-              Never Miss a Call. Book 24/7.
-            </h1>
-            <p className="text-xl md:text-2xl mb-4 text-cyan-100 max-w-3xl mx-auto">
-              AI Receptionist that answers instantly and never takes a break.
-            </p>
-            
-            {/* Value Proposition */}
-            <div className="bg-cyan-800/30 backdrop-blur rounded-xl p-6 mb-8 max-w-2xl mx-auto border border-cyan-500/30">
-              <p className="text-2xl md:text-3xl font-bold text-cyan-300 mb-2">
-                10-20% more customers, guaranteed.
-              </p>
-              <p className="text-lg text-cyan-200">
-                Every missed call = Lost revenue. We never miss.
-              </p>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a 
-                href="https://calendly.com/emrebenian-cogniaai/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-600 to-cyan-500 text-white font-bold rounded-lg hover:from-cyan-700 hover:to-cyan-600 transition-all transform hover:scale-105 shadow-xl"
-              >
-                Book a Call
-                <FaArrowRight className="ml-2" />
-              </a>
-              <a 
-                href="tel:+16163263328"
-                className="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-cyan-900 transition-all"
-              >
-                Call AI Receptionist: +1 616 326-3328
-              </a>
-            </div>
-          </motion.div>
-        </div>
-        {/* Animated Wave at bottom */}
-        <WaveAnimation />
-      </section>
-
-      {/* ROI Calculator Section */}
-      <section className="relative bg-gradient-to-br from-teal-700 via-cyan-700 to-blue-800 py-16 overflow-hidden">
-        {/* Tech Grid Animation */}
-        <TechGrid />
-        {/* Animated background effect */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-1/4 w-72 h-72 bg-cyan-300 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-blue-300 rounded-full filter blur-3xl"></div>
-        </div>
+      {/* Hero Section - Modern Design */}
+      <section className="relative min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white overflow-hidden flex items-center">
+        {/* Grid Pattern */}
+        <GridPattern className="opacity-20" />
         
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center">
+        {/* Gradient Orbs */}
+        <GradientOrbs />
+        
+        <div className="relative container mx-auto px-6 py-20">
+          {/* Main Content */}
+          <div className="max-w-6xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center"
-            >              
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 text-center max-w-5xl">
-                Calculate How Much Revenue You're Losing to Missed Calls
-              </h2>
-              
-              {/* Decorative divider */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-px w-16 bg-gradient-to-r from-transparent to-cyan-300"></div>
-                <div className="h-2 w-2 bg-cyan-300 rounded-full animate-pulse"></div>
-                <div className="h-px w-16 bg-gradient-to-l from-transparent to-cyan-300"></div>
-              </div>
-              
-              {/* Subheadline with enhanced styling */}
-              <motion.p 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                className="text-lg md:text-2xl text-cyan-100 mb-8 text-center max-w-3xl font-light"
-              >
-                And see how much <span className="font-semibold text-white">Cognia AI</span> can recover for you
-              </motion.p>
-            </motion.div>
-            
-            {/* Calculator Display - Always Visible */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-8 max-w-6xl mx-auto"
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-center"
             >
-              <ROICalculator />
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-8"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                </span>
+                <span className="text-cyan-300 text-sm font-medium">AI-Powered Reception</span>
+              </motion.div>
+              
+              {/* Main Headline */}
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8">
+                <span className="block bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">
+                  Never Miss
+                </span>
+                <span className="block bg-gradient-to-r from-cyan-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
+                  Another Call
+                </span>
+              </h1>
+              
+              {/* Subheadline */}
+              <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
+                AI receptionist that answers instantly, schedules appointments, and grows your business 24/7.
+              </p>
+              
+              {/* Stats Row */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto mb-12"
+              >
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-white mb-1">0.5s</div>
+                  <div className="text-sm text-gray-500">Response Time</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-white mb-1">24/7</div>
+                  <div className="text-sm text-gray-500">Availability</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-white mb-1">87%</div>
+                  <div className="text-sm text-gray-500">Booking Rate</div>
+                </div>
+              </motion.div>
+              
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center"
+              >
+                <a
+                  href="https://calendly.com/emrebenian-cogniaai/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105"
+                >
+                  <span>Start Free Trial</span>
+                  <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-teal-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity -z-10" />
+                </a>
+                
+                <a
+                  href="tel:+16163263328"
+                  className="group inline-flex items-center gap-2 px-8 py-4 bg-white/5 backdrop-blur-xl border border-white/10 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300"
+                >
+                  <FaPhone className="text-cyan-400" />
+                  <span>+1 616 326-3328</span>
+                  <span className="text-xs text-gray-500">Try our AI</span>
+                </a>
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Voice Agent Demo - Clean Design */}
-      <section className="bg-gradient-to-br from-cyan-900 via-teal-800 to-cyan-900 py-20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
+      {/* ROI Calculator Section - Modern */}
+      <section className="relative bg-gray-900 py-32 overflow-hidden">
+        <GridPattern className="opacity-10" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              See Your ROI
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Calculate how much revenue you're losing to missed calls and see what Cognia AI can recover
+            </p>
+          </motion.div>
+            
+          {/* Calculator in Glass Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="max-w-6xl mx-auto"
+          >
+            <GlassCard className="p-8">
+              <ROICalculator />
+            </GlassCard>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Voice Agent Demo - Modern Design */}
+      <section className="bg-gray-950 py-32 relative overflow-hidden">
+        <GradientOrbs />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
+              className="text-center"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
-                Try It Yourself - Call Our AI Receptionist
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                Experience It Live
               </h2>
-              
-              <motion.a 
-                href="tel:+16163263328"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center px-10 py-5 bg-white text-cyan-900 font-bold text-xl rounded-full hover:shadow-2xl transition-all"
-              >
-                <FaPhone className="mr-3" />
-                +1 616 326-3328
-              </motion.a>
-              
-              <p className="text-cyan-200 mt-6 text-sm">
-                This is a live demo showcasing our AI technology
+              <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+                Call our AI receptionist right now. No demos, no sales pitch - just real conversation.
               </p>
+              
+              {/* Phone Card */}
+              <GlassCard className="max-w-2xl mx-auto p-12">
+                <div className="text-center">
+                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500 to-teal-500 mb-6">
+                    <FaPhone className="text-3xl text-white animate-pulse" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-semibold text-white mb-2">Call Our AI</h3>
+                  
+                  <motion.a 
+                    href="tel:+16163263328"
+                    className="inline-block text-4xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent mb-4 hover:scale-105 transition-transform"
+                  >
+                    +1 616 326-3328
+                  </motion.a>
+                  
+                  <p className="text-gray-400 text-sm">
+                    Available 24/7 • Average wait time: 0.5 seconds
+                  </p>
+                  
+                  {/* Live indicator */}
+                  <div className="flex items-center justify-center gap-2 mt-6">
+                    <span className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <span className="text-green-400 text-sm font-medium">Live Now</span>
+                  </div>
+                </div>
+              </GlassCard>
             </motion.div>
           </div>
         </div>
       </section>
 
 
-      {/* Key Features */}
-      <section className="py-20 bg-white relative overflow-hidden">
-        {/* Data Flow Visualization */}
-        <DataFlowVisualization />
+      {/* Features - Bento Grid */}
+      <section className="py-32 bg-gray-950 relative overflow-hidden">
+        <GridPattern className="opacity-10" />
+        
         <div className="container mx-auto px-6 relative z-10">
           <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Why Choose Cognia AI
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              Built for Modern Business
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Technology solutions that deliver results
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Enterprise-grade AI that scales with your needs
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: <FaRobot />,
-                title: 'Advanced AI',
-                description: 'State-of-the-art NLP and machine learning'
-              },
-              {
-                icon: <FaPhone />,
-                title: 'Omnichannel',
-                description: 'Voice, chat, and messaging in one platform'
-              },
-              {
-                icon: <FaChartLine />,
-                title: 'Scalable',
-                description: 'Handle millions of conversations instantly'
-              },
-              {
-                icon: <FaShieldAlt />,
-                title: 'Security',
-                description: 'Enterprise-grade data protection'
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-white to-slate-50 p-8 rounded-xl hover:shadow-xl transition-all border border-slate-200 hover:border-cyan-600"
-              >
-                <div className="text-4xl text-cyan-700 mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-      <section className="py-20 bg-gradient-to-br from-cyan-50 via-white to-teal-50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
+          {/* Bento Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {/* Large Card - Spans 2 columns */}
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="md:col-span-2 lg:col-span-2"
             >
-              <div className="inline-flex items-center bg-green-100 px-4 py-2 rounded-full mb-4">
-                <span className="text-sm font-semibold text-green-700">📈 PROVEN RESULTS</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Real ROI, Real Results
-            </h2>
-              <p className="text-xl text-gray-600">
-                Quick setup, immediate revenue growth
-              </p>
+              <GlassCard className="h-full p-8">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-cyan-500 to-teal-500">
+                    <FaPhone className="text-2xl text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-white mb-3">Instant Response</h3>
+                    <p className="text-gray-400 mb-4">
+                      Answer every call in 0.5 seconds. No hold times, no voicemail, no missed opportunities.
+                    </p>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-white/5 rounded-lg p-3">
+                        <div className="text-2xl font-bold text-cyan-400">0.5s</div>
+                        <div className="text-sm text-gray-500">Avg Response</div>
+                      </div>
+                      <div className="bg-white/5 rounded-lg p-3">
+                        <div className="text-2xl font-bold text-cyan-400">99.9%</div>
+                        <div className="text-sm text-gray-500">Uptime</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </GlassCard>
             </motion.div>
-            <div className="grid md:grid-cols-3 gap-8">
-              <motion.div 
-                whileInView={{ scale: [0.9, 1] }}
-                transition={{ duration: 0.5 }}
-                className="bg-gradient-to-br from-cyan-700 to-cyan-600 p-8 rounded-2xl text-white shadow-xl"
-              >
-                <div className="text-5xl font-bold mb-3">10-20%</div>
-                <h3 className="text-xl font-semibold mb-2">More Customers</h3>
-                <p className="text-green-100">Book appointments 24/7, including nights & weekends</p>
-                <div className="mt-4 text-sm text-green-200">
-                  Guaranteed revenue increase
+
+            {/* Medium Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <GlassCard className="h-full p-8">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 w-fit mb-4">
+                  <FaGlobe className="text-2xl text-white" />
                 </div>
-              </motion.div>
-              <motion.div 
-                whileInView={{ scale: [0.9, 1] }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-gradient-to-br from-blue-500 to-indigo-600 p-8 rounded-2xl text-white shadow-xl"
-              >
-                <div className="text-5xl font-bold mb-3">87%</div>
-                <h3 className="text-xl font-semibold mb-2">Conversion Rate</h3>
-                <p className="text-blue-100">Of callers successfully book appointments</p>
-                <div className="mt-4 text-sm text-blue-200">
-                  Never lose a customer
+                <h3 className="text-xl font-bold text-white mb-3">20+ Languages</h3>
+                <p className="text-gray-400 mb-4">
+                  Serve global customers in their native language automatically.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {['English', 'Spanish', 'French', 'Chinese'].map((lang) => (
+                    <span key={lang} className="px-3 py-1 rounded-full bg-white/10 text-xs text-gray-300">
+                      {lang}
+                    </span>
+                  ))}
                 </div>
-              </motion.div>
-              <motion.div 
-                whileInView={{ scale: [0.9, 1] }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-gradient-to-br from-purple-500 to-pink-600 p-8 rounded-2xl text-white shadow-xl"
-              >
-                <div className="text-5xl font-bold mb-3">$45K</div>
-                <h3 className="text-xl font-semibold mb-2">Additional Revenue</h3>
-                <p className="text-purple-100">Average annual revenue increase per business</p>
-                <div className="mt-4 text-sm text-purple-200">
-                  Turn missed calls into revenue
+              </GlassCard>
+            </motion.div>
+
+            {/* Small Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <GlassCard className="h-full p-8">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 w-fit mb-4">
+                  <FaChartLine className="text-2xl text-white" />
                 </div>
-              </motion.div>
-            </div>
+                <h3 className="text-xl font-bold text-white mb-3">Analytics</h3>
+                <p className="text-gray-400">
+                  Real-time insights into every interaction, conversion, and opportunity.
+                </p>
+              </GlassCard>
+            </motion.div>
+
+            {/* Small Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <GlassCard className="h-full p-8">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 w-fit mb-4">
+                  <FaCheckCircle className="text-2xl text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Smart Scheduling</h3>
+                <p className="text-gray-400">
+                  Book appointments directly into your calendar. No double-booking.
+                </p>
+              </GlassCard>
+            </motion.div>
+
+            {/* Wide Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="lg:col-span-2"
+            >
+              <GlassCard className="h-full p-8">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 w-fit mb-4">
+                      <FaLock className="text-2xl text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">Enterprise Security</h3>
+                    <p className="text-gray-400">
+                      SOC 2 compliant, HIPAA ready, end-to-end encryption.
+                    </p>
+                  </div>
+                  <div className="hidden lg:flex gap-2">
+                    {['SOC 2', 'HIPAA', 'GDPR'].map((cert) => (
+                      <div key={cert} className="px-4 py-2 bg-white/5 rounded-lg border border-white/10">
+                        <span className="text-sm font-medium text-gray-300">{cert}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </GlassCard>
+            </motion.div>
           </div>
         </div>
       </section>
 
 
-      {/* Process Section - MOVED UP FOR BETTER FLOW */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900">
-              How We Get Started
+      {/* Results Section - Modern */}
+      <section className="py-32 bg-gray-900 relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              <span className="text-green-400 text-sm font-medium">Proven Results</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              Real Impact, Real Growth
             </h2>
-            <p className="text-xl text-center mb-16 text-gray-600">
-              Your AI assistant ready in 3 simple steps
+            <p className="text-xl text-gray-400">
+              Numbers that speak for themselves
             </p>
-            <div className="grid md:grid-cols-3 gap-8">
+          </motion.div>
+          
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <GlassCard className="h-full p-8 text-center">
+                <div className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent mb-3">
+                  10-20%
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">Revenue Growth</h3>
+                <p className="text-gray-400">Capture every opportunity, 24/7</p>
+              </GlassCard>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <GlassCard className="h-full p-8 text-center">
+                <div className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-3">
+                  87%
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">Booking Rate</h3>
+                <p className="text-gray-400">Turn calls into customers</p>
+              </GlassCard>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <GlassCard className="h-full p-8 text-center">
+                <div className="text-5xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent mb-3">
+                  $45K
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">Avg. Annual Return</h3>
+                <p className="text-gray-400">Per business, guaranteed</p>
+              </GlassCard>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Process Section - Modern Timeline */}
+      <section className="py-32 bg-gray-950 relative overflow-hidden">
+        <GridPattern className="opacity-10" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              Go Live in 48 Hours
+            </h2>
+            <p className="text-xl text-gray-400">
+              From consultation to conversing with customers
+            </p>
+          </motion.div>
+          
+          <div className="max-w-5xl mx-auto">
+            <div className="relative">
+              {/* Timeline Line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-cyan-500/20 via-cyan-500/50 to-cyan-500/20 hidden md:block" />
+              
+              {/* Step 1 */}
               <motion.div
-                whileInView={{ opacity: [0, 1], y: [20, 0] }}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-center"
+                className="flex items-center justify-between mb-16"
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-slate-700 to-cyan-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                <div className="md:w-5/12 text-right md:pr-8">
+                  <GlassCard className="p-6">
+                    <h3 className="text-xl font-semibold text-white mb-2">Consultation</h3>
+                    <p className="text-gray-400">Understand your needs, map your workflows, design your solution</p>
+                  </GlassCard>
+                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-full flex items-center justify-center text-white text-xl font-bold z-10 mx-auto">
                   1
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">
-                  Needs Analysis
-                </h3>
-                <p className="text-gray-600">
-                  We understand your business needs and design a custom solution
-                </p>
+                <div className="md:w-5/12 md:pl-8">
+                  <p className="text-cyan-400 font-medium">Day 1</p>
+                </div>
               </motion.div>
+              
+              {/* Step 2 */}
               <motion.div
-                whileInView={{ opacity: [0, 1], y: [20, 0] }}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-center"
+                className="flex items-center justify-between mb-16"
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-slate-700 to-cyan-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                <div className="md:w-5/12 text-right md:pr-8">
+                  <p className="text-purple-400 font-medium">Day 1-2</p>
+                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-xl font-bold z-10 mx-auto">
                   2
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">
-                  Setup & Integration
-                </h3>
-                <p className="text-gray-600">
-                  We integrate with your systems and set up your AI assistant within 48 hours
-                </p>
+                <div className="md:w-5/12 md:pl-8">
+                  <GlassCard className="p-6">
+                    <h3 className="text-xl font-semibold text-white mb-2">Integration</h3>
+                    <p className="text-gray-400">Connect to your calendar, CRM, and systems seamlessly</p>
+                  </GlassCard>
+                </div>
               </motion.div>
+              
+              {/* Step 3 */}
               <motion.div
-                whileInView={{ opacity: [0, 1], y: [20, 0] }}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-center"
+                className="flex items-center justify-between"
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-slate-700 to-cyan-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                <div className="md:w-5/12 text-right md:pr-8">
+                  <GlassCard className="p-6">
+                    <h3 className="text-xl font-semibold text-white mb-2">Launch</h3>
+                    <p className="text-gray-400">Your AI is live! Start capturing every opportunity</p>
+                  </GlassCard>
+                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-white text-xl font-bold z-10 mx-auto">
                   3
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">
-                  Go Live
-                </h3>
-                <p className="text-gray-600">
-                  Your AI assistant is active! Starting to serve your customers 24/7
-                </p>
+                <div className="md:w-5/12 md:pl-8">
+                  <p className="text-green-400 font-medium">Day 2</p>
+                </div>
               </motion.div>
             </div>
           </div>
@@ -397,26 +548,41 @@ const Home: React.FC = () => {
       </section>
 
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-              Frequently Asked Questions
+      {/* FAQ Section - Modern */}
+      <section className="py-32 bg-gray-900 relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              Questions? Answered.
             </h2>
-            <div className="space-y-6">
+            <p className="text-xl text-gray-400">
+              Everything you need to know to get started
+            </p>
+          </motion.div>
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="space-y-4">
               {[
                 {
-                  q: 'How long does setup take?',
-                  a: 'We set up your system within 48 hours. After analyzing your needs, we configure and activate your AI assistant.'
+                  q: 'How quickly can I go live?',
+                  a: 'Within 48 hours. We analyze, configure, and activate your AI receptionist in just 2 days.'
                 },
                 {
-                  q: 'Which languages do you support?',
-                  a: 'We support over 20 languages. Your AI assistant can communicate naturally in your customers\' preferred language.'
+                  q: 'What languages are supported?',
+                  a: 'Over 20 languages with native-level fluency. Your customers can speak their preferred language naturally.'
                 },
                 {
-                  q: 'Does it integrate with existing systems?',
-                  a: 'Yes, it integrates seamlessly with your CRM, ERP, and other business systems. We provide API support.'
+                  q: 'Will it work with my existing tools?',
+                  a: 'Yes. Seamless integration with your CRM, calendar, and business systems via API or direct connection.'
+                },
+                {
+                  q: 'What about data security?',
+                  a: 'Enterprise-grade security. SOC 2 compliant, HIPAA ready, end-to-end encryption, and full data ownership.'
                 }
               ].map((faq, index) => (
                 <motion.div
@@ -424,14 +590,16 @@ const Home: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white p-6 rounded-xl shadow-md"
                 >
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">
-                    {faq.q}
-                  </h3>
-                  <p className="text-gray-600">
-                    {faq.a}
-                  </p>
+                  <GlassCard className="p-8">
+                    <h3 className="text-xl font-semibold text-white mb-3 flex items-start">
+                      <span className="text-cyan-400 mr-3">{index + 1}.</span>
+                      {faq.q}
+                    </h3>
+                    <p className="text-gray-400 ml-7">
+                      {faq.a}
+                    </p>
+                  </GlassCard>
                 </motion.div>
               ))}
             </div>
@@ -439,40 +607,73 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="relative py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl"></div>
-        </div>
+      {/* Final CTA Section - Modern */}
+      <section className="relative py-32 bg-gradient-to-b from-gray-950 via-gray-900 to-black overflow-hidden">
+        <GradientOrbs />
         
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <motion.div
+        <div className="relative container mx-auto px-6 z-10">
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-10">
-              Ready to Transform Your Business?
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+              <span className="block bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                Ready to
+              </span>
+              <span className="block bg-gradient-to-r from-cyan-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
+                10x Your Business?
+              </span>
             </h2>
+            <p className="text-xl md:text-2xl mb-12 text-gray-400">
+              Join 1,000+ businesses capturing every opportunity
+            </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <motion.a 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href="https://calendly.com/emrebenian-cogniaai/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-12 py-5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold rounded-xl hover:from-cyan-600 hover:to-blue-600 transition-all transform hover:scale-105 text-lg shadow-2xl"
+                className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold text-lg rounded-xl hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
               >
-                Start Free Trial
-                <FaArrowRight className="ml-3" />
-              </a>
+                <span>Get Started Now</span>
+                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-teal-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity -z-10" />
+              </motion.a>
+              
+              <div className="text-gray-500 px-4">or</div>
+              
               <a
                 href="tel:+16163263328"
-                className="inline-flex items-center px-12 py-5 bg-white/10 backdrop-blur border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/20 transition-all text-lg"
+                className="inline-flex items-center gap-3 px-8 py-4 text-gray-300 font-medium hover:text-white transition-colors"
               >
-                Try the AI Receptionist: +1 616 326-3328
+                <FaPhone className="text-cyan-400" />
+                <span>Call us at +1 616 326-3328</span>
               </a>
+            </div>
+            
+            {/* Trust Badges */}
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+              <div className="flex items-center gap-2">
+                <FaCheckCircle className="text-green-500" />
+                <span>Free Setup</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FaCheckCircle className="text-green-500" />
+                <span>No Credit Card</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FaCheckCircle className="text-green-500" />
+                <span>Cancel Anytime</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FaCheckCircle className="text-green-500" />
+                <span>ROI Guaranteed</span>
+              </div>
             </div>
           </motion.div>
         </div>
