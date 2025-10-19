@@ -5,7 +5,6 @@ import {
   FaCheckCircle, FaPhone, FaCalendar, FaChartLine, FaGlobe,
   FaRobot, FaShieldAlt, FaCode 
 } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import SEO from '../components/SEO';
 import GradientOrbs from '../components/GradientOrbs';

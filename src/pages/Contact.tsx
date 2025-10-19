@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  FaPhone, FaEnvelope, FaMapMarkerAlt, FaLinkedin,
+  FaPhone, FaEnvelope, FaLinkedin,
   FaInstagram, FaPaperPlane, FaRocket, FaCheckCircle,
   FaClock, FaGlobe, FaShieldAlt
 } from 'react-icons/fa';

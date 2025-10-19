@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBars, FaTimes, FaPhone, FaChevronDown } from 'react-icons/fa';
+import { FaBars, FaTimes, FaPhone } from 'react-icons/fa';
 import PremiumButton from './PremiumButton';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [showSolutionsDropdown, setShowSolutionsDropdown] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -22,7 +21,6 @@ const Navbar: React.FC = () => {
   // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false);
-    setShowSolutionsDropdown(false);
   }, [location]);
 
   const navItems = [
@@ -64,66 +62,17 @@ const Navbar: React.FC = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
               {navItems.map((item) => (
-                <div key={item.path} className="relative">
-                  {item.dropdown ? (
-                    <div
-                      className="relative"
-                      onMouseEnter={() => setShowSolutionsDropdown(true)}
-                      onMouseLeave={() => setShowSolutionsDropdown(false)}
-                    >
-                      <Link
-                        to={item.path}
-                        className={`flex items-center gap-1 text-lg font-medium transition-all duration-300 hover:text-cyan-400 ${
-                          location.pathname === item.path ||
-                          item.dropdown?.some(sub => location.pathname === sub.path)
-                            ? 'text-cyan-400 text-glow'
-                            : 'text-gray-300'
-                        }`}
-                      >
-                        {item.name}
-                        <FaChevronDown className="text-xs" />
-                      </Link>
-
-                      {/* Dropdown Menu */}
-                      <AnimatePresence>
-                        {showSolutionsDropdown && (
-                          <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.2 }}
-                            className="absolute top-full left-0 mt-2 w-48 glass-effect-strong rounded-xl shadow-xl overflow-hidden"
-                          >
-                            {item.dropdown.map((subItem) => (
-                              <Link
-                                key={subItem.path}
-                                to={subItem.path}
-                                className={`block px-4 py-3 text-sm font-medium transition-all duration-200 ${
-                                  location.pathname === subItem.path
-                                    ? 'bg-cyan-500/20 text-cyan-400'
-                                    : 'text-gray-300 hover:bg-slate-800/50 hover:text-cyan-400'
-                                }`}
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ) : (
-                    <Link
-                      to={item.path}
-                      className={`text-lg font-medium transition-all duration-300 hover:text-cyan-400 ${
-                        location.pathname === item.path
-                          ? 'text-cyan-400 text-glow'
-                          : 'text-gray-300'
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
-                  )}
-                </div>
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`text-lg font-medium transition-all duration-300 hover:text-cyan-400 ${
+                    location.pathname === item.path
+                      ? 'text-cyan-400 text-glow'
+                      : 'text-gray-300'
+                  }`}
+                >
+                  {item.name}
+                </Link>
               ))}
 
               {/* Desktop CTA Buttons */}
@@ -214,26 +163,6 @@ const Navbar: React.FC = () => {
                     >
                       {item.name}
                     </Link>
-
-                    {/* Mobile dropdown items */}
-                    {item.dropdown && (
-                      <div className="ml-8 mt-2 space-y-2">
-                        {item.dropdown.map((subItem) => (
-                          <Link
-                            key={subItem.path}
-                            to={subItem.path}
-                            onClick={() => setIsOpen(false)}
-                            className={`block px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                              location.pathname === subItem.path
-                                ? 'bg-cyan-500/20 text-cyan-400'
-                                : 'text-gray-400 hover:bg-slate-800/50 hover:text-cyan-400'
-                            }`}
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
                   </motion.div>
                 ))}
 
