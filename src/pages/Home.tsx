@@ -4,6 +4,11 @@ import { FaArrowRight, FaRobot, FaPhone, FaChartLine, FaShieldAlt } from 'react-
 import SEO from '../components/SEO';
 import ROICalculator from '../components/ROICalculator';
 import { structuredDataTemplates } from '../config/seoConfig';
+import AnimatedBackground from '../components/AnimatedBackground';
+import FloatingTechElements from '../components/FloatingTechElements';
+import DataFlowVisualization from '../components/DataFlowVisualization';
+import TechGrid from '../components/TechGrid';
+import WaveAnimation from '../components/WaveAnimation';
 
 const Home: React.FC = () => {
   
@@ -54,6 +59,9 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-cyan-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-20"></div>
+        {/* Animated Tech Background */}
+        <AnimatedBackground />
+        <FloatingTechElements />
         {/* Abstract Pattern Background */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400 rounded-full filter blur-3xl"></div>
@@ -117,10 +125,14 @@ const Home: React.FC = () => {
             </div>
           </motion.div>
         </div>
+        {/* Animated Wave at bottom */}
+        <WaveAnimation color="#0891b2" opacity={0.15} />
       </section>
 
       {/* ROI Calculator Section */}
       <section className="relative bg-gradient-to-br from-teal-700 via-cyan-700 to-blue-800 py-16 overflow-hidden">
+        {/* Tech Grid Animation */}
+        <TechGrid />
         {/* Animated background effect */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-1/4 w-72 h-72 bg-cyan-300 rounded-full filter blur-3xl"></div>
@@ -170,38 +182,43 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Voice Agent Demo */}
-      <section className="bg-gradient-to-br from-gray-900 to-gray-800 py-20">
+      {/* Voice Agent Demo - Clean Design */}
+      <section className="bg-gradient-to-br from-cyan-900 via-teal-800 to-cyan-900 py-20">
         <div className="container mx-auto px-6">
-          <div className="text-center">
+          <div className="max-w-3xl mx-auto text-center">
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center bg-green-500 px-6 py-3 rounded-full mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              <div className="w-3 h-3 bg-white rounded-full animate-pulse mr-3"></div>
-              <span className="text-lg font-bold text-white">LIVE DEMO AVAILABLE</span>
-            </motion.div>
-            <h3 className="text-4xl md:text-5xl font-bold text-white mb-10">Try Before You Buy</h3>
-              <motion.div 
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
+                Try It Yourself - Call Our AI Receptionist
+              </h2>
+              
+              <motion.a 
+                href="tel:+16163263328"
                 whileHover={{ scale: 1.05 }}
-              className="inline-block bg-white px-16 py-10 rounded-2xl shadow-2xl"
-            >
-              <p className="text-gray-700 mb-4 font-bold text-xl">Call our AI Receptionist</p>
-              <a href="tel:+16163263328" className="text-4xl font-bold bg-gradient-to-r from-cyan-700 to-cyan-500 bg-clip-text text-transparent hover:from-cyan-800 hover:to-cyan-600 transition-all">
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center px-10 py-5 bg-white text-cyan-900 font-bold text-xl rounded-full hover:shadow-2xl transition-all"
+              >
+                <FaPhone className="mr-3" />
                 +1 616 326-3328
-              </a>
-              <p className="text-gray-500 mt-4 text-sm italic">This is a demo line showcasing our AI technology</p>
-              </motion.div>
+              </motion.a>
+              
+              <p className="text-cyan-200 mt-6 text-sm">
+                This is a live demo showcasing our AI technology
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
 
 
       {/* Key Features */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-20 bg-white relative overflow-hidden">
+        {/* Data Flow Visualization */}
+        <DataFlowVisualization />
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
