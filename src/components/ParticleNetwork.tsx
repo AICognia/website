@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface ParticleNetworkProps {
   particleCount?: number;
@@ -7,6 +7,7 @@ interface ParticleNetworkProps {
   particleSize?: number;
   speed?: number;
   connectionDistance?: number;
+  reduced?: boolean;
 }
 
 const ParticleNetwork: React.FC<ParticleNetworkProps> = ({
@@ -15,26 +16,69 @@ const ParticleNetwork: React.FC<ParticleNetworkProps> = ({
   lineColor = 'rgba(6, 182, 212, 0.15)',
   particleSize = 2,
   speed = 0.3,
-  connectionDistance = 150
+  connectionDistance = 150,
+  reduced = false
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationFrameRef = useRef<number>(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check for reduced motion preference
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+
+    // Check if mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Don't render particles if user prefers reduced motion or on mobile for performance
+    if (prefersReducedMotion || reduced) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    // Set canvas size
+    // Reduce particle count on mobile
+    const actualParticleCount = isMobile ? Math.min(15, particleCount) : particleCount;
+    const actualConnectionDistance = isMobile ? connectionDistance * 0.7 : connectionDistance;
+
+    // Set canvas size with device pixel ratio for crisp rendering
     const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+
+      ctx.scale(dpr, dpr);
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Particle class
+    // Optimized Particle class
     class Particle {
       x: number;
       y: number;
@@ -52,10 +96,11 @@ const ParticleNetwork: React.FC<ParticleNetworkProps> = ({
         this.pulsePhase = Math.random() * Math.PI * 2;
       }
 
-      update(width: number, height: number) {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.pulsePhase += 0.02;
+      update(width: number, height: number, deltaTime: number) {
+        const adjustedSpeed = deltaTime * 60 / 1000; // Normalize to 60 FPS
+        this.x += this.vx * adjustedSpeed;
+        this.y += this.vy * adjustedSpeed;
+        this.pulsePhase += 0.02 * adjustedSpeed;
 
         // Bounce off walls
         if (this.x < 0 || this.x > width) this.vx *= -1;
@@ -67,34 +112,40 @@ const ParticleNetwork: React.FC<ParticleNetworkProps> = ({
       }
 
       draw(ctx: CanvasRenderingContext2D) {
-        const pulseFactor = 1 + Math.sin(this.pulsePhase) * 0.3;
+        const pulseFactor = 1 + Math.sin(this.pulsePhase) * 0.2;
         const currentSize = this.size * pulseFactor;
-        
-        // Glow effect
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = particleColor;
-        
+
+        // Simplified glow effect for performance
+        if (!isMobile) {
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = particleColor;
+        }
+
         ctx.beginPath();
         ctx.arc(this.x, this.y, currentSize, 0, Math.PI * 2);
         ctx.fillStyle = particleColor;
         ctx.fill();
-        
-        ctx.shadowBlur = 0;
+
+        if (!isMobile) {
+          ctx.shadowBlur = 0;
+        }
       }
     }
 
     // Create particles
     const particles: Particle[] = [];
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle(canvas.width, canvas.height));
+    const rect = canvas.getBoundingClientRect();
+    for (let i = 0; i < actualParticleCount; i++) {
+      particles.push(new Particle(rect.width, rect.height));
     }
 
-    // Mouse interaction
+    // Mouse interaction (desktop only)
     let mouseX = 0;
     let mouseY = 0;
     let isMouseInCanvas = false;
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (isMobile) return;
       const rect = canvas.getBoundingClientRect();
       mouseX = e.clientX - rect.left;
       mouseY = e.clientY - rect.top;
@@ -105,73 +156,103 @@ const ParticleNetwork: React.FC<ParticleNetworkProps> = ({
       isMouseInCanvas = false;
     };
 
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mouseleave', handleMouseLeave);
+    if (!isMobile) {
+      canvas.addEventListener('mousemove', handleMouseMove);
+      canvas.addEventListener('mouseleave', handleMouseLeave);
+    }
 
-    // Animation loop
-    const animate = () => {
+    let lastTime = performance.now();
+
+    // Optimized animation loop
+    const animate = (currentTime: number) => {
+      const deltaTime = currentTime - lastTime;
+      lastTime = currentTime;
+
+      const rect = canvas.getBoundingClientRect();
+
+      // Clear canvas with fade effect
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, rect.width, rect.height);
 
       // Update and draw particles
       particles.forEach(particle => {
-        particle.update(canvas.width, canvas.height);
-        
-        // Mouse repulsion
-        if (isMouseInCanvas) {
+        particle.update(rect.width, rect.height, deltaTime);
+
+        // Mouse repulsion (desktop only)
+        if (!isMobile && isMouseInCanvas) {
           const dx = mouseX - particle.x;
           const dy = mouseY - particle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           if (distance < 100) {
             const force = (100 - distance) / 100;
-            particle.vx -= (dx / distance) * force * 0.5;
-            particle.vy -= (dy / distance) * force * 0.5;
+            particle.vx -= (dx / distance) * force * 0.3;
+            particle.vy -= (dy / distance) * force * 0.3;
           }
         }
       });
 
-      // Draw connections
+      // Draw connections (optimize by reducing checks)
+      ctx.strokeStyle = lineColor;
+      ctx.lineWidth = 0.5;
+
       for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
+        // Limit connection checks for performance
+        const maxConnections = isMobile ? 2 : 3;
+        let connections = 0;
+
+        for (let j = i + 1; j < particles.length && connections < maxConnections; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < connectionDistance) {
-            const opacity = 1 - distance / connectionDistance;
-            ctx.strokeStyle = lineColor.replace('0.15', (opacity * 0.15).toString());
-            ctx.lineWidth = 0.5;
+          if (distance < actualConnectionDistance) {
+            const opacity = 1 - distance / actualConnectionDistance;
+            ctx.globalAlpha = opacity * 0.3;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
+            connections++;
           }
         }
       }
+
+      ctx.globalAlpha = 1;
 
       // Draw particles on top
       particles.forEach(particle => {
         particle.draw(ctx);
       });
 
-      requestAnimationFrame(animate);
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    animate(performance.now());
 
     // Cleanup
     return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
       window.removeEventListener('resize', resizeCanvas);
-      canvas.removeEventListener('mousemove', handleMouseMove);
-      canvas.removeEventListener('mouseleave', handleMouseLeave);
+      if (!isMobile) {
+        canvas.removeEventListener('mousemove', handleMouseMove);
+        canvas.removeEventListener('mouseleave', handleMouseLeave);
+      }
     };
-  }, [particleCount, particleColor, lineColor, particleSize, speed, connectionDistance]);
+  }, [particleCount, particleColor, lineColor, particleSize, speed, connectionDistance, prefersReducedMotion, isMobile, reduced]);
+
+  // Don't render canvas if motion is reduced
+  if (prefersReducedMotion || reduced) {
+    return null;
+  }
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 w-full h-full pointer-events-none"
       style={{ background: 'transparent' }}
+      aria-hidden="true"
     />
   );
 };
