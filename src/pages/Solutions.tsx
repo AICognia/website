@@ -1,294 +1,391 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { FaPhone, FaComments, FaCheck, FaArrowRight } from 'react-icons/fa';
+import { 
+  FaHospital, FaHotel, FaStore, FaGraduationCap, FaCar, FaBuilding,
+  FaCheckCircle, FaPhone, FaCalendar, FaChartLine, FaGlobe,
+  FaRobot, FaShieldAlt, FaCode 
+} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import SEO from '../components/SEO';
+import GradientOrbs from '../components/GradientOrbs';
+import GridPattern from '../components/GridPattern';
+import GlassCard from '../components/GlassCard';
+import ParticleNetwork from '../components/ParticleNetwork';
+import NoiseTexture from '../components/NoiseTexture';
 
 const Solutions: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'voice' | 'chatbot'>('voice');
   const { language } = useLanguage();
 
-  const voiceFeatures = language === 'tr' ? [
-    "Doğal dil anlama",
-    "Çoklu dil desteği",
-    "Gerçek zamanlı işleme",
-    "Özel ses sentezi",
-    "Duygu algılama",
-    "Bağlam farkındalığı"
-  ] : [
-    "Natural language understanding",
-    "Multi-language support",
-    "Real-time processing",
-    "Custom voice synthesis",
-    "Emotion detection",
-    "Context awareness"
-  ];
-
-  const chatbotFeatures = language === 'tr' ? [
-    "Çok kanallı dağıtım",
-    "Niyet tanıma",
-    "Otomatik iş akışları",
-    "Zengin medya desteği",
-    "Duygu analizi",
-    "Sorunsuz devir"
-  ] : [
-    "Omnichannel deployment",
-    "Intent recognition",
-    "Automated workflows",
-    "Rich media support",
-    "Sentiment analysis",
-    "Seamless handoff"
-  ];
-
-  const breadcrumbs = [
-    { name: language === 'tr' ? 'Ana Sayfa' : 'Home', url: '/' },
-    { name: language === 'tr' ? 'Çözümler' : 'Solutions', url: '/solutions' }
-  ];
-
-  const serviceStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: language === 'tr' ? 'AI Çözümleri' : 'AI Solutions',
-    description: language === 'tr' 
-      ? 'Kurumsal AI çözümleri: Sesli asistanlar ve chatbotlar' 
-      : 'Enterprise AI solutions: Voice agents and chatbots',
-    provider: {
-      '@type': 'Organization',
-      name: 'Cognia AI'
+  const industries = [
+    {
+      icon: <FaHospital />,
+      title: language === 'tr' ? 'Sağlık' : 'Healthcare',
+      description: language === 'tr' 
+        ? 'Randevu yönetimi, hasta takibi, 24/7 destek'
+        : 'Appointment management, patient follow-up, 24/7 support',
+      features: [
+        language === 'tr' ? 'Otomatik randevu alma' : 'Automated appointment booking',
+        language === 'tr' ? 'Reçete hatırlatmaları' : 'Prescription reminders',
+        language === 'tr' ? 'HIPAA uyumlu' : 'HIPAA compliant'
+      ],
+      color: 'cyan'
     },
-    serviceType: [
-      language === 'tr' ? 'Sesli AI Asistanlar' : 'Voice AI Agents',
-      language === 'tr' ? 'Chatbot Çözümleri' : 'Chatbot Solutions',
-      language === 'tr' ? 'Çok Kanallı Destek' : 'Omnichannel Support'
-    ]
-  };
+    {
+      icon: <FaHotel />,
+      title: language === 'tr' ? 'Otelcilik' : 'Hospitality',
+      description: language === 'tr'
+        ? 'Rezervasyon yönetimi, concierge hizmeti, misafir desteği'
+        : 'Reservation management, concierge service, guest support',
+      features: [
+        language === 'tr' ? '20+ dil desteği' : '20+ language support',
+        language === 'tr' ? 'Oda servisi siparişleri' : 'Room service orders',
+        language === 'tr' ? 'Tur rezervasyonları' : 'Tour bookings'
+      ],
+      color: 'purple'
+    },
+    {
+      icon: <FaStore />,
+      title: language === 'tr' ? 'Perakende' : 'Retail',
+      description: language === 'tr'
+        ? 'Müşteri desteği, sipariş takibi, ürün sorguları'
+        : 'Customer support, order tracking, product inquiries',
+      features: [
+        language === 'tr' ? 'Envanter kontrolü' : 'Inventory checking',
+        language === 'tr' ? 'Sipariş durumu' : 'Order status',
+        language === 'tr' ? 'Mağaza konumları' : 'Store locations'
+      ],
+      color: 'orange'
+    },
+    {
+      icon: <FaGraduationCap />,
+      title: language === 'tr' ? 'Eğitim' : 'Education',
+      description: language === 'tr'
+        ? 'Öğrenci kayıt, ders programı, bilgi desteği'
+        : 'Student enrollment, class schedules, information support',
+      features: [
+        language === 'tr' ? 'Kayıt işlemleri' : 'Enrollment processing',
+        language === 'tr' ? 'Ders programları' : 'Class schedules',
+        language === 'tr' ? 'Öğrenci desteği' : 'Student support'
+      ],
+      color: 'green'
+    },
+    {
+      icon: <FaCar />,
+      title: language === 'tr' ? 'Otomotiv' : 'Automotive',
+    description: language === 'tr' 
+        ? 'Servis randevusu, test sürüşü, fiyat bilgisi'
+        : 'Service appointments, test drives, pricing information',
+      features: [
+        language === 'tr' ? 'Servis rezervasyonu' : 'Service booking',
+        language === 'tr' ? 'Test sürüş ayarlama' : 'Test drive scheduling',
+        language === 'tr' ? 'Parça bulma' : 'Parts availability'
+      ],
+      color: 'red'
+    },
+    {
+      icon: <FaBuilding />,
+      title: language === 'tr' ? 'Gayrimenkul' : 'Real Estate',
+      description: language === 'tr'
+        ? 'Görüntüleme planlaması, özellik bilgisi, fiyat sorguları'
+        : 'Viewing scheduling, property info, price inquiries',
+      features: [
+        language === 'tr' ? 'Sanal tur ayarlama' : 'Virtual tour booking',
+        language === 'tr' ? 'Özellik detayları' : 'Property details',
+        language === 'tr' ? 'Fiyat hesaplayıcı' : 'Price calculator'
+      ],
+      color: 'indigo'
+    }
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <SEO 
-        page="solutions" 
-        breadcrumbs={breadcrumbs}
-        structuredData={[serviceStructuredData]}
-      />
+    <div className="min-h-screen bg-gray-950 relative">
+      <NoiseTexture />
+      
+      <SEO page="solutions" />
+      
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-cyan-700 to-[#0A1628] text-white py-20">
-        <div className="container mx-auto px-6">
+      <section className="relative bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white py-32 pt-40 overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
+          <ParticleNetwork />
+        </div>
+        <GridPattern className="opacity-10" />
+        <GradientOrbs />
+        
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              {language === 'tr' ? 'Ölçeklenebilir AI Çözümleri' : 'AI Solutions That Scale'}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-8">
+              <span className="text-purple-400 text-sm font-medium">
+                {language === 'tr' ? 'Çözümlerimiz' : 'Our Solutions'}
+              </span>
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
+              <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                {language === 'tr' ? 'Her Sektör İçin' : 'AI Solutions for'}
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+                {language === 'tr' ? 'AI Çözümleri' : 'Every Industry'}
+              </span>
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
-              {language === 'tr' ? 'Kurumsal ihtiyaçlar için sesli ve yazılı yapay zeka' : 'Voice and chat AI built for enterprise needs'}
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto text-gray-400">
+              {language === 'tr'
+                ? 'Sektörünüze özel AI çözümleriyle müşteri deneyiminizi dönüştürün'
+                : 'Transform your customer experience with industry-specific AI solutions'}
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Solution Tabs */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="flex justify-center mb-12">
-            <div className="bg-white rounded-lg shadow-lg p-2 inline-flex">
-              <button
-                onClick={() => setActiveTab('voice')}
-                className={`px-8 py-4 rounded-lg font-semibold transition-all ${
-                  activeTab === 'voice'
-                    ? 'bg-gradient-to-r from-cyan-700 to-cyan-600 text-white'
-                    : 'text-gray-600 hover:text-cyan-800'
-                }`}
-              >
-                <FaPhone className="inline mr-2" />
-                {language === 'tr' ? 'Sesli Asistanlar' : 'Voice Agents'}
-              </button>
-              <button
-                onClick={() => setActiveTab('chatbot')}
-                className={`px-8 py-4 rounded-lg font-semibold transition-all ${
-                  activeTab === 'chatbot'
-                    ? 'bg-gradient-to-r from-cyan-700 to-cyan-600 text-white'
-                    : 'text-gray-600 hover:text-cyan-800'
-                }`}
-              >
-                <FaComments className="inline mr-2" />
-                {language === 'tr' ? 'Sohbet Robotları' : 'Chatbots'}
-              </button>
-            </div>
-          </div>
-
-          {/* Voice Agent Section */}
-          {activeTab === 'voice' && (
+      {/* Industries Grid */}
+      <section className="py-32 bg-gray-900 relative overflow-hidden">
+        <GridPattern className="opacity-10" />
+        
+        <div className="container mx-auto px-6 relative z-10">
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-6xl mx-auto"
-            >
-              <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h2 className="text-4xl font-bold mb-6 text-gray-900">
-                    {language === 'tr' ? 'Akıllı Sesli Asistan' : 'Voice AI That Understands'}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              {language === 'tr' ? 'Sektörlere Göre Çözümler' : 'Solutions by Industry'}
                   </h2>
-                  <p className="text-lg text-gray-600 mb-8">
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
                     {language === 'tr' 
-                      ? 'Karmaşık konuşmaları doğal bir şekilde yöneten, maliyetleri azaltırken müşteri memnuniyetini artıran akıllı ses asistanlarını devreye alın.' 
-                      : 'Deploy intelligent voice agents that handle complex conversations naturally, reducing costs while improving customer satisfaction.'}
-                  </p>
-                  <ul className="space-y-4 mb-8">
-                    {voiceFeatures.map((feature, index) => (
-                      <motion.li
+                ? 'Her sektörün kendine özgü ihtiyaçlarını anlıyoruz'
+                : 'We understand the unique needs of each industry'}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {industries.map((industry, index) => (
+              <motion.div
                         key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="flex items-center"
-                      >
-                        <FaCheck className="text-green-500 mr-3" />
-                        <span className="text-gray-700">{feature}</span>
-                      </motion.li>
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <GlassCard className="p-8 h-full hover:scale-105 transition-transform duration-300">
+                  <div className={`p-3 rounded-xl bg-gradient-to-br from-${industry.color}-500/20 to-${industry.color}-600/20 w-fit mb-6`}>
+                    <span className={`text-3xl text-${industry.color}-400`}>{industry.icon}</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-3">{industry.title}</h3>
+                  <p className="text-gray-400 mb-6">{industry.description}</p>
+                  <ul className="space-y-2">
+                    {industry.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-gray-300 text-sm">
+                        <FaCheckCircle className="text-green-500 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
                     ))}
                   </ul>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-700 to-cyan-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
-                  >
-                    {language === 'tr' ? 'Daha Fazla Bilgi' : 'Learn More'}
-                    <FaArrowRight className="ml-2" />
-                  </Link>
-                </div>
-                <div className="bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl p-12 flex items-center justify-center">
-                  <div className="text-center">
-                    <FaPhone className="text-6xl text-cyan-800 mb-4 mx-auto" />
-                    <div className="bg-white rounded-lg p-6 shadow-lg">
-                      <div className="text-3xl font-bold text-gray-900 mb-2">95%</div>
-                      <div className="text-gray-600">{language === 'tr' ? 'İlk aramada çözüm' : 'First-call resolution'}</div>
-                    </div>
-                  </div>
-                </div>
+                </GlassCard>
+              </motion.div>
+            ))}
               </div>
-            </motion.div>
-          )}
-
-          {/* Chatbot Section */}
-          {activeTab === 'chatbot' && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-6xl mx-auto"
-            >
-              <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h2 className="text-4xl font-bold mb-6 text-gray-900">
-                    {language === 'tr' ? 'Akıllı Sohbet Otomasyonu' : 'Intelligent Chat Automation'}
-                  </h2>
-                  <p className="text-lg text-gray-600 mb-8">
-                    {language === 'tr' 
-                      ? 'Tüm dijital kanallarda anında ve doğru yanıtlar sağlayan, karmaşık sorunları sorunsuz bir şekilde yönlendiren AI sohbet robotlarını devreye alın.' 
-                      : 'Deploy AI chatbots across all digital channels to provide instant, accurate responses while seamlessly escalating complex issues.'}
-                  </p>
-                  <ul className="space-y-4 mb-8">
-                    {chatbotFeatures.map((feature, index) => (
-                      <motion.li
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="flex items-center"
-                      >
-                        <FaCheck className="text-green-500 mr-3" />
-                        <span className="text-gray-700">{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-700 to-cyan-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
-                  >
-                    {language === 'tr' ? 'Daha Fazla Bilgi' : 'Learn More'}
-                    <FaArrowRight className="ml-2" />
-                  </Link>
-                </div>
-                <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-12 flex items-center justify-center">
-                  <div className="text-center">
-                    <FaComments className="text-6xl text-purple-600 mb-4 mx-auto" />
-                    <div className="bg-white rounded-lg p-6 shadow-lg">
-                      <div className="text-3xl font-bold text-gray-900 mb-2">24/7</div>
-                      <div className="text-gray-600">{language === 'tr' ? 'Anında yanıt süresi' : 'Instant response time'}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
         </div>
       </section>
 
-      {/* Use Cases */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
-            {language === 'tr' ? 'Sektörel Çözümler' : 'Industry Solutions'}
+      {/* Features Section */}
+      <section className="py-32 bg-gray-950 relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              {language === 'tr' ? 'Platform Özellikleri' : 'Platform Features'}
           </h2>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              {language === 'tr'
+                ? 'Güçlü özellikler, basit kullanım'
+                : 'Powerful features, simple to use'}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[
-              { 
-                title: language === 'tr' ? "Finansal Hizmetler" : "Financial Services", 
-                description: language === 'tr' ? "Güvenli kimlik doğrulama ve hesap yönetimi" : "Secure authentication and account management" 
+              {
+                icon: <FaRobot />,
+                title: language === 'tr' ? 'Doğal Konuşma' : 'Natural Conversation',
+                description: language === 'tr'
+                  ? 'İnsan gibi doğal diyaloglar'
+                  : 'Human-like natural dialogues'
               },
-              { 
-                title: language === 'tr' ? "Sağlık" : "Healthcare", 
-                description: language === 'tr' ? "Hasta randevuları ve tıbbi sorular" : "Patient scheduling and medical inquiries" 
+              {
+                icon: <FaCalendar />,
+                title: language === 'tr' ? 'Akıllı Planlama' : 'Smart Scheduling',
+                description: language === 'tr'
+                  ? 'Takvim entegrasyonu ile otomatik randevu'
+                  : 'Auto-booking with calendar integration'
               },
-              { 
-                title: language === 'tr' ? "Perakende" : "Retail", 
-                description: language === 'tr' ? "Sipariş takibi ve müşteri desteği" : "Order tracking and customer support" 
+              {
+                icon: <FaGlobe />,
+                title: language === 'tr' ? 'Çoklu Dil' : 'Multi-Language',
+                description: language === 'tr'
+                  ? '20+ dilde akıcı konuşma'
+                  : 'Fluent in 20+ languages'
               },
-              { 
-                title: language === 'tr' ? "Telekomünikasyon" : "Telecommunications", 
-                description: language === 'tr' ? "Teknik destek ve faturalama" : "Technical support and billing" 
+              {
+                icon: <FaChartLine />,
+                title: language === 'tr' ? 'Analitik' : 'Analytics',
+                description: language === 'tr'
+                  ? 'Detaylı raporlar ve içgörüler'
+                  : 'Detailed reports and insights'
               },
-              { 
-                title: language === 'tr' ? "Seyahat & Konaklama" : "Travel & Hospitality", 
-                description: language === 'tr' ? "Rezervasyonlar ve concierge hizmetleri" : "Bookings and concierge services" 
+              {
+                icon: <FaShieldAlt />,
+                title: language === 'tr' ? 'Güvenlik' : 'Security',
+                description: language === 'tr'
+                  ? 'Kurumsal düzeyde veri güvenliği'
+                  : 'Enterprise-grade data protection'
               },
-              { 
-                title: language === 'tr' ? "Sigorta" : "Insurance", 
-                description: language === 'tr' ? "Hasar işlemleri ve poliçe bilgileri" : "Claims processing and policy information" 
+              {
+                icon: <FaCode />,
+                title: language === 'tr' ? 'API Entegrasyonu' : 'API Integration',
+                description: language === 'tr'
+                  ? 'Mevcut sistemlerinizle sorunsuz entegrasyon'
+                  : 'Seamless integration with your systems'
               }
-            ].map((industry, index) => (
+            ].map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-gray-50 p-6 rounded-lg hover:shadow-lg transition-shadow"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">{industry.title}</h3>
-                <p className="text-gray-600">{industry.description}</p>
+                <GlassCard className="p-6 h-full">
+                  <div className="text-3xl text-cyan-400 mb-4">{feature.icon}</div>
+                  <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
+                  <p className="text-gray-400">{feature.description}</p>
+                </GlassCard>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-cyan-700 to-[#0A1628] text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-6">{language === 'tr' ? 'Çözümlerimizi İş Başında Görün' : 'See Our Solutions in Action'}</h2>
-          <p className="text-xl mb-8 text-blue-100">
-            {language === 'tr' ? 'Kurumsal AI\'ın gücünü deneyimleyin' : 'Experience the power of enterprise AI'}
+      {/* Benefits Section */}
+      <section className="py-32 bg-gray-900 relative overflow-hidden">
+        <GridPattern className="opacity-10" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                {language === 'tr' ? 'Neden Cognia AI?' : 'Why Choose Cognia AI?'}
+              </h2>
+              <p className="text-lg text-gray-400 mb-8">
+                {language === 'tr'
+                  ? 'İşletmenizi büyütürken maliyetleri düşürün, müşteri memnuniyetini artırın.'
+                  : 'Reduce costs while growing your business and increasing customer satisfaction.'}
+              </p>
+              
+              <div className="space-y-4">
+                {[
+                  {
+                    stat: '87%',
+                    label: language === 'tr' ? 'Daha Yüksek Dönüşüm' : 'Higher Conversion'
+                  },
+                  {
+                    stat: '24/7',
+                    label: language === 'tr' ? 'Kesintisiz Hizmet' : 'Always Available'
+                  },
+                  {
+                    stat: '60%',
+                    label: language === 'tr' ? 'Maliyet Tasarrufu' : 'Cost Reduction'
+                  },
+                  {
+                    stat: '0.5s',
+                    label: language === 'tr' ? 'Yanıt Süresi' : 'Response Time'
+                  }
+                ].map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="flex items-center gap-4"
+                  >
+                    <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
+                      {benefit.stat}
+                    </div>
+                    <div className="text-gray-400">{benefit.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <GlassCard className="p-8">
+                <h3 className="text-2xl font-bold text-white mb-6">
+                  {language === 'tr' ? 'Başarı Hikayesi' : 'Success Story'}
+                </h3>
+                <p className="text-gray-400 mb-6">
+                  {language === 'tr'
+                    ? '"Cognia AI sayesinde hiçbir çağrıyı kaçırmıyoruz. Müşteri memnuniyetimiz %40 arttı ve aylık 50+ saat tasarruf ediyoruz."'
+                    : '"With Cognia AI, we never miss a call. Our customer satisfaction increased by 40% and we save 50+ hours monthly."'}
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-full" />
+                  <div>
+                    <div className="text-white font-semibold">Dr. Sarah Mitchell</div>
+                    <div className="text-gray-500 text-sm">
+                      {language === 'tr' ? 'Klinik Müdürü' : 'Clinic Director'}
+                    </div>
+                  </div>
+                </div>
+              </GlassCard>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-32 bg-gradient-to-b from-gray-950 to-black relative overflow-hidden">
+        <GradientOrbs />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              {language === 'tr' 
+                ? 'Sektörünüze Özel AI Çözümünü Keşfedin'
+                : 'Discover Your Industry-Specific AI Solution'}
+            </h2>
+            <p className="text-xl text-gray-400 mb-12">
+              {language === 'tr'
+                ? '48 saat içinde kurulum, anında sonuç'
+                : 'Setup in 48 hours, immediate results'}
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center px-8 py-4 bg-white text-cyan-800 font-semibold rounded-lg hover:bg-blue-50 transition-all"
+              className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold text-lg rounded-xl hover:shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105"
           >
-            {language === 'tr' ? 'Demo Planla' : 'Schedule a Demo'}
-            <FaArrowRight className="ml-2" />
+              <span>{language === 'tr' ? 'Ücretsiz Demo' : 'Free Demo'}</span>
+              <FaPhone className="group-hover:rotate-12 transition-transform" />
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-400 to-pink-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity -z-10" />
           </Link>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -1,14 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaPhone, FaChartLine, FaCheckCircle, FaGlobe, FaLock } from 'react-icons/fa';
+import { FaArrowRight, FaPhone, FaChartLine, FaCheckCircle, FaGlobe, FaLock, FaServer, FaClock, FaBolt } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import ROICalculator from '../components/ROICalculator';
 import { structuredDataTemplates } from '../config/seoConfig';
 import GradientOrbs from '../components/GradientOrbs';
 import GridPattern from '../components/GridPattern';
 import GlassCard from '../components/GlassCard';
+import ParticleNetwork from '../components/ParticleNetwork';
+import MetricCard from '../components/MetricCard';
+import CodeDisplay from '../components/CodeDisplay';
+import NoiseTexture from '../components/NoiseTexture';
+import ScrollProgress from '../components/ScrollProgress';
 
 const Home: React.FC = () => {
+  // Live metrics state
+  const [callsHandled, setCallsHandled] = useState(15234);
+  const [activeUsers, setActiveUsers] = useState(487);
+  const [uptime] = useState(99.99);
+  const [responseTime, setResponseTime] = useState(0.5);
+
+  // Update live metrics
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCallsHandled(prev => prev + Math.floor(Math.random() * 3) + 1);
+      setActiveUsers(prev => prev + (Math.random() > 0.5 ? 1 : -1));
+      setResponseTime(0.4 + Math.random() * 0.2);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Sample API integration code
+  const apiIntegrationCode = `// Integrate Cognia AI in 3 lines
+const cognia = new CogniaAI({ apiKey: 'your-key' });
+const receptionist = await cognia.createReceptionist({
+  businessName: 'Your Business',
+  language: 'en',
+  voice: 'professional',
+  schedule: '24/7'
+});
+receptionist.start(); // Your AI is now live!`;
   
   // FAQ structured data for the home page
   const faqStructuredData = {
@@ -43,7 +75,10 @@ const Home: React.FC = () => {
   };
   
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <ScrollProgress />
+      <NoiseTexture />
+      
       <SEO 
         page="home" 
         structuredData={[
@@ -54,10 +89,15 @@ const Home: React.FC = () => {
         ]}
       />
       
-      {/* Hero Section - Modern Design */}
+      {/* Hero Section - Ultra Modern Design */}
       <section className="relative min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white overflow-hidden flex items-center">
+        {/* Particle Network Background */}
+        <div className="absolute inset-0 opacity-50">
+          <ParticleNetwork />
+        </div>
+        
         {/* Grid Pattern */}
-        <GridPattern className="opacity-20" />
+        <GridPattern className="opacity-10" />
         
         {/* Gradient Orbs */}
         <GradientOrbs />
@@ -72,9 +112,9 @@ const Home: React.FC = () => {
               className="text-center"
             >
               {/* Badge */}
-              <motion.div
+          <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-8"
               >
@@ -118,37 +158,89 @@ const Home: React.FC = () => {
                 <div className="text-center">
                   <div className="text-3xl font-bold text-white mb-1">87%</div>
                   <div className="text-sm text-gray-500">Booking Rate</div>
-                </div>
-              </motion.div>
+            </div>
+          </motion.div>
               
               {/* CTAs */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
-                <a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
+              <a 
+                href="https://calendly.com/emrebenian-cogniaai/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                   className="group relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105"
-                >
+              >
                   <span>Start Free Trial</span>
                   <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-teal-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity -z-10" />
-                </a>
+              </a>
                 
-                <a
-                  href="tel:+16163263328"
+              <a 
+                href="tel:+16163263328"
                   className="group inline-flex items-center gap-2 px-8 py-4 bg-white/5 backdrop-blur-xl border border-white/10 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300"
-                >
+              >
                   <FaPhone className="text-cyan-400" />
                   <span>+1 616 326-3328</span>
                   <span className="text-xs text-gray-500">Try our AI</span>
-                </a>
+              </a>
               </motion.div>
             </motion.div>
+            </div>
+        </div>
+      </section>
+
+      {/* Live Metrics Dashboard */}
+      <section className="relative bg-gray-950 py-20 overflow-hidden border-t border-gray-800">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Real-Time Performance
+            </h2>
+            <p className="text-gray-400">Live data from our global infrastructure</p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <MetricCard
+              label="Calls Handled Today"
+              value={callsHandled}
+              unit="calls"
+              icon={<FaPhone />}
+              trend="up"
+              color="cyan"
+            />
+            <MetricCard
+              label="Active AI Agents"
+              value={activeUsers}
+              unit="agents"
+              icon={<FaServer />}
+              trend="up"
+              color="purple"
+            />
+            <MetricCard
+              label="System Uptime"
+              value={uptime.toFixed(2)}
+              unit="%"
+              icon={<FaBolt />}
+              trend="stable"
+              color="green"
+            />
+            <MetricCard
+              label="Avg Response Time"
+              value={responseTime.toFixed(2)}
+              unit="sec"
+              icon={<FaClock />}
+              trend="down"
+              color="orange"
+            />
           </div>
         </div>
       </section>
@@ -158,7 +250,7 @@ const Home: React.FC = () => {
         <GridPattern className="opacity-10" />
         
         <div className="container mx-auto px-6 relative z-10">
-          <motion.div
+            <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -166,11 +258,11 @@ const Home: React.FC = () => {
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               See Your ROI
-            </h2>
+              </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               Calculate how much revenue you're losing to missed calls and see what Cognia AI can recover
             </p>
-          </motion.div>
+            </motion.div>
             
           {/* Calculator in Glass Card */}
           <motion.div
@@ -240,11 +332,79 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* API Integration Section */}
+      <section className="relative bg-gray-900 py-32 overflow-hidden">
+        <GridPattern className="opacity-10" />
+        
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-8">
+                <span className="text-purple-400 text-sm font-medium">Developer Friendly</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                Integration in Minutes
+              </h2>
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                Simple API, powerful results. Get started with just a few lines of code.
+              </p>
+            </motion.div>
+            
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <CodeDisplay 
+                  code={apiIntegrationCode}
+                  language="javascript"
+                />
+              </motion.div>
+              
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="space-y-6"
+              >
+                <GlassCard className="p-6">
+                  <h3 className="text-xl font-semibold text-white mb-3">REST API</h3>
+                  <p className="text-gray-400 mb-4">Full RESTful API with comprehensive documentation</p>
+                  <code className="text-sm text-cyan-400 font-mono">POST /api/v1/receptionist</code>
+                </GlassCard>
+                
+                <GlassCard className="p-6">
+                  <h3 className="text-xl font-semibold text-white mb-3">Webhooks</h3>
+                  <p className="text-gray-400 mb-4">Real-time event notifications for every call</p>
+                  <code className="text-sm text-purple-400 font-mono">call.started | call.completed | booking.created</code>
+                </GlassCard>
+                
+                <GlassCard className="p-6">
+                  <h3 className="text-xl font-semibold text-white mb-3">SDKs Available</h3>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {['JavaScript', 'Python', 'Ruby', 'PHP', 'Java', 'Go'].map((lang) => (
+                      <span key={lang} className="px-3 py-1 rounded-full bg-gray-800 text-xs text-gray-300">
+                        {lang}
+                      </span>
+                    ))}
+                  </div>
+                </GlassCard>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Features - Bento Grid */}
       <section className="py-32 bg-gray-950 relative overflow-hidden">
         <GridPattern className="opacity-10" />
-        
+
         <div className="container mx-auto px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -336,9 +496,9 @@ const Home: React.FC = () => {
             </motion.div>
 
             {/* Small Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <GlassCard className="h-full p-8">
@@ -350,7 +510,7 @@ const Home: React.FC = () => {
                   Book appointments directly into your calendar. No double-booking.
                 </p>
               </GlassCard>
-            </motion.div>
+              </motion.div>
 
             {/* Wide Card */}
             <motion.div
@@ -388,32 +548,32 @@ const Home: React.FC = () => {
       {/* Results Section - Modern */}
       <section className="py-32 bg-gray-900 relative overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
-          <motion.div
+            <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
+              className="text-center mb-16"
+            >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 mb-8">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
               <span className="text-green-400 text-sm font-medium">Proven Results</span>
-            </div>
+              </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               Real Impact, Real Growth
             </h2>
             <p className="text-xl text-gray-400">
               Numbers that speak for themselves
-            </p>
-          </motion.div>
+              </p>
+            </motion.div>
           
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <motion.div
+              <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+                transition={{ duration: 0.5 }}
             >
               <GlassCard className="h-full p-8 text-center">
                 <div className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent mb-3">
@@ -422,12 +582,12 @@ const Home: React.FC = () => {
                 <h3 className="text-xl font-semibold text-white mb-2">Revenue Growth</h3>
                 <p className="text-gray-400">Capture every opportunity, 24/7</p>
               </GlassCard>
-            </motion.div>
+              </motion.div>
             
-            <motion.div
+              <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
             >
               <GlassCard className="h-full p-8 text-center">
                 <div className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-3">
@@ -436,12 +596,12 @@ const Home: React.FC = () => {
                 <h3 className="text-xl font-semibold text-white mb-2">Booking Rate</h3>
                 <p className="text-gray-400">Turn calls into customers</p>
               </GlassCard>
-            </motion.div>
+              </motion.div>
             
-            <motion.div
+              <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
             >
               <GlassCard className="h-full p-8 text-center">
                 <div className="text-5xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent mb-3">
@@ -450,7 +610,7 @@ const Home: React.FC = () => {
                 <h3 className="text-xl font-semibold text-white mb-2">Avg. Annual Return</h3>
                 <p className="text-gray-400">Per business, guaranteed</p>
               </GlassCard>
-            </motion.div>
+              </motion.div>
           </div>
         </div>
       </section>
@@ -594,11 +754,11 @@ const Home: React.FC = () => {
                   <GlassCard className="p-8">
                     <h3 className="text-xl font-semibold text-white mb-3 flex items-start">
                       <span className="text-cyan-400 mr-3">{index + 1}.</span>
-                      {faq.q}
-                    </h3>
+                    {faq.q}
+                  </h3>
                     <p className="text-gray-400 ml-7">
-                      {faq.a}
-                    </p>
+                    {faq.a}
+                  </p>
                   </GlassCard>
                 </motion.div>
               ))}
@@ -612,7 +772,7 @@ const Home: React.FC = () => {
         <GradientOrbs />
         
         <div className="relative container mx-auto px-6 z-10">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
