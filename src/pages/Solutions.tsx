@@ -277,7 +277,7 @@ const Solutions: React.FC = () => {
         <GridPattern className="opacity-10" />
         
         <div className="container mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -327,31 +327,6 @@ const Solutions: React.FC = () => {
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <GlassCard className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-6">
-                  {language === 'tr' ? 'Başarı Hikayesi' : 'Success Story'}
-                </h3>
-                <p className="text-gray-400 mb-6">
-                  {language === 'tr'
-                    ? '"Cognia AI sayesinde hiçbir çağrıyı kaçırmıyoruz. Müşteri memnuniyetimiz %40 arttı ve aylık 50+ saat tasarruf ediyoruz."'
-                    : '"With Cognia AI, we never miss a call. Our customer satisfaction increased by 40% and we save 50+ hours monthly."'}
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-full" />
-                  <div>
-                    <div className="text-white font-semibold">Dr. Sarah Mitchell</div>
-                    <div className="text-gray-500 text-sm">
-                      {language === 'tr' ? 'Klinik Müdürü' : 'Clinic Director'}
-                    </div>
-                  </div>
-                </div>
-              </GlassCard>
-            </motion.div>
           </div>
         </div>
       </section>

@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1">
             <div className="flex items-center mb-4">
               <span 
-                className="text-2xl font-semibold text-[#162B4D]"
+                className="text-2xl font-semibold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent"
                 style={{
                   fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
                   letterSpacing: '-0.02em'
@@ -27,10 +27,10 @@ const Footer: React.FC = () => {
               {language === 'tr' ? 'Sınırsız ölçeklenebilir kurumsal konuşma AI platformu.' : 'Enterprise conversational AI that scales infinitely.'}
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.linkedin.com/company/cognia-ai-usa/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
+              <a href="https://www.linkedin.com/company/cognia-ai-usa/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">
                 <FaLinkedin size={20} />
               </a>
-              <a href="https://www.instagram.com/cognia.ai/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#162B4D] transition-colors">
+              <a href="https://www.instagram.com/cognia.ai/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">
                 <FaInstagram size={20} />
               </a>
             </div>
@@ -41,12 +41,12 @@ const Footer: React.FC = () => {
             <h3 className="text-white font-semibold mb-4">{t('footer.services')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/solutions" className="text-sm hover:text-[#162B4D] transition-colors">
+                <Link to="/solutions" className="text-sm hover:text-cyan-400 transition-colors">
                   Voice Agents
                 </Link>
               </li>
               <li>
-                <Link to="/solutions" className="text-sm hover:text-[#162B4D] transition-colors">
+                <Link to="/solutions" className="text-sm hover:text-cyan-400 transition-colors">
                   Chatbots
                 </Link>
               </li>
@@ -58,12 +58,12 @@ const Footer: React.FC = () => {
             <h3 className="text-white font-semibold mb-4">{t('footer.company')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/company" className="text-sm hover:text-[#162B4D] transition-colors">
+                <Link to="/company" className="text-sm hover:text-cyan-400 transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-sm hover:text-[#162B4D] transition-colors">
+                <Link to="/contact" className="text-sm hover:text-cyan-400 transition-colors">
                   Contact
                 </Link>
               </li>
@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link 
                 to="/privacy-policy"
-                className="text-sm text-gray-400 hover:text-[#162B4D] transition-colors"
+                className="text-sm text-gray-400 hover:text-cyan-400 transition-colors"
               >
                 Privacy Policy
               </Link>

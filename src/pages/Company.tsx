@@ -218,68 +218,6 @@ const Company: React.FC = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-32 bg-gray-900 relative overflow-hidden">
-        <GridPattern className="opacity-10" />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              {language === 'tr' ? 'Liderlik Ekibimiz' : 'Leadership Team'}
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              {language === 'tr'
-                ? 'AI ve teknoloji alanında uzmanlardan oluşan ekibimiz'
-                : 'Expert team of AI and technology leaders'}
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                name: 'Emre Benian',
-                role: language === 'tr' ? 'Kurucu & CEO' : 'Founder & CEO',
-                description: language === 'tr'
-                  ? '15+ yıllık AI ve yazılım geliştirme deneyimi'
-                  : '15+ years in AI and software development'
-              },
-              {
-                name: 'Sarah Chen',
-                role: language === 'tr' ? 'CTO' : 'CTO',
-                description: language === 'tr'
-                  ? 'Makine öğrenmesi ve NLP uzmanı'
-                  : 'Machine learning and NLP specialist'
-              },
-              {
-                name: 'Michael Rodriguez',
-                role: language === 'tr' ? 'İş Geliştirme Başkanı' : 'VP of Business Development',
-                description: language === 'tr'
-                  ? 'SaaS ve kurumsal satış stratejisti'
-                  : 'SaaS and enterprise sales strategist'
-              }
-            ].map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <GlassCard className="p-8 text-center">
-                  <div className="w-24 h-24 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-full mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-white mb-1">{member.name}</h3>
-                  <p className="text-cyan-400 mb-3">{member.role}</p>
-                  <p className="text-gray-400 text-sm">{member.description}</p>
-                </GlassCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-32 bg-gradient-to-b from-gray-950 to-black relative overflow-hidden">

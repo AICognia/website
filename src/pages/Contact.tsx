@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaInstagram, FaTwitter, FaPaperPlane } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaInstagram, FaPaperPlane } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
@@ -41,7 +41,7 @@ const Contact: React.FC = () => {
       url: 'https://cogniaai.com',
       contactPoint: {
         '@type': 'ContactPoint',
-        telephone: '+1-616-326-3328',
+        telephone: '+1-217-693-8413',
         contactType: 'sales',
         availableLanguage: ['English', 'Turkish', 'Spanish'],
         areaServed: 'Worldwide'
@@ -197,24 +197,24 @@ const Contact: React.FC = () => {
                 </h3>
                 
                 <div className="space-y-4">
-                  <a href="tel:+16163263328" className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors">
+                  <a href="tel:+12176938413" className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors">
                     <div className="p-3 rounded-lg bg-cyan-500/10">
                       <FaPhone className="text-cyan-400" />
                     </div>
                     <div>
-                      <div className="font-semibold">+1 616 326-3328</div>
+                      <div className="font-semibold">+1 217 693 8413</div>
                       <div className="text-sm text-gray-500">
-                        {language === 'tr' ? 'AI Asistanı Deneyin' : 'Try our AI Assistant'}
+                        {language === 'tr' ? 'Doğrudan Arama' : 'Direct Line'}
                       </div>
                     </div>
                   </a>
                   
-                  <a href="mailto:contact@cogniaai.com" className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors">
+                  <a href="mailto:emrebenian@cogniaai.com" className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors">
                     <div className="p-3 rounded-lg bg-purple-500/10">
                       <FaEnvelope className="text-purple-400" />
                     </div>
                     <div>
-                      <div className="font-semibold">contact@cogniaai.com</div>
+                      <div className="font-semibold">emrebenian@cogniaai.com</div>
                       <div className="text-sm text-gray-500">
                         {language === 'tr' ? 'E-posta Gönderin' : 'Send us an email'}
                       </div>
@@ -255,14 +255,6 @@ const Contact: React.FC = () => {
                     className="p-3 rounded-lg bg-pink-500/10 hover:bg-pink-500/20 transition-colors"
                   >
                     <FaInstagram className="text-pink-400 text-xl" />
-                  </a>
-                  <a
-                    href="https://twitter.com/cogniaai"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-lg bg-sky-500/10 hover:bg-sky-500/20 transition-colors"
-                  >
-                    <FaTwitter className="text-sky-400 text-xl" />
                   </a>
                 </div>
               </GlassCard>

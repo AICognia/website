@@ -26,13 +26,13 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/90 backdrop-blur-md shadow-xl border-b border-gray-100/50' : 'bg-white/80 backdrop-blur-md'
+      scrolled ? 'bg-gray-950/95 backdrop-blur-lg border-b border-gray-800' : 'bg-gray-950/80 backdrop-blur-md'
     }`}>
       <div className="container mx-auto pl-3 pr-6">
         <div className="flex justify-between items-center h-20">
           {/* Logo Text */}
           <Link to="/" className="flex items-center">
-            <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-700 to-cyan-500 bg-clip-text text-transparent">
+            <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
               Cognia AI
             </span>
           </Link>
@@ -43,10 +43,10 @@ const Navbar: React.FC = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-lg font-medium transition-colors hover:text-[#162B4D] ${
+                className={`text-lg font-medium transition-colors hover:text-cyan-400 ${
                   location.pathname === item.path
-                    ? 'text-[#162B4D]'
-                    : 'text-gray-700'
+                    ? 'text-cyan-400'
+                    : 'text-gray-300'
                 }`}
               >
                 {item.name}
@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
               href="https://calendly.com/emrebenian-cogniaai/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-4 px-6 py-2.5 bg-gradient-to-r from-cyan-700 to-cyan-600 text-white font-bold rounded-lg hover:shadow-xl hover:from-cyan-800 hover:to-cyan-700 transition-all transform hover:scale-105"
+              className="ml-4 px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-bold rounded-lg hover:shadow-xl hover:shadow-cyan-500/25 transition-all transform hover:scale-105"
             >
               Book a Call
             </a>
@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
           {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-700 hover:text-[#162B4D] transition-colors"
+            className="md:hidden text-gray-300 hover:text-cyan-400 transition-colors"
             >
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="py-4 space-y-2">
+              <div className="py-4 space-y-2 bg-gray-900/95">
                 {navItems.map((item) => (
                   <Link
                     key={item.path}
@@ -89,8 +89,8 @@ const Navbar: React.FC = () => {
                     onClick={() => setIsOpen(false)}
                     className={`block px-4 py-3 rounded-lg text-lg font-medium transition-colors ${
                       location.pathname === item.path
-                        ? 'bg-gray-100 text-[#162B4D]'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#162B4D]'
+                        ? 'bg-gray-800 text-cyan-400'
+                        : 'text-gray-300 hover:bg-gray-800 hover:text-cyan-400'
                     }`}
                   >
                     {item.name}
@@ -101,7 +101,7 @@ const Navbar: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsOpen(false)}
-                  className="block mx-4 mt-4 px-6 py-3 bg-gradient-to-r from-cyan-700 to-cyan-600 text-white text-center font-semibold rounded-lg hover:shadow-lg transition-all"
+                  className="block mx-4 mt-4 px-6 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-center font-semibold rounded-lg hover:shadow-lg hover:shadow-cyan-500/25 transition-all"
                 >
                   Book a Call
                 </a>
