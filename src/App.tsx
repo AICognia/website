@@ -12,6 +12,8 @@ import Solutions from './pages/Solutions';
 import Company from './pages/Company';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import Healthcare from './pages/Healthcare';
+import Hospitality from './pages/Hospitality';
 
 // Scroll to top component
 function ScrollToTop() {
@@ -36,6 +38,8 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/solutions" element={<Solutions />} />
+                <Route path="/healthcare" element={<Healthcare />} />
+                <Route path="/hospitality" element={<Hospitality />} />
                 <Route path="/company" element={<Company />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
