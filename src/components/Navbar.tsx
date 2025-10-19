@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
               aria-label="Cognia AI Home"
             >
               <motion.span
-                className="text-3xl md:text-4xl font-bold gradient-text-shimmer relative"
+                className="text-3xl md:text-4xl font-bold gradient-text relative"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >

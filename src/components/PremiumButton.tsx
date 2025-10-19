@@ -48,7 +48,6 @@ const PremiumButton: React.FC<PremiumButtonProps> = ({
       text-white
       border-2 border-transparent
       hover:shadow-glow-md
-      ${urgency ? 'animate-pulse-subtle' : ''}
     `,
     secondary: `
       bg-transparent
@@ -63,8 +62,6 @@ const PremiumButton: React.FC<PremiumButtonProps> = ({
       text-white
       border-2 border-transparent
       hover:shadow-glow-lg
-      ${urgency ? 'animate-shimmer' : ''}
-      bg-[length:200%_100%]
     `,
     ghost: `
       bg-transparent
@@ -87,7 +84,7 @@ const PremiumButton: React.FC<PremiumButtonProps> = ({
         <>
           {icon && <span className="flex-shrink-0">{icon}</span>}
           <span className="font-semibold tracking-wide">
-            {urgency && variant === 'cta' ? `${children} Today` : children}
+            {children}
           </span>
           {showArrow && (
             <motion.span
@@ -145,10 +142,6 @@ const PremiumButton: React.FC<PremiumButtonProps> = ({
         }}
       />
 
-      {/* Gradient animation for CTA */}
-      {variant === 'cta' && (
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-blue-600/20 to-purple-600/20 animate-gradient" />
-      )}
 
       {/* Content */}
       <div className="relative z-10">{buttonContent}</div>

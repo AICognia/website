@@ -20,79 +20,79 @@ const Solutions: React.FC = () => {
   const industries = [
     {
       icon: <FaHospital />,
-      title: language === 'tr' ? 'Sağlık' : 'Healthcare',
-      description: language === 'tr' 
-        ? 'Randevu yönetimi, hasta takibi, 24/7 destek'
-        : 'Appointment management, patient follow-up, 24/7 support',
+      title: language === 'tr' ? 'Tıbbi & Dental' : 'Medical & Dental',
+      description: language === 'tr'
+        ? 'Doktor, diş hekimi, fizyoterapi, veteriner klinikleri'
+        : 'Doctors, dentists, physiotherapy, veterinary clinics',
       features: [
-        language === 'tr' ? 'Otomatik randevu alma' : 'Automated appointment booking',
-        language === 'tr' ? 'Reçete hatırlatmaları' : 'Prescription reminders',
+        language === 'tr' ? 'Randevu planlama & iptaller' : 'Appointment scheduling & cancellations',
+        language === 'tr' ? 'Sigorta doğrulama' : 'Insurance verification',
         language === 'tr' ? 'HIPAA uyumlu' : 'HIPAA compliant'
       ],
       color: 'cyan'
     },
     {
-      icon: <FaHotel />,
-      title: language === 'tr' ? 'Otelcilik' : 'Hospitality',
+      icon: <FaStore />,
+      title: language === 'tr' ? 'Güzellik & Wellness' : 'Beauty & Wellness',
       description: language === 'tr'
-        ? 'Rezervasyon yönetimi, concierge hizmeti, misafir desteği'
-        : 'Reservation management, concierge service, guest support',
+        ? 'Kuaför salonları, spa, nail salon, masaj terapisi'
+        : 'Hair salons, spas, nail salons, massage therapy',
       features: [
-        language === 'tr' ? '20+ dil desteği' : '20+ language support',
-        language === 'tr' ? 'Oda servisi siparişleri' : 'Room service orders',
-        language === 'tr' ? 'Tur rezervasyonları' : 'Tour bookings'
+        language === 'tr' ? 'Hizmet seçimi & fiyatlama' : 'Service selection & pricing',
+        language === 'tr' ? 'Uzman tercihi' : 'Staff preference booking',
+        language === 'tr' ? 'Hatırlatma mesajları' : 'Reminder notifications'
       ],
       color: 'purple'
     },
     {
-      icon: <FaStore />,
-      title: language === 'tr' ? 'Perakende' : 'Retail',
+      icon: <FaBuilding />,
+      title: language === 'tr' ? 'Ev Servisleri' : 'Home Services',
       description: language === 'tr'
-        ? 'Müşteri desteği, sipariş takibi, ürün sorguları'
-        : 'Customer support, order tracking, product inquiries',
+        ? 'Tesisatçı, elektrikçi, HVAC, temizlik servisleri'
+        : 'Plumbers, electricians, HVAC, cleaning services',
       features: [
-        language === 'tr' ? 'Envanter kontrolü' : 'Inventory checking',
-        language === 'tr' ? 'Sipariş durumu' : 'Order status',
-        language === 'tr' ? 'Mağaza konumları' : 'Store locations'
+        language === 'tr' ? 'Acil durum yanıtı 24/7' : 'Emergency response 24/7',
+        language === 'tr' ? 'Fiyat tahmini' : 'Service quotes',
+        language === 'tr' ? 'Zaman penceresi ayarlama' : 'Time window scheduling'
       ],
       color: 'orange'
     },
     {
-      icon: <FaGraduationCap />,
-      title: language === 'tr' ? 'Eğitim' : 'Education',
+      icon: <FaHotel />,
+      title: language === 'tr' ? 'Restoranlar & Kafeler' : 'Restaurants & Cafes',
       description: language === 'tr'
-        ? 'Öğrenci kayıt, ders programı, bilgi desteği'
-        : 'Student enrollment, class schedules, information support',
+        ? 'Fine dining, fast food, kafeler, catering'
+        : 'Fine dining, fast food, cafes, catering',
       features: [
-        language === 'tr' ? 'Kayıt işlemleri' : 'Enrollment processing',
-        language === 'tr' ? 'Ders programları' : 'Class schedules',
-        language === 'tr' ? 'Öğrenci desteği' : 'Student support'
+        language === 'tr' ? 'Masa rezervasyonu' : 'Table reservations',
+        language === 'tr' ? 'Paket sipariş alma' : 'Takeout ordering',
+        language === 'tr' ? 'Özel etkinlik planlama' : 'Event booking'
       ],
       color: 'green'
     },
     {
       icon: <FaCar />,
-      title: language === 'tr' ? 'Otomotiv' : 'Automotive',
-    description: language === 'tr' 
-        ? 'Servis randevusu, test sürüşü, fiyat bilgisi'
-        : 'Service appointments, test drives, pricing information',
+      title: language === 'tr' ? 'Otomotiv Servisleri' : 'Auto Services',
+      description: language === 'tr'
+        ? 'Oto tamirhaneleri, lastik servisleri, detaylı temizlik'
+        : 'Auto repair shops, tire services, car detailing',
       features: [
-        language === 'tr' ? 'Servis rezervasyonu' : 'Service booking',
-        language === 'tr' ? 'Test sürüş ayarlama' : 'Test drive scheduling',
-        language === 'tr' ? 'Parça bulma' : 'Parts availability'
+        language === 'tr' ? 'Servis randevusu' : 'Service appointments',
+        language === 'tr' ? 'Tahmini maliyet' : 'Cost estimates',
+        language === 'tr' ? 'Parça durumu sorgusu' : 'Parts availability check'
       ],
       color: 'red'
     },
     {
-      icon: <FaBuilding />,
-      title: language === 'tr' ? 'Gayrimenkul' : 'Real Estate',
+      icon: <FaGraduationCap />,
+      title: language === 'tr' ? 'Hukuk & Finans' : 'Legal & Financial',
       description: language === 'tr'
-        ? 'Görüntüleme planlaması, özellik bilgisi, fiyat sorguları'
-        : 'Viewing scheduling, property info, price inquiries',
+        ? 'Avukat büroları, muhasebeciler, danışmanlık firmaları'
+        : 'Law firms, accountants, consulting firms',
       features: [
-        language === 'tr' ? 'Sanal tur ayarlama' : 'Virtual tour booking',
-        language === 'tr' ? 'Özellik detayları' : 'Property details',
-        language === 'tr' ? 'Fiyat hesaplayıcı' : 'Price calculator'
+        language === 'tr' ? 'Konsültasyon rezervasyonu' : 'Consultation booking',
+        language === 'tr' ? 'Belge toplama' : 'Document collection',
+        language === 'tr' ? 'Vaka değerlendirmesi' : 'Case evaluation'
       ],
       color: 'indigo'
     }

@@ -108,58 +108,55 @@ const Home: React.FC = () => {
               
               {/* Subheadline */}
               <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
-                AI receptionist that answers instantly and schedules appointments 24/7.
+                AI receptionist that answers instantly and schedules appointments.
               </p>
               
-              {/* Stats Row */}
+              {/* Stats Row - Enhanced Design */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto mb-12"
+                className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12"
               >
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-1">0.5s</div>
-                  <div className="text-sm text-gray-500">Response Time</div>
+                <div className="bg-gradient-to-br from-cyan-500/10 to-teal-500/10 rounded-xl p-6 border border-cyan-500/20 backdrop-blur-sm">
+                  <div className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent mb-2">0.5s</div>
+                  <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">Response Time</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-1">24/7</div>
-                  <div className="text-sm text-gray-500">Availability</div>
+                <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-6 border border-purple-500/20 backdrop-blur-sm">
+                  <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">24/7</div>
+                  <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">Availability</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-1">87%</div>
-                  <div className="text-sm text-gray-500">Booking Rate</div>
+                <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl p-6 border border-green-500/20 backdrop-blur-sm">
+                  <div className="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-2">87%</div>
+                  <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">Booking Rate</div>
             </div>
           </motion.div>
               
               {/* CTAs */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
               >
-              <a 
+              <a
                 href="https://calendly.com/emrebenian-cogniaai/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                  className="group relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105"
+                  className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 min-w-[200px] bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105"
               >
                   <span>Start Free Trial</span>
                   <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-teal-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity -z-10" />
               </a>
-                
-                <div className="flex flex-col items-center gap-2">
-                  <span className="text-sm text-gray-400">Try our AI</span>
-                  <a
-                    href="tel:+16163263328"
-                    className="group inline-flex items-center gap-2 px-8 py-4 bg-white/5 backdrop-blur-xl border border-white/10 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300"
-                  >
-                    <FaPhone className="text-cyan-400" />
-                    <span>+1 616 326-3328</span>
-                  </a>
-                </div>
+
+                <a
+                  href="tel:+16163263328"
+                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 min-w-[200px] bg-white/5 backdrop-blur-xl border border-white/10 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300"
+                >
+                  <FaPhone className="text-cyan-400" />
+                  <span>Call Receptionist</span>
+                </a>
               </motion.div>
             </motion.div>
             </div>
