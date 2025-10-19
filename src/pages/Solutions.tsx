@@ -169,7 +169,7 @@ const Solutions: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <GlassCard className="p-8 h-full hover:scale-105 transition-transform duration-300">
+                <GlassCard className="p-8 h-full">
                   <div className={`p-3 rounded-xl bg-gradient-to-br from-${industry.color}-500/20 to-${industry.color}-600/20 w-fit mb-6`}>
                     <span className={`text-3xl text-${industry.color}-400`}>{industry.icon}</span>
                   </div>
@@ -368,7 +368,7 @@ const Solutions: React.FC = () => {
             href="https://calendly.com/emrebenian-cogniaai/30min"
             target="_blank"
             rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold text-lg rounded-xl hover:shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105"
+              className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold text-lg rounded-xl"
           >
               <span>{language === 'tr' ? 'Ücretsiz Demo' : 'Schedule Free Demo'}</span>
               <FaPhone className="group-hover:rotate-12 transition-transform" />

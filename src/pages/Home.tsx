@@ -586,8 +586,8 @@ const Home: React.FC = () => {
                   <div className="text-sm text-gray-500">Setup Time</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-blue-400">99.9%</div>
-                  <div className="text-sm text-gray-500">Uptime SLA</div>
+                  <div className="text-2xl font-bold text-blue-400">20+</div>
+                  <div className="text-sm text-gray-500">Languages</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-purple-400">SOC2</div>

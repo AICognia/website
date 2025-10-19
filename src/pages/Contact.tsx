@@ -283,7 +283,7 @@ const Contact: React.FC = () => {
               className="space-y-8"
             >
               {/* Quick Actions Card */}
-              <GlassCard className="p-8 border border-cyan-500/20 hover:border-cyan-500/40 transition-colors">
+              <GlassCard className="p-8 border border-cyan-500/20">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-3 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20">
                     <FaClock className="text-2xl text-cyan-400" />
@@ -303,7 +303,7 @@ const Contact: React.FC = () => {
                     href="https://calendly.com/emrebenian-cogniaai/30min"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-4 bg-gradient-to-r from-cyan-900/20 to-blue-900/20 rounded-xl hover:from-cyan-900/30 hover:to-blue-900/30 transition-all group"
+                    className="flex items-center justify-between p-4 bg-gradient-to-r from-cyan-900/20 to-blue-900/20 rounded-xl group"
                   >
                     <div>
                       <div className="font-semibold text-white">
@@ -316,23 +316,33 @@ const Contact: React.FC = () => {
                     <FaRocket className="text-cyan-400 group-hover:translate-x-1 transition-transform" />
                   </a>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-4">
                     <a
                       href="tel:+12176938413"
-                      className="p-4 bg-gray-800/50 rounded-xl hover:bg-gray-800/70 transition-all text-center"
+                      className="flex items-center justify-between p-4 bg-gray-800/50 rounded-xl"
                     >
-                      <FaPhone className="text-green-400 mx-auto mb-2" />
-                      <div className="text-sm text-gray-300">
-                        {language === 'tr' ? 'Hemen Ara' : 'Call Now'}
+                      <div className="flex items-center gap-3">
+                        <FaPhone className="text-green-400" />
+                        <div>
+                          <div className="text-sm text-gray-400">
+                            {language === 'tr' ? 'Telefon' : 'Phone'}
+                          </div>
+                          <div className="text-white font-semibold">+1 217 693 8413</div>
+                        </div>
                       </div>
                     </a>
                     <a
                       href="mailto:emrebenian@cogniaai.com"
-                      className="p-4 bg-gray-800/50 rounded-xl hover:bg-gray-800/70 transition-all text-center"
+                      className="flex items-center justify-between p-4 bg-gray-800/50 rounded-xl"
                     >
-                      <FaEnvelope className="text-purple-400 mx-auto mb-2" />
-                      <div className="text-sm text-gray-300">
-                        {language === 'tr' ? 'Email Gönder' : 'Send Email'}
+                      <div className="flex items-center gap-3">
+                        <FaEnvelope className="text-purple-400" />
+                        <div>
+                          <div className="text-sm text-gray-400">
+                            {language === 'tr' ? 'E-posta' : 'Email'}
+                          </div>
+                          <div className="text-white font-semibold">emrebenian@cogniaai.com</div>
+                        </div>
                       </div>
                     </a>
                   </div>
@@ -340,7 +350,7 @@ const Contact: React.FC = () => {
               </GlassCard>
 
               {/* Global Presence Card */}
-              <GlassCard className="p-8 border border-purple-500/20 hover:border-purple-500/40 transition-colors">
+              <GlassCard className="p-8 border border-purple-500/20">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20">
                     <FaGlobe className="text-2xl text-purple-400" />
@@ -376,7 +386,7 @@ const Contact: React.FC = () => {
                     href="https://www.linkedin.com/company/cognia-ai-usa/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 p-3 bg-blue-500/10 rounded-xl hover:bg-blue-500/20 transition-all text-center"
+                    className="flex-1 p-3 bg-blue-500/10 rounded-xl text-center"
                   >
                     <FaLinkedin className="text-blue-400 text-xl mx-auto" />
                   </a>
@@ -384,7 +394,7 @@ const Contact: React.FC = () => {
                     href="https://www.instagram.com/cognia.ai/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 p-3 bg-pink-500/10 rounded-xl hover:bg-pink-500/20 transition-all text-center"
+                    className="flex-1 p-3 bg-pink-500/10 rounded-xl text-center"
                   >
                     <FaInstagram className="text-pink-400 text-xl mx-auto" />
                   </a>

@@ -186,10 +186,10 @@ const Company: React.FC = () => {
               },
               {
                 icon: <FaShieldAlt />,
-                title: language === 'tr' ? 'Güvenilirlik' : 'Reliability',
+                title: language === 'tr' ? 'Güvenlik' : 'Security',
                 description: language === 'tr'
-                  ? '99.99% çalışma süresi garantisi'
-                  : '99.99% uptime guaranteed'
+                  ? 'Kurumsal düzeyde veri koruması'
+                  : 'Enterprise-grade data protection'
                 },
                 {
                   icon: <FaGlobeAmericas />,

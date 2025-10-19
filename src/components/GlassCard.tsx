@@ -46,9 +46,9 @@ const GlassCard: React.FC<GlassCardProps> = ({
   };
 
   const hoverEffects = {
-    lift: { scale: 1.02, y: -4 },
-    glow: { scale: 1.01 },
-    shine: { scale: 1.01 },
+    lift: {},
+    glow: {},
+    shine: {},
     none: {}
   };
 
@@ -85,18 +85,6 @@ const GlassCard: React.FC<GlassCardProps> = ({
         </div>
       )}
 
-      {/* Animated gradient border */}
-      <div className="absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-500">
-        <div className="absolute inset-[-1px] bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-2xl animate-gradient"
-             style={{
-               padding: '1px',
-               WebkitMaskImage: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-               WebkitMaskComposite: 'xor',
-               maskImage: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-               maskComposite: 'exclude'
-             }}
-        />
-      </div>
 
       {/* Shine effect on hover */}
       {hover === 'shine' && (
@@ -117,13 +105,6 @@ const GlassCard: React.FC<GlassCardProps> = ({
         {children}
       </div>
 
-      {/* Mouse follow glow effect */}
-      <div
-        className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(600px circle at ${mousePosition.x} ${mousePosition.y}, rgba(6, 182, 212, 0.06), transparent 40%)`,
-        }}
-      />
 
       {/* Noise texture for premium feel */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none">
