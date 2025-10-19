@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [solutionsOpen, setSolutionsOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -20,15 +19,8 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    { 
-      name: 'Solutions', 
-      path: '/solutions',
-      dropdown: [
-        { name: 'For Healthcare', path: '/healthcare' },
-        { name: 'For Hospitality', path: '/hospitality' }
-      ]
-    },
-    { name: 'About Us', path: '/company' },
+    { name: 'Solutions', path: '/solutions' },
+    { name: 'About', path: '/company' },
     { name: 'Contact', path: '/contact' }
   ];
 
@@ -48,59 +40,17 @@ const Navbar: React.FC = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              item.dropdown ? (
-                <div 
-                  key={item.path}
-                  className="relative"
-                  onMouseEnter={() => setSolutionsOpen(true)}
-                  onMouseLeave={() => setSolutionsOpen(false)}
-                >
-                  <button
-                    className={`text-lg font-medium transition-colors hover:text-[#162B4D] flex items-center gap-1 ${
-                      location.pathname.includes('/healthcare') || location.pathname.includes('/hospitality')
-                        ? 'text-[#162B4D]'
-                        : 'text-gray-700'
-                    }`}
-                  >
-                    {item.name}
-                    <FaChevronDown className="text-xs" />
-                  </button>
-                  
-                  <AnimatePresence>
-                    {solutionsOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden"
-                      >
-                        {item.dropdown.map((subItem) => (
-                          <Link
-                            key={subItem.path}
-                            to={subItem.path}
-                            className="block px-4 py-3 text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 transition-colors"
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ) : (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`text-lg font-medium transition-colors hover:text-[#162B4D] ${
-                    location.pathname === item.path
-                      ? 'text-[#162B4D]'
-                      : 'text-gray-700'
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              )
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`text-lg font-medium transition-colors hover:text-[#162B4D] ${
+                  location.pathname === item.path
+                    ? 'text-[#162B4D]'
+                    : 'text-gray-700'
+                }`}
+              >
+                {item.name}
+              </Link>
             ))}
             <a
               href="https://calendly.com/emrebenian-cogniaai/30min"
@@ -133,38 +83,18 @@ const Navbar: React.FC = () => {
             >
               <div className="py-4 space-y-2">
                 {navItems.map((item) => (
-                  item.dropdown ? (
-                    <div key={item.path}>
-                      <div className="px-4 py-3 text-lg font-medium text-gray-700">
-                        {item.name}
-                      </div>
-                      <div className="pl-8 space-y-1">
-                        {item.dropdown.map((subItem) => (
-                          <Link
-                            key={subItem.path}
-                            to={subItem.path}
-                            onClick={() => setIsOpen(false)}
-                            className="block px-4 py-2 text-gray-600 hover:text-cyan-700 transition-colors"
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ) : (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      onClick={() => setIsOpen(false)}
-                      className={`block px-4 py-3 rounded-lg text-lg font-medium transition-colors ${
-                        location.pathname === item.path
-                          ? 'bg-gray-100 text-[#162B4D]'
-                          : 'text-gray-700 hover:bg-gray-50 hover:text-[#162B4D]'
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
-                  )
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`block px-4 py-3 rounded-lg text-lg font-medium transition-colors ${
+                      location.pathname === item.path
+                        ? 'bg-gray-100 text-[#162B4D]'
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#162B4D]'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
                 ))}
                 <a
                   href="https://calendly.com/emrebenian-cogniaai/30min"

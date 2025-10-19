@@ -1,18 +1,11 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaArrowRight, FaRobot, FaPhone, FaChartLine, FaShieldAlt, FaHotel, FaUserMd } from 'react-icons/fa';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaArrowRight, FaRobot, FaPhone, FaChartLine, FaShieldAlt } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import ROICalculator from '../components/ROICalculator';
 import { structuredDataTemplates } from '../config/seoConfig';
-import LiveTranscript from '../components/LiveTranscript';
-import BookingVisualization from '../components/BookingVisualization';
-import PerformanceMetrics from '../components/PerformanceMetrics';
-import HealthcareSection from '../components/HealthcareSection';
-import HospitalitySection from '../components/HospitalitySection';
-import AIvsHumanComparison from '../components/AIvsHumanComparison';
 
 const Home: React.FC = () => {
-  const [activeIndustry, setActiveIndustry] = useState<'healthcare' | 'hospitality'>('healthcare');
   
   // FAQ structured data for the home page
   const faqStructuredData = {
@@ -89,69 +82,21 @@ const Home: React.FC = () => {
             className="max-w-5xl mx-auto text-center"
           >
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
-              AI Receptionist for Healthcare & Hospitality
+              Never Miss a Call. Book 24/7.
             </h1>
-            <p className="text-xl md:text-2xl mb-6 text-cyan-100 max-w-3xl mx-auto">
-              Never miss another patient or guest. Book appointments & reservations 24/7.
+            <p className="text-xl md:text-2xl mb-4 text-cyan-100 max-w-3xl mx-auto">
+              AI Receptionist that answers instantly, books appointments, and never takes a break.
             </p>
             
-            {/* Industry Toggle Buttons */}
-            <div className="flex justify-center gap-2 mb-8">
-              <button
-                onClick={() => setActiveIndustry('healthcare')}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 ${
-                  activeIndustry === 'healthcare'
-                    ? 'bg-gradient-to-r from-cyan-600 to-cyan-500 text-white shadow-xl'
-                    : 'bg-white/20 backdrop-blur border-2 border-white/40 text-white hover:bg-white/30'
-                }`}
-              >
-                <FaUserMd className="inline-block mr-2" />
-                Healthcare
-              </button>
-              <button
-                onClick={() => setActiveIndustry('hospitality')}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 ${
-                  activeIndustry === 'hospitality'
-                    ? 'bg-gradient-to-r from-cyan-600 to-cyan-500 text-white shadow-xl'
-                    : 'bg-white/20 backdrop-blur border-2 border-white/40 text-white hover:bg-white/30'
-                }`}
-              >
-                <FaHotel className="inline-block mr-2" />
-                Hospitality
-              </button>
+            {/* Value Proposition */}
+            <div className="bg-cyan-800/30 backdrop-blur rounded-xl p-6 mb-8 max-w-2xl mx-auto border border-cyan-500/30">
+              <p className="text-2xl md:text-3xl font-bold text-cyan-300 mb-2">
+                10-20% more customers, guaranteed.
+              </p>
+              <p className="text-lg text-cyan-200">
+                Every missed call = Lost revenue. We never miss.
+              </p>
             </div>
-
-            {/* Industry-Specific Metrics */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndustry}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="mb-8"
-              >
-                {activeIndustry === 'healthcare' ? (
-                  <div>
-                    <p className="text-2xl md:text-3xl font-bold text-cyan-300 mb-2">
-                      Save $50,000/month in missed appointments
-                    </p>
-                    <p className="text-lg text-cyan-100">
-                      42% of patients won't call back if first call unanswered
-                    </p>
-                  </div>
-                ) : (
-                  <div>
-                    <p className="text-2xl md:text-3xl font-bold text-cyan-300 mb-2">
-                      Capture 30% more bookings after hours
-                    </p>
-                    <p className="text-lg text-cyan-100">
-                      67% of travelers book outside business hours
-                    </p>
-                  </div>
-                )}
-              </motion.div>
-            </AnimatePresence>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <a 
@@ -170,120 +115,9 @@ const Home: React.FC = () => {
                 Call AI Receptionist: +1 616 326-3328
               </a>
             </div>
-            {/* Value Proposition */}
-            <p className="text-lg md:text-xl font-semibold text-cyan-200">
-              {activeIndustry === 'healthcare' 
-                ? 'Every missed call = $200-5,000 lost. We never miss.'
-                : 'Every missed call = Lost room booking. We never miss.'}
-            </p>
           </motion.div>
         </div>
       </section>
-
-      {/* Live Demo Section - Show the Magic */}
-      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center bg-green-500 px-4 py-2 rounded-full mb-6">
-              <div className="w-2 h-2 bg-white rounded-full animate-pulse mr-2"></div>
-              <span className="text-white font-semibold">LIVE DEMO</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              See Your AI Receptionist in Action
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Watch real conversations, live bookings, and performance metrics happening right now
-            </p>
-          </motion.div>
-
-          {/* Live Components Grid */}
-          <div className="space-y-8">
-            {/* Transcript and Booking Visualization */}
-            <div className="grid lg:grid-cols-2 gap-6">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <h3 className="text-white font-bold text-xl mb-4">Live Call Transcript</h3>
-                <LiveTranscript industry={activeIndustry} />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <h3 className="text-white font-bold text-xl mb-4">Real-Time Bookings</h3>
-                <BookingVisualization industry={activeIndustry} />
-              </motion.div>
-            </div>
-
-            {/* Performance Metrics */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h3 className="text-white font-bold text-xl mb-4">Performance Analytics</h3>
-              <PerformanceMetrics industry={activeIndustry} />
-            </motion.div>
-          </div>
-
-          {/* Try It Yourself CTA */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="mt-12 text-center"
-          >
-            <div className="bg-gradient-to-br from-cyan-900 to-cyan-800 rounded-2xl p-8 border-2 border-cyan-500/30 max-w-2xl mx-auto">
-              <h3 className="text-2xl font-bold text-white mb-4">Try It Yourself - Call Our AI Receptionist</h3>
-              <a 
-                href="tel:+16163263328"
-                className="inline-flex items-center px-12 py-5 bg-white text-cyan-900 font-bold text-xl rounded-xl hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl"
-              >
-                <FaPhone className="mr-3 animate-pulse" />
-                +1 616 326-3328
-              </a>
-              <p className="text-cyan-200 mt-4 text-sm">This is a live demo showcasing our AI technology</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Industry-Specific Sections */}
-      <AnimatePresence mode="wait">
-        {activeIndustry === 'healthcare' ? (
-          <motion.div
-            key="healthcare"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <HealthcareSection />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="hospitality"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <HospitalitySection />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* AI vs Human Comparison */}
-      <AIvsHumanComparison />
 
       {/* ROI Calculator Section */}
       <section className="relative bg-gradient-to-br from-teal-700 via-cyan-700 to-blue-800 py-16 overflow-hidden">
