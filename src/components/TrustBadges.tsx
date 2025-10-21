@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaCalendarCheck, FaDatabase, FaPlug, FaRobot, FaCloud, FaHospital, FaPhone } from 'react-icons/fa';
+import { FaCalendarCheck, FaDatabase, FaPlug, FaCloud, FaHospital } from 'react-icons/fa';
 import { GiHealthNormal } from 'react-icons/gi';
 
 const TrustBadges: React.FC = () => {
@@ -11,7 +11,7 @@ const TrustBadges: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto"
         >
           {/* HIPAA Compliant */}
           <motion.div
@@ -27,9 +27,7 @@ const TrustBadges: React.FC = () => {
                   <GiHealthNormal className="text-2xl text-white" />
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-sm flex items-center gap-1">
-                    🏥 HIPAA Compliant
-                  </p>
+                  <p className="text-white font-semibold text-sm">HIPAA Compliant</p>
                   <p className="text-gray-400 text-xs">Healthcare Ready</p>
                 </div>
               </div>
@@ -51,9 +49,7 @@ const TrustBadges: React.FC = () => {
                   <FaCalendarCheck className="text-2xl text-white" />
                 </div>
                 <div>
-                  <p className="text-white font-bold text-sm flex items-center gap-1">
-                    🎁 1 Week Free Trial
-                  </p>
+                  <p className="text-white font-bold text-sm">1 Week Free Trial</p>
                   <p className="text-cyan-400 text-xs">If you book now</p>
                 </div>
               </div>
@@ -75,9 +71,7 @@ const TrustBadges: React.FC = () => {
                   <FaHospital className="text-2xl text-white" />
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-sm flex items-center gap-1">
-                    🏨 PMS Systems
-                  </p>
+                  <p className="text-white font-semibold text-sm">PMS Integration</p>
                   <p className="text-gray-400 text-xs">Practice Management</p>
                 </div>
               </div>
@@ -99,10 +93,8 @@ const TrustBadges: React.FC = () => {
                   <FaDatabase className="text-2xl text-white" />
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-sm flex items-center gap-1">
-                    📊 CRM Systems
-                  </p>
-                  <p className="text-gray-400 text-xs">Salesforce, HubSpot</p>
+                  <p className="text-white font-semibold text-sm">CRM Integration</p>
+                  <p className="text-gray-400 text-xs">Customer Management</p>
                 </div>
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-400 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300 blur-xl" />
@@ -123,9 +115,7 @@ const TrustBadges: React.FC = () => {
                   <FaPlug className="text-2xl text-white" />
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-sm flex items-center gap-1">
-                    🔌 API Ready
-                  </p>
+                  <p className="text-white font-semibold text-sm">API Ready</p>
                   <p className="text-gray-400 text-xs">REST & Webhooks</p>
                 </div>
               </div>
@@ -133,35 +123,11 @@ const TrustBadges: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* AI Powered */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.25 }}
-            whileHover={{ scale: 1.05 }}
-            className="group"
-          >
-            <div className="relative bg-gradient-to-br from-yellow-500/10 to-amber-500/10 border border-yellow-500/30 rounded-xl p-5 hover:border-yellow-400/50 transition-all duration-300 h-full">
-              <div className="flex items-center gap-3">
-                <div className="bg-gradient-to-r from-yellow-500 to-amber-500 p-2 rounded-lg">
-                  <FaRobot className="text-2xl text-white" />
-                </div>
-                <div>
-                  <p className="text-white font-semibold text-sm flex items-center gap-1">
-                    🤖 AI Powered
-                  </p>
-                  <p className="text-gray-400 text-xs">GPT-4 Technology</p>
-                </div>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-400 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300 blur-xl" />
-            </div>
-          </motion.div>
-
           {/* Cloud Hosting */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.3 }}
+            transition={{ duration: 0.3, delay: 0.25 }}
             whileHover={{ scale: 1.05 }}
             className="group"
           >
@@ -171,37 +137,11 @@ const TrustBadges: React.FC = () => {
                   <FaCloud className="text-2xl text-white" />
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-sm flex items-center gap-1">
-                    ☁️ Cloud Based
-                  </p>
-                  <p className="text-gray-400 text-xs">AWS & Azure</p>
+                  <p className="text-white font-semibold text-sm">Cloud Based</p>
+                  <p className="text-gray-400 text-xs">Fully Scalable</p>
                 </div>
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-sky-400 to-cyan-400 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300 blur-xl" />
-            </div>
-          </motion.div>
-
-          {/* 24/7 Support */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.35 }}
-            whileHover={{ scale: 1.05 }}
-            className="group"
-          >
-            <div className="relative bg-gradient-to-br from-teal-500/10 to-green-500/10 border border-teal-500/30 rounded-xl p-5 hover:border-teal-400/50 transition-all duration-300 h-full">
-              <div className="flex items-center gap-3">
-                <div className="bg-gradient-to-r from-teal-500 to-green-500 p-2 rounded-lg">
-                  <FaPhone className="text-2xl text-white" />
-                </div>
-                <div>
-                  <p className="text-white font-semibold text-sm flex items-center gap-1">
-                    📞 24/7 Support
-                  </p>
-                  <p className="text-gray-400 text-xs">Always Available</p>
-                </div>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-400 to-green-400 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300 blur-xl" />
             </div>
           </motion.div>
         </motion.div>
