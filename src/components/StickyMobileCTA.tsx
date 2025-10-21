@@ -52,10 +52,10 @@ const StickyMobileCTA: React.FC = () => {
               <FaTimes className="text-sm" />
             </button>
 
-            {/* Limited Time Badge */}
-            <div className="bg-gradient-to-r from-red-500/20 to-orange-500/20 py-1">
-              <p className="text-center text-xs text-orange-400 font-semibold animate-pulse">
-                🔥 Limited Time: Free $2,000 Credits
+            {/* Free Trial Badge */}
+            <div className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 py-1">
+              <p className="text-center text-xs text-cyan-400 font-semibold">
+                1 Week Free Trial Available
               </p>
             </div>
 
@@ -85,7 +85,7 @@ const StickyMobileCTA: React.FC = () => {
 
               {/* Trust text */}
               <p className="text-center text-xs text-gray-400 mt-2">
-                ✓ 30-Day Money Back • ✓ Setup in 48hrs
+                ✓ HIPAA Compliant • ✓ Setup in 48hrs
               </p>
             </div>
           </div>

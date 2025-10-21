@@ -10,7 +10,6 @@ import GlassCard from '../components/GlassCard';
 import ParticleNetwork from '../components/ParticleNetwork';
 import NoiseTexture from '../components/NoiseTexture';
 import ScrollProgress from '../components/ScrollProgress';
-import CountdownTimer from '../components/CountdownTimer';
 import Testimonials from '../components/Testimonials';
 import TrustBadges from '../components/TrustBadges';
 import conversionTracker from '../utils/conversionTracking';
@@ -178,38 +177,13 @@ const Home: React.FC = () => {
             </div>
           </motion.div>
               
-              {/* Countdown Timer */}
+              {/* CTAs */}
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="flex justify-center mb-8"
-              >
-                <div className="bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/30 rounded-2xl px-6 py-3 backdrop-blur-xl">
-                  <CountdownTimer label="Limited Time Offer:" />
-                </div>
-              </motion.div>
-
-              {/* Enhanced CTAs with Urgency */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
                 className="flex flex-col sm:flex-row gap-6 justify-center items-center"
               >
-              <div className="relative">
-                {/* Limited Spots Badge */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8 }}
-                  className="absolute -top-3 left-1/2 transform -translate-x-1/2 -translate-y-full"
-                >
-                  <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg animate-pulse">
-                    🔥 Only 3 Spots Left Today
-                  </div>
-                </motion.div>
-
                 <a
                   href="https://calendly.com/emrebenian-cogniaai/30min"
                   target="_blank"
@@ -222,17 +196,11 @@ const Home: React.FC = () => {
                 >
                   <span className="flex flex-col items-center">
                     <span className="text-lg">Book Free Demo</span>
-                    <span className="text-xs opacity-90 font-medium">Get $2,000 in Free Credits</span>
+                    <span className="text-xs opacity-90 font-medium">1 Week Free Trial</span>
                   </span>
                   <FaArrowRight className="group-hover:translate-x-1 transition-transform text-lg" />
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400 to-teal-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity -z-10" />
-
-                  {/* Shimmer effect */}
-                  <div className="absolute inset-0 -top-1 -left-1 -right-1 -bottom-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer" />
-                  </div>
                 </a>
-              </div>
 
                 <a
                   href="tel:+16163263328"
@@ -240,10 +208,10 @@ const Home: React.FC = () => {
                     conversionTracker.trackPhoneCall('+16163263328');
                     conversionTracker.trackButtonClick('Call AI Receptionist', 'hero_section');
                   }}
-                  className="group inline-flex items-center justify-center gap-3 px-10 py-5 min-w-[280px] bg-gradient-to-r from-slate-800/80 to-slate-700/80 backdrop-blur-xl border-2 border-cyan-500/30 text-white font-bold text-lg rounded-2xl hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-blue-500/20 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 transform"
+                  className="group inline-flex items-center justify-center gap-4 px-10 py-5 min-w-[280px] bg-gradient-to-r from-slate-800/80 to-slate-700/80 backdrop-blur-xl border-2 border-cyan-500/30 text-white font-bold text-lg rounded-2xl hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-blue-500/20 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 transform"
                 >
-                  <FaPhone className="text-cyan-400 animate-pulse text-lg" />
-                  <span className="flex flex-col items-center">
+                  <FaPhone className="text-cyan-400 animate-pulse text-lg flex-shrink-0" />
+                  <span className="flex flex-col items-start gap-1">
                     <span className="text-lg">Call AI Receptionist</span>
                     <span className="text-xs text-cyan-400 font-medium">Live Demo: +1 616-326-3328</span>
                   </span>

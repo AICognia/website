@@ -77,10 +77,10 @@ const Testimonials: React.FC = () => {
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">500+ Businesses</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Client Success Stories</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            See how leading businesses are transforming their customer service with Cognia AI
+            Real results from businesses using Cognia AI
           </p>
         </motion.div>
 

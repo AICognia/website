@@ -8,7 +8,6 @@ import CookieConsentBanner from './components/CookieConsent';
 import Breadcrumb from './components/Breadcrumb';
 import { PageLoader } from './components/LoadingSkeleton';
 import StickyMobileCTA from './components/StickyMobileCTA';
-import ExitIntentPopup from './components/ExitIntentPopup';
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
@@ -50,7 +49,6 @@ function AppContent() {
       <Footer />
       <CookieConsentBanner />
       <StickyMobileCTA />
-      <ExitIntentPopup />
     </div>
   );
 }
