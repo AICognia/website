@@ -191,14 +191,14 @@ const Home: React.FC = () => {
                     conversionTracker.trackDemoBooking('hero_cta');
                     conversionTracker.trackButtonClick('Book Free Demo', 'hero_section');
                   }}
-                  className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 min-w-[280px] bg-gradient-to-r from-cyan-500 via-cyan-400 to-cyan-500 text-white font-bold text-lg rounded-2xl hover:shadow-2xl hover:shadow-cyan-500/40 transition-all duration-300 hover:scale-105 transform"
+                  className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 min-w-[280px] bg-gradient-to-r from-cyan-500 to-cyan-400 text-white font-bold text-lg rounded-2xl hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-105 transform"
                 >
                   <span className="flex flex-col items-center">
                     <span className="text-lg">Book Free Demo</span>
                     <span className="text-xs opacity-90 font-medium">1 Week Free Trial</span>
                   </span>
                   <FaArrowRight className="group-hover:translate-x-1 transition-transform text-lg" />
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400 to-teal-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity -z-10" />
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400/20 to-teal-400/20 blur-md opacity-0 group-hover:opacity-50 transition-opacity -z-10" />
                 </a>
 
                 <a
@@ -209,7 +209,7 @@ const Home: React.FC = () => {
                   }}
                   className="group inline-flex items-center justify-center gap-4 px-10 py-5 min-w-[280px] bg-gradient-to-r from-slate-800/80 to-slate-700/80 backdrop-blur-xl border-2 border-cyan-500/30 text-white font-bold text-lg rounded-2xl hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-blue-500/20 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 transform"
                 >
-                  <FaPhone className="text-cyan-400 animate-pulse text-lg flex-shrink-0" />
+                  <FaPhone className="text-cyan-400 text-lg flex-shrink-0" />
                   <span className="flex flex-col items-start gap-1">
                     <span className="text-lg">Call AI Receptionist</span>
                     <span className="text-xs text-cyan-400 font-medium">Live Demo: +1 616-326-3328</span>
