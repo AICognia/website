@@ -10,7 +10,6 @@ import GlassCard from '../components/GlassCard';
 import ParticleNetwork from '../components/ParticleNetwork';
 import NoiseTexture from '../components/NoiseTexture';
 import ScrollProgress from '../components/ScrollProgress';
-import Testimonials from '../components/Testimonials';
 import TrustBadges from '../components/TrustBadges';
 import conversionTracker from '../utils/conversionTracking';
 
@@ -224,9 +223,6 @@ const Home: React.FC = () => {
 
       {/* Trust Badges */}
       <TrustBadges />
-
-      {/* Testimonials Section */}
-      <Testimonials />
 
       {/* ROI Calculator Section - Modern */}
       <section className="relative bg-gray-900 py-32 overflow-hidden">
