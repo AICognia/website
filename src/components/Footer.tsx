@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-sm text-gray-400 mb-4">
-              {language === 'tr' ? 'Sınırsız ölçeklenebilir kurumsal konuşma AI platformu.' : 'Enterprise conversational AI that scales infinitely.'}
+              {language === 'tr' ? 'Gelen ve giden aramalarla tam donanımlı AI çağrı merkezi çözümü.' : 'Complete AI call center solution with inbound and outbound capabilities.'}
             </p>
             <div className="flex space-x-4">
               <a href="https://www.linkedin.com/company/cognia-ai-usa/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">
@@ -42,12 +42,22 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li>
                 <Link to="/solutions" className="text-sm hover:text-cyan-400 transition-colors">
-                  Voice Agents
+                  Inbound Call Center
                 </Link>
               </li>
               <li>
                 <Link to="/solutions" className="text-sm hover:text-cyan-400 transition-colors">
-                  Chatbots
+                  Outbound Call Center
+                </Link>
+              </li>
+              <li>
+                <Link to="/solutions" className="text-sm hover:text-cyan-400 transition-colors">
+                  Lead Qualification
+                </Link>
+              </li>
+              <li>
+                <Link to="/solutions" className="text-sm hover:text-cyan-400 transition-colors">
+                  Appointment Automation
                 </Link>
               </li>
             </ul>

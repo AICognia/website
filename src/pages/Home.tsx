@@ -108,7 +108,7 @@ const Home: React.FC = () => {
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-gradient-to-r from-cyan-400 to-teal-400"></span>
                   </span>
                 </div>
-                <span className="text-cyan-300 text-sm font-semibold tracking-wider uppercase">Enterprise AI Technology</span>
+                <span className="text-cyan-300 text-sm font-semibold tracking-wider uppercase">AI Call Center Platform</span>
                 <span className="text-cyan-500/50">|</span>
                 <span className="text-gray-400 text-xs">v2.0</span>
               </motion.div>
@@ -121,7 +121,7 @@ const Home: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                  AI That Answers
+                  AI Call Center
                 </motion.span>
                 <motion.span
                   className="block relative"
@@ -130,7 +130,7 @@ const Home: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                    Every Call
+                    That Works 24/7
                   </span>
                   {/* Animated underline */}
                   <motion.div
@@ -149,10 +149,10 @@ const Home: React.FC = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                Enterprise-grade conversational AI with{" "}
-                <span className="text-cyan-400 font-semibold">natural language processing</span>,{" "}
-                <span className="text-blue-400 font-semibold">real-time scheduling</span>, and{" "}
-                <span className="text-purple-400 font-semibold">CRM integration</span>.
+                Complete call center replacement with{" "}
+                <span className="text-cyan-400 font-semibold">inbound & outbound calls</span>,{" "}
+                <span className="text-blue-400 font-semibold">lead qualification</span>, and{" "}
+                <span className="text-purple-400 font-semibold">appointment automation</span>.
               </motion.p>
               
               {/* Stats Row - Enhanced Design */}
@@ -163,16 +163,16 @@ const Home: React.FC = () => {
                 className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12"
               >
                 <div className="bg-gradient-to-br from-cyan-500/10 to-teal-500/10 rounded-xl p-6 border border-cyan-500/20 backdrop-blur-sm">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent mb-2">0.5s</div>
-                  <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">Response Time</div>
+                  <div className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent mb-2">1000+</div>
+                  <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">Calls/Day</div>
                 </div>
                 <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-6 border border-purple-500/20 backdrop-blur-sm">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">24/7</div>
-                  <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">Availability</div>
+                  <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">95%</div>
+                  <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">Lead Qualified</div>
                 </div>
                 <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl p-6 border border-green-500/20 backdrop-blur-sm">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-2">87%</div>
-                  <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">Booking Rate</div>
+                  <div className="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-2">70%</div>
+                  <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">Cost Reduction</div>
             </div>
           </motion.div>
               
@@ -205,13 +205,13 @@ const Home: React.FC = () => {
                   href="tel:+16163263328"
                   onClick={() => {
                     conversionTracker.trackPhoneCall('+16163263328');
-                    conversionTracker.trackButtonClick('Call AI Receptionist', 'hero_section');
+                    conversionTracker.trackButtonClick('Experience AI Call Center', 'hero_section');
                   }}
                   className="group inline-flex items-center justify-center gap-4 px-10 py-5 min-w-[280px] bg-gradient-to-r from-slate-800/80 to-slate-700/80 backdrop-blur-xl border-2 border-cyan-500/30 text-white font-bold text-lg rounded-2xl hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-blue-500/20 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 transform"
                 >
                   <FaPhone className="text-cyan-400 text-lg flex-shrink-0" />
                   <span className="flex flex-col items-start gap-1">
-                    <span className="text-lg">Call AI Receptionist</span>
+                    <span className="text-lg">Experience AI Call Center</span>
                     <span className="text-xs text-cyan-400 font-medium">Live Demo: +1 616-326-3328</span>
                   </span>
                 </a>
@@ -270,10 +270,10 @@ const Home: React.FC = () => {
               className="text-center"
             >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Experience It Live
+                Experience Our AI Call Center
               </h2>
               <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-                Call our AI receptionist right now. No demos, no sales pitch - just real conversation.
+                Call our AI call center right now. Experience how we handle both inbound support and outbound capabilities.
               </p>
               
               {/* Phone Card */}
@@ -283,7 +283,7 @@ const Home: React.FC = () => {
                     <FaPhone className="text-3xl text-white animate-pulse" />
                   </div>
                   
-                  <h3 className="text-2xl font-semibold text-white mb-2">Call Our AI</h3>
+                  <h3 className="text-2xl font-semibold text-white mb-2">Call Our AI Call Center</h3>
                   
                   <motion.a 
                     href="tel:+16163263328"

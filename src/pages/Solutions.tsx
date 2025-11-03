@@ -24,9 +24,9 @@ const Solutions: React.FC = () => {
         ? 'Doktor, diş hekimi, fizyoterapi, veteriner klinikleri'
         : 'Doctors, dentists, physiotherapy, veterinary clinics',
       features: [
-        language === 'tr' ? 'Randevu planlama & iptaller' : 'Appointment scheduling & cancellations',
-        language === 'tr' ? 'Sigorta doğrulama' : 'Insurance verification',
-        language === 'tr' ? 'HIPAA uyumlu' : 'HIPAA compliant'
+        language === 'tr' ? 'Gelen hasta aramaları 24/7' : 'Inbound patient calls 24/7',
+        language === 'tr' ? 'Randevu onayı için giden aramalar' : 'Outbound appointment confirmations',
+        language === 'tr' ? 'Hasta takibi ve hatırlatmalar' : 'Patient follow-ups and reminders'
       ],
       color: 'cyan'
     },
@@ -37,9 +37,9 @@ const Solutions: React.FC = () => {
         ? 'Kuaför salonları, spa, nail salon, masaj terapisi'
         : 'Hair salons, spas, nail salons, massage therapy',
       features: [
-        language === 'tr' ? 'Hizmet seçimi & fiyatlama' : 'Service selection & pricing',
-        language === 'tr' ? 'Uzman tercihi' : 'Staff preference booking',
-        language === 'tr' ? 'Hatırlatma mesajları' : 'Reminder notifications'
+        language === 'tr' ? 'Gelen rezervasyon aramaları' : 'Inbound booking calls',
+        language === 'tr' ? 'Müşteri takibi için giden aramalar' : 'Outbound client follow-ups',
+        language === 'tr' ? 'Randevu hatırlatma aramaları' : 'Appointment reminder calls'
       ],
       color: 'purple'
     },
@@ -50,9 +50,9 @@ const Solutions: React.FC = () => {
         ? 'Tesisatçı, elektrikçi, HVAC, temizlik servisleri'
         : 'Plumbers, electricians, HVAC, cleaning services',
       features: [
-        language === 'tr' ? 'Acil durum yanıtı 24/7' : 'Emergency response 24/7',
-        language === 'tr' ? 'Fiyat tahmini' : 'Service quotes',
-        language === 'tr' ? 'Zaman penceresi ayarlama' : 'Time window scheduling'
+        language === 'tr' ? 'Acil servis aramaları 24/7' : 'Emergency service calls 24/7',
+        language === 'tr' ? 'Müşteri adayı değerlendirme aramaları' : 'Lead qualification calls',
+        language === 'tr' ? 'Servis takip aramaları' : 'Service follow-up calls'
       ],
       color: 'orange'
     },
@@ -63,9 +63,9 @@ const Solutions: React.FC = () => {
         ? 'Fine dining, fast food, kafeler, catering'
         : 'Fine dining, fast food, cafes, catering',
       features: [
-        language === 'tr' ? 'Masa rezervasyonu' : 'Table reservations',
-        language === 'tr' ? 'Paket sipariş alma' : 'Takeout ordering',
-        language === 'tr' ? 'Özel etkinlik planlama' : 'Event booking'
+        language === 'tr' ? 'Gelen rezervasyon ve sipariş aramaları' : 'Inbound reservation and order calls',
+        language === 'tr' ? 'Rezervasyon onayı aramaları' : 'Reservation confirmation calls',
+        language === 'tr' ? 'Müşteri memnuniyeti aramaları' : 'Customer satisfaction calls'
       ],
       color: 'green'
     },
@@ -76,9 +76,9 @@ const Solutions: React.FC = () => {
         ? 'Oto tamirhaneleri, lastik servisleri, detaylı temizlik'
         : 'Auto repair shops, tire services, car detailing',
       features: [
-        language === 'tr' ? 'Servis randevusu' : 'Service appointments',
-        language === 'tr' ? 'Tahmini maliyet' : 'Cost estimates',
-        language === 'tr' ? 'Parça durumu sorgusu' : 'Parts availability check'
+        language === 'tr' ? 'Gelen servis randevu aramaları' : 'Inbound service appointment calls',
+        language === 'tr' ? 'Servis hatırlatma aramaları' : 'Service reminder calls',
+        language === 'tr' ? 'Müşteri takip aramaları' : 'Customer follow-up calls'
       ],
       color: 'red'
     },
@@ -89,9 +89,9 @@ const Solutions: React.FC = () => {
         ? 'Avukat büroları, muhasebeciler, danışmanlık firmaları'
         : 'Law firms, accountants, consulting firms',
       features: [
-        language === 'tr' ? 'Konsültasyon rezervasyonu' : 'Consultation booking',
-        language === 'tr' ? 'Belge toplama' : 'Document collection',
-        language === 'tr' ? 'Vaka değerlendirmesi' : 'Case evaluation'
+        language === 'tr' ? 'Gelen danışma aramaları' : 'Inbound consultation calls',
+        language === 'tr' ? 'Müşteri adayı değerlendirme' : 'Lead qualification screening',
+        language === 'tr' ? 'Randevu hatırlatma aramaları' : 'Appointment reminder calls'
       ],
       color: 'indigo'
     }
