@@ -25,8 +25,8 @@ const translations = {
     // Hero Section
     'hero.badge': 'Enterprise AI Call Center Solution',
     'hero.title1': 'AI Call Center',
-    'hero.title2': 'That Never',
-    'hero.title3': 'Stops Working',
+    'hero.title2': '',
+    'hero.title3': '',
     'hero.subtitle': 'Complete call center automation with inbound and outbound capabilities. Handle customer support, lead qualification, appointment confirmations, and more. Setup within 48 hours. Reduce costs by 70%, increase conversions by 40%.',
     'hero.benefit1': 'Inbound & Outbound Calls',
     'hero.benefit2': 'Lead Qualification & Follow-ups',
@@ -204,8 +204,8 @@ const translations = {
     // Hero Section
     'hero.badge': 'Kurumsal AI Çağrı Merkezi Çözümü',
     'hero.title1': 'AI Çağrı Merkezi',
-    'hero.title2': 'Hiç Durmadan',
-    'hero.title3': 'Çalışan',
+    'hero.title2': '',
+    'hero.title3': '',
     'hero.subtitle': 'Gelen ve giden arama yetenekleriyle tam donanımlı çağrı merkezi otomasyonu. Müşteri desteği, potansiyel müşteri değerlendirmesi, randevu onayları ve daha fazlası. 48 saat içinde kurulum. Maliyetleri %70 azaltın, dönüşümleri %40 artırın.',
     'hero.benefit1': 'WhatsApp & Instagram Chatbot',
     'hero.benefit2': 'AI Sesli Asistan ile Sesli Destek',

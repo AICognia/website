@@ -85,7 +85,7 @@ const Home: React.FC = () => {
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-teal-500/20 to-transparent animate-pulse animation-delay-400" />
         </div>
         
-        <div className="relative container mx-auto px-6 py-20">
+        <div className="relative container mx-auto px-6 py-12">
           {/* Main Content */}
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -99,7 +99,7 @@ const Home: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-900/20 to-purple-900/20 border border-cyan-500/30 backdrop-blur-xl mb-10"
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-900/20 to-purple-900/20 border border-cyan-500/30 backdrop-blur-xl mb-6"
               >
                 <div className="relative">
                   <span className="relative flex h-3 w-3">
@@ -114,27 +114,19 @@ const Home: React.FC = () => {
               </motion.div>
 
               {/* Futuristic Main Headline with Glitch Effect */}
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 relative">
-                <motion.span
-                  className="block bg-gradient-to-b from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  AI Call Center
-                </motion.span>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 relative">
                 <motion.span
                   className="block relative"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
                 >
                   <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                    That Works 24/7
+                    AI Call Center
                   </span>
                   {/* Animated underline */}
                   <motion.div
-                    className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 rounded-full"
+                    className="absolute bottom-0 left-0 h-2 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 rounded-full"
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ duration: 1, delay: 0.8 }}
@@ -144,7 +136,7 @@ const Home: React.FC = () => {
               
               {/* Enhanced Subheadline with Tech Details */}
               <motion.p
-                className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed"
+                className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -155,24 +147,24 @@ const Home: React.FC = () => {
                 <span className="text-purple-400 font-semibold">appointment automation</span>.
               </motion.p>
               
-              {/* Stats Row - Enhanced Design */}
+              {/* Stats Row - Enhanced Design - Smaller for better viewport fit */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12"
+                className="grid grid-cols-3 gap-4 max-w-3xl mx-auto mb-8"
               >
-                <div className="bg-gradient-to-br from-cyan-500/10 to-teal-500/10 rounded-xl p-6 border border-cyan-500/20 backdrop-blur-sm">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent mb-2">1000+</div>
-                  <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">Calls/Day</div>
+                <div className="bg-gradient-to-br from-cyan-500/10 to-teal-500/10 rounded-xl p-4 border border-cyan-500/20 backdrop-blur-sm">
+                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">1000+</div>
+                  <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Calls/Day</div>
                 </div>
-                <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-6 border border-purple-500/20 backdrop-blur-sm">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">95%</div>
-                  <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">Lead Qualified</div>
+                <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-4 border border-purple-500/20 backdrop-blur-sm">
+                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">95%</div>
+                  <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Lead Qualified</div>
                 </div>
-                <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl p-6 border border-green-500/20 backdrop-blur-sm">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-2">70%</div>
-                  <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">Cost Reduction</div>
+                <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl p-4 border border-green-500/20 backdrop-blur-sm">
+                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">70%</div>
+                  <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Cost Reduction</div>
             </div>
           </motion.div>
               
