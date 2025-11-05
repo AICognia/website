@@ -94,23 +94,6 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-center"
             >
-              {/* Enhanced Tech Badge with Animation - Removed v2.0 */}
-          <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-900/20 to-purple-900/20 border border-cyan-500/30 backdrop-blur-xl mb-6"
-              >
-                <div className="relative">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-50 animation-delay-200"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-gradient-to-r from-cyan-400 to-teal-400"></span>
-                  </span>
-                </div>
-                <span className="text-cyan-300 text-sm font-semibold tracking-wider uppercase">AI Call Center Platform</span>
-              </motion.div>
-
               {/* Futuristic Main Headline with Glitch Effect */}
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 relative">
                 <motion.span
@@ -119,14 +102,8 @@ const Home: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                  <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent inline-flex items-center gap-4">
+                  <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
                     AI Call Center
-                    {/* Flashing Blue Tech Dot - Like the one in the bar */}
-                    <span className="relative flex h-4 w-4 md:h-5 md:w-5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-50 animation-delay-200"></span>
-                      <span className="relative inline-flex rounded-full h-4 w-4 md:h-5 md:w-5 bg-gradient-to-r from-blue-400 to-cyan-400"></span>
-                    </span>
                   </span>
                   {/* Animated underline */}
                   <motion.div
