@@ -94,7 +94,7 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-center"
             >
-              {/* Enhanced Tech Badge with Animation */}
+              {/* Enhanced Tech Badge with Animation - Removed v2.0 */}
           <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -109,8 +109,6 @@ const Home: React.FC = () => {
                   </span>
                 </div>
                 <span className="text-cyan-300 text-sm font-semibold tracking-wider uppercase">AI Call Center Platform</span>
-                <span className="text-cyan-500/50">|</span>
-                <span className="text-gray-400 text-xs">v2.0</span>
               </motion.div>
 
               {/* Futuristic Main Headline with Glitch Effect */}
@@ -121,8 +119,14 @@ const Home: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                  <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent inline-flex items-center gap-4">
                     AI Call Center
+                    {/* Flashing Blue Tech Dot - Like the one in the bar */}
+                    <span className="relative flex h-4 w-4 md:h-5 md:w-5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-50 animation-delay-200"></span>
+                      <span className="relative inline-flex rounded-full h-4 w-4 md:h-5 md:w-5 bg-gradient-to-r from-blue-400 to-cyan-400"></span>
+                    </span>
                   </span>
                   {/* Animated underline */}
                   <motion.div
@@ -146,8 +150,22 @@ const Home: React.FC = () => {
                 <span className="text-blue-400 font-semibold">lead qualification</span>, and{" "}
                 <span className="text-purple-400 font-semibold">appointment automation</span>.
               </motion.p>
+
+              {/* Tech Status Indicator */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="flex items-center justify-center gap-2 mb-6"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                </span>
+                <span className="text-xs text-gray-400 uppercase tracking-wider">AI Systems Active</span>
+              </motion.div>
               
-              {/* Stats Row - Enhanced Design - Smaller for better viewport fit */}
+              {/* Stats Row - Updated Metrics */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -155,15 +173,15 @@ const Home: React.FC = () => {
                 className="grid grid-cols-3 gap-4 max-w-3xl mx-auto mb-8"
               >
                 <div className="bg-gradient-to-br from-cyan-500/10 to-teal-500/10 rounded-xl p-4 border border-cyan-500/20 backdrop-blur-sm">
-                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">1000+</div>
-                  <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Calls/Day</div>
+                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">10-20%</div>
+                  <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">More Bookings</div>
                 </div>
                 <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-4 border border-purple-500/20 backdrop-blur-sm">
-                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">95%</div>
-                  <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Lead Qualified</div>
+                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">24/7</div>
+                  <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Availability</div>
                 </div>
                 <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl p-4 border border-green-500/20 backdrop-blur-sm">
-                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">70%</div>
+                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">76%</div>
                   <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Cost Reduction</div>
             </div>
           </motion.div>
