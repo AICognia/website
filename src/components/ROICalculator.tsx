@@ -10,21 +10,21 @@ const ROICalculator: React.FC = () => {
   const [inboundCallsPerDay, setInboundCallsPerDay] = useState<number>(50);
   const [missedCallRate, setMissedCallRate] = useState<number>(30); // percentage of calls missed
   const [avgCustomerValue, setAvgCustomerValue] = useState<number>(150);
-  const [inboundConversionRate, setInboundConversionRate] = useState<number>(30);
+  const [inboundConversionRate] = useState<number>(30);
 
   // Outbound Call Metrics
   const [leadsPerMonth, setLeadsPerMonth] = useState<number>(200);
   const [appointmentsPerMonth, setAppointmentsPerMonth] = useState<number>(100);
-  const [outboundConversionBoost, setOutboundConversionBoost] = useState<number>(25); // % improvement in conversion from outbound
+  const [outboundConversionBoost] = useState<number>(25); // % improvement in conversion from outbound
 
   // Calculations for Inbound
   const missedCallsPerDay = (inboundCallsPerDay * missedCallRate) / 100;
   const missedCallsPerMonth = missedCallsPerDay * 30;
   const missedCallsPerYear = missedCallsPerDay * 365;
-  const potentialCustomersPerMonth = (missedCallsPerMonth * inboundConversionRate) / 100;
-  const potentialCustomersPerYear = (missedCallsPerYear * inboundConversionRate) / 100;
-  const monthlyRevenueLoss = potentialCustomersPerMonth * avgCustomerValue;
-  const yearlyRevenueLoss = potentialCustomersPerYear * avgCustomerValue;
+  // const potentialCustomersPerMonth = (missedCallsPerMonth * inboundConversionRate) / 100;
+  // const potentialCustomersPerYear = (missedCallsPerYear * inboundConversionRate) / 100;
+  // const monthlyRevenueLoss = potentialCustomersPerMonth * avgCustomerValue;
+  // const yearlyRevenueLoss = potentialCustomersPerYear * avgCustomerValue;
 
   // With AI Call Center - Inbound
   const captureRate = 0.95; // AI captures 95% of previously missed calls
@@ -38,13 +38,13 @@ const ROICalculator: React.FC = () => {
   // With AI Call Center - Outbound
   const qualifiedLeadsPerMonth = (leadsPerMonth * 0.7); // AI qualifies 70% of leads effectively
   const additionalConversionsPerMonth = (qualifiedLeadsPerMonth * outboundConversionBoost) / 100;
-  const appointmentShowRate = 0.85; // 85% show rate with confirmations vs 60% without
+  // const appointmentShowRate = 0.85; // 85% show rate with confirmations vs 60% without
   const additionalAppointmentRevenue = (appointmentsPerMonth * 0.25) * avgCustomerValue; // 25% more appointments show up
   const additionalOutboundMonthlyRevenue = (additionalConversionsPerMonth * avgCustomerValue) + additionalAppointmentRevenue;
   const additionalOutboundYearlyRevenue = additionalOutboundMonthlyRevenue * 12;
 
   // Total ROI
-  const totalMonthlyRevenue = additionalInboundMonthlyRevenue + additionalOutboundMonthlyRevenue;
+  // const totalMonthlyRevenue = additionalInboundMonthlyRevenue + additionalOutboundMonthlyRevenue;
   const totalYearlyRevenue = additionalInboundYearlyRevenue + additionalOutboundYearlyRevenue;
 
   // Cost savings from not needing human call center agents

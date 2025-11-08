@@ -113,14 +113,6 @@ class ConversionTracker {
 
   // Track phone calls
   trackPhoneCall(phoneNumber: string) {
-    const event: ConversionEvent = {
-      eventName: 'Contact',
-      custom_data: {
-        contact_method: 'phone',
-        phone_number: phoneNumber
-      }
-    };
-
     // LinkedIn
     if ((window as any).lintrk) {
       (window as any).lintrk('track', {
