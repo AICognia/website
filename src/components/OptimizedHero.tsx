@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaPhone, FaPlay } from 'react-icons/fa';
+import { FaArrowRight, FaPhone } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
 
 const OptimizedHero: React.FC = () => {
@@ -24,21 +24,6 @@ const OptimizedHero: React.FC = () => {
             style={{ aspectRatio: '1920/1080' }}
           />
         </picture>
-
-        {/* Play Demo Overlay for Video */}
-        <button
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 group cursor-pointer hidden lg:flex items-center gap-3 bg-white/10 backdrop-blur-xl px-6 py-4 rounded-2xl border border-white/20 hover:bg-white/20 transition-all"
-          onClick={() => {
-            // Load video on demand
-            console.log('Load demo video');
-          }}
-          aria-label="Play demo video"
-        >
-          <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-            <FaPlay className="text-white ml-1" />
-          </div>
-          <span className="text-white font-semibold">Play Demo</span>
-        </button>
       </div>
 
       {/* Simplified gradient overlay */}
