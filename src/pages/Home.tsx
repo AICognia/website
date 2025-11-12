@@ -212,29 +212,6 @@ const Home: React.FC = () => {
                     ))}
                   </div>
 
-                  {/* Instructions */}
-                  <div className="flex flex-col md:flex-row gap-6 justify-center items-center text-sm text-gray-500">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center">
-                        <span className="text-purple-400 font-bold">1</span>
-                      </div>
-                      <span>Call the number</span>
-                    </div>
-                    <FaArrowRight className="text-gray-600 hidden md:block" />
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center">
-                        <span className="text-cyan-400 font-bold">2</span>
-                      </div>
-                      <span>Ask any question</span>
-                    </div>
-                    <FaArrowRight className="text-gray-600 hidden md:block" />
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
-                        <span className="text-green-400 font-bold">3</span>
-                      </div>
-                      <span>Experience the magic</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </motion.div>
