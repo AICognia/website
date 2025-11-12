@@ -98,61 +98,6 @@ const Contact: React.FC = () => {
         ]}
       />
 
-      {/* Hero Section */}
-      <TechSection noPadding className="pt-28 pb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-5xl mx-auto text-center"
-        >
-          {/* Tech Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="inline-block mb-8"
-          >
-            <div className="flex items-center gap-4">
-              <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-green-500" />
-              <div className="px-4 py-1.5 bg-green-500/10 border border-green-500/30 rounded-full">
-                <div className="flex items-center gap-2">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
-                  </span>
-                  <span className="text-xs font-semibold text-green-400 uppercase tracking-widest">
-                    {language === 'tr' ? 'İletişim Merkezi' : 'Contact Hub'}
-                  </span>
-                </div>
-              </div>
-              <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-green-500" />
-            </div>
-          </motion.div>
-
-          {/* Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin mb-6">
-            <span className="block">
-              <span className="font-extralight text-gray-400">
-                {language === 'tr' ? 'İnovasyon' : 'Innovation'}
-              </span>
-            </span>
-            <span className="block font-bold bg-gradient-to-r from-green-400 via-emerald-400 to-green-400 bg-clip-text text-transparent">
-              {language === 'tr' ? 'Başlar Buradan' : 'Starts Here'}
-            </span>
-          </h1>
-
-          {/* Subtitle */}
-          <div className="flex items-center justify-center gap-3">
-            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-gray-600" />
-            <p className="text-lg sm:text-xl text-gray-400 font-light max-w-3xl">
-              {language === 'tr'
-                ? 'Enterprise AI çözümleriniz için doğrudan iletişim kanalı.'
-                : 'Direct line to your enterprise AI transformation.'}
-            </p>
-            <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-gray-600" />
-          </div>
-        </motion.div>
-      </TechSection>
 
       {/* Contact Form Section */}
       <TechSection
@@ -163,6 +108,7 @@ const Contact: React.FC = () => {
         subtitle={language === 'tr'
           ? 'AI dönüşüm yolculuğunuza bugün başlayın'
           : 'Start your AI transformation journey today'}
+        className="pt-28"
       >
         <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
           {/* Contact Form */}

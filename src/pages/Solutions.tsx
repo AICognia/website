@@ -145,36 +145,11 @@ const Solutions: React.FC = () => {
                 </span>
               </h1>
 
-              <p className="text-sm md:text-base text-gray-400 max-w-3xl mx-auto mb-8 font-light">
+              <p className="text-sm md:text-base text-gray-400 max-w-3xl mx-auto font-light">
                 {language === 'tr'
                   ? 'Sektörünüze özel AI çözümleriyle müşteri deneyiminizi dönüştürün'
                   : 'Transform your customer experience with industry-specific AI solutions'}
               </p>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-                {[
-                  { value: '87%', label: language === 'tr' ? 'Dönüşüm' : 'Conversion' },
-                  { value: '24/7', label: language === 'tr' ? 'Aktif' : 'Active' },
-                  { value: '76%', label: language === 'tr' ? 'Tasarruf' : 'Savings' },
-                  { value: '0.5s', label: language === 'tr' ? 'Yanıt' : 'Response' }
-                ].map((stat, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                    className="text-center"
-                  >
-                    <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                      {stat.value}
-                    </div>
-                    <div className="text-xs text-gray-500 uppercase tracking-wider">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
             </motion.div>
           </div>
         </section>

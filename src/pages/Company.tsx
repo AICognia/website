@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaRocket, FaUsers, FaGlobeAmericas, FaBrain, FaCode, FaShieldAlt, FaChevronRight } from 'react-icons/fa';
+import { FaRocket, FaUsers, FaGlobeAmericas, FaBrain, FaCode, FaShieldAlt, FaChevronRight, FaHandshake, FaChartLine, FaClock, FaLightbulb } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import SEO from '../components/SEO';
@@ -81,7 +81,7 @@ const Company: React.FC = () => {
           </h1>
 
           {/* Subtitle */}
-          <div className="flex items-center justify-center gap-3 mb-12">
+          <div className="flex items-center justify-center gap-3">
             <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-gray-600" />
             <p className="text-lg sm:text-xl text-gray-400 font-light max-w-3xl">
               {language === 'tr'
@@ -89,36 +89,6 @@ const Company: React.FC = () => {
                 : 'Pioneering intelligent solutions that transform how businesses connect with their customers.'}
             </p>
             <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-gray-600" />
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
-            {[
-              { value: '2024', label: language === 'tr' ? 'Kuruluş' : 'Founded' },
-              { value: '48h', label: language === 'tr' ? 'Kurulum' : 'Setup Time' },
-              { value: '24/7', label: language === 'tr' ? 'Destek' : 'Support' },
-              { value: '100%', label: language === 'tr' ? 'Güvenli' : 'Secure' }
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-black/50 backdrop-blur-sm border border-purple-500/20 rounded-xl p-4"
-              >
-                <div className={`text-2xl sm:text-3xl font-bold mb-1 ${
-                  index === 0 ? 'text-purple-400' :
-                  index === 1 ? 'text-pink-400' :
-                  index === 2 ? 'text-cyan-400' :
-                  'text-green-400'
-                }`}>
-                  {stat.value}
-                </div>
-                <div className="text-xs text-gray-500 uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
       </TechSection>
@@ -134,60 +104,65 @@ const Company: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Mission Card */}
           <TechCard glowColor="cyan" delay={0.1}>
-            <div className="flex items-start gap-4 mb-6">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 shrink-0">
-                <FaRocket className="text-2xl text-cyan-400" />
+            <div className="flex flex-col h-full">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 shrink-0">
+                  <FaRocket className="text-2xl text-cyan-400" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    {language === 'tr' ? 'Misyonumuz' : 'Our Mission'}
+                  </h3>
+                  <div className="h-[1px] w-20 bg-gradient-to-r from-cyan-500 to-transparent" />
+                </div>
               </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-2">
-                  {language === 'tr' ? 'Misyonumuz' : 'Our Mission'}
-                </h3>
-                <div className="h-[1px] w-20 bg-gradient-to-r from-cyan-500 to-transparent" />
-              </div>
+              <p className="text-gray-400 font-light leading-relaxed mb-4">
+                {language === 'tr'
+                  ? 'Her işletmeyi anlayan, yanıt veren ve ölçekte olağanüstü deneyimler sunan AI ile güçlendirmek.'
+                  : 'To empower every business with AI that understands, responds, and delivers exceptional experiences at scale.'}
+              </p>
+              <p className="text-sm text-gray-500 font-light leading-relaxed mb-4">
+                {language === 'tr'
+                  ? 'Teknolojinin insan bağlantısını geliştirdiği bir geleceğe inanıyoruz. Platformumuz, işletmelerin müşterilerine daha iyi hizmet vermesini sağlar.'
+                  : 'We believe in a future where technology enhances human connection. Our platform enables businesses to serve customers better than ever before.'}
+              </p>
+              <p className="text-sm text-gray-500 font-light leading-relaxed">
+                {language === 'tr'
+                  ? 'Müşteri memnuniyetini en üst düzeye çıkarmak ve iş süreçlerini optimize etmek için sürekli yenilikçi çözümler geliştiriyoruz.'
+                  : 'We continuously develop innovative solutions to maximize customer satisfaction and optimize business processes.'}
+              </p>
             </div>
-            <p className="text-gray-400 font-light leading-relaxed mb-4">
-              {language === 'tr'
-                ? 'Her işletmeyi anlayan, yanıt veren ve ölçekte olağanüstü deneyimler sunan AI ile güçlendirmek.'
-                : 'To empower every business with AI that understands, responds, and delivers exceptional experiences at scale.'}
-            </p>
-            <p className="text-sm text-gray-500 font-light leading-relaxed">
-              {language === 'tr'
-                ? 'Teknolojinin insan bağlantısını geliştirdiği bir geleceğe inanıyoruz. Platformumuz, işletmelerin müşterilerine daha iyi hizmet vermesini sağlar.'
-                : 'We believe in a future where technology enhances human connection. Our platform enables businesses to serve customers better than ever before.'}
-            </p>
           </TechCard>
 
           {/* Vision Card */}
           <TechCard glowColor="purple" delay={0.2}>
-            <div className="flex items-start gap-4 mb-6">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/20 shrink-0">
-                <FaBrain className="text-2xl text-purple-400" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-2">
-                  {language === 'tr' ? 'Vizyonumuz' : 'Our Vision'}
-                </h3>
-                <div className="h-[1px] w-20 bg-gradient-to-r from-purple-500 to-transparent" />
-              </div>
-            </div>
-            <p className="text-gray-400 font-light leading-relaxed mb-6">
-              {language === 'tr'
-                ? 'AI destekli iş iletişiminde küresel standart olmak ve milyonlarca işletmenin mükemmel müşteri hizmeti sunmasını sağlamak.'
-                : 'To become the global standard for AI-powered business communication, enabling millions of businesses to provide exceptional customer service.'}
-            </p>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-black/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-3 text-center">
-                <div className="text-2xl font-bold text-purple-400">Global</div>
-                <div className="text-xs text-gray-500">
-                  {language === 'tr' ? 'Erişim' : 'Reach'}
+            <div className="flex flex-col h-full">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/20 shrink-0">
+                  <FaBrain className="text-2xl text-purple-400" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    {language === 'tr' ? 'Vizyonumuz' : 'Our Vision'}
+                  </h3>
+                  <div className="h-[1px] w-20 bg-gradient-to-r from-purple-500 to-transparent" />
                 </div>
               </div>
-              <div className="bg-black/30 backdrop-blur-sm border border-pink-500/20 rounded-lg p-3 text-center">
-                <div className="text-2xl font-bold text-pink-400">AI-First</div>
-                <div className="text-xs text-gray-500">
-                  {language === 'tr' ? 'Yaklaşım' : 'Approach'}
-                </div>
-              </div>
+              <p className="text-gray-400 font-light leading-relaxed mb-4">
+                {language === 'tr'
+                  ? 'AI destekli iş iletişiminde küresel standart olmak ve milyonlarca işletmenin mükemmel müşteri hizmeti sunmasını sağlamak.'
+                  : 'To become the global standard for AI-powered business communication, enabling millions of businesses to provide exceptional customer service.'}
+              </p>
+              <p className="text-sm text-gray-500 font-light leading-relaxed mb-4">
+                {language === 'tr'
+                  ? 'Gelecekte her işletmenin AI destekli bir asistana sahip olacağı ve müşteri deneyiminin tamamen kişiselleştirileceği bir dünya hayal ediyoruz.'
+                  : 'We envision a future where every business has an AI-powered assistant and customer experiences are fully personalized.'}
+              </p>
+              <p className="text-sm text-gray-500 font-light leading-relaxed">
+                {language === 'tr'
+                  ? 'İnsan zekası ve yapay zekanın mükemmel uyumunu sağlayarak, işletmelerin potansiyellerini maksimuma çıkarmalarına yardımcı oluyoruz.'
+                  : 'By achieving perfect harmony between human intelligence and AI, we help businesses maximize their potential.'}
+              </p>
             </div>
           </TechCard>
         </div>
@@ -201,14 +176,17 @@ const Company: React.FC = () => {
           ? 'Yaptığımız her şeyi yönlendiren değerler'
           : 'The values that guide everything we do'}
       >
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {[
             {
               icon: <FaCode />,
               title: language === 'tr' ? 'İnovasyon' : 'Innovation',
               description: language === 'tr'
-                ? 'AI teknolojisinin sınırlarını zorluyoruz'
-                : 'Pushing the boundaries of AI technology',
+                ? 'AI teknolojisinin sınırlarını zorluyoruz. Sürekli gelişen algoritmalar ve en son teknolojilerle çözümlerimizi güncelliyoruz.'
+                : 'Pushing the boundaries of AI technology with continuously evolving algorithms and cutting-edge solutions.',
+              additionalInfo: language === 'tr'
+                ? 'Her gün daha iyi olmak için çalışıyoruz'
+                : 'Working to be better every single day',
               color: 'cyan' as const,
               borderColor: 'border-cyan-500/20'
             },
@@ -216,8 +194,11 @@ const Company: React.FC = () => {
               icon: <FaUsers />,
               title: language === 'tr' ? 'Müşteri Odaklı' : 'Customer First',
               description: language === 'tr'
-                ? 'Başarınız bizim önceliğimiz'
-                : 'Your success is our priority',
+                ? 'Başarınız bizim önceliğimiz. Müşterilerimizin ihtiyaçlarını dinliyor ve çözümlerimizi buna göre şekillendiriyoruz.'
+                : 'Your success is our priority. We listen to our customers and shape our solutions accordingly.',
+              additionalInfo: language === 'tr'
+                ? '7/24 destek ve kişisel danışmanlık'
+                : '24/7 support and personal consultation',
               color: 'blue' as const,
               borderColor: 'border-blue-500/20'
             },
@@ -225,8 +206,11 @@ const Company: React.FC = () => {
               icon: <FaShieldAlt />,
               title: language === 'tr' ? 'Güvenlik' : 'Security',
               description: language === 'tr'
-                ? 'Kurumsal düzeyde veri koruması'
-                : 'Enterprise-grade data protection',
+                ? 'Kurumsal düzeyde veri koruması sağlıyoruz. HIPAA ve SOC 2 sertifikalarımızla verileriniz güvende.'
+                : 'Enterprise-grade data protection with HIPAA compliance and SOC 2 certification keeping your data safe.',
+              additionalInfo: language === 'tr'
+                ? 'End-to-end şifreleme ve güvenli altyapı'
+                : 'End-to-end encryption and secure infrastructure',
               color: 'purple' as const,
               borderColor: 'border-purple-500/20'
             },
@@ -234,14 +218,65 @@ const Company: React.FC = () => {
               icon: <FaGlobeAmericas />,
               title: language === 'tr' ? 'Küresel Erişim' : 'Global Reach',
               description: language === 'tr'
-                ? 'Her yerde, her zaman, her dilde'
-                : 'Anywhere, anytime, any language',
+                ? 'Her yerde, her zaman, her dilde hizmet veriyoruz. 20+ dil desteği ile müşterilerinize ulaşın.'
+                : 'Serving anywhere, anytime, in any language with support for 20+ languages globally.',
+              additionalInfo: language === 'tr'
+                ? 'Dünya çapında güvenilir hizmet'
+                : 'Trusted service worldwide',
+              color: 'green' as const,
+              borderColor: 'border-green-500/20'
+            },
+            {
+              icon: <FaHandshake />,
+              title: language === 'tr' ? 'Güvenilirlik' : 'Reliability',
+              description: language === 'tr'
+                ? 'Verdiğimiz sözleri tutarız. %99.9 uptime garantisi ile kesintisiz hizmet sunuyoruz.'
+                : 'We keep our promises with 99.9% uptime guarantee and uninterrupted service delivery.',
+              additionalInfo: language === 'tr'
+                ? 'İş ortağınız, sadece tedarikçiniz değil'
+                : 'Your partner, not just your vendor',
+              color: 'cyan' as const,
+              borderColor: 'border-cyan-500/20'
+            },
+            {
+              icon: <FaChartLine />,
+              title: language === 'tr' ? 'Ölçülebilir Sonuçlar' : 'Measurable Results',
+              description: language === 'tr'
+                ? 'Başarınızı rakamlarla kanıtlıyoruz. Detaylı raporlama ve analitik ile performansınızı takip edin.'
+                : 'Proving your success with numbers through detailed reporting and analytics tracking.',
+              additionalInfo: language === 'tr'
+                ? 'Gerçek zamanlı performans metrikleri'
+                : 'Real-time performance metrics',
+              color: 'blue' as const,
+              borderColor: 'border-blue-500/20'
+            },
+            {
+              icon: <FaClock />,
+              title: language === 'tr' ? 'Hızlı Kurulum' : 'Fast Setup',
+              description: language === 'tr'
+                ? '48 saat içinde sisteminizi kurup çalıştırıyoruz. Karmaşık entegrasyonlar bile hızla tamamlanır.'
+                : 'System up and running within 48 hours, even complex integrations are completed rapidly.',
+              additionalInfo: language === 'tr'
+                ? 'Minimum kesinti, maksimum verimlilik'
+                : 'Minimum disruption, maximum efficiency',
+              color: 'purple' as const,
+              borderColor: 'border-purple-500/20'
+            },
+            {
+              icon: <FaLightbulb />,
+              title: language === 'tr' ? 'Sürekli Gelişim' : 'Continuous Improvement',
+              description: language === 'tr'
+                ? 'AI modellerimizi sürekli eğitiyoruz. Her etkileşimde daha akıllı, daha etkili hale geliyoruz.'
+                : 'Continuously training our AI models to become smarter and more effective with every interaction.',
+              additionalInfo: language === 'tr'
+                ? 'Öğrenen sistem, gelişen performans'
+                : 'Learning system, evolving performance',
               color: 'green' as const,
               borderColor: 'border-green-500/20'
             }
           ].map((value, index) => (
             <TechCard key={index} glowColor={value.color} delay={index * 0.1}>
-              <div className="flex flex-col h-full min-h-[200px]">
+              <div className="flex flex-col h-full min-h-[250px]">
                 <div className={`p-3 rounded-xl bg-gradient-to-br ${
                   value.color === 'cyan' ? 'from-cyan-500/20 to-cyan-600/20' :
                   value.color === 'blue' ? 'from-blue-500/20 to-blue-600/20' :
@@ -256,8 +291,11 @@ const Company: React.FC = () => {
                   }`}>{value.icon}</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">{value.title}</h3>
-                <p className="text-sm text-gray-400 font-light leading-relaxed flex-grow">
+                <p className="text-sm text-gray-400 font-light leading-relaxed mb-2">
                   {value.description}
+                </p>
+                <p className="text-xs text-gray-500 font-light italic mt-auto">
+                  {value.additionalInfo}
                 </p>
               </div>
             </TechCard>
