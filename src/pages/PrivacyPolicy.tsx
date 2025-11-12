@@ -24,7 +24,7 @@ const PrivacyPolicy: React.FC = () => {
         <DynamicTechBackground />
 
         {/* Hero Section */}
-        <TechSection noPadding className="pt-40 pb-20">
+        <TechSection noPadding className="pt-32 pb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -52,7 +52,7 @@ const PrivacyPolicy: React.FC = () => {
             </motion.div>
 
             {/* Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-thin mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin mb-4">
               <span className="font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 {language === 'tr' ? 'Gizlilik Politikası' : 'Privacy Policy'}
               </span>

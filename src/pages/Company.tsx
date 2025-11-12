@@ -44,7 +44,7 @@ const Company: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <TechSection noPadding className="pt-40 pb-20">
+      <TechSection noPadding className="pt-32 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -69,7 +69,7 @@ const Company: React.FC = () => {
           </motion.div>
 
           {/* Title */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-thin mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin mb-6">
             <span className="block">
               <span className="font-extralight text-gray-400">
                 {language === 'tr' ? 'AI İletişiminin' : 'Building the Future of'}

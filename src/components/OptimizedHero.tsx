@@ -5,7 +5,7 @@ import conversionTracker from '../utils/conversionTracking';
 
 const OptimizedHero: React.FC = () => {
   return (
-    <section className="relative min-h-screen bg-black text-white overflow-hidden flex items-center">
+    <section className="relative h-[70vh] min-h-[500px] max-h-[800px] bg-black text-white overflow-hidden flex items-center">
       {/* Tech Background Layers */}
       <div className="absolute inset-0">
         {/* Base gradient */}
@@ -75,21 +75,21 @@ const OptimizedHero: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
-              className="inline-block mb-8"
+              className="inline-block mb-6"
             >
-              <div className="flex items-center gap-4">
-                <div className="h-[1px] w-12 sm:w-24 bg-gradient-to-r from-transparent to-cyan-500" />
-                <div className="px-4 py-1.5 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
-                  <span className="text-xs font-semibold text-cyan-400 uppercase tracking-widest">
+              <div className="flex items-center gap-3">
+                <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-transparent to-cyan-500" />
+                <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                  <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">
                     AI-Powered Solution
                   </span>
                 </div>
-                <div className="h-[1px] w-12 sm:w-24 bg-gradient-to-l from-transparent to-cyan-500" />
+                <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-transparent to-cyan-500" />
               </div>
             </motion.div>
 
             {/* Main Headline with Tech Style */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-thin mb-2">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin mb-4">
               <span className="block">
                 <span className="font-extralight text-gray-400">Next Gen</span>
               </span>
@@ -99,16 +99,16 @@ const OptimizedHero: React.FC = () => {
             </h1>
 
             {/* Subheadline with Line Accent */}
-            <div className="flex items-center justify-center gap-3 mt-6 mb-8">
-              <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-gray-600" />
-              <p className="text-sm sm:text-base md:text-lg text-gray-400 font-light max-w-2xl">
+            <div className="flex items-center justify-center gap-2 mt-3 mb-6">
+              <div className="h-[1px] w-6 bg-gradient-to-r from-transparent to-gray-600" />
+              <p className="text-xs sm:text-sm md:text-base text-gray-400 font-light max-w-2xl">
                 Handles every call. Books every appointment. Never sleeps.
               </p>
-              <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-gray-600" />
+              <div className="h-[1px] w-6 bg-gradient-to-l from-transparent to-gray-600" />
             </div>
 
             {/* Tech Stats Grid - Ultra Thin */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto mb-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -116,8 +116,8 @@ const OptimizedHero: React.FC = () => {
                 className="relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-transparent rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-black/50 backdrop-blur-sm border border-cyan-500/20 rounded-lg p-3 sm:p-4">
-                  <div className="text-2xl sm:text-3xl font-bold text-cyan-400">24/7</div>
+                <div className="relative bg-black/50 backdrop-blur-sm border border-cyan-500/20 rounded-lg p-2.5 sm:p-3">
+                  <div className="text-xl sm:text-2xl font-bold text-cyan-400">24/7</div>
                   <div className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-wider">Available</div>
                 </div>
               </motion.div>
@@ -129,8 +129,8 @@ const OptimizedHero: React.FC = () => {
                 className="relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-transparent rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-black/50 backdrop-blur-sm border border-blue-500/20 rounded-lg p-3 sm:p-4">
-                  <div className="text-2xl sm:text-3xl font-bold text-blue-400">0.5s</div>
+                <div className="relative bg-black/50 backdrop-blur-sm border border-blue-500/20 rounded-lg p-2.5 sm:p-3">
+                  <div className="text-xl sm:text-2xl font-bold text-blue-400">0.5s</div>
                   <div className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-wider">Response</div>
                 </div>
               </motion.div>
@@ -142,8 +142,8 @@ const OptimizedHero: React.FC = () => {
                 className="relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-transparent rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-black/50 backdrop-blur-sm border border-purple-500/20 rounded-lg p-3 sm:p-4">
-                  <div className="text-2xl sm:text-3xl font-bold text-purple-400">76%</div>
+                <div className="relative bg-black/50 backdrop-blur-sm border border-purple-500/20 rounded-lg p-2.5 sm:p-3">
+                  <div className="text-xl sm:text-2xl font-bold text-purple-400">76%</div>
                   <div className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-wider">Cost Less</div>
                 </div>
               </motion.div>
@@ -155,8 +155,8 @@ const OptimizedHero: React.FC = () => {
                 className="relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-transparent rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-black/50 backdrop-blur-sm border border-green-500/20 rounded-lg p-3 sm:p-4">
-                  <div className="text-2xl sm:text-3xl font-bold text-green-400">10-20%</div>
+                <div className="relative bg-black/50 backdrop-blur-sm border border-green-500/20 rounded-lg p-2.5 sm:p-3">
+                  <div className="text-xl sm:text-2xl font-bold text-green-400">10-20%</div>
                   <div className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-wider">More Sales</div>
                 </div>
               </motion.div>
@@ -175,11 +175,11 @@ const OptimizedHero: React.FC = () => {
                 className="group relative w-full sm:w-auto"
               >
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-200"></div>
-                <div className="relative flex items-center justify-center gap-3 px-8 py-4 bg-black rounded-lg leading-none">
-                  <span className="text-base font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                <div className="relative flex items-center justify-center gap-2 px-6 py-3 bg-black rounded-lg leading-none">
+                  <span className="text-sm font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                     Start Free Trial
                   </span>
-                  <FaArrowRight className="text-cyan-400 text-sm group-hover:translate-x-1 transition-transform" />
+                  <FaArrowRight className="text-cyan-400 text-xs group-hover:translate-x-1 transition-transform" />
                 </div>
               </motion.a>
 
@@ -193,9 +193,9 @@ const OptimizedHero: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="relative group w-full sm:w-auto"
               >
-                <div className="relative flex items-center justify-center gap-3 px-8 py-4 bg-black/50 backdrop-blur-sm border border-gray-700 hover:border-cyan-500/50 rounded-lg transition-all duration-200">
-                  <FaPhone className="text-cyan-400 text-sm" />
-                  <span className="text-base font-medium text-gray-300 group-hover:text-cyan-400 transition-colors">
+                <div className="relative flex items-center justify-center gap-2 px-6 py-3 bg-black/50 backdrop-blur-sm border border-gray-700 hover:border-cyan-500/50 rounded-lg transition-all duration-200">
+                  <FaPhone className="text-cyan-400 text-xs" />
+                  <span className="text-sm font-medium text-gray-300 group-hover:text-cyan-400 transition-colors">
                     Call Live Demo
                   </span>
                 </div>

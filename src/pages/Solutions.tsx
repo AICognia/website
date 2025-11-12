@@ -109,8 +109,8 @@ const Solutions: React.FC = () => {
         <SEO page="solutions" />
 
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-32 pt-40">
+        <section className="relative h-[70vh] min-h-[500px] max-h-[700px] flex items-center justify-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -122,21 +122,21 @@ const Solutions: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="inline-block mb-8"
+                className="inline-block mb-6"
               >
-                <div className="flex items-center gap-4">
-                  <div className="h-[1px] w-12 sm:w-24 bg-gradient-to-r from-transparent to-purple-500" />
-                  <div className="px-4 py-1.5 bg-purple-500/10 border border-purple-500/30 rounded-full">
-                    <span className="text-xs font-semibold text-purple-400 uppercase tracking-widest">
+                <div className="flex items-center gap-3">
+                  <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-transparent to-purple-500" />
+                  <div className="px-3 py-1 bg-purple-500/10 border border-purple-500/30 rounded-full">
+                    <span className="text-[10px] font-semibold text-purple-400 uppercase tracking-widest">
                       {language === 'tr' ? 'Çözümlerimiz' : 'Our Solutions'}
                     </span>
                   </div>
-                  <div className="h-[1px] w-12 sm:w-24 bg-gradient-to-l from-transparent to-purple-500" />
+                  <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-transparent to-purple-500" />
                 </div>
               </motion.div>
 
               {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-thin mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin mb-4">
                 <span className="block font-extralight text-gray-400">
                   {language === 'tr' ? 'Her Sektör İçin' : 'AI Solutions for'}
                 </span>
@@ -145,7 +145,7 @@ const Solutions: React.FC = () => {
                 </span>
               </h1>
 
-              <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10 font-light">
+              <p className="text-sm md:text-base text-gray-400 max-w-3xl mx-auto mb-8 font-light">
                 {language === 'tr'
                   ? 'Sektörünüze özel AI çözümleriyle müşteri deneyiminizi dönüştürün'
                   : 'Transform your customer experience with industry-specific AI solutions'}

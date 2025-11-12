@@ -50,8 +50,8 @@ const TechCard: React.FC<TechCardProps> = ({
 
       {/* Card content */}
       <div
-        className={`relative bg-black/50 backdrop-blur-sm border ${borderColors[glowColor]} rounded-xl p-6 transition-all duration-300 ${
-          hoverable ? 'group-hover:transform group-hover:scale-[1.02]' : ''
+        className={`relative bg-black/50 backdrop-blur-sm border ${borderColors[glowColor]} rounded-lg p-4 sm:p-5 transition-all duration-300 ${
+          hoverable ? 'group-hover:transform group-hover:scale-[1.01]' : ''
         } ${className}`}
       >
         {children}
