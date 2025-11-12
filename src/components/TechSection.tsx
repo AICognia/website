@@ -7,6 +7,8 @@ interface TechSectionProps {
   title?: string;
   subtitle?: string;
   badge?: string;
+  badgeColor?: 'cyan' | 'green' | 'purple' | 'blue';
+  titleColor?: 'default' | 'green';
   noPadding?: boolean;
   id?: string;
 }
@@ -17,6 +19,8 @@ const TechSection: React.FC<TechSectionProps> = ({
   title,
   subtitle,
   badge,
+  badgeColor = 'cyan',
+  titleColor = 'default',
   noPadding = false,
   id,
 }) => {
@@ -47,13 +51,33 @@ const TechSection: React.FC<TechSectionProps> = ({
                 className="inline-block mb-4"
               >
                 <div className="flex items-center gap-3">
-                  <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-transparent to-cyan-500" />
-                  <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
-                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">
+                  <div className={`h-[1px] w-8 sm:w-16 bg-gradient-to-r from-transparent ${
+                    badgeColor === 'green' ? 'to-green-500' :
+                    badgeColor === 'purple' ? 'to-purple-500' :
+                    badgeColor === 'blue' ? 'to-blue-500' :
+                    'to-cyan-500'
+                  }`} />
+                  <div className={`px-3 py-1 ${
+                    badgeColor === 'green' ? 'bg-green-500/10 border-green-500/30' :
+                    badgeColor === 'purple' ? 'bg-purple-500/10 border-purple-500/30' :
+                    badgeColor === 'blue' ? 'bg-blue-500/10 border-blue-500/30' :
+                    'bg-cyan-500/10 border-cyan-500/30'
+                  } border rounded-full`}>
+                    <span className={`text-[10px] font-semibold ${
+                      badgeColor === 'green' ? 'text-green-400' :
+                      badgeColor === 'purple' ? 'text-purple-400' :
+                      badgeColor === 'blue' ? 'text-blue-400' :
+                      'text-cyan-400'
+                    } uppercase tracking-widest`}>
                       {badge}
                     </span>
                   </div>
-                  <div className="h-[1px] w-8 sm:w-16 bg-gradient-to-l from-transparent to-cyan-500" />
+                  <div className={`h-[1px] w-8 sm:w-16 bg-gradient-to-l from-transparent ${
+                    badgeColor === 'green' ? 'to-green-500' :
+                    badgeColor === 'purple' ? 'to-purple-500' :
+                    badgeColor === 'blue' ? 'to-blue-500' :
+                    'to-cyan-500'
+                  }`} />
                 </div>
               </motion.div>
             )}
@@ -61,7 +85,11 @@ const TechSection: React.FC<TechSectionProps> = ({
             {/* Title */}
             {title && (
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-thin mb-3">
-                <span className="font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <span className={`font-bold bg-gradient-to-r ${
+                  titleColor === 'green'
+                    ? 'from-green-400 via-emerald-400 to-green-400'
+                    : 'from-cyan-400 via-blue-400 to-purple-400'
+                } bg-clip-text text-transparent`}>
                   {title}
                 </span>
               </h2>

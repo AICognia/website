@@ -158,7 +158,8 @@ const Contact: React.FC = () => {
       <TechSection
         badge={language === 'tr' ? 'Bize Ulaşın' : 'Get in Touch'}
         badgeColor="green"
-        title={<span className="font-bold bg-gradient-to-r from-green-400 via-emerald-400 to-green-400 bg-clip-text text-transparent">{language === 'tr' ? 'Hadi Başlayalım' : "Let's Connect"}</span>}
+        title={language === 'tr' ? 'Hadi Başlayalım' : "Let's Connect"}
+        titleColor="green"
         subtitle={language === 'tr'
           ? 'AI dönüşüm yolculuğunuza bugün başlayın'
           : 'Start your AI transformation journey today'}
