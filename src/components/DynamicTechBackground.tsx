@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 
 const DynamicTechBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -19,104 +18,172 @@ const DynamicTechBackground: React.FC = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Particle system
-    class Particle {
+    // Data flow particles for professional tech look
+    class DataStream {
       x: number;
       y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-      color: string;
+      speed: number;
+      size: number;
       opacity: number;
+      color: string;
 
       constructor() {
+        this.reset();
+        // Start at random position for initial spread
+        this.y = Math.random() * window.innerHeight;
+      }
+
+      reset() {
         this.x = Math.random() * (canvas?.width || window.innerWidth);
-        this.y = Math.random() * (canvas?.height || window.innerHeight);
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 1.5 + 0.5;
+        this.y = -10;
+        this.speed = Math.random() * 0.5 + 0.2; // Very slow movement
+        this.size = Math.random() * 2 + 0.5;
+        this.opacity = Math.random() * 0.3 + 0.1; // Very subtle
         const colors = ['#06B6D4', '#3B82F6', '#A855F7', '#10B981'];
         this.color = colors[Math.floor(Math.random() * colors.length)];
-        this.opacity = Math.random() * 0.5 + 0.1;
       }
 
       update() {
-        this.x += this.vx;
-        this.y += this.vy;
+        this.y += this.speed;
+        this.opacity = Math.sin((this.y / window.innerHeight) * Math.PI) * 0.3;
 
-        const width = canvas?.width || window.innerWidth;
-        const height = canvas?.height || window.innerHeight;
-
-        if (this.x < 0 || this.x > width) this.vx = -this.vx;
-        if (this.y < 0 || this.y > height) this.vy = -this.vy;
+        if (this.y > window.innerHeight + 10) {
+          this.reset();
+        }
       }
 
       draw() {
         if (!ctx) return;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
         ctx.globalAlpha = this.opacity;
         ctx.fill();
+
+        // Subtle trail effect
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x, this.y - 20);
+        ctx.strokeStyle = this.color;
+        ctx.globalAlpha = this.opacity * 0.3;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+
         ctx.globalAlpha = 1;
       }
     }
 
-    // Network connections
-    class Connection {
-      particles: Particle[];
-      maxDistance: number;
+    // Circuit path system for tech aesthetics
+    class CircuitPath {
+      points: { x: number; y: number }[];
+      progress: number;
+      speed: number;
+      color: string;
+      opacity: number;
 
-      constructor(particles: Particle[]) {
-        this.particles = particles;
-        this.maxDistance = 150;
+      constructor() {
+        this.points = this.generatePath();
+        this.progress = 0;
+        this.speed = 0.001; // Very slow
+        this.color = '#06B6D4';
+        this.opacity = 0.15;
+      }
+
+      generatePath(): { x: number; y: number }[] {
+        const points = [];
+        const startX = Math.random() * window.innerWidth;
+        const startY = Math.random() * window.innerHeight;
+
+        points.push({ x: startX, y: startY });
+
+        // Create a tech-like path with right angles
+        for (let i = 0; i < 3; i++) {
+          const lastPoint = points[points.length - 1];
+          if (Math.random() > 0.5) {
+            // Horizontal line
+            points.push({
+              x: lastPoint.x + (Math.random() - 0.5) * 200,
+              y: lastPoint.y
+            });
+          } else {
+            // Vertical line
+            points.push({
+              x: lastPoint.x,
+              y: lastPoint.y + (Math.random() - 0.5) * 200
+            });
+          }
+        }
+
+        return points;
+      }
+
+      update() {
+        this.progress += this.speed;
+        if (this.progress > 1) {
+          this.points = this.generatePath();
+          this.progress = 0;
+        }
       }
 
       draw() {
-        if (!ctx) return;
-        for (let i = 0; i < this.particles.length; i++) {
-          for (let j = i + 1; j < this.particles.length; j++) {
-            const dx = this.particles[i].x - this.particles[j].x;
-            const dy = this.particles[i].y - this.particles[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
+        if (!ctx || this.points.length < 2) return;
 
-            if (distance < this.maxDistance) {
-              const opacity = (1 - distance / this.maxDistance) * 0.15;
-              ctx.beginPath();
-              ctx.strokeStyle = '#06B6D4';
-              ctx.globalAlpha = opacity;
-              ctx.lineWidth = 0.5;
-              ctx.moveTo(this.particles[i].x, this.particles[i].y);
-              ctx.lineTo(this.particles[j].x, this.particles[j].y);
-              ctx.stroke();
-              ctx.globalAlpha = 1;
-            }
-          }
+        ctx.strokeStyle = this.color;
+        ctx.globalAlpha = this.opacity * (1 - this.progress);
+        ctx.lineWidth = 1;
+
+        // Draw the path
+        ctx.beginPath();
+        ctx.moveTo(this.points[0].x, this.points[0].y);
+        for (let i = 1; i < this.points.length; i++) {
+          ctx.lineTo(this.points[i].x, this.points[i].y);
         }
+        ctx.stroke();
+
+        // Draw nodes at connection points
+        for (const point of this.points) {
+          ctx.beginPath();
+          ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.globalAlpha = this.opacity * (1 - this.progress);
+          ctx.fill();
+        }
+
+        ctx.globalAlpha = 1;
       }
     }
 
-    // Create particles
-    const particleCount = window.innerWidth > 768 ? 50 : 30;
-    const particles: Particle[] = [];
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
+    // Create particles and paths
+    const dataStreams: DataStream[] = [];
+    const streamCount = window.innerWidth > 768 ? 30 : 20; // Fewer particles for professional look
+    for (let i = 0; i < streamCount; i++) {
+      dataStreams.push(new DataStream());
     }
-    const connections = new Connection(particles);
+
+    const circuitPaths: CircuitPath[] = [];
+    const pathCount = 3; // Just a few circuit paths
+    for (let i = 0; i < pathCount; i++) {
+      circuitPaths.push(new CircuitPath());
+    }
 
     // Animation loop
     let animationId: number;
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Clear with fade effect for smooth trails
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Update and draw particles
-      particles.forEach(particle => {
-        particle.update();
-        particle.draw();
+      // Update and draw data streams
+      dataStreams.forEach(stream => {
+        stream.update();
+        stream.draw();
       });
 
-      // Draw connections
-      connections.draw();
+      // Update and draw circuit paths
+      circuitPaths.forEach(path => {
+        path.update();
+        path.draw();
+      });
 
       animationId = requestAnimationFrame(animate);
     };
@@ -130,92 +197,60 @@ const DynamicTechBackground: React.FC = () => {
 
   return (
     <>
-      {/* Canvas for particles */}
+      {/* Canvas for dynamic elements */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-0"
-        style={{ pointerEvents: 'none' }}
+        style={{ pointerEvents: 'none', opacity: 0.7 }}
       />
 
       {/* Static background layers */}
       <div className="absolute inset-0 z-0">
-        {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/10 to-slate-950" />
+        {/* Deep gradient base */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-slate-950 to-gray-950" />
 
-        {/* Tech grid pattern */}
+        {/* Subtle tech grid */}
         <div
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2306B6D4' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundImage: `linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '100px 100px'
           }}
         />
 
-        {/* Animated gradient orbs */}
-        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-cyan-500 rounded-full mix-blend-screen filter blur-3xl opacity-[0.02] animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-[800px] h-[800px] bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-[0.02] animate-pulse animation-delay-2000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500 rounded-full mix-blend-screen filter blur-3xl opacity-[0.02] animate-pulse animation-delay-4000" />
-
-        {/* Scanning line effect */}
-        <motion.div
-          className="absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-30"
-          initial={{ top: '-2px' }}
-          animate={{ top: '100%' }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
-
-        {/* Tech corner accents */}
-        <div className="absolute top-0 left-0 w-32 h-32">
-          <svg className="w-full h-full" viewBox="0 0 100 100">
-            <path
-              d="M0,0 L30,0 L0,30 Z"
-              fill="url(#corner-gradient)"
-              opacity="0.1"
-            />
-            <path
-              d="M0,5 L25,5 L5,25 L5,0"
-              fill="none"
-              stroke="#06B6D4"
-              strokeWidth="0.5"
-              opacity="0.3"
-            />
-            <defs>
-              <linearGradient id="corner-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#06B6D4" />
-                <stop offset="100%" stopColor="#3B82F6" />
-              </linearGradient>
-            </defs>
-          </svg>
+        {/* Professional gradient overlays - very subtle */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-cyan-900/5 to-transparent" />
+          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-blue-900/5 to-transparent" />
         </div>
 
-        <div className="absolute bottom-0 right-0 w-32 h-32 rotate-180">
-          <svg className="w-full h-full" viewBox="0 0 100 100">
-            <path
-              d="M0,0 L30,0 L0,30 Z"
-              fill="url(#corner-gradient2)"
-              opacity="0.1"
-            />
-            <path
-              d="M0,5 L25,5 L5,25 L5,0"
-              fill="none"
-              stroke="#A855F7"
-              strokeWidth="0.5"
-              opacity="0.3"
-            />
-            <defs>
-              <linearGradient id="corner-gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#A855F7" />
-                <stop offset="100%" stopColor="#10B981" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
+        {/* Vignette effect for depth */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40" />
 
-        {/* Depth gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+        {/* Tech corner details - ultra subtle */}
+        <svg className="absolute top-0 left-0 w-48 h-48 opacity-10" viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id="techGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <path d="M0,0 L0,60 L10,60 L10,10 L60,10 L60,0 Z" fill="url(#techGradient1)" />
+          <circle cx="10" cy="10" r="2" fill="#06B6D4" opacity="0.5" />
+        </svg>
+
+        <svg className="absolute bottom-0 right-0 w-48 h-48 opacity-10 rotate-180" viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id="techGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#A855F7" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#10B981" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <path d="M0,0 L0,60 L10,60 L10,10 L60,10 L60,0 Z" fill="url(#techGradient2)" />
+          <circle cx="10" cy="10" r="2" fill="#A855F7" opacity="0.5" />
+        </svg>
       </div>
     </>
   );

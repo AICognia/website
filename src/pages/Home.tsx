@@ -71,50 +71,82 @@ const Home: React.FC = () => {
         {/* Hero Section */}
         <OptimizedHero />
 
-        {/* Features Section */}
+        {/* Features Section - Professional Grid Layout */}
         <TechSection
           badge="Core Features"
           title="Enterprise AI Capabilities"
           subtitle="Advanced features designed for scale and reliability"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
             <TechCard glowColor="cyan" delay={0.1}>
-              <div className="text-center">
-                <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-lg flex items-center justify-center">
-                  <FaPhone className="text-cyan-400 text-xl" />
+              <div className="flex flex-col h-full">
+                <div className="w-14 h-14 mb-4 bg-gradient-to-br from-cyan-500/10 to-cyan-600/20 rounded-xl flex items-center justify-center border border-cyan-500/20">
+                  <FaPhone className="text-cyan-400 text-2xl" />
                 </div>
-                <h3 className="text-lg font-semibold text-cyan-400 mb-2">24/7 Availability</h3>
-                <p className="text-sm text-gray-400 font-light">Never miss a call. Your AI receptionist works around the clock.</p>
+                <h3 className="text-lg font-semibold text-cyan-400 mb-3">24/7 Availability</h3>
+                <p className="text-sm text-gray-400 font-light leading-relaxed flex-grow">
+                  Never miss a call. Your AI receptionist works around the clock without breaks, holidays, or sick days.
+                </p>
+                <div className="mt-4 pt-4 border-t border-gray-800">
+                  <div className="flex items-center gap-2 text-xs text-cyan-400/70">
+                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
+                    <span>Always Active</span>
+                  </div>
+                </div>
               </div>
             </TechCard>
 
             <TechCard glowColor="blue" delay={0.2}>
-              <div className="text-center">
-                <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-lg flex items-center justify-center">
-                  <FaRocket className="text-blue-400 text-xl" />
+              <div className="flex flex-col h-full">
+                <div className="w-14 h-14 mb-4 bg-gradient-to-br from-blue-500/10 to-blue-600/20 rounded-xl flex items-center justify-center border border-blue-500/20">
+                  <FaRocket className="text-blue-400 text-2xl" />
                 </div>
-                <h3 className="text-lg font-semibold text-blue-400 mb-2">Instant Response</h3>
-                <p className="text-sm text-gray-400 font-light">0.5 second response time with natural conversation flow.</p>
+                <h3 className="text-lg font-semibold text-blue-400 mb-3">Instant Response</h3>
+                <p className="text-sm text-gray-400 font-light leading-relaxed flex-grow">
+                  0.5 second response time with natural conversation flow and intelligent context understanding.
+                </p>
+                <div className="mt-4 pt-4 border-t border-gray-800">
+                  <div className="flex items-center gap-2 text-xs text-blue-400/70">
+                    <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
+                    <span>Lightning Fast</span>
+                  </div>
+                </div>
               </div>
             </TechCard>
 
             <TechCard glowColor="purple" delay={0.3}>
-              <div className="text-center">
-                <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-lg flex items-center justify-center">
-                  <FaGlobe className="text-purple-400 text-xl" />
+              <div className="flex flex-col h-full">
+                <div className="w-14 h-14 mb-4 bg-gradient-to-br from-purple-500/10 to-purple-600/20 rounded-xl flex items-center justify-center border border-purple-500/20">
+                  <FaGlobe className="text-purple-400 text-2xl" />
                 </div>
-                <h3 className="text-lg font-semibold text-purple-400 mb-2">Multi-Language</h3>
-                <p className="text-sm text-gray-400 font-light">Support for 20+ languages with native-level fluency.</p>
+                <h3 className="text-lg font-semibold text-purple-400 mb-3">Multi-Language</h3>
+                <p className="text-sm text-gray-400 font-light leading-relaxed flex-grow">
+                  Support for 20+ languages with native-level fluency and cultural context awareness.
+                </p>
+                <div className="mt-4 pt-4 border-t border-gray-800">
+                  <div className="flex items-center gap-2 text-xs text-purple-400/70">
+                    <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" />
+                    <span>Global Ready</span>
+                  </div>
+                </div>
               </div>
             </TechCard>
 
             <TechCard glowColor="green" delay={0.4}>
-              <div className="text-center">
-                <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-lg flex items-center justify-center">
-                  <FaShieldAlt className="text-green-400 text-xl" />
+              <div className="flex flex-col h-full">
+                <div className="w-14 h-14 mb-4 bg-gradient-to-br from-green-500/10 to-green-600/20 rounded-xl flex items-center justify-center border border-green-500/20">
+                  <FaShieldAlt className="text-green-400 text-2xl" />
                 </div>
-                <h3 className="text-lg font-semibold text-green-400 mb-2">HIPAA Compliant</h3>
-                <p className="text-sm text-gray-400 font-light">Enterprise-grade security and compliance standards.</p>
+                <h3 className="text-lg font-semibold text-green-400 mb-3">HIPAA Compliant</h3>
+                <p className="text-sm text-gray-400 font-light leading-relaxed flex-grow">
+                  Enterprise-grade security with end-to-end encryption and full regulatory compliance.
+                </p>
+                <div className="mt-4 pt-4 border-t border-gray-800">
+                  <div className="flex items-center gap-2 text-xs text-green-400/70">
+                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                    <span>Fully Secure</span>
+                  </div>
+                </div>
               </div>
             </TechCard>
           </div>
