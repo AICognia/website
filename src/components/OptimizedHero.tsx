@@ -5,31 +5,29 @@ import conversionTracker from '../utils/conversionTracking';
 
 const OptimizedHero: React.FC = () => {
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white overflow-hidden flex items-center">
-      {/* Static WebP Background with fixed dimensions for CLS */}
+    <section className="relative min-h-screen bg-black text-white overflow-hidden flex items-center">
+      {/* Premium Dark Gradient Background */}
       <div className="absolute inset-0">
-        <picture>
-          <source
-            srcSet="/hero-bg.webp"
-            type="image/webp"
-          />
-          <img
-            src="/hero-bg.webp"
-            alt="AI Technology Background"
-            className="absolute inset-0 w-full h-full object-cover opacity-20"
-            width="1920"
-            height="1080"
-            loading="eager"
-            decoding="async"
-            style={{ aspectRatio: '1920/1080' }}
-          />
-        </picture>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-slate-900 to-gray-950" />
+
+        {/* Subtle Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}
+        />
+
+        {/* Premium Gradient Orbs - Very Subtle */}
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500 rounded-full mix-blend-screen filter blur-3xl opacity-[0.03] animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-[0.03] animate-pulse animation-delay-2000" />
+
+        {/* Top Gradient Fade */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
       </div>
 
-      {/* Simplified gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-950/50 via-transparent to-gray-950/50" />
-
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 py-12">
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 py-12 z-10">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -37,109 +35,156 @@ const OptimizedHero: React.FC = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-center"
           >
-            {/* Mobile Hero - Simplified */}
-            <div className="lg:hidden">
-              <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-                <span className="block text-white">Never Miss</span>
-                <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                  Another Call
-                </span>
-              </h1>
+            {/* Ultra-Thin Professional Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-full border border-cyan-500/20"
+            >
+              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
+              <span className="text-xs font-medium text-cyan-400 uppercase tracking-wider">
+                Enterprise AI Solution
+              </span>
+            </motion.div>
 
-              <p className="text-gray-300 mb-6 px-4">
-                AI-powered call center that handles every customer 24/7.
-              </p>
+            {/* Main Headline - Professional & Bold */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 tracking-tight">
+              <span className="block bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent pb-2">
+                AI Call Center
+              </span>
+              <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-400 mt-2">
+                That Never Sleeps
+              </span>
+            </h1>
 
-              {/* Mobile Stats - 3 chips only */}
-              <div className="flex justify-center gap-2 mb-6 px-4">
-                {[
-                  { value: '24/7', label: 'Available' },
-                  { value: '0.5s', label: 'Response' },
-                  { value: '76%', label: 'Cost Less' }
-                ].map((stat, i) => (
-                  <div
-                    key={i}
-                    className="px-4 py-2 bg-white/5 backdrop-blur-xl rounded-lg border border-white/10"
-                  >
-                    <div className="text-lg font-bold text-cyan-400">{stat.value}</div>
-                    <div className="text-[10px] text-gray-400 uppercase">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
+            {/* Professional Subheadline */}
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8 leading-relaxed font-light">
+              Complete call center replacement with{" "}
+              <span className="text-white font-medium">inbound & outbound calls</span>,{" "}
+              <span className="text-white font-medium">lead qualification</span>, and{" "}
+              <span className="text-white font-medium">appointment automation</span>.
+            </p>
 
-              {/* Mobile CTA */}
-              <div className="space-y-3 px-4">
-                <a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  className="block w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-4 px-6 rounded-xl"
-                >
-                  Start Free Trial
-                </a>
-              </div>
+            {/* Ultra-Thin Stats Bar */}
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-6 mb-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0 }}
+                className="text-center"
+              >
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-300 bg-clip-text text-transparent">
+                  24/7
+                </div>
+                <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider font-medium">
+                  Availability
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-center"
+              >
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">
+                  0.5s
+                </div>
+                <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider font-medium">
+                  Response Time
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-center"
+              >
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-400 to-purple-300 bg-clip-text text-transparent">
+                  76%
+                </div>
+                <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider font-medium">
+                  Cost Reduction
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="text-center"
+              >
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
+                  95%
+                </div>
+                <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider font-medium">
+                  Satisfaction
+                </div>
+              </motion.div>
             </div>
 
-            {/* Desktop Hero */}
-            <div className="hidden lg:block">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 relative">
-                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  AI Call Center
-                </span>
-              </h1>
+            {/* Professional CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              {/* Primary CTA */}
+              <motion.a
+                href="https://calendly.com/emrebenian-cogniaai/30min"
+                onClick={() => {
+                  conversionTracker.trackDemoBooking('hero_cta');
+                }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 min-w-[200px] sm:min-w-[250px] overflow-hidden rounded-xl font-medium transition-all duration-300"
+              >
+                {/* Button Background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-300 group-hover:scale-105" />
 
-              <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
-                Complete call center replacement with{" "}
-                <span className="text-cyan-400 font-semibold">inbound & outbound calls</span>,{" "}
-                <span className="text-blue-400 font-semibold">lead qualification</span>, and{" "}
-                <span className="text-purple-400 font-semibold">appointment automation</span>.
-              </p>
+                {/* Button Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
 
-              {/* Desktop Stats */}
-              <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto mb-8">
-                <div className="bg-gradient-to-br from-cyan-500/10 to-teal-500/10 rounded-xl p-4 border border-cyan-500/20">
-                  <div className="text-2xl md:text-3xl font-bold text-cyan-400">10-20%</div>
-                  <div className="text-xs font-medium text-gray-400 uppercase">More Bookings</div>
+                {/* Button Content */}
+                <div className="relative flex items-center gap-3 text-white">
+                  <span className="text-base sm:text-lg font-semibold">Book Free Demo</span>
+                  <FaArrowRight className="text-sm group-hover:translate-x-1 transition-transform" />
                 </div>
-                <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-4 border border-purple-500/20">
-                  <div className="text-2xl md:text-3xl font-bold text-purple-400">24/7</div>
-                  <div className="text-xs font-medium text-gray-400 uppercase">Availability</div>
-                </div>
-                <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl p-4 border border-green-500/20">
-                  <div className="text-2xl md:text-3xl font-bold text-green-400">76%</div>
-                  <div className="text-xs font-medium text-gray-400 uppercase">Cost Reduction</div>
-                </div>
-              </div>
+              </motion.a>
 
-              {/* Desktop CTAs */}
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  onClick={() => {
-                    conversionTracker.trackDemoBooking('hero_cta');
-                  }}
-                  className="group inline-flex items-center justify-center gap-3 px-10 py-5 min-w-[280px] bg-gradient-to-r from-cyan-500 to-cyan-400 text-white font-bold text-lg rounded-2xl hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-105"
-                >
-                  <span className="flex flex-col items-center">
-                    <span className="text-lg">Book Free Demo</span>
-                    <span className="text-xs opacity-90 font-medium">1 Week Free Trial</span>
-                  </span>
-                  <FaArrowRight className="group-hover:translate-x-1 transition-transform text-lg" />
-                </a>
-
-                <a
-                  href="tel:+16163263328"
-                  onClick={() => {
-                    conversionTracker.trackPhoneCall('+16163263328');
-                  }}
-                  className="group inline-flex items-center justify-center gap-4 px-10 py-5 min-w-[280px] bg-gradient-to-r from-slate-800/80 to-slate-700/80 backdrop-blur-xl border-2 border-cyan-500/30 text-white font-bold text-lg rounded-2xl hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-blue-500/20 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105"
-                >
-                  <FaPhone className="text-cyan-400 text-lg" />
-                  <span className="flex flex-col items-start gap-1">
-                    <span className="text-lg">Experience AI Call Center</span>
-                    <span className="text-xs text-cyan-400 font-medium">Live Demo: +1 616-326-3328</span>
-                  </span>
-                </a>
-              </div>
+              {/* Secondary CTA */}
+              <motion.a
+                href="tel:+16163263328"
+                onClick={() => {
+                  conversionTracker.trackPhoneCall('+16163263328');
+                }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 min-w-[200px] sm:min-w-[250px] bg-white/5 backdrop-blur-sm border border-white/10 text-white font-medium text-base sm:text-lg rounded-xl hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+              >
+                <FaPhone className="text-cyan-400 text-sm" />
+                <span>Call AI Demo</span>
+              </motion.a>
             </div>
+
+            {/* Trust Indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="mt-8 flex flex-wrap justify-center items-center gap-4 text-xs text-gray-500"
+            >
+              <span className="flex items-center gap-1">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full" />
+                HIPAA Compliant
+              </span>
+              <span className="flex items-center gap-1">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full" />
+                Setup in 48 Hours
+              </span>
+              <span className="flex items-center gap-1">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full" />
+                No Credit Card Required
+              </span>
+            </motion.div>
           </motion.div>
         </div>
       </div>
