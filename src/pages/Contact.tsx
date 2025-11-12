@@ -117,10 +117,20 @@ const Contact: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="relative"
           >
-            <TechCard glowColor="green" hoverable={false}>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20">
+            {/* Glowing backdrop effect */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-green-600/20 via-emerald-600/20 to-green-600/20 rounded-2xl blur-2xl opacity-30" />
+
+            <div className="relative bg-gradient-to-br from-gray-900/90 via-black/95 to-gray-900/90 backdrop-blur-xl border border-green-500/30 rounded-2xl p-8 shadow-2xl">
+              {/* Decorative corner accents */}
+              <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-green-500/50 rounded-tl-2xl" />
+              <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-green-500/50 rounded-tr-2xl" />
+              <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-green-500/50 rounded-bl-2xl" />
+              <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-green-500/50 rounded-br-2xl" />
+
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-green-500/30 to-emerald-500/30 shadow-lg shadow-green-500/20">
                   <FaRocket className="text-2xl text-green-400" />
                 </div>
                 <div>
@@ -135,63 +145,75 @@ const Contact: React.FC = () => {
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Form Fields */}
-                <div className="space-y-1">
-                  <label className="text-xs text-gray-400 uppercase tracking-wider">
+                <div className="space-y-2">
+                  <label className="text-xs text-green-400 uppercase tracking-wider font-semibold">
                     {language === 'tr' ? 'Ad Soyad' : 'Full Name'} *
                   </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-black/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50 focus:bg-black/70 transition-all"
-                    placeholder={language === 'tr' ? 'Adınız Soyadınız' : 'John Doe'}
-                    required
-                  />
+                  <div className="relative group">
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-green-400 focus:bg-gray-900/80 focus:shadow-lg focus:shadow-green-500/20 transition-all duration-300"
+                      placeholder={language === 'tr' ? 'Adınız Soyadınız' : 'John Doe'}
+                      required
+                    />
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-500/0 to-emerald-500/0 group-focus-within:from-green-500/10 group-focus-within:to-emerald-500/10 pointer-events-none transition-all duration-300" />
+                  </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs text-gray-400 uppercase tracking-wider">
+                <div className="space-y-2">
+                  <label className="text-xs text-green-400 uppercase tracking-wider font-semibold">
                     {language === 'tr' ? 'E-posta' : 'Email'} *
                   </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-black/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50 focus:bg-black/70 transition-all"
-                    placeholder="john@company.com"
-                    required
-                  />
+                  <div className="relative group">
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-green-400 focus:bg-gray-900/80 focus:shadow-lg focus:shadow-green-500/20 transition-all duration-300"
+                      placeholder="john@company.com"
+                      required
+                    />
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-500/0 to-emerald-500/0 group-focus-within:from-green-500/10 group-focus-within:to-emerald-500/10 pointer-events-none transition-all duration-300" />
+                  </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs text-gray-400 uppercase tracking-wider">
+                <div className="space-y-2">
+                  <label className="text-xs text-green-400 uppercase tracking-wider font-semibold">
                     {language === 'tr' ? 'Şirket' : 'Company'}
                   </label>
-                  <input
-                    type="text"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-black/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50 focus:bg-black/70 transition-all"
-                    placeholder={language === 'tr' ? 'Şirket Adı' : 'Company Name'}
-                  />
+                  <div className="relative group">
+                    <input
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-green-400 focus:bg-gray-900/80 focus:shadow-lg focus:shadow-green-500/20 transition-all duration-300"
+                      placeholder={language === 'tr' ? 'Şirket Adı' : 'Company Name'}
+                    />
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-500/0 to-emerald-500/0 group-focus-within:from-green-500/10 group-focus-within:to-emerald-500/10 pointer-events-none transition-all duration-300" />
+                  </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs text-gray-400 uppercase tracking-wider">
+                <div className="space-y-2">
+                  <label className="text-xs text-green-400 uppercase tracking-wider font-semibold">
                     {language === 'tr' ? 'Mesajınız' : 'Message'} *
                   </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={5}
-                    className="w-full px-4 py-3 bg-black/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50 focus:bg-black/70 transition-all resize-none"
-                    placeholder={language === 'tr' ? 'Projeniz hakkında bilgi verin...' : 'Tell us about your project...'}
-                    required
-                  />
+                  <div className="relative group">
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows={5}
+                      className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-green-400 focus:bg-gray-900/80 focus:shadow-lg focus:shadow-green-500/20 transition-all duration-300 resize-none"
+                      placeholder={language === 'tr' ? 'Projeniz hakkında bilgi verin...' : 'Tell us about your project...'}
+                      required
+                    />
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-500/0 to-emerald-500/0 group-focus-within:from-green-500/10 group-focus-within:to-emerald-500/10 pointer-events-none transition-all duration-300" />
+                  </div>
                 </div>
 
                 <motion.button
@@ -199,19 +221,25 @@ const Contact: React.FC = () => {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full group relative inline-flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 hover:border-green-400/50 text-green-400 font-semibold rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full group relative"
                 >
-                  {isSubmitting ? (
-                    <span className="animate-pulse">
-                      {language === 'tr' ? 'Gönderiliyor...' : 'Sending...'}
-                    </span>
-                  ) : (
-                    <>
-                      <span>{language === 'tr' ? 'Mesajı Gönder' : 'Send Message'}</span>
-                      <FaPaperPlane className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                    </>
-                  )}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-500/0 to-emerald-500/0 group-hover:from-green-500/10 group-hover:to-emerald-500/10 transition-all duration-300" />
+                  {/* Glowing effect */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl blur-sm opacity-70 group-hover:opacity-100 transition duration-300 animate-pulse" />
+
+                  {/* Button content */}
+                  <div className="relative flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl text-white font-bold shadow-lg">
+                    {isSubmitting ? (
+                      <span className="animate-pulse">
+                        {language === 'tr' ? 'Gönderiliyor...' : 'Sending...'}
+                      </span>
+                    ) : (
+                      <>
+                        <span>{language === 'tr' ? 'Mesajı Gönder' : 'Send Message'}</span>
+                        <FaPaperPlane className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      </>
+                    )}
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-transparent via-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
                 </motion.button>
 
                 {/* Status Message */}
@@ -230,7 +258,7 @@ const Contact: React.FC = () => {
                   </motion.div>
                 )}
               </form>
-            </TechCard>
+            </div>
           </motion.div>
 
           {/* Contact Information */}

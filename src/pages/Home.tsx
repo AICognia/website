@@ -111,37 +111,61 @@ const Home: React.FC = () => {
           title="Simple Setup Process"
           subtitle="Get started in 48 hours with our streamlined onboarding"
         >
-          <div className="max-w-4xl mx-auto">
-            {/* Timeline */}
-            <div className="relative">
-              {/* Vertical line */}
-              <div className="absolute left-8 top-0 bottom-0 w-[1px] bg-gradient-to-b from-cyan-500 via-blue-500 to-purple-500 hidden sm:block" />
+          <div className="max-w-6xl mx-auto">
+            {/* Horizontal Flow */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative">
+              {/* Connecting Arrows - Hidden on mobile */}
+              <div className="hidden md:block absolute inset-0 pointer-events-none">
+                {/* Arrow 1 to 2 */}
+                <div className="absolute top-1/2 left-[22%] w-[11%] -translate-y-1/2">
+                  <div className="relative">
+                    <div className="h-[2px] bg-gradient-to-r from-cyan-500 to-blue-500 animate-pulse" />
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1">
+                      <div className="w-0 h-0 border-l-[8px] border-l-blue-500 border-y-[5px] border-y-transparent" />
+                    </div>
+                  </div>
+                </div>
+                {/* Arrow 2 to 3 */}
+                <div className="absolute top-1/2 left-[47%] w-[11%] -translate-y-1/2">
+                  <div className="relative">
+                    <div className="h-[2px] bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse" />
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1">
+                      <div className="w-0 h-0 border-l-[8px] border-l-purple-500 border-y-[5px] border-y-transparent" />
+                    </div>
+                  </div>
+                </div>
+                {/* Arrow 3 to 4 */}
+                <div className="absolute top-1/2 left-[72%] w-[11%] -translate-y-1/2">
+                  <div className="relative">
+                    <div className="h-[2px] bg-gradient-to-r from-purple-500 to-green-500 animate-pulse" />
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1">
+                      <div className="w-0 h-0 border-l-[8px] border-l-green-500 border-y-[5px] border-y-transparent" />
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               {/* Steps */}
               {[
                 {
-                  step: '01',
                   title: 'Initial Consultation',
                   description: 'We analyze your business needs and call volume',
                   icon: FaUsers,
                   color: 'cyan'
                 },
                 {
-                  step: '02',
                   title: 'AI Configuration',
                   description: 'Custom training on your business data and processes',
                   icon: FaChartLine,
                   color: 'blue'
                 },
                 {
-                  step: '03',
                   title: 'Integration Setup',
                   description: 'Connect with your CRM and booking systems',
                   icon: FaRocket,
                   color: 'purple'
                 },
                 {
-                  step: '04',
                   title: 'Go Live',
                   description: 'Your AI receptionist starts handling calls 24/7',
                   icon: FaCheckCircle,
@@ -150,43 +174,60 @@ const Home: React.FC = () => {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="relative flex items-center mb-12 last:mb-0"
+                  className="relative"
                 >
-                  {/* Step number */}
-                  <div className={`relative z-10 w-16 h-16 bg-black border-2 ${
-                    index === 0 ? 'border-cyan-500/50' :
-                    index === 1 ? 'border-blue-500/50' :
-                    index === 2 ? 'border-purple-500/50' :
-                    'border-green-500/50'
-                  } rounded-full flex items-center justify-center`}>
-                    <item.icon className={`${
-                      index === 0 ? 'text-cyan-400' :
-                      index === 1 ? 'text-blue-400' :
-                      index === 2 ? 'text-purple-400' :
-                      'text-green-400'
-                    } text-xl`} />
-                  </div>
+                  <TechCard glowColor={item.color as any} delay={index * 0.1}>
+                    <div className="text-center">
+                      {/* Icon */}
+                      <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${
+                        item.color === 'cyan' ? 'from-cyan-500/20 to-cyan-600/20' :
+                        item.color === 'blue' ? 'from-blue-500/20 to-blue-600/20' :
+                        item.color === 'purple' ? 'from-purple-500/20 to-purple-600/20' :
+                        'from-green-500/20 to-green-600/20'
+                      } rounded-full flex items-center justify-center border ${
+                        item.color === 'cyan' ? 'border-cyan-500/30' :
+                        item.color === 'blue' ? 'border-blue-500/30' :
+                        item.color === 'purple' ? 'border-purple-500/30' :
+                        'border-green-500/30'
+                      }`}>
+                        <item.icon className={`${
+                          item.color === 'cyan' ? 'text-cyan-400' :
+                          item.color === 'blue' ? 'text-blue-400' :
+                          item.color === 'purple' ? 'text-purple-400' :
+                          'text-green-400'
+                        } text-2xl`} />
+                      </div>
 
-                  {/* Content */}
-                  <div className="ml-8 flex-1">
-                    <div className="flex items-center gap-4 mb-2">
-                      <span className={`text-xs font-bold ${
+                      {/* Step Badge */}
+                      <div className={`inline-block px-3 py-1 mb-3 text-xs font-bold ${
+                        item.color === 'cyan' ? 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30' :
+                        item.color === 'blue' ? 'text-blue-400 bg-blue-500/10 border-blue-500/30' :
+                        item.color === 'purple' ? 'text-purple-400 bg-purple-500/10 border-purple-500/30' :
+                        'text-green-400 bg-green-500/10 border-green-500/30'
+                      } border rounded-full uppercase tracking-wider`}>
+                        {index === 3 ? 'Final' : `Step ${index + 1}`}
+                      </div>
+
+                      {/* Title & Description */}
+                      <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                      <p className="text-sm text-gray-400 font-light">{item.description}</p>
+                    </div>
+                  </TechCard>
+
+                  {/* Mobile Arrow - Show only on mobile between steps */}
+                  {index < 3 && (
+                    <div className="flex justify-center mt-4 md:hidden">
+                      <FaArrowRight className={`text-2xl ${
                         index === 0 ? 'text-cyan-400' :
                         index === 1 ? 'text-blue-400' :
-                        index === 2 ? 'text-purple-400' :
-                        'text-green-400'
-                      } uppercase tracking-widest`}>
-                        Step {item.step}
-                      </span>
-                      <div className="h-[1px] flex-1 bg-gradient-to-r from-gray-700 to-transparent" />
+                        'text-purple-400'
+                      } animate-bounce`} style={{ animationDirection: 'normal', animationDuration: '2s' }} />
                     </div>
-                    <h3 className="text-xl font-semibold text-white mb-1">{item.title}</h3>
-                    <p className="text-sm text-gray-400 font-light">{item.description}</p>
-                  </div>
+                  )}
                 </motion.div>
               ))}
             </div>

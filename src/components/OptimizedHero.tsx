@@ -189,7 +189,7 @@ const OptimizedHero: React.FC = () => {
                 </div>
               </motion.a>
 
-              {/* Secondary CTA - Matching Size */}
+              {/* Secondary CTA - Green Theme */}
               <motion.a
                 href="tel:+16163263328"
                 onClick={() => {
@@ -200,17 +200,17 @@ const OptimizedHero: React.FC = () => {
                 className="group relative w-full sm:w-auto"
               >
                 {/* Subtle Glow Effect */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-gray-600 to-gray-500 rounded-xl blur-md opacity-30 group-hover:opacity-50 transition duration-300"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl blur-md opacity-40 group-hover:opacity-60 transition duration-300"></div>
 
                 {/* Button */}
-                <div className="relative flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-700 to-gray-600 rounded-xl leading-none shadow-lg">
+                <div className="relative flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl leading-none shadow-lg">
                   <FaPhone className="text-white text-sm" />
                   <span className="text-base font-bold text-white">
                     Call Live Demo
                   </span>
 
                   {/* Inner shine effect */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-transparent via-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </motion.a>
             </div>
