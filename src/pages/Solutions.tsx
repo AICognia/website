@@ -156,7 +156,7 @@ const Solutions: React.FC = () => {
                 {[
                   { value: '87%', label: language === 'tr' ? 'Dönüşüm' : 'Conversion' },
                   { value: '24/7', label: language === 'tr' ? 'Aktif' : 'Active' },
-                  { value: '60%', label: language === 'tr' ? 'Tasarruf' : 'Savings' },
+                  { value: '76%', label: language === 'tr' ? 'Tasarruf' : 'Savings' },
                   { value: '0.5s', label: language === 'tr' ? 'Yanıt' : 'Response' }
                 ].map((stat, i) => (
                   <motion.div
@@ -364,7 +364,7 @@ const Solutions: React.FC = () => {
             {[
               { value: '87%', label: language === 'tr' ? 'Dönüşüm Artışı' : 'Conversion Rate', suffix: '↑' },
               { value: '24/7', label: language === 'tr' ? 'Kesintisiz' : 'Always On', suffix: '' },
-              { value: '60%', label: language === 'tr' ? 'Maliyet Azalışı' : 'Cost Reduction', suffix: '↓' },
+              { value: '76%', label: language === 'tr' ? 'Maliyet Azalışı' : 'Cost Reduction', suffix: '↓' },
               { value: '0.5s', label: language === 'tr' ? 'Yanıt Süresi' : 'Response Time', suffix: '' }
             ].map((stat, index) => (
               <motion.div

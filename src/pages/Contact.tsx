@@ -77,7 +77,7 @@ const Contact: React.FC = () => {
       url: 'https://cogniaai.com',
       contactPoint: {
         '@type': 'ContactPoint',
-        telephone: '+1-217-693-8413',
+        telephone: '+1-616-326-3328',
         contactType: 'sales',
         availableLanguage: ['English', 'Turkish', 'Spanish'],
         areaServed: 'Worldwide'
@@ -357,7 +357,7 @@ const Contact: React.FC = () => {
 
                 <div className="grid gap-3">
                   <a
-                    href="tel:+12176938413"
+                    href="tel:+16163263328"
                     className="flex items-center gap-3 p-3 bg-black/30 border border-gray-700/30 rounded-xl hover:border-gray-600/40 transition-all"
                   >
                     <FaPhone className="text-green-400" />
@@ -365,7 +365,7 @@ const Contact: React.FC = () => {
                       <div className="text-xs text-gray-400 uppercase tracking-wider">
                         {language === 'tr' ? 'Telefon' : 'Phone'}
                       </div>
-                      <div className="text-white font-semibold">+1 217 693 8413</div>
+                      <div className="text-white font-semibold">+1 616 326 3328</div>
                     </div>
                   </a>
 
