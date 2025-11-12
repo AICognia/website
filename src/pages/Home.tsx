@@ -1,21 +1,20 @@
 import React, { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaPhone } from 'react-icons/fa';
+import { FaPhone, FaArrowRight } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
 import GlassCard from '../components/GlassCard';
 import NoiseTexture from '../components/NoiseTexture';
 import ScrollProgress from '../components/ScrollProgress';
 import TrustBadges from '../components/TrustBadges';
-import MobileHero from '../components/MobileHero';
+import OptimizedHero from '../components/OptimizedHero';
+import GridPattern from '../components/GridPattern';
+import GradientOrbs from '../components/GradientOrbs';
 import conversionTracker from '../utils/conversionTracking';
 
 // Lazy load heavy components
 const ROICalculator = lazy(() => import('../components/ROICalculator'));
 const MobileROICalculator = lazy(() => import('../components/MobileROICalculator'));
-const GradientOrbs = lazy(() => import('../components/GradientOrbs'));
-const GridPattern = lazy(() => import('../components/GridPattern'));
-const ParticleNetwork = lazy(() => import('../components/ParticleNetwork'));
 
 const Home: React.FC = () => {
   
@@ -66,169 +65,14 @@ const Home: React.FC = () => {
         ]}
       />
       
-      {/* Mobile Hero - New Modern Design */}
-      <MobileHero />
-
-      {/* Desktop Hero Section - Enhanced Tech Futuristic Design */}
-      <section className="hidden lg:flex relative min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white overflow-hidden items-center">
-        {/* Animated Tech Background Layers */}
-        <Suspense fallback={null}>
-          <div className="absolute inset-0 opacity-30">
-            <ParticleNetwork />
-          </div>
-        </Suspense>
-
-        {/* Animated Grid Pattern */}
-        <Suspense fallback={null}>
-          <GridPattern className="opacity-20 animate-pulse-subtle" />
-        </Suspense>
-
-        {/* Dynamic Gradient Orbs */}
-        <Suspense fallback={null}>
-          <GradientOrbs />
-        </Suspense>
-
-        {/* Holographic Effect Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/10 via-transparent to-purple-900/10 animate-gradient-slow" />
-
-        {/* Tech Lines Animation */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent animate-pulse" />
-          <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-purple-500/20 to-transparent animate-pulse animation-delay-200" />
-          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-teal-500/20 to-transparent animate-pulse animation-delay-400" />
-        </div>
-
-        <div className="relative container mx-auto px-6 py-12">
-          {/* Main Content */}
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-center"
-            >
-              {/* Futuristic Main Headline with Glitch Effect */}
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 relative">
-                <motion.span
-                  className="block relative"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                    AI Call Center
-                  </span>
-                  {/* Animated underline */}
-                  <motion.div
-                    className="absolute bottom-0 left-0 h-2 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 1, delay: 0.8 }}
-                  />
-                </motion.span>
-              </h1>
-              
-              {/* Enhanced Subheadline with Tech Details */}
-              <motion.p
-                className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-6 sm:mb-8 leading-relaxed px-4 sm:px-0"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                Complete call center replacement with{" "}
-                <span className="text-cyan-400 font-semibold">inbound & outbound calls</span>,{" "}
-                <span className="text-blue-400 font-semibold block sm:inline">lead qualification</span>, and{" "}
-                <span className="text-purple-400 font-semibold">appointment automation</span>.
-              </motion.p>
-
-              {/* Tech Status Indicator - Simplified for mobile */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-                className="flex items-center justify-center gap-2 mb-4 sm:mb-6"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                </span>
-                <span className="text-[10px] sm:text-xs text-gray-400 uppercase tracking-wider">AI Systems Active</span>
-              </motion.div>
-
-              {/* Stats Row - Mobile optimized */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="grid grid-cols-3 gap-2 sm:gap-4 max-w-3xl mx-auto mb-6 sm:mb-8 px-2 sm:px-0"
-              >
-                <div className="bg-gradient-to-br from-cyan-500/10 to-teal-500/10 rounded-lg sm:rounded-xl p-2.5 sm:p-4 border border-cyan-500/20 backdrop-blur-sm">
-                  <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">10-20%</div>
-                  <div className="text-[10px] sm:text-xs font-medium text-gray-400 uppercase tracking-wider">More Bookings</div>
-                </div>
-                <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg sm:rounded-xl p-2.5 sm:p-4 border border-purple-500/20 backdrop-blur-sm">
-                  <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">24/7</div>
-                  <div className="text-[10px] sm:text-xs font-medium text-gray-400 uppercase tracking-wider">Availability</div>
-                </div>
-                <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-lg sm:rounded-xl p-2.5 sm:p-4 border border-green-500/20 backdrop-blur-sm">
-                  <div className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">76%</div>
-                  <div className="text-[10px] sm:text-xs font-medium text-gray-400 uppercase tracking-wider">Cost Reduction</div>
-            </div>
-          </motion.div>
-              
-              {/* CTAs */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-              >
-                <a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => {
-                    conversionTracker.trackDemoBooking('hero_cta');
-                    conversionTracker.trackButtonClick('Book Free Demo', 'hero_section');
-                  }}
-                  className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 min-w-[280px] bg-gradient-to-r from-cyan-500 to-cyan-400 text-white font-bold text-lg rounded-2xl hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-105 transform"
-                >
-                  <span className="flex flex-col items-center">
-                    <span className="text-lg">Book Free Demo</span>
-                    <span className="text-xs opacity-90 font-medium">1 Week Free Trial</span>
-                  </span>
-                  <FaArrowRight className="group-hover:translate-x-1 transition-transform text-lg" />
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400/20 to-teal-400/20 blur-md opacity-0 group-hover:opacity-50 transition-opacity -z-10" />
-                </a>
-
-                <a
-                  href="tel:+16163263328"
-                  onClick={() => {
-                    conversionTracker.trackPhoneCall('+16163263328');
-                    conversionTracker.trackButtonClick('Experience AI Call Center', 'hero_section');
-                  }}
-                  className="group inline-flex items-center justify-center gap-4 px-10 py-5 min-w-[280px] bg-gradient-to-r from-slate-800/80 to-slate-700/80 backdrop-blur-xl border-2 border-cyan-500/30 text-white font-bold text-lg rounded-2xl hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-blue-500/20 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 transform"
-                >
-                  <FaPhone className="text-cyan-400 text-lg flex-shrink-0" />
-                  <span className="flex flex-col items-start gap-1">
-                    <span className="text-lg">Experience AI Call Center</span>
-                    <span className="text-xs text-cyan-400 font-medium">Live Demo: +1 616-326-3328</span>
-                  </span>
-                </a>
-              </motion.div>
-            </motion.div>
-            </div>
-        </div>
-      </section>
+      {/* Optimized Hero Section with Static WebP Background */}
+      <OptimizedHero />
 
       {/* Trust Badges */}
       <TrustBadges />
 
       {/* ROI Calculator Section - Modern */}
       <section className="relative bg-gray-900 py-16 sm:py-24 md:py-32 overflow-hidden">
-        <Suspense fallback={null}>
-          <GridPattern className="opacity-10 hidden md:block" />
-        </Suspense>
 
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
             <motion.div
@@ -254,7 +98,7 @@ const Home: React.FC = () => {
           >
             {/* Mobile ROI Calculator */}
             <div className="lg:hidden">
-              <Suspense fallback={<div className="h-96 flex items-center justify-center text-gray-400">Loading calculator...</div>}>
+              <Suspense fallback={<div className="h-96 flex items-center justify-center text-gray-400" style={{ minHeight: '384px' }}>Loading calculator...</div>}>
                 <MobileROICalculator />
               </Suspense>
             </div>
@@ -262,7 +106,7 @@ const Home: React.FC = () => {
             {/* Desktop ROI Calculator */}
             <div className="hidden lg:block">
               <GlassCard className="p-8">
-                <Suspense fallback={<div className="h-96 flex items-center justify-center text-gray-400">Loading calculator...</div>}>
+                <Suspense fallback={<div className="h-96 flex items-center justify-center text-gray-400" style={{ minHeight: '384px' }}>Loading calculator...</div>}>
                   <ROICalculator />
                 </Suspense>
               </GlassCard>
@@ -273,11 +117,6 @@ const Home: React.FC = () => {
 
       {/* Voice Agent Demo - Modern Design */}
       <section className="bg-gray-950 py-16 sm:py-24 md:py-32 relative overflow-hidden">
-        <Suspense fallback={null}>
-          <div className="hidden lg:block">
-            <GradientOrbs />
-          </div>
-        </Suspense>
 
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-4xl mx-auto">

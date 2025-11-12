@@ -40,6 +40,7 @@ const StickyMobileCTA: React.FC = () => {
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           className="fixed bottom-0 left-0 right-0 z-50 lg:hidden"
+          style={{ minHeight: '110px', contain: 'layout' }}
         >
           {/* Background with gradient */}
           <div className="bg-gradient-to-t from-gray-950 via-gray-900 to-gray-900/95 backdrop-blur-2xl border-t border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
