@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { HelmetProvider } from 'react-helmet-async';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
+import MobileNavbar from './components/MobileNavbar';
 import Footer from './components/Footer';
 import CookieConsentBanner from './components/CookieConsent';
 import Breadcrumb from './components/Breadcrumb';
@@ -33,7 +34,12 @@ function AppContent() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      <Navbar />
+      {/* Mobile Navigation */}
+      <MobileNavbar />
+      {/* Desktop Navigation */}
+      <div className="hidden lg:block">
+        <Navbar />
+      </div>
       {location.pathname !== '/' && <Breadcrumb />}
       <main className="flex-grow">
         <Suspense fallback={<PageLoader />}>

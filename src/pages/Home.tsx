@@ -7,10 +7,12 @@ import GlassCard from '../components/GlassCard';
 import NoiseTexture from '../components/NoiseTexture';
 import ScrollProgress from '../components/ScrollProgress';
 import TrustBadges from '../components/TrustBadges';
+import MobileHero from '../components/MobileHero';
 import conversionTracker from '../utils/conversionTracking';
 
 // Lazy load heavy components
 const ROICalculator = lazy(() => import('../components/ROICalculator'));
+const MobileROICalculator = lazy(() => import('../components/MobileROICalculator'));
 const GradientOrbs = lazy(() => import('../components/GradientOrbs'));
 const GridPattern = lazy(() => import('../components/GridPattern'));
 const ParticleNetwork = lazy(() => import('../components/ParticleNetwork'));
@@ -64,38 +66,39 @@ const Home: React.FC = () => {
         ]}
       />
       
-      {/* Hero Section - Maximum Tech Futuristic Design */}
-      <section className="relative min-h-[calc(100vh-5rem)] sm:min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white overflow-hidden flex items-center">
-        {/* Animated Tech Background Layers - Reduced for mobile performance */}
+      {/* Mobile Hero - New Modern Design */}
+      <MobileHero />
+
+      {/* Desktop Hero Section - Enhanced Tech Futuristic Design */}
+      <section className="hidden lg:flex relative min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white overflow-hidden items-center">
+        {/* Animated Tech Background Layers */}
         <Suspense fallback={null}>
-          <div className="absolute inset-0 opacity-20 lg:opacity-30 hidden sm:block">
+          <div className="absolute inset-0 opacity-30">
             <ParticleNetwork />
           </div>
         </Suspense>
 
-        {/* Animated Grid Pattern - Only on desktop */}
+        {/* Animated Grid Pattern */}
         <Suspense fallback={null}>
-          <GridPattern className="opacity-10 lg:opacity-20 animate-pulse-subtle hidden md:block" />
+          <GridPattern className="opacity-20 animate-pulse-subtle" />
         </Suspense>
 
-        {/* Dynamic Gradient Orbs - Only on desktop */}
+        {/* Dynamic Gradient Orbs */}
         <Suspense fallback={null}>
-          <div className="hidden lg:block">
-            <GradientOrbs />
-          </div>
+          <GradientOrbs />
         </Suspense>
 
-        {/* Simplified gradient for mobile */}
-        <div className="absolute inset-0 bg-gradient-to-b from-cyan-900/5 to-purple-900/5 lg:hidden" />
+        {/* Holographic Effect Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/10 via-transparent to-purple-900/10 animate-gradient-slow" />
 
-        {/* Tech Lines Animation - Only on larger screens */}
-        <div className="absolute inset-0 hidden md:block">
+        {/* Tech Lines Animation */}
+        <div className="absolute inset-0">
           <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent animate-pulse" />
           <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-purple-500/20 to-transparent animate-pulse animation-delay-200" />
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-teal-500/20 to-transparent animate-pulse animation-delay-400" />
         </div>
 
-        <div className="relative container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <div className="relative container mx-auto px-6 py-12">
           {/* Main Content */}
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -105,7 +108,7 @@ const Home: React.FC = () => {
               className="text-center"
             >
               {/* Futuristic Main Headline with Glitch Effect */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 relative">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 relative">
                 <motion.span
                   className="block relative"
                   initial={{ opacity: 0, y: 20 }}
@@ -115,9 +118,9 @@ const Home: React.FC = () => {
                   <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
                     AI Call Center
                   </span>
-                  {/* Animated underline - Hidden on mobile for performance */}
+                  {/* Animated underline */}
                   <motion.div
-                    className="absolute bottom-0 left-0 h-1 sm:h-2 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 rounded-full hidden sm:block"
+                    className="absolute bottom-0 left-0 h-2 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 rounded-full"
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ duration: 1, delay: 0.8 }}
@@ -248,11 +251,21 @@ const Home: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-6xl mx-auto"
           >
-            <GlassCard className="p-8">
+            {/* Mobile ROI Calculator */}
+            <div className="lg:hidden">
               <Suspense fallback={<div className="h-96 flex items-center justify-center text-gray-400">Loading calculator...</div>}>
-                <ROICalculator />
+                <MobileROICalculator />
               </Suspense>
-            </GlassCard>
+            </div>
+
+            {/* Desktop ROI Calculator */}
+            <div className="hidden lg:block">
+              <GlassCard className="p-8">
+                <Suspense fallback={<div className="h-96 flex items-center justify-center text-gray-400">Loading calculator...</div>}>
+                  <ROICalculator />
+                </Suspense>
+              </GlassCard>
+            </div>
           </motion.div>
         </div>
       </section>
