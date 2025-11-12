@@ -99,7 +99,7 @@ const Contact: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <TechSection noPadding className="pt-32 pb-16">
+      <TechSection noPadding className="pt-28 pb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

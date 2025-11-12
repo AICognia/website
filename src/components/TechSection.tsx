@@ -23,7 +23,7 @@ const TechSection: React.FC<TechSectionProps> = ({
   return (
     <section
       id={id}
-      className={`relative ${noPadding ? '' : 'py-12 sm:py-16 lg:py-20'} ${className}`}
+      className={`relative ${noPadding ? '' : 'py-8 sm:py-12 lg:py-16'} ${className}`}
     >
       {/* Section background overlay for contrast */}
       <div className="absolute inset-0 bg-black/30" />
@@ -35,7 +35,7 @@ const TechSection: React.FC<TechSectionProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-8 sm:mb-10 lg:mb-12"
+            className="text-center mb-6 sm:mb-8 lg:mb-10"
           >
             {/* Tech Badge */}
             {badge && (

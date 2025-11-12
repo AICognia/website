@@ -5,7 +5,7 @@ import conversionTracker from '../utils/conversionTracking';
 
 const OptimizedHero: React.FC = () => {
   return (
-    <section className="relative h-[70vh] min-h-[500px] max-h-[800px] bg-black text-white overflow-hidden flex items-center">
+    <section className="relative min-h-screen bg-black text-white overflow-hidden flex items-center">
       {/* Tech Background Layers */}
       <div className="absolute inset-0">
         {/* Base gradient */}
@@ -164,22 +164,28 @@ const OptimizedHero: React.FC = () => {
 
             {/* CTAs with Tech Style */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              {/* Primary CTA - Gradient Tech Button */}
+              {/* Primary CTA - Appealing Glowy Blue Button */}
               <motion.a
                 href="https://calendly.com/emrebenian-cogniaai/30min"
                 onClick={() => {
                   conversionTracker.trackDemoBooking('hero_cta');
                 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 className="group relative w-full sm:w-auto"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-200"></div>
-                <div className="relative flex items-center justify-center gap-2 px-6 py-3 bg-black rounded-lg leading-none">
-                  <span className="text-sm font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                {/* Subtle Glow Effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl blur-md opacity-50 group-hover:opacity-75 transition duration-300 animate-pulse"></div>
+
+                {/* Button */}
+                <div className="relative flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl leading-none shadow-lg">
+                  <span className="text-base font-bold text-white">
                     Start Free Trial
                   </span>
-                  <FaArrowRight className="text-cyan-400 text-xs group-hover:translate-x-1 transition-transform" />
+                  <FaArrowRight className="text-white text-sm group-hover:translate-x-1 transition-transform" />
+
+                  {/* Inner shine effect */}
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-transparent via-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </motion.a>
 

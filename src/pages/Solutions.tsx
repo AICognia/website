@@ -109,7 +109,7 @@ const Solutions: React.FC = () => {
         <SEO page="solutions" />
 
         {/* Hero Section */}
-        <section className="relative h-[70vh] min-h-[500px] max-h-[700px] flex items-center justify-center">
+        <section className="relative h-[60vh] min-h-[500px] max-h-[650px] flex items-center justify-center">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

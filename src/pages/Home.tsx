@@ -77,9 +77,9 @@ const Home: React.FC = () => {
           title="Enterprise AI Capabilities"
           subtitle="Advanced features designed for scale and reliability"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
             <TechCard glowColor="cyan" delay={0.1}>
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col h-full min-h-[280px]">
                 <div className="w-12 h-12 mb-3 bg-gradient-to-br from-cyan-500/10 to-cyan-600/20 rounded-lg flex items-center justify-center border border-cyan-500/20">
                   <FaPhone className="text-cyan-400 text-xl" />
                 </div>
@@ -97,7 +97,7 @@ const Home: React.FC = () => {
             </TechCard>
 
             <TechCard glowColor="blue" delay={0.2}>
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col h-full min-h-[280px]">
                 <div className="w-12 h-12 mb-3 bg-gradient-to-br from-blue-500/10 to-blue-600/20 rounded-lg flex items-center justify-center border border-blue-500/20">
                   <FaRocket className="text-blue-400 text-xl" />
                 </div>
@@ -115,7 +115,7 @@ const Home: React.FC = () => {
             </TechCard>
 
             <TechCard glowColor="purple" delay={0.3}>
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col h-full min-h-[280px]">
                 <div className="w-12 h-12 mb-3 bg-gradient-to-br from-purple-500/10 to-purple-600/20 rounded-lg flex items-center justify-center border border-purple-500/20">
                   <FaGlobe className="text-purple-400 text-xl" />
                 </div>
@@ -133,7 +133,7 @@ const Home: React.FC = () => {
             </TechCard>
 
             <TechCard glowColor="green" delay={0.4}>
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col h-full min-h-[280px]">
                 <div className="w-12 h-12 mb-3 bg-gradient-to-br from-green-500/10 to-green-600/20 rounded-lg flex items-center justify-center border border-green-500/20">
                   <FaShieldAlt className="text-green-400 text-xl" />
                 </div>
@@ -374,19 +374,25 @@ const Home: React.FC = () => {
           <div className="max-w-4xl mx-auto text-center">
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              {/* Primary CTA */}
+              {/* Primary CTA - Appealing Glowy Blue Button */}
               <motion.a
                 href="https://calendly.com/emrebenian-cogniaai/30min"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 className="group relative w-full sm:w-auto"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-200"></div>
-                <div className="relative flex items-center justify-center gap-3 px-10 py-5 bg-black rounded-lg leading-none">
-                  <span className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                {/* Subtle Glow Effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl blur-md opacity-50 group-hover:opacity-75 transition duration-300 animate-pulse"></div>
+
+                {/* Button */}
+                <div className="relative flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl leading-none shadow-lg">
+                  <span className="text-lg font-bold text-white">
                     Schedule Free Demo
                   </span>
-                  <FaArrowRight className="text-cyan-400 text-sm group-hover:translate-x-1 transition-transform" />
+                  <FaArrowRight className="text-white text-sm group-hover:translate-x-1 transition-transform" />
+
+                  {/* Inner shine effect */}
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-transparent via-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </motion.a>
 
