@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
               aria-label="Cognia AI Home"
             >
               <motion.span
-                className="text-3xl md:text-4xl font-bold gradient-text relative"
+                className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text relative"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
@@ -141,23 +141,23 @@ const Navbar: React.FC = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="lg:hidden overflow-hidden bg-slate-900/98 backdrop-blur-2xl border-t border-slate-800/50"
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="lg:hidden overflow-hidden bg-slate-900/98 backdrop-blur-xl border-t border-slate-800/50"
             >
-              <div className="container mx-auto px-6 py-6 space-y-3">
+              <div className="container mx-auto px-4 py-4 space-y-2">
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.path}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
+                    transition={{ delay: index * 0.05 }}
                   >
                     <Link
                       to={item.path}
                       onClick={() => setIsOpen(false)}
-                      className={`block px-4 py-3 rounded-xl text-lg font-medium transition-all duration-300 ${
+                      className={`block px-3 py-2.5 rounded-lg text-base font-medium transition-all duration-200 ${
                         location.pathname === item.path
-                          ? 'bg-cyan-500/20 text-cyan-400 shadow-inner-glow'
+                          ? 'bg-cyan-500/20 text-cyan-400'
                           : 'text-gray-300 hover:bg-slate-800/50 hover:text-cyan-400'
                       }`}
                     >
@@ -168,29 +168,29 @@ const Navbar: React.FC = () => {
 
                 {/* Mobile CTAs */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: navItems.length * 0.1 }}
-                  className="pt-4 border-t border-slate-800/50 space-y-3"
+                  transition={{ delay: navItems.length * 0.05 }}
+                  className="pt-3 border-t border-slate-800/50 space-y-2"
                 >
                   <a
                     href="tel:+16163263328"
-                    className="flex items-center justify-center gap-2 py-3 text-cyan-400 hover:text-cyan-300 transition-colors"
+                    className="flex items-center justify-center gap-2 py-2.5 text-cyan-400 hover:text-cyan-300 transition-colors text-sm"
                   >
-                    <FaPhone />
+                    <FaPhone className="text-xs" />
                     <span className="font-medium">+1 616 326-3328</span>
                   </a>
 
                   <PremiumButton
                     variant="cta"
-                    size="lg"
+                    size="md"
                     fullWidth
                     showArrow
                     urgency
                     href="https://calendly.com/emrebenian-cogniaai/30min"
                     onClick={() => setIsOpen(false)}
                   >
-                    Book Your Demo
+                    Book Demo
                   </PremiumButton>
                 </motion.div>
               </div>

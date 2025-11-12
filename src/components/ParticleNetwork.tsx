@@ -59,9 +59,9 @@ const ParticleNetwork: React.FC<ParticleNetworkProps> = ({
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    // Reduce particle count on mobile
-    const actualParticleCount = isMobile ? Math.min(15, particleCount) : particleCount;
-    const actualConnectionDistance = isMobile ? connectionDistance * 0.7 : connectionDistance;
+    // Heavily reduce particle count on mobile for better performance
+    const actualParticleCount = isMobile ? Math.min(8, particleCount) : Math.min(20, particleCount);
+    const actualConnectionDistance = isMobile ? connectionDistance * 0.5 : connectionDistance;
 
     // Set canvas size with device pixel ratio for crisp rendering
     const resizeCanvas = () => {
@@ -257,4 +257,4 @@ const ParticleNetwork: React.FC<ParticleNetworkProps> = ({
   );
 };
 
-export default ParticleNetwork;
+export default React.memo(ParticleNetwork);

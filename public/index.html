@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#3B82F6" />
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts - Optimized with font-display: swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -78,26 +78,34 @@
     }
     </script>
     
-    <!-- Leadsy.ai Tracking Script -->
-    <script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="NalFrni3JDQqf0vh" data-version="062024"></script>
-
-    <!-- Meta Pixel Code -->
+    <!-- Defer tracking scripts to improve performance -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '25303526889240087');
-    fbq('track', 'PageView');
+    // Defer tracking scripts until after page load
+    window.addEventListener('load', function() {
+      // Leadsy.ai Tracking Script
+      var leadsyScript = document.createElement('script');
+      leadsyScript.id = 'vtag-ai-js';
+      leadsyScript.src = 'https://r2.leadsy.ai/tag.js';
+      leadsyScript.dataset.pid = 'NalFrni3JDQqf0vh';
+      leadsyScript.dataset.version = '062024';
+      document.head.appendChild(leadsyScript);
+
+      // Meta Pixel Code
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '25303526889240087');
+      fbq('track', 'PageView');
+    });
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=25303526889240087&ev=PageView&noscript=1"
     /></noscript>
-    <!-- End Meta Pixel Code -->
   </head>
   <body>
     <noscript>
@@ -136,7 +144,16 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     
-    <!-- ElevenLabs Voice Agent Script -->
-    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+    <!-- ElevenLabs Voice Agent Script - Deferred -->
+    <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var elevenLabsScript = document.createElement('script');
+        elevenLabsScript.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+        elevenLabsScript.type = 'text/javascript';
+        document.body.appendChild(elevenLabsScript);
+      }, 2000); // Load after 2 seconds to prioritize main content
+    });
+    </script>
   </body>
 </html>

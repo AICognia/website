@@ -24,15 +24,16 @@
 /* Cookie Banner and Modal Animations */
 @keyframes slide-up {
   from {
-    transform: translateY(100%);
+    transform: translate3d(0, 100%, 0);
   }
   to {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .animate-slide-up {
   animation: slide-up 0.3s ease-out;
+  will-change: transform;
 }
 
 /* Modal Backdrop Animation */
@@ -98,10 +99,10 @@
 /* Float Animation for Elements */
 @keyframes float {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translate3d(0, -10px, 0);
   }
 }
 
@@ -234,17 +235,19 @@
     animation: glow-pulse 2s ease-in-out infinite;
   }
 
-  /* Professional Animated Gradient Background */
+  /* Professional Animated Gradient Background - Optimized for performance */
   .animated-gradient {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #06b6d4 50%, #10b981 75%, #667eea 100%);
     background-size: 400% 400%;
     animation: gradient 20s ease infinite;
+    will-change: background-position;
   }
 
   .animated-gradient-slow {
     background: linear-gradient(135deg, #1e293b 0%, #334155 25%, #1e3a8a 50%, #1e293b 75%, #0f172a 100%);
     background-size: 400% 400%;
     animation: gradient 30s ease infinite;
+    will-change: background-position;
   }
 
   @keyframes gradient {
@@ -256,6 +259,15 @@
     }
     100% {
       background-position: 0% 50%;
+    }
+  }
+
+  /* Disable complex animations on mobile for performance */
+  @media (max-width: 768px) {
+    .animated-gradient,
+    .animated-gradient-slow {
+      animation: none;
+      background-size: 100% 100%;
     }
   }
 

@@ -45,4 +45,4 @@ const GridPattern: React.FC<GridPatternProps> = ({
   );
 };
 
-export default GridPattern;
+export default React.memo(GridPattern);

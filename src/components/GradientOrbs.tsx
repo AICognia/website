@@ -171,4 +171,4 @@ const GradientOrbs: React.FC<GradientOrbsProps> = ({
   );
 };
 
-export default GradientOrbs;
+export default React.memo(GradientOrbs);
