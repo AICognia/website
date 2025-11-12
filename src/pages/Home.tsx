@@ -1,22 +1,20 @@
 import React, { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
-import { FaPhone, FaArrowRight } from 'react-icons/fa';
+import { FaPhone, FaArrowRight, FaCheckCircle, FaRocket, FaShieldAlt, FaClock, FaChartLine, FaUsers, FaGlobe, FaHeadset } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
-import GlassCard from '../components/GlassCard';
-import NoiseTexture from '../components/NoiseTexture';
 import ScrollProgress from '../components/ScrollProgress';
-import TrustBadges from '../components/TrustBadges';
 import OptimizedHero from '../components/OptimizedHero';
-import GridPattern from '../components/GridPattern';
-import GradientOrbs from '../components/GradientOrbs';
+import DynamicTechBackground from '../components/DynamicTechBackground';
+import TechSection from '../components/TechSection';
+import TechCard from '../components/TechCard';
 
 // Lazy load heavy components
 const ROICalculator = lazy(() => import('../components/ROICalculator'));
 const MobileROICalculator = lazy(() => import('../components/MobileROICalculator'));
 
 const Home: React.FC = () => {
-  
+
   // FAQ structured data for the home page
   const faqStructuredData = {
     '@context': 'https://schema.org',
@@ -48,434 +46,356 @@ const Home: React.FC = () => {
       }
     ]
   };
-  
+
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative bg-black text-white">
       <ScrollProgress />
-      <NoiseTexture />
-      
-      <SEO 
-        page="home" 
-        structuredData={[
-          structuredDataTemplates.organization,
-          structuredDataTemplates.webSite,
-          structuredDataTemplates.service,
-          faqStructuredData
-        ]}
-      />
-      
-      {/* Optimized Hero Section with Static WebP Background */}
-      <OptimizedHero />
 
-      {/* Trust Badges */}
-      <TrustBadges />
+      {/* Dynamic Tech Background - Fixed position for entire page */}
+      <div className="fixed inset-0 z-0">
+        <DynamicTechBackground />
+      </div>
 
-      {/* ROI Calculator Section - Modern */}
-      <section className="relative bg-gray-900 py-16 sm:py-24 md:py-32 overflow-hidden">
+      {/* Content */}
+      <div className="relative z-10">
+        <SEO
+          page="home"
+          structuredData={[
+            structuredDataTemplates.organization,
+            structuredDataTemplates.webSite,
+            structuredDataTemplates.service,
+            faqStructuredData
+          ]}
+        />
 
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-            <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-8 sm:mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
-              See Your ROI
-              </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-4 sm:px-0">
-              Calculate how much revenue you're losing to missed calls and see what Cognia AI can recover
-            </p>
-            </motion.div>
-            
-          {/* Calculator in Glass Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-6xl mx-auto"
-          >
-            {/* Mobile ROI Calculator */}
-            <div className="lg:hidden">
-              <Suspense fallback={<div className="h-96 flex items-center justify-center text-gray-400" style={{ minHeight: '384px' }}>Loading calculator...</div>}>
-                <MobileROICalculator />
-              </Suspense>
-            </div>
+        {/* Hero Section */}
+        <OptimizedHero />
 
-            {/* Desktop ROI Calculator */}
-            <div className="hidden lg:block">
-              <GlassCard className="p-8">
-                <Suspense fallback={<div className="h-96 flex items-center justify-center text-gray-400" style={{ minHeight: '384px' }}>Loading calculator...</div>}>
+        {/* Features Section */}
+        <TechSection
+          badge="Core Features"
+          title="Enterprise AI Capabilities"
+          subtitle="Advanced features designed for scale and reliability"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <TechCard glowColor="cyan" delay={0.1}>
+              <div className="text-center">
+                <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-lg flex items-center justify-center">
+                  <FaPhone className="text-cyan-400 text-xl" />
+                </div>
+                <h3 className="text-lg font-semibold text-cyan-400 mb-2">24/7 Availability</h3>
+                <p className="text-sm text-gray-400 font-light">Never miss a call. Your AI receptionist works around the clock.</p>
+              </div>
+            </TechCard>
+
+            <TechCard glowColor="blue" delay={0.2}>
+              <div className="text-center">
+                <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-lg flex items-center justify-center">
+                  <FaRocket className="text-blue-400 text-xl" />
+                </div>
+                <h3 className="text-lg font-semibold text-blue-400 mb-2">Instant Response</h3>
+                <p className="text-sm text-gray-400 font-light">0.5 second response time with natural conversation flow.</p>
+              </div>
+            </TechCard>
+
+            <TechCard glowColor="purple" delay={0.3}>
+              <div className="text-center">
+                <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-lg flex items-center justify-center">
+                  <FaGlobe className="text-purple-400 text-xl" />
+                </div>
+                <h3 className="text-lg font-semibold text-purple-400 mb-2">Multi-Language</h3>
+                <p className="text-sm text-gray-400 font-light">Support for 20+ languages with native-level fluency.</p>
+              </div>
+            </TechCard>
+
+            <TechCard glowColor="green" delay={0.4}>
+              <div className="text-center">
+                <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-lg flex items-center justify-center">
+                  <FaShieldAlt className="text-green-400 text-xl" />
+                </div>
+                <h3 className="text-lg font-semibold text-green-400 mb-2">HIPAA Compliant</h3>
+                <p className="text-sm text-gray-400 font-light">Enterprise-grade security and compliance standards.</p>
+              </div>
+            </TechCard>
+          </div>
+        </TechSection>
+
+        {/* ROI Calculator Section */}
+        <TechSection
+          badge="ROI Calculator"
+          title="Calculate Your Savings"
+          subtitle="See how much revenue you're losing to missed calls"
+        >
+          <div className="max-w-6xl mx-auto">
+            <TechCard glowColor="cyan" hoverable={false}>
+              {/* Mobile ROI Calculator */}
+              <div className="lg:hidden">
+                <Suspense fallback={
+                  <div className="h-96 flex items-center justify-center">
+                    <div className="text-cyan-400 animate-pulse">Loading calculator...</div>
+                  </div>
+                }>
+                  <MobileROICalculator />
+                </Suspense>
+              </div>
+
+              {/* Desktop ROI Calculator */}
+              <div className="hidden lg:block">
+                <Suspense fallback={
+                  <div className="h-96 flex items-center justify-center">
+                    <div className="text-cyan-400 animate-pulse">Loading calculator...</div>
+                  </div>
+                }>
                   <ROICalculator />
                 </Suspense>
-              </GlassCard>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Voice Agent Demo - Modern Design */}
-      <section className="bg-gray-950 py-16 sm:py-24 md:py-32 relative overflow-hidden">
-
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center"
-            >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
-                Experience Our AI Call Center
-              </h2>
-              <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto px-4 sm:px-0">
-                Call our AI call center right now. Experience how we handle both inbound support and outbound capabilities.
-              </p>
-              
-              {/* Phone Card */}
-              <GlassCard className="max-w-2xl mx-auto p-12">
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500 to-teal-500 mb-6">
-                    <FaPhone className="text-3xl text-white animate-pulse" />
-                  </div>
-                  
-                  <h3 className="text-2xl font-semibold text-white mb-2">Call Our AI Call Center</h3>
-                  
-                  <motion.a 
-                    href="tel:+16163263328"
-                    className="inline-block text-4xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent mb-4 hover:scale-105 transition-transform"
-                  >
-                    +1 616 326-3328
-                  </motion.a>
-                  
-                  <p className="text-gray-400 text-sm">
-                    Available 24/7 • Average wait time: 0.5 seconds
-                  </p>
-                  
-                  {/* Live indicator */}
-                  <div className="flex items-center justify-center gap-2 mt-6">
-                    <span className="relative flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                    </span>
-                    <span className="text-green-400 text-sm font-medium">Live Now</span>
-                  </div>
-                </div>
-              </GlassCard>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-
-
-
-      {/* Results Section - Modern */}
-      <section className="py-32 bg-gray-900 relative overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-            <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 mb-8">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
-              <span className="text-green-400 text-sm font-medium">Proven Results</span>
               </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Real Impact, Real Growth
-            </h2>
-            <p className="text-xl text-gray-400">
-              Numbers that speak for themselves
-              </p>
-            </motion.div>
-          
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-            >
-              <GlassCard className="h-full p-8 text-center">
-                <div className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent mb-3">
-                  10-20%
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-2">Revenue Growth</h3>
-                <p className="text-gray-400">Capture every opportunity, 24/7</p>
-              </GlassCard>
-              </motion.div>
-            
-              <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <GlassCard className="h-full p-8 text-center">
-                <div className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-3">
-                  87%
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-2">Booking Rate</h3>
-                <p className="text-gray-400">Turn calls into customers</p>
-              </GlassCard>
-              </motion.div>
-            
-              <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <GlassCard className="h-full p-8 text-center">
-                <div className="text-5xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent mb-3">
-                  $45K
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-2">Avg. Annual Return</h3>
-                <p className="text-gray-400">Per business, guaranteed</p>
-              </GlassCard>
-              </motion.div>
+            </TechCard>
           </div>
-        </div>
-      </section>
+        </TechSection>
 
-
-      {/* Process Section - Modern Timeline */}
-      <section className="py-32 bg-gray-950 relative overflow-hidden">
-        <GridPattern className="opacity-10" />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Go Live in 48 Hours
-            </h2>
-            <p className="text-xl text-gray-400">
-              From consultation to conversing with customers
-            </p>
-          </motion.div>
-          
-          <div className="max-w-5xl mx-auto">
-            <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-cyan-500/20 via-cyan-500/50 to-cyan-500/20 hidden md:block" />
-              
-              {/* Step 1 */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                className="flex items-center justify-between mb-16"
-              >
-                <div className="md:w-5/12 text-right md:pr-8">
-                  <GlassCard className="p-6">
-                    <h3 className="text-xl font-semibold text-white mb-2">Consultation</h3>
-                    <p className="text-gray-400">Understand your needs, map your workflows, design your solution</p>
-                  </GlassCard>
-                </div>
-                <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-full flex items-center justify-center text-white text-xl font-bold z-10 mx-auto">
-                  1
-                </div>
-                <div className="md:w-5/12 md:pl-8">
-                  <p className="text-cyan-400 font-medium">Day 1</p>
-                </div>
-              </motion.div>
-              
-              {/* Step 2 */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="flex items-center justify-between mb-16"
-              >
-                <div className="md:w-5/12 text-right md:pr-8">
-                  <p className="text-purple-400 font-medium">Day 1-2</p>
-                </div>
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-xl font-bold z-10 mx-auto">
-                  2
-                </div>
-                <div className="md:w-5/12 md:pl-8">
-                  <GlassCard className="p-6">
-                    <h3 className="text-xl font-semibold text-white mb-2">Integration</h3>
-                    <p className="text-gray-400">Connect to your calendar, CRM, and systems seamlessly</p>
-                  </GlassCard>
-                </div>
-              </motion.div>
-              
-              {/* Step 3 */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="flex items-center justify-between"
-              >
-                <div className="md:w-5/12 text-right md:pr-8">
-                  <GlassCard className="p-6">
-                    <h3 className="text-xl font-semibold text-white mb-2">Launch</h3>
-                    <p className="text-gray-400">Your AI is live! Start capturing every opportunity</p>
-                  </GlassCard>
-                </div>
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-white text-xl font-bold z-10 mx-auto">
-                  3
-                </div>
-                <div className="md:w-5/12 md:pl-8">
-                  <p className="text-green-400 font-medium">Day 2</p>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* FAQ Section - Modern */}
-      <section className="py-32 bg-gray-900 relative overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Questions? Answered.
-            </h2>
-            <p className="text-xl text-gray-400">
-              Everything you need to know to get started
-            </p>
-          </motion.div>
-          
+        {/* Process Section */}
+        <TechSection
+          badge="How It Works"
+          title="Simple Setup Process"
+          subtitle="Get started in 48 hours with our streamlined onboarding"
+        >
           <div className="max-w-4xl mx-auto">
-            <div className="space-y-4">
+            {/* Timeline */}
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-8 top-0 bottom-0 w-[1px] bg-gradient-to-b from-cyan-500 via-blue-500 to-purple-500 hidden sm:block" />
+
+              {/* Steps */}
               {[
                 {
-                  q: 'How quickly can I go live?',
-                  a: 'Within 48 hours. We analyze, configure, and activate your AI receptionist in just 2 days.'
+                  step: '01',
+                  title: 'Initial Consultation',
+                  description: 'We analyze your business needs and call volume',
+                  icon: FaUsers,
+                  color: 'cyan'
                 },
                 {
-                  q: 'What languages are supported?',
-                  a: 'Over 20 languages with native-level fluency. Your customers can speak their preferred language naturally.'
+                  step: '02',
+                  title: 'AI Configuration',
+                  description: 'Custom training on your business data and processes',
+                  icon: FaChartLine,
+                  color: 'blue'
                 },
                 {
-                  q: 'Will it work with my existing tools?',
-                  a: 'Yes. Seamless integration with your CRM, calendar, and business systems via API or direct connection.'
+                  step: '03',
+                  title: 'Integration Setup',
+                  description: 'Connect with your CRM and booking systems',
+                  icon: FaRocket,
+                  color: 'purple'
                 },
                 {
-                  q: 'What about data security?',
-                  a: 'Enterprise-grade security. SOC 2 compliant, HIPAA ready, end-to-end encryption, and full data ownership.'
+                  step: '04',
+                  title: 'Go Live',
+                  description: 'Your AI receptionist starts handling calls 24/7',
+                  icon: FaCheckCircle,
+                  color: 'green'
                 }
-              ].map((faq, index) => (
+              ].map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="relative flex items-center mb-12 last:mb-0"
                 >
-                  <GlassCard className="p-8">
-                    <h3 className="text-xl font-semibold text-white mb-3 flex items-start">
-                      <span className="text-cyan-400 mr-3">{index + 1}.</span>
-                    {faq.q}
-                  </h3>
-                    <p className="text-gray-400 ml-7">
-                    {faq.a}
-                  </p>
-                  </GlassCard>
+                  {/* Step number */}
+                  <div className={`relative z-10 w-16 h-16 bg-black border-2 ${
+                    index === 0 ? 'border-cyan-500/50' :
+                    index === 1 ? 'border-blue-500/50' :
+                    index === 2 ? 'border-purple-500/50' :
+                    'border-green-500/50'
+                  } rounded-full flex items-center justify-center`}>
+                    <item.icon className={`${
+                      index === 0 ? 'text-cyan-400' :
+                      index === 1 ? 'text-blue-400' :
+                      index === 2 ? 'text-purple-400' :
+                      'text-green-400'
+                    } text-xl`} />
+                  </div>
+
+                  {/* Content */}
+                  <div className="ml-8 flex-1">
+                    <div className="flex items-center gap-4 mb-2">
+                      <span className={`text-xs font-bold ${
+                        index === 0 ? 'text-cyan-400' :
+                        index === 1 ? 'text-blue-400' :
+                        index === 2 ? 'text-purple-400' :
+                        'text-green-400'
+                      } uppercase tracking-widest`}>
+                        Step {item.step}
+                      </span>
+                      <div className="h-[1px] flex-1 bg-gradient-to-r from-gray-700 to-transparent" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-1">{item.title}</h3>
+                    <p className="text-sm text-gray-400 font-light">{item.description}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </TechSection>
 
-      {/* Final CTA Section - Professional Enterprise */}
-      <section className="relative py-32 bg-gradient-to-b from-gray-950 via-gray-900 to-black overflow-hidden">
-        <GradientOrbs />
-
-        {/* Tech Grid Background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
-        </div>
-
-        <div className="relative container mx-auto px-6 z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto text-center"
-          >
-            {/* Professional Headline */}
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
-              <span className="block bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
-                Transform Your
-              </span>
-              <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Customer Experience
-              </span>
-            </h2>
-            <p className="text-xl md:text-2xl mb-16 text-gray-300 max-w-3xl mx-auto">
-              Deploy enterprise-grade AI reception technology in 48 hours.
-              <span className="block mt-2 text-gray-400">No infrastructure required. Immediate ROI.</span>
-            </p>
-
-            {/* Professional CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <motion.a
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                href="https://calendly.com/emrebenian-cogniaai/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-lg rounded-xl hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
+        {/* Stats Section */}
+        <TechSection
+          badge="Results"
+          title="Proven Performance"
+          subtitle="Real results from real businesses"
+        >
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {[
+              { value: '10-20%', label: 'Revenue Increase', suffix: '↑', color: 'green' },
+              { value: '95%', label: 'Customer Satisfaction', suffix: '+', color: 'cyan' },
+              { value: '76%', label: 'Cost Reduction', suffix: '↓', color: 'blue' },
+              { value: '24/7', label: 'Uptime Guarantee', suffix: '', color: 'purple' }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
               >
-                <span>Schedule Demo</span>
-                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity -z-10" />
+                <div className={`text-4xl sm:text-5xl font-bold bg-gradient-to-r ${
+                  index === 0 ? 'from-green-400 to-green-300' :
+                  index === 1 ? 'from-cyan-400 to-cyan-300' :
+                  index === 2 ? 'from-blue-400 to-blue-300' :
+                  'from-purple-400 to-purple-300'
+                } bg-clip-text text-transparent mb-2`}>
+                  {stat.value}
+                  <span className="text-2xl ml-1">{stat.suffix}</span>
+                </div>
+                <div className="text-xs sm:text-sm text-gray-500 uppercase tracking-wider font-light">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </TechSection>
+
+        {/* FAQ Section */}
+        <TechSection
+          badge="FAQ"
+          title="Common Questions"
+          subtitle="Everything you need to know about our AI solution"
+        >
+          <div className="max-w-4xl mx-auto space-y-4">
+            {[
+              {
+                question: 'How long does setup take?',
+                answer: 'We set up your system within 48 hours. After analyzing your needs, we configure and activate your AI assistant.',
+                color: 'cyan'
+              },
+              {
+                question: 'Which languages do you support?',
+                answer: 'We support over 20 languages. Your AI assistant can communicate naturally in your customers\' preferred language.',
+                color: 'blue'
+              },
+              {
+                question: 'Does it integrate with existing systems?',
+                answer: 'Yes, it integrates seamlessly with your CRM, ERP, and other business systems. We provide full API support.',
+                color: 'purple'
+              },
+              {
+                question: 'What about data security?',
+                answer: 'We are HIPAA compliant and SOC 2 certified. All data is encrypted and stored securely with regular audits.',
+                color: 'green'
+              }
+            ].map((faq, index) => (
+              <TechCard key={index} glowColor={faq.color as any} delay={index * 0.1}>
+                <div className="flex items-start gap-4">
+                  <div className={`w-8 h-8 bg-gradient-to-br ${
+                    index === 0 ? 'from-cyan-500/20 to-cyan-600/20' :
+                    index === 1 ? 'from-blue-500/20 to-blue-600/20' :
+                    index === 2 ? 'from-purple-500/20 to-purple-600/20' :
+                    'from-green-500/20 to-green-600/20'
+                  } rounded-lg flex items-center justify-center flex-shrink-0 mt-1`}>
+                    <span className={`${
+                      index === 0 ? 'text-cyan-400' :
+                      index === 1 ? 'text-blue-400' :
+                      index === 2 ? 'text-purple-400' :
+                      'text-green-400'
+                    } font-bold`}>?</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-white mb-2">{faq.question}</h3>
+                    <p className="text-sm text-gray-400 font-light leading-relaxed">{faq.answer}</p>
+                  </div>
+                </div>
+              </TechCard>
+            ))}
+          </div>
+        </TechSection>
+
+        {/* CTA Section */}
+        <TechSection
+          badge="Get Started"
+          title="Ready to Transform Your Business?"
+          subtitle="Join hundreds of businesses already using AI receptionists"
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+              {/* Primary CTA */}
+              <motion.a
+                href="https://calendly.com/emrebenian-cogniaai/30min"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative w-full sm:w-auto"
+              >
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-200"></div>
+                <div className="relative flex items-center justify-center gap-3 px-10 py-5 bg-black rounded-lg leading-none">
+                  <span className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                    Schedule Free Demo
+                  </span>
+                  <FaArrowRight className="text-cyan-400 text-sm group-hover:translate-x-1 transition-transform" />
+                </div>
               </motion.a>
 
-              <div className="flex items-center gap-4">
-                <span className="text-gray-500">or</span>
-                <div className="flex flex-col items-start">
-                  <span className="text-xs text-gray-500 uppercase tracking-wider mb-1">Experience Live AI</span>
-                  <a
-                    href="tel:+16163263328"
-                    className="inline-flex items-center gap-2 text-cyan-400 font-semibold hover:text-cyan-300 transition-colors"
-                  >
-                    <FaPhone className="text-sm" />
-                    <span>+1 616 326-3328</span>
-                  </a>
+              {/* Secondary CTA */}
+              <motion.a
+                href="tel:+16163263328"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="relative group w-full sm:w-auto"
+              >
+                <div className="relative flex items-center justify-center gap-3 px-10 py-5 bg-black/50 backdrop-blur-sm border border-gray-700 hover:border-cyan-500/50 rounded-lg transition-all duration-200">
+                  <FaPhone className="text-cyan-400 text-sm animate-pulse" />
+                  <span className="text-lg font-medium text-gray-300 group-hover:text-cyan-400 transition-colors">
+                    +1 616-326-3328
+                  </span>
                 </div>
-              </div>
+              </motion.a>
             </div>
 
-            {/* Professional Trust Indicators */}
-            <div className="mt-16 pt-8 border-t border-gray-800">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                  <div className="text-2xl font-bold text-cyan-400">48h</div>
-                  <div className="text-sm text-gray-500">Setup Time</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-blue-400">20+</div>
-                  <div className="text-sm text-gray-500">Languages</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-purple-400">SOC2</div>
-                  <div className="text-sm text-gray-500">Compliant</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-green-400">HIPAA</div>
-                  <div className="text-sm text-gray-500">Ready</div>
-                </div>
-              </div>
+            {/* Trust badges */}
+            <div className="flex flex-wrap justify-center items-center gap-6 text-xs text-gray-500 font-light">
+              <span className="flex items-center gap-2">
+                <FaCheckCircle className="text-green-400" />
+                HIPAA Compliant
+              </span>
+              <span className="flex items-center gap-2">
+                <FaClock className="text-blue-400" />
+                48hr Setup
+              </span>
+              <span className="flex items-center gap-2">
+                <FaHeadset className="text-purple-400" />
+                24/7 Support
+              </span>
+              <span className="flex items-center gap-2">
+                <FaShieldAlt className="text-cyan-400" />
+                SOC 2 Certified
+              </span>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </TechSection>
+      </div>
     </div>
   );
 };
