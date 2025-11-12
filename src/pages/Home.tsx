@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
-import { FaPhone, FaArrowRight, FaCheckCircle, FaRocket, FaShieldAlt, FaClock, FaChartLine, FaUsers, FaHeadset } from 'react-icons/fa';
+import { FaPhone, FaArrowRight, FaCheckCircle, FaRocket, FaShieldAlt, FaClock, FaChartLine, FaUsers, FaHeadset, FaRobot, FaMicrophone, FaLanguage, FaCalendarAlt } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
 import ScrollProgress from '../components/ScrollProgress';
@@ -102,6 +102,199 @@ const Home: React.FC = () => {
                 </Suspense>
               </div>
             </TechCard>
+          </div>
+        </TechSection>
+
+        {/* Experience Our AI Section */}
+        <TechSection
+          badge="Live Demo"
+          title="Experience Our AI"
+          subtitle="See how our AI receptionist handles real calls"
+        >
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Demo Interface */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <TechCard glowColor="purple" hoverable={false}>
+                  <div className="space-y-6">
+                    {/* AI Avatar Header */}
+                    <div className="flex items-center gap-4 pb-4 border-b border-purple-500/20">
+                      <div className="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-full flex items-center justify-center animate-pulse">
+                        <FaRobot className="text-3xl text-purple-400" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-white">AI Receptionist</h3>
+                        <p className="text-sm text-green-400 flex items-center gap-2">
+                          <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                          Online & Ready
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Conversation Demo */}
+                    <div className="space-y-4">
+                      <div className="flex gap-3">
+                        <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <FaPhone className="text-xs text-blue-400" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs text-gray-500 mb-1">Incoming Call</p>
+                          <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-3">
+                            <p className="text-sm text-gray-300">"Hi, I'd like to schedule an appointment for next week"</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <FaRobot className="text-xs text-purple-400" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs text-gray-500 mb-1">AI Response</p>
+                          <div className="bg-purple-500/10 border border-purple-500/30 rounded-xl p-3">
+                            <p className="text-sm text-gray-300">"Of course! I'd be happy to help you schedule an appointment. I have availability on Tuesday at 10 AM or Thursday at 2 PM. Which would work better for you?"</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <FaPhone className="text-xs text-blue-400" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs text-gray-500 mb-1">Caller</p>
+                          <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-3">
+                            <p className="text-sm text-gray-300">"Thursday at 2 PM sounds perfect"</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <FaRobot className="text-xs text-purple-400" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs text-gray-500 mb-1">AI Response</p>
+                          <div className="bg-purple-500/10 border border-purple-500/30 rounded-xl p-3">
+                            <p className="text-sm text-gray-300">"Perfect! I've scheduled your appointment for Thursday at 2 PM. May I have your name and phone number for confirmation?"</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Live Metrics */}
+                    <div className="grid grid-cols-3 gap-3 pt-4 border-t border-purple-500/20">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-purple-400">0.3s</div>
+                        <div className="text-xs text-gray-500">Response Time</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-cyan-400">100%</div>
+                        <div className="text-xs text-gray-500">Accuracy</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-green-400">Live</div>
+                        <div className="text-xs text-gray-500">Status</div>
+                      </div>
+                    </div>
+                  </div>
+                </TechCard>
+              </motion.div>
+
+              {/* Features List */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="space-y-4"
+              >
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-white mb-3">Intelligent Capabilities</h3>
+                  <p className="text-gray-400 font-light">Our AI doesn't just answer calls - it understands, learns, and delivers exceptional experiences.</p>
+                </div>
+
+                {[
+                  {
+                    icon: FaMicrophone,
+                    title: 'Natural Voice',
+                    description: 'Human-like conversation with natural speech patterns and emotions',
+                    color: 'cyan'
+                  },
+                  {
+                    icon: FaLanguage,
+                    title: 'Multilingual Support',
+                    description: 'Fluent in 20+ languages with automatic detection',
+                    color: 'blue'
+                  },
+                  {
+                    icon: FaCalendarAlt,
+                    title: 'Smart Scheduling',
+                    description: 'Books appointments, manages calendars, sends reminders',
+                    color: 'purple'
+                  },
+                  {
+                    icon: FaChartLine,
+                    title: 'Learning & Adapting',
+                    description: 'Improves with every interaction, learning your business',
+                    color: 'green'
+                  }
+                ].map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <TechCard glowColor={feature.color as any} delay={index * 0.1}>
+                      <div className="flex items-start gap-4">
+                        <div className={`p-3 rounded-xl bg-gradient-to-br ${
+                          feature.color === 'cyan' ? 'from-cyan-500/20 to-cyan-600/20' :
+                          feature.color === 'blue' ? 'from-blue-500/20 to-blue-600/20' :
+                          feature.color === 'purple' ? 'from-purple-500/20 to-purple-600/20' :
+                          'from-green-500/20 to-green-600/20'
+                        } shrink-0`}>
+                          <feature.icon className={`text-xl ${
+                            feature.color === 'cyan' ? 'text-cyan-400' :
+                            feature.color === 'blue' ? 'text-blue-400' :
+                            feature.color === 'purple' ? 'text-purple-400' :
+                            'text-green-400'
+                          }`} />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-white mb-1">{feature.title}</h4>
+                          <p className="text-sm text-gray-400 font-light">{feature.description}</p>
+                        </div>
+                      </div>
+                    </TechCard>
+                  </motion.div>
+                ))}
+
+                {/* Try Demo CTA */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="pt-4"
+                >
+                  <a
+                    href="tel:+16163263328"
+                    className="group relative inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 border border-purple-500/30 hover:border-purple-400/50 text-purple-400 font-semibold rounded-xl transition-all duration-300 hover:scale-105 w-full justify-center"
+                  >
+                    <FaPhone className="animate-pulse" />
+                    <span>Call +1 616-326-3328 to Try Live Demo</span>
+                    <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </motion.div>
+              </motion.div>
+            </div>
           </div>
         </TechSection>
 
