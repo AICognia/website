@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 import DynamicTechBackground from '../components/DynamicTechBackground';
 import TechSection from '../components/TechSection';
 import TechCard from '../components/TechCard';
-import { FaShieldAlt, FaLock, FaUserShield, FaDatabase, FaGlobe, FaEnvelope } from 'react-icons/fa';
+import { FaShieldAlt, FaEnvelope } from 'react-icons/fa';
 
 const PrivacyPolicy: React.FC = () => {
   const { language } = useLanguage();

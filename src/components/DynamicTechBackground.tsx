@@ -20,12 +20,12 @@ const DynamicTechBackground: React.FC = () => {
 
     // Data flow particles for professional tech look
     class DataStream {
-      x: number;
-      y: number;
-      speed: number;
-      size: number;
-      opacity: number;
-      color: string;
+      x: number = 0;
+      y: number = 0;
+      speed: number = 0;
+      size: number = 0;
+      opacity: number = 0;
+      color: string = '';
 
       constructor() {
         this.reset();
@@ -75,22 +75,18 @@ const DynamicTechBackground: React.FC = () => {
 
     // Circuit path system for tech aesthetics
     class CircuitPath {
-      points: { x: number; y: number }[];
-      progress: number;
-      speed: number;
-      color: string;
-      opacity: number;
+      points: { x: number; y: number }[] = [];
+      progress: number = 0;
+      speed: number = 0.001;
+      color: string = '#06B6D4';
+      opacity: number = 0.15;
 
       constructor() {
         this.points = this.generatePath();
-        this.progress = 0;
-        this.speed = 0.001; // Very slow
-        this.color = '#06B6D4';
-        this.opacity = 0.15;
       }
 
       generatePath(): { x: number; y: number }[] {
-        const points = [];
+        const points: { x: number; y: number }[] = [];
         const startX = Math.random() * window.innerWidth;
         const startY = Math.random() * window.innerHeight;
 
