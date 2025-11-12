@@ -10,7 +10,6 @@ import TrustBadges from '../components/TrustBadges';
 import OptimizedHero from '../components/OptimizedHero';
 import GridPattern from '../components/GridPattern';
 import GradientOrbs from '../components/GradientOrbs';
-import conversionTracker from '../utils/conversionTracking';
 
 // Lazy load heavy components
 const ROICalculator = lazy(() => import('../components/ROICalculator'));
