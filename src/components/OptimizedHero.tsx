@@ -189,21 +189,28 @@ const OptimizedHero: React.FC = () => {
                 </div>
               </motion.a>
 
-              {/* Secondary CTA - Ghost Tech Button */}
+              {/* Secondary CTA - Matching Size */}
               <motion.a
                 href="tel:+16163263328"
                 onClick={() => {
                   conversionTracker.trackPhoneCall('+16163263328');
                 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="relative group w-full sm:w-auto"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="group relative w-full sm:w-auto"
               >
-                <div className="relative flex items-center justify-center gap-2 px-6 py-3 bg-black/50 backdrop-blur-sm border border-gray-700 hover:border-cyan-500/50 rounded-lg transition-all duration-200">
-                  <FaPhone className="text-cyan-400 text-xs" />
-                  <span className="text-sm font-medium text-gray-300 group-hover:text-cyan-400 transition-colors">
+                {/* Subtle Glow Effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-gray-600 to-gray-500 rounded-xl blur-md opacity-30 group-hover:opacity-50 transition duration-300"></div>
+
+                {/* Button */}
+                <div className="relative flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-700 to-gray-600 rounded-xl leading-none shadow-lg">
+                  <FaPhone className="text-white text-sm" />
+                  <span className="text-base font-bold text-white">
                     Call Live Demo
                   </span>
+
+                  {/* Inner shine effect */}
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </motion.a>
             </div>

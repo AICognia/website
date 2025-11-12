@@ -142,7 +142,7 @@ const Contact: React.FC = () => {
           </h1>
 
           {/* Subtitle */}
-          <div className="flex items-center justify-center gap-3 mb-12">
+          <div className="flex items-center justify-center gap-3">
             <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-gray-600" />
             <p className="text-lg sm:text-xl text-gray-400 font-light max-w-3xl">
               {language === 'tr'
@@ -151,41 +151,14 @@ const Contact: React.FC = () => {
             </p>
             <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-gray-600" />
           </div>
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
-            {[
-              { value: '24h', label: language === 'tr' ? 'Yanıt Süresi' : 'Response Time' },
-              { value: '20+', label: language === 'tr' ? 'Dil Desteği' : 'Languages' },
-              { value: '24/7', label: language === 'tr' ? 'Destek' : 'Support' }
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-black/50 backdrop-blur-sm border border-green-500/20 rounded-xl p-4"
-              >
-                <div className={`text-2xl sm:text-3xl font-bold mb-1 ${
-                  index === 0 ? 'text-green-400' :
-                  index === 1 ? 'text-emerald-400' :
-                  'text-cyan-400'
-                }`}>
-                  {stat.value}
-                </div>
-                <div className="text-xs text-gray-500 uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </motion.div>
       </TechSection>
 
       {/* Contact Form Section */}
       <TechSection
         badge={language === 'tr' ? 'Bize Ulaşın' : 'Get in Touch'}
-        title={language === 'tr' ? 'Hadi Başlayalım' : "Let's Connect"}
+        badgeColor="green"
+        title={<span className="font-bold bg-gradient-to-r from-green-400 via-emerald-400 to-green-400 bg-clip-text text-transparent">{language === 'tr' ? 'Hadi Başlayalım' : "Let's Connect"}</span>}
         subtitle={language === 'tr'
           ? 'AI dönüşüm yolculuğunuza bugün başlayın'
           : 'Start your AI transformation journey today'}

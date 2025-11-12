@@ -241,7 +241,7 @@ const Company: React.FC = () => {
             }
           ].map((value, index) => (
             <TechCard key={index} glowColor={value.color} delay={index * 0.1}>
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col h-full min-h-[200px]">
                 <div className={`p-3 rounded-xl bg-gradient-to-br ${
                   value.color === 'cyan' ? 'from-cyan-500/20 to-cyan-600/20' :
                   value.color === 'blue' ? 'from-blue-500/20 to-blue-600/20' :
@@ -262,59 +262,6 @@ const Company: React.FC = () => {
               </div>
             </TechCard>
           ))}
-        </div>
-      </TechSection>
-
-      {/* Team Culture Section */}
-      <TechSection
-        badge={language === 'tr' ? 'Ekibimiz' : 'Our Team'}
-        title={language === 'tr' ? 'Uzman Kadro' : 'Expert Team'}
-        subtitle={language === 'tr'
-          ? 'AI ve müşteri deneyimi konusunda uzmanlaşmış profesyoneller'
-          : 'Professionals specialized in AI and customer experience'}
-      >
-        <div className="grid lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          <TechCard glowColor="blue" delay={0.1}>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-blue-400 mb-3">50+</div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                {language === 'tr' ? 'AI Mühendisi' : 'AI Engineers'}
-              </h3>
-              <p className="text-sm text-gray-400 font-light">
-                {language === 'tr'
-                  ? 'Dünya çapında uzmanlar'
-                  : 'World-class experts'}
-              </p>
-            </div>
-          </TechCard>
-
-          <TechCard glowColor="purple" delay={0.2}>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-purple-400 mb-3">15+</div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                {language === 'tr' ? 'Ülke' : 'Countries'}
-              </h3>
-              <p className="text-sm text-gray-400 font-light">
-                {language === 'tr'
-                  ? 'Küresel ekip yapısı'
-                  : 'Global team structure'}
-              </p>
-            </div>
-          </TechCard>
-
-          <TechCard glowColor="green" delay={0.3}>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-green-400 mb-3">24/7</div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                {language === 'tr' ? 'Destek' : 'Support'}
-              </h3>
-              <p className="text-sm text-gray-400 font-light">
-                {language === 'tr'
-                  ? 'Kesintisiz yardım'
-                  : 'Continuous assistance'}
-              </p>
-            </div>
-          </TechCard>
         </div>
       </TechSection>
 
