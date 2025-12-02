@@ -114,16 +114,16 @@ const SoundVisualizer: React.FC = () => {
           // Normalize to 0-1
           const normalizedValue = rawFrequency / 255;
 
-          // Position-based boost: Amplify right side more to even out appearance
-          // Left bars (bass) need less boost, right bars (mids/treble) need more
+          // Aggressive position-based boost for right side
           const position = i / bars; // 0 to 1 (left to right)
-          const positionBoost = 1 + (position * 1.5); // 1.0x on left, 2.5x on right
+          // Exponential boost curve: 1x on left, 5x on right
+          const positionBoost = 1 + Math.pow(position, 1.5) * 4;
 
           // Apply gentle curve
-          const scaledValue = Math.pow(normalizedValue, 0.9);
+          const scaledValue = Math.pow(normalizedValue, 0.85);
 
-          // Apply position-based amplification for balanced appearance
-          const frequencyHeight = scaledValue * (canvas.height * 0.35) * positionBoost;
+          // Apply aggressive position-based amplification
+          const frequencyHeight = scaledValue * (canvas.height * 0.4) * positionBoost;
 
           // Minimal base for subtle movement
           const baseWave = Math.sin(i * 0.05 + time) * 0.05 + 0.05;
