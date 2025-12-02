@@ -100,13 +100,16 @@ const SoundVisualizer: React.FC = () => {
         let barHeight;
 
         if (analyserRef.current && isPlaying) {
-          // Logarithmic frequency distribution (like professional audio apps)
-          // Maps bars to frequencies in a logarithmic curve
-          // More bars for bass (where detail matters), fewer for treble
-          const minFreq = 0;
-          const maxFreq = bufferLength * 0.6; // Use lower 60% of spectrum
-          const logIndex = Math.floor(Math.pow(i / bars, 1.5) * maxFreq);
-          const dataIndex = Math.min(logIndex, bufferLength - 1);
+          // MIRRORED DISTRIBUTION (Professional approach)
+          // Mirror frequency data from center outward
+          // Both left and right sides show same energetic frequencies
+
+          const halfBars = bars / 2;
+          // Create mirror: 0->59->0, both sides use same data
+          const mirrorIndex = i < halfBars ? i : (bars - 1 - i);
+
+          // Map to energetic frequency range (first 50 bins)
+          const dataIndex = Math.floor(mirrorIndex * (50 / halfBars));
 
           // Get frequency data
           const rawFrequency = dataArray[dataIndex];
@@ -114,16 +117,11 @@ const SoundVisualizer: React.FC = () => {
           // Normalize to 0-1
           const normalizedValue = rawFrequency / 255;
 
-          // Aggressive position-based boost for right side
-          const position = i / bars; // 0 to 1 (left to right)
-          // Exponential boost curve: 1x on left, 5x on right
-          const positionBoost = 1 + Math.pow(position, 1.5) * 4;
+          // Gentle curve for natural dynamics
+          const scaledValue = Math.pow(normalizedValue, 0.9);
 
-          // Apply gentle curve
-          const scaledValue = Math.pow(normalizedValue, 0.85);
-
-          // Apply aggressive position-based amplification
-          const frequencyHeight = scaledValue * (canvas.height * 0.4) * positionBoost;
+          // Moderate scaling without over-boosting
+          const frequencyHeight = scaledValue * (canvas.height * 0.45);
 
           // Minimal base for subtle movement
           const baseWave = Math.sin(i * 0.05 + time) * 0.05 + 0.05;
