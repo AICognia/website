@@ -12,43 +12,10 @@ const FeaturesSection: React.FC = () => {
     // Set video ref in context
     setVideoRef(videoRef);
 
-    let audioContext: AudioContext | null = null;
-    let hasSetupAudio = false;
-
-    const setupAudio = () => {
-      if (hasSetupAudio || !videoElement) return;
-
-      try {
-        // Setup audio context for visualization
-        audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-        const analyser = audioContext.createAnalyser();
-        analyser.fftSize = 256;
-
-        const source = audioContext.createMediaElementSource(videoElement);
-        source.connect(analyser);
-        analyser.connect(audioContext.destination);
-
-        setAudioAnalyser(audioContext, analyser);
-        hasSetupAudio = true;
-      } catch (error) {
-        console.error('Error setting up audio:', error);
-      }
-    };
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Setup audio on first play
-            if (!hasSetupAudio) {
-              setupAudio();
-            }
-
-            // Resume audio context if suspended
-            if (audioContext && audioContext.state === 'suspended') {
-              audioContext.resume();
-            }
-
             videoElement.play().catch(() => {
               // Autoplay might be blocked, user needs to interact
             });
@@ -64,9 +31,6 @@ const FeaturesSection: React.FC = () => {
 
     return () => {
       observer.disconnect();
-      if (audioContext) {
-        audioContext.close();
-      }
     };
   }, [setVideoRef, setAudioAnalyser]);
 
