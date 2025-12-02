@@ -13,7 +13,7 @@ const AnnouncementBanner: React.FC = () => {
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 9V5h2v4H9zm0 2h2v2H9v-2z"/>
             </svg>
-            Transform your call center with AI-powered receptionists.
+            Transform your call center operations with AI-powered voice agents.
           </span>
           <span className="flex items-center gap-1">
             Try now

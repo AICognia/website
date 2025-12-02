@@ -123,14 +123,19 @@ const SoundVisualizer: React.FC = () => {
             filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 80px rgba(255, 255, 255, 0.5))',
           }}
         />
-        {/* Play/Pause indicator */}
-        {!isPlaying && (
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
-              <div className="w-0 h-0 border-l-[20px] border-l-white border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1" />
-            </div>
+        {/* Play/Pause indicator - Always visible */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md border-2 border-white/40 flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all shadow-2xl">
+            {!isPlaying ? (
+              <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2" />
+            ) : (
+              <div className="flex gap-1.5">
+                <div className="w-1.5 h-8 bg-white rounded-full"></div>
+                <div className="w-1.5 h-8 bg-white rounded-full"></div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

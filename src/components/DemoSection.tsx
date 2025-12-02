@@ -21,92 +21,23 @@ const DemoSection: React.FC = () => {
 
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-          {/* Left Side - Call Demo Preview */}
+          {/* Left Side - Video Demo */}
           <div className="relative">
-            {/* Terminal-style container */}
+            {/* Video container */}
             <div className="bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-2xl overflow-hidden">
-              {/* Terminal Header */}
-              <div className="bg-white/5 border-b border-white/10 px-4 py-3 flex items-center gap-2">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                </div>
-                <div className="flex-1 text-center">
-                  <span className="text-sm text-gray-400">AI Call Handler</span>
-                </div>
-              </div>
-
-              {/* Call Transcript */}
-              <div className="p-6 space-y-4 min-h-[400px]">
-                {/* Customer message */}
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs text-blue-400">C</span>
-                  </div>
-                  <div className="flex-1">
-                    <div className="bg-white/5 border border-white/10 rounded-lg px-4 py-3">
-                      <p className="text-sm text-gray-300">
-                        Hi, I'd like to schedule an appointment for next week.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* AI Response */}
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs text-purple-400">AI</span>
-                  </div>
-                  <div className="flex-1">
-                    <div className="bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-lg px-4 py-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="flex gap-1">
-                          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse"></div>
-                          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
-                          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" style={{animationDelay: '0.4s'}}></div>
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-300">
-                        Of course! I'd be happy to help you schedule an appointment. What day works best for you next week?
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Customer response */}
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs text-blue-400">C</span>
-                  </div>
-                  <div className="flex-1">
-                    <div className="bg-white/5 border border-white/10 rounded-lg px-4 py-3">
-                      <p className="text-sm text-gray-300">
-                        Tuesday afternoon would be perfect.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* AI Response */}
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs text-purple-400">AI</span>
-                  </div>
-                  <div className="flex-1">
-                    <div className="bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-lg px-4 py-3">
-                      <p className="text-sm text-gray-300">
-                        Great! I have availability at 2:00 PM, 3:30 PM, and 4:45 PM on Tuesday. Which time works best for you?
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Typing indicator */}
-                <div className="text-xs text-gray-500 italic px-3">
-                  Natural conversation flow • Real-time responses • 24/7 availability
-                </div>
-              </div>
+              <video
+                className="w-full h-auto"
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls
+                controlsList="nodownload"
+                poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect width='1920' height='1080' fill='%23000'/%3E%3C/svg%3E"
+              >
+                <source src="https://qnhjatjqyogmh5x3.public.blob.vercel-storage.com/MORGAN.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
 

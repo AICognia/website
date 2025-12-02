@@ -43,30 +43,40 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Solutions */}
+          {/* Industries We Serve */}
           <div>
             <h3 className="text-white font-medium mb-4 text-sm uppercase tracking-wider">
-              {t('footer.services')}
+              Industries We Serve
             </h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/solutions" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Inbound Call Center
+                <Link to="/industries/healthcare" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Healthcare
                 </Link>
               </li>
               <li>
-                <Link to="/solutions" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Outbound Call Center
+                <Link to="/industries/legal" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Legal Services
                 </Link>
               </li>
               <li>
-                <Link to="/solutions" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Lead Qualification
+                <Link to="/industries/retail" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Retail
                 </Link>
               </li>
               <li>
-                <Link to="/solutions" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Appointment Automation
+                <Link to="/industries/enterprise" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Enterprise
+                </Link>
+              </li>
+              <li>
+                <Link to="/industries/hospitality" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Hospitality
+                </Link>
+              </li>
+              <li>
+                <Link to="/industries/automotive" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Automotive
                 </Link>
               </li>
             </ul>
