@@ -95,13 +95,17 @@ const SoundVisualizer: React.FC = () => {
       const barWidth = canvas.width / bars;
 
       for (let i = 0; i < bars; i++) {
-        const dataIndex = Math.floor(i * (bufferLength / bars));
+        // Map all 120 bars to only the most energetic frequency range
+        // Use first 50 bins (bass and low-mid range where energy exists)
+        // This ensures ALL bars get visible data across full width
+        const energeticRange = 50;
+        const dataIndex = Math.floor(i * (energeticRange / bars));
         const time = Date.now() / 1000;
 
         let barHeight;
 
         if (analyserRef.current && isPlaying) {
-          // Get raw frequency data
+          // Get raw frequency data from energetic range only
           const rawFrequency = dataArray[dataIndex];
 
           // Apply logarithmic scaling to boost high frequencies
