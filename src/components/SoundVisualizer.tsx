@@ -9,7 +9,7 @@ const SoundVisualizer: React.FC = () => {
   const [bars] = useState(120);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const audio = audioRef.current;
     if (!audio) return;
 
@@ -29,6 +29,11 @@ const SoundVisualizer: React.FC = () => {
 
         audioContextRef.current = audioContext;
         analyserRef.current = analyser;
+      }
+
+      // Resume AudioContext if suspended (CRITICAL FIX)
+      if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
+        await audioContextRef.current.resume();
       }
 
       audio.play();
