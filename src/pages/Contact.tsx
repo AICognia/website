@@ -252,7 +252,7 @@ const Contact: React.FC = () => {
                   </a>
 
                   <a
-                    href="tel:+16163263328"
+                    href="tel:+12176938413"
                     className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-lg hover:border-white/20 transition-colors"
                   >
                     <FaPhone className="text-white" />
@@ -260,7 +260,7 @@ const Contact: React.FC = () => {
                       <div className="text-xs text-gray-400 uppercase tracking-wider">
                         {language === 'tr' ? 'Telefon' : 'Phone'}
                       </div>
-                      <div className="text-white font-medium">+1 616 326 3328</div>
+                      <div className="text-white font-medium">+1 217 693 8413</div>
                     </div>
                   </a>
 
