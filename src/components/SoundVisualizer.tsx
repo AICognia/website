@@ -17,29 +17,57 @@ const SoundVisualizer: React.FC = () => {
       audio.pause();
       setIsPlaying(false);
     } else {
-      // Setup audio context on first play
-      if (!audioContextRef.current) {
-        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-        const analyser = audioContext.createAnalyser();
-        analyser.fftSize = 256;
+      try {
+        // Setup audio context on first play
+        if (!audioContextRef.current) {
+          const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+          const analyser = audioContext.createAnalyser();
+          analyser.fftSize = 256;
 
-        const source = audioContext.createMediaElementSource(audio);
-        source.connect(analyser);
-        analyser.connect(audioContext.destination);
+          const source = audioContext.createMediaElementSource(audio);
+          source.connect(analyser);
+          analyser.connect(audioContext.destination);
 
-        audioContextRef.current = audioContext;
-        analyserRef.current = analyser;
+          audioContextRef.current = audioContext;
+          analyserRef.current = analyser;
+        }
+
+        // Resume AudioContext if suspended (CRITICAL FIX)
+        if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
+          await audioContextRef.current.resume();
+        }
+
+        await audio.play();
+        setIsPlaying(true);
+      } catch (error) {
+        console.error('Audio playback failed:', error);
+        setIsPlaying(false);
       }
-
-      // Resume AudioContext if suspended (CRITICAL FIX)
-      if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
-        await audioContextRef.current.resume();
-      }
-
-      audio.play();
-      setIsPlaying(true);
     }
   };
+
+  // Handle audio loading and errors
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleError = (e: ErrorEvent | Event) => {
+      console.error('Audio error:', e);
+      setIsPlaying(false);
+    };
+
+    const handleLoadedData = () => {
+      console.log('Audio loaded successfully');
+    };
+
+    audio.addEventListener('error', handleError);
+    audio.addEventListener('loadeddata', handleLoadedData);
+
+    return () => {
+      audio.removeEventListener('error', handleError);
+      audio.removeEventListener('loadeddata', handleLoadedData);
+    };
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -108,7 +136,7 @@ const SoundVisualizer: React.FC = () => {
   return (
     <div className="relative w-full h-[600px] flex items-center justify-center">
       {/* Hidden audio element */}
-      <audio ref={audioRef} loop>
+      <audio ref={audioRef} loop crossOrigin="anonymous" preload="auto">
         <source src="https://kd1hbax1fjerwnrt.public.blob.vercel-storage.com/Sequence%2005.mp3" type="audio/mpeg" />
       </audio>
 
