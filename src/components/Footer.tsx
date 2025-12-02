@@ -43,40 +43,30 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Industries We Serve */}
+          {/* Solutions */}
           <div>
             <h3 className="text-white font-medium mb-4 text-sm uppercase tracking-wider">
-              Industries We Serve
+              {t('footer.services')}
             </h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/industries/healthcare" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Healthcare
+                <Link to="/solutions" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Inbound Call Center
                 </Link>
               </li>
               <li>
-                <Link to="/industries/legal" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Legal Services
+                <Link to="/solutions" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Outbound Call Center
                 </Link>
               </li>
               <li>
-                <Link to="/industries/retail" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Retail
+                <Link to="/solutions" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Lead Qualification
                 </Link>
               </li>
               <li>
-                <Link to="/industries/enterprise" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Enterprise
-                </Link>
-              </li>
-              <li>
-                <Link to="/industries/hospitality" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Hospitality
-                </Link>
-              </li>
-              <li>
-                <Link to="/industries/automotive" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Automotive
+                <Link to="/solutions" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Appointment Automation
                 </Link>
               </li>
             </ul>
