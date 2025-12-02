@@ -31,35 +31,10 @@ const SoundVisualizer: React.FC = () => {
         analyserRef.current = analyser;
       }
 
-      audio.play().catch((error) => {
-        console.error('Audio playback failed:', error);
-      });
+      audio.play();
       setIsPlaying(true);
     }
   };
-
-  // Handle audio events
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    const handleEnded = () => setIsPlaying(false);
-    const handlePause = () => setIsPlaying(false);
-    const handleError = (e: Event) => {
-      console.error('Audio error:', e);
-      setIsPlaying(false);
-    };
-
-    audio.addEventListener('ended', handleEnded);
-    audio.addEventListener('pause', handlePause);
-    audio.addEventListener('error', handleError);
-
-    return () => {
-      audio.removeEventListener('ended', handleEnded);
-      audio.removeEventListener('pause', handlePause);
-      audio.removeEventListener('error', handleError);
-    };
-  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -124,8 +99,7 @@ const SoundVisualizer: React.FC = () => {
     <div className="relative w-full h-[600px] flex items-center justify-center">
       {/* Hidden audio element */}
       <audio ref={audioRef} loop>
-        <source src="/cognia-hero-audio.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
+        <source src="/cognia-c-animation.mp4" type="video/mp4" />
       </audio>
 
       {/* Background glow */}
