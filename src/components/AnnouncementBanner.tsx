@@ -10,10 +10,11 @@ const AnnouncementBanner: React.FC = () => {
           className="flex items-center justify-center gap-2 text-sm text-white hover:text-gray-300 transition-colors"
         >
           <span className="flex items-center gap-2">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 9V5h2v4H9zm0 2h2v2H9v-2z"/>
-            </svg>
-            Transform your call center with AI-powered receptionists.
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+            </span>
+            Transform your call operations with AI-powered voice agents.
           </span>
           <span className="flex items-center gap-1">
             Try now
