@@ -90,15 +90,16 @@ const SoundVisualizer: React.FC = () => {
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Center the bars around the middle of the canvas (where the button is)
-      const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
-      const drawingWidth = canvas.width * 0.7; // Use 70% of width for bars
-      const barWidth = drawingWidth / bars;
-      const startX = centerX - (drawingWidth / 2); // Start position to center bars
+      const centerX = canvas.width / 2;
 
-      for (let i = 0; i < bars; i++) {
-        const dataIndex = Math.floor(i * (bufferLength / bars));
+      // When playing: center bars around middle, When idle: full width
+      const displayBars = analyserRef.current && isPlaying ? 60 : bars;
+      const barWidth = analyserRef.current && isPlaying ? 4 : canvas.width / bars;
+      const startX = analyserRef.current && isPlaying ? centerX - (displayBars * barWidth) / 2 : 0;
+
+      for (let i = 0; i < (analyserRef.current && isPlaying ? displayBars : bars); i++) {
+        const dataIndex = Math.floor(i * (bufferLength / displayBars));
         const time = Date.now() / 1000;
 
         // Always show animation - combine frequency data with base wave
@@ -111,7 +112,7 @@ const SoundVisualizer: React.FC = () => {
           // Use whichever is larger to ensure animation is always visible
           barHeight = Math.max(frequencyHeight, baseHeight);
         } else {
-          // Idle wave animation
+          // Idle wave animation (full width)
           const wave = Math.sin(i * 0.1 + time * 2) * 0.3 + 0.3;
           barHeight = wave * (canvas.height / 4) + 10;
         }
