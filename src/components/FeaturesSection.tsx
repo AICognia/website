@@ -109,12 +109,11 @@ const FeaturesSection: React.FC = () => {
               <video
                 ref={videoRef}
                 loop
-                muted
                 playsInline
                 controls
                 className="h-[700px] w-auto rounded-2xl shadow-2xl"
                 style={{
-                  objectFit: 'cover'
+                  objectFit: 'contain'
                 }}
               >
                 <source src="https://qnhjatjqyogmh5x3.public.blob.vercel-storage.com/MORGAN.mp4" type="video/mp4" />
