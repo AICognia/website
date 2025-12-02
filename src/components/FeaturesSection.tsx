@@ -109,6 +109,7 @@ const FeaturesSection: React.FC = () => {
               <video
                 ref={videoRef}
                 loop
+                muted
                 playsInline
                 controls
                 className="h-[700px] w-auto rounded-2xl shadow-2xl"
