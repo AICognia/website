@@ -117,7 +117,7 @@ const FeaturesSection: React.FC = () => {
                   objectFit: 'cover'
                 }}
               >
-                <source src="/cognia-c-animation.mp4" type="video/mp4" />
+                <source src="https://qnhjatjqyogmh5x3.public.blob.vercel-storage.com/MORGAN.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
