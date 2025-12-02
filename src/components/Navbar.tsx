@@ -72,7 +72,7 @@ const Navbar: React.FC = () => {
             {/* Logo */}
             <Link
               to="/"
-              className="flex items-center gap-2 mt-4 -ml-6"
+              className="flex items-center gap-2 -ml-6"
               aria-label="Cognia AI Home"
             >
               <img

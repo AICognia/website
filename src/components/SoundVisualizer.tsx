@@ -90,8 +90,12 @@ const SoundVisualizer: React.FC = () => {
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const barWidth = canvas.width / bars;
+      // Center the bars around the middle of the canvas (where the button is)
+      const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
+      const drawingWidth = canvas.width * 0.7; // Use 70% of width for bars
+      const barWidth = drawingWidth / bars;
+      const startX = centerX - (drawingWidth / 2); // Start position to center bars
 
       for (let i = 0; i < bars; i++) {
         const dataIndex = Math.floor(i * (bufferLength / bars));
@@ -112,7 +116,7 @@ const SoundVisualizer: React.FC = () => {
           barHeight = wave * (canvas.height / 4) + 10;
         }
 
-        const x = i * barWidth;
+        const x = startX + (i * barWidth);
 
         // Mirror effect - draw from center
         // Top half
