@@ -93,27 +93,21 @@ const SoundVisualizer: React.FC = () => {
       const centerY = canvas.height / 2;
       const barWidth = canvas.width / bars;
 
-      // Define center range for audio frequency bars (middle 60 bars)
-      const centerBarStart = Math.floor(bars / 2) - 30;
-      const centerBarEnd = Math.floor(bars / 2) + 30;
-
       for (let i = 0; i < bars; i++) {
         const dataIndex = Math.floor(i * (bufferLength / bars));
         const time = Date.now() / 1000;
 
         let barHeight;
 
-        // Check if this bar is in the center range
-        const isInCenter = i >= centerBarStart && i < centerBarEnd;
-
-        if (analyserRef.current && isPlaying && isInCenter) {
-          // CENTER BARS: Use audio frequency data when playing
+        if (analyserRef.current && isPlaying) {
+          // ALL BARS: Use audio frequency data when playing
           const frequencyHeight = (dataArray[dataIndex] / 255) * (canvas.height / 2);
           const baseWave = Math.sin(i * 0.1 + time * 2) * 0.15 + 0.15;
           const baseHeight = baseWave * (canvas.height / 4) + 10;
+          // Use whichever is larger to ensure animation is always visible
           barHeight = Math.max(frequencyHeight, baseHeight);
         } else {
-          // OUTER BARS or NOT PLAYING: Show idle wave animation
+          // Idle wave animation
           const wave = Math.sin(i * 0.1 + time * 2) * 0.3 + 0.3;
           barHeight = wave * (canvas.height / 4) + 10;
         }
