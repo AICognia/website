@@ -99,7 +99,7 @@ const SoundVisualizer: React.FC = () => {
     <div className="relative w-full h-[600px] flex items-center justify-center">
       {/* Hidden audio element */}
       <audio ref={audioRef} loop>
-        <source src="/cognia-c-animation.mp4" type="video/mp4" />
+        <source src="https://kd1hbax1fjerwnrt.public.blob.vercel-storage.com/Sequence%2005.mp3" type="audio/mpeg" />
       </audio>
 
       {/* Background glow */}
@@ -123,14 +123,19 @@ const SoundVisualizer: React.FC = () => {
             filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 80px rgba(255, 255, 255, 0.5))',
           }}
         />
-        {/* Play/Pause indicator */}
-        {!isPlaying && (
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
-              <div className="w-0 h-0 border-l-[20px] border-l-white border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1" />
-            </div>
+        {/* Play/Pause indicator - Always visible */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-24 h-24 rounded-full bg-white/10 backdrop-blur-md border-2 border-white/40 flex items-center justify-center hover:bg-white/20 hover:border-white/60 hover:scale-105 transition-all duration-300 shadow-2xl shadow-white/20">
+            {!isPlaying ? (
+              <div className="w-0 h-0 border-l-[28px] border-l-white border-t-[18px] border-t-transparent border-b-[18px] border-b-transparent ml-2" />
+            ) : (
+              <div className="flex gap-2">
+                <div className="w-2 h-10 bg-white rounded-full"></div>
+                <div className="w-2 h-10 bg-white rounded-full"></div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
