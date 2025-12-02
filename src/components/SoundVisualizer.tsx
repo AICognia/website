@@ -22,7 +22,8 @@ const SoundVisualizer: React.FC = () => {
         if (!audioContextRef.current) {
           const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
           const analyser = audioContext.createAnalyser();
-          analyser.fftSize = 256;
+          analyser.fftSize = 512; // Increased for better frequency resolution
+          analyser.smoothingTimeConstant = 0.7; // Smooth out the visualization
 
           const source = audioContext.createMediaElementSource(audio);
           source.connect(analyser);
@@ -100,10 +101,20 @@ const SoundVisualizer: React.FC = () => {
         let barHeight;
 
         if (analyserRef.current && isPlaying) {
-          // ALL BARS: Use audio frequency data when playing
-          const frequencyHeight = (dataArray[dataIndex] / 255) * (canvas.height / 2);
+          // Get raw frequency data
+          const rawFrequency = dataArray[dataIndex];
+
+          // Apply logarithmic scaling to boost high frequencies
+          const normalizedValue = rawFrequency / 255;
+          const boostedValue = Math.pow(normalizedValue, 0.6); // Power curve to boost quieter frequencies
+
+          // Scale to canvas height with additional boost for visibility
+          const frequencyHeight = boostedValue * (canvas.height / 2) * 1.5;
+
+          // Add minimum animation for smooth appearance
           const baseWave = Math.sin(i * 0.1 + time * 2) * 0.15 + 0.15;
           const baseHeight = baseWave * (canvas.height / 4) + 10;
+
           // Use whichever is larger to ensure animation is always visible
           barHeight = Math.max(frequencyHeight, baseHeight);
         } else {
