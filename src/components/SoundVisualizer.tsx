@@ -67,14 +67,19 @@ const SoundVisualizer: React.FC = () => {
 
       for (let i = 0; i < bars; i++) {
         const dataIndex = Math.floor(i * (bufferLength / bars));
+        const time = Date.now() / 1000;
 
-        // If no analyser or not playing, create idle animation
+        // Always show animation - combine frequency data with base wave
         let barHeight;
         if (analyserRef.current && isPlaying) {
-          barHeight = (dataArray[dataIndex] / 255) * (canvas.height / 2);
+          // Get frequency data and add it to base animation
+          const frequencyHeight = (dataArray[dataIndex] / 255) * (canvas.height / 2);
+          const baseWave = Math.sin(i * 0.1 + time * 2) * 0.15 + 0.15;
+          const baseHeight = baseWave * (canvas.height / 4) + 10;
+          // Use whichever is larger to ensure animation is always visible
+          barHeight = Math.max(frequencyHeight, baseHeight);
         } else {
           // Idle wave animation
-          const time = Date.now() / 1000;
           const wave = Math.sin(i * 0.1 + time * 2) * 0.3 + 0.3;
           barHeight = wave * (canvas.height / 4) + 10;
         }
