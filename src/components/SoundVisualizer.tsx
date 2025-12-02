@@ -95,31 +95,36 @@ const SoundVisualizer: React.FC = () => {
       const barWidth = canvas.width / bars;
 
       for (let i = 0; i < bars; i++) {
-        // Map all 120 bars to only the most energetic frequency range
-        // Use first 50 bins (bass and low-mid range where energy exists)
-        // This ensures ALL bars get visible data across full width
-        const energeticRange = 50;
-        const dataIndex = Math.floor(i * (energeticRange / bars));
         const time = Date.now() / 1000;
 
         let barHeight;
 
         if (analyserRef.current && isPlaying) {
-          // Get raw frequency data from energetic range only
+          // Logarithmic frequency distribution (like professional audio apps)
+          // Maps bars to frequencies in a logarithmic curve
+          // More bars for bass (where detail matters), fewer for treble
+          const minFreq = 0;
+          const maxFreq = bufferLength * 0.6; // Use lower 60% of spectrum
+          const logIndex = Math.floor(Math.pow(i / bars, 1.5) * maxFreq);
+          const dataIndex = Math.min(logIndex, bufferLength - 1);
+
+          // Get frequency data
           const rawFrequency = dataArray[dataIndex];
 
-          // Apply logarithmic scaling to boost high frequencies
+          // Simple scaling without over-boosting
           const normalizedValue = rawFrequency / 255;
-          const boostedValue = Math.pow(normalizedValue, 0.6); // Power curve to boost quieter frequencies
 
-          // Scale to canvas height with additional boost for visibility
-          const frequencyHeight = boostedValue * (canvas.height / 2) * 1.5;
+          // Gentle curve for natural dynamics
+          const scaledValue = Math.pow(normalizedValue, 0.8);
 
-          // Add minimum animation for smooth appearance
-          const baseWave = Math.sin(i * 0.1 + time * 2) * 0.15 + 0.15;
-          const baseHeight = baseWave * (canvas.height / 4) + 10;
+          // Scale to canvas with moderate height
+          const frequencyHeight = scaledValue * (canvas.height / 2);
 
-          // Use whichever is larger to ensure animation is always visible
+          // Small base wave for smooth minimum
+          const baseWave = Math.sin(i * 0.05 + time) * 0.1 + 0.1;
+          const baseHeight = baseWave * 20;
+
+          // Combine with gentle minimum
           barHeight = Math.max(frequencyHeight, baseHeight);
         } else {
           // Idle wave animation
