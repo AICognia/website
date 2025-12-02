@@ -91,33 +91,34 @@ const SoundVisualizer: React.FC = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const centerY = canvas.height / 2;
-      const centerX = canvas.width / 2;
+      const barWidth = canvas.width / bars;
 
-      // When playing: center bars around middle, When idle: full width
-      const displayBars = analyserRef.current && isPlaying ? 60 : bars;
-      const barWidth = analyserRef.current && isPlaying ? 4 : canvas.width / bars;
-      const startX = analyserRef.current && isPlaying ? centerX - (displayBars * barWidth) / 2 : 0;
+      // Define center range for audio frequency bars (middle 60 bars)
+      const centerBarStart = Math.floor(bars / 2) - 30;
+      const centerBarEnd = Math.floor(bars / 2) + 30;
 
-      for (let i = 0; i < (analyserRef.current && isPlaying ? displayBars : bars); i++) {
-        const dataIndex = Math.floor(i * (bufferLength / displayBars));
+      for (let i = 0; i < bars; i++) {
+        const dataIndex = Math.floor(i * (bufferLength / bars));
         const time = Date.now() / 1000;
 
-        // Always show animation - combine frequency data with base wave
         let barHeight;
-        if (analyserRef.current && isPlaying) {
-          // Get frequency data and add it to base animation
+
+        // Check if this bar is in the center range
+        const isInCenter = i >= centerBarStart && i < centerBarEnd;
+
+        if (analyserRef.current && isPlaying && isInCenter) {
+          // CENTER BARS: Use audio frequency data when playing
           const frequencyHeight = (dataArray[dataIndex] / 255) * (canvas.height / 2);
           const baseWave = Math.sin(i * 0.1 + time * 2) * 0.15 + 0.15;
           const baseHeight = baseWave * (canvas.height / 4) + 10;
-          // Use whichever is larger to ensure animation is always visible
           barHeight = Math.max(frequencyHeight, baseHeight);
         } else {
-          // Idle wave animation (full width)
+          // OUTER BARS or NOT PLAYING: Show idle wave animation
           const wave = Math.sin(i * 0.1 + time * 2) * 0.3 + 0.3;
           barHeight = wave * (canvas.height / 4) + 10;
         }
 
-        const x = startX + (i * barWidth);
+        const x = i * barWidth;
 
         // Mirror effect - draw from center
         // Top half
