@@ -5,6 +5,7 @@ import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
 import ScrollProgress from '../components/ScrollProgress';
 import OptimizedHero from '../components/OptimizedHero';
+import VideoSection from '../components/VideoSection';
 import FeaturesSection from '../components/FeaturesSection';
 import SolutionsGrid from '../components/SolutionsGrid';
 import DemoSection from '../components/DemoSection';
@@ -75,6 +76,9 @@ const Home: React.FC = () => {
 
           {/* Hero Section */}
           <OptimizedHero />
+
+          {/* Video Section */}
+          <VideoSection />
 
           {/* Features Section - Scale.com style */}
           <FeaturesSection />
