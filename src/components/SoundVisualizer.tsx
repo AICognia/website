@@ -111,20 +111,20 @@ const SoundVisualizer: React.FC = () => {
           // Get frequency data
           const rawFrequency = dataArray[dataIndex];
 
-          // Simple scaling without over-boosting
+          // Normalize to 0-1
           const normalizedValue = rawFrequency / 255;
 
-          // Gentle curve for natural dynamics
-          const scaledValue = Math.pow(normalizedValue, 0.8);
+          // Very gentle curve to preserve dynamics
+          const scaledValue = Math.pow(normalizedValue, 0.95);
 
-          // Scale to canvas with moderate height
-          const frequencyHeight = scaledValue * (canvas.height / 2);
+          // Reduced scaling for less amplification (40% of canvas height max)
+          const frequencyHeight = scaledValue * (canvas.height * 0.4);
 
-          // Small base wave for smooth minimum
-          const baseWave = Math.sin(i * 0.05 + time) * 0.1 + 0.1;
-          const baseHeight = baseWave * 20;
+          // Minimal base for subtle movement
+          const baseWave = Math.sin(i * 0.05 + time) * 0.05 + 0.05;
+          const baseHeight = baseWave * 15;
 
-          // Combine with gentle minimum
+          // Combine with minimal base
           barHeight = Math.max(frequencyHeight, baseHeight);
         } else {
           // Idle wave animation
