@@ -47,7 +47,7 @@ const MobileHeroRedesigned: React.FC = () => {
         </motion.div>
 
         {/* Content Container */}
-        <div className="relative z-10 flex-1 flex flex-col justify-center">
+        <div className="relative z-10 flex-1 flex flex-col justify-start pt-4">
           {/* Main Headline - Clear Value Proposition with AI */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
