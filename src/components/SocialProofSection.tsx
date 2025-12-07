@@ -13,15 +13,7 @@ const testimonials = [
     rating: 5,
   },
   {
-    quote: "We never miss a client inquiry anymore. The 24/7 availability has been a game-changer for our firm.",
-    author: "James Rodriguez",
-    role: "Managing Partner",
-    company: "Rodriguez Legal",
-    industry: "Legal",
-    rating: 5,
-  },
-  {
-    quote: "The set up took around a week. We were missing out on a lot of calls before. Now, we are getting more jobs than ever thanks to Cognia AI.",
+    quote: "It took about a week to get everything set up, which honestly wasn't bad considering how busy we were at the time. Before this, we were missing way more calls than we ever thought. People would ring while we were on another job, or they'd call after hours, weekends, early mornings—you name it. Half the time we didn't even notice until someone complained that nobody picked up.\n\nAfter we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we're tied up or out on the road, and customers get at least some kind of response right away instead of voicemail. Over the last few weeks, we've noticed a pretty clear bump in jobs coming in. It's not like some dramatic overnight miracle or anything, but the difference is real—you stop missing calls, you stop missing work.\n\nSo yeah, the setup took a week, and now we're getting more jobs than we've ever gotten just because nothing falls through the cracks anymore.",
     author: "Elite Auto Repair",
     role: "Auto Repair Shop",
     company: "",
@@ -120,8 +112,8 @@ const SocialProofSection: React.FC = () => {
           })}
         </div>
 
-        {/* Testimonials - Vertical Stack */}
-        <div className="flex flex-col gap-6 mb-12 max-w-4xl mx-auto">
+        {/* Testimonials - Side by Side Grid */}
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -129,35 +121,30 @@ const SocialProofSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.15 }}
               viewport={{ once: true }}
-              className="relative bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-2xl p-6 lg:p-8"
+              className="relative bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-2xl p-6 lg:p-8 flex flex-col"
             >
-              <div className="flex flex-col lg:flex-row gap-6">
-                {/* Quote Content */}
-                <div className="flex-1">
-                  {/* Quote icon */}
-                  <FaQuoteLeft className="text-cyan-500/30 text-2xl mb-4" />
+              {/* Quote icon */}
+              <FaQuoteLeft className="text-cyan-500/30 text-2xl mb-4" />
 
-                  {/* Quote */}
-                  <p className="text-gray-300 text-sm lg:text-base leading-relaxed whitespace-pre-line">
-                    "{testimonial.quote}"
-                  </p>
+              {/* Quote */}
+              <p className="text-gray-300 text-sm lg:text-base leading-relaxed whitespace-pre-line flex-1">
+                "{testimonial.quote}"
+              </p>
+
+              {/* Author - Bottom section */}
+              <div className="pt-6 mt-6 border-t border-white/10">
+                {/* Rating */}
+                <div className="flex gap-1 mb-2">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <FaStar key={i} className="text-yellow-400 text-sm" />
+                  ))}
                 </div>
-
-                {/* Author - Side panel on desktop */}
-                <div className="lg:w-48 lg:border-l lg:border-white/10 lg:pl-6 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/10 flex flex-col justify-center">
-                  {/* Rating */}
-                  <div className="flex gap-1 mb-2">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <FaStar key={i} className="text-yellow-400 text-sm" />
-                    ))}
-                  </div>
-                  <div className="font-medium text-white">{testimonial.author}</div>
-                  <div className="text-xs text-gray-500 mb-2">
-                    {testimonial.company ? `${testimonial.role} at ${testimonial.company}` : testimonial.role}
-                  </div>
-                  <div className="inline-block w-fit px-2 py-0.5 bg-cyan-500/10 text-cyan-400 text-xs rounded-full">
-                    {testimonial.industry}
-                  </div>
+                <div className="font-medium text-white">{testimonial.author}</div>
+                <div className="text-xs text-gray-500 mb-2">
+                  {testimonial.company ? `${testimonial.role} at ${testimonial.company}` : testimonial.role}
+                </div>
+                <div className="inline-block w-fit px-2 py-0.5 bg-cyan-500/10 text-cyan-400 text-xs rounded-full">
+                  {testimonial.industry}
                 </div>
               </div>
             </motion.div>
