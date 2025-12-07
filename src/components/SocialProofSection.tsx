@@ -5,10 +5,10 @@ import { FaStar, FaQuoteLeft, FaShieldAlt, FaClock, FaHeadset, FaHospital, FaGav
 // Testimonials data
 const testimonials = [
   {
-    quote: "Cognia AI increased our appointment bookings by 35% in the first month. The AI handles calls just like our best receptionist.",
-    author: "Dr. Sarah Mitchell",
-    role: "Medical Director",
-    company: "Wellness Medical Group",
+    quote: "Working with Cognia has been a game-changer for our office. What I appreciate the most is how they completely transformed our Monday mornings. Before Cognia, I would spend 45 minutes just waiting for the voicemail system to run so I could go through every message. It was slow, inefficient, and honestly a stressful way to start the week. Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time. And if a patient requests an appointment over the weekend, Cognia schedules it for us — no backlog, no delays. It has made our workflow faster, more organized, and much more efficient.",
+    author: "Jacob Ojalvo",
+    role: "My Smile Miami",
+    company: "",
     industry: "Healthcare",
     rating: 5,
   },
@@ -24,7 +24,7 @@ const testimonials = [
     quote: "The set up took around a week. We were missing out on a lot of calls before. Now, we are getting more jobs than ever thanks to Cognia AI.",
     author: "Elite Auto Repair",
     role: "Auto Repair Shop",
-    company: "Elite Auto Repair",
+    company: "",
     industry: "Automotive",
     rating: 5,
   },
@@ -150,7 +150,7 @@ const SocialProofSection: React.FC = () => {
               <div className="border-t border-white/10 pt-4">
                 <div className="font-medium text-white">{testimonial.author}</div>
                 <div className="text-xs text-gray-500">
-                  {testimonial.role} at {testimonial.company}
+                  {testimonial.company ? `${testimonial.role} at ${testimonial.company}` : testimonial.role}
                 </div>
                 <div className="inline-block mt-2 px-2 py-0.5 bg-cyan-500/10 text-cyan-400 text-xs rounded-full">
                   {testimonial.industry}
