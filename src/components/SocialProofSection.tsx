@@ -5,7 +5,7 @@ import { FaStar, FaQuoteLeft, FaShieldAlt, FaClock, FaHeadset, FaHospital, FaGav
 // Testimonials data
 const testimonials = [
   {
-    quote: "Working with Cognia has been a game-changer for our office. What I appreciate the most is how they completely transformed our Monday mornings. Before Cognia, I would spend 45 minutes just waiting for the voicemail system to run so I could go through every message. It was slow, inefficient, and honestly a stressful way to start the week. Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time. And if a patient requests an appointment over the weekend, Cognia schedules it for us — no backlog, no delays. It has made our workflow faster, more organized, and much more efficient.",
+    quote: "Working with Cognia has been a game-changer for our office.\n\nWhat I appreciate the most is how they completely transformed our Monday mornings. Before Cognia, I would spend 45 minutes just waiting for the voicemail system to run so I could go through every message. It was slow, inefficient, and honestly a stressful way to start the week.\n\nNow, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time. And if a patient requests an appointment over the weekend, Cognia schedules it for us — no backlog, no delays.\n\nIt has made our workflow faster, more organized, and much more efficient.",
     author: "Jacob Ojalvo",
     role: "My Smile Miami",
     company: "",
@@ -138,7 +138,7 @@ const SocialProofSection: React.FC = () => {
                   <FaQuoteLeft className="text-cyan-500/30 text-2xl mb-4" />
 
                   {/* Quote */}
-                  <p className="text-gray-300 text-sm lg:text-base leading-relaxed">
+                  <p className="text-gray-300 text-sm lg:text-base leading-relaxed whitespace-pre-line">
                     "{testimonial.quote}"
                   </p>
                 </div>
