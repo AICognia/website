@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes, FaPhone, FaCalendarCheck, FaHome, FaBrain, FaBuilding, FaEnvelope, FaChevronDown, FaHospital, FaGavel, FaStore, FaHotel, FaCar, FaCalendar, FaLanguage, FaCog, FaRobot, FaChartLine, FaUsers, FaFileAlt, FaHeadset, FaClock, FaShieldAlt, FaShoppingCart } from 'react-icons/fa';
-import BookDemoModal from './BookDemoModal';
 
 const MobileNavbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +10,6 @@ const MobileNavbar: React.FC = () => {
   const [showIndustries, setShowIndustries] = useState(false);
   const [showFeatures, setShowFeatures] = useState(false);
   const [showUseCases, setShowUseCases] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -346,12 +344,11 @@ const MobileNavbar: React.FC = () => {
                   </a>
 
                   {/* Book Demo CTA */}
-                  <button
-                    onClick={() => {
-                      setIsOpen(false);
-                      setIsModalOpen(true);
-                    }}
-                    className="block w-full cursor-pointer"
+                  <a
+                    href="https://calendly.com/emrebenian-cogniaai/30min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full"
                   >
                     <div className="relative group">
                       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl blur opacity-50 group-hover:opacity-75 transition-opacity" />
@@ -363,7 +360,7 @@ const MobileNavbar: React.FC = () => {
                         <div className="text-xs bg-white/20 px-2 py-1 rounded">Free Trial</div>
                       </div>
                     </div>
-                  </button>
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -373,9 +370,6 @@ const MobileNavbar: React.FC = () => {
 
       {/* Spacer */}
       <div className="h-[72px]" />
-
-      {/* Book Demo Modal */}
-      <BookDemoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 };

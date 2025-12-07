@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaCalendar, FaTimes } from 'react-icons/fa';
-import BookDemoModal from './BookDemoModal';
 
 const StickyMobileCTA: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     // Show after user scrolls down 20%
@@ -34,7 +32,6 @@ const StickyMobileCTA: React.FC = () => {
   }
 
   return (
-    <>
     <AnimatePresence>
       {isVisible && (
         <motion.div
@@ -43,21 +40,17 @@ const StickyMobileCTA: React.FC = () => {
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           className="fixed bottom-0 left-0 right-0 z-50 lg:hidden"
-          style={{ minHeight: '110px' }}
+          style={{ minHeight: '110px', contain: 'layout' }}
         >
           {/* Background with gradient */}
-          <div className="relative bg-gradient-to-t from-gray-950 via-gray-900 to-gray-900/95 backdrop-blur-2xl border-t border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
-            {/* Dismiss button - larger touch target and higher z-index */}
+          <div className="bg-gradient-to-t from-gray-950 via-gray-900 to-gray-900/95 backdrop-blur-2xl border-t border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
+            {/* Dismiss button */}
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handleDismiss();
-              }}
-              className="absolute top-1 right-1 z-50 text-gray-400 hover:text-white active:text-white p-3 touch-manipulation"
+              onClick={handleDismiss}
+              className="absolute top-2 right-2 text-gray-400 hover:text-gray-200 p-2"
               aria-label="Dismiss"
-              type="button"
             >
-              <FaTimes className="text-base" />
+              <FaTimes className="text-sm" />
             </button>
 
             {/* Free Trial Badge */}
@@ -70,14 +63,16 @@ const StickyMobileCTA: React.FC = () => {
             {/* CTA Buttons */}
             <div className="p-3">
               <div className="flex gap-2">
-                <motion.button
-                  onClick={() => setIsModalOpen(true)}
+                <motion.a
+                  href="https://calendly.com/emrebenian-cogniaai/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileTap={{ scale: 0.95 }}
-                  className="flex-1 bg-gradient-to-r from-cyan-500 to-cyan-400 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  className="flex-1 bg-gradient-to-r from-cyan-500 to-cyan-400 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg"
                 >
                   <FaCalendar />
                   <span>Book Demo</span>
-                </motion.button>
+                </motion.a>
 
                 <motion.a
                   href="tel:+16163263328"
@@ -98,10 +93,6 @@ const StickyMobileCTA: React.FC = () => {
         </motion.div>
       )}
     </AnimatePresence>
-
-    {/* Book Demo Modal */}
-    <BookDemoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </>
   );
 };
 

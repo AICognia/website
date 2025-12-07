@@ -1,16 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import conversionTracker from '../utils/conversionTracking';
 import SoundVisualizer from './SoundVisualizer';
-import BookDemoModal from './BookDemoModal';
 
 const OptimizedHero: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleBookDemo = () => {
-    conversionTracker.trackDemoBooking('hero_cta');
-    setIsModalOpen(true);
-  };
-
   return (
     <>
       <section className="relative bg-black text-white overflow-hidden">
@@ -36,13 +28,16 @@ const OptimizedHero: React.FC = () => {
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4">
                 {/* Primary CTA - White button like Scale.com */}
-                <button
-                  onClick={handleBookDemo}
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white hover:bg-gray-100 text-black text-sm font-medium rounded-md transition-colors cursor-pointer"
+                <a
+                  href="https://calendly.com/emrebenian-cogniaai/30min"
+                  onClick={() => {
+                    conversionTracker.trackDemoBooking('hero_cta');
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white hover:bg-gray-100 text-black text-sm font-medium rounded-md transition-colors"
                 >
                   Book a Demo
                   <span>→</span>
-                </button>
+                </a>
 
                 {/* Secondary CTA - Border button */}
                 <a
@@ -65,9 +60,6 @@ const OptimizedHero: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Book Demo Modal */}
-      <BookDemoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 };
