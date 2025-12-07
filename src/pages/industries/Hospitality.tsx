@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaHotel, FaConciergeBell, FaUtensils, FaCalendarCheck, FaPhone, FaComments, FaStar, FaGlobe, FaClipboardList, FaCheckCircle } from 'react-icons/fa';
+import { FaHotel, FaConciergeBell, FaUtensils, FaCalendarCheck, FaPhone, FaComments, FaStar, FaGlobe, FaClipboardList, FaCheckCircle, FaPlug, FaSync, FaShieldAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import DynamicTechBackground from '../../components/DynamicTechBackground';
@@ -264,6 +264,21 @@ const Hospitality: React.FC = () => {
                     </li>
                   </ul>
                 </div>
+              </div>
+              {/* API Badge */}
+              <div className="flex items-center justify-center gap-6 mt-8 pt-6 border-t border-white/10 text-sm text-gray-500">
+                <span className="flex items-center gap-2">
+                  <FaPlug className="text-cyan-400" />
+                  Custom API Available
+                </span>
+                <span className="flex items-center gap-2">
+                  <FaSync className="text-cyan-400" />
+                  Real-time Sync
+                </span>
+                <span className="flex items-center gap-2">
+                  <FaShieldAlt className="text-cyan-400" />
+                  Secure Connections
+                </span>
               </div>
             </TechCard>
           </div>

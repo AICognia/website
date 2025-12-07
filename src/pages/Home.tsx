@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
-import { FaPhone, FaCheckCircle, FaRocket, FaShieldAlt, FaClock, FaChartLine, FaUsers, FaHeadset, FaRobot, FaMicrophone, FaLanguage, FaCalendarAlt, FaHospital, FaBalanceScale, FaStore, FaBuilding, FaHotel, FaCar, FaCalendarAlt as FaCalendar, FaCog, FaUserTie } from 'react-icons/fa';
+import { FaPhone, FaCheckCircle, FaRocket, FaShieldAlt, FaClock, FaChartLine, FaUsers, FaHeadset, FaRobot, FaMicrophone, FaLanguage, FaCalendarAlt, FaHospital, FaBalanceScale, FaStore, FaBuilding, FaHotel, FaCar, FaCalendarAlt as FaCalendar, FaCog, FaUserTie, FaPlug, FaSync, FaCloud, FaDatabase } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
 import ScrollProgress from '../components/ScrollProgress';
@@ -209,6 +209,146 @@ const Home: React.FC = () => {
                 </Suspense>
               </div>
             </TechCard>
+          </div>
+        </TechSection>
+
+        {/* Seamless Software Integration Section */}
+        <TechSection
+          badge="Integrations"
+          title="Seamless Software Integration"
+          subtitle="Connect with your existing tools and workflows"
+        >
+          <div className="max-w-6xl mx-auto">
+            {/* Integration Categories */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              {[
+                {
+                  icon: FaDatabase,
+                  title: 'CRM Systems',
+                  items: ['Salesforce', 'HubSpot', 'Zoho CRM', 'Pipedrive']
+                },
+                {
+                  icon: FaCalendarAlt,
+                  title: 'Scheduling',
+                  items: ['Google Calendar', 'Calendly', 'Acuity', 'Cal.com']
+                },
+                {
+                  icon: FaCloud,
+                  title: 'PMS & EHR',
+                  items: ['Epic', 'Cerner', 'Athenahealth', 'Opera PMS']
+                },
+                {
+                  icon: FaSync,
+                  title: 'Communication',
+                  items: ['Twilio', 'RingCentral', 'Vonage', 'Slack']
+                }
+              ].map((category, index) => (
+                <TechCard key={index}>
+                  <div className="text-center">
+                    <div className="w-12 h-12 mx-auto mb-4 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center">
+                      <category.icon className="text-xl text-cyan-400" />
+                    </div>
+                    <h3 className="text-lg font-medium text-white mb-3">{category.title}</h3>
+                    <div className="space-y-2">
+                      {category.items.map((item, idx) => (
+                        <div key={idx} className="flex items-center justify-center gap-2 text-sm text-gray-400">
+                          <FaCheckCircle className="text-green-400 text-xs" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </TechCard>
+              ))}
+            </div>
+
+            {/* Industry-Specific Integrations */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
+              <h3 className="text-xl font-medium text-white text-center mb-8">Industry-Specific Software</h3>
+              <div className="grid md:grid-cols-3 gap-8">
+                {/* Healthcare */}
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <FaHospital className="text-cyan-400" />
+                    <span className="text-white font-medium">Healthcare</span>
+                  </div>
+                  <ul className="space-y-2 text-sm text-gray-400">
+                    <li className="flex items-center gap-2">
+                      <FaCheckCircle className="text-green-400 text-xs" />
+                      Practice Management Systems (PMS)
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheckCircle className="text-green-400 text-xs" />
+                      Electronic Health Records (EHR)
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheckCircle className="text-green-400 text-xs" />
+                      Patient Scheduling Systems
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Hospitality */}
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <FaHotel className="text-cyan-400" />
+                    <span className="text-white font-medium">Hospitality</span>
+                  </div>
+                  <ul className="space-y-2 text-sm text-gray-400">
+                    <li className="flex items-center gap-2">
+                      <FaCheckCircle className="text-green-400 text-xs" />
+                      Property Management Systems (PMS)
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheckCircle className="text-green-400 text-xs" />
+                      Reservation Platforms
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheckCircle className="text-green-400 text-xs" />
+                      Channel Managers
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Home Services */}
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <FaBuilding className="text-cyan-400" />
+                    <span className="text-white font-medium">Home Services</span>
+                  </div>
+                  <ul className="space-y-2 text-sm text-gray-400">
+                    <li className="flex items-center gap-2">
+                      <FaCheckCircle className="text-green-400 text-xs" />
+                      ServiceTitan, Housecall Pro
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheckCircle className="text-green-400 text-xs" />
+                      Field Service Software
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheckCircle className="text-green-400 text-xs" />
+                      Dispatch & Routing Tools
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* API Badge */}
+            <div className="flex items-center justify-center gap-6 mt-8 text-sm text-gray-500">
+              <span className="flex items-center gap-2">
+                <FaPlug className="text-cyan-400" />
+                Custom API Available
+              </span>
+              <span className="flex items-center gap-2">
+                <FaSync className="text-cyan-400" />
+                Real-time Sync
+              </span>
+              <span className="flex items-center gap-2">
+                <FaShieldAlt className="text-cyan-400" />
+                Secure Connections
+              </span>
+            </div>
           </div>
         </TechSection>
 

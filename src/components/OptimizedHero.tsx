@@ -12,7 +12,7 @@ const OptimizedHero: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setWordIndex((prev) => (prev + 1) % rotatingWords.length);
-    }, 2500);
+    }, 1500);
     return () => clearInterval(interval);
   }, []);
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaHospital, FaUserMd, FaCalendarCheck, FaShieldAlt, FaPhone, FaClipboardList, FaStethoscope, FaAmbulance, FaNotesMedical, FaCheckCircle } from 'react-icons/fa';
+import { FaHospital, FaUserMd, FaCalendarCheck, FaShieldAlt, FaPhone, FaClipboardList, FaStethoscope, FaAmbulance, FaNotesMedical, FaCheckCircle, FaPlug, FaSync } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import DynamicTechBackground from '../../components/DynamicTechBackground';
@@ -265,6 +265,77 @@ const Healthcare: React.FC = () => {
           </div>
         </TechSection>
 
+        {/* Integration Section */}
+        <TechSection
+          badge="Integrations"
+          title="Seamless Healthcare System Integration"
+          subtitle="Connect with your existing practice management and EHR systems"
+        >
+          <div className="max-w-4xl mx-auto">
+            <TechCard>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-xl font-medium text-white mb-4">Practice Management Systems (PMS)</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-2 text-gray-300 text-sm">
+                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
+                      <span>Dentrix, Eaglesoft, Open Dental</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-300 text-sm">
+                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
+                      <span>Kareo, AdvancedMD, DrChrono</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-300 text-sm">
+                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
+                      <span>Practice Fusion, SimplePractice</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-300 text-sm">
+                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
+                      <span>Custom API integration available</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium text-white mb-4">Electronic Health Records (EHR)</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-2 text-gray-300 text-sm">
+                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
+                      <span>Epic, Cerner, Athenahealth</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-300 text-sm">
+                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
+                      <span>eClinicalWorks, NextGen Healthcare</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-300 text-sm">
+                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
+                      <span>Allscripts, Meditech</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-300 text-sm">
+                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
+                      <span>HL7 FHIR compliant</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              {/* API Badge */}
+              <div className="flex items-center justify-center gap-6 mt-8 pt-6 border-t border-white/10 text-sm text-gray-500">
+                <span className="flex items-center gap-2">
+                  <FaPlug className="text-cyan-400" />
+                  Custom API Available
+                </span>
+                <span className="flex items-center gap-2">
+                  <FaSync className="text-cyan-400" />
+                  Real-time Sync
+                </span>
+                <span className="flex items-center gap-2">
+                  <FaShieldAlt className="text-cyan-400" />
+                  HIPAA Compliant
+                </span>
+              </div>
+            </TechCard>
+          </div>
+        </TechSection>
+
         {/* Compliance Section */}
         <TechSection
           badge="Security & Compliance"
@@ -296,23 +367,23 @@ const Healthcare: React.FC = () => {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-xl font-medium text-white mb-4">Additional Certifications</h3>
+                  <h3 className="text-xl font-medium text-white mb-4">Data Security</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-2 text-gray-300 text-sm">
                       <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
-                      <span>End-to-end encryption</span>
+                      <span>256-bit AES encryption</span>
                     </li>
                     <li className="flex items-start gap-2 text-gray-300 text-sm">
                       <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
-                      <span>Secure data storage</span>
+                      <span>Secure cloud infrastructure</span>
                     </li>
                     <li className="flex items-start gap-2 text-gray-300 text-sm">
                       <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
-                      <span>Regular security audits</span>
+                      <span>Regular penetration testing</span>
                     </li>
                     <li className="flex items-start gap-2 text-gray-300 text-sm">
                       <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
-                      <span>Access controls</span>
+                      <span>Role-based access controls</span>
                     </li>
                   </ul>
                 </div>
