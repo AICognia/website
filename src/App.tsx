@@ -2,6 +2,7 @@ import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { LeadCaptureProvider } from './contexts/LeadCaptureContext';
 import AnnouncementBanner from './components/AnnouncementBanner';
 import Navbar from './components/Navbar';
 import MobileNavbarRedesigned from './components/MobileNavbarRedesigned';
@@ -115,10 +116,12 @@ function App() {
   return (
     <HelmetProvider>
       <LanguageProvider>
-        <Router>
-          <ScrollToTop />
-          <AppContent />
-        </Router>
+        <LeadCaptureProvider>
+          <Router>
+            <ScrollToTop />
+            <AppContent />
+          </Router>
+        </LeadCaptureProvider>
       </LanguageProvider>
     </HelmetProvider>
   );

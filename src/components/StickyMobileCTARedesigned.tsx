@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaCalendar, FaTimes, FaWhatsapp, FaChevronUp } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 // Urgency messages that rotate
 const urgencyMessages = [
@@ -17,6 +18,7 @@ const StickyMobileCTARedesigned: React.FC = () => {
   const [dismissCount, setDismissCount] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
   const [messageIndex, setMessageIndex] = useState(0);
+  const { openLeadCapture } = useLeadCapture();
 
   // Rotate urgency messages
   useEffect(() => {
@@ -165,20 +167,14 @@ const StickyMobileCTARedesigned: React.FC = () => {
               <div className="p-3">
                 <div className="flex gap-2">
                   {/* Book Demo - Primary */}
-                  <motion.a
-                    href="https://calendly.com/emrebenian-cogniaai/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <motion.button
                     whileTap={{ scale: 0.97 }}
-                    onClick={() => {
-                      conversionTracker.trackDemoBooking('sticky_cta_primary');
-                      conversionTracker.trackButtonClick('Book a Demo', 'sticky_cta_primary');
-                    }}
+                    onClick={() => openLeadCapture('sticky_cta_primary')}
                     className="flex-1 flex items-center justify-center gap-2 py-3 bg-white text-black font-bold rounded-xl"
                   >
                     <FaCalendar />
                     <span>Book a Demo</span>
-                  </motion.a>
+                  </motion.button>
 
                   {/* Talk to AI - Secondary */}
                   <motion.a

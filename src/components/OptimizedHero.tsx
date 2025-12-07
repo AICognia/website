@@ -3,11 +3,13 @@ import { FaShieldAlt, FaCheckCircle, FaHeadset, FaClock } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import conversionTracker from '../utils/conversionTracking';
 import SoundVisualizer from './SoundVisualizer';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
 
 const OptimizedHero: React.FC = () => {
   const [wordIndex, setWordIndex] = useState(0);
+  const { openLeadCapture } = useLeadCapture();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -91,19 +93,13 @@ const OptimizedHero: React.FC = () => {
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4">
                 {/* Primary CTA - Book a Demo */}
-                <a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => {
-                    conversionTracker.trackDemoBooking('hero_primary');
-                    conversionTracker.trackButtonClick('Book a Demo', 'hero_primary');
-                  }}
+                <button
+                  onClick={() => openLeadCapture('hero_primary')}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-gray-100 text-black text-sm font-semibold rounded-lg transition-colors"
                 >
                   Book a Demo
                   <span>→</span>
-                </a>
+                </button>
 
                 {/* Secondary CTA - Talk to AI */}
                 <a
