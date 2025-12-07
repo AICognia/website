@@ -23,7 +23,7 @@ const OptimizedHero: React.FC = () => {
         {/* Background - Pure black */}
         <div className="absolute inset-0 bg-black" />
 
-        <div className="relative container mx-auto px-6 lg:px-12 z-10">
+        <div className="relative container mx-auto px-6 lg:px-12 z-10 pt-4">
           {/* Trust Badge Strip - Above the fold */}
           <div className="flex items-center justify-center gap-8 py-4 border-b border-white/5">
             <div className="flex items-center gap-2 text-sm text-gray-400">
