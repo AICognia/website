@@ -4,12 +4,14 @@ import { HelmetProvider } from 'react-helmet-async';
 import { LanguageProvider } from './contexts/LanguageContext';
 import AnnouncementBanner from './components/AnnouncementBanner';
 import Navbar from './components/Navbar';
-import MobileNavbar from './components/MobileNavbar';
+import MobileNavbarRedesigned from './components/MobileNavbarRedesigned';
 import Footer from './components/Footer';
 import CookieConsentBanner from './components/CookieConsent';
 import Breadcrumb from './components/Breadcrumb';
 import { PageLoader } from './components/LoadingSkeleton';
-import StickyMobileCTA from './components/StickyMobileCTA';
+import StickyMobileCTARedesigned from './components/StickyMobileCTARedesigned';
+import FloatingQuickContact from './components/FloatingQuickContact';
+import ExitIntentPopup from './components/ExitIntentPopup';
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
@@ -61,8 +63,8 @@ function AppContent() {
     <div className="min-h-screen flex flex-col bg-black">
       {/* Announcement Banner */}
       <AnnouncementBanner />
-      {/* Mobile Navigation */}
-      <MobileNavbar />
+      {/* Mobile Navigation - Redesigned with simplified menu */}
+      <MobileNavbarRedesigned />
       {/* Desktop Navigation */}
       <div className="hidden lg:block">
         <Navbar />
@@ -102,7 +104,11 @@ function AppContent() {
       </main>
       <Footer />
       <CookieConsentBanner />
-      <StickyMobileCTA />
+
+      {/* Conversion Optimization Components */}
+      <StickyMobileCTARedesigned />
+      <FloatingQuickContact />
+      <ExitIntentPopup />
     </div>
   );
 }

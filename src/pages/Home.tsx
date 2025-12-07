@@ -5,17 +5,19 @@ import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
 import ScrollProgress from '../components/ScrollProgress';
 import OptimizedHero from '../components/OptimizedHero';
+import MobileHeroRedesigned from '../components/MobileHeroRedesigned';
 import FeaturesSection from '../components/FeaturesSection';
 import SolutionsGrid from '../components/SolutionsGrid';
 import DemoSection from '../components/DemoSection';
 import DynamicTechBackground from '../components/DynamicTechBackground';
 import TechSection from '../components/TechSection';
 import TechCard from '../components/TechCard';
+import SocialProofSection from '../components/SocialProofSection';
 import { VideoProvider } from '../contexts/VideoContext';
 
 // Lazy load heavy components
 const ROICalculator = lazy(() => import('../components/ROICalculator'));
-const MobileROICalculator = lazy(() => import('../components/MobileROICalculator'));
+const MobileROICalculatorRedesigned = lazy(() => import('../components/MobileROICalculatorRedesigned'));
 
 const Home: React.FC = () => {
 
@@ -73,8 +75,14 @@ const Home: React.FC = () => {
             ]}
           />
 
-          {/* Hero Section */}
+          {/* Hero Section - Desktop */}
           <OptimizedHero />
+
+          {/* Hero Section - Mobile (Redesigned with audio demo) */}
+          <MobileHeroRedesigned />
+
+          {/* Social Proof Section - Testimonials & Trust Badges */}
+          <SocialProofSection />
 
           {/* Features Section - Scale.com style */}
           <FeaturesSection />
@@ -179,14 +187,14 @@ const Home: React.FC = () => {
         >
           <div className="max-w-6xl mx-auto">
             <TechCard glowColor="cyan" hoverable={false}>
-              {/* Mobile ROI Calculator */}
+              {/* Mobile ROI Calculator - Redesigned with live results */}
               <div className="lg:hidden">
                 <Suspense fallback={
                   <div className="h-96 flex items-center justify-center">
                     <div className="text-cyan-400 animate-pulse">Loading calculator...</div>
                   </div>
                 }>
-                  <MobileROICalculator />
+                  <MobileROICalculatorRedesigned />
                 </Suspense>
               </div>
 
