@@ -148,11 +148,11 @@ const MobileSoundVisualizer: React.FC = () => {
         transition={{ duration: 0.5, delay: 0.3 }}
         className="relative"
       >
-        {/* Glow background */}
+        {/* Glow background - smooth static radial gradient */}
         <div
-          className="absolute inset-0 rounded-2xl blur-2xl opacity-40"
+          className="absolute inset-0 rounded-2xl blur-2xl opacity-30"
           style={{
-            background: 'linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #22d3ee 100%)',
+            background: 'radial-gradient(circle, rgba(34, 211, 238, 0.4) 0%, rgba(167, 139, 250, 0.2) 60%, transparent 100%)',
           }}
         />
 

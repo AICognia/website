@@ -184,11 +184,11 @@ const MobileHeroRedesigned: React.FC = () => {
             className="relative mb-8"
           >
             <div className="relative flex items-center justify-center">
-              {/* Background glow */}
+              {/* Background glow - smooth static radial gradient */}
               <div
-                className="absolute w-64 h-64 rounded-full blur-3xl opacity-40"
+                className="absolute w-64 h-64 rounded-full blur-3xl opacity-30"
                 style={{
-                  background: 'linear-gradient(135deg, #E879F9 0%, #A78BFA 30%, #60A5FA 60%, #22D3EE 100%)',
+                  background: 'radial-gradient(circle, rgba(96, 165, 250, 0.5) 0%, rgba(167, 139, 250, 0.3) 50%, transparent 100%)',
                 }}
               />
 
