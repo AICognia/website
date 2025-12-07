@@ -80,7 +80,7 @@ const StickyMobileCTA: React.FC = () => {
                   className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg"
                 >
                   <FaPhone className="animate-pulse" />
-                  <span>Call Now</span>
+                  <span>Talk to AI</span>
                 </motion.a>
               </div>
 

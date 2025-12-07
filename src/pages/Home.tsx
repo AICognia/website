@@ -250,7 +250,7 @@ const Home: React.FC = () => {
                       </div>
                     </div>
                     <div className="text-gray-400 text-sm">
-                      Tap to Call Now
+                      Tap to Talk to AI
                     </div>
                   </a>
 

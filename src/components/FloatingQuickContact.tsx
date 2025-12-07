@@ -40,13 +40,13 @@ const FloatingQuickContact: React.FC = () => {
   const contactOptions = [
     {
       icon: FaPhone,
-      label: 'Call Now',
-      sublabel: 'Talk to AI instantly',
+      label: 'Talk to AI',
+      sublabel: 'Instant AI conversation',
       href: 'tel:+16163263328',
       color: 'from-green-500 to-emerald-500',
       onClick: () => {
         conversionTracker.trackPhoneCall('+16163263328');
-        conversionTracker.trackButtonClick('Call Now', 'floating_contact');
+        conversionTracker.trackButtonClick('Talk to AI', 'floating_contact');
       },
     },
     {
