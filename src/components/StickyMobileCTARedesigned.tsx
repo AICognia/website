@@ -80,18 +80,26 @@ const StickyMobileCTARedesigned: React.FC = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="sticky-mobile-cta fixed bottom-0 left-0 right-0 z-50"
+            className="sticky-mobile-cta fixed bottom-0 left-0 right-0 z-[9999]"
           >
-            {/* Main Container */}
-            <div className="bg-gray-950 border-t border-cyan-500/30 shadow-2xl shadow-cyan-500/10">
-              {/* Dismiss button - larger tap area for mobile */}
+            {/* Dismiss button - positioned above the container */}
+            <div className="flex justify-end px-2 mb-2">
               <button
-                onClick={handleDismiss}
-                className="absolute -top-12 right-2 w-10 h-10 bg-gray-900 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors z-10 shadow-lg"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleDismiss();
+                }}
+                className="w-10 h-10 bg-gray-900 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors shadow-lg"
                 aria-label="Dismiss"
+                type="button"
               >
                 <FaTimes className="text-base" />
               </button>
+            </div>
+
+            {/* Main Container */}
+            <div className="bg-gray-950 border-t border-cyan-500/30 shadow-2xl shadow-cyan-500/10">
 
               {/* Urgency Banner */}
               <div className="bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-cyan-500/20 py-1.5 px-4">
@@ -124,11 +132,14 @@ const StickyMobileCTARedesigned: React.FC = () => {
                       <div className="grid grid-cols-2 gap-2">
                         {/* WhatsApp */}
                         <a
-                          href="https://wa.me/16163263328?text=Hi,%20I'm%20interested%20in%20Cognia%20AI"
+                          href="https://wa.me/905317739053?text=Hi,%20I'm%20interested%20in%20Cognia%20AI"
                           target="_blank"
                           rel="noopener noreferrer"
-                          onClick={() => conversionTracker.trackButtonClick('WhatsApp', 'sticky_cta')}
-                          className="flex items-center justify-center gap-2 py-2.5 bg-green-600 text-white text-sm font-medium rounded-lg"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            conversionTracker.trackButtonClick('WhatsApp', 'sticky_cta');
+                          }}
+                          className="flex items-center justify-center gap-2 py-2.5 bg-green-600 text-white text-sm font-medium rounded-lg active:bg-green-700"
                         >
                           <FaWhatsapp />
                           <span>WhatsApp</span>
@@ -161,36 +172,39 @@ const StickyMobileCTARedesigned: React.FC = () => {
                   {/* Book Demo - Primary */}
                   <Link
                     to="/demo"
-                    onClick={() => conversionTracker.trackButtonClick('Book a Demo', 'sticky_cta_primary')}
-                    className="flex-1"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      conversionTracker.trackButtonClick('Book a Demo', 'sticky_cta_primary');
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-white text-black font-bold rounded-xl active:bg-gray-200"
                   >
-                    <motion.div
-                      whileTap={{ scale: 0.97 }}
-                      className="flex items-center justify-center gap-2 py-3 bg-white text-black font-bold rounded-xl"
-                    >
-                      <span>Book a Demo</span>
-                      <FaArrowRight className="text-xs" />
-                    </motion.div>
+                    <span>Book a Demo</span>
+                    <FaArrowRight className="text-xs" />
                   </Link>
 
                   {/* Talk to AI - Secondary */}
-                  <motion.a
+                  <a
                     href="tel:+16163263328"
-                    whileTap={{ scale: 0.97 }}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       conversionTracker.trackPhoneCall('+16163263328');
                       conversionTracker.trackButtonClick('Talk to AI', 'sticky_cta_secondary');
                     }}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 border border-white/20 text-white font-medium rounded-xl"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 border border-white/20 text-white font-medium rounded-xl active:bg-white/10"
                   >
                     <FaPhone />
                     <span>Talk to AI</span>
-                  </motion.a>
+                  </a>
 
                   {/* Expand Button */}
                   <button
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    className="w-12 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl"
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setIsExpanded(!isExpanded);
+                    }}
+                    className="w-12 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl active:bg-white/10"
                     aria-label={isExpanded ? 'Show less options' : 'Show more options'}
                   >
                     <motion.div
