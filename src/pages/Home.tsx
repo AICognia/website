@@ -511,25 +511,43 @@ const Home: React.FC = () => {
           <div className="max-w-4xl mx-auto text-center">
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              {/* Primary CTA */}
+              {/* Primary CTA - Premium Design */}
               <motion.button
                 onClick={() => openLeadCapture('home_cta')}
-                className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
-                whileHover={{ scale: 1.02 }}
+                className="group relative overflow-hidden px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-300"
+                whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <FaCalendarCheck />
-                Schedule Free Demo
-                <FaArrowRight />
+                {/* Animated gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Glow effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
+
+                {/* Button content */}
+                <div className="relative flex items-center justify-center gap-3 text-white">
+                  <FaCalendarCheck className="text-xl" />
+                  <span>Schedule Free Demo</span>
+                  <motion.span
+                    className="inline-block"
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                  >
+                    <FaArrowRight />
+                  </motion.span>
+                </div>
               </motion.button>
 
               {/* Secondary CTA */}
               <a
                 href="tel:+16163263328"
-                className="flex items-center gap-3 px-8 py-4 border border-white/10 hover:bg-white/5 text-white text-lg font-medium rounded-md transition-colors"
+                className="group flex items-center gap-3 px-8 py-4 border border-white/20 hover:border-cyan-500/50 hover:bg-cyan-500/5 text-white text-lg font-medium rounded-xl transition-all duration-300"
               >
-                <FaPhone className="text-sm" />
-                +1 616-326-3328
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 flex items-center justify-center group-hover:from-cyan-500/30 group-hover:to-blue-500/30 transition-all">
+                  <FaPhone className="text-sm text-cyan-400" />
+                </div>
+                <span>+1 616-326-3328</span>
               </a>
             </div>
 

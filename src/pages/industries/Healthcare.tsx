@@ -47,21 +47,21 @@ const Healthcare: React.FC = () => {
                 </p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={() => openLeadCapture('healthcare_hero')}
-                    className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
+                    className="group relative flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-gray-100 text-black font-semibold rounded-xl transition-all shadow-lg shadow-white/10 hover:shadow-white/20"
                   >
-                    <FaCalendarCheck />
-                    Schedule Healthcare Demo
-                    <FaArrowRight className="text-sm" />
+                    <FaCalendarCheck className="text-cyan-600" />
+                    <span>Schedule Demo</span>
+                    <FaArrowRight className="text-xs text-cyan-600 group-hover:translate-x-0.5 transition-transform" />
                   </button>
                   <a
                     href="tel:+16163263328"
-                    className="flex items-center justify-center gap-3 px-8 py-4 border border-white/20 hover:bg-white/5 text-white text-lg font-medium rounded-xl transition-colors"
+                    className="flex items-center justify-center gap-2 px-6 py-3.5 border border-white/20 hover:border-white/40 hover:bg-white/5 text-white font-medium rounded-xl transition-all"
                   >
-                    <FaPhone className="text-sm" />
-                    +1 616-326-3328
+                    <FaPhone className="text-xs text-cyan-400" />
+                    <span>Talk to AI</span>
                   </a>
                 </div>
               </div>
@@ -401,37 +401,43 @@ const Healthcare: React.FC = () => {
           subtitle="Join hundreds of healthcare providers using Cognia AI"
         >
           <div className="max-w-4xl mx-auto text-center">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <button
-                onClick={() => openLeadCapture('healthcare_cta')}
-                className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
-              >
-                <FaCalendarCheck />
-                Schedule Healthcare Demo
-                <FaArrowRight className="text-sm" />
-              </button>
-              <Link
-                to="/solutions"
-                className="px-8 py-4 border border-white/20 hover:bg-white/5 text-white text-lg font-medium rounded-xl transition-colors"
-              >
-                View All Solutions
-              </Link>
-            </div>
+            {/* Premium CTA Card */}
+            <div className="bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-3xl p-8 mb-8">
+              <h3 className="text-2xl font-light text-white mb-3">Ready to transform patient care?</h3>
+              <p className="text-gray-400 mb-6 max-w-xl mx-auto">Join healthcare providers saving 85% staff time while providing 24/7 patient access.</p>
 
-            {/* Trust badges */}
-            <div className="flex flex-wrap justify-center items-center gap-6 text-xs text-gray-500">
-              <span className="flex items-center gap-2">
-                <FaCheckCircle />
-                HIPAA Compliant
-              </span>
-              <span className="flex items-center gap-2">
-                <FaCheckCircle />
-                24/7 Support
-              </span>
-              <span className="flex items-center gap-2">
-                <FaCheckCircle />
-                Encrypted & Secure
-              </span>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
+                <button
+                  onClick={() => openLeadCapture('healthcare_cta')}
+                  className="group relative flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-gray-100 text-black font-semibold rounded-xl transition-all shadow-lg shadow-white/10 hover:shadow-white/20"
+                >
+                  <FaCalendarCheck className="text-cyan-600" />
+                  <span>Get Your Free Demo</span>
+                  <FaArrowRight className="text-xs text-cyan-600 group-hover:translate-x-0.5 transition-transform" />
+                </button>
+                <Link
+                  to="/solutions"
+                  className="flex items-center gap-2 px-6 py-4 border border-white/20 hover:border-white/40 hover:bg-white/5 text-white font-medium rounded-xl transition-all"
+                >
+                  View All Solutions
+                </Link>
+              </div>
+
+              {/* Trust badges - inside card */}
+              <div className="flex flex-wrap justify-center items-center gap-6 text-xs text-gray-400">
+                <span className="flex items-center gap-2">
+                  <FaShieldAlt className="text-green-400" />
+                  HIPAA Compliant
+                </span>
+                <span className="flex items-center gap-2">
+                  <FaPhone className="text-cyan-400" />
+                  24/7 Support
+                </span>
+                <span className="flex items-center gap-2">
+                  <FaCheckCircle className="text-blue-400" />
+                  1 Week Setup
+                </span>
+              </div>
             </div>
           </div>
         </TechSection>

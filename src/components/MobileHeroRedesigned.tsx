@@ -161,7 +161,7 @@ const MobileHeroRedesigned: React.FC = () => {
             className="text-center text-gray-400 text-lg mb-6"
           >
             Never miss a call. Close more{' '}
-            <span className="relative inline-block w-24 h-7 align-bottom overflow-hidden">
+            <span className="relative inline-block h-7 align-bottom overflow-hidden" style={{ minWidth: '5.5rem' }}>
               <AnimatePresence mode="wait">
                 <motion.span
                   key={wordIndex}
@@ -169,7 +169,7 @@ const MobileHeroRedesigned: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="absolute inset-x-0 text-cyan-400 font-medium"
+                  className="absolute left-0 text-cyan-400 font-medium whitespace-nowrap"
                 >
                   {rotatingWords[wordIndex]}.
                 </motion.span>
