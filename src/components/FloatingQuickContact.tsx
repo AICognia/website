@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaComments, FaTimes, FaWhatsapp, FaPhone, FaEnvelope, FaCalendarCheck } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 const FloatingQuickContact: React.FC = () => {
+  const { openLeadCapture } = useLeadCapture();
   const [isOpen, setIsOpen] = useState(false);
   const [showCallbackForm, setShowCallbackForm] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -64,12 +66,12 @@ const FloatingQuickContact: React.FC = () => {
       icon: FaCalendarCheck,
       label: 'Book Demo',
       sublabel: 'Schedule 30 mins',
-      href: 'https://calendly.com/emrebenian-cogniaai/30min',
       color: 'from-cyan-500 to-blue-500',
-      target: '_blank',
+      isButton: true,
       onClick: () => {
         conversionTracker.trackDemoBooking('floating_contact');
         conversionTracker.trackButtonClick('Book Demo', 'floating_contact');
+        openLeadCapture('floating_contact');
       },
     },
     {
@@ -134,17 +136,24 @@ const FloatingQuickContact: React.FC = () => {
                   <div className="space-y-2">
                     {contactOptions.map((option, index) => {
                       const Icon = option.icon;
+                      const Component = option.isButton ? motion.button : motion.a;
+                      const componentProps = option.isButton
+                        ? { onClick: option.onClick }
+                        : {
+                            href: option.href,
+                            target: option.target,
+                            rel: option.target ? 'noopener noreferrer' : undefined,
+                            onClick: option.onClick
+                          };
+
                       return (
-                        <motion.a
+                        <Component
                           key={index}
-                          href={option.href}
-                          target={option.target}
-                          rel={option.target ? 'noopener noreferrer' : undefined}
-                          onClick={option.onClick}
+                          {...componentProps}
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.05 }}
-                          className="flex items-center gap-3 p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group"
+                          className="flex items-center gap-3 p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group w-full text-left"
                         >
                           <div className={`w-10 h-10 rounded-lg bg-gradient-to-r ${option.color} flex items-center justify-center`}>
                             <Icon className="text-white" />
@@ -155,7 +164,7 @@ const FloatingQuickContact: React.FC = () => {
                             </div>
                             <div className="text-xs text-gray-500">{option.sublabel}</div>
                           </div>
-                        </motion.a>
+                        </Component>
                       );
                     })}
 

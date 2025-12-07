@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaBars, FaTimes, FaHospital, FaGavel, FaStore, FaBuilding, FaPhone, FaCalendar, FaLanguage, FaCog, FaUserMd, FaFileAlt, FaHeadset, FaClock, FaHotel, FaCar, FaRobot, FaChartLine, FaUsers, FaShieldAlt, FaShoppingCart, FaHome } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHospital, FaGavel, FaStore, FaBuilding, FaPhone, FaCalendar, FaLanguage, FaCog, FaUserMd, FaFileAlt, FaHeadset, FaClock, FaHotel, FaCar, FaRobot, FaChartLine, FaUsers, FaShieldAlt, FaShoppingCart, FaHome, FaArrowRight } from 'react-icons/fa';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showSolutionsMenu, setShowSolutionsMenu] = useState(false);
   const location = useLocation();
+  const { openLeadCapture } = useLeadCapture();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -211,19 +213,21 @@ const Navbar: React.FC = () => {
               ))}
 
               {/* Desktop CTA Buttons */}
-              <div className="flex items-center gap-6 ml-4">
-                <a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  className="flex items-center gap-2 px-4 py-2 bg-white hover:bg-gray-100 text-black text-sm font-medium rounded-md transition-colors"
+              <div className="flex items-center gap-4 ml-4">
+                <button
+                  onClick={() => openLeadCapture('navbar_desktop')}
+                  className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-semibold rounded-lg transition-all shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30"
                 >
+                  <FaCalendar className="text-xs" />
                   Book a Demo
-                  <span>→</span>
-                </a>
+                  <FaArrowRight className="text-xs" />
+                </button>
 
                 <a
                   href="tel:+16163263328"
-                  className="text-sm text-white hover:text-gray-300 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2.5 border border-white/20 hover:bg-white/5 text-white text-sm font-medium rounded-lg transition-all"
                 >
+                  <FaPhone className="text-xs" />
                   Talk to AI
                 </a>
               </div>
@@ -262,19 +266,24 @@ const Navbar: React.FC = () => {
 
               {/* Mobile CTAs */}
               <div className="pt-3 border-t border-white/10 space-y-2">
-                <a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full px-4 py-2 bg-white hover:bg-gray-100 text-black text-sm font-medium rounded-md text-center transition-colors"
+                <button
+                  onClick={() => {
+                    setIsOpen(false);
+                    openLeadCapture('navbar_mobile');
+                  }}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold rounded-lg"
                 >
-                  Book a Demo →
-                </a>
+                  <FaCalendar className="text-xs" />
+                  Book a Demo
+                  <FaArrowRight className="text-xs" />
+                </button>
 
                 <a
                   href="tel:+16163263328"
                   onClick={() => setIsOpen(false)}
-                  className="block text-center py-2 text-sm text-white hover:text-gray-300 transition-colors"
+                  className="flex items-center justify-center gap-2 py-2.5 text-sm text-white hover:text-gray-300 transition-colors"
                 >
+                  <FaPhone className="text-xs" />
                   Talk to AI
                 </a>
               </div>

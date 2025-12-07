@@ -1,13 +1,16 @@
 import React from 'react';
-import { FaShieldAlt, FaFilter, FaChartLine, FaCheckCircle, FaPhone, FaUserCheck, FaClipboardCheck, FaBullseye } from 'react-icons/fa';
+import { FaShieldAlt, FaFilter, FaChartLine, FaCheckCircle, FaPhone, FaUserCheck, FaClipboardCheck, FaBullseye, FaCalendarCheck, FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import SEO from '../../components/SEO';
 import DynamicTechBackground from '../../components/DynamicTechBackground';
 import TechSection from '../../components/TechSection';
 import TechCard from '../../components/TechCard';
 import ScrollProgress from '../../components/ScrollProgress';
+import { useLeadCapture } from '../../contexts/LeadCaptureContext';
 
 const LeadQualification: React.FC = () => {
+  const { openLeadCapture } = useLeadCapture();
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       <ScrollProgress />
@@ -37,14 +40,15 @@ const LeadQualification: React.FC = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium rounded-md transition-colors"
+                <motion.button
+                  onClick={() => openLeadCapture('lead_qualification_hero')}
+                  className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
+                  <FaCalendarCheck />
                   Schedule Demo
-                </a>
+                </motion.button>
                 <a
                   href="tel:+16163263328"
                   className="flex items-center justify-center gap-3 px-8 py-4 border border-white/10 hover:bg-white/5 text-white text-lg font-medium rounded-md transition-colors"
@@ -138,14 +142,15 @@ const LeadQualification: React.FC = () => {
         >
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <a
-                href="https://calendly.com/emrebenian-cogniaai/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium rounded-md transition-colors"
+              <motion.button
+                onClick={() => openLeadCapture('lead_qualification_cta')}
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
+                <FaCalendarCheck />
                 Schedule Demo
-              </a>
+              </motion.button>
               <Link
                 to="/features/crm-integration"
                 className="px-8 py-4 border border-white/10 hover:bg-white/5 text-white text-lg font-medium rounded-md transition-colors"

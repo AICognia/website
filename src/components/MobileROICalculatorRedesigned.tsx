@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaDollarSign, FaChartLine, FaPhone, FaEnvelope, FaShare, FaCheckCircle } from 'react-icons/fa';
+import { FaDollarSign, FaChartLine, FaPhone, FaEnvelope, FaShare, FaCheckCircle, FaCalendarCheck } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 interface MobileROICalculatorRedesignedProps {
   onEmailCapture?: (email: string, roiData: ROIData) => void;
@@ -16,6 +17,7 @@ interface ROIData {
 }
 
 const MobileROICalculatorRedesigned: React.FC<MobileROICalculatorRedesignedProps> = ({ onEmailCapture }) => {
+  const { openLeadCapture } = useLeadCapture();
   const [dailyCalls, setDailyCalls] = useState<number>(50);
   const [missedRate, setMissedRate] = useState<number>(30);
   const [customerValue, setCustomerValue] = useState<number>(150);
@@ -245,20 +247,21 @@ const MobileROICalculatorRedesigned: React.FC<MobileROICalculatorRedesignedProps
             {!showEmailCapture && !emailSent ? (
               <>
                 {/* Primary CTA */}
-                <a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => conversionTracker.trackDemoBooking('roi_calculator_mobile')}
+                <button
+                  onClick={() => {
+                    conversionTracker.trackDemoBooking('roi_calculator_mobile');
+                    openLeadCapture('roi_calculator_mobile');
+                  }}
                   className="block w-full"
                 >
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl blur opacity-50" />
-                    <div className="relative bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-3.5 px-4 rounded-xl text-center">
+                    <div className="relative bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-3.5 px-4 rounded-xl text-center flex items-center justify-center gap-2">
+                      <FaCalendarCheck />
                       Get This ROI — Book Demo
                     </div>
                   </div>
-                </a>
+                </button>
 
                 {/* Secondary Actions */}
                 <div className="flex gap-2">

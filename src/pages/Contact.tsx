@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import {
   FaPhone, FaEnvelope, FaLinkedin,
   FaInstagram, FaPaperPlane, FaCheckCircle,
-  FaGlobe, FaShieldAlt
+  FaGlobe, FaShieldAlt, FaCalendarCheck, FaArrowRight
 } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
 import DynamicTechBackground from '../components/DynamicTechBackground';
@@ -14,6 +16,7 @@ import ScrollProgress from '../components/ScrollProgress';
 
 const Contact: React.FC = () => {
   const { language } = useLanguage();
+  const { openLeadCapture } = useLeadCapture();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -234,22 +237,16 @@ const Contact: React.FC = () => {
                 </h3>
 
                 <div className="space-y-3">
-                  <a
-                    href="https://calendly.com/emrebenian-cogniaai/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-lg hover:border-white/20 transition-colors"
+                  <motion.button
+                    onClick={() => openLeadCapture('contact_page_demo')}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
                   >
-                    <div>
-                      <div className="font-medium text-white">
-                        {language === 'tr' ? '30 Dakikalık Demo' : 'Schedule 30-min Demo'}
-                      </div>
-                      <div className="text-xs text-gray-400">
-                        {language === 'tr' ? 'Canlı ürün tanıtımı' : 'Live product walkthrough'}
-                      </div>
-                    </div>
-                    <span className="text-white">→</span>
-                  </a>
+                    <FaCalendarCheck />
+                    <span>{language === 'tr' ? '30 Dakikalık Demo' : 'Schedule 30-min Demo'}</span>
+                    <FaArrowRight className="ml-auto" />
+                  </motion.button>
 
                   <a
                     href="tel:+12176938413"

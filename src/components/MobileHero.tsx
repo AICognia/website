@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaPhone } from 'react-icons/fa';
+import { FaArrowRight, FaPhone, FaCalendarCheck } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 const MobileHero: React.FC = () => {
+  const { openLeadCapture } = useLeadCapture();
   return (
     <div className="lg:hidden">
       {/* Mobile-optimized Hero Section */}
@@ -83,13 +85,11 @@ const MobileHero: React.FC = () => {
             className="space-y-3 mb-8"
           >
             {/* Primary CTA - Book Demo */}
-            <a
-              href="https://calendly.com/emrebenian-cogniaai/30min"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
               onClick={() => {
                 conversionTracker.trackDemoBooking('mobile_hero_cta');
                 conversionTracker.trackButtonClick('Book Free Demo', 'mobile_hero');
+                openLeadCapture('mobile_hero_legacy');
               }}
               className="block w-full"
             >
@@ -99,7 +99,8 @@ const MobileHero: React.FC = () => {
 
                 {/* Button */}
                 <div className="relative bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-4 px-6 rounded-2xl flex items-center justify-between group-hover:scale-[1.02] transition-transform">
-                  <div className="text-left">
+                  <div className="flex items-center gap-2 text-left">
+                    <FaCalendarCheck />
                     <div className="text-lg">Start Free Trial</div>
                   </div>
                   <div className="bg-white/20 p-3 rounded-xl">
@@ -107,7 +108,7 @@ const MobileHero: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </a>
+            </button>
 
             {/* Secondary CTA - Live Demo */}
             <a

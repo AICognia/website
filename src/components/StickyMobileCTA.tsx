@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaCalendar, FaTimes } from 'react-icons/fa';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 const StickyMobileCTA: React.FC = () => {
+  const { openLeadCapture } = useLeadCapture();
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
 
@@ -63,16 +65,14 @@ const StickyMobileCTA: React.FC = () => {
             {/* CTA Buttons */}
             <div className="p-3">
               <div className="flex gap-2">
-                <motion.a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <motion.button
+                  onClick={() => openLeadCapture('sticky_cta_legacy')}
                   whileTap={{ scale: 0.95 }}
                   className="flex-1 bg-gradient-to-r from-cyan-500 to-cyan-400 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg"
                 >
                   <FaCalendar />
                   <span>Book Demo</span>
-                </motion.a>
+                </motion.button>
 
                 <motion.a
                   href="tel:+16163263328"

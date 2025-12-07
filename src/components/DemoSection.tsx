@@ -1,6 +1,10 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { FaCalendarCheck, FaArrowRight } from 'react-icons/fa';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 const DemoSection: React.FC = () => {
+  const { openLeadCapture } = useLeadCapture();
   return (
     <section className="relative bg-black text-white py-32">
       <div className="container mx-auto px-6 lg:px-12">
@@ -148,13 +152,16 @@ const DemoSection: React.FC = () => {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <a
-                href="https://calendly.com/emrebenian-cogniaai/30min"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white hover:bg-gray-100 text-black text-sm font-medium rounded-md transition-colors"
+              <motion.button
+                onClick={() => openLeadCapture('demo_section_book')}
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
+                <FaCalendarCheck />
                 Book a Demo
-                <span>→</span>
-              </a>
+                <FaArrowRight />
+              </motion.button>
               <a
                 href="tel:+16163263328"
                 className="inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-white/20 hover:bg-white/5 text-white text-sm font-medium rounded-md transition-colors"

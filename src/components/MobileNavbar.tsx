@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes, FaPhone, FaCalendarCheck, FaHome, FaBrain, FaBuilding, FaEnvelope, FaChevronDown, FaHospital, FaGavel, FaStore, FaHotel, FaCar, FaCalendar, FaLanguage, FaCog, FaRobot, FaChartLine, FaUsers, FaFileAlt, FaHeadset, FaClock, FaShieldAlt, FaShoppingCart } from 'react-icons/fa';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 const MobileNavbar: React.FC = () => {
+  const { openLeadCapture } = useLeadCapture();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showSolutions, setShowSolutions] = useState(false);
@@ -344,10 +346,11 @@ const MobileNavbar: React.FC = () => {
                   </a>
 
                   {/* Book Demo CTA */}
-                  <a
-                    href="https://calendly.com/emrebenian-cogniaai/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={() => {
+                      setIsOpen(false);
+                      openLeadCapture('mobile_nav_legacy');
+                    }}
                     className="block w-full"
                   >
                     <div className="relative group">
@@ -360,7 +363,7 @@ const MobileNavbar: React.FC = () => {
                         <div className="text-xs bg-white/20 px-2 py-1 rounded">Free Trial</div>
                       </div>
                     </div>
-                  </a>
+                  </button>
                 </div>
               </div>
             </motion.div>

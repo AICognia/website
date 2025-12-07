@@ -7,6 +7,7 @@ import {
   FaCog, FaRobot, FaChartLine, FaUsers, FaFileAlt, FaHeadset, FaClock,
   FaShieldAlt, FaShoppingCart, FaArrowRight, FaStar
 } from 'react-icons/fa';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 // Quick access items - most popular destinations
 const quickLinks = [
@@ -47,6 +48,7 @@ const MobileNavbarRedesigned: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState<'quick' | 'all'>('quick');
   const location = useLocation();
+  const { openLeadCapture } = useLeadCapture();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -374,20 +376,21 @@ const MobileNavbarRedesigned: React.FC = () => {
                 <div className="flex gap-2">
                   <a
                     href="tel:+16163263328"
-                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-green-500 text-white font-semibold rounded-xl"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-white/10 border border-white/20 text-white font-medium rounded-xl"
                   >
                     <FaPhone />
                     <span>Talk to AI</span>
                   </a>
-                  <a
-                    href="https://calendly.com/emrebenian-cogniaai/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-cyan-500 text-white font-semibold rounded-xl"
+                  <button
+                    onClick={() => {
+                      setIsOpen(false);
+                      openLeadCapture('mobile_nav_cta');
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl shadow-lg shadow-cyan-500/20"
                   >
                     <FaCalendarCheck />
                     <span>Book Demo</span>
-                  </a>
+                  </button>
                 </div>
               </div>
             </motion.div>

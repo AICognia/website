@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaCalculator, FaDollarSign, FaChartLine, FaArrowUp, FaPhone, FaUsers } from 'react-icons/fa';
+import { FaCalculator, FaDollarSign, FaChartLine, FaArrowUp, FaPhone, FaUsers, FaCalendarCheck } from 'react-icons/fa';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 const MobileROICalculator: React.FC = () => {
+  const { openLeadCapture } = useLeadCapture();
   const [activeTab, setActiveTab] = useState<'input' | 'results'>('input');
   const [inboundCallsPerDay, setInboundCallsPerDay] = useState<number>(50);
   const [missedCallRate, setMissedCallRate] = useState<number>(30);
@@ -221,20 +223,21 @@ const MobileROICalculator: React.FC = () => {
 
               {/* CTA */}
               <div className="pt-4">
-                <a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => openLeadCapture('roi_calculator_legacy')}
                   className="block w-full"
                 >
                   <div className="relative group">
                     <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl blur opacity-50 group-hover:opacity-75 transition-opacity" />
                     <div className="relative bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-3 px-4 rounded-xl text-center">
-                      <div className="text-base">Get This ROI</div>
+                      <div className="flex items-center justify-center gap-2 text-base">
+                        <FaCalendarCheck />
+                        Get This ROI
+                      </div>
                       <div className="text-xs opacity-90">Start Free Trial</div>
                     </div>
                   </div>
-                </a>
+                </button>
               </div>
             </motion.div>
           )}

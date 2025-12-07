@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaPhone, FaCheckCircle, FaRocket, FaShieldAlt, FaClock, FaChartLine, FaUsers, FaHeadset, FaRobot, FaMicrophone, FaLanguage, FaCalendarAlt, FaHospital, FaBalanceScale, FaStore, FaBuilding, FaHotel, FaCar, FaCalendarAlt as FaCalendar, FaCog, FaUserTie, FaPlug, FaSync, FaCloud, FaDatabase, FaHome } from 'react-icons/fa';
+import { FaPhone, FaCheckCircle, FaRocket, FaShieldAlt, FaClock, FaChartLine, FaUsers, FaHeadset, FaRobot, FaMicrophone, FaLanguage, FaCalendarAlt, FaHospital, FaBalanceScale, FaStore, FaBuilding, FaHotel, FaCar, FaCalendarAlt as FaCalendar, FaCog, FaUserTie, FaPlug, FaSync, FaCloud, FaDatabase, FaHome, FaCalendarCheck, FaArrowRight } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
 import ScrollProgress from '../components/ScrollProgress';
@@ -14,8 +15,10 @@ import TechSection from '../components/TechSection';
 import TechCard from '../components/TechCard';
 import SocialProofSection from '../components/SocialProofSection';
 import { VideoProvider } from '../contexts/VideoContext';
+import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 const Home: React.FC = () => {
+  const { openLeadCapture } = useLeadCapture();
 
   // FAQ structured data for the home page
   const faqStructuredData = {
@@ -509,12 +512,16 @@ const Home: React.FC = () => {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               {/* Primary CTA */}
-              <a
-                href="https://calendly.com/emrebenian-cogniaai/30min"
-                className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium rounded-md transition-colors"
+              <motion.button
+                onClick={() => openLeadCapture('home_cta')}
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
+                <FaCalendarCheck />
                 Schedule Free Demo
-              </a>
+                <FaArrowRight />
+              </motion.button>
 
               {/* Secondary CTA */}
               <a
