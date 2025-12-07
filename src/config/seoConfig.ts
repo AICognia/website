@@ -24,8 +24,8 @@ export const seoConfig: Record<string, PageSEO> = {
       en: 'Cognia AI - AI Receptionist & Voice Agents | Never Miss a Call, Book 24/7'
     },
     description: {
-      tr: 'AI receptionist ve sesli asistan çözümleri. 24/7 otomatik randevu alma, hiç kaçırılmayan aramalar. %10-20 daha fazla müşteri garantisi. Amerika ve Türkiye\'de hizmet. 48 saatte kurulum.',
-      en: 'AI receptionist and voice agent solutions. Never miss a call, book appointments 24/7. Guaranteed 10-20% more customers. Operating in US & Turkey. Enterprise voice AI, custom integrations. Setup in 48 hours.'
+      tr: 'AI receptionist ve sesli asistan çözümleri. 24/7 otomatik randevu alma, hiç kaçırılmayan aramalar. %10-20 daha fazla müşteri garantisi. Amerika ve Türkiye\'de hizmet. 1 hafta içinde kurulum.',
+      en: 'AI receptionist and voice agent solutions. Never miss a call, book appointments 24/7. Guaranteed 10-20% more customers. Operating in US & Turkey. Enterprise voice AI, custom integrations. Setup in 1 week.'
     },
     keywords: {
       tr: ['AI danışmanlık', 'yapay zeka', 'chatbot', 'WhatsApp bot', 'Instagram bot', 'sesli asistan', 'AI otomasyon', 'iş otomasyonu', 'Türkiye AI', 'Amerika AI şirketi', 'Cognia AI', 'müşteri desteği otomasyonu', 'AI çözümleri'],
@@ -258,7 +258,7 @@ export const structuredDataTemplates = {
         name: 'How long does setup take?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We set up your system within 48 hours. After analyzing your needs, we configure and activate your AI assistant.'
+          text: 'We set up your system within 1 week. After analyzing your needs, we configure and activate your AI assistant.'
         }
       },
       {

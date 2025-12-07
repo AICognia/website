@@ -204,8 +204,8 @@ const Company: React.FC = () => {
                 icon: FaClock,
                 title: language === 'tr' ? 'Hızlı Kurulum' : 'Fast Setup',
                 description: language === 'tr'
-                  ? '48 saat içinde hazır'
-                  : 'Ready within 48 hours'
+                  ? '1 hafta içinde hazır'
+                  : 'Ready within 1 week'
               },
               {
                 icon: FaLightbulb,

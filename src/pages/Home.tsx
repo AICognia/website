@@ -31,7 +31,7 @@ const Home: React.FC = () => {
         name: 'How long does setup take?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We set up your system within 48 hours. After analyzing your needs, we configure and activate your AI assistant.'
+          text: 'We set up your system within 1 week. After analyzing your needs, we configure and activate your AI assistant.'
         }
       },
       {
@@ -282,7 +282,7 @@ const Home: React.FC = () => {
         <TechSection
           badge="How It Works"
           title="Simple Setup Process"
-          subtitle="Get started in 48 hours with our streamlined onboarding"
+          subtitle="Get started in 1 week with our streamlined onboarding"
         >
           <div className="max-w-6xl mx-auto">
             {/* Horizontal Flow */}
@@ -370,7 +370,7 @@ const Home: React.FC = () => {
             {[
               {
                 question: 'How long does setup take?',
-                answer: 'We set up your system within 48 hours. After analyzing your needs, we configure and activate your AI assistant.',
+                answer: 'We set up your system within 1 week. After analyzing your needs, we configure and activate your AI assistant.',
               },
               {
                 question: 'Which languages do you support?',

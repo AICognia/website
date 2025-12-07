@@ -308,8 +308,8 @@ const Solutions: React.FC = () => {
             ? 'Sektörünüze Özel AI Çözümünü Keşfedin'
             : 'Discover Your Industry AI Solution'}
           subtitle={language === 'tr'
-            ? '48 saat içinde kurulum, anında sonuç'
-            : 'Setup in 48 hours, immediate results'}
+            ? '1 hafta içinde kurulum, anında sonuç'
+            : 'Setup in 1 week, immediate results'}
         >
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

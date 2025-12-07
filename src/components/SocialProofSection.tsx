@@ -21,7 +21,7 @@ const testimonials = [
     rating: 5,
   },
   {
-    quote: "Setup was incredibly fast. Within 48 hours, our AI was handling all inbound calls professionally.",
+    quote: "Setup was incredibly fast. Within a week, our AI was handling all inbound calls professionally.",
     author: "Michelle Chen",
     role: "Operations Manager",
     company: "Premier Auto Group",

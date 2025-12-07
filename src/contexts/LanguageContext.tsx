@@ -27,7 +27,7 @@ const translations = {
     'hero.title1': 'AI Call Center',
     'hero.title2': '',
     'hero.title3': '',
-    'hero.subtitle': 'Complete call center automation with inbound and outbound capabilities. Handle customer support, lead qualification, appointment confirmations, and more. Setup within 48 hours. Reduce costs by 70%, increase conversions by 40%.',
+    'hero.subtitle': 'Complete call center automation with inbound and outbound capabilities. Handle customer support, lead qualification, appointment confirmations, and more. Setup within 1 week. Reduce costs by 70%, increase conversions by 40%.',
     'hero.benefit1': 'Inbound & Outbound Calls',
     'hero.benefit2': 'Lead Qualification & Follow-ups',
     'hero.benefit3': '24/7 Full Automation',
@@ -64,7 +64,7 @@ const translations = {
     'voice.demoTR': 'Turkey Call Center Demo',
     
     // Contact CTA
-    'contact.title': '🎯 Launch Your AI Call Center - Setup in Just 48 Hours!',
+    'contact.title': '🎯 Launch Your AI Call Center - Setup in Just 1 Week!',
     'contact.subtitle': 'Replace your entire call center with AI. Handle unlimited calls, qualify leads automatically, confirm appointments. First 10 businesses get 20% discount + 1 month free support.',
     'contact.name': 'Your Name',
     'contact.email': 'Your email address',
@@ -178,7 +178,7 @@ const translations = {
     'faq.moreQuestions': 'Have more questions?',
     'faq.talkToExperts': 'Talk to Our Experts',
     'faq.q1': 'How quickly can the system be set up?',
-    'faq.a1': 'We complete the setup within 48 hours. After analyzing your business needs, we configure and activate your AI assistant.',
+    'faq.a1': 'We complete the setup within 1 week. After analyzing your business needs, we configure and activate your AI assistant.',
     'faq.q2': 'Which languages are supported?',
     'faq.a2': 'Our system supports 20+ languages including English and Turkish. The AI assistant can communicate naturally in your customers\' preferred language.',
     'faq.q3': 'Is it compatible with existing systems?',
@@ -206,7 +206,7 @@ const translations = {
     'hero.title1': 'AI Çağrı Merkezi',
     'hero.title2': '',
     'hero.title3': '',
-    'hero.subtitle': 'Gelen ve giden arama yetenekleriyle tam donanımlı çağrı merkezi otomasyonu. Müşteri desteği, potansiyel müşteri değerlendirmesi, randevu onayları ve daha fazlası. 48 saat içinde kurulum. Maliyetleri %70 azaltın, dönüşümleri %40 artırın.',
+    'hero.subtitle': 'Gelen ve giden arama yetenekleriyle tam donanımlı çağrı merkezi otomasyonu. Müşteri desteği, potansiyel müşteri değerlendirmesi, randevu onayları ve daha fazlası. 1 hafta içinde kurulum. Maliyetleri %70 azaltın, dönüşümleri %40 artırın.',
     'hero.benefit1': 'WhatsApp & Instagram Chatbot',
     'hero.benefit2': 'AI Sesli Asistan ile Sesli Destek',
     'hero.benefit3': '7/24 Tam Otomasyon',
@@ -243,7 +243,7 @@ const translations = {
     'voice.demoTR': 'Türkiye Sesli Asistan Demo',
     
     // Contact CTA
-    'contact.title': '🎯 Ücretsiz Demo İsteyin - Sadece 48 Saat İçinde Kurulum!',
+    'contact.title': '🎯 Ücretsiz Demo İsteyin - Sadece 1 Hafta İçinde Kurulum!',
     'contact.subtitle': 'Bugün başvurun, yarın AI asistanınız hazır olsun! İlk 10 başvuruya %20 indirim + ücretsiz 1 aylık destek.',
     'contact.name': 'Adınız Soyadınız',
     'contact.email': 'E-posta adresiniz',
@@ -357,7 +357,7 @@ const translations = {
     'faq.moreQuestions': 'Başka sorularınız mı var?',
     'faq.talkToExperts': 'Uzmanlarımızla Konuşun',
     'faq.q1': 'Sistem ne kadar sürede kurulur?',
-    'faq.a1': 'Kurulumu 48 saat içinde tamamlıyoruz. İşletmenizin ihtiyaçlarını analiz ettikten sonra AI asistanınızı yapılandırıp aktif hale getiriyoruz.',
+    'faq.a1': 'Kurulumu 1 hafta içinde tamamlıyoruz. İşletmenizin ihtiyaçlarını analiz ettikten sonra AI asistanınızı yapılandırıp aktif hale getiriyoruz.',
     'faq.q2': 'Hangi diller destekleniyor?',
     'faq.a2': 'Sistemimiz Türkçe ve İngilizce dahil 20+ dili destekler. AI asistan müşterilerinizin tercih ettiği dilde doğal bir şekilde iletişim kurabilir.',
     'faq.q3': 'Mevcut sistemlerle uyumlu mu?',
