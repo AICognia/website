@@ -284,7 +284,7 @@ const Navbar: React.FC = () => {
       </nav>
 
       {/* Spacer to prevent content from being hidden under fixed navbar + announcement banner */}
-      <div className="h-[108px]" />
+      <div className="h-[128px]" />
     </>
   );
 };

@@ -33,7 +33,7 @@ const testimonials = [
 // Stats data
 const stats = [
   { value: '50+', label: 'Businesses Served', icon: FaBuilding },
-  { value: '500K+', label: 'Calls Handled', icon: FaHeadset },
+  { value: '100K+', label: 'Calls Handled', icon: FaHeadset },
   { value: '95%', label: 'Satisfaction Rate', icon: FaStar },
   { value: '1 Week', label: 'Avg Setup Time', icon: FaClock },
 ];
