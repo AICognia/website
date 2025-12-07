@@ -1,9 +1,23 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const DynamicTechBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
+    // Skip canvas animation on mobile to prevent glitching
+    if (isMobile) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -189,16 +203,18 @@ const DynamicTechBackground: React.FC = () => {
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationId);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <>
-      {/* Canvas for dynamic elements */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 z-0"
-        style={{ pointerEvents: 'none', opacity: 0.7 }}
-      />
+      {/* Canvas for dynamic elements - hidden on mobile to prevent glitching */}
+      {!isMobile && (
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 z-0"
+          style={{ pointerEvents: 'none', opacity: 0.7 }}
+        />
+      )}
 
       {/* Static background layers */}
       <div className="absolute inset-0 z-0">

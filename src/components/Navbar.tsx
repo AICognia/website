@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaHospital, FaGavel, FaStore, FaBuilding, FaPhone, FaCalendar, FaLanguage, FaCog, FaUserMd, FaFileAlt, FaHeadset, FaClock, FaHotel, FaCar, FaRobot, FaChartLine, FaUsers, FaShieldAlt, FaShoppingCart } from 'react-icons/fa';
+import BookDemoModal from './BookDemoModal';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showSolutionsMenu, setShowSolutionsMenu] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -211,13 +213,13 @@ const Navbar: React.FC = () => {
 
               {/* Desktop CTA Buttons */}
               <div className="flex items-center gap-6 ml-4">
-                <a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  className="flex items-center gap-2 px-4 py-2 bg-white hover:bg-gray-100 text-black text-sm font-medium rounded-md transition-colors"
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-white hover:bg-gray-100 text-black text-sm font-medium rounded-md transition-colors cursor-pointer"
                 >
                   Book a Demo
                   <span>→</span>
-                </a>
+                </button>
 
                 <a
                   href="tel:+16163263328"
@@ -261,13 +263,15 @@ const Navbar: React.FC = () => {
 
               {/* Mobile CTAs */}
               <div className="pt-3 border-t border-white/10 space-y-2">
-                <a
-                  href="https://calendly.com/emrebenian-cogniaai/30min"
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full px-4 py-2 bg-white hover:bg-gray-100 text-black text-sm font-medium rounded-md text-center transition-colors"
+                <button
+                  onClick={() => {
+                    setIsOpen(false);
+                    setIsModalOpen(true);
+                  }}
+                  className="block w-full px-4 py-2 bg-white hover:bg-gray-100 text-black text-sm font-medium rounded-md text-center transition-colors cursor-pointer"
                 >
                   Book a Demo →
-                </a>
+                </button>
 
                 <a
                   href="tel:+16163263328"
@@ -284,6 +288,9 @@ const Navbar: React.FC = () => {
 
       {/* Spacer to prevent content from being hidden under fixed navbar + announcement banner */}
       <div className="h-[108px]" />
+
+      {/* Book Demo Modal */}
+      <BookDemoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 };
