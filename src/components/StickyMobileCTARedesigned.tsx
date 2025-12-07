@@ -90,13 +90,13 @@ const StickyMobileCTARedesigned: React.FC = () => {
           >
             {/* Main Container */}
             <div className="bg-gray-950 border-t border-cyan-500/30 shadow-2xl shadow-cyan-500/10">
-              {/* Dismiss button */}
+              {/* Dismiss button - positioned outside the container */}
               <button
                 onClick={handleDismiss}
-                className="absolute -top-3 right-3 w-6 h-6 bg-gray-800 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white transition-colors z-10"
+                className="absolute -top-10 right-4 w-8 h-8 bg-gray-900 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-colors z-10 shadow-lg"
                 aria-label="Dismiss"
               >
-                <FaTimes className="text-xs" />
+                <FaTimes className="text-sm" />
               </button>
 
               {/* Urgency Banner */}

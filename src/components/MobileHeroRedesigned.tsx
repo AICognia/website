@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaPhone, FaCalendarCheck, FaShieldAlt, FaClock, FaHeadset, FaCheckCircle, FaPlay, FaStar, FaArrowRight } from 'react-icons/fa';
+import { FaPhone, FaCalendarCheck, FaShieldAlt, FaClock, FaHeadset, FaCheckCircle, FaPlay, FaArrowRight } from 'react-icons/fa';
 import MobileSoundVisualizer from './MobileSoundVisualizer';
 import conversionTracker from '../utils/conversionTracking';
 
@@ -58,16 +58,16 @@ const MobileHeroRedesigned: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-center mb-5"
           >
-            <h1 className="text-[2.75rem] leading-[1.05] font-bold text-white mb-3 tracking-tight">
-              Your AI
+            <h1 className="text-[2.5rem] leading-[1.05] font-bold text-white mb-3 tracking-tight">
+              Your 24/7 AI
               <br />
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 Receptionist
               </span>
             </h1>
-            <p className="text-[15px] text-gray-400 leading-relaxed max-w-[280px] mx-auto">
+            <p className="text-[15px] text-gray-400 leading-relaxed max-w-[300px] mx-auto">
               Never miss a call. Close more{' '}
-              <span className="relative inline-block w-[72px] h-[18px] align-bottom overflow-hidden">
+              <span className="relative inline-block w-[90px] h-[20px] align-bottom overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={wordIndex}
@@ -164,19 +164,13 @@ const MobileHeroRedesigned: React.FC = () => {
             </a>
           </motion.div>
 
-          {/* Social Proof Row */}
+          {/* Trust Indicators */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.3 }}
             className="mt-5 pt-4 border-t border-white/5"
           >
-            <div className="flex items-center justify-center gap-1 mb-2">
-              {[...Array(5)].map((_, i) => (
-                <FaStar key={i} className="text-yellow-400 text-xs" />
-              ))}
-              <span className="text-xs text-gray-400 ml-1">4.9/5</span>
-            </div>
             <div className="flex items-center justify-center gap-4 text-[11px] text-gray-500">
               <span className="flex items-center gap-1">
                 <FaCheckCircle className="text-green-400" />

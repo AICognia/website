@@ -1,6 +1,6 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaPhone, FaCheckCircle, FaRocket, FaShieldAlt, FaClock, FaChartLine, FaUsers, FaHeadset, FaRobot, FaMicrophone, FaLanguage, FaCalendarAlt, FaHospital, FaBalanceScale, FaStore, FaBuilding, FaHotel, FaCar, FaCalendarAlt as FaCalendar, FaCog, FaUserTie, FaPlug, FaSync, FaCloud, FaDatabase } from 'react-icons/fa';
+import { FaPhone, FaCheckCircle, FaRocket, FaShieldAlt, FaClock, FaChartLine, FaUsers, FaHeadset, FaRobot, FaMicrophone, FaLanguage, FaCalendarAlt, FaHospital, FaBalanceScale, FaStore, FaBuilding, FaHotel, FaCar, FaCalendarAlt as FaCalendar, FaCog, FaUserTie, FaPlug, FaSync, FaCloud, FaDatabase, FaHome } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
 import ScrollProgress from '../components/ScrollProgress';
@@ -14,10 +14,6 @@ import TechSection from '../components/TechSection';
 import TechCard from '../components/TechCard';
 import SocialProofSection from '../components/SocialProofSection';
 import { VideoProvider } from '../contexts/VideoContext';
-
-// Lazy load heavy components
-const ROICalculator = lazy(() => import('../components/ROICalculator'));
-const MobileROICalculatorRedesigned = lazy(() => import('../components/MobileROICalculatorRedesigned'));
 
 const Home: React.FC = () => {
 
@@ -111,7 +107,8 @@ const Home: React.FC = () => {
                     { icon: FaStore, title: 'Retail', desc: 'Multi-location customer support', link: '/industries/retail' },
                     { icon: FaBuilding, title: 'Enterprise', desc: 'Scalable call distribution', link: '/industries/enterprise' },
                     { icon: FaHotel, title: 'Hospitality', desc: 'Reservation and guest services', link: '/industries/hospitality' },
-                    { icon: FaCar, title: 'Automotive', desc: 'Service scheduling and support', link: '/industries/automotive' }
+                    { icon: FaCar, title: 'Automotive', desc: 'Service scheduling and support', link: '/industries/automotive' },
+                    { icon: FaHome, title: 'Home Services', desc: 'Plumbing, HVAC, electrical & more', link: '/industries/home-services' }
                   ].map((item, index) => (
                     <Link key={index} to={item.link} className="flex items-start gap-4 hover:opacity-80 transition-opacity cursor-pointer">
                       <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
@@ -179,36 +176,69 @@ const Home: React.FC = () => {
           </div>
         </TechSection>
 
-        {/* ROI Calculator Section */}
+        {/* Experience Our AI Section */}
         <TechSection
-          badge="ROI Calculator"
-          title="Calculate Your Savings"
-          subtitle="See how much revenue you're losing to missed calls"
+          badge="Try It Now"
+          title="Experience Our AI"
+          subtitle="Call our AI receptionist and see the magic happen"
         >
-          <div className="max-w-6xl mx-auto">
-            <TechCard glowColor="cyan" hoverable={false}>
-              {/* Mobile ROI Calculator - Redesigned with live results */}
-              <div className="lg:hidden">
-                <Suspense fallback={
-                  <div className="h-96 flex items-center justify-center">
-                    <div className="text-cyan-400 animate-pulse">Loading calculator...</div>
+          <div className="max-w-4xl mx-auto">
+            <div className="relative">
+              {/* Main Container - Clean and Minimal */}
+              <div className="bg-black/50 border border-white/10 rounded-3xl p-8 md:p-12">
+                {/* Content */}
+                <div className="text-center space-y-8">
+                  {/* Header */}
+                  <div>
+                    <div className="inline-flex items-center gap-2 mb-4">
+                      <span className="inline-flex h-2 w-2 rounded-full bg-green-400"></span>
+                      <span className="text-sm font-medium text-green-400">Live & Ready</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                      Call Our AI Receptionist
+                    </h3>
+                    <p className="text-gray-400 max-w-2xl mx-auto">
+                      Experience firsthand how our AI handles calls, books appointments, and answers questions - just like a human receptionist would.
+                    </p>
                   </div>
-                }>
-                  <MobileROICalculatorRedesigned />
-                </Suspense>
-              </div>
 
-              {/* Desktop ROI Calculator */}
-              <div className="hidden lg:block">
-                <Suspense fallback={
-                  <div className="h-96 flex items-center justify-center">
-                    <div className="text-cyan-400 animate-pulse">Loading calculator...</div>
+                  {/* Phone Number Box */}
+                  <a
+                    href="tel:+16163263328"
+                    className="block bg-white/5 border border-white/10 hover:border-white/20 rounded-2xl px-8 py-10 transition-colors"
+                  >
+                    <div className="flex items-center justify-center gap-4 mb-3">
+                      <FaPhone className="text-2xl text-white" />
+                      <div className="text-3xl md:text-4xl font-bold text-white">
+                        +1 616-326-3328
+                      </div>
+                    </div>
+                    <div className="text-gray-400 text-sm">
+                      Tap to Talk to AI
+                    </div>
+                  </a>
+
+                  {/* Features Grid */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {[
+                      { icon: FaMicrophone, label: 'Natural Voice' },
+                      { icon: FaLanguage, label: '20+ Languages' },
+                      { icon: FaCalendarAlt, label: 'Books Appointments' },
+                      { icon: FaRobot, label: 'Human-Like' }
+                    ].map((item, index) => (
+                      <div
+                        key={index}
+                        className="bg-white/5 border border-white/10 rounded-xl p-4 text-center"
+                      >
+                        <item.icon className="text-xl mb-2 mx-auto text-white" />
+                        <div className="text-xs text-gray-400">{item.label}</div>
+                      </div>
+                    ))}
                   </div>
-                }>
-                  <ROICalculator />
-                </Suspense>
+
+                </div>
               </div>
-            </TechCard>
+            </div>
           </div>
         </TechSection>
 
@@ -348,72 +378,6 @@ const Home: React.FC = () => {
                 <FaShieldAlt className="text-cyan-400" />
                 Secure Connections
               </span>
-            </div>
-          </div>
-        </TechSection>
-
-        {/* Experience Our AI Section */}
-        <TechSection
-          badge="Try It Now"
-          title="Experience Our AI"
-          subtitle="Call our AI receptionist and see the magic happen"
-        >
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              {/* Main Container - Clean and Minimal */}
-              <div className="bg-black/50 border border-white/10 rounded-3xl p-8 md:p-12">
-                {/* Content */}
-                <div className="text-center space-y-8">
-                  {/* Header */}
-                  <div>
-                    <div className="inline-flex items-center gap-2 mb-4">
-                      <span className="inline-flex h-2 w-2 rounded-full bg-green-400"></span>
-                      <span className="text-sm font-medium text-green-400">Live & Ready</span>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                      Call Our AI Receptionist
-                    </h3>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
-                      Experience firsthand how our AI handles calls, books appointments, and answers questions - just like a human receptionist would.
-                    </p>
-                  </div>
-
-                  {/* Phone Number Box */}
-                  <a
-                    href="tel:+16163263328"
-                    className="block bg-white/5 border border-white/10 hover:border-white/20 rounded-2xl px-8 py-10 transition-colors"
-                  >
-                    <div className="flex items-center justify-center gap-4 mb-3">
-                      <FaPhone className="text-2xl text-white" />
-                      <div className="text-3xl md:text-4xl font-bold text-white">
-                        +1 616-326-3328
-                      </div>
-                    </div>
-                    <div className="text-gray-400 text-sm">
-                      Tap to Talk to AI
-                    </div>
-                  </a>
-
-                  {/* Features Grid */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {[
-                      { icon: FaMicrophone, label: 'Natural Voice' },
-                      { icon: FaLanguage, label: '20+ Languages' },
-                      { icon: FaCalendarAlt, label: 'Books Appointments' },
-                      { icon: FaRobot, label: 'Human-Like' }
-                    ].map((item, index) => (
-                      <div
-                        key={index}
-                        className="bg-white/5 border border-white/10 rounded-xl p-4 text-center"
-                      >
-                        <item.icon className="text-xl mb-2 mx-auto text-white" />
-                        <div className="text-xs text-gray-400">{item.label}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                </div>
-              </div>
             </div>
           </div>
         </TechSection>
