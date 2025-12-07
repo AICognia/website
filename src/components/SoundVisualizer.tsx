@@ -163,10 +163,11 @@ const SoundVisualizer: React.FC = () => {
         <source src="https://kd1hbax1fjerwnrt.public.blob.vercel-storage.com/Sequence%2005.mp3" type="audio/mpeg" />
       </audio>
 
-      {/* Background glow */}
-      <div className="absolute w-[500px] h-[500px] rounded-full blur-3xl opacity-60 animate-pulse"
+      {/* Background glow - smooth static gradient instead of animate-pulse */}
+      <div
+        className="absolute w-[500px] h-[500px] rounded-full blur-3xl opacity-40"
         style={{
-          background: 'linear-gradient(135deg, #E879F9 0%, #A78BFA 30%, #60A5FA 60%, #22D3EE 100%)',
+          background: 'radial-gradient(circle, rgba(96, 165, 250, 0.4) 0%, rgba(167, 139, 250, 0.3) 40%, rgba(34, 211, 238, 0.2) 70%, transparent 100%)',
         }}
       />
 

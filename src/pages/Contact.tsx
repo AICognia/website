@@ -6,17 +6,16 @@ import {
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
-import { useLeadCapture } from '../contexts/LeadCaptureContext';
 import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
 import DynamicTechBackground from '../components/DynamicTechBackground';
 import TechSection from '../components/TechSection';
 import TechCard from '../components/TechCard';
 import ScrollProgress from '../components/ScrollProgress';
+import { Link } from 'react-router-dom';
 
 const Contact: React.FC = () => {
   const { language } = useLanguage();
-  const { openLeadCapture } = useLeadCapture();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -237,16 +236,14 @@ const Contact: React.FC = () => {
                 </h3>
 
                 <div className="space-y-3">
-                  <motion.button
-                    onClick={() => openLeadCapture('contact_page_demo')}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                  <Link
+                    to="/demo"
                     className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
                   >
                     <FaCalendarCheck />
                     <span>{language === 'tr' ? '30 Dakikalık Demo' : 'Schedule 30-min Demo'}</span>
                     <FaArrowRight className="ml-auto" />
-                  </motion.button>
+                  </Link>
 
                   <a
                     href="tel:+12176938413"

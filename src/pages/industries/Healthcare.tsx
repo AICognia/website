@@ -6,10 +6,7 @@ import DynamicTechBackground from '../../components/DynamicTechBackground';
 import TechSection from '../../components/TechSection';
 import TechCard from '../../components/TechCard';
 import ScrollProgress from '../../components/ScrollProgress';
-import { useLeadCapture } from '../../contexts/LeadCaptureContext';
-
 const Healthcare: React.FC = () => {
-  const { openLeadCapture } = useLeadCapture();
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       <ScrollProgress />
@@ -48,14 +45,14 @@ const Healthcare: React.FC = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <button
-                    onClick={() => openLeadCapture('healthcare_hero')}
+                  <Link
+                    to="/demo"
                     className="group relative flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-gray-100 text-black font-semibold rounded-xl transition-all shadow-lg shadow-white/10 hover:shadow-white/20"
                   >
                     <FaCalendarCheck className="text-cyan-600" />
                     <span>Schedule Demo</span>
                     <FaArrowRight className="text-xs text-cyan-600 group-hover:translate-x-0.5 transition-transform" />
-                  </button>
+                  </Link>
                   <a
                     href="tel:+16163263328"
                     className="flex items-center justify-center gap-2 px-6 py-3.5 border border-white/20 hover:border-white/40 hover:bg-white/5 text-white font-medium rounded-xl transition-all"
@@ -407,14 +404,14 @@ const Healthcare: React.FC = () => {
               <p className="text-gray-400 mb-6 max-w-xl mx-auto">Join healthcare providers saving 85% staff time while providing 24/7 patient access.</p>
 
               <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
-                <button
-                  onClick={() => openLeadCapture('healthcare_cta')}
+                <Link
+                  to="/demo"
                   className="group relative flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-gray-100 text-black font-semibold rounded-xl transition-all shadow-lg shadow-white/10 hover:shadow-white/20"
                 >
                   <FaCalendarCheck className="text-cyan-600" />
                   <span>Get Your Free Demo</span>
                   <FaArrowRight className="text-xs text-cyan-600 group-hover:translate-x-0.5 transition-transform" />
-                </button>
+                </Link>
                 <Link
                   to="/solutions"
                   className="flex items-center gap-2 px-6 py-4 border border-white/20 hover:border-white/40 hover:bg-white/5 text-white font-medium rounded-xl transition-all"

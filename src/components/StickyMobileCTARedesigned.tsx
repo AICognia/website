@@ -41,14 +41,7 @@ const StickyMobileCTARedesigned: React.FC = () => {
       setIsVisible(false);
     }
 
-    // Re-show after dismissal if user scrolls significantly (re-engagement)
-    if (isDismissed && dismissCount < 2) {
-      const scrollDelta = Math.abs(window.scrollY - (window as any).lastScrollY || 0);
-      if (scrollDelta > 500) {
-        setIsDismissed(false);
-        (window as any).lastScrollY = window.scrollY;
-      }
-    }
+    // Removed re-engagement logic - once dismissed, stay dismissed for this session
   }, [isDismissed, dismissCount]);
 
   useEffect(() => {
@@ -91,13 +84,13 @@ const StickyMobileCTARedesigned: React.FC = () => {
           >
             {/* Main Container */}
             <div className="bg-gray-950 border-t border-cyan-500/30 shadow-2xl shadow-cyan-500/10">
-              {/* Dismiss button - positioned outside the container */}
+              {/* Dismiss button - larger tap area for mobile */}
               <button
                 onClick={handleDismiss}
-                className="absolute -top-10 right-4 w-8 h-8 bg-gray-900 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-colors z-10 shadow-lg"
+                className="absolute -top-12 right-2 w-10 h-10 bg-gray-900 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors z-10 shadow-lg"
                 aria-label="Dismiss"
               >
-                <FaTimes className="text-sm" />
+                <FaTimes className="text-base" />
               </button>
 
               {/* Urgency Banner */}

@@ -6,16 +6,15 @@ import {
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
-import { useLeadCapture } from '../contexts/LeadCaptureContext';
 import SEO from '../components/SEO';
 import DynamicTechBackground from '../components/DynamicTechBackground';
 import TechSection from '../components/TechSection';
 import TechCard from '../components/TechCard';
 import ScrollProgress from '../components/ScrollProgress';
+import { Link } from 'react-router-dom';
 
 const Solutions: React.FC = () => {
   const { language } = useLanguage();
-  const { openLeadCapture } = useLeadCapture();
 
   const industries = [
     {
@@ -316,16 +315,14 @@ const Solutions: React.FC = () => {
         >
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <motion.button
-                onClick={() => openLeadCapture('solutions_cta')}
+              <Link
+                to="/demo"
                 className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
               >
                 <FaCalendarCheck />
                 {language === 'tr' ? 'Ücretsiz Demo' : 'Schedule Free Demo'}
                 <FaArrowRight className="text-sm" />
-              </motion.button>
+              </Link>
 
               <a
                 href="tel:+16163263328"

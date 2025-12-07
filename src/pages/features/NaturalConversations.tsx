@@ -2,7 +2,6 @@ import React from 'react';
 import { FaRobot, FaComments, FaBrain, FaCheckCircle, FaPhone, FaUserFriends, FaMicrophone, FaHeart, FaCalendarCheck, FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useLeadCapture } from '../../contexts/LeadCaptureContext';
 import SEO from '../../components/SEO';
 import DynamicTechBackground from '../../components/DynamicTechBackground';
 import TechSection from '../../components/TechSection';
@@ -10,7 +9,6 @@ import TechCard from '../../components/TechCard';
 import ScrollProgress from '../../components/ScrollProgress';
 
 const NaturalConversations: React.FC = () => {
-  const { openLeadCapture } = useLeadCapture();
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
@@ -41,15 +39,13 @@ const NaturalConversations: React.FC = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.button
-                  onClick={() => openLeadCapture('natural_conversations_hero')}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                <Link
+                  to="/demo"
                   className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
                 >
                   <FaCalendarCheck />
                   Schedule Demo
-                </motion.button>
+                </Link>
                 <a
                   href="tel:+16163263328"
                   className="flex items-center justify-center gap-3 px-8 py-4 border border-white/10 hover:bg-white/5 text-white text-lg font-medium rounded-md transition-colors"
@@ -186,15 +182,13 @@ const NaturalConversations: React.FC = () => {
         >
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <motion.button
-                onClick={() => openLeadCapture('natural_conversations_cta')}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <Link
+                to="/demo"
                 className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
               >
                 <FaCalendarCheck />
                 Schedule Demo
-              </motion.button>
+              </Link>
               <Link
                 to="/solutions"
                 className="px-8 py-4 border border-white/10 hover:bg-white/5 text-white text-lg font-medium rounded-md transition-colors"
