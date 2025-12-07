@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { FaShieldAlt, FaCheckCircle, FaHeadset, FaClock } from 'react-icons/fa';
+import { FaShieldAlt, FaCheckCircle, FaHeadset, FaClock, FaArrowRight } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
 import SoundVisualizer from './SoundVisualizer';
-import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
 
 const OptimizedHero: React.FC = () => {
   const [wordIndex, setWordIndex] = useState(0);
-  const { openLeadCapture } = useLeadCapture();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -93,13 +92,13 @@ const OptimizedHero: React.FC = () => {
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4">
                 {/* Primary CTA - Book a Demo */}
-                <button
-                  onClick={() => openLeadCapture('hero_primary')}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-gray-100 text-black text-sm font-semibold rounded-lg transition-colors"
+                <Link
+                  to="/demo"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black text-sm font-medium rounded-lg transition-colors"
                 >
                   Book a Demo
-                  <span>→</span>
-                </button>
+                  <FaArrowRight className="text-[10px]" />
+                </Link>
 
                 {/* Secondary CTA - Talk to AI */}
                 <a
@@ -108,10 +107,10 @@ const OptimizedHero: React.FC = () => {
                     conversionTracker.trackPhoneCall('+16163263328');
                     conversionTracker.trackButtonClick('Talk to AI', 'hero_secondary');
                   }}
-                  className="inline-flex items-center justify-center gap-3 px-6 py-3 border border-white/20 hover:bg-white/5 text-white text-sm font-medium rounded-lg transition-all"
+                  className="inline-flex items-center justify-center gap-3 px-6 py-3 border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-900 text-white text-sm font-medium rounded-lg transition-colors"
                 >
                   Talk to AI
-                  <span className="text-gray-500">+1 616-326-3328</span>
+                  <span className="text-neutral-500">+1 616-326-3328</span>
                 </a>
               </div>
 

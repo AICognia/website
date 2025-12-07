@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaPhone, FaCalendarCheck, FaArrowRight } from 'react-icons/fa';
+import { FaPhone, FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
-import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
 
 const MobileHeroRedesigned: React.FC = () => {
   const [wordIndex, setWordIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const { openLeadCapture } = useLeadCapture();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
@@ -232,16 +231,16 @@ const MobileHeroRedesigned: React.FC = () => {
             className="space-y-3"
           >
             {/* Primary CTA - Book a Demo */}
-            <button
-              onClick={() => openLeadCapture('mobile_hero_primary')}
+            <Link
+              to="/demo"
+              onClick={() => conversionTracker.trackButtonClick('Book a Demo', 'mobile_hero_primary')}
               className="block w-full"
             >
               <div className="bg-white text-black py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-lg">
-                <FaCalendarCheck />
                 <span>Book a Demo</span>
                 <FaArrowRight className="text-sm" />
               </div>
-            </button>
+            </Link>
 
             {/* Secondary CTA - Talk to AI */}
             <a

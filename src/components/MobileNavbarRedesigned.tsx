@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  FaBars, FaTimes, FaPhone, FaCalendarCheck, FaHome, FaBuilding, FaEnvelope,
+  FaBars, FaTimes, FaPhone, FaHome, FaBuilding, FaEnvelope,
   FaHospital, FaGavel, FaStore, FaHotel, FaCar, FaCalendar, FaLanguage,
   FaCog, FaRobot, FaChartLine, FaUsers, FaFileAlt, FaHeadset, FaClock,
   FaShieldAlt, FaShoppingCart, FaArrowRight, FaStar
 } from 'react-icons/fa';
-import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 // Quick access items - most popular destinations
 const quickLinks = [
@@ -48,7 +47,6 @@ const MobileNavbarRedesigned: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState<'quick' | 'all'>('quick');
   const location = useLocation();
-  const { openLeadCapture } = useLeadCapture();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -381,16 +379,14 @@ const MobileNavbarRedesigned: React.FC = () => {
                     <FaPhone />
                     <span>Talk to AI</span>
                   </a>
-                  <button
-                    onClick={() => {
-                      setIsOpen(false);
-                      openLeadCapture('mobile_nav_cta');
-                    }}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl shadow-lg shadow-cyan-500/20"
+                  <Link
+                    to="/demo"
+                    onClick={() => setIsOpen(false)}
+                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-white text-black font-medium rounded-xl"
                   >
-                    <FaCalendarCheck />
                     <span>Book Demo</span>
-                  </button>
+                    <FaArrowRight className="text-[10px]" />
+                  </Link>
                 </div>
               </div>
             </motion.div>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaPhone, FaCalendar, FaTimes, FaWhatsapp, FaChevronUp } from 'react-icons/fa';
+import { FaPhone, FaTimes, FaWhatsapp, FaChevronUp, FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
-import { useLeadCapture } from '../contexts/LeadCaptureContext';
 
 // Urgency messages that rotate
 const urgencyMessages = [
@@ -18,7 +18,6 @@ const StickyMobileCTARedesigned: React.FC = () => {
   const [dismissCount, setDismissCount] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
   const [messageIndex, setMessageIndex] = useState(0);
-  const { openLeadCapture } = useLeadCapture();
 
   // Rotate urgency messages
   useEffect(() => {
@@ -167,14 +166,19 @@ const StickyMobileCTARedesigned: React.FC = () => {
               <div className="p-3">
                 <div className="flex gap-2">
                   {/* Book Demo - Primary */}
-                  <motion.button
-                    whileTap={{ scale: 0.97 }}
-                    onClick={() => openLeadCapture('sticky_cta_primary')}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-white text-black font-bold rounded-xl"
+                  <Link
+                    to="/demo"
+                    onClick={() => conversionTracker.trackButtonClick('Book a Demo', 'sticky_cta_primary')}
+                    className="flex-1"
                   >
-                    <FaCalendar />
-                    <span>Book a Demo</span>
-                  </motion.button>
+                    <motion.div
+                      whileTap={{ scale: 0.97 }}
+                      className="flex items-center justify-center gap-2 py-3 bg-white text-black font-bold rounded-xl"
+                    >
+                      <span>Book a Demo</span>
+                      <FaArrowRight className="text-xs" />
+                    </motion.div>
+                  </Link>
 
                   {/* Talk to AI - Secondary */}
                   <motion.a

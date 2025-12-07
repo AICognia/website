@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaBars, FaTimes, FaHospital, FaGavel, FaStore, FaBuilding, FaPhone, FaCalendar, FaLanguage, FaCog, FaUserMd, FaFileAlt, FaHeadset, FaClock, FaHotel, FaCar, FaRobot, FaChartLine, FaUsers, FaShieldAlt, FaShoppingCart, FaHome, FaArrowRight } from 'react-icons/fa';
-import { useLeadCapture } from '../contexts/LeadCaptureContext';
+import { FaBars, FaTimes, FaHospital, FaGavel, FaStore, FaBuilding, FaPhone, FaLanguage, FaCog, FaUserMd, FaFileAlt, FaHeadset, FaClock, FaHotel, FaCar, FaRobot, FaChartLine, FaUsers, FaShieldAlt, FaShoppingCart, FaHome, FaArrowRight } from 'react-icons/fa';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showSolutionsMenu, setShowSolutionsMenu] = useState(false);
   const location = useLocation();
-  const { openLeadCapture } = useLeadCapture();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -213,19 +211,18 @@ const Navbar: React.FC = () => {
               ))}
 
               {/* Desktop CTA Buttons */}
-              <div className="flex items-center gap-4 ml-4">
-                <button
-                  onClick={() => openLeadCapture('navbar_desktop')}
-                  className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-semibold rounded-lg transition-all shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30"
+              <div className="flex items-center gap-3 ml-4">
+                <Link
+                  to="/demo"
+                  className="flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-neutral-100 text-black text-sm font-medium rounded-lg transition-colors"
                 >
-                  <FaCalendar className="text-xs" />
                   Book a Demo
-                  <FaArrowRight className="text-xs" />
-                </button>
+                  <FaArrowRight className="text-[10px]" />
+                </Link>
 
                 <a
                   href="tel:+16163263328"
-                  className="flex items-center gap-2 px-4 py-2.5 border border-white/20 hover:bg-white/5 text-white text-sm font-medium rounded-lg transition-all"
+                  className="flex items-center gap-2 px-4 py-2.5 border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-900 text-white text-sm font-medium rounded-lg transition-colors"
                 >
                   <FaPhone className="text-xs" />
                   Talk to AI
@@ -266,17 +263,14 @@ const Navbar: React.FC = () => {
 
               {/* Mobile CTAs */}
               <div className="pt-3 border-t border-white/10 space-y-2">
-                <button
-                  onClick={() => {
-                    setIsOpen(false);
-                    openLeadCapture('navbar_mobile');
-                  }}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold rounded-lg"
+                <Link
+                  to="/demo"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white text-black text-sm font-medium rounded-lg"
                 >
-                  <FaCalendar className="text-xs" />
                   Book a Demo
-                  <FaArrowRight className="text-xs" />
-                </button>
+                  <FaArrowRight className="text-[10px]" />
+                </Link>
 
                 <a
                   href="tel:+16163263328"
