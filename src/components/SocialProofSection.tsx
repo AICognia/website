@@ -120,8 +120,8 @@ const SocialProofSection: React.FC = () => {
           })}
         </div>
 
-        {/* Testimonials */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        {/* Testimonials - Vertical Stack */}
+        <div className="flex flex-col gap-6 mb-12 max-w-4xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -129,31 +129,35 @@ const SocialProofSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.15 }}
               viewport={{ once: true }}
-              className="relative bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-2xl p-6"
+              className="relative bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-2xl p-6 lg:p-8"
             >
-              {/* Quote icon */}
-              <FaQuoteLeft className="text-cyan-500/20 text-3xl absolute top-4 right-4" />
+              <div className="flex flex-col lg:flex-row gap-6">
+                {/* Quote Content */}
+                <div className="flex-1">
+                  {/* Quote icon */}
+                  <FaQuoteLeft className="text-cyan-500/30 text-2xl mb-4" />
 
-              {/* Rating */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <FaStar key={i} className="text-yellow-400 text-sm" />
-                ))}
-              </div>
-
-              {/* Quote */}
-              <p className="text-gray-300 text-sm lg:text-base leading-relaxed mb-6">
-                "{testimonial.quote}"
-              </p>
-
-              {/* Author */}
-              <div className="border-t border-white/10 pt-4">
-                <div className="font-medium text-white">{testimonial.author}</div>
-                <div className="text-xs text-gray-500">
-                  {testimonial.company ? `${testimonial.role} at ${testimonial.company}` : testimonial.role}
+                  {/* Quote */}
+                  <p className="text-gray-300 text-sm lg:text-base leading-relaxed">
+                    "{testimonial.quote}"
+                  </p>
                 </div>
-                <div className="inline-block mt-2 px-2 py-0.5 bg-cyan-500/10 text-cyan-400 text-xs rounded-full">
-                  {testimonial.industry}
+
+                {/* Author - Side panel on desktop */}
+                <div className="lg:w-48 lg:border-l lg:border-white/10 lg:pl-6 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/10 flex flex-col justify-center">
+                  {/* Rating */}
+                  <div className="flex gap-1 mb-2">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <FaStar key={i} className="text-yellow-400 text-sm" />
+                    ))}
+                  </div>
+                  <div className="font-medium text-white">{testimonial.author}</div>
+                  <div className="text-xs text-gray-500 mb-2">
+                    {testimonial.company ? `${testimonial.role} at ${testimonial.company}` : testimonial.role}
+                  </div>
+                  <div className="inline-block w-fit px-2 py-0.5 bg-cyan-500/10 text-cyan-400 text-xs rounded-full">
+                    {testimonial.industry}
+                  </div>
                 </div>
               </div>
             </motion.div>
