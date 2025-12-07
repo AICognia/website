@@ -52,6 +52,7 @@ const StickyMobileCTARedesigned: React.FC = () => {
   }, [handleScroll]);
 
   const handleDismiss = () => {
+    setIsVisible(false);
     setIsDismissed(true);
     setDismissCount((prev) => prev + 1);
     setIsExpanded(false);

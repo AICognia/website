@@ -29,8 +29,10 @@ const trustedIndustries = [
   'Healthcare',
   'Legal',
   'Retail',
+  'Enterprise',
   'Hospitality',
   'Automotive',
+  'Home Services',
 ];
 
 const Demo: React.FC = () => {
