@@ -45,7 +45,7 @@ const OptimizedHero: React.FC = () => {
             <div className="space-y-8">
               {/* Main Headline - Clear Value Proposition with AI */}
               <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-thin leading-tight text-white">
-                Your AI
+                Your 24/7 AI
                 <br />
                 <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                   Receptionist
