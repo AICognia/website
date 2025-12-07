@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaBars, FaTimes, FaHospital, FaGavel, FaStore, FaBuilding, FaPhone, FaLanguage, FaCog, FaUserMd, FaFileAlt, FaHeadset, FaClock, FaHotel, FaCar, FaRobot, FaChartLine, FaUsers, FaShieldAlt, FaShoppingCart, FaHome, FaArrowRight } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHospital, FaGavel, FaStore, FaBuilding, FaPhone, FaLanguage, FaCog, FaUserMd, FaFileAlt, FaHeadset, FaClock, FaHotel, FaCar, FaRobot, FaChartLine, FaUsers, FaShieldAlt, FaShoppingCart, FaHome, FaArrowRight, FaCalendarAlt as FaCalendar } from 'react-icons/fa';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
