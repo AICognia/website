@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <url>
+    <loc>https://cogniaai.com/</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://cogniaai.com/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cogniaai.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cogniaai.com/"/>
+  </url>  
+  <url>
+    <loc>https://cogniaai.com/solutions</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://cogniaai.com/solutions?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cogniaai.com/solutions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cogniaai.com/solutions"/>
+  </url>  
+  <url>
+    <loc>https://cogniaai.com/platform</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://cogniaai.com/platform?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cogniaai.com/platform"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cogniaai.com/platform"/>
+  </url>  
+  <url>
+    <loc>https://cogniaai.com/company</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://cogniaai.com/company?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cogniaai.com/company"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cogniaai.com/company"/>
+  </url>  
+  <url>
+    <loc>https://cogniaai.com/contact</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://cogniaai.com/contact?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cogniaai.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cogniaai.com/contact"/>
+  </url>
+</urlset>
