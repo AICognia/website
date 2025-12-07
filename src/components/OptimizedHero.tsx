@@ -90,32 +90,32 @@ const OptimizedHero: React.FC = () => {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4">
-                {/* Primary CTA - Talk to AI */}
-                <a
-                  href="tel:+16163263328"
-                  onClick={() => {
-                    conversionTracker.trackPhoneCall('+16163263328');
-                    conversionTracker.trackButtonClick('Talk to AI', 'hero_primary');
-                  }}
-                  className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white text-sm font-semibold rounded-lg transition-all shadow-lg shadow-green-500/25"
-                >
-                  <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                  Talk to AI
-                  <span className="text-white/70">+1 616-326-3328</span>
-                </a>
-
-                {/* Secondary CTA - Book Demo */}
+                {/* Primary CTA - Book a Demo */}
                 <a
                   href="https://calendly.com/emrebenian-cogniaai/30min"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => {
-                    conversionTracker.trackDemoBooking('hero_cta');
+                    conversionTracker.trackDemoBooking('hero_primary');
+                    conversionTracker.trackButtonClick('Book a Demo', 'hero_primary');
                   }}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-gray-100 text-black text-sm font-medium rounded-lg transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-gray-100 text-black text-sm font-semibold rounded-lg transition-colors"
                 >
                   Book a Demo
                   <span>→</span>
+                </a>
+
+                {/* Secondary CTA - Talk to AI */}
+                <a
+                  href="tel:+16163263328"
+                  onClick={() => {
+                    conversionTracker.trackPhoneCall('+16163263328');
+                    conversionTracker.trackButtonClick('Talk to AI', 'hero_secondary');
+                  }}
+                  className="inline-flex items-center justify-center gap-3 px-6 py-3 border border-white/20 hover:bg-white/5 text-white text-sm font-medium rounded-lg transition-all"
+                >
+                  Talk to AI
+                  <span className="text-gray-500">+1 616-326-3328</span>
                 </a>
               </div>
 

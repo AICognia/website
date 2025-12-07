@@ -164,34 +164,34 @@ const StickyMobileCTARedesigned: React.FC = () => {
               {/* Main CTA Buttons */}
               <div className="p-3">
                 <div className="flex gap-2">
-                  {/* Talk to AI - Primary */}
-                  <motion.a
-                    href="tel:+16163263328"
-                    whileTap={{ scale: 0.97 }}
-                    onClick={() => {
-                      conversionTracker.trackPhoneCall('+16163263328');
-                      conversionTracker.trackButtonClick('Talk to AI', 'sticky_cta');
-                    }}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl shadow-lg shadow-green-500/25"
-                  >
-                    <FaPhone className="animate-pulse" />
-                    <span>Talk to AI</span>
-                  </motion.a>
-
-                  {/* Book Demo - Secondary */}
+                  {/* Book Demo - Primary */}
                   <motion.a
                     href="https://calendly.com/emrebenian-cogniaai/30min"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileTap={{ scale: 0.97 }}
                     onClick={() => {
-                      conversionTracker.trackDemoBooking('sticky_cta');
-                      conversionTracker.trackButtonClick('Book Demo', 'sticky_cta');
+                      conversionTracker.trackDemoBooking('sticky_cta_primary');
+                      conversionTracker.trackButtonClick('Book a Demo', 'sticky_cta_primary');
                     }}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold rounded-xl shadow-lg shadow-cyan-500/25"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-white text-black font-bold rounded-xl"
                   >
                     <FaCalendar />
-                    <span>Book Demo</span>
+                    <span>Book a Demo</span>
+                  </motion.a>
+
+                  {/* Talk to AI - Secondary */}
+                  <motion.a
+                    href="tel:+16163263328"
+                    whileTap={{ scale: 0.97 }}
+                    onClick={() => {
+                      conversionTracker.trackPhoneCall('+16163263328');
+                      conversionTracker.trackButtonClick('Talk to AI', 'sticky_cta_secondary');
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 py-3 border border-white/20 text-white font-medium rounded-xl"
+                  >
+                    <FaPhone />
+                    <span>Talk to AI</span>
                   </motion.a>
 
                   {/* Expand Button */}
