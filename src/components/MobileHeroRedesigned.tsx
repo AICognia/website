@@ -172,9 +172,9 @@ const MobileHeroRedesigned: React.FC = () => {
                 Receptionist
               </span>
             </h1>
-            <p className="text-lg text-gray-400 font-light">
+            <p className="text-lg text-gray-400 font-light text-center">
               Never miss a call. Close more{' '}
-              <span className="relative inline-block w-[100px] h-[24px] align-bottom overflow-hidden">
+              <span className="relative inline-block w-[100px] h-[24px] align-bottom overflow-hidden text-center">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={wordIndex}
@@ -182,7 +182,7 @@ const MobileHeroRedesigned: React.FC = () => {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -16, opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute left-0 text-cyan-400 font-medium"
+                    className="absolute inset-x-0 text-cyan-400 font-medium"
                   >
                     {rotatingWords[wordIndex]}.
                   </motion.span>
@@ -196,26 +196,26 @@ const MobileHeroRedesigned: React.FC = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative mb-10"
+            className="relative mb-10 flex justify-center"
           >
-            {/* Glow behind visualizer */}
-            <div
-              className="absolute inset-0 blur-2xl opacity-60"
-              style={{
-                background: 'linear-gradient(135deg, #E879F9 0%, #A78BFA 30%, #60A5FA 60%, #22D3EE 100%)',
-              }}
-            />
-
             {/* Clickable visualizer area */}
             <div
               onClick={handleVisualizerClick}
               className="relative cursor-pointer active:scale-[0.98] transition-transform"
             >
+              {/* Glow behind visualizer - contained within canvas bounds */}
+              <div
+                className="absolute inset-0 blur-3xl opacity-50 -z-10 scale-110"
+                style={{
+                  background: 'linear-gradient(135deg, #E879F9 0%, #A78BFA 30%, #60A5FA 60%, #22D3EE 100%)',
+                }}
+              />
+
               <canvas
                 ref={canvasRef}
                 width={400}
                 height={140}
-                className="w-full"
+                className="w-full max-w-[400px]"
                 style={{
                   filter: isPlaying
                     ? 'drop-shadow(0 0 30px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.4))'
