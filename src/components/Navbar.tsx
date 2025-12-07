@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaBars, FaTimes, FaHospital, FaGavel, FaStore, FaBuilding, FaPhone, FaCalendar, FaLanguage, FaCog, FaUserMd, FaFileAlt, FaHeadset, FaClock, FaHotel, FaCar, FaRobot, FaChartLine, FaUsers, FaShieldAlt, FaShoppingCart } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHospital, FaGavel, FaStore, FaBuilding, FaPhone, FaCalendar, FaLanguage, FaCog, FaUserMd, FaFileAlt, FaHeadset, FaClock, FaHotel, FaCar, FaRobot, FaChartLine, FaUsers, FaShieldAlt, FaShoppingCart, FaHome } from 'react-icons/fa';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +36,8 @@ const Navbar: React.FC = () => {
       { icon: FaStore, title: 'Retail', description: 'Multi-location customer support', path: '/industries/retail' },
       { icon: FaBuilding, title: 'Enterprise', description: 'Scalable call distribution', path: '/industries/enterprise' },
       { icon: FaHotel, title: 'Hospitality', description: 'Reservation and guest services', path: '/industries/hospitality' },
-      { icon: FaCar, title: 'Automotive', description: 'Service scheduling and support', path: '/industries/automotive' }
+      { icon: FaCar, title: 'Automotive', description: 'Service scheduling and support', path: '/industries/automotive' },
+      { icon: FaHome, title: 'Home Services', description: 'Plumbing, HVAC, electrical & more', path: '/industries/home-services' }
     ],
     byFeature: [
       { icon: FaPhone, title: '24/7 Call Handling', description: 'Never miss a customer call', path: '/features/call-handling' },

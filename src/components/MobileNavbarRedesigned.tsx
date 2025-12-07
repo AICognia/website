@@ -25,6 +25,7 @@ const allSolutions = [
   { icon: FaBuilding, title: 'Enterprise', path: '/industries/enterprise', category: 'industry' },
   { icon: FaHotel, title: 'Hospitality', path: '/industries/hospitality', category: 'industry' },
   { icon: FaCar, title: 'Automotive', path: '/industries/automotive', category: 'industry' },
+  { icon: FaHome, title: 'Home Services', path: '/industries/home-services', category: 'industry' },
   // Features
   { icon: FaPhone, title: 'Call Handling', path: '/features/call-handling', category: 'feature' },
   { icon: FaCalendar, title: 'Scheduling', path: '/features/smart-scheduling', category: 'feature' },

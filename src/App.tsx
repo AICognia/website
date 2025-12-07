@@ -27,6 +27,7 @@ const Retail = lazy(() => import('./pages/industries/Retail'));
 const Enterprise = lazy(() => import('./pages/industries/Enterprise'));
 const Hospitality = lazy(() => import('./pages/industries/Hospitality'));
 const Automotive = lazy(() => import('./pages/industries/Automotive'));
+const HomeServices = lazy(() => import('./pages/industries/HomeServices'));
 
 // Lazy load feature pages
 const CallHandling = lazy(() => import('./pages/features/CallHandling'));
@@ -85,6 +86,7 @@ function AppContent() {
             <Route path="/industries/enterprise" element={<Enterprise />} />
             <Route path="/industries/hospitality" element={<Hospitality />} />
             <Route path="/industries/automotive" element={<Automotive />} />
+            <Route path="/industries/home-services" element={<HomeServices />} />
             {/* Feature Pages */}
             <Route path="/features/call-handling" element={<CallHandling />} />
             <Route path="/features/smart-scheduling" element={<SmartScheduling />} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaStar, FaQuoteLeft, FaShieldAlt, FaClock, FaHeadset, FaHospital, FaGavel, FaStore, FaBuilding, FaHotel, FaFileInvoiceDollar } from 'react-icons/fa';
+import { FaStar, FaQuoteLeft, FaShieldAlt, FaClock, FaHeadset, FaHospital, FaGavel, FaStore, FaBuilding, FaHotel, FaFileInvoiceDollar, FaHome } from 'react-icons/fa';
 
 // Testimonials data
 const testimonials = [
@@ -53,6 +53,7 @@ const industries = [
   { icon: FaBuilding, label: 'Enterprise' },
   { icon: FaFileInvoiceDollar, label: 'Insurance' },
   { icon: FaHotel, label: 'Hospitality' },
+  { icon: FaHome, label: 'Home Services' },
 ];
 
 const SocialProofSection: React.FC = () => {
