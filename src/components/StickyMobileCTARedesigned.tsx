@@ -164,18 +164,18 @@ const StickyMobileCTARedesigned: React.FC = () => {
               {/* Main CTA Buttons */}
               <div className="p-3">
                 <div className="flex gap-2">
-                  {/* Call Now - Primary */}
+                  {/* Talk to AI - Primary */}
                   <motion.a
                     href="tel:+16163263328"
                     whileTap={{ scale: 0.97 }}
                     onClick={() => {
                       conversionTracker.trackPhoneCall('+16163263328');
-                      conversionTracker.trackButtonClick('Call Now', 'sticky_cta');
+                      conversionTracker.trackButtonClick('Talk to AI', 'sticky_cta');
                     }}
                     className="flex-1 flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl shadow-lg shadow-green-500/25"
                   >
                     <FaPhone className="animate-pulse" />
-                    <span>Call Now</span>
+                    <span>Talk to AI</span>
                   </motion.a>
 
                   {/* Book Demo - Secondary */}

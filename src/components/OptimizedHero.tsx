@@ -68,17 +68,17 @@ const OptimizedHero: React.FC = () => {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4">
-                {/* Primary CTA - Try AI Now */}
+                {/* Primary CTA - Talk to AI */}
                 <a
                   href="tel:+16163263328"
                   onClick={() => {
                     conversionTracker.trackPhoneCall('+16163263328');
-                    conversionTracker.trackButtonClick('Try AI Now', 'hero_primary');
+                    conversionTracker.trackButtonClick('Talk to AI', 'hero_primary');
                   }}
                   className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white text-sm font-semibold rounded-lg transition-all shadow-lg shadow-green-500/25"
                 >
                   <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                  Try Our AI Now
+                  Talk to AI
                   <span className="text-white/70">+1 616-326-3328</span>
                 </a>
 

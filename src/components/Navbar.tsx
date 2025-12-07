@@ -223,7 +223,7 @@ const Navbar: React.FC = () => {
                   href="tel:+16163263328"
                   className="text-sm text-white hover:text-gray-300 transition-colors"
                 >
-                  Call Us
+                  Talk to AI
                 </a>
               </div>
             </div>
@@ -274,7 +274,7 @@ const Navbar: React.FC = () => {
                   onClick={() => setIsOpen(false)}
                   className="block text-center py-2 text-sm text-white hover:text-gray-300 transition-colors"
                 >
-                  Call Us
+                  Talk to AI
                 </a>
               </div>
             </div>

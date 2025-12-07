@@ -94,12 +94,12 @@ const MobileHeroRedesigned: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="space-y-3"
           >
-            {/* Primary: Call Now */}
+            {/* Primary: Talk to AI */}
             <a
               href="tel:+16163263328"
               onClick={() => {
                 conversionTracker.trackPhoneCall('+16163263328');
-                conversionTracker.trackButtonClick('Call AI Demo', 'mobile_hero_primary');
+                conversionTracker.trackButtonClick('Talk to AI', 'mobile_hero_primary');
               }}
               className="block w-full"
             >
@@ -110,7 +110,7 @@ const MobileHeroRedesigned: React.FC = () => {
                     <FaPhone className="text-lg animate-pulse" />
                   </div>
                   <div className="text-left">
-                    <div className="text-lg">Try Our AI Now</div>
+                    <div className="text-lg">Talk to AI</div>
                     <div className="text-xs text-white/80 font-normal">+1 616-326-3328</div>
                   </div>
                 </div>

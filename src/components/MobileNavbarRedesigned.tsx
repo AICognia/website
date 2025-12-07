@@ -108,7 +108,7 @@ const MobileNavbarRedesigned: React.FC = () => {
                 className="flex items-center gap-2 px-3 py-2 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400"
               >
                 <FaPhone className="text-sm" />
-                <span className="text-xs font-medium">Call</span>
+                <span className="text-xs font-medium">Talk to AI</span>
               </a>
 
               {/* Menu Toggle */}
@@ -376,7 +376,7 @@ const MobileNavbarRedesigned: React.FC = () => {
                     className="flex-1 flex items-center justify-center gap-2 py-3 bg-green-500 text-white font-semibold rounded-xl"
                   >
                     <FaPhone />
-                    <span>Call Now</span>
+                    <span>Talk to AI</span>
                   </a>
                   <a
                     href="https://calendly.com/emrebenian-cogniaai/30min"
