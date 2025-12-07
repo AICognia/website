@@ -308,8 +308,8 @@ const Contact: React.FC = () => {
               {/* Trust Indicators */}
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { icon: FaShieldAlt, label: 'SOC2' },
-                  { icon: FaCheckCircle, label: 'HIPAA' },
+                  { icon: FaShieldAlt, label: 'HIPAA' },
+                  { icon: FaCheckCircle, label: '24/7 Support' },
                   { icon: FaGlobe, label: '20+ Languages' }
                 ].map((indicator, index) => (
                   <div key={index} className="text-center p-4 bg-white/5 border border-white/10 rounded-lg">

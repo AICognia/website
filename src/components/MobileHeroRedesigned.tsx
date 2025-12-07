@@ -1,10 +1,21 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaCalendarCheck, FaShieldAlt, FaClock, FaHeadset, FaCheckCircle } from 'react-icons/fa';
 import MobileSoundVisualizer from './MobileSoundVisualizer';
 import conversionTracker from '../utils/conversionTracking';
 
+const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
+
 const MobileHeroRedesigned: React.FC = () => {
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="lg:hidden">
       {/* Mobile-optimized Hero Section */}
@@ -25,19 +36,19 @@ const MobileHeroRedesigned: React.FC = () => {
           </div>
           <div className="w-1 h-1 bg-gray-600 rounded-full" />
           <div className="flex items-center gap-1.5 text-xs text-gray-400">
-            <FaCheckCircle className="text-green-400 text-[10px]" />
-            <span>SOC2</span>
+            <FaHeadset className="text-green-400 text-[10px]" />
+            <span>24/7</span>
           </div>
           <div className="w-1 h-1 bg-gray-600 rounded-full" />
           <div className="flex items-center gap-1.5 text-xs text-gray-400">
-            <FaHeadset className="text-green-400 text-[10px]" />
-            <span>24/7</span>
+            <FaClock className="text-green-400 text-[10px]" />
+            <span>1 Week Setup</span>
           </div>
         </motion.div>
 
         {/* Content Container */}
         <div className="relative z-10 flex-1 flex flex-col justify-center">
-          {/* Main Headline - Clear Value Proposition */}
+          {/* Main Headline - Clear Value Proposition with AI */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -45,15 +56,28 @@ const MobileHeroRedesigned: React.FC = () => {
             className="text-center mb-4"
           >
             <h1 className="text-[2.5rem] leading-[1.1] font-bold text-white mb-3">
-              Never Miss
+              Your AI
               <br />
               <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                Another Call
+                Receptionist
               </span>
             </h1>
             <p className="text-base text-gray-400 leading-relaxed max-w-[300px] mx-auto">
-              AI handles every customer call 24/7.
-              <span className="text-white font-medium"> You close more deals.</span>
+              AI handles every call 24/7. You close more{' '}
+              <span className="relative inline-block w-20 h-5 align-bottom overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={wordIndex}
+                    initial={{ y: 15, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -15, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute left-0 text-cyan-400 font-medium"
+                  >
+                    {rotatingWords[wordIndex]}.
+                  </motion.span>
+                </AnimatePresence>
+              </span>
             </p>
           </motion.div>
 
@@ -144,7 +168,7 @@ const MobileHeroRedesigned: React.FC = () => {
           >
             <span className="flex items-center gap-1">
               <FaClock className="text-cyan-400" />
-              48hr Setup
+              1 Week Setup
             </span>
             <span className="flex items-center gap-1">
               <FaCheckCircle className="text-cyan-400" />

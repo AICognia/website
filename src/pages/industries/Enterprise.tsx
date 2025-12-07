@@ -80,7 +80,7 @@ const Enterprise: React.FC = () => {
               {
                 icon: FaLock,
                 title: 'Enterprise Security',
-                description: 'SOC 2 Type II, ISO 27001 certified with advanced encryption and access controls.'
+                description: 'Advanced encryption, role-based access controls, and regular security audits to protect your data.'
               },
               {
                 icon: FaGlobe,
@@ -227,19 +227,19 @@ const Enterprise: React.FC = () => {
                   <ul className="space-y-3">
                     <li className="flex items-start gap-2 text-gray-300 text-sm">
                       <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
-                      <span>SOC 2 Type II certified</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-gray-300 text-sm">
-                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
-                      <span>ISO 27001 certified</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-gray-300 text-sm">
-                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
                       <span>End-to-end encryption (AES-256)</span>
                     </li>
                     <li className="flex items-start gap-2 text-gray-300 text-sm">
                       <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
-                      <span>Regular penetration testing</span>
+                      <span>Regular security audits</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-300 text-sm">
+                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
+                      <span>Role-based access controls</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-300 text-sm">
+                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
+                      <span>24/7 support available</span>
                     </li>
                   </ul>
                 </div>
@@ -297,19 +297,15 @@ const Enterprise: React.FC = () => {
             <div className="flex flex-wrap justify-center items-center gap-6 text-xs text-gray-500">
               <span className="flex items-center gap-2">
                 <FaCheckCircle />
-                SOC 2 Type II
-              </span>
-              <span className="flex items-center gap-2">
-                <FaCheckCircle />
-                ISO 27001
-              </span>
-              <span className="flex items-center gap-2">
-                <FaCheckCircle />
-                99.99% Uptime SLA
+                99.9% Uptime
               </span>
               <span className="flex items-center gap-2">
                 <FaCheckCircle />
                 24/7 Enterprise Support
+              </span>
+              <span className="flex items-center gap-2">
+                <FaCheckCircle />
+                Encrypted & Secure
               </span>
             </div>
           </div>

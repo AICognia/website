@@ -6,7 +6,7 @@ import conversionTracker from '../utils/conversionTracking';
 // Urgency messages that rotate
 const urgencyMessages = [
   { text: '1 Week Free Trial', highlight: 'Free' },
-  { text: '48hr Setup Guarantee', highlight: '48hr' },
+  { text: '1 Week Setup Guarantee', highlight: '1 Week' },
   { text: 'No Credit Card Required', highlight: 'Free' },
   { text: 'Join 50+ Businesses', highlight: '50+' },
 ];
@@ -153,8 +153,8 @@ const StickyMobileCTARedesigned: React.FC = () => {
                       {/* Trust indicators */}
                       <div className="flex items-center justify-center gap-4 mt-3 text-[10px] text-gray-500">
                         <span>✓ HIPAA Compliant</span>
-                        <span>✓ SOC2 Certified</span>
                         <span>✓ 24/7 Support</span>
+                        <span>✓ 1 Week Setup</span>
                       </div>
                     </div>
                   </motion.div>

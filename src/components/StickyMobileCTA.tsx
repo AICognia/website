@@ -86,7 +86,7 @@ const StickyMobileCTA: React.FC = () => {
 
               {/* Trust text */}
               <p className="text-center text-xs text-gray-400 mt-2">
-                ✓ HIPAA Compliant • ✓ Setup in 48hrs
+                ✓ HIPAA Compliant • ✓ 1 Week Setup
               </p>
             </div>
           </div>

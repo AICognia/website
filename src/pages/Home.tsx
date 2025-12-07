@@ -382,7 +382,7 @@ const Home: React.FC = () => {
               },
               {
                 question: 'What about data security?',
-                answer: 'We are HIPAA compliant and SOC 2 certified. All data is encrypted and stored securely with regular audits.',
+                answer: 'We are HIPAA compliant. All data is encrypted and stored securely with regular audits.',
               }
             ].map((faq, index) => (
               <TechCard key={index}>
@@ -430,15 +430,11 @@ const Home: React.FC = () => {
               </span>
               <span className="flex items-center gap-2">
                 <FaClock />
-                48hr Setup
+                1 Week Setup
               </span>
               <span className="flex items-center gap-2">
                 <FaHeadset />
                 24/7 Support
-              </span>
-              <span className="flex items-center gap-2">
-                <FaShieldAlt />
-                SOC 2 Certified
               </span>
             </div>
           </div>

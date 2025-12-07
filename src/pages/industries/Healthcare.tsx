@@ -300,19 +300,19 @@ const Healthcare: React.FC = () => {
                   <ul className="space-y-3">
                     <li className="flex items-start gap-2 text-gray-300 text-sm">
                       <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
-                      <span>SOC 2 Type II certified</span>
+                      <span>End-to-end encryption</span>
                     </li>
                     <li className="flex items-start gap-2 text-gray-300 text-sm">
                       <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
-                      <span>GDPR compliant for international patients</span>
+                      <span>Secure data storage</span>
                     </li>
                     <li className="flex items-start gap-2 text-gray-300 text-sm">
                       <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
-                      <span>HITRUST CSF certified</span>
+                      <span>Regular security audits</span>
                     </li>
                     <li className="flex items-start gap-2 text-gray-300 text-sm">
                       <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
-                      <span>Regular penetration testing</span>
+                      <span>Access controls</span>
                     </li>
                   </ul>
                 </div>
@@ -353,15 +353,11 @@ const Healthcare: React.FC = () => {
               </span>
               <span className="flex items-center gap-2">
                 <FaCheckCircle />
-                SOC 2 Certified
+                24/7 Support
               </span>
               <span className="flex items-center gap-2">
                 <FaCheckCircle />
-                HITRUST CSF
-              </span>
-              <span className="flex items-center gap-2">
-                <FaCheckCircle />
-                BAA Included
+                Encrypted & Secure
               </span>
             </div>
           </div>

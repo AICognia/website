@@ -304,15 +304,15 @@ const Legal: React.FC = () => {
                     </li>
                     <li className="flex items-start gap-2 text-gray-300 text-sm">
                       <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
-                      <span>SOC 2 Type II certified</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-gray-300 text-sm">
-                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
                       <span>GDPR compliant</span>
                     </li>
                     <li className="flex items-start gap-2 text-gray-300 text-sm">
                       <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
                       <span>Regular security audits</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-300 text-sm">
+                      <FaCheckCircle className="flex-shrink-0 mt-0.5 text-white" />
+                      <span>End-to-end encryption</span>
                     </li>
                   </ul>
                 </div>
@@ -353,15 +353,15 @@ const Legal: React.FC = () => {
               </span>
               <span className="flex items-center gap-2">
                 <FaCheckCircle />
-                SOC 2 Certified
-              </span>
-              <span className="flex items-center gap-2">
-                <FaCheckCircle />
                 ABA Compliant
               </span>
               <span className="flex items-center gap-2">
                 <FaCheckCircle />
                 Secure & Confidential
+              </span>
+              <span className="flex items-center gap-2">
+                <FaCheckCircle />
+                24/7 Support
               </span>
             </div>
           </div>

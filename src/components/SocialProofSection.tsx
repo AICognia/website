@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaStar, FaQuoteLeft, FaShieldAlt, FaCheckCircle, FaClock, FaHeadset, FaHospital, FaGavel, FaStore, FaBuilding } from 'react-icons/fa';
+import { FaStar, FaQuoteLeft, FaShieldAlt, FaClock, FaHeadset, FaHospital, FaGavel, FaStore, FaBuilding, FaHotel, FaFileInvoiceDollar } from 'react-icons/fa';
 
 // Testimonials data
 const testimonials = [
@@ -35,13 +35,12 @@ const stats = [
   { value: '50+', label: 'Businesses Served', icon: FaBuilding },
   { value: '500K+', label: 'Calls Handled', icon: FaHeadset },
   { value: '95%', label: 'Satisfaction Rate', icon: FaStar },
-  { value: '48hr', label: 'Avg Setup Time', icon: FaClock },
+  { value: '1 Week', label: 'Avg Setup Time', icon: FaClock },
 ];
 
 // Trust badges
 const trustBadges = [
   { icon: FaShieldAlt, label: 'HIPAA Compliant', color: 'text-green-400' },
-  { icon: FaCheckCircle, label: 'SOC 2 Certified', color: 'text-blue-400' },
   { icon: FaHeadset, label: '24/7 Support', color: 'text-cyan-400' },
   { icon: FaClock, label: '99.9% Uptime', color: 'text-purple-400' },
 ];
@@ -52,6 +51,8 @@ const industries = [
   { icon: FaGavel, label: 'Legal' },
   { icon: FaStore, label: 'Retail' },
   { icon: FaBuilding, label: 'Enterprise' },
+  { icon: FaFileInvoiceDollar, label: 'Insurance' },
+  { icon: FaHotel, label: 'Hospitality' },
 ];
 
 const SocialProofSection: React.FC = () => {

@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaShieldAlt, FaCheckCircle, FaHeadset, FaClock } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 import conversionTracker from '../utils/conversionTracking';
 import SoundVisualizer from './SoundVisualizer';
 
+const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
+
 const OptimizedHero: React.FC = () => {
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       {/* Desktop Hero - Hidden on mobile (mobile uses MobileHeroRedesigned) */}
@@ -19,34 +31,44 @@ const OptimizedHero: React.FC = () => {
               <span>HIPAA Compliant</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-400">
-              <FaCheckCircle className="text-green-400" />
-              <span>SOC 2 Certified</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
               <FaHeadset className="text-green-400" />
               <span>24/7 Support</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-400">
               <FaClock className="text-green-400" />
-              <span>48hr Setup</span>
+              <span>1 Week Setup</span>
             </div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center py-20 lg:py-28">
             {/* Left Side - Content */}
             <div className="space-y-8">
-              {/* Main Headline - Clear Value Proposition */}
+              {/* Main Headline - Clear Value Proposition with AI */}
               <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-thin leading-tight text-white">
-                Never Miss
+                Your AI
                 <br />
                 <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                  Another Call
+                  Receptionist
                 </span>
               </h1>
 
-              {/* Subheadline - Benefit focused */}
+              {/* Subheadline - Benefit focused with rotating word */}
               <p className="text-lg sm:text-xl text-gray-400 max-w-lg">
-                AI handles every customer call 24/7. You close more deals.
+                <span className="whitespace-nowrap">AI handles every call 24/7. You close more </span>
+                <span className="relative inline-block w-28 h-7 align-bottom overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={wordIndex}
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -20, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute left-0 text-cyan-400 font-medium"
+                    >
+                      {rotatingWords[wordIndex]}.
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
                 <span className="block mt-2 text-white font-medium">
                   10-20% more revenue. 76% less cost.
                 </span>
