@@ -166,7 +166,7 @@ const MobileHeroRedesigned: React.FC = () => {
             className="text-center mb-8"
           >
             <h1 className="text-[3.2rem] leading-[1] font-extralight text-white mb-4 tracking-tight">
-              Your 24/7 AI
+              Your AI
               <br />
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent font-light">
                 Receptionist
