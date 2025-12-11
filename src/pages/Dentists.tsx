@@ -13,7 +13,10 @@ import {
   FaPause,
   FaBolt,
   FaPlug,
-  FaGlobe
+  FaGlobe,
+  FaShieldAlt,
+  FaClock,
+  FaQuestionCircle
 } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
 import DynamicTechBackground from '../components/DynamicTechBackground';
@@ -28,9 +31,21 @@ const Dentists: React.FC = () => {
   const [error, setError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showAudioModal, setShowAudioModal] = useState(false);
+  const [showStickyCTA, setShowStickyCTA] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
+
+  // Sticky CTA scroll listener
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroHeight = window.innerHeight * 0.8;
+      setShowStickyCTA(window.scrollY > heroHeight);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -205,7 +220,7 @@ const Dentists: React.FC = () => {
                       e.preventDefault();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="flex items-center justify-center gap-2 w-full max-w-[70%] px-6 py-3.5 bg-white hover:bg-neutral-100 text-black text-base font-semibold rounded-xl transition-colors shadow-lg"
+                    className="flex items-center justify-center gap-2 w-full max-w-[70%] px-6 py-3.5 bg-white hover:bg-neutral-100 text-black text-base font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl hover:shadow-cyan-400/30 hover:scale-105"
                   >
                     Start Free Trial
                     <FaArrowRight className="text-sm" />
@@ -214,6 +229,11 @@ const Dentists: React.FC = () => {
                   {/* Pricing */}
                   <p className="text-sm text-center text-gray-300 font-semibold">
                     From $199/month • Setup in 24 hours
+                  </p>
+
+                  {/* Risk-Reversal Strip */}
+                  <p className="text-xs text-center text-gray-400/70 leading-relaxed">
+                    No contracts • Cancel anytime • 24/7 support • HIPAA-compliant
                   </p>
                 </motion.div>
 
@@ -294,12 +314,12 @@ const Dentists: React.FC = () => {
                   className="grid grid-cols-1 gap-5 pt-10"
                 >
                   {[
-                    { icon: FaPlug, text: 'Seamless PMS Integration', subtext: 'Syncs with OpenDental, Dentrix, EagleSoft — in real-time.' },
+                    { icon: FaPlug, text: 'Seamless PMS Integration', subtext: 'Syncs with every dental PMS.', badge: true },
                     { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included.' },
                     { icon: FaBolt, text: 'Plug-and-Play Setup', subtext: 'No training, no hardware.' },
                   ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-lg p-5 text-center hover:scale-[1.015] hover:shadow-lg hover:shadow-cyan-400/15 hover:border-cyan-400/20 transition-all duration-150 ease-out cursor-pointer">
-                      <div className="w-11 h-11 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/28">
+                    <div key={i} className={`flex flex-col items-center gap-3 bg-black/20 border rounded-lg p-5 text-center hover:scale-[1.015] hover:shadow-lg transition-all duration-150 ease-out cursor-pointer ${item.badge ? 'border-cyan-400/30 shadow-cyan-400/10 hover:shadow-cyan-400/20 hover:border-cyan-400/40' : 'border-white/5 hover:shadow-cyan-400/15 hover:border-cyan-400/20'}`}>
+                      <div className={`w-11 h-11 rounded-full flex items-center justify-center ${item.badge ? 'bg-cyan-400/15 border-2 border-cyan-400/40 shadow-lg shadow-cyan-400/30' : 'bg-cyan-400/10 border border-cyan-400/30 shadow-md shadow-cyan-400/28'}`}>
                         <item.icon className="text-lg text-cyan-400" />
                       </div>
                       <div>
@@ -361,7 +381,7 @@ const Dentists: React.FC = () => {
                       e.preventDefault();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white hover:bg-neutral-100 text-black text-lg font-medium rounded-xl transition-colors shadow-lg max-w-xs"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black text-lg font-semibold rounded-xl transition-all shadow-lg hover:shadow-2xl hover:shadow-cyan-400/30 hover:scale-105 max-w-xs"
                   >
                     Start Free Trial
                     <FaArrowRight className="text-sm" />
@@ -370,6 +390,11 @@ const Dentists: React.FC = () => {
                   {/* Pricing */}
                   <p className="text-base text-gray-200 font-bold">
                     From $199/month • Setup in 24 hours
+                  </p>
+
+                  {/* Risk-Reversal Strip */}
+                  <p className="text-sm text-center text-gray-400/70 leading-relaxed">
+                    No contracts • Cancel anytime • 24/7 support • HIPAA-compliant
                   </p>
                 </motion.div>
 
@@ -462,12 +487,12 @@ const Dentists: React.FC = () => {
                   className="grid grid-cols-3 gap-6 max-w-3xl mx-auto pt-10"
                 >
                   {[
-                    { icon: FaPlug, text: 'Seamless PMS Integration', subtext: 'Syncs with OpenDental, Dentrix, EagleSoft — in real-time.' },
-                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included.' },
-                    { icon: FaBolt, text: 'Plug-and-Play Setup', subtext: 'No training, no hardware.' },
+                    { icon: FaPlug, text: 'Seamless PMS Integration', subtext: 'Syncs with every dental PMS.', badge: true },
+                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included.', badge: false },
+                    { icon: FaBolt, text: 'Plug-and-Play Setup', subtext: 'No training, no hardware.', badge: false },
                   ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-xl p-5 text-center hover:scale-[1.015] hover:shadow-lg hover:shadow-cyan-400/15 hover:border-cyan-400/20 transition-all duration-150 ease-out cursor-pointer">
-                      <div className="w-14 h-14 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/28">
+                    <div key={i} className={`flex flex-col items-center gap-3 bg-black/20 border rounded-xl p-5 text-center hover:scale-[1.015] hover:shadow-lg transition-all duration-150 ease-out cursor-pointer ${item.badge ? 'border-cyan-400/30 shadow-cyan-400/10 hover:shadow-cyan-400/20 hover:border-cyan-400/40' : 'border-white/5 hover:shadow-cyan-400/15 hover:border-cyan-400/20'}`}>
+                      <div className={`w-14 h-14 rounded-full flex items-center justify-center ${item.badge ? 'bg-cyan-400/15 border-2 border-cyan-400/40 shadow-lg shadow-cyan-400/30' : 'bg-cyan-400/10 border border-cyan-400/30 shadow-md shadow-cyan-400/28'}`}>
                         <item.icon className="text-xl text-cyan-400" />
                       </div>
                       <div>
@@ -634,11 +659,93 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
+          {/* FAQ Section - Compact & High Impact */}
+          <section className="relative py-16 lg:py-20">
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
+              <div className="max-w-3xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="text-center mb-12"
+                >
+                  <h2 className="text-3xl lg:text-4xl font-thin text-white mb-2">
+                    Common <span className="text-cyan-400">Questions</span>
+                  </h2>
+                </motion.div>
+
+                <div className="space-y-6">
+                  {[
+                    {
+                      q: 'Does this replace my receptionist?',
+                      a: 'No. It handles overflow, after-hours, and routine calls so your team can focus on in-office care.'
+                    },
+                    {
+                      q: 'Will this interrupt our phone line or patients calling normally?',
+                      a: 'No. Your phone line stays fully functional — we simply add a parallel AI line.'
+                    },
+                    {
+                      q: 'Do you integrate with our PMS?',
+                      a: 'Yes — real-time syncing with OpenDental, Dentrix, EagleSoft and more.'
+                    }
+                  ].map((faq, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: i * 0.1 }}
+                      viewport={{ once: true }}
+                      className="bg-black/30 border border-white/10 rounded-xl p-6 lg:p-8"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 w-8 h-8 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center">
+                          <FaQuestionCircle className="text-cyan-400 text-sm" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-base lg:text-lg font-semibold text-white mb-2">
+                            {faq.q}
+                          </h3>
+                          <p className="text-sm lg:text-base text-gray-400 leading-relaxed">
+                            {faq.a}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Trial Form - Mobile Optimized */}
           <section id="trial-form" className="relative py-12 lg:py-24 border-t border-white/5 lg:border-t-0">
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
               <div className="max-w-xl mx-auto">
+                {/* Trust Indicators */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 mb-10 lg:mb-14"
+                >
+                  {[
+                    { icon: FaStar, text: 'Trusted by 50+ U.S. dental practices' },
+                    { icon: FaShieldAlt, text: 'HIPAA-compliant infrastructure' },
+                    { icon: FaClock, text: 'Setup in 24 hours' }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 justify-center sm:justify-start">
+                      <div className="w-9 h-9 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center flex-shrink-0">
+                        <item.icon className="text-cyan-400 text-sm" />
+                      </div>
+                      <p className="text-xs lg:text-sm text-gray-300 font-medium">{item.text}</p>
+                    </div>
+                  ))}
+                </motion.div>
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -725,7 +832,7 @@ const Dentists: React.FC = () => {
                             <button
                               type="submit"
                               disabled={isSubmitting}
-                              className="w-full py-4 bg-white hover:bg-neutral-100 text-black font-semibold rounded-xl transition-all duration-150 ease-out disabled:opacity-50 disabled:cursor-not-allowed text-base flex items-center justify-center gap-2 shadow-lg shadow-black/25 hover:shadow-xl hover:shadow-cyan-400/20"
+                              className="w-full py-4 bg-white hover:bg-neutral-100 text-black font-semibold rounded-xl transition-all duration-150 ease-out disabled:opacity-50 disabled:cursor-not-allowed text-base flex items-center justify-center gap-2 shadow-lg shadow-black/25 hover:shadow-2xl hover:shadow-cyan-400/30 hover:scale-[1.02]"
                             >
                               {isSubmitting ? (
                                 <>
@@ -776,6 +883,40 @@ const Dentists: React.FC = () => {
             </div>
           </section>
         </div>
+
+        {/* Mobile Sticky CTA - High Impact */}
+        <AnimatePresence>
+          {showStickyCTA && (
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed bottom-0 left-0 right-0 z-40 lg:hidden"
+            >
+              <div className="bg-black/95 backdrop-blur-xl border-t border-cyan-400/30 shadow-2xl shadow-cyan-400/20">
+                <div className="container mx-auto px-4 py-4">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex-1">
+                      <p className="text-xs text-gray-400 mb-1">No credit card • Setup in 24h</p>
+                    </div>
+                    <a
+                      href="#trial-form"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black font-semibold rounded-xl transition-all shadow-lg shadow-cyan-400/20 hover:shadow-xl hover:shadow-cyan-400/30 animate-pulse-glow"
+                    >
+                      Start Free Trial
+                      <FaArrowRight className="text-sm" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Audio Modal */}
         <AnimatePresence>
