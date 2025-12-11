@@ -487,13 +487,9 @@ const Dentists: React.FC = () => {
                     viewport={{ once: true }}
                     className="text-center relative"
                   >
-                    {/* Step Number - Enhanced visual appeal */}
+                    {/* Step Number - Clean design */}
                     <div className="mb-10">
                       <div className="relative w-28 h-28 mx-auto flex items-center justify-center">
-                        {/* Outer glow ring - perfectly centered */}
-                        <div className="absolute inset-0 bg-cyan-400/30 rounded-full blur-lg"></div>
-                        {/* Middle glow ring - shifted 10% upward */}
-                        <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-cyan-400/40 rounded-full blur-md"></div>
                         {/* Main circle with solid background */}
                         <div className="relative w-28 h-28 bg-gradient-to-br from-cyan-500/30 via-cyan-400/25 to-blue-500/30 border-2 border-cyan-400/60 rounded-full flex items-center justify-center shadow-xl shadow-cyan-400/40">
                           <div className="absolute inset-0 bg-black/20 rounded-full"></div>
@@ -593,12 +589,8 @@ const Dentists: React.FC = () => {
                     viewport={{ once: true }}
                     className="relative bg-black/30 border border-white/[0.03] rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[160px]"
                   >
-                    {/* Step Number Badge - Enhanced visual appeal */}
+                    {/* Step Number Badge - Clean design */}
                     <div className="relative w-20 h-20 mb-5 flex items-center justify-center">
-                      {/* Outer glow ring - perfectly centered */}
-                      <div className="absolute inset-0 bg-cyan-400/30 rounded-full blur-lg"></div>
-                      {/* Middle glow ring - shifted 10% upward */}
-                      <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400/40 rounded-full blur-md"></div>
                       {/* Main circle with solid background */}
                       <div className="relative w-20 h-20 bg-gradient-to-br from-cyan-500/30 via-cyan-400/25 to-blue-500/30 border-2 border-cyan-400/60 rounded-full flex items-center justify-center shadow-xl shadow-cyan-400/40">
                         <div className="absolute inset-0 bg-black/20 rounded-full"></div>
