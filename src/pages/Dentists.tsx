@@ -831,10 +831,6 @@ const Dentists: React.FC = () => {
                                 <span>Start Free Trial</span>
                               )}
                             </button>
-
-                            <p className="text-center text-xs text-gray-500 mt-4">
-                              HIPAA-compliant • Setup in 24 hours • No interruptions to your phone line
-                            </p>
                           </form>
                         </motion.div>
                       ) : (
