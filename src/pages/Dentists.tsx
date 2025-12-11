@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import {
@@ -26,18 +26,48 @@ const Dentists: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showAudioModal, setShowAudioModal] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audioProgress, setAudioProgress] = useState(0); // 0-100 for waveform progress
   const audioRef = useRef<HTMLAudioElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationRef = useRef<number | undefined>(undefined);
+  const analyserRef = useRef<AnalyserNode | null>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
 
-  const toggleAudioPlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
+  const toggleAudioPlay = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      try {
+        // Setup audio context on first play
+        if (!audioContextRef.current) {
+          const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+          const analyser = audioContext.createAnalyser();
+          analyser.fftSize = 256;
+          analyser.smoothingTimeConstant = 0.75;
+
+          const source = audioContext.createMediaElementSource(audio);
+          source.connect(analyser);
+          analyser.connect(audioContext.destination);
+
+          audioContextRef.current = audioContext;
+          analyserRef.current = analyser;
+        }
+
+        // Resume AudioContext if suspended
+        if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
+          await audioContextRef.current.resume();
+        }
+
+        await audio.play();
+        setIsPlaying(true);
         conversionTracker.trackButtonClick('Demo Audio Played', 'dentists_page');
+      } catch (error) {
+        console.error('Audio playback failed:', error);
+        setIsPlaying(false);
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
@@ -48,6 +78,66 @@ const Dentists: React.FC = () => {
     });
     setError('');
   };
+
+  // Canvas waveform animation
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const bars = 60;
+    const bufferLength = analyserRef.current?.frequencyBinCount || 128;
+    const dataArray = new Uint8Array(bufferLength);
+
+    const draw = () => {
+      animationRef.current = requestAnimationFrame(draw);
+
+      // Get frequency data if playing
+      if (analyserRef.current && isPlaying) {
+        analyserRef.current.getByteFrequencyData(dataArray);
+      }
+
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const barWidth = canvas.width / bars;
+      const centerY = canvas.height / 2;
+
+      for (let i = 0; i < bars; i++) {
+        let barHeight;
+
+        if (analyserRef.current && isPlaying) {
+          // Map bar index to frequency data
+          const dataIndex = Math.floor(i * (bufferLength / bars));
+          const rawFrequency = dataArray[dataIndex];
+          const normalizedValue = rawFrequency / 255;
+          const scaledValue = Math.pow(normalizedValue, 0.8);
+          barHeight = scaledValue * (canvas.height * 0.45);
+        } else {
+          // Idle animation
+          const time = Date.now() / 1000;
+          const wave = Math.sin(i * 0.15 + time * 2) * 0.2 + 0.2;
+          barHeight = wave * (canvas.height / 3) + 8;
+        }
+
+        const x = i * barWidth + barWidth / 2;
+
+        // Draw bar
+        ctx.fillStyle = isPlaying ? '#06B6D4' : '#06B6D4';
+        ctx.fillRect(x - barWidth / 3, centerY - barHeight, barWidth * 0.6, barHeight * 2);
+      }
+    };
+
+    draw();
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isPlaying]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -567,7 +657,6 @@ const Dentists: React.FC = () => {
                     audioRef.current.pause();
                     audioRef.current.currentTime = 0;
                     setIsPlaying(false);
-                    setAudioProgress(0);
                   }
                 }}
                 className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
@@ -600,7 +689,6 @@ const Dentists: React.FC = () => {
                           audioRef.current.pause();
                           audioRef.current.currentTime = 0;
                           setIsPlaying(false);
-                          setAudioProgress(0);
                         }
                       }}
                       className="text-gray-400 hover:text-white transition-colors"
@@ -611,36 +699,14 @@ const Dentists: React.FC = () => {
 
                   {/* Audio Player */}
                   <div className="space-y-6">
-                    {/* Waveform Visualization - Professional Static with Progress */}
-                    <div className="relative h-24 bg-black/50 rounded-2xl overflow-hidden">
-                      <div className="absolute inset-0 flex items-center justify-center px-6">
-                        <div className="flex items-end gap-1 h-full py-4 w-full justify-between">
-                          {/* Realistic waveform pattern - 60 bars for smooth visualization */}
-                          {[
-                            12, 20, 18, 28, 35, 42, 38, 45, 52, 48, 55, 60, 58, 62, 68, 65, 70, 75, 72, 78,
-                            82, 78, 75, 70, 68, 62, 58, 55, 50, 45, 42, 38, 35, 32, 28, 25, 30, 35, 40, 38,
-                            45, 50, 48, 55, 60, 58, 65, 62, 58, 55, 50, 45, 40, 35, 30, 25, 20, 15, 12, 8
-                          ].map((heightPercent, i) => {
-                            const barProgress = (i / 60) * 100;
-                            const isPassed = barProgress <= audioProgress;
-                            const isCurrent = Math.abs(barProgress - audioProgress) < 2;
-
-                            return (
-                              <div
-                                key={i}
-                                className={`flex-1 rounded-full transition-all duration-200 ${
-                                  isPassed ? 'bg-cyan-400' : 'bg-cyan-400/20'
-                                }`}
-                                style={{
-                                  height: `${heightPercent}%`,
-                                  transform: isCurrent && isPlaying ? 'scaleY(1.15)' : 'scaleY(1)',
-                                  boxShadow: isCurrent && isPlaying ? '0 0 8px rgba(6, 182, 212, 0.6)' : 'none',
-                                }}
-                              />
-                            );
-                          })}
-                        </div>
-                      </div>
+                    {/* Waveform Visualization - Real-time Frequency */}
+                    <div className="relative h-24 bg-black/50 rounded-2xl overflow-hidden flex items-center justify-center">
+                      <canvas
+                        ref={canvasRef}
+                        width={800}
+                        height={96}
+                        className="max-w-full"
+                      />
                     </div>
 
                     {/* Controls */}
@@ -660,22 +726,13 @@ const Dentists: React.FC = () => {
                         <audio
                           ref={audioRef}
                           src="https://yhmbki8wsvse0fwd.public.blob.vercel-storage.com/DENTIST%20MP3.mp3"
-                          onTimeUpdate={(e) => {
-                            const audio = e.currentTarget;
-                            if (audio.duration) {
-                              const progress = (audio.currentTime / audio.duration) * 100;
-                              setAudioProgress(progress);
-                            }
-                          }}
-                          onEnded={() => {
-                            setIsPlaying(false);
-                            setAudioProgress(0);
-                          }}
+                          onEnded={() => setIsPlaying(false)}
                           onPause={() => setIsPlaying(false)}
                           onPlay={() => setIsPlaying(true)}
                           className="w-full"
                           controls
                           controlsList="nodownload"
+                          crossOrigin="anonymous"
                         />
                       </div>
                     </div>
