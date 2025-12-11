@@ -110,14 +110,20 @@ const Dentists: React.FC = () => {
         let barHeight;
 
         if (analyserRef.current && isPlaying) {
-          // MIRRORED DISTRIBUTION - Mirror frequency data from center outward
+          // REVERSED MIRRORED DISTRIBUTION - High frequencies in center, low on edges
+          // This creates visual interest because speech/music has more mid-high frequency energy
           const halfBars = bars / 2;
+
           // Create mirror: 0->29->0, both sides use same data
           const mirrorIndex = i < halfBars ? i : (bars - 1 - i);
 
-          // Map across full frequency spectrum with boost for mid frequencies
-          // Use bins 5-50 to skip lowest bass and get vocal/instrument range
-          const dataIndex = Math.floor(5 + (mirrorIndex * (45 / halfBars)));
+          // REVERSE the mapping: highest frequencies in center (mirrorIndex 0), lowest on edges (mirrorIndex 29)
+          const reversedIndex = halfBars - 1 - mirrorIndex;
+
+          // Map to frequency bins 10-60 (mid-high range with energy)
+          // reversedIndex 0 (center) -> bin 60 (high freq)
+          // reversedIndex 29 (edges) -> bin 10 (mid-low freq)
+          const dataIndex = Math.floor(10 + (reversedIndex * (50 / halfBars)));
 
           // Get frequency data
           const rawFrequency = dataArray[dataIndex];
@@ -125,18 +131,15 @@ const Dentists: React.FC = () => {
           // Normalize to 0-1
           const normalizedValue = rawFrequency / 255;
 
-          // Apply curve with boost
-          const scaledValue = Math.pow(normalizedValue, 0.7);
-
-          // Boost middle frequencies (where vocals/instruments are)
-          const middleBoost = i >= 15 && i <= 45 ? 1.3 : 1.0;
+          // Apply curve for better visual response
+          const scaledValue = Math.pow(normalizedValue, 0.6);
 
           // Scale height
-          const frequencyHeight = scaledValue * middleBoost * (canvas.height * 0.45);
+          const frequencyHeight = scaledValue * (canvas.height * 0.5);
 
           // Minimal base for subtle movement
           const baseWave = Math.sin(i * 0.05 + time) * 0.05 + 0.05;
-          const baseHeight = baseWave * 12;
+          const baseHeight = baseWave * 15;
 
           // Combine with minimal base
           barHeight = Math.max(frequencyHeight, baseHeight);
