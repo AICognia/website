@@ -103,9 +103,13 @@ const Dentists: React.FC = () => {
         <meta name="description" content="Never miss a patient call again. 7-day free trial. No credit card required." />
         <meta name="robots" content="noindex, nofollow" />
         <style>{`
-          @keyframes wave-move {
-            0%, 100% { transform: scaleY(0.5); }
-            50% { transform: scaleY(1); }
+          @keyframes wave-height {
+            0%, 100% { height: 30%; }
+            50% { height: 100%; }
+          }
+          @keyframes wave-slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
           }
         `}</style>
       </Helmet>
@@ -118,13 +122,89 @@ const Dentists: React.FC = () => {
 
         {/* Content */}
         <div className="relative z-10">
-          {/* Hero Section - Simplified */}
-          <section className="relative overflow-hidden py-12 lg:py-20">
+          {/* Hero Section - Mobile Optimized */}
+          <section className="relative overflow-hidden py-8 lg:py-20">
             <div className="absolute inset-0 bg-black/40" />
 
-            <div className="relative container mx-auto px-6 lg:px-12 max-w-6xl">
-              {/* Center aligned content */}
-              <div className="text-center max-w-4xl mx-auto">
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl">
+              {/* Mobile: Compact, Form-First Layout */}
+              <div className="lg:hidden space-y-6">
+                {/* Free Trial Badge */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-center"
+                >
+                  <div className="inline-block px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                    <span className="text-xs font-semibold text-cyan-400">
+                      7-Day Free Trial • No Card Required
+                    </span>
+                  </div>
+                </motion.div>
+
+                {/* Compact Headline */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="text-4xl font-thin leading-tight text-center"
+                >
+                  Never Miss a{' '}
+                  <span className="text-cyan-400">Patient Call</span>
+                </motion.h1>
+
+                {/* Mobile 3 Value Props - Compact Grid */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="grid grid-cols-3 gap-3"
+                >
+                  {[
+                    { icon: FaPhone, text: '24/7 AI' },
+                    { icon: FaCalendarCheck, text: '+20% Bookings' },
+                    { icon: FaCheckCircle, text: '-66% No-Shows' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex flex-col items-center gap-2 bg-black/30 border border-white/5 rounded-xl p-3">
+                      <item.icon className="text-cyan-400 text-sm" />
+                      <p className="text-white text-xs font-medium text-center leading-tight">{item.text}</p>
+                    </div>
+                  ))}
+                </motion.div>
+
+                {/* Mobile CTA - Scroll to Form */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  <a
+                    href="#trial"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-white hover:bg-neutral-100 text-black text-base font-semibold rounded-xl transition-colors shadow-lg"
+                  >
+                    Start Free Trial
+                    <FaArrowRight className="text-sm" />
+                  </a>
+                </motion.div>
+
+                {/* Trust Badge */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="text-xs text-gray-400 text-center"
+                >
+                  Trusted by 50+ U.S. Dental Practices
+                </motion.p>
+              </div>
+
+              {/* Desktop: Original Layout */}
+              <div className="hidden lg:block text-center max-w-4xl mx-auto">
                 {/* Free Trial Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -336,22 +416,22 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* Trial Form - Single CTA */}
-          <section id="trial-form" className="relative py-16 lg:py-24 border-t border-white/5">
+          {/* Trial Form - Mobile Optimized */}
+          <section id="trial-form" className="relative py-12 lg:py-24 border-t border-white/5">
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60" />
-            <div className="relative container mx-auto px-6 lg:px-12">
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
               <div className="max-w-xl mx-auto">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="text-center mb-12"
+                  className="text-center mb-8 lg:mb-12"
                 >
-                  <h2 className="text-4xl lg:text-5xl font-thin text-white mb-4">
+                  <h2 className="text-3xl lg:text-5xl font-thin text-white mb-3 lg:mb-4">
                     Start Your <span className="text-cyan-400">Free Trial</span>
                   </h2>
-                  <p className="text-gray-400">No credit card required • 7-day free trial</p>
+                  <p className="text-sm lg:text-base text-gray-400">No credit card required • 7-day free trial</p>
                 </motion.div>
 
                 <motion.div
@@ -360,7 +440,7 @@ const Dentists: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="bg-black/50 border border-white/10 rounded-2xl p-8 lg:p-10 backdrop-blur-sm">
+                  <div className="bg-black/50 border border-white/10 rounded-2xl p-6 lg:p-10 backdrop-blur-sm">
                     <AnimatePresence mode="wait">
                       {!isSubmitted ? (
                         <motion.div
@@ -532,20 +612,35 @@ const Dentists: React.FC = () => {
                   {/* Audio Player */}
                   <div className="space-y-6">
                     {/* Waveform Visualization */}
-                    <div className="flex items-center justify-center gap-1 h-24 bg-black/50 rounded-2xl p-6">
-                      {[4, 12, 8, 16, 10, 14, 6, 18, 12, 16, 8, 14, 6, 18, 10, 16, 8, 14, 12, 18, 10, 14, 8, 16, 12, 18].map((height, i) => (
-                        <div
-                          key={i}
-                          className={`w-1.5 rounded-full transition-all origin-bottom ${
-                            isPlaying ? 'bg-cyan-400' : 'bg-cyan-400/30'
-                          }`}
-                          style={{
-                            height: `${height * 2}px`,
-                            animation: isPlaying ? `wave-move ${0.6 + (i % 3) * 0.2}s ease-in-out infinite` : 'none',
-                            animationDelay: `${i * 0.05}s`
-                          }}
-                        />
-                      ))}
+                    <div className="relative h-24 bg-black/50 rounded-2xl overflow-hidden">
+                      <div className="absolute inset-0 flex items-center px-6">
+                        <div className="flex items-center gap-1 h-full">
+                          {/* Create double set for seamless loop */}
+                          {[...Array(2)].map((_, setIndex) => (
+                            <div
+                              key={setIndex}
+                              className="flex items-center gap-1 h-full"
+                              style={{
+                                animation: isPlaying ? 'wave-slide 3s linear infinite' : 'none'
+                              }}
+                            >
+                              {[8, 16, 12, 20, 10, 18, 14, 22, 16, 12, 18, 10, 20, 14, 16, 12, 22, 18, 14, 20].map((heightPercent, i) => (
+                                <div
+                                  key={i}
+                                  className={`w-1.5 rounded-full transition-all self-center ${
+                                    isPlaying ? 'bg-cyan-400' : 'bg-cyan-400/30'
+                                  }`}
+                                  style={{
+                                    animation: isPlaying ? `wave-height ${0.8 + (i % 4) * 0.2}s ease-in-out infinite` : 'none',
+                                    animationDelay: `${i * 0.08}s`,
+                                    height: `${heightPercent}%`
+                                  }}
+                                />
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
 
                     {/* Controls */}
