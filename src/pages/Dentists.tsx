@@ -32,6 +32,7 @@ const Dentists: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showAudioModal, setShowAudioModal] = useState(false);
   const [showStickyCTA, setShowStickyCTA] = useState(false);
+  const [stickyDismissed, setStickyDismissed] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
@@ -40,12 +41,15 @@ const Dentists: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const heroHeight = window.innerHeight * 0.8;
-      setShowStickyCTA(window.scrollY > heroHeight);
+      // Only show sticky if user hasn't manually dismissed it
+      if (!stickyDismissed) {
+        setShowStickyCTA(window.scrollY > heroHeight);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [stickyDismissed]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -897,7 +901,10 @@ const Dentists: React.FC = () => {
                       <FaArrowRight className="text-sm" />
                     </a>
                     <button
-                      onClick={() => setShowStickyCTA(false)}
+                      onClick={() => {
+                        setShowStickyCTA(false);
+                        setStickyDismissed(true);
+                      }}
                       className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
                       aria-label="Close"
                     >
