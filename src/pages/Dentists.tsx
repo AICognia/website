@@ -430,7 +430,7 @@ const Dentists: React.FC = () => {
             <div className="absolute inset-0 bg-black/20" />
             <div className="relative container mx-auto px-6 lg:px-12">
               <p className="text-center text-sm text-gray-400">
-                <span className="text-cyan-400">HIPAA-Compliant</span> • <span className="text-cyan-400">SOC 2 Type II</span> • <span className="text-cyan-400">U.S.-Based</span>
+                <span className="text-cyan-400">HIPAA-Compliant</span> • <span className="text-cyan-400">U.S.-Based</span>
               </p>
             </div>
           </section>
@@ -442,13 +442,13 @@ const Dentists: React.FC = () => {
               <div className="text-center mb-12">
                 <div className="inline-block mb-4">
                   <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
-                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">How It Works</span>
+                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">Benefits</span>
                   </div>
                 </div>
                 <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
-                  Get Started in 3 Simple Steps
+                  What You Get With Cognia AI
                 </h2>
-                <p className="text-sm text-gray-400">From setup to live calls in 24–48 hours</p>
+                <p className="text-sm text-gray-400">Real outcomes that transform your practice</p>
               </div>
 
               <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
