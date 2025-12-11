@@ -171,7 +171,7 @@ const Dentists: React.FC = () => {
 
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl">
               {/* Mobile: Compact, Form-First Layout */}
-              <div className="lg:hidden space-y-6">
+              <div className="lg:hidden space-y-10">
                 {/* Free Trial Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -249,10 +249,10 @@ const Dentists: React.FC = () => {
                     { icon: FaCalendarCheck, title: '20% More Bookings', subtitle: 'AI books directly into your calendar.' },
                     { icon: FaCheckCircle, title: '66% Fewer No-Shows', subtitle: 'Automatic confirmation calls.' },
                   ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-2 bg-black/30 border border-white/5 rounded-xl p-4">
-                      <item.icon className="text-cyan-400 text-lg" />
+                    <div key={i} className="flex flex-col items-center gap-3 bg-black/30 border border-white/5 rounded-xl p-5">
+                      <item.icon className="text-cyan-400 text-xl" />
                       <p className="text-white text-xs font-semibold text-center leading-tight">{item.title}</p>
-                      <p className="text-gray-300/70 text-[11px] text-center leading-snug">{item.subtitle}</p>
+                      <p className="text-gray-200/85 text-sm text-center leading-relaxed">{item.subtitle}</p>
                     </div>
                   ))}
                 </motion.div>
@@ -311,20 +311,20 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="grid grid-cols-1 gap-5 pt-10"
+                  className="grid grid-cols-1 gap-6 pt-10"
                 >
                   {[
                     { icon: FaPlug, text: 'Seamless PMS Integration', subtext: 'Syncs with every dental PMS.', badge: true },
-                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included.' },
-                    { icon: FaBolt, text: 'Plug-and-Play Setup', subtext: 'No training, no hardware.' },
+                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included.', badge: true },
+                    { icon: FaBolt, text: 'Plug-and-Play Setup', subtext: 'No training, no hardware.', badge: true },
                   ].map((item, i) => (
-                    <div key={i} className={`flex flex-col items-center gap-3 bg-black/20 border rounded-lg p-5 text-center hover:scale-[1.015] hover:shadow-lg transition-all duration-150 ease-out cursor-pointer ${item.badge ? 'border-cyan-400/30 shadow-cyan-400/10 hover:shadow-cyan-400/20 hover:border-cyan-400/40' : 'border-white/5 hover:shadow-cyan-400/15 hover:border-cyan-400/20'}`}>
-                      <div className={`w-11 h-11 rounded-full flex items-center justify-center ${item.badge ? 'bg-cyan-400/15 border-2 border-cyan-400/40 shadow-lg shadow-cyan-400/30' : 'bg-cyan-400/10 border border-cyan-400/30 shadow-md shadow-cyan-400/28'}`}>
-                        <item.icon className="text-lg text-cyan-400" />
+                    <div key={i} className={`flex flex-col items-center gap-4 bg-black/20 border rounded-lg p-6 text-center hover:scale-[1.015] hover:shadow-lg transition-all duration-150 ease-out cursor-pointer ${item.badge ? 'border-cyan-400/30 shadow-cyan-400/10 hover:shadow-cyan-400/20 hover:border-cyan-400/40' : 'border-white/5 hover:shadow-cyan-400/15 hover:border-cyan-400/20'}`}>
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center ${item.badge ? 'bg-cyan-400/15 border-2 border-cyan-400/40 shadow-lg shadow-cyan-400/30' : 'bg-cyan-400/10 border border-cyan-400/30 shadow-md shadow-cyan-400/28'}`}>
+                        <item.icon className="text-xl text-cyan-400" />
                       </div>
                       <div>
-                        <p className="text-[15px] font-semibold text-white leading-tight mb-1">{item.text}</p>
-                        <p className="text-xs text-gray-400 leading-tight">{item.subtext}</p>
+                        <p className="text-base font-semibold text-white leading-tight mb-2">{item.text}</p>
+                        <p className="text-sm text-gray-300/80 leading-relaxed">{item.subtext}</p>
                       </div>
                     </div>
                   ))}
@@ -410,13 +410,13 @@ const Dentists: React.FC = () => {
                     { icon: FaCalendarCheck, title: '20% More Bookings', subtitle: 'AI books directly into your calendar.' },
                     { icon: FaCheckCircle, title: '66% Fewer No-Shows', subtitle: 'Automatic confirmation calls.' },
                   ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-3">
+                    <div key={i} className="flex flex-col items-center gap-4">
                       <div className="w-16 h-16 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center">
                         <item.icon className="text-cyan-400 text-2xl" />
                       </div>
                       <div className="text-center">
-                        <p className="text-white font-semibold text-lg mb-1">{item.title}</p>
-                        <p className="text-gray-300/80 text-sm leading-relaxed">{item.subtitle}</p>
+                        <p className="text-white font-semibold text-lg mb-2">{item.title}</p>
+                        <p className="text-gray-200/90 text-base leading-loose max-w-[200px]">{item.subtitle}</p>
                       </div>
                     </div>
                   ))}
@@ -546,10 +546,10 @@ const Dentists: React.FC = () => {
                     </div>
 
                     {/* Title - Better hierarchy */}
-                    <h3 className="text-2xl font-semibold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-200">{item.title}</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4 group-hover:text-cyan-400 transition-colors duration-200">{item.title}</h3>
 
                     {/* Description - More readable */}
-                    <p className="text-base text-gray-400 leading-relaxed">{item.description}</p>
+                    <p className="text-lg text-gray-300/85 leading-loose max-w-xs mx-auto">{item.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -612,10 +612,10 @@ const Dentists: React.FC = () => {
           </section>
 
           {/* 3-Step Infographic - Mobile Version - Final Polish */}
-          <section className="relative py-14 border-y border-white/5 lg:hidden">
+          <section className="relative py-16 border-y border-white/5 lg:hidden">
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative container mx-auto px-4 sm:px-6">
-              <div className="space-y-8">
+              <div className="space-y-6">
                 {[
                   {
                     step: '1',
@@ -639,20 +639,20 @@ const Dentists: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="relative bg-black/30 border border-white/[0.03] rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[160px]"
+                    className="relative bg-black/30 border border-white/[0.03] rounded-2xl p-8 text-center flex flex-col items-center justify-center"
                   >
                     {/* Step Number Badge - Solid clean design */}
-                    <div className="relative w-20 h-20 mb-5 flex items-center justify-center">
+                    <div className="relative w-20 h-20 mb-6 flex items-center justify-center">
                       <div className="relative w-20 h-20 bg-cyan-400/10 border-2 border-cyan-400/40 rounded-full flex items-center justify-center">
                         <span className="relative text-4xl font-bold text-cyan-400">{item.step}</span>
                       </div>
                     </div>
 
                     {/* Title - Larger for clarity */}
-                    <h3 className="text-2xl font-semibold text-white mb-2">{item.title}</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-3">{item.title}</h3>
 
                     {/* Description - Centered */}
-                    <p className="text-sm text-gray-400">{item.description}</p>
+                    <p className="text-base text-gray-300/80 leading-relaxed">{item.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -660,7 +660,7 @@ const Dentists: React.FC = () => {
           </section>
 
           {/* FAQ Section - Compact & High Impact */}
-          <section className="relative py-16 lg:py-20">
+          <section className="relative py-20 lg:py-24">
             <div className="absolute inset-0 bg-black/30" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
               <div className="max-w-3xl mx-auto">
@@ -669,14 +669,14 @@ const Dentists: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="text-center mb-12"
+                  className="text-center mb-16 lg:mb-20"
                 >
-                  <h2 className="text-3xl lg:text-4xl font-thin text-white mb-2">
+                  <h2 className="text-3xl lg:text-5xl font-thin text-white mb-3">
                     Common <span className="text-cyan-400">Questions</span>
                   </h2>
                 </motion.div>
 
-                <div className="space-y-6">
+                <div className="space-y-5 lg:space-y-6">
                   {[
                     {
                       q: 'Does this replace my receptionist?',
@@ -700,14 +700,14 @@ const Dentists: React.FC = () => {
                       className="bg-black/30 border border-white/10 rounded-xl p-6 lg:p-8"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-8 h-8 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center">
-                          <FaQuestionCircle className="text-cyan-400 text-sm" />
+                        <div className="flex-shrink-0 w-9 h-9 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center">
+                          <FaQuestionCircle className="text-cyan-400 text-base" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-base lg:text-lg font-semibold text-white mb-2">
+                          <h3 className="text-lg lg:text-xl font-semibold text-white mb-3">
                             {faq.q}
                           </h3>
-                          <p className="text-sm lg:text-base text-gray-400 leading-relaxed">
+                          <p className="text-base lg:text-lg text-gray-300/85 leading-relaxed">
                             {faq.a}
                           </p>
                         </div>
