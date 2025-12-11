@@ -146,7 +146,7 @@ const Dentists: React.FC = () => {
 
                   {/* Sub-headline - Brighter and clearer */}
                   <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
-                    AI receptionist for dental practices that answers every call, books appointments, and eliminates no-shows — automatically.
+                    AI receptionist for dental practices that answers every call, books appointments, and eliminates no-shows—automatically.
                   </p>
 
                   {/* Stats - Clean Grid */}
@@ -343,17 +343,22 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* Trust Logos Section - NEW */}
-          <section className="relative py-12 border-y border-white/5">
+          {/* Trust Logos Section - Enhanced Visibility */}
+          <section className="relative py-16 border-y border-white/10">
             <div className="absolute inset-0 bg-black/20" />
             <div className="relative container mx-auto px-6 lg:px-12">
-              <p className="text-center text-xs text-gray-500 uppercase tracking-widest mb-6">
+              <p className="text-center text-xs text-gray-400 uppercase tracking-widest mb-10">
                 Trusted by Practices Across the U.S.
               </p>
-              <div className="flex items-center justify-center gap-8 lg:gap-12 flex-wrap opacity-40">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
                 {['My Smile Miami', 'SF Dental Arts', 'Union Square Dental', 'Financial District Dentistry', 'Pacific Heights Smiles', 'SOMA Dental Care'].map((name, i) => (
-                  <div key={i} className="text-gray-600 text-xs lg:text-sm font-medium">
-                    {name}
+                  <div
+                    key={i}
+                    className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-center hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                  >
+                    <div className="text-gray-300 text-xs font-medium leading-tight">
+                      {name}
+                    </div>
                   </div>
                 ))}
               </div>
