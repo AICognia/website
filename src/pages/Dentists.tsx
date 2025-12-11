@@ -10,7 +10,10 @@ import {
   FaTimes,
   FaStar,
   FaPlay,
-  FaPause
+  FaPause,
+  FaBolt,
+  FaPlug,
+  FaGlobe
 } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
 import DynamicTechBackground from '../components/DynamicTechBackground';
@@ -280,13 +283,13 @@ const Dentists: React.FC = () => {
                   className="grid grid-cols-1 gap-5 pt-10"
                 >
                   {[
-                    { icon: '⚡', text: 'No training required', subtext: 'Plug & play setup' },
-                    { icon: '🔗', text: 'Works with your system', subtext: 'Existing scheduling software' },
-                    { icon: '🌐', text: 'English & Spanish', subtext: 'Bilingual support included' },
+                    { icon: FaBolt, text: 'No training required', subtext: 'Plug & play setup' },
+                    { icon: FaPlug, text: 'Works with your system', subtext: 'Existing scheduling software' },
+                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included' },
                   ].map((item, i) => (
                     <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-lg p-5 text-center hover:scale-[1.015] hover:shadow-lg hover:shadow-cyan-400/15 hover:border-cyan-400/20 transition-all duration-150 ease-out cursor-pointer">
                       <div className="w-11 h-11 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/28">
-                        <span className="text-xl">{item.icon}</span>
+                        <item.icon className="text-lg text-cyan-400" />
                       </div>
                       <div>
                         <p className="text-[15px] font-semibold text-white leading-tight mb-1">{item.text}</p>
@@ -390,13 +393,13 @@ const Dentists: React.FC = () => {
                   className="grid grid-cols-3 gap-6 max-w-3xl mx-auto pt-10"
                 >
                   {[
-                    { icon: '⚡', text: 'No training required', subtext: 'Plug & play setup' },
-                    { icon: '🔗', text: 'Works with your system', subtext: 'Existing scheduling software' },
-                    { icon: '🌐', text: 'English & Spanish', subtext: 'Bilingual support included' },
+                    { icon: FaBolt, text: 'No training required', subtext: 'Plug & play setup' },
+                    { icon: FaPlug, text: 'Works with your system', subtext: 'Existing scheduling software' },
+                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included' },
                   ].map((item, i) => (
                     <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-xl p-5 text-center hover:scale-[1.015] hover:shadow-lg hover:shadow-cyan-400/15 hover:border-cyan-400/20 transition-all duration-150 ease-out cursor-pointer">
                       <div className="w-14 h-14 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/28">
-                        <span className="text-2xl">{item.icon}</span>
+                        <item.icon className="text-xl text-cyan-400" />
                       </div>
                       <div>
                         <p className="text-base font-semibold text-white leading-tight mb-1">{item.text}</p>
@@ -462,18 +465,18 @@ const Dentists: React.FC = () => {
                 {[
                   {
                     step: '1',
-                    title: 'Connect Your Phone',
-                    description: '24-hour setup • No hardware'
+                    title: 'Build Your AI',
+                    description: '1-week set up • No hardware'
                   },
                   {
                     step: '2',
-                    title: 'AI Answers 24/7',
-                    description: 'Books patients instantly'
+                    title: 'Connect Your Phone',
+                    description: 'No Training required'
                   },
                   {
                     step: '3',
-                    title: 'Get More Revenue',
-                    description: '10-20% increase guaranteed'
+                    title: 'AI Answers 24/7',
+                    description: 'Get More Revenue'
                   }
                 ].map((item, index) => (
                   <motion.div
@@ -564,18 +567,18 @@ const Dentists: React.FC = () => {
                 {[
                   {
                     step: '1',
-                    title: 'Connect Your Phone',
-                    description: '24-hour setup • No hardware'
+                    title: 'Build Your AI',
+                    description: '1-week set up • No hardware'
                   },
                   {
                     step: '2',
-                    title: 'AI Answers 24/7',
-                    description: 'Books patients instantly'
+                    title: 'Connect Your Phone',
+                    description: 'No Training required'
                   },
                   {
                     step: '3',
-                    title: 'Get More Revenue',
-                    description: '10-20% increase guaranteed'
+                    title: 'AI Answers 24/7',
+                    description: 'Get More Revenue'
                   }
                 ].map((item, index) => (
                   <motion.div
