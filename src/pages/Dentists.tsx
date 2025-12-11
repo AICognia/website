@@ -246,8 +246,8 @@ const Dentists: React.FC = () => {
                 >
                   {[
                     { icon: FaPhone, title: '24/7 Scheduling', subtitle: 'Never miss a patient' },
-                    { icon: FaCalendarCheck, title: '+20% Bookings', subtitle: 'AI books automatically' },
-                    { icon: FaCheckCircle, title: '-66% No-Shows', subtitle: 'Auto confirmations' },
+                    { icon: FaCalendarCheck, title: '20% More Bookings', subtitle: 'AI books automatically' },
+                    { icon: FaCheckCircle, title: '66% Less No-Shows', subtitle: 'Auto confirmations' },
                   ].map((item, i) => (
                     <div key={i} className="flex flex-col items-center gap-2.5 bg-black/30 border border-white/5 rounded-xl p-4">
                       <item.icon className="text-cyan-400 text-2xl" />
@@ -884,9 +884,10 @@ const Dentists: React.FC = () => {
             >
               <div className="bg-black/95 backdrop-blur-xl border-t border-cyan-400/30 shadow-2xl shadow-cyan-400/20">
                 <div className="container mx-auto px-4 py-4">
-                  <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center justify-between gap-3">
                     <div className="flex-1">
-                      <p className="text-xs text-gray-400 mb-1">No credit card • Setup in 24h</p>
+                      <p className="text-xs text-gray-300 leading-tight">HIPAA-compliant</p>
+                      <p className="text-xs text-gray-300 leading-tight">1-Week Free Trial</p>
                     </div>
                     <a
                       href="#trial-form"
@@ -894,11 +895,18 @@ const Dentists: React.FC = () => {
                         e.preventDefault();
                         document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                       }}
-                      className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black font-semibold rounded-xl transition-all shadow-lg shadow-cyan-400/20 hover:shadow-xl hover:shadow-cyan-400/30 animate-pulse-glow"
+                      className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black font-semibold rounded-xl transition-all shadow-lg shadow-cyan-400/20 hover:shadow-xl hover:shadow-cyan-400/30"
                     >
                       Start Free Trial
                       <FaArrowRight className="text-sm" />
                     </a>
+                    <button
+                      onClick={() => setShowStickyCTA(false)}
+                      className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                      aria-label="Close"
+                    >
+                      <FaTimes className="text-lg" />
+                    </button>
                   </div>
                 </div>
               </div>
