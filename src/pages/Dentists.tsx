@@ -488,8 +488,8 @@ const Dentists: React.FC = () => {
                 >
                   {[
                     { icon: FaPlug, text: 'Seamless PMS Integration', subtext: 'Syncs with every dental PMS.', badge: true },
-                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included.', badge: false },
-                    { icon: FaBolt, text: 'Plug-and-Play Setup', subtext: 'No training, no hardware.', badge: false },
+                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included.', badge: true },
+                    { icon: FaBolt, text: 'Plug-and-Play Setup', subtext: 'No training, no hardware.', badge: true },
                   ].map((item, i) => (
                     <div key={i} className={`flex flex-col items-center gap-3 bg-black/20 border rounded-xl p-5 text-center hover:scale-[1.015] hover:shadow-lg transition-all duration-150 ease-out cursor-pointer ${item.badge ? 'border-cyan-400/30 shadow-cyan-400/10 hover:shadow-cyan-400/20 hover:border-cyan-400/40' : 'border-white/5 hover:shadow-cyan-400/15 hover:border-cyan-400/20'}`}>
                       <div className={`w-14 h-14 rounded-full flex items-center justify-center ${item.badge ? 'bg-cyan-400/15 border-2 border-cyan-400/40 shadow-lg shadow-cyan-400/30' : 'bg-cyan-400/10 border border-cyan-400/30 shadow-md shadow-cyan-400/28'}`}>
