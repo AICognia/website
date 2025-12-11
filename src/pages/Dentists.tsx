@@ -233,7 +233,7 @@ const Dentists: React.FC = () => {
 
                   {/* Risk-Reversal Strip */}
                   <p className="text-xs text-center text-gray-400/70 leading-relaxed">
-                    No contracts • Cancel anytime • 24/7 support • HIPAA-compliant
+                    No contracts • Cancel anytime • 24/7 support
                   </p>
                 </motion.div>
 
