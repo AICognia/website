@@ -368,12 +368,12 @@ const Dentists: React.FC = () => {
                   Your AI receptionist that answers every call & books every patient — 24/7.
                 </motion.p>
 
-                {/* Primary CTA - Moved up */}
+                {/* Primary CTA - Centered between subheadline and pricing */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.17 }}
-                  className="space-y-2 flex flex-col items-center"
+                  className="flex flex-col items-center"
                 >
                   <a
                     href="#trial-form"
@@ -386,24 +386,24 @@ const Dentists: React.FC = () => {
                     Start Free Trial
                     <FaArrowRight className="text-sm" />
                   </a>
-
-                  {/* Pricing */}
-                  <p className="text-base text-gray-200 font-bold mt-1">
-                    From $199/month • Setup in 24 hours
-                  </p>
-
-                  {/* Risk-Reversal Strip */}
-                  <p className="text-xs text-center text-gray-400/60 leading-relaxed mt-0.5">
-                    No contracts • Cancel anytime • 24/7 support
-                  </p>
                 </motion.div>
+
+                {/* Pricing */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-base text-gray-200 font-bold"
+                >
+                  From $199/month • Setup in 24 hours
+                </motion.p>
 
                 {/* 3 Value Props */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto"
+                  className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto"
                 >
                   {[
                     { icon: FaPhone, title: '24/7 Patient Scheduling', subtitle: 'Never miss a new patient again.' },
@@ -422,17 +422,6 @@ const Dentists: React.FC = () => {
                   ))}
                 </motion.div>
 
-                {/* Trust badge - Polished */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="py-8 border-t border-b border-white/10 mb-4"
-                >
-                  <p className="text-lg text-gray-200 font-bold tracking-wide italic drop-shadow-[0_0_8px_rgba(6,182,212,0.3)]">
-                    Trusted by 50+ U.S. Dental Practices
-                  </p>
-                </motion.div>
 
                 {/* Audio Demo - Elevated */}
                 <motion.div
@@ -557,7 +546,7 @@ const Dentists: React.FC = () => {
           </section>
 
           {/* Single Testimonial - Polished */}
-          <section className="relative py-16 lg:py-32">
+          <section className="relative py-16 lg:py-22">
             <div className="absolute inset-0 bg-black/20" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
               <motion.div
@@ -720,38 +709,16 @@ const Dentists: React.FC = () => {
           </section>
 
           {/* Trial Form - Mobile Optimized */}
-          <section id="trial-form" className="relative py-12 lg:py-24 border-t border-white/5 lg:border-t-0">
+          <section id="trial-form" className="relative py-12 lg:py-16 border-t border-white/5 lg:border-t-0">
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
               <div className="max-w-xl mx-auto">
-                {/* Trust Indicators */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 mb-10 lg:mb-14"
-                >
-                  {[
-                    { icon: FaStar, text: 'Trusted by 50+ U.S. dental practices' },
-                    { icon: FaShieldAlt, text: 'HIPAA-compliant infrastructure' },
-                    { icon: FaClock, text: 'Setup in 24 hours' }
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3 justify-center sm:justify-start">
-                      <div className="w-9 h-9 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center flex-shrink-0">
-                        <item.icon className="text-cyan-400 text-sm" />
-                      </div>
-                      <p className="text-xs lg:text-sm text-gray-300 font-medium">{item.text}</p>
-                    </div>
-                  ))}
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className="text-center mb-8 lg:mb-12"
+                  className="text-center mb-8 lg:mb-10"
                 >
                   <h2 className="text-3xl lg:text-5xl font-thin text-white mb-3 lg:mb-4">
                     Start Your <span className="text-cyan-400">Free Trial</span>
