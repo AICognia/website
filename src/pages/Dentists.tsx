@@ -127,57 +127,36 @@ const Dentists: React.FC = () => {
             <div className="absolute inset-0 bg-black/40" />
 
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl">
-              {/* Mobile: Compact, Form-First Layout */}
-              <div className="lg:hidden space-y-6">
-                {/* Free Trial Badge */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-center"
-                >
-                  <div className="inline-block px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
-                    <span className="text-xs font-semibold text-cyan-400">
-                      7-Day Free Trial • No Card Required
-                    </span>
-                  </div>
-                </motion.div>
-
-                {/* Compact Headline */}
+              {/* Mobile: Ultra-Optimized for Conversion */}
+              <div className="lg:hidden space-y-5">
+                {/* Compact Headline - Bigger Impact */}
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-4xl font-thin leading-tight text-center"
+                  transition={{ duration: 0.6 }}
+                  className="text-[2.5rem] font-bold leading-[1.1] text-center tracking-tight"
                 >
                   Never Miss a{' '}
                   <span className="text-cyan-400">Patient Call</span>
                 </motion.h1>
 
-                {/* Mobile 3 Value Props - Compact Grid */}
+                {/* Subheadline - Clear Value */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="text-base text-gray-300 text-center leading-relaxed px-2"
+                >
+                  AI answers 24/7. You get 20% more bookings.
+                  <br />
+                  <span className="text-cyan-400 font-medium">No credit card. Free for 7 days.</span>
+                </motion.p>
+
+                {/* Primary CTA - Above the Fold */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="grid grid-cols-3 gap-3"
-                >
-                  {[
-                    { icon: FaPhone, text: '24/7 AI' },
-                    { icon: FaCalendarCheck, text: '+20% Bookings' },
-                    { icon: FaCheckCircle, text: '-66% No-Shows' },
-                  ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-2 bg-black/30 border border-white/5 rounded-xl p-3">
-                      <item.icon className="text-cyan-400 text-sm" />
-                      <p className="text-white text-xs font-medium text-center leading-tight">{item.text}</p>
-                    </div>
-                  ))}
-                </motion.div>
-
-                {/* Mobile CTA - Scroll to Form */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
                 >
                   <a
                     href="#trial"
@@ -185,21 +164,38 @@ const Dentists: React.FC = () => {
                       e.preventDefault();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-white hover:bg-neutral-100 text-black text-base font-semibold rounded-xl transition-colors shadow-lg"
+                    className="flex items-center justify-center gap-2 w-full px-8 py-5 bg-cyan-400 hover:bg-cyan-300 text-black text-lg font-bold rounded-2xl transition-all shadow-xl shadow-cyan-400/20"
                   >
                     Start Free Trial
-                    <FaArrowRight className="text-sm" />
+                    <FaArrowRight className="text-base" />
                   </a>
                 </motion.div>
 
-                {/* Trust Badge */}
+                {/* Trust Signals - Compact */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="flex items-center justify-center gap-4 text-xs text-gray-400"
+                >
+                  <div className="flex items-center gap-1.5">
+                    <FaCheckCircle className="text-cyan-400 text-sm" />
+                    <span>No card needed</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <FaCheckCircle className="text-cyan-400 text-sm" />
+                    <span>Setup in 48hrs</span>
+                  </div>
+                </motion.div>
+
+                {/* Social Proof */}
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="text-xs text-gray-400 text-center"
+                  className="text-xs text-gray-500 text-center pt-2"
                 >
-                  Trusted by 50+ U.S. Dental Practices
+                  Join 50+ dental practices using Cognia AI
                 </motion.p>
               </div>
 
@@ -285,8 +281,8 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* Audio Demo Card - Premium Minimal */}
-          <section className="relative py-8">
+          {/* Audio Demo Card - Premium Minimal - Desktop Only */}
+          <section className="relative py-8 hidden lg:block">
             <div className="absolute inset-0 bg-black/20" />
             <div className="relative container mx-auto px-6 lg:px-12">
               <motion.div
@@ -331,8 +327,8 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* 3-Step Infographic */}
-          <section className="relative py-16 lg:py-24 border-y border-white/5">
+          {/* 3-Step Infographic - Desktop Only */}
+          <section className="relative py-16 lg:py-24 border-y border-white/5 hidden lg:block">
             <div className="absolute inset-0 bg-black/30" />
             <div className="relative container mx-auto px-6 lg:px-12 max-w-5xl">
               <div className="grid md:grid-cols-3 gap-12">
@@ -349,7 +345,7 @@ const Dentists: React.FC = () => {
                   },
                   {
                     step: '3',
-                    title: 'You get more revenue instantly',
+                    title: 'More Revenue Instantly',
                     description: '10-20% increase in booked appointments.'
                   }
                 ].map((item, index) => (
@@ -377,10 +373,10 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* Single Testimonial */}
-          <section className="relative py-16 lg:py-24">
+          {/* Single Testimonial - Mobile Optimized */}
+          <section className="relative py-10 lg:py-24">
             <div className="absolute inset-0 bg-black/20" />
-            <div className="relative container mx-auto px-6 lg:px-12">
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -388,27 +384,32 @@ const Dentists: React.FC = () => {
                 viewport={{ once: true }}
                 className="max-w-3xl mx-auto"
               >
-                <div className="bg-black/50 border border-white/10 rounded-2xl p-8 lg:p-12">
+                <div className="bg-black/50 border border-white/10 rounded-2xl p-6 lg:p-12">
                   {/* Star Rating */}
-                  <div className="flex items-center gap-1 mb-6">
+                  <div className="flex items-center gap-1 mb-4 lg:mb-6">
                     {[...Array(5)].map((_, i) => (
-                      <FaStar key={i} className="text-cyan-400 text-lg" />
+                      <FaStar key={i} className="text-cyan-400 text-base lg:text-lg" />
                     ))}
                   </div>
 
-                  {/* Quote */}
-                  <p className="text-lg text-gray-300 leading-relaxed mb-8">
-                    "Working with Cognia has been a game-changer for our office. If a patient requests an appointment over the weekend, Cognia schedules it for us — no backlog, no delays."
+                  {/* Quote - Shorter on Mobile */}
+                  <p className="text-base lg:text-lg text-gray-300 leading-relaxed mb-6 lg:mb-8">
+                    <span className="lg:hidden">
+                      "Cognia schedules weekend appointments automatically — no backlog, no delays. It's been a game-changer."
+                    </span>
+                    <span className="hidden lg:block">
+                      "Working with Cognia has been a game-changer for our office. If a patient requests an appointment over the weekend, Cognia schedules it for us — no backlog, no delays."
+                    </span>
                   </p>
 
                   {/* Author */}
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-cyan-400/10 rounded-full flex items-center justify-center">
-                      <span className="text-cyan-400 font-bold text-lg">JO</span>
+                  <div className="flex items-center gap-3 lg:gap-4">
+                    <div className="w-10 h-10 lg:w-12 lg:h-12 bg-cyan-400/10 rounded-full flex items-center justify-center">
+                      <span className="text-cyan-400 font-bold text-base lg:text-lg">JO</span>
                     </div>
                     <div>
-                      <div className="font-medium text-white">Jacob Ojalvo</div>
-                      <div className="text-sm text-gray-400">My Smile Miami</div>
+                      <div className="font-medium text-white text-sm lg:text-base">Jacob Ojalvo</div>
+                      <div className="text-xs lg:text-sm text-gray-400">My Smile Miami</div>
                     </div>
                   </div>
                 </div>
