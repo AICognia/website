@@ -79,7 +79,7 @@ const Dentists: React.FC = () => {
     setError('');
   };
 
-  // Canvas waveform animation
+  // Canvas waveform animation - runs immediately on mount
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -115,8 +115,9 @@ const Dentists: React.FC = () => {
           // Create mirror: 0->29->0, both sides use same data
           const mirrorIndex = i < halfBars ? i : (bars - 1 - i);
 
-          // Map to energetic frequency range (first 40 bins for compact visualization)
-          const dataIndex = Math.floor(mirrorIndex * (40 / halfBars));
+          // Map across full frequency spectrum with boost for mid frequencies
+          // Use bins 5-50 to skip lowest bass and get vocal/instrument range
+          const dataIndex = Math.floor(5 + (mirrorIndex * (45 / halfBars)));
 
           // Get frequency data
           const rawFrequency = dataArray[dataIndex];
@@ -124,15 +125,18 @@ const Dentists: React.FC = () => {
           // Normalize to 0-1
           const normalizedValue = rawFrequency / 255;
 
-          // Gentle curve for natural dynamics
-          const scaledValue = Math.pow(normalizedValue, 0.9);
+          // Apply curve with boost
+          const scaledValue = Math.pow(normalizedValue, 0.7);
 
-          // Moderate scaling
-          const frequencyHeight = scaledValue * (canvas.height * 0.4);
+          // Boost middle frequencies (where vocals/instruments are)
+          const middleBoost = i >= 15 && i <= 45 ? 1.3 : 1.0;
+
+          // Scale height
+          const frequencyHeight = scaledValue * middleBoost * (canvas.height * 0.45);
 
           // Minimal base for subtle movement
           const baseWave = Math.sin(i * 0.05 + time) * 0.05 + 0.05;
-          const baseHeight = baseWave * 10;
+          const baseHeight = baseWave * 12;
 
           // Combine with minimal base
           barHeight = Math.max(frequencyHeight, baseHeight);
@@ -160,7 +164,7 @@ const Dentists: React.FC = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isPlaying]);
+  }, [isPlaying, showAudioModal]); // Added showAudioModal to restart when modal opens
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -525,8 +529,55 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
+          {/* 3-Step Infographic - Mobile Version */}
+          <section className="relative py-12 border-y border-white/5 lg:hidden">
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="relative container mx-auto px-4 sm:px-6">
+              <div className="space-y-6">
+                {[
+                  {
+                    step: '1',
+                    title: 'We connect your phone line',
+                    description: 'Simple 24-hour setup. No hardware needed.'
+                  },
+                  {
+                    step: '2',
+                    title: 'AI answers & books patients',
+                    description: 'Every call answered instantly, 24/7/365.'
+                  },
+                  {
+                    step: '3',
+                    title: 'More Revenue Instantly',
+                    description: '10-20% increase in booked appointments.'
+                  }
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="relative bg-black/30 border border-white/5 rounded-2xl p-5"
+                  >
+                    {/* Step Number Badge */}
+                    <div className="flex items-center gap-4 mb-3">
+                      <div className="w-10 h-10 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg font-bold text-cyan-400">{item.step}</span>
+                      </div>
+                      {/* Title */}
+                      <h3 className="text-lg font-medium text-white">{item.title}</h3>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-sm text-gray-400 pl-14">{item.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
           {/* Trial Form - Mobile Optimized */}
-          <section id="trial-form" className="relative py-12 lg:py-24 border-t border-white/5">
+          <section id="trial-form" className="relative py-12 lg:py-24 border-t border-white/5 lg:border-t-0">
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
               <div className="max-w-xl mx-auto">
