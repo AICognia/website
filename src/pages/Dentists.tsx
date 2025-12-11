@@ -223,27 +223,16 @@ const Dentists: React.FC = () => {
                   </p>
                 </motion.div>
 
-                {/* Trust logos row - Increased visibility */}
+                {/* Trust badge */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="py-4"
+                  className="py-2"
                 >
-                  <p className="text-xs text-gray-400 text-center mb-3 font-medium">
+                  <p className="text-xs text-gray-400 text-center font-medium">
                     Trusted by 50+ U.S. Dental Practices
                   </p>
-                  {/* Logo placeholders */}
-                  <div className="flex items-center justify-center gap-4 flex-wrap">
-                    {[1, 2, 3, 4, 5, 6].map((i) => (
-                      <div
-                        key={i}
-                        className="w-16 h-10 bg-white/5 rounded border border-white/10 flex items-center justify-center"
-                      >
-                        <div className="w-12 h-6 bg-white/10 rounded"></div>
-                      </div>
-                    ))}
-                  </div>
                 </motion.div>
 
                 {/* Mobile Audio Demo Section - Higher visibility */}
@@ -278,21 +267,26 @@ const Dentists: React.FC = () => {
                   </button>
                 </motion.div>
 
-                {/* Micro-benefits - Friction reducers */}
+                {/* Micro-benefits - Friction reducers - Redesigned */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="space-y-2 pt-4"
+                  className="grid grid-cols-1 gap-3 pt-4"
                 >
                   {[
-                    { icon: '⚡', text: 'No training required — plug & play setup' },
-                    { icon: '🔗', text: 'Works with your existing scheduling system' },
-                    { icon: '🌐', text: 'English & Spanish support available' },
+                    { icon: '⚡', text: 'No training required', subtext: 'Plug & play setup' },
+                    { icon: '🔗', text: 'Works with your system', subtext: 'Existing scheduling software' },
+                    { icon: '🌐', text: 'English & Spanish', subtext: 'Bilingual support included' },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-gray-400">
-                      <span className="text-sm">{item.icon}</span>
-                      <span>{item.text}</span>
+                    <div key={i} className="flex items-center gap-3 bg-black/20 border border-white/5 rounded-lg p-3">
+                      <div className="w-10 h-10 bg-cyan-400/10 border border-cyan-400/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg">{item.icon}</span>
+                      </div>
+                      <div className="flex-1 text-left">
+                        <p className="text-xs font-medium text-white leading-tight">{item.text}</p>
+                        <p className="text-xs text-gray-500 leading-tight">{item.subtext}</p>
+                      </div>
                     </div>
                   ))}
                 </motion.div>
@@ -371,44 +365,38 @@ const Dentists: React.FC = () => {
                   </p>
                 </motion.div>
 
-                {/* Trust logos row */}
+                {/* Trust badge */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="pt-6"
+                  className="pt-4"
                 >
-                  <p className="text-sm text-gray-400 mb-4 font-medium">
+                  <p className="text-sm text-gray-400 font-medium">
                     Trusted by 50+ U.S. Dental Practices
                   </p>
-                  {/* Logo placeholders */}
-                  <div className="flex items-center justify-center gap-6 flex-wrap">
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                      <div
-                        key={i}
-                        className="w-20 h-12 bg-white/5 rounded border border-white/10 flex items-center justify-center"
-                      >
-                        <div className="w-16 h-8 bg-white/10 rounded"></div>
-                      </div>
-                    ))}
-                  </div>
                 </motion.div>
 
-                {/* Micro-benefits */}
+                {/* Micro-benefits - Redesigned */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.35 }}
-                  className="flex items-center justify-center gap-8 text-sm text-gray-400 pt-4"
+                  className="grid grid-cols-3 gap-4 max-w-3xl mx-auto pt-6"
                 >
                   {[
-                    { icon: '⚡', text: 'No training required' },
-                    { icon: '🔗', text: 'Works with your existing system' },
-                    { icon: '🌐', text: 'English & Spanish support' },
+                    { icon: '⚡', text: 'No training required', subtext: 'Plug & play setup' },
+                    { icon: '🔗', text: 'Works with your system', subtext: 'Existing scheduling software' },
+                    { icon: '🌐', text: 'English & Spanish', subtext: 'Bilingual support included' },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <span>{item.icon}</span>
-                      <span>{item.text}</span>
+                    <div key={i} className="flex flex-col items-center gap-2 bg-black/20 border border-white/5 rounded-xl p-4 text-center">
+                      <div className="w-12 h-12 bg-cyan-400/10 border border-cyan-400/20 rounded-full flex items-center justify-center">
+                        <span className="text-xl">{item.icon}</span>
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-white leading-tight mb-1">{item.text}</p>
+                        <p className="text-xs text-gray-500 leading-tight">{item.subtext}</p>
+                      </div>
                     </div>
                   ))}
                 </motion.div>
@@ -580,19 +568,18 @@ const Dentists: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="relative bg-black/30 border border-white/10 rounded-2xl p-6"
+                    className="relative bg-black/30 border border-white/10 rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[140px]"
                   >
-                    {/* Step Number Badge - Enhanced */}
-                    <div className="flex items-center gap-4 mb-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/40 rounded-full flex items-center justify-center flex-shrink-0 shadow-md shadow-cyan-400/10">
-                        <span className="text-xl font-bold text-cyan-400">{item.step}</span>
-                      </div>
-                      {/* Title */}
-                      <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                    {/* Step Number Badge - Enhanced & Centered */}
+                    <div className="w-14 h-14 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/40 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/10 mb-4">
+                      <span className="text-2xl font-bold text-cyan-400">{item.step}</span>
                     </div>
 
-                    {/* Description - More scannable */}
-                    <p className="text-sm text-gray-400 pl-16">{item.description}</p>
+                    {/* Title - Centered */}
+                    <h3 className="text-xl font-semibold text-white mb-2">{item.title}</h3>
+
+                    {/* Description - Centered */}
+                    <p className="text-sm text-gray-400">{item.description}</p>
                   </motion.div>
                 ))}
               </div>
