@@ -102,31 +102,54 @@ const Dentists: React.FC = () => {
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const barWidth = canvas.width / bars;
       const centerY = canvas.height / 2;
+      const barWidth = canvas.width / bars;
 
       for (let i = 0; i < bars; i++) {
+        const time = Date.now() / 1000;
         let barHeight;
 
         if (analyserRef.current && isPlaying) {
-          // Map bar index to frequency data
-          const dataIndex = Math.floor(i * (bufferLength / bars));
+          // MIRRORED DISTRIBUTION - Mirror frequency data from center outward
+          const halfBars = bars / 2;
+          // Create mirror: 0->29->0, both sides use same data
+          const mirrorIndex = i < halfBars ? i : (bars - 1 - i);
+
+          // Map to energetic frequency range (first 40 bins for compact visualization)
+          const dataIndex = Math.floor(mirrorIndex * (40 / halfBars));
+
+          // Get frequency data
           const rawFrequency = dataArray[dataIndex];
+
+          // Normalize to 0-1
           const normalizedValue = rawFrequency / 255;
-          const scaledValue = Math.pow(normalizedValue, 0.8);
-          barHeight = scaledValue * (canvas.height * 0.45);
+
+          // Gentle curve for natural dynamics
+          const scaledValue = Math.pow(normalizedValue, 0.9);
+
+          // Moderate scaling
+          const frequencyHeight = scaledValue * (canvas.height * 0.4);
+
+          // Minimal base for subtle movement
+          const baseWave = Math.sin(i * 0.05 + time) * 0.05 + 0.05;
+          const baseHeight = baseWave * 10;
+
+          // Combine with minimal base
+          barHeight = Math.max(frequencyHeight, baseHeight);
         } else {
-          // Idle animation
-          const time = Date.now() / 1000;
-          const wave = Math.sin(i * 0.15 + time * 2) * 0.2 + 0.2;
-          barHeight = wave * (canvas.height / 3) + 8;
+          // Idle wave animation
+          const wave = Math.sin(i * 0.1 + time * 2) * 0.3 + 0.3;
+          barHeight = wave * (canvas.height / 4) + 10;
         }
 
-        const x = i * barWidth + barWidth / 2;
+        const x = i * barWidth;
 
-        // Draw bar
-        ctx.fillStyle = isPlaying ? '#06B6D4' : '#06B6D4';
-        ctx.fillRect(x - barWidth / 3, centerY - barHeight, barWidth * 0.6, barHeight * 2);
+        // Mirror effect - draw from center (top half + bottom half)
+        ctx.fillStyle = '#06B6D4';
+        // Top half
+        ctx.fillRect(x, centerY - barHeight, barWidth - 1, barHeight);
+        // Bottom half (mirror)
+        ctx.fillRect(x, centerY, barWidth - 1, barHeight);
       }
     };
 
