@@ -163,26 +163,14 @@ const Dentists: React.FC = () => {
                     ))}
                   </div>
 
-                  {/* CTAs - Updated */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <a
-                      href="https://calendly.com/emrebenian-cogniaai/30min"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => {
-                        conversionTracker.trackButtonClick('Schedule a Demo - Hero', 'dentists_page');
-                      }}
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black text-sm font-medium rounded-lg transition-colors"
-                    >
-                      Schedule a Demo
-                      <FaArrowRight className="text-xs" />
-                    </a>
+                  {/* CTA - Talk to AI Only */}
+                  <div className="pt-4">
                     <a
                       href="tel:+16163263328"
                       className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 hover:bg-white/5 text-white text-sm font-medium rounded-lg transition-colors"
                     >
                       <FaPhone className="text-xs" />
-                      Talk to AI
+                      Talk to AI Now
                     </a>
                   </div>
 
@@ -213,8 +201,11 @@ const Dentists: React.FC = () => {
                           initial={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                         >
-                          {/* Form Header - Conversion Optimized */}
+                          {/* Form Header - Urgency Added */}
                           <div className="mb-8">
+                            <div className="inline-block mb-3 px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                              <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">Only 3 demo slots left this week</span>
+                            </div>
                             <h2 className="text-2xl font-thin text-white mb-2">
                               Schedule a Demo
                             </h2>
@@ -363,91 +354,7 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* Security & Compliance Badge Row - NEW */}
-          <section className="relative py-12">
-            <div className="absolute inset-0 bg-black/20" />
-            <div className="relative container mx-auto px-6 lg:px-12">
-              <div className="flex items-center justify-center gap-12 max-w-4xl mx-auto">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-cyan-400/10 rounded-full flex items-center justify-center">
-                    <FaShieldAlt className="text-cyan-400 text-sm" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium text-white">HIPAA Compliant</div>
-                    <div className="text-xs text-gray-500">Full compliance</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-cyan-400/10 rounded-full flex items-center justify-center">
-                    <FaLock className="text-cyan-400 text-sm" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium text-white">Encrypted Call Data</div>
-                    <div className="text-xs text-gray-500">End-to-end security</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-cyan-400/10 rounded-full flex items-center justify-center">
-                    <FaServer className="text-cyan-400 text-sm" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium text-white">U.S.-Based Infrastructure</div>
-                    <div className="text-xs text-gray-500">Domestic servers</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* How It Works Section - NEW */}
-          <section className="relative py-16 lg:py-24">
-            <div className="absolute inset-0 bg-black/30" />
-            <div className="relative container mx-auto px-6 lg:px-12">
-              <div className="text-center mb-12">
-                <div className="inline-block mb-4">
-                  <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
-                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">How It Works</span>
-                  </div>
-                </div>
-                <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
-                  Get Started in 3 Simple Steps
-                </h2>
-                <p className="text-sm text-gray-400">From setup to live calls in 24–48 hours</p>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                {[
-                  {
-                    step: '1',
-                    title: 'We Build Your AI Receptionist',
-                    description: 'Custom AI trained on your practice protocols, services, and scheduling preferences.'
-                  },
-                  {
-                    step: '2',
-                    title: 'We Connect to Your PMS',
-                    description: 'Seamless integration with OpenDental, Dentrix, or EagleSoft. Real-time calendar sync.'
-                  },
-                  {
-                    step: '3',
-                    title: 'We Go Live',
-                    description: 'Your AI starts answering calls 24/7. Setup complete in 24–48 hours.'
-                  }
-                ].map((item, index) => (
-                  <TechCard key={index}>
-                    <div className="text-center p-4">
-                      <div className="w-12 h-12 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span className="text-xl font-bold text-cyan-400">{item.step}</span>
-                      </div>
-                      <h3 className="text-lg font-medium text-white mb-3">{item.title}</h3>
-                      <p className="text-sm text-gray-400 leading-relaxed">{item.description}</p>
-                    </div>
-                  </TechCard>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Features Section - Enhanced with ROI Focus */}
+          {/* Features Section - Enhanced with ROI Focus - MOVED TO #2 */}
           <section className="relative py-16 lg:py-24">
             <div className="absolute inset-0 bg-black/30" />
             <div className="relative container mx-auto px-6 lg:px-12">
@@ -518,6 +425,64 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
+          {/* Security & Compliance Badge Row - Simplified */}
+          <section className="relative py-12 border-b border-white/5">
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="relative container mx-auto px-6 lg:px-12">
+              <p className="text-center text-sm text-gray-400">
+                <span className="text-cyan-400">HIPAA-Compliant</span> • <span className="text-cyan-400">SOC 2 Type II</span> • <span className="text-cyan-400">U.S.-Based</span>
+              </p>
+            </div>
+          </section>
+
+          {/* How It Works Section - Outcome-Focused */}
+          <section className="relative py-16 lg:py-24">
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="relative container mx-auto px-6 lg:px-12">
+              <div className="text-center mb-12">
+                <div className="inline-block mb-4">
+                  <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">How It Works</span>
+                  </div>
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
+                  Get Started in 3 Simple Steps
+                </h2>
+                <p className="text-sm text-gray-400">From setup to live calls in 24–48 hours</p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {[
+                  {
+                    step: '1',
+                    title: 'Your Patients Get Answered 24/7',
+                    description: 'No more missed calls or voicemails. Every patient reaches a live AI receptionist instantly, day or night.'
+                  },
+                  {
+                    step: '2',
+                    title: 'Your Calendar Stays Full',
+                    description: 'AI books appointments directly into your PMS in real-time. More bookings, less manual work.'
+                  },
+                  {
+                    step: '3',
+                    title: 'Your No-Shows Drop 66%',
+                    description: 'Automated confirmation calls reach patients 24-48 hours before appointments. Reschedule or confirm automatically.'
+                  }
+                ].map((item, index) => (
+                  <TechCard key={index}>
+                    <div className="text-center p-4">
+                      <div className="w-12 h-12 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span className="text-xl font-bold text-cyan-400">{item.step}</span>
+                      </div>
+                      <h3 className="text-lg font-medium text-white mb-3">{item.title}</h3>
+                      <p className="text-sm text-gray-400 leading-relaxed">{item.description}</p>
+                    </div>
+                  </TechCard>
+                ))}
+              </div>
+            </div>
+          </section>
+
           {/* Testimonial Section - Tightened */}
           <section className="relative py-16 lg:py-24">
             <div className="absolute inset-0 bg-black/30" />
@@ -578,7 +543,7 @@ const Dentists: React.FC = () => {
                   { value: '3–5×', label: 'ROI in 12 months' },
                   { value: '10–20%', label: 'increase in booked patients' },
                   { value: '66%', label: 'reduction in no-shows' },
-                  { value: '0', label: 'missed calls' }
+                  { value: '100%', label: 'call answer rate' }
                 ].map((item, index) => (
                   <div key={index} className="text-center">
                     <div className="text-4xl sm:text-5xl font-thin text-cyan-400 mb-2">
