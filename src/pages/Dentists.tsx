@@ -312,34 +312,28 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
-                  className="mt-8"
+                  className="mt-6"
                 >
                   <button
                     onClick={() => setShowAudioModal(true)}
-                    className="w-full bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border-2 border-cyan-400/40 rounded-2xl p-8 hover:border-cyan-400/60 hover:from-cyan-500/20 hover:to-blue-500/20 transition-all duration-300 group shadow-lg shadow-cyan-500/20"
+                    className="w-full bg-black/30 border border-white/10 rounded-xl p-5 hover:border-white/20 hover:bg-black/40 transition-all duration-200 group"
                   >
-                    <div className="flex flex-col items-center gap-4">
+                    <div className="flex items-center justify-center gap-3">
                       {/* Play Icon */}
-                      <div className="w-20 h-20 bg-cyan-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-400/30 group-hover:scale-110 transition-all duration-300">
-                        <svg className="w-8 h-8 text-cyan-400 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="w-10 h-10 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-400/20 transition-colors">
+                        <svg className="w-4 h-4 text-cyan-400 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </div>
 
                       {/* Text Content - Centered */}
                       <div className="text-center">
-                        <h3 className="text-lg font-semibold text-white mb-2">
+                        <h3 className="text-sm font-medium text-white">
                           Hear It in Action
                         </h3>
-                        <p className="text-sm text-gray-300">
-                          Listen to our AI receptionist
+                        <p className="text-xs text-gray-400">
+                          30 sec demo
                         </p>
-                      </div>
-
-                      {/* Pulse indicator */}
-                      <div className="flex items-center gap-2 text-xs text-cyan-400 font-medium">
-                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-                        <span>30 seconds demo</span>
                       </div>
                     </div>
                   </button>
