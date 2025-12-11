@@ -460,8 +460,8 @@ const Dentists: React.FC = () => {
           {/* 3-Step Infographic - Desktop Only - Polished */}
           <section className="relative py-20 lg:py-28 border-y border-white/5 hidden lg:block">
             <div className="absolute inset-0 bg-black/40" />
-            <div className="relative container mx-auto px-6 lg:px-12 max-w-5xl">
-              <div className="grid md:grid-cols-3 gap-24">
+            <div className="relative container mx-auto px-6 lg:px-12 max-w-6xl">
+              <div className="grid md:grid-cols-3 gap-8">
                 {[
                   {
                     step: '1',
@@ -485,24 +485,22 @@ const Dentists: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="text-center relative"
+                    className="relative bg-black/30 border border-white/5 rounded-2xl p-8 text-center hover:bg-black/40 hover:border-cyan-400/20 transition-all duration-200 group"
                   >
-                    {/* Step Number - Clean design */}
-                    <div className="mb-10">
-                      <div className="relative w-28 h-28 mx-auto flex items-center justify-center">
-                        {/* Main circle with solid background */}
-                        <div className="relative w-28 h-28 bg-gradient-to-br from-cyan-500/30 via-cyan-400/25 to-blue-500/30 border-2 border-cyan-400/60 rounded-full flex items-center justify-center shadow-xl shadow-cyan-400/40">
-                          <div className="absolute inset-0 bg-black/20 rounded-full"></div>
-                          <span className="relative text-4xl font-bold text-cyan-300 drop-shadow-lg">{item.step}</span>
+                    {/* Step Number - Solid clean design */}
+                    <div className="mb-6">
+                      <div className="relative w-24 h-24 mx-auto flex items-center justify-center">
+                        <div className="relative w-24 h-24 bg-cyan-400/10 border-2 border-cyan-400/40 rounded-full flex items-center justify-center group-hover:border-cyan-400/60 group-hover:bg-cyan-400/15 transition-all duration-200">
+                          <span className="relative text-4xl font-bold text-cyan-400">{item.step}</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Title - Larger for clarity */}
-                    <h3 className="text-3xl font-semibold text-white mb-3">{item.title}</h3>
+                    {/* Title - Better hierarchy */}
+                    <h3 className="text-2xl font-semibold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-200">{item.title}</h3>
 
-                    {/* Description - More concise */}
-                    <p className="text-sm text-gray-400 leading-relaxed">{item.description}</p>
+                    {/* Description - More readable */}
+                    <p className="text-base text-gray-400 leading-relaxed">{item.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -589,12 +587,10 @@ const Dentists: React.FC = () => {
                     viewport={{ once: true }}
                     className="relative bg-black/30 border border-white/[0.03] rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[160px]"
                   >
-                    {/* Step Number Badge - Clean design */}
+                    {/* Step Number Badge - Solid clean design */}
                     <div className="relative w-20 h-20 mb-5 flex items-center justify-center">
-                      {/* Main circle with solid background */}
-                      <div className="relative w-20 h-20 bg-gradient-to-br from-cyan-500/30 via-cyan-400/25 to-blue-500/30 border-2 border-cyan-400/60 rounded-full flex items-center justify-center shadow-xl shadow-cyan-400/40">
-                        <div className="absolute inset-0 bg-black/20 rounded-full"></div>
-                        <span className="relative text-4xl font-bold text-cyan-300 drop-shadow-lg">{item.step}</span>
+                      <div className="relative w-20 h-20 bg-cyan-400/10 border-2 border-cyan-400/40 rounded-full flex items-center justify-center">
+                        <span className="relative text-4xl font-bold text-cyan-400">{item.step}</span>
                       </div>
                     </div>
 
