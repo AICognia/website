@@ -343,22 +343,20 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* Trust Logos Section - Enhanced Visibility */}
-          <section className="relative py-16 border-y border-white/10">
-            <div className="absolute inset-0 bg-black/20" />
+          {/* Trust Logos Section - Enterprise Quality */}
+          <section className="relative py-20 border-y border-white/5">
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40" />
             <div className="relative container mx-auto px-6 lg:px-12">
-              <p className="text-center text-xs text-gray-400 uppercase tracking-widest mb-10">
-                Trusted by Practices Across the U.S.
+              <p className="text-center text-[11px] text-gray-500 font-medium uppercase tracking-[0.2em] mb-12">
+                Trusted by Leading Dental Practices
               </p>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
-                {['My Smile Miami', 'SF Dental Arts', 'Union Square Dental', 'Financial District Dentistry', 'Pacific Heights Smiles', 'SOMA Dental Care'].map((name, i) => (
+              <div className="flex items-center justify-center gap-6 lg:gap-10 flex-wrap max-w-5xl mx-auto">
+                {['My Smile Miami', 'SF Dental Arts', 'Union Square Dental', 'Financial District Dentistry', 'Pacific Heights Smiles'].map((name, i) => (
                   <div
                     key={i}
-                    className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-center hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                    className="text-gray-400 hover:text-gray-200 text-sm font-medium tracking-tight transition-colors duration-200 px-2"
                   >
-                    <div className="text-gray-300 text-xs font-medium leading-tight">
-                      {name}
-                    </div>
+                    {name}
                   </div>
                 ))}
               </div>
@@ -520,42 +518,6 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* Results Section - Enhanced Emotional Impact */}
-          <section className="relative py-16 lg:py-24">
-            <div className="absolute inset-0 bg-black/30" />
-            <div className="relative container mx-auto px-6 lg:px-12">
-              <div className="text-center mb-12">
-                <div className="inline-block mb-4">
-                  <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
-                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">Results</span>
-                  </div>
-                </div>
-                <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
-                  Proven Impact
-                </h2>
-                <p className="text-sm text-gray-400">Based on live performance data from U.S. dental practices</p>
-              </div>
-
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-16">
-                {[
-                  { value: '3–5×', label: 'ROI in 12 months' },
-                  { value: '10–20%', label: 'increase in booked patients' },
-                  { value: '66%', label: 'reduction in no-shows' },
-                  { value: '93%', label: 'fewer missed calls' }
-                ].map((item, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-4xl sm:text-5xl font-thin text-cyan-400 mb-2">
-                      {item.value}
-                    </div>
-                    <div className="text-xs text-gray-500 uppercase tracking-wider">
-                      {item.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
           {/* Testimonial Section - Tightened */}
           <section className="relative py-16 lg:py-24">
             <div className="absolute inset-0 bg-black/30" />
@@ -591,6 +553,42 @@ const Dentists: React.FC = () => {
                     </div>
                   </div>
                 </TechCard>
+              </div>
+            </div>
+          </section>
+
+          {/* Results Section - Enhanced Emotional Impact */}
+          <section className="relative py-16 lg:py-24">
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="relative container mx-auto px-6 lg:px-12">
+              <div className="text-center mb-12">
+                <div className="inline-block mb-4">
+                  <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">Results</span>
+                  </div>
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
+                  Proven Impact
+                </h2>
+                <p className="text-sm text-gray-400">Based on live performance data from U.S. dental practices</p>
+              </div>
+
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-16">
+                {[
+                  { value: '3–5×', label: 'ROI in 12 months' },
+                  { value: '10–20%', label: 'increase in booked patients' },
+                  { value: '66%', label: 'reduction in no-shows' },
+                  { value: '0', label: 'missed calls' }
+                ].map((item, index) => (
+                  <div key={index} className="text-center">
+                    <div className="text-4xl sm:text-5xl font-thin text-cyan-400 mb-2">
+                      {item.value}
+                    </div>
+                    <div className="text-xs text-gray-500 uppercase tracking-wider">
+                      {item.label}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
