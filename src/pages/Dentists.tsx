@@ -283,9 +283,9 @@ const Dentists: React.FC = () => {
                   className="grid grid-cols-1 gap-5 pt-10"
                 >
                   {[
-                    { icon: FaBolt, text: 'No training required', subtext: 'Plug & play setup' },
-                    { icon: FaPlug, text: 'Works with your system', subtext: 'Existing scheduling software' },
+                    { icon: FaPlug, text: 'PMS Integration', subtext: 'Existing scheduling software' },
                     { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included' },
+                    { icon: FaBolt, text: 'No training required', subtext: 'Plug & play setup' },
                   ].map((item, i) => (
                     <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-lg p-5 text-center hover:scale-[1.015] hover:shadow-lg hover:shadow-cyan-400/15 hover:border-cyan-400/20 transition-all duration-150 ease-out cursor-pointer">
                       <div className="w-11 h-11 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/28">
@@ -393,9 +393,9 @@ const Dentists: React.FC = () => {
                   className="grid grid-cols-3 gap-6 max-w-3xl mx-auto pt-10"
                 >
                   {[
-                    { icon: FaBolt, text: 'No training required', subtext: 'Plug & play setup' },
-                    { icon: FaPlug, text: 'Works with your system', subtext: 'Existing scheduling software' },
+                    { icon: FaPlug, text: 'PMS Integration', subtext: 'Existing scheduling software' },
                     { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included' },
+                    { icon: FaBolt, text: 'No training required', subtext: 'Plug & play setup' },
                   ].map((item, i) => (
                     <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-xl p-5 text-center hover:scale-[1.015] hover:shadow-lg hover:shadow-cyan-400/15 hover:border-cyan-400/20 transition-all duration-150 ease-out cursor-pointer">
                       <div className="w-14 h-14 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/28">
@@ -465,7 +465,7 @@ const Dentists: React.FC = () => {
                 {[
                   {
                     step: '1',
-                    title: 'Build Your AI',
+                    title: 'We Build Your AI',
                     description: '1-week set up • No hardware'
                   },
                   {
@@ -476,7 +476,7 @@ const Dentists: React.FC = () => {
                   {
                     step: '3',
                     title: 'AI Answers 24/7',
-                    description: 'Get More Revenue'
+                    description: 'You Get More Appointments'
                   }
                 ].map((item, index) => (
                   <motion.div
@@ -487,12 +487,12 @@ const Dentists: React.FC = () => {
                     viewport={{ once: true }}
                     className="text-center relative"
                   >
-                    {/* Step Number - Final polish with enhanced neon ring */}
+                    {/* Step Number - Perfect circle background */}
                     <div className="mb-10">
-                      <div className="relative w-27 h-27 mx-auto">
+                      <div className="relative w-28 h-28 mx-auto">
                         {/* Neon ring glow - enhanced */}
                         <div className="absolute inset-0 bg-cyan-400/25 rounded-full blur-md"></div>
-                        <div className="relative w-27 h-27 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/30">
+                        <div className="relative w-28 h-28 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/30">
                           <span className="text-4xl font-bold text-cyan-400">{item.step}</span>
                         </div>
                       </div>
@@ -567,7 +567,7 @@ const Dentists: React.FC = () => {
                 {[
                   {
                     step: '1',
-                    title: 'Build Your AI',
+                    title: 'We Build Your AI',
                     description: '1-week set up • No hardware'
                   },
                   {
@@ -578,7 +578,7 @@ const Dentists: React.FC = () => {
                   {
                     step: '3',
                     title: 'AI Answers 24/7',
-                    description: 'Get More Revenue'
+                    description: 'You Get More Appointments'
                   }
                 ].map((item, index) => (
                   <motion.div
@@ -589,11 +589,11 @@ const Dentists: React.FC = () => {
                     viewport={{ once: true }}
                     className="relative bg-black/30 border border-white/[0.03] rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[160px]"
                   >
-                    {/* Step Number Badge - Enhanced neon ring */}
-                    <div className="relative w-18 h-18 mb-5">
+                    {/* Step Number Badge - Perfect circle background */}
+                    <div className="relative w-20 h-20 mb-5">
                       {/* Neon ring glow - enhanced */}
                       <div className="absolute inset-0 bg-cyan-400/25 rounded-full blur-md"></div>
-                      <div className="relative w-18 h-18 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/25">
+                      <div className="relative w-20 h-20 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/25">
                         <span className="text-4xl font-bold text-cyan-400">{item.step}</span>
                       </div>
                     </div>
