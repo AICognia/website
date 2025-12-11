@@ -89,9 +89,8 @@ const Demo: React.FC = () => {
         conversionTracker.trackDemoBooking('demo_page');
         conversionTracker.trackButtonClick('Lead Form Submitted', 'demo_page');
         setIsSubmitted(true);
-        setTimeout(() => {
-          window.open('https://calendly.com/emrebenian-cogniaai/30min', '_blank');
-        }, 1000);
+        // Open Calendly immediately for better UX
+        window.open('https://calendly.com/emrebenian-cogniaai/30min', '_blank');
       } else {
         setError('Something went wrong. Please try again.');
       }
