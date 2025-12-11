@@ -102,6 +102,12 @@ const Dentists: React.FC = () => {
         <title>AI Receptionist for Dental Practices | Cognia AI</title>
         <meta name="description" content="Never miss a patient call again. 7-day free trial. No credit card required." />
         <meta name="robots" content="noindex, nofollow" />
+        <style>{`
+          @keyframes wave-move {
+            0%, 100% { transform: scaleY(0.5); }
+            50% { transform: scaleY(1); }
+          }
+        `}</style>
       </Helmet>
 
       <div className="min-h-screen relative bg-black text-white">
@@ -285,13 +291,6 @@ const Dentists: React.FC = () => {
 
                     {/* Description */}
                     <p className="text-sm text-gray-400">{item.description}</p>
-
-                    {/* Connector Arrow */}
-                    {index < 2 && (
-                      <div className="hidden md:block absolute top-8 left-[calc(33.333%+2rem)] w-[calc(33.333%-4rem)]">
-                        <div className="h-[2px] bg-gradient-to-r from-cyan-400/30 to-cyan-400/10" />
-                      </div>
-                    )}
                   </motion.div>
                 ))}
               </div>
@@ -537,12 +536,13 @@ const Dentists: React.FC = () => {
                       {[4, 12, 8, 16, 10, 14, 6, 18, 12, 16, 8, 14, 6, 18, 10, 16, 8, 14, 12, 18, 10, 14, 8, 16, 12, 18].map((height, i) => (
                         <div
                           key={i}
-                          className={`w-1.5 rounded-full transition-all duration-300 ${
-                            isPlaying ? 'bg-cyan-400 animate-pulse' : 'bg-cyan-400/30'
+                          className={`w-1.5 rounded-full transition-all origin-bottom ${
+                            isPlaying ? 'bg-cyan-400' : 'bg-cyan-400/30'
                           }`}
                           style={{
                             height: `${height * 2}px`,
-                            animationDelay: `${i * 50}ms`
+                            animation: isPlaying ? `wave-move ${0.6 + (i % 3) * 0.2}s ease-in-out infinite` : 'none',
+                            animationDelay: `${i * 0.05}s`
                           }}
                         />
                       ))}
