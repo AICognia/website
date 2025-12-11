@@ -171,7 +171,7 @@ const Dentists: React.FC = () => {
 
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl">
               {/* Mobile: Compact, Form-First Layout */}
-              <div className="lg:hidden space-y-10">
+              <div className="lg:hidden space-y-8">
                 {/* Free Trial Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -207,12 +207,12 @@ const Dentists: React.FC = () => {
                   AI receptionist that books every patient—24/7.
                 </motion.p>
 
-                {/* CTA - Moved up */}
+                {/* CTA - Centered */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.17 }}
-                  className="space-y-2 flex flex-col items-center"
+                  className="flex flex-col items-center"
                 >
                   <a
                     href="#trial-form"
@@ -225,34 +225,34 @@ const Dentists: React.FC = () => {
                     Start Free Trial
                     <FaArrowRight className="text-sm" />
                   </a>
-
-                  {/* Pricing */}
-                  <p className="text-base text-center text-white font-bold mt-1">
-                    From $199/month • Setup in 24 hours
-                  </p>
-
-                  {/* Risk-Reversal Strip */}
-                  <p className="text-xs text-center text-gray-400/60 leading-relaxed mt-0.5">
-                    No contracts • Cancel anytime • 24/7 support
-                  </p>
                 </motion.div>
+
+                {/* Pricing */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-base text-center text-white font-bold"
+                >
+                  From $199/month • Setup in 24 hours
+                </motion.p>
 
                 {/* Mobile 3 Value Props */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="grid grid-cols-3 gap-4 pb-2"
+                  className="grid grid-cols-3 gap-3 pb-2"
                 >
                   {[
-                    { icon: FaPhone, title: '24/7 Patient Scheduling', subtitle: 'Never miss a new patient again.' },
-                    { icon: FaCalendarCheck, title: '20% More Bookings', subtitle: 'AI books directly into your calendar.' },
-                    { icon: FaCheckCircle, title: '66% Fewer No-Shows', subtitle: 'Automatic confirmation calls.' },
+                    { icon: FaPhone, title: '24/7 Scheduling', subtitle: 'Never miss a patient' },
+                    { icon: FaCalendarCheck, title: '+20% Bookings', subtitle: 'AI books automatically' },
+                    { icon: FaCheckCircle, title: '-66% No-Shows', subtitle: 'Auto confirmations' },
                   ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-3 bg-black/30 border border-white/5 rounded-xl p-5">
-                      <item.icon className="text-cyan-400 text-xl" />
-                      <p className="text-white text-xs font-semibold text-center leading-tight">{item.title}</p>
-                      <p className="text-gray-200/85 text-sm text-center leading-relaxed">{item.subtitle}</p>
+                    <div key={i} className="flex flex-col items-center gap-2.5 bg-black/30 border border-white/5 rounded-xl p-4">
+                      <item.icon className="text-cyan-400 text-2xl" />
+                      <p className="text-white text-sm font-semibold text-center leading-tight">{item.title}</p>
+                      <p className="text-gray-200/85 text-xs text-center leading-snug">{item.subtitle}</p>
                     </div>
                   ))}
                 </motion.div>
@@ -561,16 +561,16 @@ const Dentists: React.FC = () => {
 
                 <div className="bg-black/50 border border-white/10 rounded-2xl p-8 lg:p-14 text-center shadow-2xl shadow-black/60">
                   {/* Star Rating - 10% Larger */}
-                  <div className="flex items-center justify-center gap-2.5 mb-6 lg:mb-8">
+                  <div className="flex items-center justify-center gap-2.5 mb-4 lg:mb-8">
                     {[...Array(5)].map((_, i) => (
                       <FaStar key={i} className="text-cyan-400 text-xl lg:text-2xl" />
                     ))}
                   </div>
 
                   {/* Quote - Better line-height */}
-                  <p className="text-[17px] lg:text-xl text-gray-300 leading-loose mb-8 lg:mb-10">
+                  <p className="text-base lg:text-xl text-gray-300 leading-relaxed lg:leading-loose mb-5 lg:mb-10">
                     <span className="lg:hidden">
-                      "Cognia schedules weekend appointments automatically — no backlog, no delays. It's been a game-changer."
+                      "Cognia schedules weekend appointments automatically. No backlog, no delays."
                     </span>
                     <span className="hidden lg:block">
                       "Working with Cognia has been a game-changer for our office. If a patient requests an appointment over the weekend, Cognia schedules it for us — no backlog, no delays."
@@ -578,7 +578,7 @@ const Dentists: React.FC = () => {
                   </p>
 
                   {/* Author */}
-                  <div className="flex flex-col lg:flex-row items-center justify-center gap-3 lg:gap-4 mb-6">
+                  <div className="flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-4 mb-4 lg:mb-6">
                     <div className="w-10 h-10 lg:w-12 lg:h-12 bg-cyan-400/10 rounded-full flex items-center justify-center">
                       <span className="text-cyan-400 font-bold text-base lg:text-lg">JO</span>
                     </div>
@@ -596,6 +596,27 @@ const Dentists: React.FC = () => {
 
                 {/* Gradient accent line bottom */}
                 <div className="h-0.5 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent mt-0"></div>
+              </motion.div>
+
+              {/* CTA Button After Testimonial - Mobile Only */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="flex justify-center mt-10 lg:hidden"
+              >
+                <a
+                  href="#trial-form"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black text-base font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl hover:shadow-cyan-400/30 hover:scale-105"
+                >
+                  Start Free Trial
+                  <FaArrowRight className="text-sm" />
+                </a>
               </motion.div>
             </div>
           </section>
