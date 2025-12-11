@@ -267,7 +267,7 @@ const Dentists: React.FC = () => {
                   </button>
                 </motion.div>
 
-                {/* Micro-benefits - Friction reducers - Redesigned */}
+                {/* Micro-benefits - Friction reducers - Centered */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -279,12 +279,12 @@ const Dentists: React.FC = () => {
                     { icon: '🔗', text: 'Works with your system', subtext: 'Existing scheduling software' },
                     { icon: '🌐', text: 'English & Spanish', subtext: 'Bilingual support included' },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3 bg-black/20 border border-white/5 rounded-lg p-3">
-                      <div className="w-10 h-10 bg-cyan-400/10 border border-cyan-400/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-lg p-4 text-center">
+                      <div className="w-10 h-10 bg-cyan-400/10 border border-cyan-400/20 rounded-full flex items-center justify-center">
                         <span className="text-lg">{item.icon}</span>
                       </div>
-                      <div className="flex-1 text-left">
-                        <p className="text-xs font-medium text-white leading-tight">{item.text}</p>
+                      <div>
+                        <p className="text-sm font-medium text-white leading-tight mb-1">{item.text}</p>
                         <p className="text-xs text-gray-500 leading-tight">{item.subtext}</p>
                       </div>
                     </div>
@@ -475,14 +475,10 @@ const Dentists: React.FC = () => {
                     className="text-center relative"
                   >
                     {/* Step Number - Enhanced */}
-                    <div className="relative mb-8">
+                    <div className="mb-8">
                       <div className="w-20 h-20 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/40 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-cyan-400/20">
                         <span className="text-3xl font-bold text-cyan-400">{item.step}</span>
                       </div>
-                      {/* Connector line */}
-                      {index < 2 && (
-                        <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-cyan-400/30 to-transparent"></div>
-                      )}
                     </div>
 
                     {/* Title - More scannable */}
@@ -507,9 +503,9 @@ const Dentists: React.FC = () => {
                 viewport={{ once: true }}
                 className="max-w-3xl mx-auto"
               >
-                <div className="bg-black/50 border border-white/10 rounded-2xl p-6 lg:p-12">
+                <div className="bg-black/50 border border-white/10 rounded-2xl p-6 lg:p-12 text-center">
                   {/* Star Rating */}
-                  <div className="flex items-center gap-1 mb-4 lg:mb-6">
+                  <div className="flex items-center justify-center gap-1 mb-4 lg:mb-6">
                     {[...Array(5)].map((_, i) => (
                       <FaStar key={i} className="text-cyan-400 text-base lg:text-lg" />
                     ))}
@@ -526,7 +522,7 @@ const Dentists: React.FC = () => {
                   </p>
 
                   {/* Author */}
-                  <div className="flex items-center gap-3 lg:gap-4">
+                  <div className="flex flex-col lg:flex-row items-center justify-center gap-3 lg:gap-4">
                     <div className="w-10 h-10 lg:w-12 lg:h-12 bg-cyan-400/10 rounded-full flex items-center justify-center">
                       <span className="text-cyan-400 font-bold text-base lg:text-lg">JO</span>
                     </div>
