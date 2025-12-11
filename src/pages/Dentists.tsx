@@ -634,8 +634,8 @@ const Dentists: React.FC = () => {
                     answer: 'AI calls patients 24–48 hours before appointments to confirm, reschedule, or cancel. Reduces no-shows from 20% to 7%.'
                   },
                   {
-                    question: 'What if it doesn\'t work?',
-                    answer: '90-day ROI guarantee. If you're not capturing more revenue, we refund 100%. Plus 7-day free trial to test risk-free.'
+                    question: "What if it doesn't work?",
+                    answer: "90-day ROI guarantee. If you're not capturing more revenue, we refund 100%. Plus 7-day free trial to test risk-free."
                   }
                 ].map((faq, index) => (
                   <TechCard key={index}>
