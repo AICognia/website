@@ -110,15 +110,14 @@ const Dentists: React.FC = () => {
         let barHeight;
 
         if (analyserRef.current && isPlaying) {
-          // MIRRORED DISTRIBUTION - Mirror frequency data from edges to center
+          // MIRRORED DISTRIBUTION - Mirror frequency data from center outward
           const halfBars = bars / 2;
 
-          // Create mirror: bar 0 and 59 show same freq, bar 1 and 58 show same freq, etc.
+          // Create mirror: 0->59->0, both sides use same data
           const mirrorIndex = i < halfBars ? i : (bars - 1 - i);
 
-          // Map across energetic frequency range
-          // Use bins 8-70 to cover bass to high frequencies with good energy
-          const dataIndex = Math.floor(8 + (mirrorIndex * (62 / halfBars)));
+          // Map to energetic frequency range (first 50 bins)
+          const dataIndex = Math.floor(mirrorIndex * (50 / halfBars));
 
           // Get frequency data
           const rawFrequency = dataArray[dataIndex];
@@ -127,10 +126,10 @@ const Dentists: React.FC = () => {
           const normalizedValue = rawFrequency / 255;
 
           // Apply curve for better visual response
-          const scaledValue = Math.pow(normalizedValue, 0.65);
+          const scaledValue = Math.pow(normalizedValue, 0.9);
 
-          // Scale height with slight boost
-          const frequencyHeight = scaledValue * (canvas.height * 0.5);
+          // Moderate scaling without over-boosting
+          const frequencyHeight = scaledValue * (canvas.height * 0.45);
 
           // Minimal base for subtle movement
           const baseWave = Math.sin(i * 0.05 + time) * 0.05 + 0.05;
@@ -317,28 +316,31 @@ const Dentists: React.FC = () => {
                 >
                   <button
                     onClick={() => setShowAudioModal(true)}
-                    className="w-full bg-black/40 border border-white/10 rounded-2xl p-6 hover:border-cyan-400/30 hover:bg-black/50 transition-all duration-300 group"
+                    className="w-full bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border-2 border-cyan-400/40 rounded-2xl p-8 hover:border-cyan-400/60 hover:from-cyan-500/20 hover:to-blue-500/20 transition-all duration-300 group shadow-lg shadow-cyan-500/20"
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col items-center gap-4">
                       {/* Play Icon */}
-                      <div className="w-12 h-12 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-400/20 transition-colors">
-                        <svg className="w-5 h-5 text-cyan-400 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="w-20 h-20 bg-cyan-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-400/30 group-hover:scale-110 transition-all duration-300">
+                        <svg className="w-8 h-8 text-cyan-400 ml-1" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </div>
 
-                      {/* Text Content */}
-                      <div className="flex-1 text-left">
-                        <h3 className="text-sm font-medium text-white mb-1">
+                      {/* Text Content - Centered */}
+                      <div className="text-center">
+                        <h3 className="text-lg font-semibold text-white mb-2">
                           Hear It in Action
                         </h3>
-                        <p className="text-xs text-gray-400">
+                        <p className="text-sm text-gray-300">
                           Listen to our AI receptionist
                         </p>
                       </div>
 
-                      {/* Arrow Icon */}
-                      <FaArrowRight className="text-cyan-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity" />
+                      {/* Pulse indicator */}
+                      <div className="flex items-center gap-2 text-xs text-cyan-400 font-medium">
+                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                        <span>30 seconds demo</span>
+                      </div>
                     </div>
                   </button>
                 </motion.div>
