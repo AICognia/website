@@ -16,7 +16,6 @@ import {
 } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
 import DynamicTechBackground from '../components/DynamicTechBackground';
-import TechSection from '../components/TechSection';
 import TechCard from '../components/TechCard';
 
 const Dentists: React.FC = () => {
@@ -106,13 +105,13 @@ const Dentists: React.FC = () => {
           <section className="relative overflow-hidden">
             <div className="absolute inset-0 bg-black/30" />
 
-            <div className="relative container mx-auto px-6 lg:px-12 pt-12 lg:pt-20 pb-20 lg:pb-32">
+            <div className="relative container mx-auto px-6 lg:px-12 pt-8 pb-20 lg:pb-32">
               {/* Trust Badge Strip */}
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex items-center justify-center gap-6 md:gap-8 py-6 border-b border-white/5 mb-16"
+                className="flex items-center justify-center gap-6 md:gap-8 py-4 border-b border-white/5 mb-12"
               >
                 <div className="flex items-center gap-2 text-xs text-gray-500">
                   <FaShieldAlt className="text-cyan-400" />
@@ -342,11 +341,20 @@ const Dentists: React.FC = () => {
           </section>
 
           {/* Features Section */}
-          <TechSection
-            badge="Features"
-            title="Complete AI Receptionist"
-            subtitle="Everything you need to handle patient calls 24/7"
-          >
+          <section className="relative py-16 lg:py-24">
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="relative container mx-auto px-6 lg:px-12">
+              <div className="text-center mb-12">
+                <div className="inline-block mb-4">
+                  <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">Features</span>
+                  </div>
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
+                  Complete AI Receptionist
+                </h2>
+                <p className="text-sm text-gray-400">Everything you need to handle patient calls 24/7</p>
+              </div>
             <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[
                 {
@@ -398,14 +406,24 @@ const Dentists: React.FC = () => {
                 </TechCard>
               ))}
             </div>
-          </TechSection>
+            </div>
+          </section>
 
           {/* Results Section */}
-          <TechSection
-            badge="Results"
-            title="Proven Impact"
-            subtitle="Real results from dental practices"
-          >
+          <section className="relative py-16 lg:py-24">
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="relative container mx-auto px-6 lg:px-12">
+              <div className="text-center mb-12">
+                <div className="inline-block mb-4">
+                  <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">Results</span>
+                  </div>
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
+                  Proven Impact
+                </h2>
+                <p className="text-sm text-gray-400">Real results from dental practices</p>
+              </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-16">
               {[
                 { value: '3-5x', label: 'ROI in Year 1' },
@@ -440,54 +458,66 @@ const Dentists: React.FC = () => {
                   }}
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black font-medium rounded-xl transition-colors"
                 >
-                  Calculate Your ROI
+                  Get Free Demo
                   <FaArrowRight className="text-sm" />
                 </a>
               </div>
             </TechCard>
-          </TechSection>
+            </div>
+          </section>
 
           {/* Social Proof */}
-          <TechSection
-            badge="Testimonials"
-            title="Trusted by Dental Practices"
-            subtitle="Real feedback from real dentists"
-          >
-            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {[
-                {
-                  quote: "We haven't missed a call in 3 months. New patient bookings increased 18% and the AI confirmation calls cut our no-shows in half.",
-                  author: "Dr. Sarah Mitchell",
-                  role: "Smile Dental Care",
-                  location: "Phoenix, AZ"
-                },
-                {
-                  quote: "After-hours emergencies now get handled 24/7. Our AI triages urgency and books emergency slots automatically. Capturing 40+ additional emergencies monthly.",
-                  author: "Dr. James Chen",
-                  role: "Cosmetic & Family Dentistry",
-                  location: "Seattle, WA"
-                }
-              ].map((testimonial, index) => (
-                <TechCard key={index}>
-                  <div className="py-2">
-                    <p className="text-gray-400 leading-relaxed mb-8">"{testimonial.quote}"</p>
-                    <div className="pt-6 border-t border-white/10">
-                      <div className="font-medium text-white">{testimonial.author}</div>
-                      <div className="text-sm text-gray-500 mt-1">{testimonial.role}</div>
-                      <div className="text-xs text-gray-600 mt-0.5">{testimonial.location}</div>
-                    </div>
+          <section className="relative py-16 lg:py-24">
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="relative container mx-auto px-6 lg:px-12">
+              <div className="text-center mb-12">
+                <div className="inline-block mb-4">
+                  <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">Client Review</span>
                   </div>
-                </TechCard>
-              ))}
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
+                  What Our Clients Say
+                </h2>
+                <p className="text-sm text-gray-400">Real feedback from dental practices</p>
+              </div>
+            <div className="max-w-4xl mx-auto">
+              <TechCard>
+                <div className="py-4">
+                  <p className="text-gray-300 leading-relaxed mb-8 whitespace-pre-line">
+                    "Working with Cognia has been a game-changer for our office.
+
+What I appreciate the most is how they completely transformed our Monday mornings. Before Cognia, I would spend 45 minutes just waiting for the voicemail system to run so I could go through every message. It was slow, inefficient, and honestly a stressful way to start the week.
+
+Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time. And if a patient requests an appointment over the weekend, Cognia schedules it for us — no backlog, no delays.
+
+It has made our workflow faster, more organized, and much more efficient."
+                  </p>
+                  <div className="pt-6 border-t border-white/10">
+                    <div className="font-medium text-white">Jacob Ojalvo</div>
+                    <div className="text-sm text-gray-400 mt-1">My Smile Miami</div>
+                  </div>
+                </div>
+              </TechCard>
             </div>
-          </TechSection>
+            </div>
+          </section>
 
           {/* FAQ Section */}
-          <TechSection
-            badge="FAQ"
-            title="Common Questions"
-            subtitle="Everything you need to know"
-          >
+          <section className="relative py-16 lg:py-24">
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="relative container mx-auto px-6 lg:px-12">
+              <div className="text-center mb-12">
+                <div className="inline-block mb-4">
+                  <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">FAQ</span>
+                  </div>
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
+                  Common Questions
+                </h2>
+                <p className="text-sm text-gray-400">Everything you need to know</p>
+              </div>
             <div className="max-w-3xl mx-auto space-y-4">
               {[
                 {
@@ -515,14 +545,24 @@ const Dentists: React.FC = () => {
                 </TechCard>
               ))}
             </div>
-          </TechSection>
+            </div>
+          </section>
 
           {/* Final CTA */}
-          <TechSection
-            badge="Get Started"
-            title="Start Your Free Trial"
-            subtitle="No credit card required"
-          >
+          <section className="relative py-16 lg:py-24">
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="relative container mx-auto px-6 lg:px-12">
+              <div className="text-center mb-12">
+                <div className="inline-block mb-4">
+                  <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">Get Started</span>
+                  </div>
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
+                  Start Your Free Trial
+                </h2>
+                <p className="text-sm text-gray-400">No credit card required</p>
+              </div>
             <div className="max-w-2xl mx-auto text-center">
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                 <a
@@ -553,7 +593,8 @@ const Dentists: React.FC = () => {
                 </span>
               </div>
             </div>
-          </TechSection>
+            </div>
+          </section>
         </div>
       </div>
     </>
