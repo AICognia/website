@@ -26,6 +26,7 @@ const Dentists: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showAudioModal, setShowAudioModal] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [audioProgress, setAudioProgress] = useState(0); // 0-100 for waveform progress
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const toggleAudioPlay = () => {
@@ -102,16 +103,6 @@ const Dentists: React.FC = () => {
         <title>AI Receptionist for Dental Practices | Cognia AI</title>
         <meta name="description" content="Never miss a patient call again. 7-day free trial. No credit card required." />
         <meta name="robots" content="noindex, nofollow" />
-        <style>{`
-          @keyframes wave-height {
-            0%, 100% { height: 30%; }
-            50% { height: 100%; }
-          }
-          @keyframes wave-slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-          }
-        `}</style>
       </Helmet>
 
       <div className="min-h-screen relative bg-black text-white">
@@ -574,7 +565,9 @@ const Dentists: React.FC = () => {
                   setShowAudioModal(false);
                   if (audioRef.current) {
                     audioRef.current.pause();
+                    audioRef.current.currentTime = 0;
                     setIsPlaying(false);
+                    setAudioProgress(0);
                   }
                 }}
                 className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
@@ -605,7 +598,9 @@ const Dentists: React.FC = () => {
                         setShowAudioModal(false);
                         if (audioRef.current) {
                           audioRef.current.pause();
+                          audioRef.current.currentTime = 0;
                           setIsPlaying(false);
+                          setAudioProgress(0);
                         }
                       }}
                       className="text-gray-400 hover:text-white transition-colors"
@@ -616,34 +611,34 @@ const Dentists: React.FC = () => {
 
                   {/* Audio Player */}
                   <div className="space-y-6">
-                    {/* Waveform Visualization */}
+                    {/* Waveform Visualization - Professional Static with Progress */}
                     <div className="relative h-24 bg-black/50 rounded-2xl overflow-hidden">
-                      <div className="absolute inset-0 flex items-center px-6">
-                        <div className="flex items-center gap-1 h-full">
-                          {/* Create double set for seamless loop */}
-                          {[...Array(2)].map((_, setIndex) => (
-                            <div
-                              key={setIndex}
-                              className="flex items-center gap-1 h-full"
-                              style={{
-                                animation: isPlaying ? 'wave-slide 3s linear infinite' : 'none'
-                              }}
-                            >
-                              {[8, 16, 12, 20, 10, 18, 14, 22, 16, 12, 18, 10, 20, 14, 16, 12, 22, 18, 14, 20].map((heightPercent, i) => (
-                                <div
-                                  key={i}
-                                  className={`w-1.5 rounded-full transition-all self-center ${
-                                    isPlaying ? 'bg-cyan-400' : 'bg-cyan-400/30'
-                                  }`}
-                                  style={{
-                                    animation: isPlaying ? `wave-height ${0.8 + (i % 4) * 0.2}s ease-in-out infinite` : 'none',
-                                    animationDelay: `${i * 0.08}s`,
-                                    height: `${heightPercent}%`
-                                  }}
-                                />
-                              ))}
-                            </div>
-                          ))}
+                      <div className="absolute inset-0 flex items-center justify-center px-6">
+                        <div className="flex items-end gap-1 h-full py-4 w-full justify-between">
+                          {/* Realistic waveform pattern - 60 bars for smooth visualization */}
+                          {[
+                            12, 20, 18, 28, 35, 42, 38, 45, 52, 48, 55, 60, 58, 62, 68, 65, 70, 75, 72, 78,
+                            82, 78, 75, 70, 68, 62, 58, 55, 50, 45, 42, 38, 35, 32, 28, 25, 30, 35, 40, 38,
+                            45, 50, 48, 55, 60, 58, 65, 62, 58, 55, 50, 45, 40, 35, 30, 25, 20, 15, 12, 8
+                          ].map((heightPercent, i) => {
+                            const barProgress = (i / 60) * 100;
+                            const isPassed = barProgress <= audioProgress;
+                            const isCurrent = Math.abs(barProgress - audioProgress) < 2;
+
+                            return (
+                              <div
+                                key={i}
+                                className={`flex-1 rounded-full transition-all duration-200 ${
+                                  isPassed ? 'bg-cyan-400' : 'bg-cyan-400/20'
+                                }`}
+                                style={{
+                                  height: `${heightPercent}%`,
+                                  transform: isCurrent && isPlaying ? 'scaleY(1.15)' : 'scaleY(1)',
+                                  boxShadow: isCurrent && isPlaying ? '0 0 8px rgba(6, 182, 212, 0.6)' : 'none',
+                                }}
+                              />
+                            );
+                          })}
                         </div>
                       </div>
                     </div>
@@ -665,7 +660,17 @@ const Dentists: React.FC = () => {
                         <audio
                           ref={audioRef}
                           src="https://yhmbki8wsvse0fwd.public.blob.vercel-storage.com/DENTIST%20MP3.mp3"
-                          onEnded={() => setIsPlaying(false)}
+                          onTimeUpdate={(e) => {
+                            const audio = e.currentTarget;
+                            if (audio.duration) {
+                              const progress = (audio.currentTime / audio.duration) * 100;
+                              setAudioProgress(progress);
+                            }
+                          }}
+                          onEnded={() => {
+                            setIsPlaying(false);
+                            setAudioProgress(0);
+                          }}
                           onPause={() => setIsPlaying(false)}
                           onPlay={() => setIsPlaying(true)}
                           className="w-full"
