@@ -234,7 +234,7 @@ const Dentists: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="text-base text-center text-white font-bold"
                 >
-                  From $199/month • Setup in 24 hours
+                  From $199/month • 1-Week Free Trial
                 </motion.p>
 
                 {/* Mobile 3 Value Props */}
@@ -395,7 +395,7 @@ const Dentists: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="text-base text-gray-200 font-bold"
                 >
-                  From $199/month • Setup in 24 hours
+                  From $199/month • 1-Week Free Trial
                 </motion.p>
 
                 {/* 3 Value Props */}
