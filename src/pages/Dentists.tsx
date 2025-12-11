@@ -5,14 +5,15 @@ import {
   FaPhone,
   FaCalendarCheck,
   FaClock,
-  FaChartLine,
   FaShieldAlt,
   FaCheckCircle,
   FaArrowRight,
   FaSpinner,
   FaTimes,
   FaBell,
-  FaHeadset
+  FaHeadset,
+  FaLock,
+  FaServer
 } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
 import DynamicTechBackground from '../components/DynamicTechBackground';
@@ -61,7 +62,7 @@ const Dentists: React.FC = () => {
         },
         body: JSON.stringify({
           ...formData,
-          _subject: `Dentist Demo Request from ${formData.name}${formData.practiceName ? ` at ${formData.practiceName}` : ''}`,
+          _subject: `Dentist Missed Call Report Request from ${formData.name}${formData.practiceName ? ` at ${formData.practiceName}` : ''}`,
           form_type: 'dentist_landing_page',
           source: 'dentists_page',
           industry: 'dental',
@@ -89,7 +90,7 @@ const Dentists: React.FC = () => {
     <>
       <Helmet>
         <title>AI Receptionist for Dental Practices | Cognia AI</title>
-        <meta name="description" content="Answer every patient call 24/7. Reduce no-shows by 66% with AI confirmation calls. Integrates with OpenDental, EagleSoft, Dentrix. HIPAA compliant." />
+        <meta name="description" content="Never miss a patient call again. AI receptionist for dental practices. Answers every call, books appointments, eliminates no-shows. 7-day free trial." />
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
@@ -106,45 +107,45 @@ const Dentists: React.FC = () => {
             <div className="absolute inset-0 bg-black/30" />
 
             <div className="relative container mx-auto px-6 lg:px-12 pt-8 pb-20 lg:pb-32">
-              {/* Trust Badge Strip */}
+              {/* Trust Badge Strip - Enhanced */}
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex items-center justify-center gap-6 md:gap-8 py-4 border-b border-white/5 mb-12"
+                className="flex items-center justify-center gap-4 md:gap-6 py-4 border-b border-white/5 mb-12"
               >
-                <div className="flex items-center gap-2 text-xs text-gray-500">
+                <div className="flex items-center gap-2 text-xs text-gray-400">
                   <FaShieldAlt className="text-cyan-400" />
-                  <span>HIPAA Compliant</span>
+                  <span>HIPAA-Compliant</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-gray-500">
-                  <FaClock className="text-cyan-400" />
-                  <span>24-48hr Setup</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-gray-500">
+                <div className="flex items-center gap-2 text-xs text-gray-400">
                   <FaHeadset className="text-cyan-400" />
-                  <span>24/7 Support</span>
+                  <span>24/7 Coverage</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-gray-400">
+                  <FaClock className="text-cyan-400" />
+                  <span>Setup in 24–48 Hours</span>
                 </div>
               </motion.div>
 
               <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center max-w-7xl mx-auto">
-                {/* Left Column - Clean Value Proposition */}
+                {/* Left Column - Enhanced Value Proposition */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   className="space-y-8"
                 >
-                  {/* Headline - Clean, Professional */}
+                  {/* Headline - Conversion Optimized */}
                   <h1 className="text-5xl sm:text-6xl lg:text-7xl font-thin leading-tight tracking-tight">
                     Never Miss a
                     <br />
-                    <span className="text-cyan-400">Patient Call</span>
+                    <span className="text-cyan-400">Patient Call Again</span>
                   </h1>
 
-                  {/* Sub-headline - Concise */}
-                  <p className="text-xl text-gray-400 leading-relaxed max-w-lg">
-                    AI receptionist that answers every call, books appointments, and confirms them automatically. Reduce no-shows by 66%.
+                  {/* Sub-headline - Brighter and clearer */}
+                  <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
+                    AI receptionist for dental practices. Answers every call, books appointments, and eliminates no-shows — automatically.
                   </p>
 
                   {/* Stats - Clean Grid */}
@@ -161,7 +162,7 @@ const Dentists: React.FC = () => {
                     ))}
                   </div>
 
-                  {/* CTAs - Simple */}
+                  {/* CTAs - Updated */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
                     <a
                       href="#form"
@@ -171,7 +172,7 @@ const Dentists: React.FC = () => {
                       }}
                       className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black text-sm font-medium rounded-lg transition-colors"
                     >
-                      Book a Demo
+                      Schedule a Demo
                       <FaArrowRight className="text-xs" />
                     </a>
                     <a
@@ -183,20 +184,20 @@ const Dentists: React.FC = () => {
                     </a>
                   </div>
 
-                  {/* Micro-trust */}
-                  <p className="text-xs text-gray-600 flex items-center gap-4 pt-2">
+                  {/* Micro-trust - Enhanced with free trial */}
+                  <p className="text-xs text-gray-500 flex items-center gap-4 pt-2">
                     <span className="flex items-center gap-1.5">
                       <FaCheckCircle className="text-cyan-400" />
-                      7-day free trial
+                      No credit card required
                     </span>
                     <span className="flex items-center gap-1.5">
                       <FaCheckCircle className="text-cyan-400" />
-                      No credit card
+                      7-day free trial included
                     </span>
                   </p>
                 </motion.div>
 
-                {/* Right Column - Clean Form */}
+                {/* Right Column - Enhanced Form */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -210,13 +211,13 @@ const Dentists: React.FC = () => {
                           initial={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                         >
-                          {/* Form Header */}
+                          {/* Form Header - Conversion Optimized */}
                           <div className="mb-8">
                             <h2 className="text-2xl font-thin text-white mb-2">
-                              Get Started
+                              Get Your Missed-Call Report
                             </h2>
-                            <p className="text-sm text-gray-500">
-                              Free analysis of your missed calls
+                            <p className="text-sm text-gray-400">
+                              See exactly how much revenue your practice is losing each month from missed patient calls.
                             </p>
                           </div>
 
@@ -285,7 +286,7 @@ const Dentists: React.FC = () => {
                               )}
                             </AnimatePresence>
 
-                            {/* Submit */}
+                            {/* Submit - Updated CTA */}
                             <button
                               type="submit"
                               disabled={isSubmitting}
@@ -297,12 +298,12 @@ const Dentists: React.FC = () => {
                                   <span>Submitting...</span>
                                 </>
                               ) : (
-                                <span>Get Free Demo</span>
+                                <span>Get My Report</span>
                               )}
                             </button>
 
-                            <p className="text-center text-xs text-gray-600 mt-4">
-                              No credit card required
+                            <p className="text-center text-xs text-gray-500 mt-4">
+                              No credit card required • 7-day free trial included
                             </p>
                           </form>
                         </motion.div>
@@ -340,7 +341,108 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* Features Section */}
+          {/* Trust Logos Section - NEW */}
+          <section className="relative py-12 border-y border-white/5">
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="relative container mx-auto px-6 lg:px-12">
+              <p className="text-center text-xs text-gray-500 uppercase tracking-widest mb-6">
+                Trusted by Practices Across the U.S.
+              </p>
+              <div className="flex items-center justify-center gap-12 opacity-40">
+                {['Practice 1', 'Practice 2', 'Practice 3', 'Practice 4', 'Practice 5'].map((name, i) => (
+                  <div key={i} className="text-gray-600 text-sm font-medium">
+                    {name}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Security & Compliance Badge Row - NEW */}
+          <section className="relative py-12">
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="relative container mx-auto px-6 lg:px-12">
+              <div className="flex items-center justify-center gap-12 max-w-4xl mx-auto">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-cyan-400/10 rounded-full flex items-center justify-center">
+                    <FaShieldAlt className="text-cyan-400 text-sm" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-white">HIPAA Compliant</div>
+                    <div className="text-xs text-gray-500">Full compliance</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-cyan-400/10 rounded-full flex items-center justify-center">
+                    <FaLock className="text-cyan-400 text-sm" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-white">Encrypted Call Data</div>
+                    <div className="text-xs text-gray-500">End-to-end security</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-cyan-400/10 rounded-full flex items-center justify-center">
+                    <FaServer className="text-cyan-400 text-sm" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-white">U.S.-Based Infrastructure</div>
+                    <div className="text-xs text-gray-500">Domestic servers</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* How It Works Section - NEW */}
+          <section className="relative py-16 lg:py-24">
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="relative container mx-auto px-6 lg:px-12">
+              <div className="text-center mb-12">
+                <div className="inline-block mb-4">
+                  <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">How It Works</span>
+                  </div>
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
+                  Get Started in 3 Simple Steps
+                </h2>
+                <p className="text-sm text-gray-400">From setup to live calls in 24–48 hours</p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {[
+                  {
+                    step: '1',
+                    title: 'We Connect Your Phone System',
+                    description: 'Quick 24–48 hour setup. Integrates with your existing dental software and phone lines.'
+                  },
+                  {
+                    step: '2',
+                    title: 'AI Answers and Books Calls 24/7',
+                    description: 'Natural conversations, appointment scheduling, emergency triage — all handled automatically.'
+                  },
+                  {
+                    step: '3',
+                    title: 'Daily Reports + Transcripts',
+                    description: 'Every morning: missed-call analysis, call transcripts, and booked appointments in your inbox.'
+                  }
+                ].map((item, index) => (
+                  <TechCard key={index}>
+                    <div className="text-center p-4">
+                      <div className="w-12 h-12 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span className="text-xl font-bold text-cyan-400">{item.step}</span>
+                      </div>
+                      <h3 className="text-lg font-medium text-white mb-3">{item.title}</h3>
+                      <p className="text-sm text-gray-400 leading-relaxed">{item.description}</p>
+                    </div>
+                  </TechCard>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Features Section - Enhanced with ROI Focus */}
           <section className="relative py-16 lg:py-24">
             <div className="absolute inset-0 bg-black/30" />
             <div className="relative container mx-auto px-6 lg:px-12">
@@ -355,61 +457,63 @@ const Dentists: React.FC = () => {
                 </h2>
                 <p className="text-sm text-gray-400">Everything you need to handle patient calls 24/7</p>
               </div>
-            <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {[
-                {
-                  icon: FaPhone,
-                  title: 'Answer Every Call',
-                  features: [
-                    '100% call coverage 24/7',
-                    'Natural AI conversations',
-                    'Bilingual support',
-                    'Emergency triage'
-                  ]
-                },
-                {
-                  icon: FaBell,
-                  title: 'Confirm Appointments',
-                  features: [
-                    'AI outbound confirmation calls',
-                    'Reduces no-shows 20% → 7%',
-                    'Automatic rescheduling',
-                    'SMS + call reminders'
-                  ]
-                },
-                {
-                  icon: FaCalendarCheck,
-                  title: 'Seamless Integration',
-                  features: [
-                    'OpenDental, EagleSoft, Dentrix',
-                    'Real-time calendar sync',
-                    'HIPAA compliant',
-                    '24-48hr setup'
-                  ]
-                }
-              ].map((feature, index) => (
-                <TechCard key={index}>
-                  <div className="text-center">
-                    <div className="w-12 h-12 mx-auto mb-6 bg-white/5 border border-white/10 rounded-full flex items-center justify-center">
-                      <feature.icon className="text-cyan-400 text-lg" />
+
+              <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                {[
+                  {
+                    icon: FaPhone,
+                    title: 'Answer Every Call',
+                    features: [
+                      '100% call coverage, 24/7',
+                      'Natural, human-like AI',
+                      'Bilingual support (EN/ES)',
+                      'Emergency triage',
+                      'Call routing rules'
+                    ]
+                  },
+                  {
+                    icon: FaBell,
+                    title: 'Confirm Appointments',
+                    features: [
+                      'Automated outbound confirmation calls',
+                      'Reduce no-shows from 20% → 7%',
+                      'Smart rescheduling',
+                      'SMS + voice reminders'
+                    ]
+                  },
+                  {
+                    icon: FaCalendarCheck,
+                    title: 'Seamless Integration',
+                    features: [
+                      'OpenDental, Dentrix, EagleSoft',
+                      'Real-time calendar sync',
+                      'HIPAA compliant',
+                      'Setup in 24–48 hours'
+                    ]
+                  }
+                ].map((feature, index) => (
+                  <TechCard key={index}>
+                    <div className="text-center">
+                      <div className="w-12 h-12 mx-auto mb-6 bg-white/5 border border-white/10 rounded-full flex items-center justify-center">
+                        <feature.icon className="text-cyan-400 text-lg" />
+                      </div>
+                      <h3 className="text-lg font-medium text-white mb-6">{feature.title}</h3>
+                      <ul className="space-y-3 text-left">
+                        {feature.features.map((item, idx) => (
+                          <li key={idx} className="flex items-start gap-2 text-sm text-gray-400">
+                            <FaCheckCircle className="text-cyan-400 mt-0.5 flex-shrink-0 text-xs" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <h3 className="text-lg font-medium text-white mb-6">{feature.title}</h3>
-                    <ul className="space-y-3 text-left">
-                      {feature.features.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm text-gray-400">
-                          <FaCheckCircle className="text-cyan-400 mt-0.5 flex-shrink-0 text-xs" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </TechCard>
-              ))}
-            </div>
+                  </TechCard>
+                ))}
+              </div>
             </div>
           </section>
 
-          {/* Results Section */}
+          {/* Results Section - Enhanced Emotional Impact */}
           <section className="relative py-16 lg:py-24">
             <div className="absolute inset-0 bg-black/30" />
             <div className="relative container mx-auto px-6 lg:px-12">
@@ -422,88 +526,84 @@ const Dentists: React.FC = () => {
                 <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
                   Proven Impact
                 </h2>
-                <p className="text-sm text-gray-400">Real results from dental practices</p>
+                <p className="text-sm text-gray-400">Based on live performance data from U.S. dental practices</p>
               </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-16">
-              {[
-                { value: '3-5x', label: 'ROI in Year 1' },
-                { value: '10-20%', label: 'More Patients' },
-                { value: '66%', label: 'Fewer No-Shows' },
-                { value: '93%', label: 'Fewer Missed Calls' }
-              ].map((item, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-4xl sm:text-5xl font-thin text-cyan-400 mb-2">
-                    {item.value}
-                  </div>
-                  <div className="text-xs text-gray-500 uppercase tracking-wider">
-                    {item.label}
-                  </div>
-                </div>
-              ))}
-            </div>
 
-            <TechCard className="max-w-3xl mx-auto">
-              <div className="text-center py-4">
-                <p className="text-xl text-white font-thin mb-6">
-                  Most practices achieve full ROI within 90 days
-                </p>
-                <p className="text-sm text-gray-500 mb-8">
-                  From increased bookings, reduced no-shows, and eliminated missed calls
-                </p>
-                <a
-                  href="#form"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black font-medium rounded-xl transition-colors"
-                >
-                  Get Free Demo
-                  <FaArrowRight className="text-sm" />
-                </a>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-16">
+                {[
+                  { value: '3–5×', label: 'ROI in 12 months' },
+                  { value: '10–20%', label: 'increase in booked patients' },
+                  { value: '66%', label: 'reduction in no-shows' },
+                  { value: '93%', label: 'fewer missed calls' }
+                ].map((item, index) => (
+                  <div key={index} className="text-center">
+                    <div className="text-4xl sm:text-5xl font-thin text-cyan-400 mb-2">
+                      {item.value}
+                    </div>
+                    <div className="text-xs text-gray-500 uppercase tracking-wider">
+                      {item.label}
+                    </div>
+                  </div>
+                ))}
               </div>
-            </TechCard>
+
+              <TechCard className="max-w-3xl mx-auto">
+                <div className="text-center py-4">
+                  <p className="text-xl text-white font-thin mb-6">
+                    Most practices achieve full ROI within 90 days
+                  </p>
+                  <p className="text-sm text-gray-400 mb-8">
+                    From increased bookings, reduced no-shows, and eliminated missed calls
+                  </p>
+                  <a
+                    href="#form"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black font-medium rounded-xl transition-colors"
+                  >
+                    See How Much You Can Recover
+                    <FaArrowRight className="text-sm" />
+                  </a>
+                </div>
+              </TechCard>
             </div>
           </section>
 
-          {/* Social Proof */}
+          {/* Testimonial Section - Tightened */}
           <section className="relative py-16 lg:py-24">
             <div className="absolute inset-0 bg-black/30" />
             <div className="relative container mx-auto px-6 lg:px-12">
               <div className="text-center mb-12">
                 <div className="inline-block mb-4">
                   <div className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
-                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">Client Review</span>
+                    <span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-widest">Testimonials</span>
                   </div>
                 </div>
                 <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
-                  What Our Clients Say
+                  Real Feedback From Dental Practices
                 </h2>
-                <p className="text-sm text-gray-400">Real feedback from dental practices</p>
+                <p className="text-sm text-gray-400">How Cognia AI impacts daily operations</p>
               </div>
-            <div className="max-w-4xl mx-auto">
-              <TechCard>
-                <div className="py-4">
-                  <p className="text-gray-300 leading-relaxed mb-8 whitespace-pre-line">
-                    "Working with Cognia has been a game-changer for our office.
 
-What I appreciate the most is how they completely transformed our Monday mornings. Before Cognia, I would spend 45 minutes just waiting for the voicemail system to run so I could go through every message. It was slow, inefficient, and honestly a stressful way to start the week.
-
-Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time. And if a patient requests an appointment over the weekend, Cognia schedules it for us — no backlog, no delays.
-
-It has made our workflow faster, more organized, and much more efficient."
-                  </p>
-                  <div className="pt-6 border-t border-white/10">
-                    <div className="font-medium text-white">Jacob Ojalvo</div>
-                    <div className="text-sm text-gray-400 mt-1">My Smile Miami</div>
+              <div className="max-w-4xl mx-auto">
+                <TechCard>
+                  <div className="py-4">
+                    <p className="text-gray-300 leading-relaxed mb-6">
+                      "Cognia completely transformed our Monday mornings. Before, I'd spend 45 minutes going through voicemails — slow and stressful. Now we get clear email summaries and transcripts first thing. If a patient requests an appointment over the weekend, Cognia schedules it automatically. No backlog, no delays. Our workflow is faster and more organized."
+                    </p>
+                    <div className="pt-6 border-t border-white/10">
+                      <div className="font-medium text-white">Jacob Ojalvo</div>
+                      <div className="text-sm text-gray-400 mt-1">My Smile Miami</div>
+                    </div>
                   </div>
-                </div>
-              </TechCard>
-            </div>
+                </TechCard>
+              </div>
             </div>
           </section>
 
-          {/* FAQ Section */}
+          {/* FAQ Section - Shorter, Benefit-Driven */}
           <section className="relative py-16 lg:py-24">
             <div className="absolute inset-0 bg-black/30" />
             <div className="relative container mx-auto px-6 lg:px-12">
@@ -518,37 +618,38 @@ It has made our workflow faster, more organized, and much more efficient."
                 </h2>
                 <p className="text-sm text-gray-400">Everything you need to know</p>
               </div>
-            <div className="max-w-3xl mx-auto space-y-4">
-              {[
-                {
-                  question: 'Is this HIPAA compliant?',
-                  answer: 'Yes. Fully HIPAA compliant with encrypted data handling and strict healthcare privacy protocols.'
-                },
-                {
-                  question: 'Which practice management systems integrate?',
-                  answer: 'OpenDental, EagleSoft, Denticon, Dentrix, and most major dental PMS platforms. Real-time calendar sync.'
-                },
-                {
-                  question: 'How does AI confirmation calling work?',
-                  answer: '24-48 hours before appointments, our AI calls patients to confirm. Can reschedule, cancel, or add to waitlist. Reduces no-shows from 20% to 7%.'
-                },
-                {
-                  question: 'What if it doesn\'t work?',
-                  answer: '90-day ROI guarantee. If you\'re not capturing more revenue, we refund 100%. 7-day free trial to test risk-free.'
-                }
-              ].map((faq, index) => (
-                <TechCard key={index}>
-                  <div className="py-2">
-                    <h3 className="text-base font-medium text-white mb-3">{faq.question}</h3>
-                    <p className="text-sm text-gray-400 leading-relaxed">{faq.answer}</p>
-                  </div>
-                </TechCard>
-              ))}
-            </div>
+
+              <div className="max-w-3xl mx-auto space-y-4">
+                {[
+                  {
+                    question: 'Is this HIPAA compliant?',
+                    answer: 'Yes. Fully HIPAA compliant with encrypted data and strict privacy protocols.'
+                  },
+                  {
+                    question: 'Which practice management systems integrate?',
+                    answer: 'OpenDental, EagleSoft, Denticon, Dentrix, and most major dental platforms. Real-time sync.'
+                  },
+                  {
+                    question: 'How does AI confirmation calling work?',
+                    answer: 'AI calls patients 24–48 hours before appointments to confirm, reschedule, or cancel. Reduces no-shows from 20% to 7%.'
+                  },
+                  {
+                    question: 'What if it doesn\'t work?',
+                    answer: '90-day ROI guarantee. If you're not capturing more revenue, we refund 100%. Plus 7-day free trial to test risk-free.'
+                  }
+                ].map((faq, index) => (
+                  <TechCard key={index}>
+                    <div className="py-2">
+                      <h3 className="text-base font-medium text-white mb-3">{faq.question}</h3>
+                      <p className="text-sm text-gray-400 leading-relaxed">{faq.answer}</p>
+                    </div>
+                  </TechCard>
+                ))}
+              </div>
             </div>
           </section>
 
-          {/* Final CTA */}
+          {/* Final CTA - Enhanced */}
           <section className="relative py-16 lg:py-24">
             <div className="absolute inset-0 bg-black/30" />
             <div className="relative container mx-auto px-6 lg:px-12">
@@ -561,38 +662,39 @@ It has made our workflow faster, more organized, and much more efficient."
                 <h2 className="text-3xl lg:text-4xl font-thin text-white mb-3">
                   Start Your Free Trial
                 </h2>
-                <p className="text-sm text-gray-400">No credit card required</p>
-              </div>
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                <a
-                  href="#form"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black font-medium rounded-xl transition-colors"
-                >
-                  Book a Demo
-                  <FaArrowRight />
-                </a>
+                <p className="text-sm text-gray-400">Get your missed-call analysis and full setup in 24–48 hours</p>
               </div>
 
-              <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-600">
-                <span className="flex items-center gap-2">
-                  <FaCheckCircle className="text-cyan-400" />
-                  7-day free trial
-                </span>
-                <span className="flex items-center gap-2">
-                  <FaCheckCircle className="text-cyan-400" />
-                  No credit card
-                </span>
-                <span className="flex items-center gap-2">
-                  <FaCheckCircle className="text-cyan-400" />
-                  Setup in 24-48 hours
-                </span>
+              <div className="max-w-2xl mx-auto text-center">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                  <a
+                    href="#form"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black font-medium rounded-xl transition-colors"
+                  >
+                    Schedule a Demo
+                    <FaArrowRight />
+                  </a>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-500">
+                  <span className="flex items-center gap-2">
+                    <FaCheckCircle className="text-cyan-400" />
+                    7-day free trial
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <FaCheckCircle className="text-cyan-400" />
+                    No credit card
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <FaCheckCircle className="text-cyan-400" />
+                    Setup in 24–48 hours
+                  </span>
+                </div>
               </div>
-            </div>
             </div>
           </section>
         </div>
