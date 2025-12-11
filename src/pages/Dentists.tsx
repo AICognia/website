@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import {
@@ -8,7 +8,9 @@ import {
   FaArrowRight,
   FaSpinner,
   FaTimes,
-  FaStar
+  FaStar,
+  FaPlay,
+  FaPause
 } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
 import DynamicTechBackground from '../components/DynamicTechBackground';
@@ -22,6 +24,21 @@ const Dentists: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showAudioModal, setShowAudioModal] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const toggleAudioPlay = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+        conversionTracker.trackButtonClick('Demo Audio Played', 'dentists_page');
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -179,6 +196,52 @@ const Dentists: React.FC = () => {
                   ))}
                 </motion.div>
               </div>
+            </div>
+          </section>
+
+          {/* Audio Demo Card - Premium Minimal */}
+          <section className="relative py-8">
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="relative container mx-auto px-6 lg:px-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="max-w-2xl mx-auto"
+              >
+                <button
+                  onClick={() => setShowAudioModal(true)}
+                  className="w-full bg-black/50 border border-white/10 hover:border-cyan-400/30 rounded-2xl p-6 transition-all group"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="text-left">
+                      <h3 className="text-lg font-medium text-white mb-1 group-hover:text-cyan-400 transition-colors">
+                        Hear It in Action <span className="text-gray-500 text-sm">(30 Seconds)</span>
+                      </h3>
+                      <p className="text-sm text-gray-400">
+                        A real example of Cognia AI answering a patient call
+                      </p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <div className="w-14 h-14 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center group-hover:bg-cyan-400/20 transition-all">
+                        <FaPlay className="text-cyan-400 text-lg ml-1" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Minimal Waveform Visualization */}
+                  <div className="flex items-center justify-center gap-1 mt-4 h-8">
+                    {[3, 8, 5, 12, 7, 10, 4, 11, 6, 9, 5, 8, 4, 10, 7, 12, 5, 9, 6, 11].map((height, i) => (
+                      <div
+                        key={i}
+                        className="w-1 bg-cyan-400/20 rounded-full transition-all"
+                        style={{ height: `${height * 2}px` }}
+                      />
+                    ))}
+                  </div>
+                </button>
+              </motion.div>
             </div>
           </section>
 
@@ -413,6 +476,117 @@ const Dentists: React.FC = () => {
             </div>
           </section>
         </div>
+
+        {/* Audio Modal */}
+        <AnimatePresence>
+          {showAudioModal && (
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => {
+                  setShowAudioModal(false);
+                  if (audioRef.current) {
+                    audioRef.current.pause();
+                    setIsPlaying(false);
+                  }
+                }}
+                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+              />
+
+              {/* Modal */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 z-50 flex items-center justify-center p-4"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="bg-black/90 border border-white/20 rounded-3xl p-8 lg:p-12 max-w-2xl w-full backdrop-blur-xl">
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-8">
+                    <div>
+                      <h3 className="text-2xl font-medium text-white mb-2">
+                        AI Receptionist Demo — 30 Seconds
+                      </h3>
+                      <p className="text-sm text-gray-400">
+                        Real patient call simulation
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setShowAudioModal(false);
+                        if (audioRef.current) {
+                          audioRef.current.pause();
+                          setIsPlaying(false);
+                        }
+                      }}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      <FaTimes className="text-xl" />
+                    </button>
+                  </div>
+
+                  {/* Audio Player */}
+                  <div className="space-y-6">
+                    {/* Waveform Visualization */}
+                    <div className="flex items-center justify-center gap-1 h-24 bg-black/50 rounded-2xl p-6">
+                      {[4, 12, 8, 16, 10, 14, 6, 18, 12, 16, 8, 14, 6, 18, 10, 16, 8, 14, 12, 18, 10, 14, 8, 16, 12, 18].map((height, i) => (
+                        <div
+                          key={i}
+                          className={`w-1.5 rounded-full transition-all duration-300 ${
+                            isPlaying ? 'bg-cyan-400 animate-pulse' : 'bg-cyan-400/30'
+                          }`}
+                          style={{
+                            height: `${height * 2}px`,
+                            animationDelay: `${i * 50}ms`
+                          }}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Controls */}
+                    <div className="flex items-center gap-4">
+                      <button
+                        onClick={toggleAudioPlay}
+                        className="w-16 h-16 bg-cyan-400 hover:bg-cyan-300 rounded-full flex items-center justify-center transition-all group"
+                      >
+                        {isPlaying ? (
+                          <FaPause className="text-black text-xl" />
+                        ) : (
+                          <FaPlay className="text-black text-xl ml-1" />
+                        )}
+                      </button>
+
+                      <div className="flex-1">
+                        <audio
+                          ref={audioRef}
+                          src="https://yhmbki8wsvse0fwd.public.blob.vercel-storage.com/DENTIST%20MP3.mp3"
+                          onEnded={() => setIsPlaying(false)}
+                          onPause={() => setIsPlaying(false)}
+                          onPlay={() => setIsPlaying(true)}
+                          className="w-full"
+                          controls
+                          controlsList="nodownload"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Info */}
+                    <div className="text-center pt-4 border-t border-white/10">
+                      <p className="text-xs text-gray-500">
+                        This is a real example of how Cognia AI handles patient calls 24/7
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
