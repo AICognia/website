@@ -13,7 +13,8 @@ import {
   FaBell,
   FaHeadset,
   FaLock,
-  FaServer
+  FaServer,
+  FaStar
 } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
 import DynamicTechBackground from '../components/DynamicTechBackground';
@@ -140,12 +141,12 @@ const Dentists: React.FC = () => {
                   <h1 className="text-5xl sm:text-6xl lg:text-7xl font-thin leading-tight tracking-tight">
                     Never Miss a
                     <br />
-                    <span className="text-cyan-400">Patient Call Again</span>
+                    <span className="text-cyan-400">Patient Call</span>
                   </h1>
 
                   {/* Sub-headline - Brighter and clearer */}
                   <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
-                    AI receptionist for dental practices. Answers every call, books appointments, and eliminates no-shows — automatically.
+                    AI receptionist for dental practices that answers every call, books appointments, and eliminates no-shows — automatically.
                   </p>
 
                   {/* Stats - Clean Grid */}
@@ -165,10 +166,11 @@ const Dentists: React.FC = () => {
                   {/* CTAs - Updated */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
                     <a
-                      href="#form"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document.querySelector('form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      href="https://calendly.com/emrebenian-cogniaai/30min"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => {
+                        conversionTracker.trackButtonClick('Schedule a Demo - Hero', 'dentists_page');
                       }}
                       className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black text-sm font-medium rounded-lg transition-colors"
                     >
@@ -214,10 +216,10 @@ const Dentists: React.FC = () => {
                           {/* Form Header - Conversion Optimized */}
                           <div className="mb-8">
                             <h2 className="text-2xl font-thin text-white mb-2">
-                              Get Your Missed-Call Report
+                              Schedule a Demo
                             </h2>
                             <p className="text-sm text-gray-400">
-                              See exactly how much revenue your practice is losing each month from missed patient calls.
+                              See how Cognia AI can transform your practice operations
                             </p>
                           </div>
 
@@ -298,7 +300,7 @@ const Dentists: React.FC = () => {
                                   <span>Submitting...</span>
                                 </>
                               ) : (
-                                <span>Get My Report</span>
+                                <span>Schedule a Demo</span>
                               )}
                             </button>
 
@@ -348,9 +350,9 @@ const Dentists: React.FC = () => {
               <p className="text-center text-xs text-gray-500 uppercase tracking-widest mb-6">
                 Trusted by Practices Across the U.S.
               </p>
-              <div className="flex items-center justify-center gap-12 opacity-40">
-                {['Practice 1', 'Practice 2', 'Practice 3', 'Practice 4', 'Practice 5'].map((name, i) => (
-                  <div key={i} className="text-gray-600 text-sm font-medium">
+              <div className="flex items-center justify-center gap-8 lg:gap-12 flex-wrap opacity-40">
+                {['My Smile Miami', 'SF Dental Arts', 'Union Square Dental', 'Financial District Dentistry', 'Pacific Heights Smiles', 'SOMA Dental Care'].map((name, i) => (
+                  <div key={i} className="text-gray-600 text-xs lg:text-sm font-medium">
                     {name}
                   </div>
                 ))}
@@ -414,18 +416,18 @@ const Dentists: React.FC = () => {
                 {[
                   {
                     step: '1',
-                    title: 'We Connect Your Phone System',
-                    description: 'Quick 24–48 hour setup. Integrates with your existing dental software and phone lines.'
+                    title: 'We Build Your AI Receptionist',
+                    description: 'Custom AI trained on your practice protocols, services, and scheduling preferences.'
                   },
                   {
                     step: '2',
-                    title: 'AI Answers and Books Calls 24/7',
-                    description: 'Natural conversations, appointment scheduling, emergency triage — all handled automatically.'
+                    title: 'We Connect to Your PMS',
+                    description: 'Seamless integration with OpenDental, Dentrix, or EagleSoft. Real-time calendar sync.'
                   },
                   {
                     step: '3',
-                    title: 'Daily Reports + Transcripts',
-                    description: 'Every morning: missed-call analysis, call transcripts, and booked appointments in your inbox.'
+                    title: 'We Go Live',
+                    description: 'Your AI starts answering calls 24/7. Setup complete in 24–48 hours.'
                   }
                 ].map((item, index) => (
                   <TechCard key={index}>
@@ -546,28 +548,6 @@ const Dentists: React.FC = () => {
                   </div>
                 ))}
               </div>
-
-              <TechCard className="max-w-3xl mx-auto">
-                <div className="text-center py-4">
-                  <p className="text-xl text-white font-thin mb-6">
-                    Most practices achieve full ROI within 90 days
-                  </p>
-                  <p className="text-sm text-gray-400 mb-8">
-                    From increased bookings, reduced no-shows, and eliminated missed calls
-                  </p>
-                  <a
-                    href="#form"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black font-medium rounded-xl transition-colors"
-                  >
-                    See How Much You Can Recover
-                    <FaArrowRight className="text-sm" />
-                  </a>
-                </div>
-              </TechCard>
             </div>
           </section>
 
@@ -590,8 +570,15 @@ const Dentists: React.FC = () => {
               <div className="max-w-4xl mx-auto">
                 <TechCard>
                   <div className="py-4">
+                    {/* Star Rating */}
+                    <div className="flex items-center gap-1 mb-6">
+                      {[...Array(5)].map((_, i) => (
+                        <FaStar key={i} className="text-cyan-400 text-sm" />
+                      ))}
+                    </div>
+
                     <p className="text-gray-300 leading-relaxed mb-6">
-                      "Cognia completely transformed our Monday mornings. Before, I'd spend 45 minutes going through voicemails — slow and stressful. Now we get clear email summaries and transcripts first thing. If a patient requests an appointment over the weekend, Cognia schedules it automatically. No backlog, no delays. Our workflow is faster and more organized."
+                      "Working with Cognia has been a game-changer for our office. If a patient requests an appointment over the weekend, Cognia schedules it for us — no backlog, no delays. It has made our workflow faster, more organized, and much more efficient."
                     </p>
                     <div className="pt-6 border-t border-white/10">
                       <div className="font-medium text-white">Jacob Ojalvo</div>
