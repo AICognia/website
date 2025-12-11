@@ -25,51 +25,9 @@ const Dentists: React.FC = () => {
   const [error, setError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showAudioModal, setShowAudioModal] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
-  const analyserRef = useRef<AnalyserNode | null>(null);
-  const audioContextRef = useRef<AudioContext | null>(null);
-
-  const toggleAudioPlay = async () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
-    } else {
-      try {
-        // Setup audio context on first play
-        if (!audioContextRef.current) {
-          const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-          const analyser = audioContext.createAnalyser();
-          analyser.fftSize = 256;
-          analyser.smoothingTimeConstant = 0.75;
-
-          const source = audioContext.createMediaElementSource(audio);
-          source.connect(analyser);
-          analyser.connect(audioContext.destination);
-
-          audioContextRef.current = audioContext;
-          analyserRef.current = analyser;
-        }
-
-        // Resume AudioContext if suspended
-        if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
-          await audioContextRef.current.resume();
-        }
-
-        await audio.play();
-        setIsPlaying(true);
-        conversionTracker.trackButtonClick('Demo Audio Played', 'dentists_page');
-      } catch (error) {
-        console.error('Audio playback failed:', error);
-        setIsPlaying(false);
-      }
-    }
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -79,7 +37,7 @@ const Dentists: React.FC = () => {
     setError('');
   };
 
-  // Canvas waveform animation - runs immediately on mount
+  // Canvas waveform animation - static wave animation only
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -88,16 +46,9 @@ const Dentists: React.FC = () => {
     if (!ctx) return;
 
     const bars = 60;
-    const bufferLength = analyserRef.current?.frequencyBinCount || 128;
-    const dataArray = new Uint8Array(bufferLength);
 
     const draw = () => {
       animationRef.current = requestAnimationFrame(draw);
-
-      // Get frequency data if playing
-      if (analyserRef.current && isPlaying) {
-        analyserRef.current.getByteFrequencyData(dataArray);
-      }
 
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -107,41 +58,10 @@ const Dentists: React.FC = () => {
 
       for (let i = 0; i < bars; i++) {
         const time = Date.now() / 1000;
-        let barHeight;
 
-        if (analyserRef.current && isPlaying) {
-          // MIRRORED DISTRIBUTION - Mirror frequency data from center outward
-          const halfBars = bars / 2;
-
-          // Create mirror: 0->59->0, both sides use same data
-          const mirrorIndex = i < halfBars ? i : (bars - 1 - i);
-
-          // Map to energetic frequency range (first 50 bins)
-          const dataIndex = Math.floor(mirrorIndex * (50 / halfBars));
-
-          // Get frequency data
-          const rawFrequency = dataArray[dataIndex];
-
-          // Normalize to 0-1
-          const normalizedValue = rawFrequency / 255;
-
-          // Apply curve for better visual response
-          const scaledValue = Math.pow(normalizedValue, 0.9);
-
-          // Moderate scaling without over-boosting
-          const frequencyHeight = scaledValue * (canvas.height * 0.45);
-
-          // Minimal base for subtle movement
-          const baseWave = Math.sin(i * 0.05 + time) * 0.05 + 0.05;
-          const baseHeight = baseWave * 15;
-
-          // Combine with minimal base
-          barHeight = Math.max(frequencyHeight, baseHeight);
-        } else {
-          // Idle wave animation
-          const wave = Math.sin(i * 0.1 + time * 2) * 0.3 + 0.3;
-          barHeight = wave * (canvas.height / 4) + 10;
-        }
+        // Static wave animation - always the same
+        const wave = Math.sin(i * 0.1 + time * 2) * 0.3 + 0.3;
+        const barHeight = wave * (canvas.height / 4) + 10;
 
         const x = i * barWidth;
 
@@ -161,7 +81,7 @@ const Dentists: React.FC = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isPlaying, showAudioModal]); // Added showAudioModal to restart when modal opens
+  }, [showAudioModal]); // Only restart when modal opens/closes
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -759,7 +679,6 @@ const Dentists: React.FC = () => {
                   if (audioRef.current) {
                     audioRef.current.pause();
                     audioRef.current.currentTime = 0;
-                    setIsPlaying(false);
                   }
                 }}
                 className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
@@ -791,7 +710,6 @@ const Dentists: React.FC = () => {
                         if (audioRef.current) {
                           audioRef.current.pause();
                           audioRef.current.currentTime = 0;
-                          setIsPlaying(false);
                         }
                       }}
                       className="text-gray-400 hover:text-white transition-colors"
@@ -802,7 +720,7 @@ const Dentists: React.FC = () => {
 
                   {/* Audio Player */}
                   <div className="space-y-6">
-                    {/* Waveform Visualization - Real-time Frequency */}
+                    {/* Waveform Visualization - Static Animation */}
                     <div className="relative h-24 bg-black/50 rounded-2xl overflow-hidden flex items-center justify-center">
                       <canvas
                         ref={canvasRef}
@@ -812,30 +730,17 @@ const Dentists: React.FC = () => {
                       />
                     </div>
 
-                    {/* Controls */}
+                    {/* Audio Controls */}
                     <div className="flex items-center gap-4">
-                      <button
-                        onClick={toggleAudioPlay}
-                        className="w-16 h-16 bg-cyan-400 hover:bg-cyan-300 rounded-full flex items-center justify-center transition-all group"
-                      >
-                        {isPlaying ? (
-                          <FaPause className="text-black text-xl" />
-                        ) : (
-                          <FaPlay className="text-black text-xl ml-1" />
-                        )}
-                      </button>
-
                       <div className="flex-1">
                         <audio
                           ref={audioRef}
                           src="https://yhmbki8wsvse0fwd.public.blob.vercel-storage.com/DENTIST%20MP3.mp3"
-                          onEnded={() => setIsPlaying(false)}
-                          onPause={() => setIsPlaying(false)}
-                          onPlay={() => setIsPlaying(true)}
                           className="w-full"
                           controls
                           controlsList="nodownload"
                           crossOrigin="anonymous"
+                          onPlay={() => conversionTracker.trackButtonClick('Demo Audio Played', 'dentists_page')}
                         />
                       </div>
                     </div>
