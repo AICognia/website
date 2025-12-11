@@ -455,7 +455,7 @@ const Dentists: React.FC = () => {
                 {[
                   {
                     step: '1',
-                    title: 'Your Patients Get Answered 24/7',
+                    title: 'Patients Get Answered 24/7',
                     description: 'No more missed calls or voicemails. Every patient reaches a live AI receptionist instantly, day or night.'
                   },
                   {
