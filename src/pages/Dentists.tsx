@@ -151,7 +151,7 @@ const Dentists: React.FC = () => {
         {/* Content */}
         <div className="relative z-10">
           {/* Hero Section - Mobile Optimized */}
-          <section className="relative overflow-hidden py-12 lg:py-32">
+          <section className="relative overflow-hidden py-14 lg:py-36">
             <div className="absolute inset-0 bg-black/40" />
 
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl">
@@ -190,9 +190,9 @@ const Dentists: React.FC = () => {
                   className="grid grid-cols-3 gap-4"
                 >
                   {[
-                    { icon: FaPhone, text: '24/7 AI' },
-                    { icon: FaCalendarCheck, text: '+20% Bookings' },
-                    { icon: FaCheckCircle, text: '-66% No-Shows' },
+                    { icon: FaPhone, text: '24/7 Patient Scheduling' },
+                    { icon: FaCalendarCheck, text: '20% More Bookings' },
+                    { icon: FaCheckCircle, text: '66% Less No-Shows' },
                   ].map((item, i) => (
                     <div key={i} className="flex flex-col items-center gap-3 bg-black/30 border border-white/5 rounded-xl p-4">
                       <item.icon className="text-cyan-400 text-lg" />
@@ -206,7 +206,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="space-y-3"
+                  className="space-y-3 flex flex-col items-center"
                 >
                   <a
                     href="#trial"
@@ -214,14 +214,14 @@ const Dentists: React.FC = () => {
                       e.preventDefault();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-white hover:bg-neutral-100 text-black text-base font-semibold rounded-xl transition-colors shadow-lg"
+                    className="flex items-center justify-center gap-2 w-full max-w-[70%] px-6 py-3.5 bg-white hover:bg-neutral-100 text-black text-base font-semibold rounded-xl transition-colors shadow-lg"
                   >
                     Start Free Trial
                     <FaArrowRight className="text-sm" />
                   </a>
 
-                  {/* Pricing transparency - Polished */}
-                  <p className="text-xs text-center text-gray-400/75 mt-7 mb-5">
+                  {/* Pricing transparency - Enhanced visibility */}
+                  <p className="text-sm text-center text-gray-300 font-semibold mt-7 mb-5">
                     Plans start at $199/month • Cancel anytime
                   </p>
                 </motion.div>
@@ -335,9 +335,9 @@ const Dentists: React.FC = () => {
                   className="grid md:grid-cols-3 gap-10 max-w-3xl mx-auto"
                 >
                   {[
-                    { icon: FaPhone, text: '24/7 AI Receptionist' },
-                    { icon: FaCalendarCheck, text: '10–20% More Bookings' },
-                    { icon: FaCheckCircle, text: '66% Fewer No-Shows' },
+                    { icon: FaPhone, text: '24/7 Patient Scheduling' },
+                    { icon: FaCalendarCheck, text: '20% More Bookings' },
+                    { icon: FaCheckCircle, text: '66% Less No-Shows' },
                   ].map((item, i) => (
                     <div key={i} className="flex flex-col items-center gap-4">
                       <div className="w-16 h-16 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center">
@@ -353,7 +353,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="space-y-3"
+                  className="space-y-3 flex flex-col items-center"
                 >
                   <a
                     href="#trial"
@@ -361,14 +361,14 @@ const Dentists: React.FC = () => {
                       e.preventDefault();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white hover:bg-neutral-100 text-black text-lg font-medium rounded-xl transition-colors shadow-lg"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white hover:bg-neutral-100 text-black text-lg font-medium rounded-xl transition-colors shadow-lg max-w-xs"
                   >
                     Start Free Trial
                     <FaArrowRight className="text-sm" />
                   </a>
 
-                  {/* Pricing transparency - Polished */}
-                  <p className="text-sm text-gray-400/75 mt-7 mb-6">
+                  {/* Pricing transparency - Enhanced visibility */}
+                  <p className="text-base text-gray-200 font-bold mt-7 mb-6">
                     Plans start at $199/month • Cancel anytime
                   </p>
                 </motion.div>
@@ -487,13 +487,17 @@ const Dentists: React.FC = () => {
                     viewport={{ once: true }}
                     className="text-center relative"
                   >
-                    {/* Step Number - Perfect circle background */}
+                    {/* Step Number - Enhanced visual appeal */}
                     <div className="mb-10">
                       <div className="relative w-28 h-28 mx-auto">
-                        {/* Neon ring glow - enhanced */}
-                        <div className="absolute inset-0 bg-cyan-400/25 rounded-full blur-md"></div>
-                        <div className="relative w-28 h-28 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/30">
-                          <span className="text-4xl font-bold text-cyan-400">{item.step}</span>
+                        {/* Outer glow ring */}
+                        <div className="absolute inset-0 bg-cyan-400/30 rounded-full blur-lg"></div>
+                        {/* Middle glow ring */}
+                        <div className="absolute inset-2 bg-cyan-400/40 rounded-full blur-md"></div>
+                        {/* Main circle with solid background */}
+                        <div className="relative w-28 h-28 bg-gradient-to-br from-cyan-500/30 via-cyan-400/25 to-blue-500/30 border-2 border-cyan-400/60 rounded-full flex items-center justify-center shadow-xl shadow-cyan-400/40">
+                          <div className="absolute inset-0 bg-black/20 rounded-full"></div>
+                          <span className="relative text-4xl font-bold text-cyan-300 drop-shadow-lg">{item.step}</span>
                         </div>
                       </div>
                     </div>
@@ -589,12 +593,16 @@ const Dentists: React.FC = () => {
                     viewport={{ once: true }}
                     className="relative bg-black/30 border border-white/[0.03] rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[160px]"
                   >
-                    {/* Step Number Badge - Perfect circle background */}
+                    {/* Step Number Badge - Enhanced visual appeal */}
                     <div className="relative w-20 h-20 mb-5">
-                      {/* Neon ring glow - enhanced */}
-                      <div className="absolute inset-0 bg-cyan-400/25 rounded-full blur-md"></div>
-                      <div className="relative w-20 h-20 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/25">
-                        <span className="text-4xl font-bold text-cyan-400">{item.step}</span>
+                      {/* Outer glow ring */}
+                      <div className="absolute inset-0 bg-cyan-400/30 rounded-full blur-lg"></div>
+                      {/* Middle glow ring */}
+                      <div className="absolute inset-1 bg-cyan-400/40 rounded-full blur-md"></div>
+                      {/* Main circle with solid background */}
+                      <div className="relative w-20 h-20 bg-gradient-to-br from-cyan-500/30 via-cyan-400/25 to-blue-500/30 border-2 border-cyan-400/60 rounded-full flex items-center justify-center shadow-xl shadow-cyan-400/40">
+                        <div className="absolute inset-0 bg-black/20 rounded-full"></div>
+                        <span className="relative text-4xl font-bold text-cyan-300 drop-shadow-lg">{item.step}</span>
                       </div>
                     </div>
 
