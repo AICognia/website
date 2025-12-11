@@ -127,36 +127,57 @@ const Dentists: React.FC = () => {
             <div className="absolute inset-0 bg-black/40" />
 
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl">
-              {/* Mobile: Ultra-Optimized for Conversion */}
-              <div className="lg:hidden space-y-5">
-                {/* Compact Headline - Bigger Impact */}
+              {/* Mobile: Compact, Form-First Layout */}
+              <div className="lg:hidden space-y-6">
+                {/* Free Trial Badge */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-center"
+                >
+                  <div className="inline-block px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                    <span className="text-xs font-semibold text-cyan-400">
+                      7-Day Free Trial • No Card Required
+                    </span>
+                  </div>
+                </motion.div>
+
+                {/* Compact Headline */}
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  className="text-[2.5rem] font-bold leading-[1.1] text-center tracking-tight"
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="text-4xl font-thin leading-tight text-center"
                 >
                   Never Miss a{' '}
                   <span className="text-cyan-400">Patient Call</span>
                 </motion.h1>
 
-                {/* Subheadline - Clear Value */}
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-base text-gray-300 text-center leading-relaxed px-2"
-                >
-                  AI answers 24/7. You get 20% more bookings.
-                  <br />
-                  <span className="text-cyan-400 font-medium">No credit card. Free for 7 days.</span>
-                </motion.p>
-
-                {/* Primary CTA - Above the Fold */}
+                {/* Mobile 3 Value Props - Compact Grid */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
+                  className="grid grid-cols-3 gap-3"
+                >
+                  {[
+                    { icon: FaPhone, text: '24/7 AI' },
+                    { icon: FaCalendarCheck, text: '+20% Bookings' },
+                    { icon: FaCheckCircle, text: '-66% No-Shows' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex flex-col items-center gap-2 bg-black/30 border border-white/5 rounded-xl p-3">
+                      <item.icon className="text-cyan-400 text-sm" />
+                      <p className="text-white text-xs font-medium text-center leading-tight">{item.text}</p>
+                    </div>
+                  ))}
+                </motion.div>
+
+                {/* Mobile CTA - Scroll to Form */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
                 >
                   <a
                     href="#trial"
@@ -164,38 +185,21 @@ const Dentists: React.FC = () => {
                       e.preventDefault();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="flex items-center justify-center gap-2 w-full px-8 py-5 bg-cyan-400 hover:bg-cyan-300 text-black text-lg font-bold rounded-2xl transition-all shadow-xl shadow-cyan-400/20"
+                    className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-white hover:bg-neutral-100 text-black text-base font-semibold rounded-xl transition-colors shadow-lg"
                   >
                     Start Free Trial
-                    <FaArrowRight className="text-base" />
+                    <FaArrowRight className="text-sm" />
                   </a>
                 </motion.div>
 
-                {/* Trust Signals - Compact */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="flex items-center justify-center gap-4 text-xs text-gray-400"
-                >
-                  <div className="flex items-center gap-1.5">
-                    <FaCheckCircle className="text-cyan-400 text-sm" />
-                    <span>No card needed</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <FaCheckCircle className="text-cyan-400 text-sm" />
-                    <span>Setup in 48hrs</span>
-                  </div>
-                </motion.div>
-
-                {/* Social Proof */}
+                {/* Trust Badge */}
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="text-xs text-gray-500 text-center pt-2"
+                  className="text-xs text-gray-400 text-center"
                 >
-                  Join 50+ dental practices using Cognia AI
+                  Trusted by 50+ U.S. Dental Practices
                 </motion.p>
               </div>
 
