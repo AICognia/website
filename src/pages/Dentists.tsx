@@ -110,20 +110,15 @@ const Dentists: React.FC = () => {
         let barHeight;
 
         if (analyserRef.current && isPlaying) {
-          // REVERSED MIRRORED DISTRIBUTION - High frequencies in center, low on edges
-          // This creates visual interest because speech/music has more mid-high frequency energy
+          // MIRRORED DISTRIBUTION - Mirror frequency data from edges to center
           const halfBars = bars / 2;
 
-          // Create mirror: 0->29->0, both sides use same data
+          // Create mirror: bar 0 and 59 show same freq, bar 1 and 58 show same freq, etc.
           const mirrorIndex = i < halfBars ? i : (bars - 1 - i);
 
-          // REVERSE the mapping: highest frequencies in center (mirrorIndex 0), lowest on edges (mirrorIndex 29)
-          const reversedIndex = halfBars - 1 - mirrorIndex;
-
-          // Map to frequency bins 10-60 (mid-high range with energy)
-          // reversedIndex 0 (center) -> bin 60 (high freq)
-          // reversedIndex 29 (edges) -> bin 10 (mid-low freq)
-          const dataIndex = Math.floor(10 + (reversedIndex * (50 / halfBars)));
+          // Map across energetic frequency range
+          // Use bins 8-70 to cover bass to high frequencies with good energy
+          const dataIndex = Math.floor(8 + (mirrorIndex * (62 / halfBars)));
 
           // Get frequency data
           const rawFrequency = dataArray[dataIndex];
@@ -132,9 +127,9 @@ const Dentists: React.FC = () => {
           const normalizedValue = rawFrequency / 255;
 
           // Apply curve for better visual response
-          const scaledValue = Math.pow(normalizedValue, 0.6);
+          const scaledValue = Math.pow(normalizedValue, 0.65);
 
-          // Scale height
+          // Scale height with slight boost
           const frequencyHeight = scaledValue * (canvas.height * 0.5);
 
           // Minimal base for subtle movement
@@ -312,6 +307,41 @@ const Dentists: React.FC = () => {
                 >
                   Trusted by 50+ U.S. Dental Practices
                 </motion.p>
+
+                {/* Mobile Audio Demo Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  className="mt-8"
+                >
+                  <button
+                    onClick={() => setShowAudioModal(true)}
+                    className="w-full bg-black/40 border border-white/10 rounded-2xl p-6 hover:border-cyan-400/30 hover:bg-black/50 transition-all duration-300 group"
+                  >
+                    <div className="flex items-center gap-4">
+                      {/* Play Icon */}
+                      <div className="w-12 h-12 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-400/20 transition-colors">
+                        <svg className="w-5 h-5 text-cyan-400 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+
+                      {/* Text Content */}
+                      <div className="flex-1 text-left">
+                        <h3 className="text-sm font-medium text-white mb-1">
+                          Hear It in Action
+                        </h3>
+                        <p className="text-xs text-gray-400">
+                          Listen to our AI receptionist
+                        </p>
+                      </div>
+
+                      {/* Arrow Icon */}
+                      <FaArrowRight className="text-cyan-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </button>
+                </motion.div>
               </div>
 
               {/* Desktop: Original Layout */}
