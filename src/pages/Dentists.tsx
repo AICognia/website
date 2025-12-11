@@ -171,7 +171,7 @@ const Dentists: React.FC = () => {
 
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl">
               {/* Mobile: Compact, Form-First Layout */}
-              <div className="lg:hidden space-y-8">
+              <div className="lg:hidden space-y-6">
                 {/* Free Trial Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -179,8 +179,8 @@ const Dentists: React.FC = () => {
                   transition={{ duration: 0.5 }}
                   className="text-center"
                 >
-                  <div className="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
-                    <span className="text-sm font-semibold text-cyan-400">
+                  <div className="inline-block px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                    <span className="text-xs font-semibold text-cyan-400">
                       7-Day Free Trial • No Credit Card • HIPAA-Compliant
                     </span>
                   </div>
@@ -202,9 +202,9 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.13 }}
-                  className="text-lg text-gray-300 text-center leading-relaxed max-w-2xl mx-auto"
+                  className="text-base text-gray-300 text-center leading-snug max-w-2xl mx-auto"
                 >
-                  Your AI receptionist that answers every call & books every patient — 24/7.
+                  AI receptionist that books every patient—24/7.
                 </motion.p>
 
                 {/* CTA - Moved up */}
@@ -212,7 +212,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.17 }}
-                  className="space-y-3 flex flex-col items-center"
+                  className="space-y-2 flex flex-col items-center"
                 >
                   <a
                     href="#trial-form"
@@ -227,12 +227,12 @@ const Dentists: React.FC = () => {
                   </a>
 
                   {/* Pricing */}
-                  <p className="text-sm text-center text-gray-300 font-semibold">
+                  <p className="text-base text-center text-white font-bold mt-1">
                     From $199/month • Setup in 24 hours
                   </p>
 
                   {/* Risk-Reversal Strip */}
-                  <p className="text-xs text-center text-gray-400/70 leading-relaxed">
+                  <p className="text-xs text-center text-gray-400/60 leading-relaxed mt-0.5">
                     No contracts • Cancel anytime • 24/7 support
                   </p>
                 </motion.div>
@@ -252,7 +252,7 @@ const Dentists: React.FC = () => {
                     <div key={i} className="flex flex-col items-center gap-2 bg-black/30 border border-white/5 rounded-xl p-4">
                       <item.icon className="text-cyan-400 text-lg" />
                       <p className="text-white text-xs font-semibold text-center leading-tight">{item.title}</p>
-                      <p className="text-gray-400 text-[10px] text-center leading-tight">{item.subtitle}</p>
+                      <p className="text-gray-300/70 text-[11px] text-center leading-snug">{item.subtitle}</p>
                     </div>
                   ))}
                 </motion.div>
@@ -262,9 +262,9 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="py-8 border-t border-b border-white/5 mb-4"
+                  className="py-6 border-t border-b border-white/10 mb-4"
                 >
-                  <p className="text-sm text-gray-300 text-center font-bold tracking-wide italic">
+                  <p className="text-sm text-gray-200 text-center font-bold tracking-wide italic drop-shadow-[0_0_6px_rgba(6,182,212,0.25)]">
                     Trusted by 50+ U.S. Dental Practices
                   </p>
                 </motion.div>
@@ -278,7 +278,7 @@ const Dentists: React.FC = () => {
                 >
                   <button
                     onClick={() => setShowAudioModal(true)}
-                    className="relative w-full bg-black/30 rounded-xl p-8 hover:bg-black/35 transition-all duration-150 ease-out group shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20 overflow-hidden border border-cyan-400/30"
+                    className="relative w-full bg-black/30 rounded-xl p-8 hover:bg-black/35 transition-all duration-150 ease-out group shadow-lg shadow-cyan-500/15 hover:shadow-xl hover:shadow-cyan-500/25 overflow-hidden border border-cyan-400/30"
                   >
                     {/* Neon gradient border */}
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400/25 via-transparent to-cyan-400/25 p-[1.5px]">
@@ -332,7 +332,7 @@ const Dentists: React.FC = () => {
               </div>
 
               {/* Desktop: Optimized Layout */}
-              <div className="hidden lg:block text-center max-w-4xl mx-auto space-y-10">
+              <div className="hidden lg:block text-center max-w-4xl mx-auto space-y-7">
                 {/* Free Trial Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -373,7 +373,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.17 }}
-                  className="space-y-3 flex flex-col items-center"
+                  className="space-y-2 flex flex-col items-center"
                 >
                   <a
                     href="#trial-form"
@@ -388,13 +388,13 @@ const Dentists: React.FC = () => {
                   </a>
 
                   {/* Pricing */}
-                  <p className="text-base text-gray-200 font-bold">
+                  <p className="text-base text-gray-200 font-bold mt-1">
                     From $199/month • Setup in 24 hours
                   </p>
 
                   {/* Risk-Reversal Strip */}
-                  <p className="text-sm text-center text-gray-400/70 leading-relaxed">
-                    No contracts • Cancel anytime • 24/7 support • HIPAA-compliant
+                  <p className="text-xs text-center text-gray-400/60 leading-relaxed mt-0.5">
+                    No contracts • Cancel anytime • 24/7 support
                   </p>
                 </motion.div>
 
@@ -403,7 +403,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto"
+                  className="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto"
                 >
                   {[
                     { icon: FaPhone, title: '24/7 Patient Scheduling', subtitle: 'Never miss a new patient again.' },
@@ -416,7 +416,7 @@ const Dentists: React.FC = () => {
                       </div>
                       <div className="text-center">
                         <p className="text-white font-semibold text-lg mb-1">{item.title}</p>
-                        <p className="text-gray-400 text-sm">{item.subtitle}</p>
+                        <p className="text-gray-300/80 text-sm leading-relaxed">{item.subtitle}</p>
                       </div>
                     </div>
                   ))}
@@ -427,9 +427,9 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="py-8 border-t border-b border-white/5 mb-4"
+                  className="py-8 border-t border-b border-white/10 mb-4"
                 >
-                  <p className="text-base text-gray-300 font-bold tracking-wide italic">
+                  <p className="text-lg text-gray-200 font-bold tracking-wide italic drop-shadow-[0_0_8px_rgba(6,182,212,0.3)]">
                     Trusted by 50+ U.S. Dental Practices
                   </p>
                 </motion.div>
@@ -443,7 +443,7 @@ const Dentists: React.FC = () => {
                 >
                   <button
                     onClick={() => setShowAudioModal(true)}
-                    className="relative w-full bg-black/30 rounded-2xl px-10 py-8 hover:bg-black/35 transition-all duration-150 ease-out group shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20 overflow-hidden border border-cyan-400/30"
+                    className="relative w-full bg-black/30 rounded-2xl px-10 py-8 hover:bg-black/35 transition-all duration-150 ease-out group shadow-xl shadow-cyan-500/20 hover:shadow-2xl hover:shadow-cyan-500/30 overflow-hidden border border-cyan-400/30"
                   >
                     {/* Neon gradient border */}
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400/25 via-transparent to-cyan-400/25 p-[1.5px]">
@@ -460,19 +460,19 @@ const Dentists: React.FC = () => {
                         </p>
                       </div>
                       <div className="flex-shrink-0">
-                        <div className="w-20 h-20 bg-cyan-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center group-hover:bg-cyan-400/30 group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-cyan-400/50 transition-all duration-150 ease-out">
-                          <FaPlay className="text-cyan-400 text-2xl ml-1" />
+                        <div className="w-24 h-24 bg-cyan-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center group-hover:bg-cyan-400/30 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-cyan-400/60 transition-all duration-150 ease-out">
+                          <FaPlay className="text-cyan-400 text-3xl ml-1" />
                         </div>
                       </div>
                     </div>
 
                     {/* Minimal Waveform Visualization */}
-                    <div className="relative flex items-center justify-center gap-1 mt-6 h-8">
+                    <div className="relative flex items-center justify-center gap-1 mt-6 h-10">
                       {[3, 8, 5, 12, 7, 10, 4, 11, 6, 9, 5, 8, 4, 10, 7, 12, 5, 9, 6, 11].map((height, i) => (
                         <div
                           key={i}
-                          className="w-1 bg-cyan-400/20 rounded-full transition-all"
-                          style={{ height: `${height * 2}px` }}
+                          className="w-1 bg-cyan-400/25 rounded-full transition-all"
+                          style={{ height: `${height * 2.5}px` }}
                         />
                       ))}
                     </div>
