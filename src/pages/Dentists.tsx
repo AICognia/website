@@ -166,12 +166,12 @@ const Dentists: React.FC = () => {
                 >
                   <div className="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
                     <span className="text-sm font-semibold text-cyan-400">
-                      7-Day Free Trial • No Card Required
+                      7-Day Free Trial • No Credit Card • HIPAA-Compliant
                     </span>
                   </div>
                 </motion.div>
 
-                {/* Compact Headline */}
+                {/* Headline */}
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -182,34 +182,25 @@ const Dentists: React.FC = () => {
                   <span className="text-cyan-400">Patient Call</span>
                 </motion.h1>
 
-                {/* Mobile 3 Value Props - Closer to headline */}
-                <motion.div
+                {/* Subheadline */}
+                <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.15 }}
-                  className="grid grid-cols-3 gap-4 pb-2"
+                  transition={{ duration: 0.6, delay: 0.13 }}
+                  className="text-lg text-gray-300 text-center leading-relaxed max-w-2xl mx-auto"
                 >
-                  {[
-                    { icon: FaPhone, text: '24/7 Patient Scheduling' },
-                    { icon: FaCalendarCheck, text: '20% More Bookings' },
-                    { icon: FaCheckCircle, text: '66% Less No-Shows' },
-                  ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-3 bg-black/30 border border-white/5 rounded-xl p-4">
-                      <item.icon className="text-cyan-400 text-lg" />
-                      <p className="text-white text-sm font-medium text-center leading-tight">{item.text}</p>
-                    </div>
-                  ))}
-                </motion.div>
+                  Your AI receptionist that answers every call & books every patient — 24/7.
+                </motion.p>
 
-                {/* Mobile CTA - Above the fold */}
+                {/* CTA - Moved up */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="space-y-3 flex flex-col items-center pb-4"
+                  transition={{ duration: 0.6, delay: 0.17 }}
+                  className="space-y-3 flex flex-col items-center"
                 >
                   <a
-                    href="#trial"
+                    href="#trial-form"
                     onClick={(e) => {
                       e.preventDefault();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
@@ -220,10 +211,30 @@ const Dentists: React.FC = () => {
                     <FaArrowRight className="text-sm" />
                   </a>
 
-                  {/* Pricing transparency - Enhanced visibility */}
-                  <p className="text-sm text-center text-gray-300 font-semibold mt-7 mb-8">
-                    Plans start at $199/month • Cancel anytime
+                  {/* Pricing */}
+                  <p className="text-sm text-center text-gray-300 font-semibold">
+                    From $199/month • Cancel anytime
                   </p>
+                </motion.div>
+
+                {/* Mobile 3 Value Props */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="grid grid-cols-3 gap-4 pb-2"
+                >
+                  {[
+                    { icon: FaPhone, title: '24/7 Patient Scheduling', subtitle: 'Never miss a new patient again.' },
+                    { icon: FaCalendarCheck, title: '20% More Bookings', subtitle: 'AI books directly into your calendar.' },
+                    { icon: FaCheckCircle, title: '66% Fewer No-Shows', subtitle: 'Automatic confirmation calls.' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex flex-col items-center gap-2 bg-black/30 border border-white/5 rounded-xl p-4">
+                      <item.icon className="text-cyan-400 text-lg" />
+                      <p className="text-white text-xs font-semibold text-center leading-tight">{item.title}</p>
+                      <p className="text-gray-400 text-[10px] text-center leading-tight">{item.subtitle}</p>
+                    </div>
+                  ))}
                 </motion.div>
 
                 {/* Trust badge - Polished */}
@@ -264,18 +275,18 @@ const Dentists: React.FC = () => {
 
                       {/* Text Content - Centered */}
                       <div className="text-center">
-                        <h3 className="text-sm font-medium text-white">
+                        <h3 className="text-base font-semibold text-white mb-0.5">
                           Hear It in Action
                         </h3>
                         <p className="text-xs text-gray-400">
-                          30 sec demo
+                          30-second real example of Cognia AI answering a patient call.
                         </p>
                       </div>
                     </div>
                   </button>
                 </motion.div>
 
-                {/* Micro-benefits - Polished */}
+                {/* Feature Cards - Optimized */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -283,9 +294,9 @@ const Dentists: React.FC = () => {
                   className="grid grid-cols-1 gap-5 pt-10"
                 >
                   {[
-                    { icon: FaPlug, text: 'PMS Integration', subtext: 'Existing scheduling software' },
-                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included' },
-                    { icon: FaBolt, text: 'No training required', subtext: 'Plug & play setup' },
+                    { icon: FaPlug, text: 'Seamless PMS Integration', subtext: 'Works with OpenDental, Dentrix, EagleSoft & more.' },
+                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included.' },
+                    { icon: FaBolt, text: 'Plug-and-Play Setup', subtext: 'No training, no hardware.' },
                   ].map((item, i) => (
                     <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-lg p-5 text-center hover:scale-[1.015] hover:shadow-lg hover:shadow-cyan-400/15 hover:border-cyan-400/20 transition-all duration-150 ease-out cursor-pointer">
                       <div className="w-11 h-11 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/28">
@@ -300,8 +311,8 @@ const Dentists: React.FC = () => {
                 </motion.div>
               </div>
 
-              {/* Desktop: Original Layout */}
-              <div className="hidden lg:block text-center max-w-4xl mx-auto space-y-12">
+              {/* Desktop: Optimized Layout */}
+              <div className="hidden lg:block text-center max-w-4xl mx-auto space-y-10">
                 {/* Free Trial Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -310,12 +321,12 @@ const Dentists: React.FC = () => {
                 >
                   <div className="inline-block px-5 py-2.5 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
                     <span className="text-base font-semibold text-cyan-400">
-                      7-Day Free Trial • No Credit Card Required
+                      7-Day Free Trial • No Credit Card • HIPAA-Compliant
                     </span>
                   </div>
                 </motion.div>
 
-                {/* Main Headline */}
+                {/* Headline */}
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -324,39 +335,28 @@ const Dentists: React.FC = () => {
                 >
                   Never Miss a
                   <br />
-                  <span className="text-cyan-400">Patient Call Again</span>
+                  <span className="text-cyan-400">Patient Call</span>
                 </motion.h1>
 
-                {/* 3 Bullet Values - Closer to headline */}
-                <motion.div
+                {/* Subheadline */}
+                <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.15 }}
-                  className="grid md:grid-cols-3 gap-10 max-w-3xl mx-auto"
+                  transition={{ duration: 0.6, delay: 0.13 }}
+                  className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto"
                 >
-                  {[
-                    { icon: FaPhone, text: '24/7 Patient Scheduling' },
-                    { icon: FaCalendarCheck, text: '20% More Bookings' },
-                    { icon: FaCheckCircle, text: '66% Less No-Shows' },
-                  ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-4">
-                      <div className="w-16 h-16 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center">
-                        <item.icon className="text-cyan-400 text-2xl" />
-                      </div>
-                      <p className="text-white font-medium text-lg">{item.text}</p>
-                    </div>
-                  ))}
-                </motion.div>
+                  Your AI receptionist that answers every call & books every patient — 24/7.
+                </motion.p>
 
-                {/* Primary CTA */}
+                {/* Primary CTA - Moved up */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                  transition={{ duration: 0.6, delay: 0.17 }}
                   className="space-y-3 flex flex-col items-center"
                 >
                   <a
-                    href="#trial"
+                    href="#trial-form"
                     onClick={(e) => {
                       e.preventDefault();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
@@ -367,10 +367,34 @@ const Dentists: React.FC = () => {
                     <FaArrowRight className="text-sm" />
                   </a>
 
-                  {/* Pricing transparency - Enhanced visibility */}
-                  <p className="text-base text-gray-200 font-bold mt-7 mb-8">
-                    Plans start at $199/month • Cancel anytime
+                  {/* Pricing */}
+                  <p className="text-base text-gray-200 font-bold">
+                    From $199/month • Cancel anytime
                   </p>
+                </motion.div>
+
+                {/* 3 Value Props */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto"
+                >
+                  {[
+                    { icon: FaPhone, title: '24/7 Patient Scheduling', subtitle: 'Never miss a new patient again.' },
+                    { icon: FaCalendarCheck, title: '20% More Bookings', subtitle: 'AI books directly into your calendar.' },
+                    { icon: FaCheckCircle, title: '66% Fewer No-Shows', subtitle: 'Automatic confirmation calls.' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex flex-col items-center gap-3">
+                      <div className="w-16 h-16 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center">
+                        <item.icon className="text-cyan-400 text-2xl" />
+                      </div>
+                      <div className="text-center">
+                        <p className="text-white font-semibold text-lg mb-1">{item.title}</p>
+                        <p className="text-gray-400 text-sm">{item.subtitle}</p>
+                      </div>
+                    </div>
+                  ))}
                 </motion.div>
 
                 {/* Trust badge - Polished */}
@@ -385,35 +409,11 @@ const Dentists: React.FC = () => {
                   </p>
                 </motion.div>
 
-                {/* Micro-benefits - Polished */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.35 }}
-                  className="grid grid-cols-3 gap-6 max-w-3xl mx-auto pt-10"
-                >
-                  {[
-                    { icon: FaPlug, text: 'PMS Integration', subtext: 'Existing scheduling software' },
-                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included' },
-                    { icon: FaBolt, text: 'No training required', subtext: 'Plug & play setup' },
-                  ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-xl p-5 text-center hover:scale-[1.015] hover:shadow-lg hover:shadow-cyan-400/15 hover:border-cyan-400/20 transition-all duration-150 ease-out cursor-pointer">
-                      <div className="w-14 h-14 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/28">
-                        <item.icon className="text-xl text-cyan-400" />
-                      </div>
-                      <div>
-                        <p className="text-base font-semibold text-white leading-tight mb-1">{item.text}</p>
-                        <p className="text-sm text-gray-400 leading-tight">{item.subtext}</p>
-                      </div>
-                    </div>
-                  ))}
-                </motion.div>
-
                 {/* Audio Demo - Elevated */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
                   className="max-w-2xl mx-auto pt-10"
                 >
                   <button
@@ -427,11 +427,11 @@ const Dentists: React.FC = () => {
 
                     <div className="relative flex items-center justify-between gap-4">
                       <div className="text-left">
-                        <h3 className="text-lg font-medium text-white mb-1 group-hover:text-cyan-400 transition-colors duration-150">
-                          Hear It in Action <span className="text-gray-500 text-sm">(30 Seconds)</span>
+                        <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-150">
+                          Hear It in Action
                         </h3>
-                        <p className="text-sm text-gray-400">
-                          A real example of Cognia AI answering a patient call
+                        <p className="text-base text-gray-400">
+                          30-second real example of Cognia AI answering a patient call.
                         </p>
                       </div>
                       <div className="flex-shrink-0">
@@ -453,6 +453,30 @@ const Dentists: React.FC = () => {
                     </div>
                   </button>
                 </motion.div>
+
+                {/* Feature Cards - Optimized */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.35 }}
+                  className="grid grid-cols-3 gap-6 max-w-3xl mx-auto pt-10"
+                >
+                  {[
+                    { icon: FaPlug, text: 'Seamless PMS Integration', subtext: 'Works with OpenDental, Dentrix, EagleSoft & more.' },
+                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included.' },
+                    { icon: FaBolt, text: 'Plug-and-Play Setup', subtext: 'No training, no hardware.' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-xl p-5 text-center hover:scale-[1.015] hover:shadow-lg hover:shadow-cyan-400/15 hover:border-cyan-400/20 transition-all duration-150 ease-out cursor-pointer">
+                      <div className="w-14 h-14 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/28">
+                        <item.icon className="text-xl text-cyan-400" />
+                      </div>
+                      <div>
+                        <p className="text-base font-semibold text-white leading-tight mb-1">{item.text}</p>
+                        <p className="text-sm text-gray-400 leading-tight">{item.subtext}</p>
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
               </div>
             </div>
           </section>
@@ -466,17 +490,17 @@ const Dentists: React.FC = () => {
                   {
                     step: '1',
                     title: 'We Build Your AI',
-                    description: '1-week set up • No hardware'
+                    description: 'Tailored to your practice workflow.'
                   },
                   {
                     step: '2',
                     title: 'Connect Your Phone',
-                    description: 'No Training required'
+                    description: 'Takes 10 minutes. No training required.'
                   },
                   {
                     step: '3',
                     title: 'AI Answers 24/7',
-                    description: 'You Get More Appointments'
+                    description: 'More appointments, zero missed calls.'
                   }
                 ].map((item, index) => (
                   <motion.div
@@ -566,17 +590,17 @@ const Dentists: React.FC = () => {
                   {
                     step: '1',
                     title: 'We Build Your AI',
-                    description: '1-week set up • No hardware'
+                    description: 'Tailored to your practice workflow.'
                   },
                   {
                     step: '2',
                     title: 'Connect Your Phone',
-                    description: 'No Training required'
+                    description: 'Takes 10 minutes. No training required.'
                   },
                   {
                     step: '3',
                     title: 'AI Answers 24/7',
-                    description: 'You Get More Appointments'
+                    description: 'More appointments, zero missed calls.'
                   }
                 ].map((item, index) => (
                   <motion.div
@@ -709,7 +733,7 @@ const Dentists: React.FC = () => {
                             </button>
 
                             <p className="text-center text-xs text-gray-500 mt-4">
-                              7-day free trial • No credit card required • HIPAA compliant
+                              HIPAA-compliant • Setup in 24 hours
                             </p>
                           </form>
                         </motion.div>
