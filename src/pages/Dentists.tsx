@@ -153,7 +153,7 @@ const Dentists: React.FC = () => {
 
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl">
               {/* Mobile: Compact, Form-First Layout */}
-              <div className="lg:hidden space-y-6">
+              <div className="lg:hidden space-y-5">
                 {/* Free Trial Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -179,11 +179,11 @@ const Dentists: React.FC = () => {
                   <span className="text-cyan-400">Patient Call</span>
                 </motion.h1>
 
-                {/* Mobile 3 Value Props - Compact Grid */}
+                {/* Mobile 3 Value Props - Closer to headline */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                  transition={{ duration: 0.6, delay: 0.15 }}
                   className="grid grid-cols-3 gap-3"
                 >
                   {[
@@ -198,11 +198,12 @@ const Dentists: React.FC = () => {
                   ))}
                 </motion.div>
 
-                {/* Mobile CTA - Scroll to Form */}
+                {/* Mobile CTA - Above the fold */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="space-y-3"
                 >
                   <a
                     href="#trial"
@@ -215,24 +216,42 @@ const Dentists: React.FC = () => {
                     Start Free Trial
                     <FaArrowRight className="text-sm" />
                   </a>
+
+                  {/* Pricing transparency */}
+                  <p className="text-xs text-center text-gray-400">
+                    Plans start at $199/month • Cancel anytime
+                  </p>
                 </motion.div>
 
-                {/* Trust Badge */}
-                <motion.p
+                {/* Trust logos row - Increased visibility */}
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="text-xs text-gray-400 text-center"
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="py-4"
                 >
-                  Trusted by 50+ U.S. Dental Practices
-                </motion.p>
+                  <p className="text-xs text-gray-400 text-center mb-3 font-medium">
+                    Trusted by 50+ U.S. Dental Practices
+                  </p>
+                  {/* Logo placeholders */}
+                  <div className="flex items-center justify-center gap-4 flex-wrap">
+                    {[1, 2, 3, 4, 5, 6].map((i) => (
+                      <div
+                        key={i}
+                        className="w-16 h-10 bg-white/5 rounded border border-white/10 flex items-center justify-center"
+                      >
+                        <div className="w-12 h-6 bg-white/10 rounded"></div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
 
-                {/* Mobile Audio Demo Section */}
+                {/* Mobile Audio Demo Section - Higher visibility */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  className="mt-6"
+                  transition={{ duration: 0.6, delay: 0.35 }}
+                  className="pt-2"
                 >
                   <button
                     onClick={() => setShowAudioModal(true)}
@@ -258,18 +277,36 @@ const Dentists: React.FC = () => {
                     </div>
                   </button>
                 </motion.div>
+
+                {/* Micro-benefits - Friction reducers */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="space-y-2 pt-4"
+                >
+                  {[
+                    { icon: '⚡', text: 'No training required — plug & play setup' },
+                    { icon: '🔗', text: 'Works with your existing scheduling system' },
+                    { icon: '🌐', text: 'English & Spanish support available' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs text-gray-400">
+                      <span className="text-sm">{item.icon}</span>
+                      <span>{item.text}</span>
+                    </div>
+                  ))}
+                </motion.div>
               </div>
 
               {/* Desktop: Original Layout */}
-              <div className="hidden lg:block text-center max-w-4xl mx-auto">
+              <div className="hidden lg:block text-center max-w-4xl mx-auto space-y-8">
                 {/* Free Trial Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="inline-block mb-8"
                 >
-                  <div className="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
+                  <div className="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
                     <span className="text-sm font-semibold text-cyan-400">
                       7-Day Free Trial • No Credit Card Required
                     </span>
@@ -281,48 +318,18 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-5xl sm:text-6xl lg:text-7xl font-thin leading-tight mb-6"
+                  className="text-5xl sm:text-6xl lg:text-7xl font-thin leading-tight"
                 >
                   Never Miss a
                   <br />
                   <span className="text-cyan-400">Patient Call Again</span>
                 </motion.h1>
 
-                {/* Trust Badge */}
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="text-sm text-gray-400 mb-12"
-                >
-                  Trusted by 50+ U.S. Dental Practices
-                </motion.p>
-
-                {/* Primary CTA */}
+                {/* 3 Bullet Values - Closer to headline */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="mb-16"
-                >
-                  <a
-                    href="#trial"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black text-lg font-medium rounded-xl transition-colors"
-                  >
-                    Try Now
-                    <FaArrowRight className="text-sm" />
-                  </a>
-                </motion.div>
-
-                {/* 3 Bullet Values */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
+                  transition={{ duration: 0.6, delay: 0.15 }}
                   className="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto"
                 >
                   {[
@@ -338,76 +345,137 @@ const Dentists: React.FC = () => {
                     </div>
                   ))}
                 </motion.div>
+
+                {/* Primary CTA */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="space-y-3"
+                >
+                  <a
+                    href="#trial"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black text-lg font-medium rounded-xl transition-colors shadow-lg"
+                  >
+                    Start Free Trial
+                    <FaArrowRight className="text-sm" />
+                  </a>
+
+                  {/* Pricing transparency */}
+                  <p className="text-sm text-gray-400">
+                    Plans start at $199/month • Cancel anytime
+                  </p>
+                </motion.div>
+
+                {/* Trust logos row */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="pt-6"
+                >
+                  <p className="text-sm text-gray-400 mb-4 font-medium">
+                    Trusted by 50+ U.S. Dental Practices
+                  </p>
+                  {/* Logo placeholders */}
+                  <div className="flex items-center justify-center gap-6 flex-wrap">
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                      <div
+                        key={i}
+                        className="w-20 h-12 bg-white/5 rounded border border-white/10 flex items-center justify-center"
+                      >
+                        <div className="w-16 h-8 bg-white/10 rounded"></div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+
+                {/* Micro-benefits */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.35 }}
+                  className="flex items-center justify-center gap-8 text-sm text-gray-400 pt-4"
+                >
+                  {[
+                    { icon: '⚡', text: 'No training required' },
+                    { icon: '🔗', text: 'Works with your existing system' },
+                    { icon: '🌐', text: 'English & Spanish support' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <span>{item.icon}</span>
+                      <span>{item.text}</span>
+                    </div>
+                  ))}
+                </motion.div>
+
+                {/* Audio Demo - In Hero */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="max-w-2xl mx-auto pt-6"
+                >
+                  <button
+                    onClick={() => setShowAudioModal(true)}
+                    className="w-full bg-black/50 border border-white/10 hover:border-cyan-400/30 rounded-2xl p-6 transition-all group"
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="text-left">
+                        <h3 className="text-lg font-medium text-white mb-1 group-hover:text-cyan-400 transition-colors">
+                          Hear It in Action <span className="text-gray-500 text-sm">(30 Seconds)</span>
+                        </h3>
+                        <p className="text-sm text-gray-400">
+                          A real example of Cognia AI answering a patient call
+                        </p>
+                      </div>
+                      <div className="flex-shrink-0">
+                        <div className="w-14 h-14 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center group-hover:bg-cyan-400/20 transition-all">
+                          <FaPlay className="text-cyan-400 text-lg ml-1" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Minimal Waveform Visualization */}
+                    <div className="flex items-center justify-center gap-1 mt-4 h-8">
+                      {[3, 8, 5, 12, 7, 10, 4, 11, 6, 9, 5, 8, 4, 10, 7, 12, 5, 9, 6, 11].map((height, i) => (
+                        <div
+                          key={i}
+                          className="w-1 bg-cyan-400/20 rounded-full transition-all"
+                          style={{ height: `${height * 2}px` }}
+                        />
+                      ))}
+                    </div>
+                  </button>
+                </motion.div>
               </div>
             </div>
           </section>
 
-          {/* Audio Demo Card - Premium Minimal - Desktop Only */}
-          <section className="relative py-8 hidden lg:block">
-            <div className="absolute inset-0 bg-black/20" />
-            <div className="relative container mx-auto px-6 lg:px-12">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="max-w-2xl mx-auto"
-              >
-                <button
-                  onClick={() => setShowAudioModal(true)}
-                  className="w-full bg-black/50 border border-white/10 hover:border-cyan-400/30 rounded-2xl p-6 transition-all group"
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="text-left">
-                      <h3 className="text-lg font-medium text-white mb-1 group-hover:text-cyan-400 transition-colors">
-                        Hear It in Action <span className="text-gray-500 text-sm">(30 Seconds)</span>
-                      </h3>
-                      <p className="text-sm text-gray-400">
-                        A real example of Cognia AI answering a patient call
-                      </p>
-                    </div>
-                    <div className="flex-shrink-0">
-                      <div className="w-14 h-14 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center group-hover:bg-cyan-400/20 transition-all">
-                        <FaPlay className="text-cyan-400 text-lg ml-1" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Minimal Waveform Visualization */}
-                  <div className="flex items-center justify-center gap-1 mt-4 h-8">
-                    {[3, 8, 5, 12, 7, 10, 4, 11, 6, 9, 5, 8, 4, 10, 7, 12, 5, 9, 6, 11].map((height, i) => (
-                      <div
-                        key={i}
-                        className="w-1 bg-cyan-400/20 rounded-full transition-all"
-                        style={{ height: `${height * 2}px` }}
-                      />
-                    ))}
-                  </div>
-                </button>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* 3-Step Infographic - Desktop Only */}
-          <section className="relative py-16 lg:py-24 border-y border-white/5 hidden lg:block">
-            <div className="absolute inset-0 bg-black/30" />
+          {/* 3-Step Infographic - Desktop Only - Improved */}
+          <section className="relative py-20 lg:py-28 border-y border-white/10 hidden lg:block">
+            <div className="absolute inset-0 bg-black/40" />
             <div className="relative container mx-auto px-6 lg:px-12 max-w-5xl">
-              <div className="grid md:grid-cols-3 gap-12">
+              <div className="grid md:grid-cols-3 gap-16">
                 {[
                   {
                     step: '1',
-                    title: 'We connect your phone line',
-                    description: 'Simple 24-hour setup. No hardware needed.'
+                    title: 'Connect Your Phone',
+                    description: '24-hour setup • No hardware'
                   },
                   {
                     step: '2',
-                    title: 'AI answers & books patients',
-                    description: 'Every call answered instantly, 24/7/365.'
+                    title: 'AI Answers 24/7',
+                    description: 'Books patients instantly'
                   },
                   {
                     step: '3',
-                    title: 'More Revenue Instantly',
-                    description: '10-20% increase in booked appointments.'
+                    title: 'Get More Revenue',
+                    description: '10-20% increase guaranteed'
                   }
                 ].map((item, index) => (
                   <motion.div
@@ -416,18 +484,24 @@ const Dentists: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="text-center"
+                    className="text-center relative"
                   >
-                    {/* Step Number */}
-                    <div className="w-16 h-16 bg-cyan-400/10 border-2 border-cyan-400/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <span className="text-2xl font-bold text-cyan-400">{item.step}</span>
+                    {/* Step Number - Enhanced */}
+                    <div className="relative mb-8">
+                      <div className="w-20 h-20 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/40 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-cyan-400/20">
+                        <span className="text-3xl font-bold text-cyan-400">{item.step}</span>
+                      </div>
+                      {/* Connector line */}
+                      {index < 2 && (
+                        <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-cyan-400/30 to-transparent"></div>
+                      )}
                     </div>
 
-                    {/* Title */}
-                    <h3 className="text-xl font-medium text-white mb-3">{item.title}</h3>
+                    {/* Title - More scannable */}
+                    <h3 className="text-2xl font-semibold text-white mb-3">{item.title}</h3>
 
-                    {/* Description */}
-                    <p className="text-sm text-gray-400">{item.description}</p>
+                    {/* Description - More concise */}
+                    <p className="text-sm text-gray-400 leading-relaxed">{item.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -478,26 +552,26 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* 3-Step Infographic - Mobile Version */}
-          <section className="relative py-12 border-y border-white/5 lg:hidden">
-            <div className="absolute inset-0 bg-black/30" />
+          {/* 3-Step Infographic - Mobile Version - Improved */}
+          <section className="relative py-14 border-y border-white/10 lg:hidden">
+            <div className="absolute inset-0 bg-black/40" />
             <div className="relative container mx-auto px-4 sm:px-6">
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {[
                   {
                     step: '1',
-                    title: 'We connect your phone line',
-                    description: 'Simple 24-hour setup. No hardware needed.'
+                    title: 'Connect Your Phone',
+                    description: '24-hour setup • No hardware'
                   },
                   {
                     step: '2',
-                    title: 'AI answers & books patients',
-                    description: 'Every call answered instantly, 24/7/365.'
+                    title: 'AI Answers 24/7',
+                    description: 'Books patients instantly'
                   },
                   {
                     step: '3',
-                    title: 'More Revenue Instantly',
-                    description: '10-20% increase in booked appointments.'
+                    title: 'Get More Revenue',
+                    description: '10-20% increase guaranteed'
                   }
                 ].map((item, index) => (
                   <motion.div
@@ -506,19 +580,19 @@ const Dentists: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="relative bg-black/30 border border-white/5 rounded-2xl p-5"
+                    className="relative bg-black/30 border border-white/10 rounded-2xl p-6"
                   >
-                    {/* Step Number Badge */}
+                    {/* Step Number Badge - Enhanced */}
                     <div className="flex items-center gap-4 mb-3">
-                      <div className="w-10 h-10 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-lg font-bold text-cyan-400">{item.step}</span>
+                      <div className="w-12 h-12 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/40 rounded-full flex items-center justify-center flex-shrink-0 shadow-md shadow-cyan-400/10">
+                        <span className="text-xl font-bold text-cyan-400">{item.step}</span>
                       </div>
                       {/* Title */}
-                      <h3 className="text-lg font-medium text-white">{item.title}</h3>
+                      <h3 className="text-lg font-semibold text-white">{item.title}</h3>
                     </div>
 
-                    {/* Description */}
-                    <p className="text-sm text-gray-400 pl-14">{item.description}</p>
+                    {/* Description - More scannable */}
+                    <p className="text-sm text-gray-400 pl-16">{item.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -582,7 +656,7 @@ const Dentists: React.FC = () => {
                               />
                             </div>
 
-                            <div>
+                            <div className="space-y-2">
                               <input
                                 type="tel"
                                 name="phone"
@@ -592,6 +666,9 @@ const Dentists: React.FC = () => {
                                 className="w-full px-5 py-4 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
                                 autoComplete="tel"
                               />
+                              <p className="text-xs text-gray-500 leading-relaxed">
+                                We contact you to activate your 7-day free trial. No credit card required.
+                              </p>
                             </div>
 
                             {/* Error */}
