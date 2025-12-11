@@ -156,7 +156,7 @@ const Dentists: React.FC = () => {
 
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl">
               {/* Mobile: Compact, Form-First Layout */}
-              <div className="lg:hidden space-y-6">
+              <div className="lg:hidden space-y-8">
                 {/* Free Trial Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -187,7 +187,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.15 }}
-                  className="grid grid-cols-3 gap-4"
+                  className="grid grid-cols-3 gap-4 pb-2"
                 >
                   {[
                     { icon: FaPhone, text: '24/7 Patient Scheduling' },
@@ -206,7 +206,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="space-y-3 flex flex-col items-center"
+                  className="space-y-3 flex flex-col items-center pb-4"
                 >
                   <a
                     href="#trial"
@@ -221,7 +221,7 @@ const Dentists: React.FC = () => {
                   </a>
 
                   {/* Pricing transparency - Enhanced visibility */}
-                  <p className="text-sm text-center text-gray-300 font-semibold mt-7 mb-5">
+                  <p className="text-sm text-center text-gray-300 font-semibold mt-7 mb-8">
                     Plans start at $199/month • Cancel anytime
                   </p>
                 </motion.div>
@@ -231,7 +231,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="py-6 border-t border-b border-white/5"
+                  className="py-8 border-t border-b border-white/5 mb-4"
                 >
                   <p className="text-sm text-gray-300 text-center font-bold tracking-wide italic">
                     Trusted by 50+ U.S. Dental Practices
@@ -301,7 +301,7 @@ const Dentists: React.FC = () => {
               </div>
 
               {/* Desktop: Original Layout */}
-              <div className="hidden lg:block text-center max-w-4xl mx-auto space-y-10">
+              <div className="hidden lg:block text-center max-w-4xl mx-auto space-y-12">
                 {/* Free Trial Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -368,7 +368,7 @@ const Dentists: React.FC = () => {
                   </a>
 
                   {/* Pricing transparency - Enhanced visibility */}
-                  <p className="text-base text-gray-200 font-bold mt-7 mb-6">
+                  <p className="text-base text-gray-200 font-bold mt-7 mb-8">
                     Plans start at $199/month • Cancel anytime
                   </p>
                 </motion.div>
@@ -378,7 +378,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="py-6 border-t border-b border-white/5"
+                  className="py-8 border-t border-b border-white/5 mb-4"
                 >
                   <p className="text-base text-gray-300 font-bold tracking-wide italic">
                     Trusted by 50+ U.S. Dental Practices
@@ -492,8 +492,8 @@ const Dentists: React.FC = () => {
                       <div className="relative w-28 h-28 mx-auto flex items-center justify-center">
                         {/* Outer glow ring - perfectly centered */}
                         <div className="absolute inset-0 bg-cyan-400/30 rounded-full blur-lg"></div>
-                        {/* Middle glow ring - perfectly centered */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-cyan-400/40 rounded-full blur-md"></div>
+                        {/* Middle glow ring - shifted 10% upward */}
+                        <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-cyan-400/40 rounded-full blur-md"></div>
                         {/* Main circle with solid background */}
                         <div className="relative w-28 h-28 bg-gradient-to-br from-cyan-500/30 via-cyan-400/25 to-blue-500/30 border-2 border-cyan-400/60 rounded-full flex items-center justify-center shadow-xl shadow-cyan-400/40">
                           <div className="absolute inset-0 bg-black/20 rounded-full"></div>
@@ -597,8 +597,8 @@ const Dentists: React.FC = () => {
                     <div className="relative w-20 h-20 mb-5 flex items-center justify-center">
                       {/* Outer glow ring - perfectly centered */}
                       <div className="absolute inset-0 bg-cyan-400/30 rounded-full blur-lg"></div>
-                      {/* Middle glow ring - perfectly centered */}
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400/40 rounded-full blur-md"></div>
+                      {/* Middle glow ring - shifted 10% upward */}
+                      <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-cyan-400/40 rounded-full blur-md"></div>
                       {/* Main circle with solid background */}
                       <div className="relative w-20 h-20 bg-gradient-to-br from-cyan-500/30 via-cyan-400/25 to-blue-500/30 border-2 border-cyan-400/60 rounded-full flex items-center justify-center shadow-xl shadow-cyan-400/40">
                         <div className="absolute inset-0 bg-black/20 rounded-full"></div>
