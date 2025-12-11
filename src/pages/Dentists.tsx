@@ -217,40 +217,44 @@ const Dentists: React.FC = () => {
                     <FaArrowRight className="text-sm" />
                   </a>
 
-                  {/* Pricing transparency - Improved */}
-                  <p className="text-xs text-center text-gray-400/75 mt-4 mb-4">
+                  {/* Pricing transparency - Polished */}
+                  <p className="text-xs text-center text-gray-400/75 mt-7 mb-5">
                     Plans start at $199/month • Cancel anytime
                   </p>
                 </motion.div>
 
-                {/* Trust badge - Strengthened */}
+                {/* Trust badge - Polished */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="py-4 border-t border-b border-white/5"
+                  className="py-6 border-t border-b border-white/5"
                 >
-                  <p className="text-xs text-gray-300 text-center font-semibold tracking-wide">
+                  <p className="text-xs text-gray-300 text-center font-bold tracking-wide">
                     Trusted by 50+ U.S. Dental Practices
                   </p>
                 </motion.div>
 
-                {/* Mobile Audio Demo Section - Enhanced */}
+                {/* Mobile Audio Demo Section - Elevated */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.35 }}
-                  className="pt-4"
+                  className="pt-8"
                 >
                   <button
                     onClick={() => setShowAudioModal(true)}
-                    className="w-full bg-black/30 border border-transparent bg-gradient-to-r from-cyan-500/10 via-transparent to-cyan-500/10 rounded-xl p-6 hover:from-cyan-500/15 hover:to-cyan-500/15 transition-all duration-200 group shadow-lg shadow-cyan-500/5"
-                    style={{ borderImage: 'linear-gradient(to right, rgba(6, 182, 212, 0.2), transparent, rgba(6, 182, 212, 0.2)) 1' }}
+                    className="relative w-full bg-black/30 rounded-xl p-8 hover:bg-black/35 transition-all duration-150 ease-out group shadow-lg shadow-cyan-500/5 hover:shadow-cyan-500/10 overflow-hidden"
                   >
-                    <div className="flex items-center justify-center gap-3">
-                      {/* Play Icon - Enlarged */}
-                      <div className="w-12 h-12 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-400/20 group-hover:scale-105 transition-all">
-                        <svg className="w-5 h-5 text-cyan-400 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    {/* Neon gradient border */}
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400/20 via-transparent to-cyan-400/20 p-[1.5px]">
+                      <div className="h-full w-full bg-black/30 rounded-xl"></div>
+                    </div>
+
+                    <div className="relative flex items-center justify-center gap-3">
+                      {/* Play Icon - Enlarged with soft glow */}
+                      <div className="w-14 h-14 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-400/20 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-cyan-400/40 transition-all duration-150 ease-out">
+                        <svg className="w-6 h-6 text-cyan-400 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </div>
@@ -268,20 +272,20 @@ const Dentists: React.FC = () => {
                   </button>
                 </motion.div>
 
-                {/* Micro-benefits - Enhanced */}
+                {/* Micro-benefits - Polished */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="grid grid-cols-1 gap-4 pt-6"
+                  className="grid grid-cols-1 gap-5 pt-10"
                 >
                   {[
                     { icon: '⚡', text: 'No training required', subtext: 'Plug & play setup' },
                     { icon: '🔗', text: 'Works with your system', subtext: 'Existing scheduling software' },
                     { icon: '🌐', text: 'English & Spanish', subtext: 'Bilingual support included' },
                   ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-lg p-5 text-center hover:scale-[1.02] hover:shadow-lg hover:shadow-cyan-400/10 hover:border-cyan-400/20 transition-all duration-200 cursor-pointer">
-                      <div className="w-11 h-11 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/20">
+                    <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-lg p-5 text-center hover:scale-[1.015] hover:shadow-lg hover:shadow-cyan-400/15 hover:border-cyan-400/20 transition-all duration-150 ease-out cursor-pointer">
+                      <div className="w-11 h-11 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/28">
                         <span className="text-xl">{item.icon}</span>
                       </div>
                       <div>
@@ -360,38 +364,38 @@ const Dentists: React.FC = () => {
                     <FaArrowRight className="text-sm" />
                   </a>
 
-                  {/* Pricing transparency - Improved */}
-                  <p className="text-sm text-gray-400/75 mt-5 mb-5">
+                  {/* Pricing transparency - Polished */}
+                  <p className="text-sm text-gray-400/75 mt-7 mb-6">
                     Plans start at $199/month • Cancel anytime
                   </p>
                 </motion.div>
 
-                {/* Trust badge - Strengthened */}
+                {/* Trust badge - Polished */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="py-5 border-t border-b border-white/5"
+                  className="py-6 border-t border-b border-white/5"
                 >
-                  <p className="text-sm text-gray-300 font-semibold tracking-wide">
+                  <p className="text-sm text-gray-300 font-bold tracking-wide">
                     Trusted by 50+ U.S. Dental Practices
                   </p>
                 </motion.div>
 
-                {/* Micro-benefits - Enhanced */}
+                {/* Micro-benefits - Polished */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.35 }}
-                  className="grid grid-cols-3 gap-5 max-w-3xl mx-auto pt-8"
+                  className="grid grid-cols-3 gap-6 max-w-3xl mx-auto pt-10"
                 >
                   {[
                     { icon: '⚡', text: 'No training required', subtext: 'Plug & play setup' },
                     { icon: '🔗', text: 'Works with your system', subtext: 'Existing scheduling software' },
                     { icon: '🌐', text: 'English & Spanish', subtext: 'Bilingual support included' },
                   ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-xl p-5 text-center hover:scale-[1.02] hover:shadow-lg hover:shadow-cyan-400/10 hover:border-cyan-400/20 transition-all duration-200 cursor-pointer">
-                      <div className="w-14 h-14 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/20">
+                    <div key={i} className="flex flex-col items-center gap-3 bg-black/20 border border-white/5 rounded-xl p-5 text-center hover:scale-[1.015] hover:shadow-lg hover:shadow-cyan-400/15 hover:border-cyan-400/20 transition-all duration-150 ease-out cursor-pointer">
+                      <div className="w-14 h-14 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-md shadow-cyan-400/28">
                         <span className="text-2xl">{item.icon}</span>
                       </div>
                       <div>
@@ -402,21 +406,25 @@ const Dentists: React.FC = () => {
                   ))}
                 </motion.div>
 
-                {/* Audio Demo - Enhanced */}
+                {/* Audio Demo - Elevated */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="max-w-2xl mx-auto pt-8"
+                  className="max-w-2xl mx-auto pt-10"
                 >
                   <button
                     onClick={() => setShowAudioModal(true)}
-                    className="w-full bg-black/50 border border-transparent bg-gradient-to-r from-cyan-500/10 via-transparent to-cyan-500/10 rounded-2xl p-8 hover:from-cyan-500/15 hover:to-cyan-500/15 transition-all group shadow-lg shadow-cyan-500/5"
-                    style={{ borderImage: 'linear-gradient(to right, rgba(6, 182, 212, 0.2), transparent, rgba(6, 182, 212, 0.2)) 1' }}
+                    className="relative w-full bg-black/50 rounded-2xl px-10 py-8 hover:bg-black/55 transition-all duration-150 ease-out group shadow-lg shadow-cyan-500/5 hover:shadow-cyan-500/10 overflow-hidden"
                   >
-                    <div className="flex items-center justify-between gap-4">
+                    {/* Neon gradient border */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400/20 via-transparent to-cyan-400/20 p-[1.5px]">
+                      <div className="h-full w-full bg-black/50 rounded-2xl"></div>
+                    </div>
+
+                    <div className="relative flex items-center justify-between gap-4">
                       <div className="text-left">
-                        <h3 className="text-lg font-medium text-white mb-1 group-hover:text-cyan-400 transition-colors">
+                        <h3 className="text-lg font-medium text-white mb-1 group-hover:text-cyan-400 transition-colors duration-150">
                           Hear It in Action <span className="text-gray-500 text-sm">(30 Seconds)</span>
                         </h3>
                         <p className="text-sm text-gray-400">
@@ -424,14 +432,14 @@ const Dentists: React.FC = () => {
                         </p>
                       </div>
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center group-hover:bg-cyan-400/20 group-hover:scale-105 transition-all">
-                          <FaPlay className="text-cyan-400 text-xl ml-1" />
+                        <div className="w-18 h-18 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center group-hover:bg-cyan-400/20 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-cyan-400/40 transition-all duration-150 ease-out">
+                          <FaPlay className="text-cyan-400 text-2xl ml-1" />
                         </div>
                       </div>
                     </div>
 
                     {/* Minimal Waveform Visualization */}
-                    <div className="flex items-center justify-center gap-1 mt-6 h-8">
+                    <div className="relative flex items-center justify-center gap-1 mt-6 h-8">
                       {[3, 8, 5, 12, 7, 10, 4, 11, 6, 9, 5, 8, 4, 10, 7, 12, 5, 9, 6, 11].map((height, i) => (
                         <div
                           key={i}
@@ -450,7 +458,7 @@ const Dentists: React.FC = () => {
           <section className="relative py-20 lg:py-28 border-y border-white/5 hidden lg:block">
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative container mx-auto px-6 lg:px-12 max-w-5xl">
-              <div className="grid md:grid-cols-3 gap-20">
+              <div className="grid md:grid-cols-3 gap-24">
                 {[
                   {
                     step: '1',
@@ -476,19 +484,19 @@ const Dentists: React.FC = () => {
                     viewport={{ once: true }}
                     className="text-center relative"
                   >
-                    {/* Step Number - Polished with neon ring */}
+                    {/* Step Number - Final polish with enhanced neon ring */}
                     <div className="mb-10">
-                      <div className="relative w-24 h-24 mx-auto">
-                        {/* Neon ring glow */}
-                        <div className="absolute inset-0 bg-cyan-400/20 rounded-full blur-md"></div>
-                        <div className="relative w-24 h-24 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/30">
+                      <div className="relative w-27 h-27 mx-auto">
+                        {/* Neon ring glow - enhanced */}
+                        <div className="absolute inset-0 bg-cyan-400/25 rounded-full blur-md"></div>
+                        <div className="relative w-27 h-27 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/30">
                           <span className="text-4xl font-bold text-cyan-400">{item.step}</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Title - More scannable */}
-                    <h3 className="text-2xl font-semibold text-white mb-3">{item.title}</h3>
+                    {/* Title - Larger for clarity */}
+                    <h3 className="text-3xl font-semibold text-white mb-3">{item.title}</h3>
 
                     {/* Description - More concise */}
                     <p className="text-sm text-gray-400 leading-relaxed">{item.description}</p>
@@ -498,8 +506,8 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* Single Testimonial - Enhanced */}
-          <section className="relative py-14 lg:py-28">
+          {/* Single Testimonial - Polished */}
+          <section className="relative py-16 lg:py-32">
             <div className="absolute inset-0 bg-black/20" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
               <motion.div
@@ -510,18 +518,18 @@ const Dentists: React.FC = () => {
                 className="max-w-3xl mx-auto"
               >
                 {/* Gradient accent line top */}
-                <div className="h-0.5 bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent mb-0"></div>
+                <div className="h-0.5 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent mb-0"></div>
 
-                <div className="bg-black/50 border border-white/10 rounded-2xl p-8 lg:p-14 text-center shadow-2xl shadow-black/50">
-                  {/* Star Rating - Larger */}
-                  <div className="flex items-center justify-center gap-2 mb-6 lg:mb-8">
+                <div className="bg-black/50 border border-white/10 rounded-2xl p-8 lg:p-14 text-center shadow-2xl shadow-black/60">
+                  {/* Star Rating - 10% Larger */}
+                  <div className="flex items-center justify-center gap-2.5 mb-6 lg:mb-8">
                     {[...Array(5)].map((_, i) => (
-                      <FaStar key={i} className="text-cyan-400 text-lg lg:text-xl" />
+                      <FaStar key={i} className="text-cyan-400 text-xl lg:text-2xl" />
                     ))}
                   </div>
 
-                  {/* Quote - Larger text */}
-                  <p className="text-[17px] lg:text-xl text-gray-300 leading-relaxed mb-8 lg:mb-10">
+                  {/* Quote - Better line-height */}
+                  <p className="text-[17px] lg:text-xl text-gray-300 leading-loose mb-8 lg:mb-10">
                     <span className="lg:hidden">
                       "Cognia schedules weekend appointments automatically — no backlog, no delays. It's been a game-changer."
                     </span>
@@ -543,16 +551,16 @@ const Dentists: React.FC = () => {
                 </div>
 
                 {/* Gradient accent line bottom */}
-                <div className="h-0.5 bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent mt-0"></div>
+                <div className="h-0.5 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent mt-0"></div>
               </motion.div>
             </div>
           </section>
 
-          {/* 3-Step Infographic - Mobile Version - Polished */}
+          {/* 3-Step Infographic - Mobile Version - Final Polish */}
           <section className="relative py-14 border-y border-white/5 lg:hidden">
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative container mx-auto px-4 sm:px-6">
-              <div className="space-y-6">
+              <div className="space-y-8">
                 {[
                   {
                     step: '1',
@@ -576,19 +584,19 @@ const Dentists: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="relative bg-black/30 border border-white/5 rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[160px]"
+                    className="relative bg-black/30 border border-white/[0.03] rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[160px]"
                   >
-                    {/* Step Number Badge - Polished with neon ring */}
-                    <div className="relative w-16 h-16 mb-5">
-                      {/* Neon ring glow */}
-                      <div className="absolute inset-0 bg-cyan-400/20 rounded-full blur-sm"></div>
-                      <div className="relative w-16 h-16 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/20">
-                        <span className="text-3xl font-bold text-cyan-400">{item.step}</span>
+                    {/* Step Number Badge - Enhanced neon ring */}
+                    <div className="relative w-18 h-18 mb-5">
+                      {/* Neon ring glow - enhanced */}
+                      <div className="absolute inset-0 bg-cyan-400/25 rounded-full blur-md"></div>
+                      <div className="relative w-18 h-18 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/25">
+                        <span className="text-4xl font-bold text-cyan-400">{item.step}</span>
                       </div>
                     </div>
 
-                    {/* Title - Centered */}
-                    <h3 className="text-xl font-semibold text-white mb-2">{item.title}</h3>
+                    {/* Title - Larger for clarity */}
+                    <h3 className="text-2xl font-semibold text-white mb-2">{item.title}</h3>
 
                     {/* Description - Centered */}
                     <p className="text-sm text-gray-400">{item.description}</p>
@@ -655,7 +663,7 @@ const Dentists: React.FC = () => {
                               />
                             </div>
 
-                            <div className="space-y-1.5">
+                            <div className="space-y-1">
                               <input
                                 type="tel"
                                 name="phone"
@@ -665,7 +673,7 @@ const Dentists: React.FC = () => {
                                 className="w-full px-5 py-4 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
                                 autoComplete="tel"
                               />
-                              <p className="text-xs text-gray-500/75 leading-relaxed pl-1">
+                              <p className="text-xs text-gray-500/70 leading-relaxed pl-1">
                                 We contact you to activate your 7-day free trial. No credit card required.
                               </p>
                             </div>
@@ -685,11 +693,11 @@ const Dentists: React.FC = () => {
                               )}
                             </AnimatePresence>
 
-                            {/* Submit - Enhanced */}
+                            {/* Submit - Final polish */}
                             <button
                               type="submit"
                               disabled={isSubmitting}
-                              className="w-full py-4 bg-white hover:bg-neutral-100 text-black font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed text-base flex items-center justify-center gap-2 shadow-lg shadow-black/20 hover:shadow-xl hover:shadow-black/30"
+                              className="w-full py-4 bg-white hover:bg-neutral-100 text-black font-semibold rounded-xl transition-all duration-150 ease-out disabled:opacity-50 disabled:cursor-not-allowed text-base flex items-center justify-center gap-2 shadow-lg shadow-black/25 hover:shadow-xl hover:shadow-cyan-400/20"
                             >
                               {isSubmitting ? (
                                 <>
