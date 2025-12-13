@@ -796,7 +796,7 @@ const Dentists: React.FC = () => {
                       ))}
                     </div>
                     <blockquote className="text-lg lg:text-xl text-gray-300 leading-relaxed mb-8 text-center">
-                      "Monday mornings used to mean 15+ voicemails. Now they're booked appointments. Last month: <span className="text-white font-semibold">12 new patients</span> we would've lost."
+                      "Before Cognia, I would spend <span className="text-white font-semibold">45 minutes every Monday</span> just going through voicemails. Now we get a clear email summary with transcripts first thing. And if a patient requests an appointment over the weekend, Cognia schedules it for us—no backlog, no delays."
                     </blockquote>
                     <div className="flex flex-col items-center">
                       <div className="w-12 h-12 bg-cyan-400/10 rounded-full flex items-center justify-center mb-3">
