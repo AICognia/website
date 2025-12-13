@@ -517,8 +517,8 @@ const Dentists: React.FC = () => {
                   {
                     step: '1',
                     title: 'We Build Your AI Receptionist',
-                    description: 'Tell us your hours, services, and booking rules. We configure everything. Takes 24 hours.',
-                    highlight: '24-hour setup'
+                    description: 'Tell us your hours, services, and booking rules. We configure everything within a week.',
+                    highlight: '1-week setup'
                   },
                   {
                     step: '2',
@@ -561,10 +561,24 @@ const Dentists: React.FC = () => {
                 viewport={{ once: true }}
                 className="mt-10 text-center"
               >
-                <p className="text-gray-400">
+                <p className="text-gray-400 mb-8">
                   <span className="text-white font-medium">Works with every practice management system:</span>{' '}
                   Open Dental, Dentrix, Eaglesoft, and more.
                 </p>
+
+                {/* CTA after How It Works */}
+                <a
+                  href="#trial-form"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    trackStartTrialClick();
+                    document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:scale-105"
+                >
+                  Start Free 7-Day Trial
+                  <FaArrowRight className="text-sm" />
+                </a>
               </motion.div>
             </div>
           </section>
@@ -660,9 +674,9 @@ const Dentists: React.FC = () => {
                     <div className="w-12 h-12 bg-cyan-400/10 rounded-full flex items-center justify-center mb-3">
                       <span className="text-cyan-400 font-bold">JO</span>
                     </div>
-                    <p className="text-white font-medium">Dr. Jacob Ojalvo</p>
-                    <p className="text-gray-400 text-sm">My Smile Miami — General Dentistry</p>
-                    <p className="text-gray-500 text-xs mt-1">Using Cognia since March 2024</p>
+                    <p className="text-white font-medium">Jacob Ojalvo</p>
+                    <p className="text-gray-400 text-sm">Office Manager, My Smile Miami</p>
+                    <p className="text-gray-500 text-xs mt-1">Using Cognia for 2 months</p>
                   </div>
                 </div>
 
