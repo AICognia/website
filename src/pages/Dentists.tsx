@@ -795,7 +795,7 @@ const Dentists: React.FC = () => {
                         <FaStar key={i} className="text-yellow-400 text-lg" />
                       ))}
                     </div>
-                    <blockquote className="text-lg lg:text-xl text-gray-300 leading-relaxed mb-8 text-center">
+                    <blockquote className="text-lg lg:text-xl text-gray-300 leading-relaxed mb-8 text-justify">
                       "Before Cognia, I would spend <span className="text-white font-semibold">45 minutes every Monday</span> just going through voicemails. Now we get a clear email summary with transcripts first thing. And if a patient requests an appointment over the weekend, Cognia schedules it for us—no backlog, no delays."
                     </blockquote>
                     <div className="flex flex-col items-center">
