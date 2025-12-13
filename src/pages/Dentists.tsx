@@ -105,6 +105,22 @@ const Dentists: React.FC = () => {
     };
   }, [showAudioModal]); // Only restart when modal opens/closes
 
+  // Listen for Calendly booking completion to track Schedule event
+  useEffect(() => {
+    const handleCalendlyMessage = (e: MessageEvent) => {
+      // Verify message is from Calendly
+      if (e.data?.event && e.data.event === 'calendly.event_scheduled') {
+        // Fire Meta Pixel Schedule custom event
+        if ((window as any).fbq) {
+          (window as any).fbq('trackCustom', 'Schedule');
+        }
+      }
+    };
+
+    window.addEventListener('message', handleCalendlyMessage);
+    return () => window.removeEventListener('message', handleCalendlyMessage);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -138,6 +154,11 @@ const Dentists: React.FC = () => {
       });
 
       if (response.ok) {
+        // Fire Meta Pixel Lead event on successful form submission
+        if ((window as any).fbq) {
+          (window as any).fbq('track', 'Lead');
+        }
+
         conversionTracker.trackDemoBooking('dentists_page');
         conversionTracker.trackButtonClick('Dentist Free Trial Submitted', 'dentists_page');
         setIsSubmitted(true);
