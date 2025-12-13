@@ -565,6 +565,28 @@ const Dentists: React.FC = () => {
                   Capturing 2 extra patients/week covers this service many times over.
                 </p>
               </motion.div>
+
+              {/* CTA after Problem Agitation */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="mt-10 text-center"
+              >
+                <a
+                  href="#trial-form"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    trackStartTrialClick();
+                    document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:scale-105"
+                >
+                  Stop the Bleeding — Start Free Trial
+                  <FaArrowRight className="text-sm" />
+                </a>
+              </motion.div>
             </div>
           </section>
 
