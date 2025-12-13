@@ -61,17 +61,22 @@ function ScrollToTop() {
 function AppContent() {
   const location = useLocation();
 
+  // Landing pages that should not show navigation
+  const isLandingPage = location.pathname === '/dentists';
+
   return (
     <div className="min-h-screen flex flex-col bg-black">
       {/* Announcement Banner */}
-      <AnnouncementBanner />
+      {!isLandingPage && <AnnouncementBanner />}
       {/* Mobile Navigation - Redesigned with simplified menu */}
-      <MobileNavbarRedesigned />
+      {!isLandingPage && <MobileNavbarRedesigned />}
       {/* Desktop Navigation */}
-      <div className="hidden lg:block">
-        <Navbar />
-      </div>
-      {location.pathname !== '/' && <Breadcrumb />}
+      {!isLandingPage && (
+        <div className="hidden lg:block">
+          <Navbar />
+        </div>
+      )}
+      {!isLandingPage && location.pathname !== '/' && <Breadcrumb />}
       <main className="flex-grow">
         <Suspense fallback={<PageLoader />}>
           <Routes>
@@ -107,11 +112,11 @@ function AppContent() {
           </Routes>
         </Suspense>
       </main>
-      <Footer />
-      <CookieConsentBanner />
+      {!isLandingPage && <Footer />}
+      {!isLandingPage && <CookieConsentBanner />}
 
       {/* Conversion Optimization Components */}
-      <StickyMobileCTARedesigned />
+      {!isLandingPage && <StickyMobileCTARedesigned />}
     </div>
   );
 }
