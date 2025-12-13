@@ -183,8 +183,8 @@ const Dentists: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email) {
-      setError('Please fill in your name and email');
+    if (!formData.name || !formData.email || !formData.phone) {
+      setError('Please fill in all required fields');
       return;
     }
 
@@ -430,67 +430,7 @@ const Dentists: React.FC = () => {
           </section>
 
           {/* ═══════════════════════════════════════════════════════════════════
-              SECTION 2: DEMO EMPHASIS - The Differentiator
-          ═══════════════════════════════════════════════════════════════════ */}
-          <section className="relative py-16 lg:py-20 border-t border-white/5">
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-cyan-950/20" />
-            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-3xl">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-                  Don't Take Our Word For It.
-                </h2>
-                <p className="text-lg text-gray-400 mb-8">
-                  30 seconds. Real patient. Unscripted.
-                </p>
-
-                <button
-                  onClick={() => {
-                    trackHearAIClick();
-                    setShowAudioModal(true);
-                  }}
-                  className="relative w-full max-w-xl mx-auto bg-black/50 rounded-2xl p-8 lg:p-10 hover:bg-black/60 transition-all group border border-cyan-400/30 shadow-xl shadow-cyan-500/10"
-                >
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="w-20 h-20 bg-cyan-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center group-hover:bg-cyan-400/30 group-hover:scale-110 transition-all">
-                      <FaPlay className="text-cyan-400 text-2xl ml-1" />
-                    </div>
-                    <div className="text-center">
-                      <h3 className="text-xl font-bold text-white mb-2">
-                        Play Demo Call
-                      </h3>
-                      <p className="text-gray-400 text-sm">
-                        A new patient calls to book a cleaning. Hear how it's handled.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Waveform */}
-                  <div className="flex items-center justify-center gap-1 mt-6 h-8">
-                    {[3, 8, 5, 12, 7, 10, 4, 11, 6, 9, 5, 8, 4, 10, 7, 12, 5, 9, 6, 11].map((height, i) => (
-                      <div
-                        key={i}
-                        className="w-1 bg-cyan-400/30 rounded-full group-hover:bg-cyan-400/50 transition-all"
-                        style={{ height: `${height * 2}px` }}
-                      />
-                    ))}
-                  </div>
-                </button>
-
-                <p className="text-gray-500 text-sm mt-6">
-                  Every call recorded. Every booking reviewable.
-                </p>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* ═══════════════════════════════════════════════════════════════════
-              SECTION 3: PROBLEM AGITATION
+              SECTION 2: PROBLEM AGITATION
           ═══════════════════════════════════════════════════════════════════ */}
           <section className="relative py-16 lg:py-24 border-t border-white/5">
             <div className="absolute inset-0 bg-black/30" />
@@ -586,6 +526,66 @@ const Dentists: React.FC = () => {
                   Stop the Bleeding — Start Free Trial
                   <FaArrowRight className="text-sm" />
                 </a>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* ═══════════════════════════════════════════════════════════════════
+              SECTION 3: DEMO EMPHASIS - The Differentiator
+          ═══════════════════════════════════════════════════════════════════ */}
+          <section className="relative py-16 lg:py-20 border-t border-white/5">
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-cyan-950/20" />
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-3xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                  Don't Take Our Word For It.
+                </h2>
+                <p className="text-lg text-gray-400 mb-8">
+                  30 seconds. Real patient. Unscripted.
+                </p>
+
+                <button
+                  onClick={() => {
+                    trackHearAIClick();
+                    setShowAudioModal(true);
+                  }}
+                  className="relative w-full max-w-xl mx-auto bg-black/50 rounded-2xl p-8 lg:p-10 hover:bg-black/60 transition-all group border border-cyan-400/30 shadow-xl shadow-cyan-500/10"
+                >
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-20 h-20 bg-cyan-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center group-hover:bg-cyan-400/30 group-hover:scale-110 transition-all">
+                      <FaPlay className="text-cyan-400 text-2xl ml-1" />
+                    </div>
+                    <div className="text-center">
+                      <h3 className="text-xl font-bold text-white mb-2">
+                        Play Demo Call
+                      </h3>
+                      <p className="text-gray-400 text-sm">
+                        A new patient calls to book a cleaning. Hear how it's handled.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Waveform */}
+                  <div className="flex items-center justify-center gap-1 mt-6 h-8">
+                    {[3, 8, 5, 12, 7, 10, 4, 11, 6, 9, 5, 8, 4, 10, 7, 12, 5, 9, 6, 11].map((height, i) => (
+                      <div
+                        key={i}
+                        className="w-1 bg-cyan-400/30 rounded-full group-hover:bg-cyan-400/50 transition-all"
+                        style={{ height: `${height * 2}px` }}
+                      />
+                    ))}
+                  </div>
+                </button>
+
+                <p className="text-gray-500 text-sm mt-6">
+                  Every call recorded. Every booking reviewable.
+                </p>
               </motion.div>
             </div>
           </section>
@@ -836,13 +836,12 @@ const Dentists: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                   viewport={{ once: true }}
-                  className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
+                  className="mt-12 grid grid-cols-3 gap-4"
                 >
                   {[
                     { stat: '50+', label: 'Dental practices' },
                     { stat: '24/7', label: 'Call coverage' },
-                    { stat: '98%', label: 'Booking accuracy' },
-                    { stat: '<2 min', label: 'Avg response time' }
+                    { stat: '98%', label: 'Booking accuracy' }
                   ].map((item, i) => (
                     <div key={i} className="text-center bg-black/30 border border-white/5 rounded-xl p-4">
                       <p className="text-2xl lg:text-3xl font-bold text-cyan-400">{item.stat}</p>
@@ -1112,7 +1111,7 @@ const Dentists: React.FC = () => {
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
-                                placeholder="Practice Phone (optional)"
+                                placeholder="Practice Phone *"
                                 className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
                                 autoComplete="tel"
                               />
