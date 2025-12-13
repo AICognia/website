@@ -36,6 +36,9 @@ const Dentists: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
+  // Refs to prevent duplicate audio tracking events
+  const audioPlayedTracked = useRef(false);
+  const audioCompletedTracked = useRef(false);
 
   // Track Meta Pixel events on component mount
   useEffect(() => {
@@ -81,6 +84,52 @@ const Dentists: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [stickyDismissed]);
+
+  // Track audio playback events for Meta Pixel
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    // Reset tracking flags when modal opens (new play session)
+    if (showAudioModal) {
+      audioPlayedTracked.current = false;
+      audioCompletedTracked.current = false;
+    }
+
+    // Handler for when audio actually starts playing (more reliable than "play")
+    const handlePlaying = () => {
+      // Fire Audio_Played only once per play session
+      if ((window as any).fbq && !audioPlayedTracked.current) {
+        (window as any).fbq('trackCustom', 'Audio_Played', {
+          content_category: 'dentist',
+          source: 'hear_ai_demo'
+        });
+        audioPlayedTracked.current = true;
+      }
+    };
+
+    // Handler for when audio finishes
+    const handleEnded = () => {
+      // Fire Audio_Completed only once per completion session
+      if ((window as any).fbq && !audioCompletedTracked.current) {
+        (window as any).fbq('trackCustom', 'Audio_Completed', {
+          content_category: 'dentist',
+          source: 'hear_ai_demo'
+        });
+        audioCompletedTracked.current = true;
+      }
+    };
+
+    // Attach event listeners
+    audio.addEventListener('playing', handlePlaying);
+    audio.addEventListener('ended', handleEnded);
+
+    // Cleanup listeners on unmount or when modal closes
+    return () => {
+      audio.removeEventListener('playing', handlePlaying);
+      audio.removeEventListener('ended', handleEnded);
+    };
+  }, [showAudioModal]); // Re-run when modal opens/closes
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
