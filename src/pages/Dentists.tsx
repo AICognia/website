@@ -787,67 +787,23 @@ const Dentists: React.FC = () => {
                   What Offices Are Saying
                 </h2>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Testimonial 1 */}
-                  <div className="bg-black/50 border border-white/10 rounded-2xl p-6 lg:p-8">
-                    <div className="flex items-center gap-1 mb-4">
+                {/* Single Centered Testimonial */}
+                <div className="flex justify-center">
+                  <div className="bg-black/50 border border-white/10 rounded-2xl p-6 lg:p-10 max-w-xl w-full">
+                    <div className="flex items-center justify-center gap-1 mb-6">
                       {[...Array(5)].map((_, i) => (
-                        <FaStar key={i} className="text-yellow-400 text-sm" />
+                        <FaStar key={i} className="text-yellow-400 text-lg" />
                       ))}
                     </div>
-                    <blockquote className="text-gray-300 leading-relaxed mb-6">
+                    <blockquote className="text-lg lg:text-xl text-gray-300 leading-relaxed mb-8 text-center">
                       "Monday mornings used to mean 15+ voicemails. Now they're booked appointments. Last month: <span className="text-white font-semibold">12 new patients</span> we would've lost."
                     </blockquote>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-cyan-400/10 rounded-full flex items-center justify-center">
-                        <span className="text-cyan-400 font-bold text-sm">JO</span>
+                    <div className="flex flex-col items-center">
+                      <div className="w-12 h-12 bg-cyan-400/10 rounded-full flex items-center justify-center mb-3">
+                        <span className="text-cyan-400 font-bold">JO</span>
                       </div>
-                      <div>
-                        <p className="text-white font-medium text-sm">Jacob Ojalvo</p>
-                        <p className="text-gray-500 text-xs">Office Manager, My Smile Miami</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Testimonial 2 */}
-                  <div className="bg-black/50 border border-white/10 rounded-2xl p-6 lg:p-8">
-                    <div className="flex items-center gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar key={i} className="text-yellow-400 text-sm" />
-                      ))}
-                    </div>
-                    <blockquote className="text-gray-300 leading-relaxed mb-6">
-                      "We run 3 locations. Before Cognia, lunch coverage was a nightmare. Now every line is covered without adding headcount. Setup took a week."
-                    </blockquote>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-cyan-400/10 rounded-full flex items-center justify-center">
-                        <span className="text-cyan-400 font-bold text-sm">RP</span>
-                      </div>
-                      <div>
-                        <p className="text-white font-medium text-sm">Rachel Patterson</p>
-                        <p className="text-gray-500 text-xs">Operations Director, Smile Design Group, Austin TX</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Testimonial 3 */}
-                  <div className="bg-black/50 border border-white/10 rounded-2xl p-6 lg:p-8 md:col-span-2 lg:col-span-1 lg:mx-auto lg:max-w-md">
-                    <div className="flex items-center gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar key={i} className="text-yellow-400 text-sm" />
-                      ))}
-                    </div>
-                    <blockquote className="text-gray-300 leading-relaxed mb-6">
-                      "I was skeptical about 'AI phone' but the demo call sold me. Patients have no idea. We've reduced front desk overtime by 6 hours/week."
-                    </blockquote>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-cyan-400/10 rounded-full flex items-center justify-center">
-                        <span className="text-cyan-400 font-bold text-sm">MK</span>
-                      </div>
-                      <div>
-                        <p className="text-white font-medium text-sm">Dr. Michael Kowalski</p>
-                        <p className="text-gray-500 text-xs">Owner, Kowalski Family Dental, Chicago IL</p>
-                      </div>
+                      <p className="text-white font-medium">Jacob Ojalvo</p>
+                      <p className="text-gray-500 text-sm">Office Manager, My Smile Miami</p>
                     </div>
                   </div>
                 </div>
