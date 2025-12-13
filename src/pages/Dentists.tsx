@@ -10,13 +10,11 @@ import {
   FaTimes,
   FaStar,
   FaPlay,
-  FaPause,
-  FaBolt,
-  FaPlug,
-  FaGlobe,
+  FaPhoneSlash,
+  FaDollarSign,
   FaShieldAlt,
-  FaClock,
-  FaQuestionCircle
+  FaQuestionCircle,
+  FaHeadphones
 } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
 import DynamicTechBackground from '../components/DynamicTechBackground';
@@ -36,27 +34,20 @@ const Dentists: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
-  // Refs to prevent duplicate audio tracking events
   const audioPlayedTracked = useRef(false);
   const audioCompletedTracked = useRef(false);
 
   // Track Meta Pixel events on component mount
   useEffect(() => {
     if ((window as any).fbq) {
-      // Standard PageView
       (window as any).fbq('track', 'PageView');
-
-      // LandingPageView - specific to dentist landing page
       (window as any).fbq('track', 'LandingPageView');
-
-      // ViewContent with category
       (window as any).fbq('track', 'ViewContent', {
         content_category: 'dentist'
       });
     }
   }, []);
 
-  // Track Hear AI Click (once per session)
   const trackHearAIClick = () => {
     if ((window as any).fbq && !sessionStorage.getItem('hearAIClicked')) {
       (window as any).fbq('trackCustom', 'Hear_AI_Click');
@@ -64,18 +55,15 @@ const Dentists: React.FC = () => {
     }
   };
 
-  // Track Start Trial CTA clicks
   const trackStartTrialClick = () => {
     if ((window as any).fbq) {
       (window as any).fbq('trackCustom', 'Start_Trial_Click');
     }
   };
 
-  // Sticky CTA scroll listener
   useEffect(() => {
     const handleScroll = () => {
       const heroHeight = window.innerHeight * 0.8;
-      // Only show sticky if user hasn't manually dismissed it
       if (!stickyDismissed) {
         setShowStickyCTA(window.scrollY > heroHeight);
       }
@@ -85,20 +73,16 @@ const Dentists: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [stickyDismissed]);
 
-  // Track audio playback events for Meta Pixel
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Reset tracking flags when modal opens (new play session)
     if (showAudioModal) {
       audioPlayedTracked.current = false;
       audioCompletedTracked.current = false;
     }
 
-    // Handler for when audio actually starts playing (more reliable than "play")
     const handlePlaying = () => {
-      // Fire Audio_Played only once per play session
       if ((window as any).fbq && !audioPlayedTracked.current) {
         (window as any).fbq('trackCustom', 'Audio_Played', {
           content_category: 'dentist',
@@ -108,9 +92,7 @@ const Dentists: React.FC = () => {
       }
     };
 
-    // Handler for when audio finishes
     const handleEnded = () => {
-      // Fire Audio_Completed only once per completion session
       if ((window as any).fbq && !audioCompletedTracked.current) {
         (window as any).fbq('trackCustom', 'Audio_Completed', {
           content_category: 'dentist',
@@ -120,16 +102,14 @@ const Dentists: React.FC = () => {
       }
     };
 
-    // Attach event listeners
     audio.addEventListener('playing', handlePlaying);
     audio.addEventListener('ended', handleEnded);
 
-    // Cleanup listeners on unmount or when modal closes
     return () => {
       audio.removeEventListener('playing', handlePlaying);
       audio.removeEventListener('ended', handleEnded);
     };
-  }, [showAudioModal]); // Re-run when modal opens/closes
+  }, [showAudioModal]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -139,7 +119,6 @@ const Dentists: React.FC = () => {
     setError('');
   };
 
-  // Canvas waveform animation - static wave animation only
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -151,8 +130,6 @@ const Dentists: React.FC = () => {
 
     const draw = () => {
       animationRef.current = requestAnimationFrame(draw);
-
-      // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const centerY = canvas.height / 2;
@@ -160,18 +137,13 @@ const Dentists: React.FC = () => {
 
       for (let i = 0; i < bars; i++) {
         const time = Date.now() / 1000;
-
-        // Static wave animation - always the same
         const wave = Math.sin(i * 0.1 + time * 2) * 0.3 + 0.3;
         const barHeight = wave * (canvas.height / 4) + 10;
 
         const x = i * barWidth;
 
-        // Mirror effect - draw from center (top half + bottom half)
         ctx.fillStyle = '#06B6D4';
-        // Top half
         ctx.fillRect(x, centerY - barHeight, barWidth - 1, barHeight);
-        // Bottom half (mirror)
         ctx.fillRect(x, centerY, barWidth - 1, barHeight);
       }
     };
@@ -183,14 +155,11 @@ const Dentists: React.FC = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [showAudioModal]); // Only restart when modal opens/closes
+  }, [showAudioModal]);
 
-  // Listen for Calendly booking completion to track Schedule event
   useEffect(() => {
     const handleCalendlyMessage = (e: MessageEvent) => {
-      // Verify message is from Calendly
       if (e.data?.event && e.data.event === 'calendly.event_scheduled') {
-        // Fire Meta Pixel Schedule custom event
         if ((window as any).fbq) {
           (window as any).fbq('trackCustom', 'Schedule');
         }
@@ -234,7 +203,6 @@ const Dentists: React.FC = () => {
       });
 
       if (response.ok) {
-        // Fire Meta Pixel Lead event on successful form submission
         if ((window as any).fbq) {
           (window as any).fbq('track', 'Lead');
         }
@@ -257,8 +225,8 @@ const Dentists: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>AI Receptionist for Dental Practices | Cognia AI</title>
-        <meta name="description" content="Never miss a patient call again. 7-day free trial. No credit card required." />
+        <title>Stop Losing $50K/Year to Missed Calls | Cognia AI for Dentists</title>
+        <meta name="description" content="Your front desk misses 30% of calls. Each missed call costs you $500+. Hear a real patient call answered by AI. 7-day free trial." />
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
@@ -270,219 +238,64 @@ const Dentists: React.FC = () => {
 
         {/* Content */}
         <div className="relative z-10">
-          {/* Hero Section - Mobile Optimized */}
-          <section className="relative overflow-hidden py-14 lg:py-22">
+          {/* ═══════════════════════════════════════════════════════════════════
+              SECTION 1: HERO - Lead with Pain + Primary Demo CTA
+          ═══════════════════════════════════════════════════════════════════ */}
+          <section className="relative overflow-hidden py-12 lg:py-20">
             <div className="absolute inset-0 bg-black/40" />
 
-            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl">
-              {/* Mobile: Compact, Form-First Layout */}
-              <div className="lg:hidden space-y-8">
-                {/* Free Trial Badge */}
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-5xl">
+              {/* Mobile Layout */}
+              <div className="lg:hidden space-y-6">
+                {/* Pain-Focused Headline */}
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                   className="text-center"
                 >
-                  <div className="inline-block px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
-                    <span className="text-xs font-semibold text-cyan-400">
-                      7-Day Free Trial • No Credit Card • HIPAA-Compliant
-                    </span>
-                  </div>
-                </motion.div>
-
-                {/* Headline */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-5xl font-thin leading-tight text-center"
-                >
-                  Never Miss a{' '}
-                  <span className="text-cyan-400">Patient Call</span>
-                </motion.h1>
-
-                {/* Subheadline */}
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.13 }}
-                  className="text-base text-gray-300 text-center leading-snug max-w-2xl mx-auto"
-                >
-                  AI receptionist that books every patient—24/7.
-                </motion.p>
-
-                {/* CTA - Centered */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.17 }}
-                  className="flex flex-col items-center"
-                >
-                  <a
-                    href="#trial-form"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      trackStartTrialClick();
-                      document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="flex items-center justify-center gap-2 w-full max-w-[70%] px-6 py-3.5 bg-white hover:bg-neutral-100 text-black text-base font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl hover:shadow-cyan-400/30 hover:scale-105"
-                  >
-                    Start Free Trial
-                    <FaArrowRight className="text-sm" />
-                  </a>
-                </motion.div>
-
-                {/* Pricing */}
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-base text-center text-white font-bold"
-                >
-                  From $199/month • 1-Week Free Trial
-                </motion.p>
-
-                {/* Mobile 3 Value Props */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="grid grid-cols-3 gap-3 pb-2"
-                >
-                  {[
-                    { icon: FaPhone, title: '24/7 Scheduling', subtitle: 'Never miss a patient' },
-                    { icon: FaCalendarCheck, title: '20% More Bookings', subtitle: 'AI books automatically' },
-                    { icon: FaCheckCircle, title: '66% Less No-Shows', subtitle: 'Auto confirmations' },
-                  ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-2.5 bg-black/30 border border-white/5 rounded-xl p-4">
-                      <item.icon className="text-cyan-400 text-2xl" />
-                      <p className="text-white text-sm font-semibold text-center leading-tight">{item.title}</p>
-                      <p className="text-gray-200/85 text-xs text-center leading-snug">{item.subtitle}</p>
-                    </div>
-                  ))}
-                </motion.div>
-
-                {/* Trust badge - Polished */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="py-6 border-t border-b border-white/10 mb-4"
-                >
-                  <p className="text-sm text-gray-200 text-center font-bold tracking-wide italic drop-shadow-[0_0_6px_rgba(6,182,212,0.25)]">
-                    Trusted by 50+ U.S. Dental Practices
+                  <h1 className="text-4xl font-bold leading-tight mb-4">
+                    Your Front Desk Misses<br />
+                    <span className="text-red-400">30% of Calls.</span>
+                  </h1>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    That's <span className="text-white font-semibold">$50,000+/year</span> walking out the door.
                   </p>
                 </motion.div>
 
-                {/* Mobile Audio Demo Section - Elevated */}
+                {/* What This Is - No Fluff */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="text-base text-gray-400 text-center"
+                >
+                  We answer your overflow calls, book appointments into your calendar, and confirm them automatically.
+                </motion.p>
+
+                {/* PRIMARY CTA: Demo First */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.35 }}
-                  className="pt-8"
+                  transition={{ duration: 0.5, delay: 0.15 }}
                 >
                   <button
                     onClick={() => {
                       trackHearAIClick();
                       setShowAudioModal(true);
                     }}
-                    className="relative w-full bg-black/30 rounded-xl p-8 hover:bg-black/35 transition-all duration-150 ease-out group shadow-lg shadow-cyan-500/15 hover:shadow-xl hover:shadow-cyan-500/25 overflow-hidden border border-cyan-400/30"
+                    className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30"
                   >
-                    {/* Neon gradient border */}
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400/25 via-transparent to-cyan-400/25 p-[1.5px]">
-                      <div className="h-full w-full bg-black/30 rounded-xl"></div>
-                    </div>
-
-                    <div className="relative flex items-center justify-center gap-3">
-                      {/* Play Icon - High visibility */}
-                      <div className="w-16 h-16 bg-cyan-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-400/30 group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-cyan-400/50 transition-all duration-150 ease-out">
-                        <svg className="w-7 h-7 text-cyan-400 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
-
-                      {/* Text Content - Centered */}
-                      <div className="text-center">
-                        <h3 className="text-base font-bold text-white mb-0.5">
-                          Hear the AI (30 sec)
-                        </h3>
-                        <p className="text-xs text-gray-400">
-                          Real example of Cognia AI answering a patient call.
-                        </p>
-                      </div>
-                    </div>
+                    <FaHeadphones className="text-xl" />
+                    Hear a Real Patient Call (30 sec)
                   </button>
                 </motion.div>
 
-                {/* Feature Cards - Optimized */}
+                {/* Secondary CTA */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="grid grid-cols-1 gap-6 pt-10"
-                >
-                  {[
-                    { icon: FaPlug, text: 'Seamless PMS Integration', subtext: 'Syncs with every dental PMS.', badge: true },
-                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included.', badge: true },
-                    { icon: FaBolt, text: 'Plug-and-Play Setup', subtext: 'No training, no hardware.', badge: true },
-                  ].map((item, i) => (
-                    <div key={i} className={`flex flex-col items-center gap-4 bg-black/20 border rounded-lg p-6 text-center hover:scale-[1.015] hover:shadow-lg transition-all duration-150 ease-out cursor-pointer ${item.badge ? 'border-cyan-400/30 shadow-cyan-400/10 hover:shadow-cyan-400/20 hover:border-cyan-400/40' : 'border-white/5 hover:shadow-cyan-400/15 hover:border-cyan-400/20'}`}>
-                      <div className={`w-12 h-12 rounded-full flex items-center justify-center ${item.badge ? 'bg-cyan-400/15 border-2 border-cyan-400/40 shadow-lg shadow-cyan-400/30' : 'bg-cyan-400/10 border border-cyan-400/30 shadow-md shadow-cyan-400/28'}`}>
-                        <item.icon className="text-xl text-cyan-400" />
-                      </div>
-                      <div>
-                        <p className="text-base font-semibold text-white leading-tight mb-2">{item.text}</p>
-                        <p className="text-sm text-gray-300/80 leading-relaxed">{item.subtext}</p>
-                      </div>
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
-
-              {/* Desktop: Optimized Layout */}
-              <div className="hidden lg:block text-center max-w-4xl mx-auto space-y-7">
-                {/* Free Trial Badge */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="inline-block px-5 py-2.5 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
-                    <span className="text-base font-semibold text-cyan-400">
-                      7-Day Free Trial • No Credit Card • HIPAA-Compliant
-                    </span>
-                  </div>
-                </motion.div>
-
-                {/* Headline */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-6xl sm:text-7xl lg:text-8xl font-thin leading-tight"
-                >
-                  Never Miss a
-                  <br />
-                  <span className="text-cyan-400">Patient Call</span>
-                </motion.h1>
-
-                {/* Subheadline */}
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.13 }}
-                  className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto"
-                >
-                  Your AI receptionist that answers every call & books every patient — 24/7.
-                </motion.p>
-
-                {/* Primary CTA - Centered between subheadline and pricing */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.17 }}
-                  className="flex flex-col items-center"
+                  transition={{ duration: 0.5, delay: 0.2 }}
                 >
                   <a
                     href="#trial-form"
@@ -491,143 +304,154 @@ const Dentists: React.FC = () => {
                       trackStartTrialClick();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black text-lg font-semibold rounded-xl transition-all shadow-lg hover:shadow-2xl hover:shadow-cyan-400/30 hover:scale-105 max-w-xs"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-xl transition-all"
                   >
-                    Start Free Trial
+                    Start 7-Day Free Trial
                     <FaArrowRight className="text-sm" />
                   </a>
+                  <p className="text-xs text-gray-500 text-center mt-2">
+                    No credit card. No contracts. We set it up for you.
+                  </p>
                 </motion.div>
 
-                {/* Pricing */}
+                {/* Trust Line */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.25 }}
+                  className="pt-4 border-t border-white/10"
+                >
+                  <p className="text-sm text-gray-400 text-center">
+                    Used by <span className="text-white font-medium">50+ dental practices</span> across the U.S.
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* Desktop Layout */}
+              <div className="hidden lg:block text-center max-w-4xl mx-auto space-y-8">
+                {/* Pain-Focused Headline */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h1 className="text-6xl font-bold leading-tight mb-6">
+                    Your Front Desk Misses <span className="text-red-400">30% of Calls.</span>
+                  </h1>
+                  <p className="text-2xl text-gray-300">
+                    That's <span className="text-white font-semibold">$50,000+/year</span> walking out the door.
+                  </p>
+                </motion.div>
+
+                {/* What This Is */}
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-base text-gray-200 font-bold"
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="text-xl text-gray-400 max-w-2xl mx-auto"
                 >
-                  From $199/month • 1-Week Free Trial
+                  We answer your overflow calls, book appointments directly into your calendar, and confirm them automatically. You keep every patient.
                 </motion.p>
 
-                {/* 3 Value Props */}
+                {/* CTAs */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto"
-                >
-                  {[
-                    { icon: FaPhone, title: '24/7 Patient Scheduling', subtitle: 'Never miss a new patient again.' },
-                    { icon: FaCalendarCheck, title: '20% More Bookings', subtitle: 'AI books directly into your calendar.' },
-                    { icon: FaCheckCircle, title: '66% Fewer No-Shows', subtitle: 'Automatic confirmation calls.' },
-                  ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-4">
-                      <div className="w-16 h-16 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center">
-                        <item.icon className="text-cyan-400 text-2xl" />
-                      </div>
-                      <div className="text-center">
-                        <p className="text-white font-semibold text-lg mb-2">{item.title}</p>
-                        <p className="text-gray-200/90 text-base leading-loose max-w-[200px]">{item.subtitle}</p>
-                      </div>
-                    </div>
-                  ))}
-                </motion.div>
-
-
-                {/* Audio Demo - Elevated */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="max-w-2xl mx-auto pt-10"
+                  transition={{ duration: 0.5, delay: 0.15 }}
+                  className="flex flex-col sm:flex-row items-center justify-center gap-4"
                 >
                   <button
                     onClick={() => {
                       trackHearAIClick();
                       setShowAudioModal(true);
                     }}
-                    className="relative w-full bg-black/30 rounded-2xl px-10 py-8 hover:bg-black/35 transition-all duration-150 ease-out group shadow-xl shadow-cyan-500/20 hover:shadow-2xl hover:shadow-cyan-500/30 overflow-hidden border border-cyan-400/30"
+                    className="flex items-center justify-center gap-3 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:scale-105"
                   >
-                    {/* Neon gradient border */}
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400/25 via-transparent to-cyan-400/25 p-[1.5px]">
-                      <div className="h-full w-full bg-black/30 rounded-2xl"></div>
-                    </div>
-
-                    <div className="relative flex items-center justify-between gap-4">
-                      <div className="text-left">
-                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-150">
-                          Hear the AI (30 sec)
-                        </h3>
-                        <p className="text-base text-gray-400">
-                          Real example of Cognia AI answering a patient call.
-                        </p>
-                      </div>
-                      <div className="flex-shrink-0">
-                        <div className="w-24 h-24 bg-cyan-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center group-hover:bg-cyan-400/30 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-cyan-400/60 transition-all duration-150 ease-out">
-                          <FaPlay className="text-cyan-400 text-3xl ml-1" />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Minimal Waveform Visualization */}
-                    <div className="relative flex items-center justify-center gap-1 mt-6 h-10">
-                      {[3, 8, 5, 12, 7, 10, 4, 11, 6, 9, 5, 8, 4, 10, 7, 12, 5, 9, 6, 11].map((height, i) => (
-                        <div
-                          key={i}
-                          className="w-1 bg-cyan-400/25 rounded-full transition-all"
-                          style={{ height: `${height * 2.5}px` }}
-                        />
-                      ))}
-                    </div>
+                    <FaHeadphones className="text-xl" />
+                    Hear a Real Patient Call (30 sec)
                   </button>
+
+                  <a
+                    href="#trial-form"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      trackStartTrialClick();
+                      document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-xl transition-all"
+                  >
+                    Start 7-Day Free Trial
+                    <FaArrowRight className="text-sm" />
+                  </a>
                 </motion.div>
 
-                {/* Feature Cards - Optimized */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.35 }}
-                  className="grid grid-cols-3 gap-6 max-w-3xl mx-auto pt-10"
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="text-sm text-gray-500"
                 >
-                  {[
-                    { icon: FaPlug, text: 'Seamless PMS Integration', subtext: 'Syncs with every dental PMS.', badge: true },
-                    { icon: FaGlobe, text: 'English & Spanish', subtext: 'Bilingual support included.', badge: true },
-                    { icon: FaBolt, text: 'Plug-and-Play Setup', subtext: 'No training, no hardware.', badge: true },
-                  ].map((item, i) => (
-                    <div key={i} className={`flex flex-col items-center gap-3 bg-black/20 border rounded-xl p-5 text-center hover:scale-[1.015] hover:shadow-lg transition-all duration-150 ease-out cursor-pointer ${item.badge ? 'border-cyan-400/30 shadow-cyan-400/10 hover:shadow-cyan-400/20 hover:border-cyan-400/40' : 'border-white/5 hover:shadow-cyan-400/15 hover:border-cyan-400/20'}`}>
-                      <div className={`w-14 h-14 rounded-full flex items-center justify-center ${item.badge ? 'bg-cyan-400/15 border-2 border-cyan-400/40 shadow-lg shadow-cyan-400/30' : 'bg-cyan-400/10 border border-cyan-400/30 shadow-md shadow-cyan-400/28'}`}>
-                        <item.icon className="text-xl text-cyan-400" />
-                      </div>
-                      <div>
-                        <p className="text-base font-semibold text-white leading-tight mb-1">{item.text}</p>
-                        <p className="text-sm text-gray-400 leading-tight">{item.subtext}</p>
-                      </div>
-                    </div>
-                  ))}
+                  No credit card. No contracts. We set it up for you.
+                </motion.p>
+
+                {/* Trust Line */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.25 }}
+                  className="pt-6 border-t border-white/10 inline-block"
+                >
+                  <p className="text-base text-gray-400">
+                    Used by <span className="text-white font-medium">50+ dental practices</span> across the U.S.
+                  </p>
                 </motion.div>
               </div>
             </div>
           </section>
 
-          {/* 3-Step Infographic - Desktop Only - Polished */}
-          <section className="relative py-20 lg:py-28 border-y border-white/5 hidden lg:block">
-            <div className="absolute inset-0 bg-black/40" />
-            <div className="relative container mx-auto px-6 lg:px-12 max-w-6xl">
-              <div className="grid md:grid-cols-3 gap-8">
+          {/* ═══════════════════════════════════════════════════════════════════
+              SECTION 2: PROBLEM AGITATION - Make It Uncomfortable
+          ═══════════════════════════════════════════════════════════════════ */}
+          <section className="relative py-16 lg:py-24 border-t border-white/5">
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-4xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-center mb-12"
+              >
+                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                  Where Your Calls Go to Die
+                </h2>
+                <p className="text-lg text-gray-400">
+                  Every missed call is a patient choosing someone else.
+                </p>
+              </motion.div>
+
+              <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
                 {[
                   {
-                    step: '1',
-                    title: 'We Set Up Your AI Receptionist',
-                    description: 'Fully customized to your practice workflow.'
+                    icon: FaPhoneSlash,
+                    title: 'Lunch Hour',
+                    stat: '12pm–1pm',
+                    description: 'Your busiest call time. Your staff is eating.',
+                    color: 'red'
                   },
                   {
-                    step: '2',
-                    title: 'Connect Your Phone',
-                    description: 'Takes 10 minutes. No training required.'
+                    icon: FaPhone,
+                    title: 'Hold Overflow',
+                    stat: '23% abandon',
+                    description: 'Patients on hold for 90+ seconds hang up.',
+                    color: 'red'
                   },
                   {
-                    step: '3',
-                    title: 'AI Answers 24/7',
-                    description: 'More appointments, zero missed calls.'
+                    icon: FaDollarSign,
+                    title: 'After Hours',
+                    stat: '$500/call',
+                    description: 'Evening callers book elsewhere by morning.',
+                    color: 'red'
                   }
                 ].map((item, index) => (
                   <motion.div
@@ -636,31 +460,180 @@ const Dentists: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="relative bg-black/30 border border-white/5 rounded-2xl p-8 text-center hover:bg-black/40 hover:border-cyan-400/20 transition-all duration-200 group"
+                    className="bg-black/40 border border-red-500/20 rounded-xl p-6 text-center"
                   >
-                    {/* Step Number - Solid clean design */}
-                    <div className="mb-6">
-                      <div className="relative w-24 h-24 mx-auto flex items-center justify-center">
-                        <div className="relative w-24 h-24 bg-cyan-400/10 border-2 border-cyan-400/40 rounded-full flex items-center justify-center group-hover:border-cyan-400/60 group-hover:bg-cyan-400/15 transition-all duration-200">
-                          <span className="relative text-4xl font-bold text-cyan-400">{item.step}</span>
-                        </div>
-                      </div>
+                    <div className="w-14 h-14 bg-red-500/10 border border-red-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <item.icon className="text-red-400 text-xl" />
                     </div>
-
-                    {/* Title - Better hierarchy */}
-                    <h3 className="text-2xl font-semibold text-white mb-4 group-hover:text-cyan-400 transition-colors duration-200">{item.title}</h3>
-
-                    {/* Description - More readable */}
-                    <p className="text-lg text-gray-300/85 leading-loose max-w-xs mx-auto">{item.description}</p>
+                    <p className="text-2xl font-bold text-red-400 mb-1">{item.stat}</p>
+                    <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                    <p className="text-sm text-gray-400">{item.description}</p>
                   </motion.div>
                 ))}
               </div>
+
+              {/* Revenue Calculator */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="mt-12 bg-black/50 border border-white/10 rounded-2xl p-6 lg:p-8 text-center"
+              >
+                <p className="text-lg text-gray-300 mb-2">The math is simple:</p>
+                <p className="text-2xl lg:text-3xl font-bold text-white">
+                  <span className="text-red-400">5 missed calls/week</span> × <span className="text-white">$500 value</span> × <span className="text-white">52 weeks</span> = <span className="text-red-400">$130,000 lost</span>
+                </p>
+                <p className="text-gray-500 mt-3 text-sm">
+                  Even capturing 2 extra patients/week pays for this 10x over.
+                </p>
+              </motion.div>
             </div>
           </section>
 
-          {/* Single Testimonial - Polished */}
-          <section className="relative py-16 lg:py-22">
-            <div className="absolute inset-0 bg-black/20" />
+          {/* ═══════════════════════════════════════════════════════════════════
+              SECTION 3: HOW IT WORKS - Simple Steps, No Jargon
+          ═══════════════════════════════════════════════════════════════════ */}
+          <section className="relative py-16 lg:py-24 border-t border-white/5">
+            <div className="absolute inset-0 bg-black/40" />
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-5xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-center mb-12"
+              >
+                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                  How It Works
+                </h2>
+                <p className="text-lg text-gray-400">
+                  No hardware. No training. No disruption to your current phone system.
+                </p>
+              </motion.div>
+
+              <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+                {[
+                  {
+                    step: '1',
+                    title: 'We Build Your AI Receptionist',
+                    description: 'Tell us your hours, services, and booking rules. We configure everything. Takes 24 hours.',
+                    highlight: '24-hour setup'
+                  },
+                  {
+                    step: '2',
+                    title: 'Connect in 10 Minutes',
+                    description: 'We add a parallel phone line. Your current number keeps working exactly as before.',
+                    highlight: 'Zero disruption'
+                  },
+                  {
+                    step: '3',
+                    title: 'Never Miss a Call Again',
+                    description: 'Overflow, after-hours, lunch breaks—every call gets answered and booked.',
+                    highlight: '24/7 coverage'
+                  }
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="bg-black/30 border border-white/10 rounded-xl p-6 lg:p-8 text-center hover:border-cyan-400/30 transition-all"
+                  >
+                    <div className="w-16 h-16 bg-cyan-400/10 border-2 border-cyan-400/40 rounded-full flex items-center justify-center mx-auto mb-5">
+                      <span className="text-3xl font-bold text-cyan-400">{item.step}</span>
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-3">{item.title}</h3>
+                    <p className="text-gray-400 mb-4">{item.description}</p>
+                    <span className="inline-block px-3 py-1 bg-cyan-400/10 border border-cyan-400/30 rounded-full text-xs text-cyan-400 font-medium">
+                      {item.highlight}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Key Differentiator */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="mt-10 text-center"
+              >
+                <p className="text-gray-400">
+                  <span className="text-white font-medium">Works with every practice management system:</span>{' '}
+                  Open Dental, Dentrix, Eaglesoft, and more.
+                </p>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* ═══════════════════════════════════════════════════════════════════
+              SECTION 4: DEMO EMPHASIS - Make Them Listen
+          ═══════════════════════════════════════════════════════════════════ */}
+          <section className="relative py-16 lg:py-24 border-t border-white/5">
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-cyan-950/20" />
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-3xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                  Don't Take Our Word For It.
+                </h2>
+                <p className="text-lg text-gray-400 mb-8">
+                  Listen to a real patient call. Unscripted. 30 seconds.
+                </p>
+
+                <button
+                  onClick={() => {
+                    trackHearAIClick();
+                    setShowAudioModal(true);
+                  }}
+                  className="relative w-full max-w-xl mx-auto bg-black/50 rounded-2xl p-8 lg:p-10 hover:bg-black/60 transition-all group border border-cyan-400/30 shadow-xl shadow-cyan-500/10"
+                >
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-20 h-20 bg-cyan-400/20 border-2 border-cyan-400/50 rounded-full flex items-center justify-center group-hover:bg-cyan-400/30 group-hover:scale-110 transition-all">
+                      <FaPlay className="text-cyan-400 text-2xl ml-1" />
+                    </div>
+                    <div className="text-center">
+                      <h3 className="text-xl font-bold text-white mb-2">
+                        Play Demo Call
+                      </h3>
+                      <p className="text-gray-400 text-sm">
+                        A new patient calls to book a cleaning. Hear how the AI handles it.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Waveform */}
+                  <div className="flex items-center justify-center gap-1 mt-6 h-8">
+                    {[3, 8, 5, 12, 7, 10, 4, 11, 6, 9, 5, 8, 4, 10, 7, 12, 5, 9, 6, 11].map((height, i) => (
+                      <div
+                        key={i}
+                        className="w-1 bg-cyan-400/30 rounded-full group-hover:bg-cyan-400/50 transition-all"
+                        style={{ height: `${height * 2}px` }}
+                      />
+                    ))}
+                  </div>
+                </button>
+
+                <p className="text-gray-500 text-sm mt-6">
+                  This is exactly what your patients will experience.
+                </p>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* ═══════════════════════════════════════════════════════════════════
+              SECTION 5: REAL PROOF - Specific, Grounded Testimonial
+          ═══════════════════════════════════════════════════════════════════ */}
+          <section className="relative py-16 lg:py-24 border-t border-white/5">
+            <div className="absolute inset-0 bg-black/30" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -669,183 +642,157 @@ const Dentists: React.FC = () => {
                 viewport={{ once: true }}
                 className="max-w-3xl mx-auto"
               >
-                {/* Gradient accent line top */}
-                <div className="h-0.5 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent mb-0"></div>
-
-                <div className="bg-black/50 border border-white/10 rounded-2xl p-8 lg:p-14 text-center shadow-2xl shadow-black/60">
-                  {/* Star Rating - 10% Larger */}
-                  <div className="flex items-center justify-center gap-2.5 mb-4 lg:mb-8">
+                <div className="bg-black/50 border border-white/10 rounded-2xl p-8 lg:p-12">
+                  {/* Stars */}
+                  <div className="flex items-center justify-center gap-1 mb-6">
                     {[...Array(5)].map((_, i) => (
-                      <FaStar key={i} className="text-cyan-400 text-xl lg:text-2xl" />
+                      <FaStar key={i} className="text-yellow-400 text-lg" />
                     ))}
                   </div>
 
-                  {/* Quote - Better line-height */}
-                  <p className="text-base lg:text-xl text-gray-300 leading-relaxed lg:leading-loose mb-5 lg:mb-10">
-                    <span className="lg:hidden">
-                      "Cognia schedules weekend appointments automatically. No backlog, no delays."
-                    </span>
-                    <span className="hidden lg:block">
-                      "Working with Cognia has been a game-changer for our office. If a patient requests an appointment over the weekend, Cognia schedules it for us — no backlog, no delays."
-                    </span>
-                  </p>
+                  {/* Quote */}
+                  <blockquote className="text-lg lg:text-xl text-gray-300 text-center leading-relaxed mb-8">
+                    "We used to come in Monday morning to 15+ voicemails from the weekend. Now, those are all booked appointments. Last month alone, that was <span className="text-white font-semibold">12 new patients</span> we would have lost."
+                  </blockquote>
 
-                  {/* Author */}
-                  <div className="flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-4 mb-4 lg:mb-6">
-                    <div className="w-10 h-10 lg:w-12 lg:h-12 bg-cyan-400/10 rounded-full flex items-center justify-center">
-                      <span className="text-cyan-400 font-bold text-base lg:text-lg">JO</span>
+                  {/* Attribution */}
+                  <div className="flex flex-col items-center">
+                    <div className="w-12 h-12 bg-cyan-400/10 rounded-full flex items-center justify-center mb-3">
+                      <span className="text-cyan-400 font-bold">JO</span>
                     </div>
-                    <div>
-                      <div className="font-medium text-white text-sm lg:text-base">Jacob Ojalvo</div>
-                      <div className="text-xs lg:text-sm text-gray-400">My Smile Miami</div>
-                    </div>
+                    <p className="text-white font-medium">Dr. Jacob Ojalvo</p>
+                    <p className="text-gray-400 text-sm">My Smile Miami — General Dentistry</p>
+                    <p className="text-gray-500 text-xs mt-1">Using Cognia since March 2024</p>
                   </div>
-
-                  {/* Trust Line */}
-                  <p className="text-xs lg:text-sm text-gray-400 italic">
-                    Serving 50+ dental practices across the U.S.
-                  </p>
                 </div>
 
-                {/* Gradient accent line bottom */}
-                <div className="h-0.5 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent mt-0"></div>
-              </motion.div>
-
-              {/* CTA Button After Testimonial - Mobile Only */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="flex justify-center mt-10 lg:hidden"
-              >
-                <a
-                  href="#trial-form"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    trackStartTrialClick();
-                    document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black text-base font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl hover:shadow-cyan-400/30 hover:scale-105"
-                >
-                  Start Free Trial
-                  <FaArrowRight className="text-sm" />
-                </a>
+                {/* Secondary Proof Points */}
+                <div className="grid grid-cols-3 gap-4 mt-8">
+                  {[
+                    { stat: '50+', label: 'Dental practices' },
+                    { stat: '24/7', label: 'Call coverage' },
+                    { stat: '98%', label: 'Booking accuracy' }
+                  ].map((item, i) => (
+                    <div key={i} className="text-center">
+                      <p className="text-2xl lg:text-3xl font-bold text-cyan-400">{item.stat}</p>
+                      <p className="text-gray-400 text-sm">{item.label}</p>
+                    </div>
+                  ))}
+                </div>
               </motion.div>
             </div>
           </section>
 
-          {/* 3-Step Infographic - Mobile Version - Final Polish */}
-          <section className="relative py-16 border-y border-white/5 lg:hidden">
+          {/* ═══════════════════════════════════════════════════════════════════
+              SECTION 6: OBJECTION HANDLING - Direct Answers
+          ═══════════════════════════════════════════════════════════════════ */}
+          <section className="relative py-16 lg:py-24 border-t border-white/5">
             <div className="absolute inset-0 bg-black/40" />
-            <div className="relative container mx-auto px-4 sm:px-6">
-              <div className="space-y-6">
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-3xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-center mb-12"
+              >
+                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                  Your Questions, Answered.
+                </h2>
+              </motion.div>
+
+              <div className="space-y-4">
                 {[
                   {
-                    step: '1',
-                    title: 'We Set Up Your AI Receptionist',
-                    description: 'Fully customized to your practice workflow.'
+                    q: '"Will patients know it\'s AI?"',
+                    a: 'Some will, some won\'t. More importantly: patients who reach a booking get scheduled. Patients who reach voicemail call your competitor. We\'ve tested this extensively—patients care about getting help, not who\'s helping.'
                   },
                   {
-                    step: '2',
-                    title: 'Connect Your Phone',
-                    description: 'Takes 10 minutes. No training required.'
+                    q: '"Will it mess up my schedule?"',
+                    a: 'No. It books directly into your existing calendar based on rules YOU set. Appointment types, durations, buffer times—all configured exactly how you want. If there\'s a conflict, it offers the next available slot.'
                   },
                   {
-                    step: '3',
-                    title: 'AI Answers 24/7',
-                    description: 'More appointments, zero missed calls.'
+                    q: '"What if it makes a mistake?"',
+                    a: 'Every call is recorded and transcribed. You can review any conversation. If the AI is unsure, it takes a message and your staff follows up. It never guesses.'
+                  },
+                  {
+                    q: '"Does this replace my front desk?"',
+                    a: 'No. It handles overflow, after-hours, and lunch breaks so your staff can focus on patients in the office. Think of it as your front desk\'s backup, not replacement.'
+                  },
+                  {
+                    q: '"Is this HIPAA compliant?"',
+                    a: 'Yes. BAA included. All data encrypted. We\'ve been through compliance review with DSOs and hospital-affiliated practices. We\'ll send documentation before you sign anything.'
                   }
-                ].map((item, index) => (
+                ].map((faq, i) => (
                   <motion.div
-                    key={index}
+                    key={i}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.5, delay: i * 0.05 }}
                     viewport={{ once: true }}
-                    className="relative bg-black/30 border border-white/[0.03] rounded-2xl p-8 text-center flex flex-col items-center justify-center"
+                    className="bg-black/30 border border-white/10 rounded-xl p-5 lg:p-6"
                   >
-                    {/* Step Number Badge - Solid clean design */}
-                    <div className="relative w-20 h-20 mb-6 flex items-center justify-center">
-                      <div className="relative w-20 h-20 bg-cyan-400/10 border-2 border-cyan-400/40 rounded-full flex items-center justify-center">
-                        <span className="relative text-4xl font-bold text-cyan-400">{item.step}</span>
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-8 h-8 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center mt-0.5">
+                        <FaQuestionCircle className="text-cyan-400 text-sm" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white mb-2">{faq.q}</h3>
+                        <p className="text-gray-400 leading-relaxed">{faq.a}</p>
                       </div>
                     </div>
-
-                    {/* Title - Larger for clarity */}
-                    <h3 className="text-2xl font-semibold text-white mb-3">{item.title}</h3>
-
-                    {/* Description - Centered */}
-                    <p className="text-base text-gray-300/80 leading-relaxed">{item.description}</p>
                   </motion.div>
                 ))}
               </div>
             </div>
           </section>
 
-          {/* FAQ Section - Compact & High Impact */}
-          <section className="relative py-20 lg:py-24">
+          {/* ═══════════════════════════════════════════════════════════════════
+              SECTION 7: PRICING FRAME - Cost vs. Value
+          ═══════════════════════════════════════════════════════════════════ */}
+          <section className="relative py-16 lg:py-24 border-t border-white/5">
             <div className="absolute inset-0 bg-black/30" />
-            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
-              <div className="max-w-3xl mx-auto">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className="text-center mb-16 lg:mb-20"
-                >
-                  <h2 className="text-3xl lg:text-5xl font-thin text-white mb-3">
-                    Common <span className="text-cyan-400">Questions</span>
-                  </h2>
-                </motion.div>
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-3xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                  The Cost of One Missed Call
+                </h2>
 
-                <div className="space-y-5 lg:space-y-6">
-                  {[
-                    {
-                      q: 'Does this replace my receptionist?',
-                      a: 'No. It handles overflow, after-hours, and routine calls so your team can focus on in-office care.'
-                    },
-                    {
-                      q: 'Will this interrupt our phone line or patients calling normally?',
-                      a: 'No. Your phone line stays fully functional — we simply add a parallel AI line.'
-                    },
-                    {
-                      q: 'Do you integrate with our PMS?',
-                      a: 'Yes — real-time syncing with OpenDental, Dentrix, EagleSoft and more.'
-                    }
-                  ].map((faq, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: i * 0.1 }}
-                      viewport={{ once: true }}
-                      className="bg-black/30 border border-white/10 rounded-xl p-6 lg:p-8"
-                    >
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-9 h-9 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center">
-                          <FaQuestionCircle className="text-cyan-400 text-base" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-lg lg:text-xl font-semibold text-white mb-3">
-                            {faq.q}
-                          </h3>
-                          <p className="text-base lg:text-lg text-gray-300/85 leading-relaxed">
-                            {faq.a}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
+                <div className="bg-black/50 border border-white/10 rounded-2xl p-8 lg:p-10 mb-8">
+                  <div className="grid md:grid-cols-2 gap-8 items-center">
+                    <div className="text-left">
+                      <p className="text-gray-400 mb-2">Average new patient value:</p>
+                      <p className="text-3xl font-bold text-white mb-4">$500–$1,200</p>
+                      <p className="text-gray-400 mb-2">Cognia starts at:</p>
+                      <p className="text-3xl font-bold text-cyan-400">$199/month</p>
+                    </div>
+                    <div className="bg-cyan-400/5 border border-cyan-400/20 rounded-xl p-6">
+                      <p className="text-gray-400 text-sm mb-2">Break-even point:</p>
+                      <p className="text-4xl font-bold text-cyan-400 mb-2">1 patient</p>
+                      <p className="text-gray-400 text-sm">per month</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+
+                <p className="text-gray-400">
+                  If we save you <span className="text-white font-medium">one patient per month</span>, you're ahead.<br />
+                  Most practices capture <span className="text-white font-medium">8–12 additional patients</span> in their first month.
+                </p>
+              </motion.div>
             </div>
           </section>
 
-          {/* Trial Form - Mobile Optimized */}
-          <section id="trial-form" className="relative py-12 lg:py-16 border-t border-white/5 lg:border-t-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60" />
+          {/* ═══════════════════════════════════════════════════════════════════
+              SECTION 8: FINAL CTA - Aggressive Reassurance
+          ═══════════════════════════════════════════════════════════════════ */}
+          <section id="trial-form" className="relative py-16 lg:py-24 border-t border-white/5">
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-cyan-950/20" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
               <div className="max-w-xl mx-auto">
                 <motion.div
@@ -853,12 +800,29 @@ const Dentists: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="text-center mb-8 lg:mb-10"
+                  className="text-center mb-8"
                 >
-                  <h2 className="text-3xl lg:text-5xl font-thin text-white mb-3 lg:mb-4">
-                    Start Your <span className="text-cyan-400">Free Trial</span>
+                  <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                    Try It Free for 7 Days
                   </h2>
-                  <p className="text-sm lg:text-base text-gray-400">No credit card required • 7-day free trial</p>
+                  <p className="text-gray-400 mb-6">
+                    See exactly how many calls you're missing. No risk.
+                  </p>
+
+                  {/* Trust Badges */}
+                  <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+                    {[
+                      { icon: FaCheckCircle, text: 'No credit card' },
+                      { icon: FaCheckCircle, text: 'Cancel anytime' },
+                      { icon: FaCheckCircle, text: 'We set it up for you' },
+                      { icon: FaShieldAlt, text: 'HIPAA compliant' }
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm text-gray-300">
+                        <item.icon className="text-cyan-400 text-xs" />
+                        <span>{item.text}</span>
+                      </div>
+                    ))}
+                  </div>
                 </motion.div>
 
                 <motion.div
@@ -867,7 +831,7 @@ const Dentists: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="bg-black/50 border border-white/10 rounded-2xl p-6 lg:p-10 backdrop-blur-sm">
+                  <div className="bg-black/50 border border-white/10 rounded-2xl p-6 lg:p-8">
                     <AnimatePresence mode="wait">
                       {!isSubmitted ? (
                         <motion.div
@@ -875,15 +839,15 @@ const Dentists: React.FC = () => {
                           initial={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                         >
-                          <form onSubmit={handleSubmit} className="space-y-5">
+                          <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
                               <input
                                 type="text"
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                placeholder="Full Name *"
-                                className="w-full px-5 py-4 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
+                                placeholder="Your Name *"
+                                className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
                                 autoComplete="name"
                               />
                             </div>
@@ -894,57 +858,59 @@ const Dentists: React.FC = () => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                placeholder="Email Address *"
-                                className="w-full px-5 py-4 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
+                                placeholder="Work Email *"
+                                className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
                                 autoComplete="email"
                               />
                             </div>
 
-                            <div className="space-y-1">
+                            <div>
                               <input
                                 type="tel"
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
-                                placeholder="Phone Number"
-                                className="w-full px-5 py-4 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
+                                placeholder="Practice Phone (optional)"
+                                className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
                                 autoComplete="tel"
                               />
-                              <p className="text-xs text-gray-500/70 leading-relaxed pl-1">
-                                We contact you to activate your 7-day free trial. No credit card required.
-                              </p>
                             </div>
 
-                            {/* Error */}
                             <AnimatePresence>
                               {error && (
                                 <motion.div
                                   initial={{ opacity: 0, y: -5 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   exit={{ opacity: 0 }}
-                                  className="flex items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-xl"
+                                  className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl"
                                 >
-                                  <FaTimes className="text-gray-400 text-sm flex-shrink-0" />
-                                  <p className="text-gray-400 text-sm">{error}</p>
+                                  <FaTimes className="text-red-400 text-sm flex-shrink-0" />
+                                  <p className="text-red-400 text-sm">{error}</p>
                                 </motion.div>
                               )}
                             </AnimatePresence>
 
-                            {/* Submit - Final polish */}
                             <button
                               type="submit"
                               disabled={isSubmitting}
-                              className="w-full py-4 bg-white hover:bg-neutral-100 text-black font-semibold rounded-xl transition-all duration-150 ease-out disabled:opacity-50 disabled:cursor-not-allowed text-base flex items-center justify-center gap-2 shadow-lg shadow-black/25 hover:shadow-2xl hover:shadow-cyan-400/30 hover:scale-[1.02]"
+                              className="w-full py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/30"
                             >
                               {isSubmitting ? (
                                 <>
                                   <FaSpinner className="animate-spin" />
-                                  <span>Starting Your Trial...</span>
+                                  <span>Starting Trial...</span>
                                 </>
                               ) : (
-                                <span>Start Free Trial</span>
+                                <>
+                                  <span>Start Free 7-Day Trial</span>
+                                  <FaArrowRight className="text-sm" />
+                                </>
                               )}
                             </button>
+
+                            <p className="text-xs text-gray-500 text-center">
+                              We'll call within 24 hours to get you set up. Your practice keeps running normally.
+                            </p>
                           </form>
                         </motion.div>
                       ) : (
@@ -952,37 +918,48 @@ const Dentists: React.FC = () => {
                           key="success"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="py-12 text-center"
+                          className="py-10 text-center"
                         >
-                          <div className="w-20 h-20 bg-cyan-400/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <FaCheckCircle className="text-4xl text-cyan-400" />
+                          <div className="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <FaCheckCircle className="text-3xl text-cyan-400" />
                           </div>
-                          <h3 className="text-2xl font-medium text-white mb-3">
-                            Trial Started!
+                          <h3 className="text-2xl font-bold text-white mb-2">
+                            You're In.
                           </h3>
-                          <p className="text-gray-400 text-sm mb-8">
-                            Opening scheduling to set up your AI receptionist
+                          <p className="text-gray-400 mb-6">
+                            We're setting up your trial now. Book a quick call to finish setup:
                           </p>
                           <a
                             href="https://calendly.com/emrebenian-cogniaai/30min"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black font-medium rounded-xl transition-all"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all"
                           >
-                            Schedule Setup Call
-                            <FaArrowRight className="text-sm" />
+                            <FaCalendarCheck />
+                            Schedule Setup Call (15 min)
                           </a>
                         </motion.div>
                       )}
                     </AnimatePresence>
                   </div>
                 </motion.div>
+
+                {/* Final Reassurance */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="text-center text-gray-500 text-sm mt-6"
+                >
+                  Still unsure? <button onClick={() => { trackHearAIClick(); setShowAudioModal(true); }} className="text-cyan-400 hover:underline">Listen to the demo first</button> — takes 30 seconds.
+                </motion.p>
               </div>
             </div>
           </section>
         </div>
 
-        {/* Mobile Sticky CTA - High Impact */}
+        {/* Mobile Sticky CTA */}
         <AnimatePresence>
           {showStickyCTA && (
             <motion.div
@@ -992,12 +969,12 @@ const Dentists: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="fixed bottom-0 left-0 right-0 z-40 lg:hidden"
             >
-              <div className="bg-black/95 backdrop-blur-xl border-t border-cyan-400/30 shadow-2xl shadow-cyan-400/20">
-                <div className="container mx-auto px-4 py-4">
+              <div className="bg-black/95 backdrop-blur-xl border-t border-cyan-400/30">
+                <div className="container mx-auto px-4 py-3">
                   <div className="flex items-center justify-between gap-3">
-                    <div className="flex-1">
-                      <p className="text-xs text-gray-300 leading-tight">HIPAA-compliant</p>
-                      <p className="text-xs text-gray-300 leading-tight">1-Week Free Trial</p>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs text-gray-400 truncate">7-day free trial</p>
+                      <p className="text-sm text-white font-medium truncate">No credit card required</p>
                     </div>
                     <a
                       href="#trial-form"
@@ -1006,20 +983,20 @@ const Dentists: React.FC = () => {
                         trackStartTrialClick();
                         document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                       }}
-                      className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black font-semibold rounded-xl transition-all shadow-lg shadow-cyan-400/20 hover:shadow-xl hover:shadow-cyan-400/30"
+                      className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg transition-all text-sm"
                     >
-                      Start Free Trial
-                      <FaArrowRight className="text-sm" />
+                      Start Trial
+                      <FaArrowRight className="text-xs" />
                     </a>
                     <button
                       onClick={() => {
                         setShowStickyCTA(false);
                         setStickyDismissed(true);
                       }}
-                      className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                      className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-gray-500 hover:text-white transition-colors"
                       aria-label="Close"
                     >
-                      <FaTimes className="text-lg" />
+                      <FaTimes />
                     </button>
                   </div>
                 </div>
@@ -1032,7 +1009,6 @@ const Dentists: React.FC = () => {
         <AnimatePresence>
           {showAudioModal && (
             <>
-              {/* Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -1047,7 +1023,6 @@ const Dentists: React.FC = () => {
                 className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
               />
 
-              {/* Modal */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -1056,15 +1031,15 @@ const Dentists: React.FC = () => {
                 className="fixed inset-0 z-50 flex items-center justify-center p-4"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="bg-black/90 border border-white/20 rounded-3xl p-8 lg:p-12 max-w-2xl w-full backdrop-blur-xl">
+                <div className="bg-black/95 border border-white/20 rounded-2xl p-6 lg:p-10 max-w-xl w-full">
                   {/* Header */}
-                  <div className="flex items-start justify-between mb-8">
+                  <div className="flex items-start justify-between mb-6">
                     <div>
-                      <h3 className="text-2xl font-medium text-white mb-2">
-                        AI Receptionist Demo — 30 Seconds
+                      <h3 className="text-xl font-bold text-white mb-1">
+                        Real Patient Call
                       </h3>
                       <p className="text-sm text-gray-400">
-                        Real patient call simulation
+                        New patient booking a cleaning appointment
                       </p>
                     </div>
                     <button
@@ -1081,40 +1056,53 @@ const Dentists: React.FC = () => {
                     </button>
                   </div>
 
-                  {/* Audio Player */}
-                  <div className="space-y-6">
-                    {/* Waveform Visualization - Static Animation */}
-                    <div className="relative h-24 bg-black/50 rounded-2xl overflow-hidden flex items-center justify-center">
-                      <canvas
-                        ref={canvasRef}
-                        width={800}
-                        height={96}
-                        className="max-w-full"
-                      />
-                    </div>
-
-                    {/* Audio Controls */}
-                    <div className="flex items-center gap-4">
-                      <div className="flex-1">
-                        <audio
-                          ref={audioRef}
-                          src="https://yhmbki8wsvse0fwd.public.blob.vercel-storage.com/DENTIST%20MP3.mp3"
-                          className="w-full"
-                          controls
-                          controlsList="nodownload"
-                          crossOrigin="anonymous"
-                          onPlay={() => conversionTracker.trackButtonClick('Demo Audio Played', 'dentists_page')}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Info */}
-                    <div className="text-center pt-4 border-t border-white/10">
-                      <p className="text-xs text-gray-500">
-                        This is a real example of how Cognia AI handles patient calls 24/7
-                      </p>
-                    </div>
+                  {/* Waveform */}
+                  <div className="relative h-20 bg-black/50 rounded-xl overflow-hidden flex items-center justify-center mb-6">
+                    <canvas
+                      ref={canvasRef}
+                      width={600}
+                      height={80}
+                      className="max-w-full"
+                    />
                   </div>
+
+                  {/* Audio Player */}
+                  <div className="mb-6">
+                    <audio
+                      ref={audioRef}
+                      src="https://yhmbki8wsvse0fwd.public.blob.vercel-storage.com/DENTIST%20MP3.mp3"
+                      className="w-full"
+                      controls
+                      controlsList="nodownload"
+                      crossOrigin="anonymous"
+                      onPlay={() => conversionTracker.trackButtonClick('Demo Audio Played', 'dentists_page')}
+                    />
+                  </div>
+
+                  {/* What They'll Hear */}
+                  <div className="bg-white/5 border border-white/10 rounded-xl p-4 mb-6">
+                    <p className="text-sm text-gray-400 mb-2">What you'll hear:</p>
+                    <ul className="text-sm text-gray-300 space-y-1">
+                      <li>• Patient calls to schedule a cleaning</li>
+                      <li>• AI checks availability and books the appointment</li>
+                      <li>• Confirmation sent automatically</li>
+                    </ul>
+                  </div>
+
+                  {/* CTA in Modal */}
+                  <a
+                    href="#trial-form"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowAudioModal(false);
+                      trackStartTrialClick();
+                      document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all"
+                  >
+                    Start Free Trial
+                    <FaArrowRight className="text-sm" />
+                  </a>
                 </div>
               </motion.div>
             </>
