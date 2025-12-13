@@ -37,12 +37,36 @@ const Dentists: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
 
-  // Track PageView on component mount
+  // Track Meta Pixel events on component mount
   useEffect(() => {
     if ((window as any).fbq) {
+      // Standard PageView
       (window as any).fbq('track', 'PageView');
+
+      // LandingPageView - specific to dentist landing page
+      (window as any).fbq('track', 'LandingPageView');
+
+      // ViewContent with category
+      (window as any).fbq('track', 'ViewContent', {
+        content_category: 'dentist'
+      });
     }
   }, []);
+
+  // Track Hear AI Click (once per session)
+  const trackHearAIClick = () => {
+    if ((window as any).fbq && !sessionStorage.getItem('hearAIClicked')) {
+      (window as any).fbq('trackCustom', 'Hear_AI_Click');
+      sessionStorage.setItem('hearAIClicked', 'true');
+    }
+  };
+
+  // Track Start Trial CTA clicks
+  const trackStartTrialClick = () => {
+    if ((window as any).fbq) {
+      (window as any).fbq('trackCustom', 'Start_Trial_Click');
+    }
+  };
 
   // Sticky CTA scroll listener
   useEffect(() => {
@@ -250,6 +274,7 @@ const Dentists: React.FC = () => {
                     href="#trial-form"
                     onClick={(e) => {
                       e.preventDefault();
+                      trackStartTrialClick();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
                     className="flex items-center justify-center gap-2 w-full max-w-[70%] px-6 py-3.5 bg-white hover:bg-neutral-100 text-black text-base font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl hover:shadow-cyan-400/30 hover:scale-105"
@@ -309,7 +334,10 @@ const Dentists: React.FC = () => {
                   className="pt-8"
                 >
                   <button
-                    onClick={() => setShowAudioModal(true)}
+                    onClick={() => {
+                      trackHearAIClick();
+                      setShowAudioModal(true);
+                    }}
                     className="relative w-full bg-black/30 rounded-xl p-8 hover:bg-black/35 transition-all duration-150 ease-out group shadow-lg shadow-cyan-500/15 hover:shadow-xl hover:shadow-cyan-500/25 overflow-hidden border border-cyan-400/30"
                   >
                     {/* Neon gradient border */}
@@ -411,6 +439,7 @@ const Dentists: React.FC = () => {
                     href="#trial-form"
                     onClick={(e) => {
                       e.preventDefault();
+                      trackStartTrialClick();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black text-lg font-semibold rounded-xl transition-all shadow-lg hover:shadow-2xl hover:shadow-cyan-400/30 hover:scale-105 max-w-xs"
@@ -463,7 +492,10 @@ const Dentists: React.FC = () => {
                   className="max-w-2xl mx-auto pt-10"
                 >
                   <button
-                    onClick={() => setShowAudioModal(true)}
+                    onClick={() => {
+                      trackHearAIClick();
+                      setShowAudioModal(true);
+                    }}
                     className="relative w-full bg-black/30 rounded-2xl px-10 py-8 hover:bg-black/35 transition-all duration-150 ease-out group shadow-xl shadow-cyan-500/20 hover:shadow-2xl hover:shadow-cyan-500/30 overflow-hidden border border-cyan-400/30"
                   >
                     {/* Neon gradient border */}
@@ -642,6 +674,7 @@ const Dentists: React.FC = () => {
                   href="#trial-form"
                   onClick={(e) => {
                     e.preventDefault();
+                    trackStartTrialClick();
                     document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black text-base font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl hover:shadow-cyan-400/30 hover:scale-105"
@@ -921,6 +954,7 @@ const Dentists: React.FC = () => {
                       href="#trial-form"
                       onClick={(e) => {
                         e.preventDefault();
+                        trackStartTrialClick();
                         document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                       }}
                       className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black font-semibold rounded-xl transition-all shadow-lg shadow-cyan-400/20 hover:shadow-xl hover:shadow-cyan-400/30"
