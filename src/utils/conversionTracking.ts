@@ -18,9 +18,6 @@ class ConversionTracker {
     // LinkedIn Insight Tag placeholder
     this.initLinkedIn();
 
-    // Meta Pixel placeholder
-    this.initMeta();
-
     // Google Analytics 4 placeholder
     this.initGA4();
   }
@@ -30,11 +27,6 @@ class ConversionTracker {
     // Example: _linkedin_partner_id = 'YOUR_PARTNER_ID';
     (window as any)._linkedin_data_partner_ids = (window as any)._linkedin_data_partner_ids || [];
     // (window as any)._linkedin_data_partner_ids.push('YOUR_PARTNER_ID');
-  }
-
-  private initMeta() {
-    // Meta Pixel ID would go here
-    // fbq('init', 'YOUR_PIXEL_ID');
   }
 
   private initGA4() {
@@ -47,11 +39,6 @@ class ConversionTracker {
     // LinkedIn
     if ((window as any).lintrk) {
       (window as any).lintrk('track');
-    }
-
-    // Meta
-    if ((window as any).fbq) {
-      (window as any).fbq('track', 'PageView');
     }
 
     // Google Analytics
@@ -84,15 +71,6 @@ class ConversionTracker {
       });
     }
 
-    // Meta Conversion
-    if ((window as any).fbq) {
-      (window as any).fbq('track', 'Schedule', {
-        value: event.value,
-        currency: event.currency,
-        content_name: 'Demo Booking'
-      });
-    }
-
     // Google Analytics Conversion
     if ((window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
@@ -117,13 +95,6 @@ class ConversionTracker {
     if ((window as any).lintrk) {
       (window as any).lintrk('track', {
         conversion_id: 'phone_call'
-      });
-    }
-
-    // Meta
-    if ((window as any).fbq) {
-      (window as any).fbq('track', 'Contact', {
-        content_name: 'Phone Call'
       });
     }
 
@@ -154,13 +125,6 @@ class ConversionTracker {
       });
     }
 
-    // Meta
-    if ((window as any).fbq) {
-      (window as any).fbq('track', 'Lead', {
-        content_name: formName
-      });
-    }
-
     // Google Analytics
     if ((window as any).gtag) {
       (window as any).gtag('event', 'generate_lead', {
@@ -182,15 +146,6 @@ class ConversionTracker {
         calculated_savings: calculatedValue
       }
     };
-
-    // Meta
-    if ((window as any).fbq) {
-      (window as any).fbq('track', 'ViewContent', {
-        content_name: 'ROI Calculator',
-        value: calculatedValue,
-        currency: 'USD'
-      });
-    }
 
     // Google Analytics
     if ((window as any).gtag) {
