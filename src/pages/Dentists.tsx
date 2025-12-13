@@ -1015,7 +1015,7 @@ const Dentists: React.FC = () => {
                   { day: 'Day 6', title: 'Review & Go Live', desc: 'You approve the setup. We flip the switch. Calls start getting answered.' },
                   { day: 'Ongoing', title: 'Monitor & Adjust', desc: 'Weekly check-ins for the first month. Adjust rules as needed. US-based support.' }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4 bg-black/30 border border-white/10 rounded-xl p-5">
+                  <div key={i} className="flex items-center gap-4 bg-black/30 border border-white/10 rounded-xl p-5">
                     <div className="flex-shrink-0 w-16 text-center">
                       <span className="text-cyan-400 font-bold text-sm">{item.day}</span>
                     </div>
