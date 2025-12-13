@@ -138,16 +138,6 @@ const Dentists: React.FC = () => {
       });
 
       if (response.ok) {
-        // Track Meta Pixel Lead event
-        if ((window as any).fbq) {
-          (window as any).fbq('track', 'Lead', {
-            content_name: 'Dentist Free Trial Request',
-            content_category: 'dental_landing_page',
-            value: formData.email,
-            currency: 'USD'
-          });
-        }
-
         conversionTracker.trackDemoBooking('dentists_page');
         conversionTracker.trackButtonClick('Dentist Free Trial Submitted', 'dentists_page');
         setIsSubmitted(true);
