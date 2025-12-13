@@ -31,6 +31,10 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
+    // Create abort controller for timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
     try {
       const response = await fetch('https://formspree.io/f/xkgbykwq', {
         method: 'POST',
@@ -38,26 +42,50 @@ const Contact: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        signal: controller.signal,
+        keepalive: true, // Optimize request handling
       });
+
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         setSubmitStatus('success');
         setStatusMessage(language === 'tr' ? 'Mesajınız başarıyla gönderildi!' : 'Message sent successfully!');
         setFormData({ name: '', email: '', company: '', message: '' });
+        // Auto-clear success message after 3 seconds
+        setTimeout(() => {
+          setSubmitStatus('idle');
+          setStatusMessage('');
+        }, 3000);
       } else {
         setSubmitStatus('error');
         setStatusMessage(language === 'tr' ? 'Bir hata oluştu. Lütfen tekrar deneyin.' : 'An error occurred. Please try again.');
+        // Auto-clear error message after 4 seconds
+        setTimeout(() => {
+          setSubmitStatus('idle');
+          setStatusMessage('');
+        }, 4000);
       }
-    } catch (error) {
+    } catch (error: any) {
+      clearTimeout(timeoutId);
       console.error('Form submission error:', error);
-      setSubmitStatus('error');
-      setStatusMessage(language === 'tr' ? 'Bağlantı hatası. Lütfen daha sonra tekrar deneyin.' : 'Connection error. Please try again later.');
-    } finally {
-      setIsSubmitting(false);
+
+      // Check if error was due to timeout
+      if (error.name === 'AbortError') {
+        setSubmitStatus('error');
+        setStatusMessage(language === 'tr' ? 'İstek zaman aşımına uğradı. Lütfen tekrar deneyin.' : 'Request timed out. Please try again.');
+      } else {
+        setSubmitStatus('error');
+        setStatusMessage(language === 'tr' ? 'Bağlantı hatası. Lütfen daha sonra tekrar deneyin.' : 'Connection error. Please try again later.');
+      }
+
+      // Auto-clear error message after 4 seconds
       setTimeout(() => {
         setSubmitStatus('idle');
         setStatusMessage('');
-      }, 5000);
+      }, 4000);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
