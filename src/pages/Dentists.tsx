@@ -37,6 +37,13 @@ const Dentists: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
 
+  // Track PageView on component mount
+  useEffect(() => {
+    if ((window as any).fbq) {
+      (window as any).fbq('track', 'PageView');
+    }
+  }, []);
+
   // Sticky CTA scroll listener
   useEffect(() => {
     const handleScroll = () => {
