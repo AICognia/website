@@ -426,7 +426,7 @@ const Dentists: React.FC = () => {
                   Where Your Calls Go to Die
                 </h2>
                 <p className="text-lg text-gray-400">
-                  Every missed call is a patient choosing someone else.
+                  Right now, someone is calling your competitor because you didn't pick up.
                 </p>
               </motion.div>
 
@@ -600,7 +600,7 @@ const Dentists: React.FC = () => {
                   Don't Take Our Word For It.
                 </h2>
                 <p className="text-lg text-gray-400 mb-8">
-                  Listen to a real patient call. Unscripted. 30 seconds.
+                  30 seconds. Real patient. Unscripted.
                 </p>
 
                 <button
@@ -666,7 +666,7 @@ const Dentists: React.FC = () => {
 
                   {/* Quote */}
                   <blockquote className="text-lg lg:text-xl text-gray-300 text-center leading-relaxed mb-8">
-                    "We used to come in Monday morning to 15+ voicemails from the weekend. Now, those are all booked appointments. Last month alone, that was <span className="text-white font-semibold">12 new patients</span> we would have lost."
+                    "Monday mornings used to mean 15+ voicemails. Now they're booked appointments. Last month: <span className="text-white font-semibold">12 new patients</span> we would've lost."
                   </blockquote>
 
                   {/* Attribution */}
@@ -693,6 +693,29 @@ const Dentists: React.FC = () => {
                     </div>
                   ))}
                 </div>
+
+                {/* CTA after Social Proof */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="mt-10 text-center"
+                >
+                  <a
+                    href="#trial-form"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      trackStartTrialClick();
+                      document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:scale-105"
+                  >
+                    Start Free 7-Day Trial
+                    <FaArrowRight className="text-sm" />
+                  </a>
+                  <p className="text-gray-500 text-sm mt-3">No credit card required</p>
+                </motion.div>
               </motion.div>
             </div>
           </section>
@@ -719,23 +742,23 @@ const Dentists: React.FC = () => {
                 {[
                   {
                     q: '"Will patients know it\'s AI?"',
-                    a: 'Some will, some won\'t. More importantly: patients who reach a booking get scheduled. Patients who reach voicemail call your competitor. We\'ve tested this extensively—patients care about getting help, not who\'s helping.'
+                    a: 'Some will. Most won\'t care. What matters: patients who get booked stay. Patients who hit voicemail call someone else.'
                   },
                   {
                     q: '"Will it mess up my schedule?"',
-                    a: 'No. It books directly into your existing calendar based on rules YOU set. Appointment types, durations, buffer times—all configured exactly how you want. If there\'s a conflict, it offers the next available slot.'
+                    a: 'No. It follows YOUR rules—appointment types, durations, buffer times. Conflicts? It offers the next slot. You stay in control.'
                   },
                   {
                     q: '"What if it makes a mistake?"',
-                    a: 'Every call is recorded and transcribed. You can review any conversation. If the AI is unsure, it takes a message and your staff follows up. It never guesses.'
+                    a: 'Every call is recorded. If unsure, it takes a message. It never guesses. You can review any conversation anytime.'
                   },
                   {
                     q: '"Does this replace my front desk?"',
-                    a: 'No. It handles overflow, after-hours, and lunch breaks so your staff can focus on patients in the office. Think of it as your front desk\'s backup, not replacement.'
+                    a: 'No. It\'s backup—overflow, after-hours, lunch breaks. Your staff focuses on patients in the office.'
                   },
                   {
                     q: '"Is this HIPAA compliant?"',
-                    a: 'Yes. BAA included. All data encrypted. We\'ve been through compliance review with DSOs and hospital-affiliated practices. We\'ll send documentation before you sign anything.'
+                    a: 'Yes. BAA included. Data encrypted. Compliance docs sent before you sign anything.'
                   }
                 ].map((faq, i) => (
                   <motion.div
@@ -795,8 +818,8 @@ const Dentists: React.FC = () => {
                 </div>
 
                 <p className="text-gray-400">
-                  If we save you <span className="text-white font-medium">one patient per month</span>, you're ahead.<br />
-                  Most practices capture <span className="text-white font-medium">8–12 additional patients</span> in their first month.
+                  One extra patient pays for the entire month.<br />
+                  Most practices capture <span className="text-white font-medium">8–12 additional patients</span> in week one.
                 </p>
               </motion.div>
             </div>
@@ -817,10 +840,10 @@ const Dentists: React.FC = () => {
                   className="text-center mb-8"
                 >
                   <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-                    Try It Free for 7 Days
+                    Stop Losing Patients Today
                   </h2>
                   <p className="text-gray-400 mb-6">
-                    See exactly how many calls you're missing. No risk.
+                    7 days free. See how many calls you've been missing.
                   </p>
 
                   {/* Trust Badges */}
@@ -923,7 +946,7 @@ const Dentists: React.FC = () => {
                             </button>
 
                             <p className="text-xs text-gray-500 text-center">
-                              We'll call within 24 hours to get you set up. Your practice keeps running normally.
+                              We handle setup. You keep running your practice.
                             </p>
                           </form>
                         </motion.div>
