@@ -53,7 +53,7 @@ const DynamicTechBackground: React.FC = () => {
         this.speed = Math.random() * 0.5 + 0.2; // Very slow movement
         this.size = Math.random() * 2 + 0.5;
         this.opacity = Math.random() * 0.3 + 0.1; // Very subtle
-        const colors = ['#06B6D4', '#3B82F6', '#A855F7', '#10B981'];
+        const colors = ['#5EEAD4', '#2DD4BF', '#14B8A6']; // teal palette
         this.color = colors[Math.floor(Math.random() * colors.length)];
       }
 
@@ -92,7 +92,7 @@ const DynamicTechBackground: React.FC = () => {
       points: { x: number; y: number }[] = [];
       progress: number = 0;
       speed: number = 0.001;
-      color: string = '#06B6D4';
+      color: string = '#5EEAD4';
       opacity: number = 0.15;
 
       constructor() {
@@ -225,16 +225,16 @@ const DynamicTechBackground: React.FC = () => {
         <div
           className="absolute inset-0 opacity-[0.02]"
           style={{
-            backgroundImage: `linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(rgba(94, 234, 212, 0.06) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(94, 234, 212, 0.06) 1px, transparent 1px)`,
             backgroundSize: '100px 100px'
           }}
         />
 
         {/* Professional gradient overlays - very subtle */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-cyan-900/5 to-transparent" />
-          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-blue-900/5 to-transparent" />
+          <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-teal-900/5 to-transparent" />
+          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-teal-900/5 to-transparent" />
         </div>
 
         {/* Vignette effect for depth */}
@@ -245,23 +245,23 @@ const DynamicTechBackground: React.FC = () => {
         <svg className="absolute top-0 left-0 w-48 h-48 opacity-10" viewBox="0 0 200 200">
           <defs>
             <linearGradient id="techGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
+              <stop offset="0%" stopColor="#5EEAD4" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#2DD4BF" stopOpacity="0" />
             </linearGradient>
           </defs>
           <path d="M0,0 L0,60 L10,60 L10,10 L60,10 L60,0 Z" fill="url(#techGradient1)" />
-          <circle cx="10" cy="10" r="2" fill="#06B6D4" opacity="0.5" />
+          <circle cx="10" cy="10" r="2" fill="#5EEAD4" opacity="0.3" />
         </svg>
 
         <svg className="absolute bottom-0 right-0 w-48 h-48 opacity-10 rotate-180" viewBox="0 0 200 200">
           <defs>
             <linearGradient id="techGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#A855F7" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#10B981" stopOpacity="0" />
+              <stop offset="0%" stopColor="#2DD4BF" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#14B8A6" stopOpacity="0" />
             </linearGradient>
           </defs>
           <path d="M0,0 L0,60 L10,60 L10,10 L60,10 L60,0 Z" fill="url(#techGradient2)" />
-          <circle cx="10" cy="10" r="2" fill="#A855F7" opacity="0.5" />
+          <circle cx="10" cy="10" r="2" fill="#2DD4BF" opacity="0.3" />
         </svg>
       </div>
     </>
