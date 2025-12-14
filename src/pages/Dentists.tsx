@@ -470,13 +470,13 @@ const Dentists: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black" />
             <div className="absolute top-0 right-1/4 w-[500px] h-[350px] bg-cyan-500/20 blur-[120px] rounded-full" />
 
-            <div className="relative container mx-auto px-4 sm:px-6 lg:px-20 xl:px-24 max-w-[1320px]">
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 max-w-[1380px]">
 
-              {/* DESKTOP: Split Layout - Golden ratio proportions */}
-              <div className="hidden lg:grid lg:grid-cols-[5fr_3fr] lg:gap-16 xl:gap-20 lg:items-center lg:min-h-[calc(100vh-6rem)]">
+              {/* DESKTOP: Split Layout */}
+              <div className="hidden lg:grid lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_520px] lg:gap-12 xl:gap-16 lg:items-center lg:min-h-[calc(100vh-6rem)]">
 
                 {/* Left Column - Messaging */}
-                <div className="space-y-7 flex flex-col justify-center max-w-[580px]">
+                <div className="space-y-7 flex flex-col justify-center max-w-[560px]">
                   {/* Dentist qualifier */}
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -594,7 +594,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="flex flex-col justify-center w-full max-w-[400px] lg:max-w-[420px] xl:max-w-[440px] ml-auto"
+                  className="flex flex-col justify-center w-full"
                 >
                   <TrialForm variant="hero" />
                 </motion.div>
