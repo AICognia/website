@@ -978,6 +978,19 @@ const Dentists: React.FC = () => {
                   One extra patient covers the entire month.<br />
                   <span className="text-gray-500 text-sm">Most practices see measurable impact within the first few weeks.</span>
                 </p>
+
+                <a
+                  href="#trial-form"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    trackStartTrialClick();
+                    document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 mt-8 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:scale-105"
+                >
+                  Start Your Free Trial
+                  <FaArrowRight className="text-sm" />
+                </a>
               </motion.div>
             </div>
           </section>
