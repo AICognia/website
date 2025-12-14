@@ -10,19 +10,17 @@ import {
   FaTimes,
   FaStar,
   FaPlay,
-  FaBolt,
   FaPlug,
   FaGlobe,
-  FaHeadset,
   FaClock,
   FaShieldAlt,
-  FaExclamationTriangle,
-  FaUserMd,
   FaCalendarAlt,
   FaComments,
   FaBell,
   FaChevronDown,
-  FaChevronUp
+  FaChevronUp,
+  FaHeadphones,
+  FaVolumeUp
 } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
 import DynamicTechBackground from '../components/DynamicTechBackground';
@@ -43,6 +41,7 @@ const Dentists: React.FC = () => {
   const [stickyDismissed, setStickyDismissed] = useState(false);
   const [stickyDismissTime, setStickyDismissTime] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
@@ -83,7 +82,6 @@ const Dentists: React.FC = () => {
       const heroHeight = window.innerHeight * 0.8;
       const currentTime = Date.now();
 
-      // Re-show sticky if dismissed more than 20 seconds ago
       if (stickyDismissed && currentTime - stickyDismissTime > 20000) {
         setStickyDismissed(false);
       }
@@ -109,6 +107,7 @@ const Dentists: React.FC = () => {
     }
 
     const handlePlaying = () => {
+      setIsPlaying(true);
       if ((window as any).fbq && !audioPlayedTracked.current) {
         (window as any).fbq('trackCustom', 'Audio_Played', {
           content_category: 'dentist',
@@ -118,7 +117,12 @@ const Dentists: React.FC = () => {
       }
     };
 
+    const handlePause = () => {
+      setIsPlaying(false);
+    };
+
     const handleEnded = () => {
+      setIsPlaying(false);
       if ((window as any).fbq && !audioCompletedTracked.current) {
         (window as any).fbq('trackCustom', 'Audio_Completed', {
           content_category: 'dentist',
@@ -130,10 +134,12 @@ const Dentists: React.FC = () => {
     };
 
     audio.addEventListener('playing', handlePlaying);
+    audio.addEventListener('pause', handlePause);
     audio.addEventListener('ended', handleEnded);
 
     return () => {
       audio.removeEventListener('playing', handlePlaying);
+      audio.removeEventListener('pause', handlePause);
       audio.removeEventListener('ended', handleEnded);
     };
   }, [showAudioModal]);
@@ -262,7 +268,6 @@ const Dentists: React.FC = () => {
   // Reusable Form Component
   const TrialForm = ({ variant = 'default' }: { variant?: 'default' | 'hero' | 'final' }) => {
     const isHero = variant === 'hero';
-    const isFinal = variant === 'final';
 
     return (
       <div className={`${isHero ? 'bg-white/[0.03] border-white/10' : 'bg-black/50 border-white/10'} border rounded-2xl ${isHero ? 'p-6 lg:p-10' : 'p-6 lg:p-10'} backdrop-blur-sm`}>
@@ -421,7 +426,7 @@ const Dentists: React.FC = () => {
     <>
       <Helmet>
         <title>AI Receptionist for Dental Practices | Cognia AI</title>
-        <meta name="description" content="Never miss a patient call again. AI receptionist that books appointments 24/7. 7-day free trial, no credit card required. HIPAA compliant." />
+        <meta name="description" content="Your patients are calling. Right now. AI receptionist that books appointments 24/7. 7-day free trial, no credit card required. HIPAA compliant." />
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
@@ -441,10 +446,10 @@ const Dentists: React.FC = () => {
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-7xl">
 
               {/* DESKTOP: Split Layout */}
-              <div className="hidden lg:grid lg:grid-cols-5 lg:gap-12 lg:items-start">
+              <div className="hidden lg:grid lg:grid-cols-2 lg:gap-16 lg:items-stretch lg:min-h-[calc(100vh-8rem)]">
 
-                {/* Left Column - Messaging (3/5) */}
-                <div className="lg:col-span-3 space-y-8">
+                {/* Left Column - Messaging */}
+                <div className="space-y-8 flex flex-col justify-center">
                   {/* Badge */}
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
@@ -459,19 +464,23 @@ const Dentists: React.FC = () => {
                     </div>
                   </motion.div>
 
-                  {/* Headline */}
-                  <motion.h1
+                  {/* Headline - With tension and personality */}
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.1] tracking-tight"
                   >
-                    Never Miss a
-                    <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                      Patient Call
-                    </span>
-                  </motion.h1>
+                    <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.1] tracking-tight">
+                      Your Patients Are
+                      <br />
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                        Calling Right Now
+                      </span>
+                    </h1>
+                    <p className="text-lg text-gray-400 mt-4 italic">
+                      Who's answering?
+                    </p>
+                  </motion.div>
 
                   {/* Subheadline */}
                   <motion.p
@@ -480,8 +489,8 @@ const Dentists: React.FC = () => {
                     transition={{ duration: 0.6, delay: 0.15 }}
                     className="text-xl text-gray-300 leading-relaxed max-w-xl"
                   >
-                    AI receptionist that answers every call, books appointments,
-                    and handles patient inquiries — 24 hours a day, 7 days a week.
+                    Cognia picks up every call, books appointments into your PMS,
+                    and sounds so human — patients will never know the difference.
                   </motion.p>
 
                   {/* Benefit Checklist */}
@@ -492,9 +501,9 @@ const Dentists: React.FC = () => {
                     className="space-y-3"
                   >
                     {[
-                      'Answers calls instantly — no hold times, no voicemail',
-                      'Integrates and books directly into your PMS',
-                      'Speaks English and Spanish fluently'
+                      'Zero hold time. Zero voicemail. Zero missed revenue.',
+                      'Books directly into OpenDental, Dentrix, Eaglesoft & more',
+                      'Fluent in English and Spanish — naturally'
                     ].map((benefit, i) => (
                       <div key={i} className="flex items-center gap-3">
                         <div className="w-5 h-5 rounded-full bg-cyan-400/20 flex items-center justify-center flex-shrink-0">
@@ -505,7 +514,7 @@ const Dentists: React.FC = () => {
                     ))}
                   </motion.div>
 
-                  {/* Audio Demo Button */}
+                  {/* Audio Demo - ELEVATED as centerpiece */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -516,38 +525,58 @@ const Dentists: React.FC = () => {
                         trackHearAIClick();
                         setShowAudioModal(true);
                       }}
-                      className="group flex items-center gap-4 px-6 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-400/30 rounded-2xl transition-all duration-200"
+                      className="group relative w-full max-w-md"
                     >
-                      <div className="w-14 h-14 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 border border-cyan-400/40 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <FaPlay className="text-cyan-400 text-lg ml-1" />
-                      </div>
-                      <div className="text-left">
-                        <p className="font-semibold text-white group-hover:text-cyan-400 transition-colors">
-                          Hear the AI in action
-                        </p>
-                        <p className="text-sm text-gray-400">30-second demo • Real patient call</p>
+                      {/* Glow effect */}
+                      <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/30 to-blue-500/30 rounded-2xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />
+
+                      <div className="relative flex items-center gap-4 px-6 py-5 bg-gradient-to-r from-cyan-950/80 to-blue-950/80 border border-cyan-400/40 rounded-2xl transition-all duration-300 group-hover:border-cyan-400/60">
+                        <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-cyan-500/30">
+                          <FaHeadphones className="text-black text-2xl" />
+                        </div>
+                        <div className="text-left flex-1">
+                          <p className="font-bold text-white text-lg group-hover:text-cyan-300 transition-colors">
+                            Before you decide — hear this
+                          </p>
+                          <p className="text-sm text-cyan-400/80">
+                            Real patient call • 30 seconds
+                          </p>
+                        </div>
+                        <FaPlay className="text-cyan-400 text-xl group-hover:translate-x-1 transition-transform" />
                       </div>
                     </button>
                   </motion.div>
 
-                  {/* Trust Line */}
-                  <motion.p
+                  {/* Trust Line - Made tangible */}
+                  <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className="text-sm text-gray-400"
+                    className="flex items-center gap-3"
                   >
-                    Trusted by 50+ dental practices across the U.S.
-                  </motion.p>
+                    <div className="flex -space-x-2">
+                      {['MS', 'DG', 'AB', 'JO'].map((initials, i) => (
+                        <div
+                          key={i}
+                          className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400/30 to-blue-500/30 border-2 border-black flex items-center justify-center"
+                        >
+                          <span className="text-[10px] font-bold text-cyan-400">{initials}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-sm text-gray-400">
+                      <span className="text-white font-medium">50+ practices</span> already live across the U.S.
+                    </p>
+                  </motion.div>
                 </div>
 
-                {/* Right Column - Form (2/5) */}
+                {/* Right Column - Form */}
                 <motion.div
                   ref={formRef}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="lg:col-span-2"
+                  className="flex flex-col justify-center"
                 >
                   <TrialForm variant="hero" />
                 </motion.div>
@@ -571,18 +600,23 @@ const Dentists: React.FC = () => {
                 </motion.div>
 
                 {/* Headline */}
-                <motion.h1
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-4xl sm:text-5xl font-light leading-[1.1] text-center"
+                  className="text-center"
                 >
-                  Never Miss a
-                  <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                    Patient Call
-                  </span>
-                </motion.h1>
+                  <h1 className="text-4xl sm:text-5xl font-light leading-[1.1]">
+                    Your Patients Are
+                    <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                      Calling Right Now
+                    </span>
+                  </h1>
+                  <p className="text-base text-gray-400 mt-3 italic">
+                    Who's answering?
+                  </p>
+                </motion.div>
 
                 {/* Subheadline */}
                 <motion.p
@@ -591,7 +625,7 @@ const Dentists: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.15 }}
                   className="text-base text-gray-300 text-center leading-relaxed"
                 >
-                  AI receptionist that answers every call & books appointments — 24/7.
+                  Cognia picks up every call & books appointments — 24/7.
                 </motion.p>
 
                 {/* Mobile Form */}
@@ -604,7 +638,7 @@ const Dentists: React.FC = () => {
                   <TrialForm variant="hero" />
                 </motion.div>
 
-                {/* Audio Demo Button - Mobile */}
+                {/* Audio Demo Button - Mobile - ELEVATED */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -615,14 +649,17 @@ const Dentists: React.FC = () => {
                       trackHearAIClick();
                       setShowAudioModal(true);
                     }}
-                    className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-white/5 border border-white/10 rounded-xl"
+                    className="w-full relative group"
                   >
-                    <div className="w-12 h-12 bg-cyan-400/20 border border-cyan-400/40 rounded-full flex items-center justify-center">
-                      <FaPlay className="text-cyan-400 ml-0.5" />
-                    </div>
-                    <div className="text-left">
-                      <p className="font-semibold text-white text-sm">Hear the AI</p>
-                      <p className="text-xs text-gray-400">30-sec demo</p>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <div className="relative flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-cyan-950/80 to-blue-950/80 border border-cyan-400/40 rounded-xl">
+                      <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+                        <FaHeadphones className="text-black text-lg" />
+                      </div>
+                      <div className="text-left">
+                        <p className="font-bold text-white text-sm">Before you decide — hear this</p>
+                        <p className="text-xs text-cyan-400/80">Real call • 30 sec</p>
+                      </div>
                     </div>
                   </button>
                 </motion.div>
@@ -650,9 +687,59 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
+          {/* ==================== VISUAL BREAK - Audio Demo Section ==================== */}
+          <section className="relative py-20 lg:py-32 overflow-hidden">
+            {/* Dramatic background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-cyan-950/20 to-black" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent" />
+
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-4xl text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <p className="text-cyan-400 text-sm font-semibold tracking-wider uppercase mb-4">
+                  Hear the difference
+                </p>
+                <h2 className="text-3xl lg:text-5xl font-light text-white mb-6">
+                  This Is What Your Patients
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                    Will Experience
+                  </span>
+                </h2>
+                <p className="text-lg text-gray-400 max-w-xl mx-auto mb-10">
+                  Not a robot. Not a script. A conversation that feels natural —
+                  and ends with an appointment on your calendar.
+                </p>
+
+                {/* Large Audio Demo Button */}
+                <button
+                  onClick={() => {
+                    trackHearAIClick();
+                    setShowAudioModal(true);
+                  }}
+                  className="group relative inline-flex"
+                >
+                  <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/40 to-blue-500/40 rounded-full blur-xl opacity-60 group-hover:opacity-100 transition-opacity animate-pulse" />
+                  <div className="relative flex items-center gap-4 px-10 py-6 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full transition-all duration-300 group-hover:scale-105 shadow-2xl shadow-cyan-500/30">
+                    <FaVolumeUp className="text-white text-2xl" />
+                    <span className="text-white font-bold text-lg">Play Demo Call</span>
+                  </div>
+                </button>
+
+                <p className="text-gray-500 text-sm mt-6">
+                  30 seconds that could change how your practice runs
+                </p>
+              </motion.div>
+            </div>
+          </section>
+
           {/* ==================== THE PROBLEM SECTION ==================== */}
           <section className="relative py-16 lg:py-24 border-y border-white/5">
-            <div className="absolute inset-0 bg-gradient-to-b from-red-950/10 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-950/5 to-transparent" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-5xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -661,13 +748,12 @@ const Dentists: React.FC = () => {
                 viewport={{ once: true }}
                 className="text-center mb-12"
               >
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-full mb-6">
-                  <FaExclamationTriangle className="text-red-400 text-sm" />
-                  <span className="text-sm font-medium text-red-400">The Hidden Problem</span>
-                </div>
                 <h2 className="text-3xl lg:text-5xl font-light text-white mb-4">
-                  Every Missed Call Costs You <span className="text-red-400">$200+</span>
+                  Here's What's <span className="text-red-400">Actually</span> Happening
                 </h2>
+                <p className="text-lg text-gray-400">
+                  While you're with patients, your phone keeps ringing.
+                </p>
               </motion.div>
 
               <motion.div
@@ -678,13 +764,14 @@ const Dentists: React.FC = () => {
                 className="grid md:grid-cols-3 gap-6 mb-12"
               >
                 {[
-                  { stat: '35%', label: 'of dental calls go to voicemail during busy hours' },
-                  { stat: '85%', label: 'of voicemail callers never call back' },
-                  { stat: '15-20', label: 'potential patients lost every month' },
+                  { stat: '35%', label: 'of calls hit voicemail', sublabel: 'during busy hours' },
+                  { stat: '85%', label: 'never call back', sublabel: 'if they reach voicemail' },
+                  { stat: '$4,000+', label: 'lost revenue', sublabel: 'per month, minimum' },
                 ].map((item, i) => (
-                  <div key={i} className="flex flex-col items-center justify-center text-center p-6 bg-white/5 border border-white/5 rounded-2xl">
+                  <div key={i} className="flex flex-col items-center justify-center text-center p-8 bg-gradient-to-b from-red-950/10 to-transparent border border-red-500/10 rounded-2xl">
                     <p className="text-4xl lg:text-5xl font-bold text-white mb-2">{item.stat}</p>
-                    <p className="text-gray-400 text-sm leading-relaxed text-center">{item.label}</p>
+                    <p className="text-gray-300 font-medium">{item.label}</p>
+                    <p className="text-gray-500 text-sm">{item.sublabel}</p>
                   </div>
                 ))}
               </motion.div>
@@ -694,11 +781,9 @@ const Dentists: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-center text-lg text-gray-300 max-w-2xl mx-auto"
+                className="text-center text-xl text-gray-300 max-w-2xl mx-auto"
               >
-                While you're focused on the patient in your chair,
-                new patients are calling — and when they hit voicemail,
-                they call the next dentist on Google.
+                They're not leaving voicemails. They're <span className="text-white font-medium">calling the next dentist on Google.</span>
               </motion.p>
             </div>
           </section>
@@ -717,30 +802,27 @@ const Dentists: React.FC = () => {
                 <h2 className="text-3xl lg:text-5xl font-light text-white mb-4">
                   Live in <span className="text-cyan-400">1 Week</span>
                 </h2>
-                <p className="text-gray-400 text-lg">Simple setup, no technical skills required</p>
+                <p className="text-gray-400 text-lg">We handle everything. You just approve.</p>
               </motion.div>
 
               <div className="grid md:grid-cols-3 gap-8">
                 {[
                   {
                     step: '1',
-                    icon: FaUserMd,
-                    title: 'We Configure Your AI',
-                    description: 'We customize the AI to your practice — your services, schedule, insurance policies, and the way you like to communicate with patients.',
+                    title: 'We Learn Your Practice',
+                    description: 'Your services, schedule, insurance policies, even how you like to greet patients. We build an AI that sounds like your team.',
                     timeline: 'Days 1-5'
                   },
                   {
                     step: '2',
-                    icon: FaPhone,
-                    title: 'Simple Phone Setup',
-                    description: 'A quick 10-minute integration with your existing phone system. No new hardware, no IT department needed.',
+                    title: '10-Minute Phone Setup',
+                    description: 'Simple call forwarding. No new hardware. No IT headaches. Works with your existing phone system.',
                     timeline: 'Day 6'
                   },
                   {
                     step: '3',
-                    icon: FaHeadset,
-                    title: 'Go Live 24/7',
-                    description: 'Your AI receptionist starts answering calls immediately. Every conversation is logged in your dashboard.',
+                    title: 'Calls Start Booking',
+                    description: 'Patients call. Cognia answers. Appointments appear in your calendar. Every conversation logged.',
                     timeline: 'Day 7'
                   }
                 ].map((item, index) => (
@@ -752,13 +834,9 @@ const Dentists: React.FC = () => {
                     viewport={{ once: true }}
                     className="relative bg-white/5 border border-white/10 rounded-2xl p-8 text-center hover:border-cyan-400/30 transition-all group"
                   >
-                    {/* Step Number */}
-                    <div className="relative mx-auto mb-6 flex justify-center">
+                    <div className="mx-auto mb-6 flex justify-center">
                       <div className="w-20 h-20 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 border-2 border-cyan-400/40 rounded-full flex items-center justify-center group-hover:border-cyan-400/60 transition-colors">
-                        <item.icon className="text-3xl text-cyan-400" />
-                      </div>
-                      <div className="absolute -top-2 right-[calc(50%-48px)] w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center text-black font-bold text-sm">
-                        {item.step}
+                        <span className="text-4xl font-bold text-cyan-400">{item.step}</span>
                       </div>
                     </div>
 
@@ -775,7 +853,7 @@ const Dentists: React.FC = () => {
                 ))}
               </div>
 
-              {/* CTA Button after How It Works */}
+              {/* CTA Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -784,11 +862,11 @@ const Dentists: React.FC = () => {
                 className="text-center mt-12"
               >
                 <button
-                  onClick={scrollToForm}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02]"
+                  onClick={scrollToFinalForm}
+                  className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg rounded-xl transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02]"
                 >
-                  Start Free Trial
-                  <FaArrowRight className="text-sm" />
+                  Get Started This Week
+                  <FaArrowRight />
                 </button>
               </motion.div>
             </div>
@@ -806,11 +884,12 @@ const Dentists: React.FC = () => {
                 className="text-center mb-16"
               >
                 <h2 className="text-3xl lg:text-5xl font-light text-white mb-4">
-                  Everything Your Front Desk Does,{' '}
-                  <span className="text-cyan-400">Automated</span>
+                  Not a Chatbot.
+                  <br />
+                  <span className="text-cyan-400">A Real AI Receptionist.</span>
                 </h2>
                 <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                  Cognia handles patient calls the way you would — just without the hold times, missed calls, or overtime pay.
+                  Cognia doesn't just answer calls. It handles them the way your best front desk person would.
                 </p>
               </motion.div>
 
@@ -819,32 +898,32 @@ const Dentists: React.FC = () => {
                   {
                     icon: FaCalendarAlt,
                     title: 'Smart Scheduling',
-                    description: 'Books appointments directly into your calendar. Handles new patients, existing patients, cancellations, and reschedules.'
+                    description: 'New patients, existing patients, cancellations, reschedules. Booked directly into your calendar.'
                   },
                   {
                     icon: FaPlug,
-                    title: 'PMS Integration',
-                    description: 'Real-time sync with OpenDental, Dentrix, Eaglesoft, Curve Dental, and more. Appointments appear instantly.'
+                    title: 'Deep PMS Integration',
+                    description: 'OpenDental, Dentrix, Eaglesoft, Curve, Denticon. Real-time sync. Appointments appear instantly.'
                   },
                   {
                     icon: FaGlobe,
-                    title: 'Bilingual Support',
-                    description: 'Fluent in English and Spanish. Natural conversations that put patients at ease — no robotic scripts.'
+                    title: 'Bilingual, Naturally',
+                    description: 'English and Spanish. Not translated — truly fluent. Patients feel comfortable from the first word.'
                   },
                   {
                     icon: FaClock,
-                    title: '24/7 Availability',
-                    description: 'Nights, weekends, holidays — your AI never sleeps. Handles overflow during busy hours too.'
+                    title: '24/7. No Exceptions.',
+                    description: 'Nights. Weekends. Holidays. Overflow during lunch rush. Your AI never takes a day off.'
                   },
                   {
                     icon: FaComments,
-                    title: 'Intelligent Triage',
-                    description: 'Detects emergencies and routes urgent calls appropriately. Non-urgent inquiries get scheduled properly.'
+                    title: 'Intelligent Routing',
+                    description: 'Emergency? Routed immediately. Non-urgent? Scheduled properly. Nothing falls through.'
                   },
                   {
                     icon: FaBell,
                     title: 'No-Show Prevention',
-                    description: 'Automated confirmation calls and smart reminders. Reduces no-shows by up to 66%.'
+                    description: 'Automated confirmations. Smart reminders. Easy rescheduling. 66% fewer empty chairs.'
                   }
                 ].map((feature, i) => (
                   <motion.div
@@ -853,9 +932,9 @@ const Dentists: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: i * 0.05 }}
                     viewport={{ once: true }}
-                    className="p-6 rounded-2xl border transition-all hover:border-cyan-400/30 bg-gradient-to-br from-cyan-500/10 to-blue-500/5 border-cyan-400/20"
+                    className="p-6 rounded-2xl border transition-all hover:border-cyan-400/30 bg-gradient-to-br from-cyan-500/10 to-blue-500/5 border-cyan-400/20 text-center"
                   >
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-cyan-400/20">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-cyan-400/20 mx-auto">
                       <feature.icon className="text-xl text-cyan-400" />
                     </div>
                     <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
@@ -879,7 +958,7 @@ const Dentists: React.FC = () => {
                 className="mb-16"
               >
                 <div className="relative bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 lg:p-12 text-center">
-                  {/* Stars - Centered */}
+                  {/* Stars */}
                   <div className="flex items-center justify-center gap-1 mb-6">
                     {[...Array(5)].map((_, i) => (
                       <FaStar key={i} className="text-cyan-400 text-lg" />
@@ -887,13 +966,11 @@ const Dentists: React.FC = () => {
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="text-xl lg:text-2xl text-white leading-relaxed mb-8">
-                    Working with Cognia has been a game-changer for our office. If a patient requests
-                    an appointment over the weekend, Cognia schedules it for us — no backlog, no delays.
-                    It's like having a receptionist who never takes a day off.
+                  <blockquote className="text-xl lg:text-2xl text-white leading-relaxed mb-8 max-w-3xl mx-auto">
+                    Cognia has been a game-changer. Patients request appointments over the weekend, and Cognia schedules them — no backlog, no delays. It's like having a receptionist who never takes a day off.
                   </blockquote>
 
-                  {/* Author - Centered */}
+                  {/* Author */}
                   <div className="flex items-center justify-center gap-4">
                     <div className="w-14 h-14 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full flex items-center justify-center border border-cyan-400/30">
                       <span className="text-cyan-400 font-bold text-lg">JO</span>
@@ -929,7 +1006,7 @@ const Dentists: React.FC = () => {
                 ))}
               </motion.div>
 
-              {/* CTA Button after Testimonial */}
+              {/* CTA Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -938,11 +1015,11 @@ const Dentists: React.FC = () => {
                 className="text-center mt-12"
               >
                 <button
-                  onClick={scrollToForm}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02]"
+                  onClick={scrollToFinalForm}
+                  className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg rounded-xl transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02]"
                 >
                   Start Free Trial
-                  <FaArrowRight className="text-sm" />
+                  <FaArrowRight />
                 </button>
               </motion.div>
             </div>
@@ -960,7 +1037,7 @@ const Dentists: React.FC = () => {
                 className="text-center mb-12"
               >
                 <h2 className="text-3xl lg:text-4xl font-light text-white">
-                  Common Questions
+                  Questions? We've Got Answers.
                 </h2>
               </motion.div>
 
@@ -1010,8 +1087,8 @@ const Dentists: React.FC = () => {
           </section>
 
           {/* ==================== FINAL CTA SECTION ==================== */}
-          <section className="relative py-16 lg:py-24">
-            <div className="absolute inset-0 bg-gradient-to-t from-cyan-950/20 via-transparent to-transparent" />
+          <section className="relative py-20 lg:py-32">
+            <div className="absolute inset-0 bg-gradient-to-t from-cyan-950/30 via-transparent to-transparent" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-2xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -1020,11 +1097,15 @@ const Dentists: React.FC = () => {
                 viewport={{ once: true }}
                 className="text-center mb-10"
               >
-                <h2 className="text-3xl lg:text-4xl font-light text-white mb-4">
-                  Ready to Stop Missing Calls?
+                <h2 className="text-3xl lg:text-5xl font-light text-white mb-4">
+                  Ready to Stop
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                    Losing Patients to Voicemail?
+                  </span>
                 </h2>
-                <p className="text-gray-400">
-                  Join 50+ dental practices using Cognia to capture every patient opportunity.
+                <p className="text-gray-400 text-lg">
+                  Start your 7-day free trial. We'll handle the rest.
                 </p>
               </motion.div>
 
@@ -1045,7 +1126,7 @@ const Dentists: React.FC = () => {
                 viewport={{ once: true }}
                 className="text-center text-sm text-gray-500 mt-6"
               >
-                From $199/month after trial • Cancel anytime
+                $199/month after trial • Cancel anytime • No contracts
               </motion.p>
             </div>
           </section>
@@ -1071,7 +1152,7 @@ const Dentists: React.FC = () => {
                     <p className="text-gray-400 text-xs">HIPAA compliant • No credit card</p>
                   </div>
                   <button
-                    onClick={scrollToForm}
+                    onClick={scrollToFinalForm}
                     className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl text-sm whitespace-nowrap"
                   >
                     Get Started
@@ -1109,7 +1190,7 @@ const Dentists: React.FC = () => {
                     audioRef.current.currentTime = 0;
                   }
                 }}
-                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+                className="fixed inset-0 bg-black/90 backdrop-blur-md z-50"
               />
 
               <motion.div
@@ -1120,16 +1201,16 @@ const Dentists: React.FC = () => {
                 className="fixed inset-0 z-50 flex items-center justify-center p-4"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="bg-gradient-to-b from-gray-900 to-black border border-white/20 rounded-3xl p-6 lg:p-10 max-w-lg w-full">
+                <div className="bg-gradient-to-b from-gray-900 to-black border border-cyan-400/30 rounded-3xl p-6 lg:p-10 max-w-lg w-full shadow-2xl shadow-cyan-500/20">
                   {/* Header */}
                   <div className="flex items-start justify-between mb-6">
                     <div>
-                      <h3 className="text-xl font-semibold text-white mb-1">
-                        Hear Cognia in Action
-                      </h3>
-                      <p className="text-sm text-gray-400">
-                        Real dental patient call • 30 seconds
+                      <p className="text-cyan-400 text-sm font-semibold uppercase tracking-wider mb-1">
+                        Live Demo
                       </p>
+                      <h3 className="text-2xl font-bold text-white">
+                        Real Patient Call
+                      </h3>
                     </div>
                     <button
                       onClick={() => {
@@ -1145,21 +1226,26 @@ const Dentists: React.FC = () => {
                     </button>
                   </div>
 
-                  {/* Waveform */}
-                  <div className="relative h-20 bg-black/50 rounded-xl overflow-hidden mb-4">
+                  {/* Visual indicator */}
+                  <div className={`relative h-24 bg-black/50 rounded-xl overflow-hidden mb-6 border ${isPlaying ? 'border-cyan-400/50' : 'border-white/10'}`}>
                     <canvas
                       ref={canvasRef}
                       width={800}
-                      height={80}
+                      height={96}
                       className="w-full h-full"
                     />
+                    {!isPlaying && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <p className="text-gray-500 text-sm">Press play to hear Cognia in action</p>
+                      </div>
+                    )}
                   </div>
 
                   {/* Audio Player */}
                   <audio
                     ref={audioRef}
                     src="https://yhmbki8wsvse0fwd.public.blob.vercel-storage.com/DENTIST%20MP3.mp3"
-                    className="w-full mb-4"
+                    className="w-full mb-6"
                     controls
                     controlsList="nodownload"
                     crossOrigin="anonymous"
@@ -1172,10 +1258,10 @@ const Dentists: React.FC = () => {
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="pt-4 border-t border-white/10"
+                        className="pt-6 border-t border-white/10"
                       >
-                        <p className="text-center text-gray-300 mb-4">
-                          Ready to try this for your practice?
+                        <p className="text-center text-white text-lg font-medium mb-4">
+                          Ready to have this for your practice?
                         </p>
                         <button
                           onClick={() => {
@@ -1186,18 +1272,18 @@ const Dentists: React.FC = () => {
                             }
                             setTimeout(() => scrollToFinalForm(), 100);
                           }}
-                          className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl flex items-center justify-center gap-2"
+                          className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-lg rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/30 hover:scale-[1.02] transition-transform"
                         >
-                          Start Free Trial
-                          <FaArrowRight className="text-sm" />
+                          Start 7-Day Free Trial
+                          <FaArrowRight />
                         </button>
                       </motion.div>
                     )}
                   </AnimatePresence>
 
                   {!audioEnded && (
-                    <p className="text-xs text-gray-500 text-center">
-                      This is how Cognia handles real patient calls 24/7
+                    <p className="text-gray-500 text-sm text-center">
+                      This is exactly how Cognia handles patient calls for 50+ dental practices
                     </p>
                   )}
                 </div>
