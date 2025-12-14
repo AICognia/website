@@ -489,8 +489,7 @@ const Dentists: React.FC = () => {
                     transition={{ duration: 0.6, delay: 0.15 }}
                     className="text-xl text-gray-300 leading-relaxed max-w-xl"
                   >
-                    Cognia picks up every call, books appointments into your PMS,
-                    and sounds so human — patients will never know the difference.
+                    Cognia picks up every call, books appointments into your PMS, and sounds so human patients will never know the difference.
                   </motion.p>
 
                   {/* Benefit Checklist */}
@@ -503,7 +502,7 @@ const Dentists: React.FC = () => {
                     {[
                       'Zero hold time. Zero voicemail. Zero missed revenue.',
                       'Books directly into OpenDental, Dentrix, Eaglesoft & more',
-                      'Fluent in English and Spanish — naturally'
+                      'Fluent in English and Spanish, naturally'
                     ].map((benefit, i) => (
                       <div key={i} className="flex items-center gap-3">
                         <div className="w-5 h-5 rounded-full bg-cyan-400/20 flex items-center justify-center flex-shrink-0">
@@ -514,7 +513,7 @@ const Dentists: React.FC = () => {
                     ))}
                   </motion.div>
 
-                  {/* Audio Demo - ELEVATED as centerpiece */}
+                  {/* Audio Demo - Compact */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -525,24 +524,24 @@ const Dentists: React.FC = () => {
                         trackHearAIClick();
                         setShowAudioModal(true);
                       }}
-                      className="group relative w-full max-w-md"
+                      className="group relative w-full max-w-sm"
                     >
                       {/* Glow effect */}
-                      <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/30 to-blue-500/30 rounded-2xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />
 
-                      <div className="relative flex items-center gap-4 px-6 py-5 bg-gradient-to-r from-cyan-950/80 to-blue-950/80 border border-cyan-400/40 rounded-2xl transition-all duration-300 group-hover:border-cyan-400/60">
-                        <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-cyan-500/30">
-                          <FaHeadphones className="text-black text-2xl" />
+                      <div className="relative flex items-center gap-3 px-5 py-4 bg-gradient-to-r from-cyan-950/80 to-blue-950/80 border border-cyan-400/40 rounded-xl transition-all duration-300 group-hover:border-cyan-400/60">
+                        <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-cyan-500/30">
+                          <FaHeadphones className="text-black text-lg" />
                         </div>
                         <div className="text-left flex-1">
-                          <p className="font-bold text-white text-lg group-hover:text-cyan-300 transition-colors">
-                            Before you decide — hear this
+                          <p className="font-semibold text-white text-base group-hover:text-cyan-300 transition-colors">
+                            Before you decide: hear this
                           </p>
-                          <p className="text-sm text-cyan-400/80">
-                            Real patient call • 30 seconds
+                          <p className="text-xs text-cyan-400/80">
+                            Real patient call • 30 sec
                           </p>
                         </div>
-                        <FaPlay className="text-cyan-400 text-xl group-hover:translate-x-1 transition-transform" />
+                        <FaPlay className="text-cyan-400 text-lg group-hover:translate-x-1 transition-transform" />
                       </div>
                     </button>
                   </motion.div>
@@ -638,7 +637,7 @@ const Dentists: React.FC = () => {
                   <TrialForm variant="hero" />
                 </motion.div>
 
-                {/* Audio Demo Button - Mobile - ELEVATED */}
+                {/* Audio Demo Button - Mobile - Compact */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -652,12 +651,12 @@ const Dentists: React.FC = () => {
                     className="w-full relative group"
                   >
                     <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <div className="relative flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-cyan-950/80 to-blue-950/80 border border-cyan-400/40 rounded-xl">
-                      <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
-                        <FaHeadphones className="text-black text-lg" />
+                    <div className="relative flex items-center justify-center gap-3 px-5 py-3 bg-gradient-to-r from-cyan-950/80 to-blue-950/80 border border-cyan-400/40 rounded-xl">
+                      <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+                        <FaHeadphones className="text-black text-sm" />
                       </div>
                       <div className="text-left">
-                        <p className="font-bold text-white text-sm">Before you decide — hear this</p>
+                        <p className="font-semibold text-white text-sm">Before you decide: hear this</p>
                         <p className="text-xs text-cyan-400/80">Real call • 30 sec</p>
                       </div>
                     </div>
