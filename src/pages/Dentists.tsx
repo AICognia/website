@@ -470,10 +470,10 @@ const Dentists: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black" />
             <div className="absolute top-0 right-1/4 w-[500px] h-[350px] bg-cyan-500/20 blur-[120px] rounded-full" />
 
-            <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-16 max-w-7xl">
 
-              {/* DESKTOP: Split Layout - More breathing room */}
-              <div className="hidden lg:grid lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_460px] lg:gap-16 xl:gap-24 lg:items-center lg:min-h-[calc(100vh-6rem)]">
+              {/* DESKTOP: Split Layout - Balanced spacing */}
+              <div className="hidden lg:grid lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_440px] lg:gap-12 xl:gap-16 lg:items-center lg:min-h-[calc(100vh-6rem)]">
 
                 {/* Left Column - Messaging */}
                 <div className="space-y-5 flex flex-col justify-center">
