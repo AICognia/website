@@ -723,6 +723,28 @@ const Dentists: React.FC = () => {
                   <FaArrowRight className="text-sm" />
                 </a>
               </motion.div>
+
+              {/* Additional CTA Button After Testimonial - All Screen Sizes */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="flex justify-center mt-12"
+              >
+                <a
+                  href="#trial-form"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    trackStartTrialClick();
+                    document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white text-lg font-bold rounded-xl shadow-[0_8px_24px_rgba(59,130,246,0.3)] hover:shadow-[0_12px_32px_rgba(59,130,246,0.4)] hover:-translate-y-1 active:translate-y-0 transition-all duration-200"
+                >
+                  Get Started Today
+                  <FaArrowRight className="text-base" />
+                </a>
+              </motion.div>
             </div>
           </section>
 
