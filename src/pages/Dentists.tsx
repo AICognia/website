@@ -298,7 +298,7 @@ const Dentists: React.FC = () => {
                     className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30"
                   >
                     <FaHeadphones className="text-xl" />
-                    Hear a Real Patient Call — No Email Required
+                    Hear a Real Patient Call (30 sec)
                   </button>
                 </motion.div>
 
@@ -386,7 +386,7 @@ const Dentists: React.FC = () => {
                     className="flex items-center justify-center gap-3 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:scale-105"
                   >
                     <FaHeadphones className="text-xl" />
-                    Hear a Real Patient Call — No Email Required
+                    Hear a Real Patient Call (30 sec)
                   </button>
 
                   <a
