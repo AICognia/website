@@ -1146,11 +1146,8 @@ const Dentists: React.FC = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-center mt-8 space-y-3"
+                className="text-center mt-8"
               >
-                <p className="text-sm text-gray-500">
-                  $199/month after trial • Cancel anytime
-                </p>
                 <div className="flex items-center justify-center gap-4 text-xs text-gray-600">
                   <span className="flex items-center gap-1">
                     <FaShieldAlt className="text-green-500" />
