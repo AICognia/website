@@ -470,14 +470,14 @@ const Dentists: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
                   >
-                    <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.1] tracking-tight">
+                    <h1 className="text-5xl lg:text-6xl xl:text-7xl font-extralight leading-[1.18] tracking-tight">
                       Your Patients Are
                       <br />
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
                         Calling Right Now
                       </span>
                     </h1>
-                    <p className="text-lg text-gray-400 mt-4 italic">
+                    <p className="text-lg text-gray-400 mt-5 italic">
                       Who's answering?
                     </p>
                   </motion.div>
@@ -606,14 +606,14 @@ const Dentists: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="text-center"
                 >
-                  <h1 className="text-4xl sm:text-5xl font-light leading-[1.1]">
+                  <h1 className="text-4xl sm:text-5xl font-extralight leading-[1.18]">
                     Your Patients Are
                     <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
                       Calling Right Now
                     </span>
                   </h1>
-                  <p className="text-base text-gray-400 mt-3 italic">
+                  <p className="text-base text-gray-400 mt-4 italic">
                     Who's answering?
                   </p>
                 </motion.div>
@@ -738,7 +738,9 @@ const Dentists: React.FC = () => {
           </section>
 
           {/* ==================== THE PROBLEM SECTION ==================== */}
-          <section className="relative py-16 lg:py-24 border-y border-white/5">
+          <section className="relative py-16 lg:py-24">
+            {/* Slightly lifted background for depth */}
+            <div className="absolute inset-0 bg-[#0a0a0a]" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-950/5 to-transparent" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-5xl">
               <motion.div
@@ -790,7 +792,8 @@ const Dentists: React.FC = () => {
 
           {/* ==================== HOW IT WORKS ==================== */}
           <section className="relative py-16 lg:py-24">
-            <div className="absolute inset-0 bg-black/40" />
+            {/* Back to true black for contrast */}
+            <div className="absolute inset-0 bg-black" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -853,7 +856,7 @@ const Dentists: React.FC = () => {
                 ))}
               </div>
 
-              {/* CTA Button */}
+              {/* CTA Button - Secondary weight */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -863,17 +866,19 @@ const Dentists: React.FC = () => {
               >
                 <button
                   onClick={scrollToFinalForm}
-                  className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg rounded-xl transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02]"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-cyan-400/40 text-white font-medium text-base rounded-xl transition-all duration-200"
                 >
                   Get Started This Week
-                  <FaArrowRight />
+                  <FaArrowRight className="text-cyan-400" />
                 </button>
               </motion.div>
             </div>
           </section>
 
           {/* ==================== FEATURES SECTION ==================== */}
-          <section className="relative py-16 lg:py-24 border-y border-white/5">
+          <section className="relative py-16 lg:py-24">
+            {/* Lifted charcoal for rhythm */}
+            <div className="absolute inset-0 bg-[#080808]" />
             <div className="absolute inset-0 bg-gradient-to-b from-cyan-950/10 via-transparent to-transparent" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl">
               <motion.div
@@ -947,7 +952,8 @@ const Dentists: React.FC = () => {
 
           {/* ==================== TESTIMONIAL + STATS ==================== */}
           <section className="relative py-16 lg:py-24">
-            <div className="absolute inset-0 bg-black/40" />
+            {/* True black reset */}
+            <div className="absolute inset-0 bg-black" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-5xl">
               {/* Testimonial */}
               <motion.div
@@ -1006,7 +1012,7 @@ const Dentists: React.FC = () => {
                 ))}
               </motion.div>
 
-              {/* CTA Button */}
+              {/* CTA Button - Secondary weight */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1016,18 +1022,19 @@ const Dentists: React.FC = () => {
               >
                 <button
                   onClick={scrollToFinalForm}
-                  className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg rounded-xl transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02]"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-cyan-400/40 text-white font-medium text-base rounded-xl transition-all duration-200"
                 >
                   Start Free Trial
-                  <FaArrowRight />
+                  <FaArrowRight className="text-cyan-400" />
                 </button>
               </motion.div>
             </div>
           </section>
 
           {/* ==================== FAQ SECTION ==================== */}
-          <section className="relative py-16 lg:py-24 border-y border-white/5">
-            <div className="absolute inset-0 bg-black/30" />
+          <section className="relative py-16 lg:py-24">
+            {/* Slight lift for visual break */}
+            <div className="absolute inset-0 bg-[#070707]" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-3xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
