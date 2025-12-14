@@ -255,41 +255,41 @@ const Dentists: React.FC = () => {
             <div className="absolute inset-0 bg-black/40" />
 
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-5xl w-full">
-              {/* Mobile Layout - Compact, Action-First */}
+              {/* Mobile Layout - 10/10 Conversion Optimized */}
               <div className="lg:hidden flex flex-col">
-                {/* Headline - Punchy, 2 lines max */}
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-center"
-                >
-                  <h1 className="text-3xl font-bold leading-tight mb-2">
-                    Missing <span className="text-red-400">30% of Calls?</span>
-                  </h1>
-                  <p className="text-lg text-gray-300">
-                    That's <span className="text-white font-semibold">$50K+/year</span> gone.
-                  </p>
-                </motion.div>
-
-                {/* Trust Proof - Immediately visible */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
-                  className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-400"
-                >
-                  <span className="flex items-center gap-1"><FaShieldAlt className="text-cyan-400" /> HIPAA</span>
-                  <span className="flex items-center gap-1"><FaCheckCircle className="text-cyan-400" /> 50+ Practices</span>
-                  <span className="flex items-center gap-1"><FaCheckCircle className="text-cyan-400" /> US Support</span>
-                </motion.div>
-
-                {/* PRIMARY CTA: Free Trial - BLUE, Dominant */}
+                {/* Headline - Maximum Impact */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.15 }}
-                  className="mt-6"
+                  transition={{ duration: 0.3 }}
+                  className="text-center"
+                >
+                  <h1 className="text-[28px] font-bold leading-tight">
+                    <span className="text-red-400">30% of Calls</span> Never Get Answered.
+                  </h1>
+                  <p className="text-base text-gray-400 mt-1">
+                    That's <span className="text-white font-semibold">$50K+</span> walking out the door.
+                  </p>
+                </motion.div>
+
+                {/* Trust Proof - Proof-Based, Not Labels */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 0.1 }}
+                  className="flex items-center justify-center gap-3 mt-4"
+                >
+                  <span className="text-[11px] text-gray-500 bg-white/5 px-2 py-1 rounded">HIPAA + BAA</span>
+                  <span className="text-[11px] text-gray-500 bg-white/5 px-2 py-1 rounded">50+ practices</span>
+                  <span className="text-[11px] text-gray-500 bg-white/5 px-2 py-1 rounded">US-based</span>
+                </motion.div>
+
+                {/* PRIMARY CTA: Free Trial - BLUE, Dominant, Thumb-Zone */}
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.25, delay: 0.15 }}
+                  className="mt-5"
                 >
                   <a
                     href="#trial-form"
@@ -298,44 +298,45 @@ const Dentists: React.FC = () => {
                       trackStartTrialClick();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/30"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-blue-600 hover:bg-blue-500 text-white text-[15px] font-bold rounded-xl transition-all shadow-lg shadow-blue-600/25"
                   >
-                    Start 7-Day Free Trial
-                    <FaArrowRight className="text-sm" />
+                    Start Free Trial
+                    <FaArrowRight className="text-xs" />
                   </a>
-                  <p className="text-xs text-gray-500 text-center mt-2">
-                    No credit card required
+                  <p className="text-[11px] text-gray-500 text-center mt-1.5">
+                    No credit card · Cancel anytime
                   </p>
                 </motion.div>
 
-                {/* SECONDARY CTA: Demo - Gray, Outlined */}
+                {/* SECONDARY CTA: Demo - Clearly Secondary */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.2 }}
-                  className="mt-3"
+                  transition={{ duration: 0.2, delay: 0.2 }}
+                  className="mt-2.5"
                 >
                   <button
                     onClick={() => {
                       trackHearAIClick();
                       setShowAudioModal(true);
                     }}
-                    className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-transparent border border-white/20 text-gray-300 font-medium rounded-xl transition-all hover:bg-white/5"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-2.5 text-gray-400 text-sm font-medium transition-all hover:text-gray-300"
                   >
-                    <FaHeadphones className="text-base" />
-                    Hear a Real Call (30 sec)
+                    <FaHeadphones className="text-sm" />
+                    Hear a real call →
                   </button>
                 </motion.div>
 
-                {/* Value Prop - Single line */}
-                <motion.p
+                {/* Scroll Cue - Intentional Peek */}
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.25 }}
-                  className="text-sm text-gray-500 text-center mt-6"
+                  transition={{ duration: 0.3, delay: 0.3 }}
+                  className="mt-8 text-center"
                 >
-                  AI answers calls. Books appointments. You keep patients.
-                </motion.p>
+                  <p className="text-[11px] text-gray-600 mb-2">See where calls go to die ↓</p>
+                  <div className="w-8 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto rounded-full" />
+                </motion.div>
               </div>
 
               {/* Desktop Layout */}
