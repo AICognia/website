@@ -256,7 +256,7 @@ const Dentists: React.FC = () => {
 
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-5xl w-full">
               {/* Mobile Layout */}
-              <div className="lg:hidden flex flex-col justify-center">
+              <div className="lg:hidden flex flex-col justify-center px-2">
                 {/* Pain-Focused Headline */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -264,12 +264,12 @@ const Dentists: React.FC = () => {
                   transition={{ duration: 0.5 }}
                   className="text-center"
                 >
-                  <h1 className="text-4xl font-bold leading-tight mb-5">
+                  <h1 className="text-5xl font-bold leading-tight mb-6">
                     Your Front Desk Misses<br />
                     <span className="text-red-400">30% of Calls.</span>
                   </h1>
-                  <p className="text-xs text-gray-500 mb-3">*Industry avg for single-location practices without overflow coverage</p>
-                  <p className="text-lg text-gray-300 leading-relaxed">
+                  <p className="text-sm text-gray-500 mb-4">*Industry avg for single-location practices without overflow coverage</p>
+                  <p className="text-xl text-gray-300 leading-relaxed">
                     That's <span className="text-white font-semibold">$50,000+/year</span> walking out the door.
                   </p>
                 </motion.div>
@@ -279,7 +279,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
-                  className="text-base text-gray-400 text-center mt-8"
+                  className="text-lg text-gray-400 text-center mt-10"
                 >
                   We answer your overflow calls, book appointments into your calendar, and confirm them automatically.
                 </motion.p>
@@ -289,7 +289,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.15 }}
-                  className="mt-10"
+                  className="mt-12"
                 >
                   <button
                     onClick={() => {
@@ -308,7 +308,7 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="mt-4"
+                  className="mt-5"
                 >
                   <a
                     href="#trial-form"
@@ -322,7 +322,7 @@ const Dentists: React.FC = () => {
                     Start 7-Day Free Trial
                     <FaArrowRight className="text-sm" />
                   </a>
-                  <p className="text-xs text-gray-500 text-center mt-3">
+                  <p className="text-sm text-gray-500 text-center mt-4">
                     No credit card. No contracts. We handle setup.
                   </p>
                 </motion.div>
@@ -332,14 +332,14 @@ const Dentists: React.FC = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.25 }}
-                  className="pt-8 mt-8 border-t border-white/10"
+                  className="pt-10 mt-10 border-t border-white/10"
                 >
-                  <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-xs text-gray-400">
-                    <span className="flex items-center gap-1.5"><FaShieldAlt className="text-cyan-400" /> HIPAA + BAA</span>
-                    <span className="flex items-center gap-1.5"><FaCheckCircle className="text-cyan-400" /> US-Based Support</span>
-                    <span className="flex items-center gap-1.5"><FaCheckCircle className="text-cyan-400" /> Multi-Location Ready</span>
+                  <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 text-sm text-gray-400">
+                    <span className="flex items-center gap-2"><FaShieldAlt className="text-cyan-400" /> HIPAA + BAA</span>
+                    <span className="flex items-center gap-2"><FaCheckCircle className="text-cyan-400" /> US-Based Support</span>
+                    <span className="flex items-center gap-2"><FaCheckCircle className="text-cyan-400" /> Multi-Location Ready</span>
                   </div>
-                  <p className="text-sm text-gray-400 text-center mt-5">
+                  <p className="text-base text-gray-400 text-center mt-6">
                     Used by <span className="text-white font-medium">50+ dental practices</span> across the U.S.
                   </p>
                 </motion.div>
