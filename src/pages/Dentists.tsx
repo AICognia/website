@@ -698,7 +698,7 @@ const Dentists: React.FC = () => {
                 className="lg:text-left text-center mb-12 lg:mb-16"
               >
                 <h2 className="text-3xl lg:text-5xl font-light text-white mb-4 leading-tight">
-                  While you're with a patient,<br className="hidden lg:block" />
+                  While you're with a patient,<br className="hidden lg:block" />{' '}
                   <span className="text-red-400">your next one is calling someone else.</span>
                 </h2>
               </motion.div>
@@ -764,7 +764,7 @@ const Dentists: React.FC = () => {
                   className="mb-12 lg:mb-0"
                 >
                   <h2 className="text-3xl lg:text-4xl font-light text-white mb-6 leading-tight">
-                    What if every call<br className="hidden lg:block" />
+                    What if every call<br />
                     <span className="text-cyan-400">was answered perfectly?</span>
                   </h2>
                   <p className="text-gray-400 text-lg mb-8 leading-relaxed">
@@ -1025,9 +1025,8 @@ const Dentists: React.FC = () => {
 
                   {/* Testimonial content */}
                   <div className="lg:col-span-4">
-                    <blockquote className="text-xl lg:text-2xl text-white leading-relaxed mb-8">
-                      Patients book over the weekend, and Cognia schedules them — <span className="text-cyan-400">no backlog, no delays</span>.
-                      It's like having a receptionist who never takes a day off.
+                    <blockquote className="text-lg lg:text-2xl text-white leading-relaxed mb-8">
+                      Patients book over the weekend and Cognia schedules them — <span className="text-cyan-400">no backlog</span>. It's like a receptionist who never takes a day off.
                     </blockquote>
 
                     {/* Author - More prominent */}
