@@ -363,7 +363,7 @@ const Dentists: React.FC = () => {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   className="text-xl text-gray-400 max-w-2xl mx-auto"
                 >
-                  We answer your overflow calls, book appointments directly into your calendar, and confirm them automatically. You keep every patient.
+                  We answer overflow calls, book appointments into your calendar, and confirm automatically.
                 </motion.p>
 
                 {/* CTAs - Trial Primary (Blue), Demo Secondary (Gray) */}
@@ -500,7 +500,7 @@ const Dentists: React.FC = () => {
                   <span className="text-red-400">5 missed calls/week</span> × <span className="text-white">$500</span> × <span className="text-white">52 weeks</span> = <span className="text-red-400">$130,000/year</span>
                 </p>
                 <p className="text-gray-500 mt-3 text-sm">
-                  Capturing 2 extra patients/week covers this service many times over.
+                  One extra patient/month covers the service.
                 </p>
               </motion.div>
 
@@ -614,19 +614,19 @@ const Dentists: React.FC = () => {
                   {
                     step: '1',
                     title: 'We Configure Your System',
-                    description: 'Your hours, services, booking rules. We handle everything.',
+                    description: 'Your hours, services, booking rules.',
                     highlight: '1-week setup'
                   },
                   {
                     step: '2',
                     title: 'Connect Your Phone',
-                    description: 'We add a parallel line. Your current number works exactly as before.',
+                    description: 'Parallel line added. Current number unchanged.',
                     highlight: 'Zero disruption'
                   },
                   {
                     step: '3',
                     title: 'Every Call Answered',
-                    description: 'Overflow, after-hours, lunch breaks. Every call gets answered and booked.',
+                    description: 'Overflow, after-hours, lunch. Answered and booked.',
                     highlight: '24/7 coverage'
                   }
                 ].map((item, index) => (
@@ -896,23 +896,23 @@ const Dentists: React.FC = () => {
                 {[
                   {
                     q: '"Will patients know it\'s AI?"',
-                    a: 'Some will. Most won\'t care. What matters: patients who get booked stay. Patients who hit voicemail call someone else.'
+                    a: 'Some will. Most won\'t care. Patients who get booked stay. Patients who hit voicemail don\'t.'
                   },
                   {
                     q: '"Will it mess up my schedule?"',
-                    a: 'No. It follows YOUR rules—appointment types, durations, buffer times. Conflicts? It offers the next slot.'
+                    a: 'No. It follows your rules—types, durations, buffers. Conflicts? Offers the next slot.'
                   },
                   {
                     q: '"What if it makes a mistake?"',
-                    a: 'Every call recorded. If unsure, it takes a message. Never guesses. You can review any conversation.'
+                    a: 'Every call recorded. If unsure, it takes a message. Never guesses.'
                   },
                   {
                     q: '"Does this replace my front desk?"',
-                    a: 'No. It\'s backup—overflow, after-hours, lunch breaks. Your staff focuses on patients in the office.'
+                    a: 'No. Backup only—overflow, after-hours, lunch. Staff focuses on patients in-office.'
                   },
                   {
                     q: '"Is this HIPAA compliant?"',
-                    a: 'Yes. BAA included. Data encrypted. Compliance docs provided before you sign.'
+                    a: 'Yes. BAA included. Data encrypted. Docs provided before signup.'
                   }
                 ].map((faq, i) => (
                   <motion.div
@@ -972,8 +972,7 @@ const Dentists: React.FC = () => {
                 </div>
 
                 <p className="text-gray-400">
-                  One extra patient covers the entire month.<br />
-                  <span className="text-gray-500 text-sm">You'll see exactly how many calls we answered in your first weekly report.</span>
+                  One patient covers the month. First weekly report shows exactly how many calls answered.
                 </p>
 
                 <a
