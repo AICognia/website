@@ -296,7 +296,7 @@ const Dentists: React.FC = () => {
                       trackHearAIClick();
                       setShowAudioModal(true);
                     }}
-                    className="w-[70%] mx-auto flex items-center justify-center gap-3 px-6 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30"
+                    className="w-[50%] mx-auto flex items-center justify-center gap-3 px-6 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30"
                   >
                     <FaHeadphones className="text-xl" />
                     Hear a Real Patient Call (30 sec)
@@ -317,7 +317,7 @@ const Dentists: React.FC = () => {
                       trackStartTrialClick();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="w-[70%] mx-auto flex items-center justify-center gap-2 px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-xl transition-all"
+                    className="w-[50%] mx-auto flex items-center justify-center gap-2 px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-xl transition-all"
                   >
                     Start 7-Day Free Trial
                     <FaArrowRight className="text-sm" />
