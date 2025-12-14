@@ -30,6 +30,7 @@ import DynamicTechBackground from '../components/DynamicTechBackground';
 const Dentists: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
+    practiceName: '',
     email: '',
     phone: '',
   });
@@ -48,6 +49,7 @@ const Dentists: React.FC = () => {
   const audioPlayedTracked = useRef(false);
   const audioCompletedTracked = useRef(false);
   const formRef = useRef<HTMLDivElement>(null);
+  const finalFormRef = useRef<HTMLDivElement>(null);
 
   // Track Meta Pixel events on component mount
   useEffect(() => {
@@ -199,8 +201,8 @@ const Dentists: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email) {
-      setError('Please fill in your name and email');
+    if (!formData.name || !formData.email || !formData.phone) {
+      setError('Please fill in all required fields');
       return;
     }
 
@@ -220,7 +222,7 @@ const Dentists: React.FC = () => {
         },
         body: JSON.stringify({
           ...formData,
-          _subject: `Dentist Free Trial Request from ${formData.name}`,
+          _subject: `Dentist Free Trial Request from ${formData.name}${formData.practiceName ? ` - ${formData.practiceName}` : ''}`,
           form_type: 'dentist_landing_page_trial',
           source: 'dentists_page_meta_ads',
           industry: 'dental',
@@ -252,13 +254,18 @@ const Dentists: React.FC = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToFinalForm = () => {
+    trackStartTrialClick();
+    finalFormRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   // Reusable Form Component
   const TrialForm = ({ variant = 'default' }: { variant?: 'default' | 'hero' | 'final' }) => {
     const isHero = variant === 'hero';
     const isFinal = variant === 'final';
 
     return (
-      <div className={`${isHero ? 'bg-white/[0.03] border-white/10' : 'bg-black/50 border-white/10'} border rounded-2xl ${isHero ? 'p-6 lg:p-8' : 'p-6 lg:p-10'} backdrop-blur-sm`}>
+      <div className={`${isHero ? 'bg-white/[0.03] border-white/10' : 'bg-black/50 border-white/10'} border rounded-2xl ${isHero ? 'p-6 lg:p-10' : 'p-6 lg:p-10'} backdrop-blur-sm`}>
         <AnimatePresence mode="wait">
           {!isSubmitted ? (
             <motion.div
@@ -267,7 +274,7 @@ const Dentists: React.FC = () => {
               exit={{ opacity: 0 }}
             >
               {isHero && (
-                <div className="text-center mb-6">
+                <div className="text-center mb-8">
                   <h3 className="text-xl lg:text-2xl font-semibold text-white mb-2">
                     Start Your Free Trial
                   </h3>
@@ -281,8 +288,17 @@ const Dentists: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Full Name *"
-                  className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
+                  className="w-full px-4 py-4 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
                   autoComplete="name"
+                />
+                <input
+                  type="text"
+                  name="practiceName"
+                  value={formData.practiceName}
+                  onChange={handleChange}
+                  placeholder="Practice Name"
+                  className="w-full px-4 py-4 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
+                  autoComplete="organization"
                 />
                 <input
                   type="email"
@@ -290,7 +306,7 @@ const Dentists: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Email Address *"
-                  className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
+                  className="w-full px-4 py-4 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
                   autoComplete="email"
                 />
                 <input
@@ -298,8 +314,8 @@ const Dentists: React.FC = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="Phone Number"
-                  className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
+                  placeholder="Phone Number *"
+                  className="w-full px-4 py-4 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
                   autoComplete="tel"
                 />
 
@@ -477,7 +493,7 @@ const Dentists: React.FC = () => {
                   >
                     {[
                       'Answers calls instantly — no hold times, no voicemail',
-                      'Books directly into your calendar in real-time',
+                      'Integrates and books directly into your PMS',
                       'Speaks English and Spanish fluently'
                     ].map((benefit, i) => (
                       <div key={i} className="flex items-center gap-3">
@@ -666,9 +682,9 @@ const Dentists: React.FC = () => {
                   { stat: '85%', label: 'of voicemail callers never call back' },
                   { stat: '15-20', label: 'potential patients lost every month' },
                 ].map((item, i) => (
-                  <div key={i} className="text-center p-6 bg-white/5 border border-white/5 rounded-2xl">
+                  <div key={i} className="flex flex-col items-center justify-center text-center p-6 bg-white/5 border border-white/5 rounded-2xl">
                     <p className="text-4xl lg:text-5xl font-bold text-white mb-2">{item.stat}</p>
-                    <p className="text-gray-400 text-sm leading-relaxed">{item.label}</p>
+                    <p className="text-gray-400 text-sm leading-relaxed text-center">{item.label}</p>
                   </div>
                 ))}
               </motion.div>
@@ -704,10 +720,7 @@ const Dentists: React.FC = () => {
                 <p className="text-gray-400 text-lg">Simple setup, no technical skills required</p>
               </motion.div>
 
-              <div className="grid md:grid-cols-3 gap-8 relative">
-                {/* Connection Lines (Desktop) */}
-                <div className="hidden md:block absolute top-24 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-cyan-400/50 via-cyan-400/20 to-cyan-400/50" />
-
+              <div className="grid md:grid-cols-3 gap-8">
                 {[
                   {
                     step: '1',
@@ -740,11 +753,11 @@ const Dentists: React.FC = () => {
                     className="relative bg-white/5 border border-white/10 rounded-2xl p-8 text-center hover:border-cyan-400/30 transition-all group"
                   >
                     {/* Step Number */}
-                    <div className="relative mx-auto mb-6">
+                    <div className="relative mx-auto mb-6 flex justify-center">
                       <div className="w-20 h-20 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 border-2 border-cyan-400/40 rounded-full flex items-center justify-center group-hover:border-cyan-400/60 transition-colors">
                         <item.icon className="text-3xl text-cyan-400" />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center text-black font-bold text-sm">
+                      <div className="absolute -top-2 right-[calc(50%-48px)] w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center text-black font-bold text-sm">
                         {item.step}
                       </div>
                     </div>
@@ -761,6 +774,23 @@ const Dentists: React.FC = () => {
                   </motion.div>
                 ))}
               </div>
+
+              {/* CTA Button after How It Works */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="text-center mt-12"
+              >
+                <button
+                  onClick={scrollToForm}
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02]"
+                >
+                  Start Free Trial
+                  <FaArrowRight className="text-sm" />
+                </button>
+              </motion.div>
             </div>
           </section>
 
@@ -789,38 +819,32 @@ const Dentists: React.FC = () => {
                   {
                     icon: FaCalendarAlt,
                     title: 'Smart Scheduling',
-                    description: 'Books appointments directly into your calendar. Handles new patients, existing patients, cancellations, and reschedules.',
-                    highlight: true
+                    description: 'Books appointments directly into your calendar. Handles new patients, existing patients, cancellations, and reschedules.'
                   },
                   {
                     icon: FaPlug,
                     title: 'PMS Integration',
-                    description: 'Real-time sync with OpenDental, Dentrix, Eaglesoft, Curve Dental, and more. Appointments appear instantly.',
-                    highlight: true
+                    description: 'Real-time sync with OpenDental, Dentrix, Eaglesoft, Curve Dental, and more. Appointments appear instantly.'
                   },
                   {
                     icon: FaGlobe,
                     title: 'Bilingual Support',
-                    description: 'Fluent in English and Spanish. Natural conversations that put patients at ease — no robotic scripts.',
-                    highlight: false
+                    description: 'Fluent in English and Spanish. Natural conversations that put patients at ease — no robotic scripts.'
                   },
                   {
                     icon: FaClock,
                     title: '24/7 Availability',
-                    description: 'Nights, weekends, holidays — your AI never sleeps. Handles overflow during busy hours too.',
-                    highlight: false
+                    description: 'Nights, weekends, holidays — your AI never sleeps. Handles overflow during busy hours too.'
                   },
                   {
                     icon: FaComments,
                     title: 'Intelligent Triage',
-                    description: 'Detects emergencies and routes urgent calls appropriately. Non-urgent inquiries get scheduled properly.',
-                    highlight: false
+                    description: 'Detects emergencies and routes urgent calls appropriately. Non-urgent inquiries get scheduled properly.'
                   },
                   {
                     icon: FaBell,
                     title: 'No-Show Prevention',
-                    description: 'Automated confirmation calls and smart reminders. Reduces no-shows by up to 66%.',
-                    highlight: false
+                    description: 'Automated confirmation calls and smart reminders. Reduces no-shows by up to 66%.'
                   }
                 ].map((feature, i) => (
                   <motion.div
@@ -829,18 +853,10 @@ const Dentists: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: i * 0.05 }}
                     viewport={{ once: true }}
-                    className={`p-6 rounded-2xl border transition-all hover:border-cyan-400/30 ${
-                      feature.highlight
-                        ? 'bg-gradient-to-br from-cyan-500/10 to-blue-500/5 border-cyan-400/20'
-                        : 'bg-white/5 border-white/10'
-                    }`}
+                    className="p-6 rounded-2xl border transition-all hover:border-cyan-400/30 bg-gradient-to-br from-cyan-500/10 to-blue-500/5 border-cyan-400/20"
                   >
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                      feature.highlight
-                        ? 'bg-cyan-400/20'
-                        : 'bg-white/10'
-                    }`}>
-                      <feature.icon className={`text-xl ${feature.highlight ? 'text-cyan-400' : 'text-gray-300'}`} />
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-cyan-400/20">
+                      <feature.icon className="text-xl text-cyan-400" />
                     </div>
                     <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
                     <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
@@ -862,14 +878,9 @@ const Dentists: React.FC = () => {
                 viewport={{ once: true }}
                 className="mb-16"
               >
-                <div className="relative bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 lg:p-12">
-                  {/* Quote Mark */}
-                  <div className="absolute -top-4 left-8 w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center">
-                    <span className="text-black text-2xl font-serif">"</span>
-                  </div>
-
-                  {/* Stars */}
-                  <div className="flex items-center gap-1 mb-6">
+                <div className="relative bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 lg:p-12 text-center">
+                  {/* Stars - Centered */}
+                  <div className="flex items-center justify-center gap-1 mb-6">
                     {[...Array(5)].map((_, i) => (
                       <FaStar key={i} className="text-cyan-400 text-lg" />
                     ))}
@@ -882,14 +893,14 @@ const Dentists: React.FC = () => {
                     It's like having a receptionist who never takes a day off.
                   </blockquote>
 
-                  {/* Author */}
-                  <div className="flex items-center gap-4">
+                  {/* Author - Centered */}
+                  <div className="flex items-center justify-center gap-4">
                     <div className="w-14 h-14 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full flex items-center justify-center border border-cyan-400/30">
                       <span className="text-cyan-400 font-bold text-lg">JO</span>
                     </div>
-                    <div>
+                    <div className="text-left">
                       <p className="font-semibold text-white">Jacob Ojalvo</p>
-                      <p className="text-gray-400 text-sm">My Smile Miami</p>
+                      <p className="text-gray-400 text-sm">Office Manager, My Smile Miami</p>
                     </div>
                   </div>
                 </div>
@@ -906,7 +917,7 @@ const Dentists: React.FC = () => {
                 {[
                   { stat: '20%', label: 'More Bookings', sublabel: 'Average increase' },
                   { stat: '66%', label: 'Fewer No-Shows', sublabel: 'With auto-confirmations' },
-                  { stat: '24/7', label: 'Coverage', sublabel: 'Never miss a call' },
+                  { stat: '0', label: 'Missed Calls', sublabel: 'With 24/7 coverage' },
                 ].map((item, i) => (
                   <div key={i} className="text-center p-4 lg:p-6 bg-white/5 border border-white/10 rounded-2xl">
                     <p className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
@@ -916,6 +927,23 @@ const Dentists: React.FC = () => {
                     <p className="text-gray-500 text-xs mt-0.5">{item.sublabel}</p>
                   </div>
                 ))}
+              </motion.div>
+
+              {/* CTA Button after Testimonial */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="text-center mt-12"
+              >
+                <button
+                  onClick={scrollToForm}
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02]"
+                >
+                  Start Free Trial
+                  <FaArrowRight className="text-sm" />
+                </button>
               </motion.div>
             </div>
           </section>
@@ -1001,6 +1029,7 @@ const Dentists: React.FC = () => {
               </motion.div>
 
               <motion.div
+                ref={finalFormRef}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
@@ -1155,7 +1184,7 @@ const Dentists: React.FC = () => {
                               audioRef.current.pause();
                               audioRef.current.currentTime = 0;
                             }
-                            setTimeout(() => scrollToForm(), 100);
+                            setTimeout(() => scrollToFinalForm(), 100);
                           }}
                           className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl flex items-center justify-center gap-2"
                         >
