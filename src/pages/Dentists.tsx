@@ -251,12 +251,12 @@ const Dentists: React.FC = () => {
           {/* ═══════════════════════════════════════════════════════════════════
               SECTION 1: HERO - Pain + Money + Proof CTA
           ═══════════════════════════════════════════════════════════════════ */}
-          <section className="relative overflow-hidden py-12 lg:py-20">
+          <section className="relative overflow-hidden min-h-screen lg:min-h-0 py-12 lg:py-20 flex items-center">
             <div className="absolute inset-0 bg-black/40" />
 
-            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-5xl">
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-5xl w-full">
               {/* Mobile Layout */}
-              <div className="lg:hidden space-y-6">
+              <div className="lg:hidden space-y-6 flex flex-col justify-center">
                 {/* Pain-Focused Headline */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
