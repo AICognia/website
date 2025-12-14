@@ -477,27 +477,16 @@ const Dentists: React.FC = () => {
 
                 {/* Left Column - Messaging */}
                 <div className="space-y-5 flex flex-col justify-center">
-                  {/* Dentist qualifier + Live indicator */}
+                  {/* Dentist qualifier */}
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4 }}
-                    className="flex items-center gap-4"
                   >
                     {/* FOR DENTISTS badge - explicit qualifier */}
                     <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/30 rounded-full">
                       <span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">
                         For Dental Practices
-                      </span>
-                    </div>
-                    {/* Live Call Indicator */}
-                    <div className="flex items-center gap-2 px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                      </span>
-                      <span className="text-xs font-medium text-red-400">
-                        3 calls missed today
                       </span>
                     </div>
                   </motion.div>
