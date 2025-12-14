@@ -1025,23 +1025,22 @@ const Dentists: React.FC = () => {
 
                   {/* Testimonial content */}
                   <div className="lg:col-span-4">
-                    <blockquote className="text-lg lg:text-2xl text-white leading-relaxed mb-8">
-                      Patients book over the weekend and Cognia schedules them — <span className="text-cyan-400">no backlog</span>. It's like a receptionist who never takes a day off.
+                    <blockquote className="text-base lg:text-2xl text-white leading-relaxed mb-6 lg:mb-8">
+                      Patients book on weekends — Cognia schedules them, <span className="text-cyan-400">no backlog</span>. Like a receptionist who never takes a day off.
                     </blockquote>
 
                     {/* Author - More prominent */}
-                    <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full flex items-center justify-center border border-cyan-400/20">
-                        <span className="text-cyan-400 font-bold text-lg">JO</span>
+                    <div className="flex items-center gap-3 lg:gap-4">
+                      <div className="w-12 h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full flex items-center justify-center border border-cyan-400/20">
+                        <span className="text-cyan-400 font-bold text-base lg:text-lg">JO</span>
                       </div>
-                      <div>
-                        <p className="font-semibold text-white">Jacob Ojalvo</p>
-                        <p className="text-gray-500 text-sm">Office Manager</p>
-                        <p className="text-cyan-400 text-sm font-medium">My Smile Miami</p>
+                      <div className="flex-1">
+                        <p className="font-semibold text-white text-sm lg:text-base">Jacob Ojalvo</p>
+                        <p className="text-gray-500 text-xs lg:text-sm">Office Manager • My Smile Miami</p>
                       </div>
-                      <div className="ml-auto hidden lg:flex items-center gap-1">
+                      <div className="flex items-center gap-0.5 lg:gap-1">
                         {[...Array(5)].map((_, i) => (
-                          <FaStar key={i} className="text-yellow-400 text-sm" />
+                          <FaStar key={i} className="text-yellow-400 text-xs lg:text-sm" />
                         ))}
                       </div>
                     </div>
