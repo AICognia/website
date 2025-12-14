@@ -251,64 +251,45 @@ const Dentists: React.FC = () => {
           {/* ═══════════════════════════════════════════════════════════════════
               SECTION 1: HERO - Pain + Money + Proof CTA
           ═══════════════════════════════════════════════════════════════════ */}
-          <section className="relative overflow-hidden min-h-screen lg:min-h-0 py-12 lg:py-20 flex items-center">
+          <section className="relative overflow-hidden py-8 lg:py-20">
             <div className="absolute inset-0 bg-black/40" />
 
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-5xl w-full">
-              {/* Mobile Layout */}
-              <div className="lg:hidden flex flex-col justify-center px-2">
-                {/* Pain-Focused Headline */}
+              {/* Mobile Layout - Compact, Action-First */}
+              <div className="lg:hidden flex flex-col">
+                {/* Headline - Punchy, 2 lines max */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.4 }}
                   className="text-center"
                 >
-                  <h1 className="text-5xl font-bold leading-tight mb-6">
-                    Your Front Desk Misses<br />
-                    <span className="text-red-400">30% of Calls.</span>
+                  <h1 className="text-3xl font-bold leading-tight mb-2">
+                    Missing <span className="text-red-400">30% of Calls?</span>
                   </h1>
-                  <p className="text-sm text-gray-500 mb-4">*Industry avg for single-location practices without overflow coverage</p>
-                  <p className="text-xl text-gray-300 leading-relaxed">
-                    That's <span className="text-white font-semibold">$50,000+/year</span> walking out the door.
+                  <p className="text-lg text-gray-300">
+                    That's <span className="text-white font-semibold">$50K+/year</span> gone.
                   </p>
                 </motion.div>
 
-                {/* What This Is - No Fluff */}
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  className="text-lg text-gray-400 text-center mt-10"
-                >
-                  We answer your overflow calls, book appointments into your calendar, and confirm them automatically.
-                </motion.p>
-
-                {/* PRIMARY CTA: Demo First */}
+                {/* Trust Proof - Immediately visible */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.15 }}
-                  className="mt-12"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                  className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-400"
                 >
-                  <button
-                    onClick={() => {
-                      trackHearAIClick();
-                      setShowAudioModal(true);
-                    }}
-                    className="w-[50%] mx-auto flex items-center justify-center gap-3 px-6 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30"
-                  >
-                    <FaHeadphones className="text-xl" />
-                    Hear a Real Patient Call (30 sec)
-                  </button>
+                  <span className="flex items-center gap-1"><FaShieldAlt className="text-cyan-400" /> HIPAA</span>
+                  <span className="flex items-center gap-1"><FaCheckCircle className="text-cyan-400" /> 50+ Practices</span>
+                  <span className="flex items-center gap-1"><FaCheckCircle className="text-cyan-400" /> US Support</span>
                 </motion.div>
 
-                {/* Secondary CTA */}
+                {/* PRIMARY CTA: Free Trial - BLUE, Dominant */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="mt-5"
+                  transition={{ duration: 0.3, delay: 0.15 }}
+                  className="mt-6"
                 >
                   <a
                     href="#trial-form"
@@ -317,32 +298,44 @@ const Dentists: React.FC = () => {
                       trackStartTrialClick();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="w-[50%] mx-auto flex items-center justify-center gap-2 px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-xl transition-all"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/30"
                   >
                     Start 7-Day Free Trial
                     <FaArrowRight className="text-sm" />
                   </a>
-                  <p className="text-sm text-gray-500 text-center mt-4">
-                    No credit card. No contracts. We handle setup.
+                  <p className="text-xs text-gray-500 text-center mt-2">
+                    No credit card required
                   </p>
                 </motion.div>
 
-                {/* Credibility Anchors */}
+                {/* SECONDARY CTA: Demo - Gray, Outlined */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.25 }}
-                  className="pt-10 mt-10 border-t border-white/10"
+                  transition={{ duration: 0.3, delay: 0.2 }}
+                  className="mt-3"
                 >
-                  <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 text-sm text-gray-400">
-                    <span className="flex items-center gap-2"><FaShieldAlt className="text-cyan-400" /> HIPAA + BAA</span>
-                    <span className="flex items-center gap-2"><FaCheckCircle className="text-cyan-400" /> US-Based Support</span>
-                    <span className="flex items-center gap-2"><FaCheckCircle className="text-cyan-400" /> Multi-Location Ready</span>
-                  </div>
-                  <p className="text-base text-gray-400 text-center mt-6">
-                    Used by <span className="text-white font-medium">50+ dental practices</span> across the U.S.
-                  </p>
+                  <button
+                    onClick={() => {
+                      trackHearAIClick();
+                      setShowAudioModal(true);
+                    }}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-transparent border border-white/20 text-gray-300 font-medium rounded-xl transition-all hover:bg-white/5"
+                  >
+                    <FaHeadphones className="text-base" />
+                    Hear a Real Call (30 sec)
+                  </button>
                 </motion.div>
+
+                {/* Value Prop - Single line */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.25 }}
+                  className="text-sm text-gray-500 text-center mt-6"
+                >
+                  AI answers calls. Books appointments. You keep patients.
+                </motion.p>
               </div>
 
               {/* Desktop Layout */}
@@ -373,24 +366,13 @@ const Dentists: React.FC = () => {
                   We answer your overflow calls, book appointments directly into your calendar, and confirm them automatically. You keep every patient.
                 </motion.p>
 
-                {/* CTAs */}
+                {/* CTAs - Trial Primary (Blue), Demo Secondary (Gray) */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.15 }}
                   className="flex flex-col sm:flex-row items-center justify-center gap-4"
                 >
-                  <button
-                    onClick={() => {
-                      trackHearAIClick();
-                      setShowAudioModal(true);
-                    }}
-                    className="flex items-center justify-center gap-3 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:scale-105"
-                  >
-                    <FaHeadphones className="text-xl" />
-                    Hear a Real Patient Call (30 sec)
-                  </button>
-
                   <a
                     href="#trial-form"
                     onClick={(e) => {
@@ -398,11 +380,22 @@ const Dentists: React.FC = () => {
                       trackStartTrialClick();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-xl transition-all"
+                    className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/30 hover:scale-105"
                   >
                     Start 7-Day Free Trial
                     <FaArrowRight className="text-sm" />
                   </a>
+
+                  <button
+                    onClick={() => {
+                      trackHearAIClick();
+                      setShowAudioModal(true);
+                    }}
+                    className="flex items-center justify-center gap-3 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-xl transition-all"
+                  >
+                    <FaHeadphones className="text-lg" />
+                    Hear a Real Call (30 sec)
+                  </button>
                 </motion.div>
 
                 <motion.p
