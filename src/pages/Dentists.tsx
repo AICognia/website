@@ -351,7 +351,8 @@ const Dentists: React.FC = () => {
                   transition={{ duration: 0.5 }}
                 >
                   <h1 className="text-6xl font-bold leading-tight mb-6">
-                    Your Front Desk Misses <span className="text-red-400">30% of Calls.</span>
+                    Your Front Desk Misses<br />
+                    <span className="text-red-400">30% of Calls.</span>
                   </h1>
                   <p className="text-2xl text-gray-300">
                     That's <span className="text-white font-semibold">$50,000+/year</span> walking out the door.
