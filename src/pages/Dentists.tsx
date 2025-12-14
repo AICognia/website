@@ -281,7 +281,7 @@ const Dentists: React.FC = () => {
               {isHero && (
                 <div className="text-center mb-8">
                   <h3 className="text-xl lg:text-2xl font-semibold text-white mb-2">
-                    Start Your Free Trial
+                    Start 7-Day Free Trial
                   </h3>
                   <p className="text-sm text-gray-400">No credit card required</p>
                 </div>
@@ -845,7 +845,7 @@ const Dentists: React.FC = () => {
                   onClick={scrollToFinalForm}
                   className="inline-flex items-center gap-2 text-gray-400 hover:text-emerald-400 transition-colors text-sm"
                 >
-                  <span className="underline underline-offset-2">Get started this week</span>
+                  <span className="underline underline-offset-2">Start 7-Day Free Trial</span>
                   <FaArrowRight className="text-xs" />
                 </button>
               </motion.div>
@@ -863,49 +863,44 @@ const Dentists: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="text-center mb-16"
+                className="text-center mb-12"
               >
-                <h2 className="text-3xl lg:text-5xl font-light text-white mb-4">
-                  Not a Chatbot.
-                  <br />
-                  <span className="text-cyan-400">A Real AI Receptionist.</span>
+                <h2 className="text-3xl lg:text-4xl font-light text-white mb-3">
+                  Not a Chatbot. <span className="text-cyan-400">A Real AI Receptionist.</span>
                 </h2>
-                <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                  Cognia doesn't just answer calls. It handles them the way your best front desk person would.
-                </p>
               </motion.div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {[
                   {
                     icon: FaCalendarAlt,
                     title: 'Smart Scheduling',
-                    description: 'New patients, existing patients, cancellations, reschedules. Booked directly into your calendar.'
+                    description: 'New patients, reschedules, cancellations. Booked directly into your calendar.'
                   },
                   {
                     icon: FaPlug,
                     title: 'Deep PMS Integration',
-                    description: 'OpenDental, Dentrix, Eaglesoft, Curve, Denticon. Real-time sync. Appointments appear instantly.'
+                    description: 'OpenDental, Dentrix, Eaglesoft, Curve. Appointments sync instantly.'
                   },
                   {
                     icon: FaGlobe,
                     title: 'Bilingual, Naturally',
-                    description: 'English and Spanish. Not translated — truly fluent. Patients feel comfortable from the first word.'
+                    description: 'English and Spanish. Truly fluent, not translated.'
                   },
                   {
                     icon: FaClock,
                     title: '24/7. No Exceptions.',
-                    description: 'Nights. Weekends. Holidays. Overflow during lunch rush. Your AI never takes a day off.'
+                    description: 'Nights. Weekends. Holidays. Never takes a day off.'
                   },
                   {
                     icon: FaComments,
                     title: 'Intelligent Routing',
-                    description: 'Emergency? Routed immediately. Non-urgent? Scheduled properly. Nothing falls through.'
+                    description: 'Emergencies routed. Non-urgent scheduled. Nothing missed.'
                   },
                   {
                     icon: FaBell,
                     title: 'No-Show Prevention',
-                    description: 'Automated confirmations. Smart reminders. Easy rescheduling. 66% fewer empty chairs.'
+                    description: 'Auto confirmations. Smart reminders. 66% fewer empty chairs.'
                   }
                 ].map((feature, i) => (
                   <motion.div
@@ -927,11 +922,12 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* ==================== TESTIMONIAL + STATS ==================== */}
-          <section className="relative py-16 lg:py-24">
-            {/* Subtle warmth for testimonial */}
+          {/* ==================== TESTIMONIAL + STATS - WARMER ==================== */}
+          <section className="relative py-16 lg:py-24 overflow-hidden">
+            {/* Warmer background with amber glow */}
             <div className="absolute inset-0 bg-black" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-950/5 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-950/8 to-transparent" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-amber-500/5 blur-[120px] rounded-full" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-5xl">
               {/* Testimonial */}
               <motion.div
@@ -941,7 +937,7 @@ const Dentists: React.FC = () => {
                 viewport={{ once: true }}
                 className="mb-16"
               >
-                <div className="relative bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 lg:p-12 text-center">
+                <div className="relative bg-gradient-to-br from-amber-950/20 to-white/5 border border-amber-500/10 rounded-3xl p-8 lg:p-12 text-center">
                   {/* Stars - Brighter yellow for warmth */}
                   <div className="flex items-center justify-center gap-1 mb-6">
                     {[...Array(5)].map((_, i) => (
@@ -1008,7 +1004,7 @@ const Dentists: React.FC = () => {
                   onClick={scrollToFinalForm}
                   className="inline-flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-colors text-sm"
                 >
-                  <span className="underline underline-offset-2">Start your free trial</span>
+                  <span className="underline underline-offset-2">Start 7-Day Free Trial</span>
                   <FaArrowRight className="text-xs" />
                 </button>
               </motion.div>
@@ -1077,9 +1073,10 @@ const Dentists: React.FC = () => {
             </div>
           </section>
 
-          {/* ==================== FINAL CTA SECTION ==================== */}
-          <section className="relative py-20 lg:py-32">
-            <div className="absolute inset-0 bg-gradient-to-t from-cyan-950/30 via-transparent to-transparent" />
+          {/* ==================== FINAL CTA SECTION - WARM GLOW ==================== */}
+          <section className="relative py-20 lg:py-32 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-t from-cyan-950/20 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-500/10 blur-[150px] rounded-full" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-2xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -1139,14 +1136,14 @@ const Dentists: React.FC = () => {
               <div className="bg-black/95 backdrop-blur-xl border-t border-cyan-400/30 shadow-2xl shadow-cyan-400/20 px-4 py-3">
                 <div className="flex items-center gap-3">
                   <div className="flex-1 min-w-0">
-                    <p className="text-white font-medium text-sm truncate">Start your free trial</p>
+                    <p className="text-white font-medium text-sm truncate">Start 7-Day Free Trial</p>
                     <p className="text-gray-400 text-xs">HIPAA compliant • No credit card</p>
                   </div>
                   <button
                     onClick={scrollToFinalForm}
                     className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl text-sm whitespace-nowrap"
                   >
-                    Get Started
+                    Start Trial
                     <FaArrowRight className="text-xs" />
                   </button>
                   <button
