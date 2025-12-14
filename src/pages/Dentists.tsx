@@ -265,7 +265,7 @@ const Dentists: React.FC = () => {
                   className="text-center"
                 >
                   <h1 className="text-[28px] font-bold leading-tight">
-                    <span className="text-red-400">30% of Calls</span> Never Get Answered.
+                    <span className="text-red-400/80">30% of Calls</span> Never Get Answered.
                   </h1>
                   <p className="text-base text-gray-400 mt-1">
                     That's <span className="text-white font-semibold">$50K+</span> walking out the door.
@@ -349,7 +349,7 @@ const Dentists: React.FC = () => {
                 >
                   <h1 className="text-6xl font-bold leading-tight mb-6">
                     Your Front Desk Misses<br />
-                    <span className="text-red-400">30% of Calls.</span>
+                    <span className="text-red-400/80">30% of Calls.</span>
                   </h1>
                   <p className="text-sm text-gray-500 mb-2">*Industry avg for single-location practices without overflow coverage</p>
                   <p className="text-2xl text-gray-300">
@@ -498,7 +498,7 @@ const Dentists: React.FC = () => {
               >
                 <p className="text-lg text-gray-300 mb-2">The math:</p>
                 <p className="text-2xl lg:text-3xl font-bold text-white">
-                  <span className="text-red-400">5 missed calls/week</span> × <span className="text-white">$500</span> × <span className="text-white">52 weeks</span> = <span className="text-red-400">$130,000/year</span>
+                  <span className="text-red-400/70">5 missed calls/week</span> × <span className="text-white">$500</span> × <span className="text-white">52 weeks</span> = <span className="text-white font-extrabold">$130,000<span className="text-red-400/70">/year</span></span>
                 </p>
                 <p className="text-gray-500 mt-3 text-sm">
                   One extra patient/month covers the service.
@@ -520,7 +520,7 @@ const Dentists: React.FC = () => {
                     trackStartTrialClick();
                     document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:scale-105"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/30 hover:scale-105"
                 >
                   Stop the Bleeding — Start Free Trial
                   <FaArrowRight className="text-sm" />
@@ -864,7 +864,7 @@ const Dentists: React.FC = () => {
                       trackStartTrialClick();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:scale-105"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/30 hover:scale-105"
                   >
                     Start Free 7-Day Trial
                     <FaArrowRight className="text-sm" />
@@ -983,7 +983,7 @@ const Dentists: React.FC = () => {
                     trackStartTrialClick();
                     document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 mt-8 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:scale-105"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 mt-8 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/30 hover:scale-105"
                 >
                   Start Your Free Trial
                   <FaArrowRight className="text-sm" />
@@ -1145,7 +1145,7 @@ const Dentists: React.FC = () => {
                             <button
                               type="submit"
                               disabled={isSubmitting}
-                              className="w-full py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/30"
+                              className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30"
                             >
                               {isSubmitting ? (
                                 <>
@@ -1186,7 +1186,7 @@ const Dentists: React.FC = () => {
                             href="https://calendly.com/emrebenian-cogniaai/30min"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all"
                           >
                             <FaCalendarCheck />
                             Schedule Kickoff Call (15 min)
@@ -1236,7 +1236,7 @@ const Dentists: React.FC = () => {
                         trackStartTrialClick();
                         document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                       }}
-                      className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg transition-all text-sm"
+                      className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg transition-all text-sm"
                     >
                       Start Trial
                       <FaArrowRight className="text-xs" />
@@ -1559,7 +1559,7 @@ const Dentists: React.FC = () => {
                       trackStartTrialClick();
                       document.getElementById('trial-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all"
                   >
                     Start Free Trial
                     <FaArrowRight className="text-sm" />
