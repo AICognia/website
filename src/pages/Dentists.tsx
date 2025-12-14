@@ -987,27 +987,17 @@ const Dentists: React.FC = () => {
             <div className="absolute inset-0 bg-[#0a0a0a]" />
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-5xl">
 
-              {/* Stats First - Establishes credibility */}
+              {/* Section Header */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="text-center mb-16"
+                className="text-center mb-12 lg:mb-16"
               >
-                <p className="text-gray-500 text-sm uppercase tracking-wider mb-8">Results from 50+ dental practices</p>
-                <div className="flex flex-wrap justify-center gap-8 lg:gap-16">
-                  {[
-                    { stat: '+20%', label: 'more bookings' },
-                    { stat: '-66%', label: 'fewer no-shows' },
-                    { stat: '0', label: 'missed calls' },
-                  ].map((item, i) => (
-                    <div key={i} className="text-center">
-                      <p className="text-4xl lg:text-5xl font-bold text-white mb-1">{item.stat}</p>
-                      <p className="text-gray-500 text-sm">{item.label}</p>
-                    </div>
-                  ))}
-                </div>
+                <h2 className="text-3xl lg:text-4xl font-light text-white">
+                  See What Our Clients Say
+                </h2>
               </motion.div>
 
               {/* Featured Testimonial - More premium */}
@@ -1026,7 +1016,7 @@ const Dentists: React.FC = () => {
                   {/* Testimonial content */}
                   <div className="lg:col-span-4">
                     <blockquote className="text-base lg:text-2xl text-white leading-relaxed mb-6 lg:mb-8">
-                      Patients book on weekends — Cognia schedules them, <span className="text-cyan-400">no backlog</span>. Like a receptionist who never takes a day off.
+                      Working with Cognia has been a game-changer for our office. If a patient requests an appointment over the weekend, Cognia schedules it for us — <span className="text-cyan-400">no backlog, no delays</span>.
                     </blockquote>
 
                     {/* Author - More prominent */}
