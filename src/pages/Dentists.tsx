@@ -703,7 +703,7 @@ const Dentists: React.FC = () => {
 
                   {/* Trust Line */}
                   <p className="text-xs lg:text-sm text-gray-400 italic">
-                    Serving 50+ dental practices across the U.S.
+                    Trusted by 50+ dental practices across the U.S.
                   </p>
                 </div>
 
