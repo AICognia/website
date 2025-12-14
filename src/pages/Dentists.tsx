@@ -482,22 +482,27 @@ const Dentists: React.FC = () => {
                     </p>
                   </motion.div>
 
-                  {/* Subheadline */}
-                  <motion.p
+                  {/* Subheadline - Split for cleaner reading */}
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.15 }}
-                    className="text-xl text-gray-300 leading-relaxed max-w-xl"
+                    className="max-w-xl"
                   >
-                    Cognia picks up every call, books appointments into your PMS, and sounds so human patients will never know the difference.
-                  </motion.p>
+                    <p className="text-xl text-white font-medium mb-2">
+                      Every call answered. Every appointment booked.
+                    </p>
+                    <p className="text-base text-gray-400">
+                      Sounds so human, patients will never know the difference.
+                    </p>
+                  </motion.div>
 
                   {/* Benefit Checklist */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="space-y-3"
+                    className="space-y-2.5"
                   >
                     {[
                       'Zero hold time. Zero voicemail. Zero missed revenue.',
@@ -508,38 +513,29 @@ const Dentists: React.FC = () => {
                         <div className="w-5 h-5 rounded-full bg-cyan-400/20 flex items-center justify-center flex-shrink-0">
                           <FaCheckCircle className="text-cyan-400 text-xs" />
                         </div>
-                        <p className="text-gray-300">{benefit}</p>
+                        <p className="text-gray-400 text-sm">{benefit}</p>
                       </div>
                     ))}
                   </motion.div>
 
-                  {/* Audio Demo - Minimal */}
+                  {/* Audio Demo - Text link style, not competing with form */}
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.25 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.25 }}
                   >
                     <button
                       onClick={() => {
                         trackHearAIClick();
                         setShowAudioModal(true);
                       }}
-                      className="group relative inline-flex"
+                      className="group inline-flex items-center gap-2 text-gray-500 hover:text-cyan-400 transition-colors"
                     >
-                      <div className="flex items-center gap-3 px-4 py-3 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-cyan-400/40 rounded-lg transition-all duration-300">
-                        <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
-                          <FaHeadphones className="text-black text-sm" />
-                        </div>
-                        <div className="text-left">
-                          <p className="font-medium text-white text-sm group-hover:text-cyan-300 transition-colors">
-                            Before you decide: hear this
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            Real call • 30 sec
-                          </p>
-                        </div>
-                        <FaPlay className="text-cyan-400 text-sm group-hover:translate-x-0.5 transition-transform" />
-                      </div>
+                      <FaHeadphones className="text-sm" />
+                      <span className="text-sm underline underline-offset-2">
+                        Hear a real patient call
+                      </span>
+                      <span className="text-xs text-gray-600">30 sec</span>
                     </button>
                   </motion.div>
 
@@ -856,18 +852,18 @@ const Dentists: React.FC = () => {
 
               {/* CTA Button - Secondary weight */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 viewport={{ once: true }}
-                className="text-center mt-12"
+                className="text-center mt-10"
               >
                 <button
                   onClick={scrollToFinalForm}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-cyan-400/40 text-white font-medium text-base rounded-xl transition-all duration-200"
+                  className="inline-flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-colors text-sm"
                 >
-                  Get Started This Week
-                  <FaArrowRight className="text-cyan-400" />
+                  <span className="underline underline-offset-2">Get started this week</span>
+                  <FaArrowRight className="text-xs" />
                 </button>
               </motion.div>
             </div>
@@ -989,43 +985,48 @@ const Dentists: React.FC = () => {
                 </div>
               </motion.div>
 
-              {/* Stats Row */}
+              {/* Stats Row with micro-qualifiers */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="grid grid-cols-3 gap-4 lg:gap-8"
+                className="space-y-4"
               >
-                {[
-                  { stat: '20%', label: 'More Bookings', sublabel: 'Average increase' },
-                  { stat: '66%', label: 'Fewer No-Shows', sublabel: 'With auto-confirmations' },
-                  { stat: '0', label: 'Missed Calls', sublabel: 'With 24/7 coverage' },
-                ].map((item, i) => (
-                  <div key={i} className="text-center p-4 lg:p-6 bg-white/5 border border-white/10 rounded-2xl">
-                    <p className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                      {item.stat}
-                    </p>
-                    <p className="text-white font-medium mt-1">{item.label}</p>
-                    <p className="text-gray-500 text-xs mt-0.5">{item.sublabel}</p>
-                  </div>
-                ))}
+                <div className="grid grid-cols-3 gap-4 lg:gap-8">
+                  {[
+                    { stat: '20%', label: 'More Bookings', sublabel: 'Average increase' },
+                    { stat: '66%', label: 'Fewer No-Shows', sublabel: 'With auto-confirmations' },
+                    { stat: '0', label: 'Missed Calls', sublabel: 'With 24/7 coverage' },
+                  ].map((item, i) => (
+                    <div key={i} className="text-center p-4 lg:p-6 bg-white/5 border border-white/10 rounded-2xl">
+                      <p className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                        {item.stat}
+                      </p>
+                      <p className="text-white font-medium mt-1">{item.label}</p>
+                      <p className="text-gray-500 text-xs mt-0.5">{item.sublabel}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-center text-xs text-gray-600">
+                  Based on 50+ live Cognia practices
+                </p>
               </motion.div>
 
-              {/* CTA Button - Secondary weight */}
+              {/* CTA Button - Secondary weight, less prominent */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-center mt-12"
+                className="text-center mt-10"
               >
                 <button
                   onClick={scrollToFinalForm}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-cyan-400/40 text-white font-medium text-base rounded-xl transition-all duration-200"
+                  className="inline-flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-colors text-sm"
                 >
-                  Start Free Trial
-                  <FaArrowRight className="text-cyan-400" />
+                  <span className="underline underline-offset-2">Start your free trial</span>
+                  <FaArrowRight className="text-xs" />
                 </button>
               </motion.div>
             </div>
