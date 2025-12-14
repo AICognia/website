@@ -470,13 +470,13 @@ const Dentists: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black" />
             <div className="absolute top-0 right-1/4 w-[500px] h-[350px] bg-cyan-500/20 blur-[120px] rounded-full" />
 
-            <div className="relative container mx-auto px-4 sm:px-6 lg:px-16 max-w-7xl">
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 max-w-7xl">
 
               {/* DESKTOP: Split Layout - Balanced spacing */}
-              <div className="hidden lg:grid lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_440px] lg:gap-12 xl:gap-16 lg:items-center lg:min-h-[calc(100vh-6rem)]">
+              <div className="hidden lg:grid lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_420px] lg:gap-10 xl:gap-14 lg:items-center lg:min-h-[calc(100vh-6rem)]">
 
                 {/* Left Column - Messaging */}
-                <div className="space-y-5 flex flex-col justify-center">
+                <div className="space-y-6 flex flex-col justify-center">
                   {/* Dentist qualifier */}
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -514,7 +514,7 @@ const Dentists: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.15 }}
-                    className="space-y-3"
+                    className="space-y-3 pt-1"
                   >
                     <p className="text-xl lg:text-2xl text-white font-medium leading-snug">
                       AI receptionist that books appointments 24/7.
