@@ -268,6 +268,7 @@ const Dentists: React.FC = () => {
                     Your Front Desk Misses<br />
                     <span className="text-red-400">30% of Calls.</span>
                   </h1>
+                  <p className="text-xs text-gray-500 mb-2">*Industry avg for single-location practices without overflow coverage</p>
                   <p className="text-lg text-gray-300 leading-relaxed">
                     That's <span className="text-white font-semibold">$50,000+/year</span> walking out the door.
                   </p>
@@ -297,7 +298,7 @@ const Dentists: React.FC = () => {
                     className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30"
                   >
                     <FaHeadphones className="text-xl" />
-                    Hear a Real Patient Call (30 sec)
+                    Hear a Real Patient Call — No Email Required
                   </button>
                 </motion.div>
 
@@ -354,6 +355,7 @@ const Dentists: React.FC = () => {
                     Your Front Desk Misses<br />
                     <span className="text-red-400">30% of Calls.</span>
                   </h1>
+                  <p className="text-sm text-gray-500 mb-2">*Industry avg for single-location practices without overflow coverage</p>
                   <p className="text-2xl text-gray-300">
                     That's <span className="text-white font-semibold">$50,000+/year</span> walking out the door.
                   </p>
@@ -384,7 +386,7 @@ const Dentists: React.FC = () => {
                     className="flex items-center justify-center gap-3 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:scale-105"
                   >
                     <FaHeadphones className="text-xl" />
-                    Hear a Real Patient Call (30 sec)
+                    Hear a Real Patient Call — No Email Required
                   </button>
 
                   <a
@@ -468,7 +470,7 @@ const Dentists: React.FC = () => {
                   {
                     icon: FaDollarSign,
                     title: 'After Hours',
-                    stat: '$500/call',
+                    stat: '1 patient lost',
                     description: 'Evening callers book elsewhere by morning.'
                   }
                 ].map((item, index) => (
@@ -707,7 +709,7 @@ const Dentists: React.FC = () => {
                   { icon: FaEye, title: 'Every call recorded & transcribed', desc: 'Review any conversation anytime' },
                   { icon: FaClipboardList, title: 'Your booking rules enforced', desc: 'Appointment types, durations, buffers—all yours' },
                   { icon: FaUserCheck, title: 'Human fallback when uncertain', desc: 'If unsure, it takes a message. Never guesses.' },
-                  { icon: FaCalendarCheck, title: 'Real-time calendar sync', desc: 'Appointments appear instantly in your PMS' }
+                  { icon: FaCalendarCheck, title: 'Real-time calendar sync', desc: 'Syncs directly with your PMS as bookings happen' }
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-4 bg-black/30 border border-white/10 rounded-xl p-5">
                     <div className="flex-shrink-0 w-10 h-10 bg-cyan-400/10 border border-cyan-400/30 rounded-lg flex items-center justify-center">
@@ -842,7 +844,7 @@ const Dentists: React.FC = () => {
                   {[
                     { stat: '50+', label: 'Dental practices' },
                     { stat: '24/7', label: 'Call coverage' },
-                    { stat: '98%', label: 'Booking accuracy' }
+                    { stat: '0', label: 'Missed calls' }
                   ].map((item, i) => (
                     <div key={i} className="text-center bg-black/30 border border-white/5 rounded-xl p-4">
                       <p className="text-2xl lg:text-3xl font-bold text-cyan-400">{item.stat}</p>
@@ -976,7 +978,7 @@ const Dentists: React.FC = () => {
 
                 <p className="text-gray-400">
                   One extra patient covers the entire month.<br />
-                  <span className="text-gray-500 text-sm">Most practices see measurable impact within the first few weeks.</span>
+                  <span className="text-gray-500 text-sm">You'll see exactly how many calls we answered in your first weekly report.</span>
                 </p>
 
                 <a
@@ -1162,6 +1164,7 @@ const Dentists: React.FC = () => {
                                 </>
                               )}
                             </button>
+                            <p className="text-xs text-gray-500 text-center">No credit card required</p>
 
                             <p className="text-xs text-gray-500 text-center">
                               We'll call within 24 hours to start setup. Your practice keeps running normally.
