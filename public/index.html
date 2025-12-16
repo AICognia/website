@@ -93,7 +93,7 @@
     }
     </script>
     
-    <!-- Defer all tracking scripts with requestIdleCallback for better performance -->
+    <!-- Defer Leadsy.ai tracking script with requestIdleCallback for better performance -->
     <script>
     // Use requestIdleCallback or setTimeout fallback for non-critical scripts
     function loadDeferredScripts() {
@@ -105,17 +105,6 @@
       leadsyScript.dataset.version = '062024';
       leadsyScript.async = true;
       document.head.appendChild(leadsyScript);
-
-      // Meta Pixel Code
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '865681415875398');
     }
 
     // Load after idle or interaction
@@ -129,11 +118,6 @@
     </script>
   </head>
   <body>
-    <!-- Meta Pixel Code noscript fallback -->
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=865681415875398&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
     <noscript>
       <div style="padding: 20px; font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto;">
         <h1>Cognia AI - International AI Consultancy & Solutions</h1>

@@ -252,24 +252,48 @@ const Dentists: React.FC = () => {
     console.log('UTM Data captured:', utmDataRef.current);
   }, []);
 
-  // Track Meta Pixel events on component mount
+  // Initialize Meta Pixel and track PageView on component mount (only for /dentists page)
   useEffect(() => {
-    if ((window as any).fbq) {
-      (window as any).fbq('track', 'PageView');
-      (window as any).fbq('track', 'ViewContent', {
-        content_category: 'dentist'
-      });
+    // Initialize Meta Pixel with new ID - disable automatic button tracking
+    if (!(window as any).fbq) {
+      const n = (window as any).fbq = function() {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!(window as any)._fbq) (window as any)._fbq = n;
+      n.push = n;
+      n.loaded = true;
+      n.version = '2.0';
+      n.queue = [];
+
+      const t = document.createElement('script');
+      t.async = true;
+      t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+      const s = document.getElementsByTagName('script')[0];
+      s.parentNode?.insertBefore(t, s);
     }
+
+    // Initialize with new pixel ID - autoConfig false to disable automatic button tracking
+    (window as any).fbq('set', 'autoConfig', false, '25874032308870150');
+    (window as any).fbq('init', '25874032308870150');
+    (window as any).fbq('track', 'PageView');
   }, []);
 
-  // Track Hear AI Click (once per session)
-  const trackHearAIClick = () => {
-    // Tracking disabled - only PageView and ViewContent tracked
+  // Track when user starts the audio demo
+  const trackAudioDemoPlay = () => {
+    if ((window as any).fbq && !audioPlayedTracked.current) {
+      (window as any).fbq('trackCustom', 'AudioDemoStarted');
+      audioPlayedTracked.current = true;
+    }
   };
 
-  // Track Start Trial CTA clicks
+  // Track Hear AI Click - no longer tracking
+  const trackHearAIClick = () => {
+    // No longer tracking clicks
+  };
+
+  // Track Start Trial CTA clicks - no longer tracking
   const trackStartTrialClick = () => {
-    // Tracking disabled - only PageView and ViewContent tracked
+    // No longer tracking clicks
   };
 
   // Sticky CTA scroll listener with re-show after dismiss
@@ -291,7 +315,7 @@ const Dentists: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [stickyDismissed, stickyDismissTime]);
 
-  // Track audio playback events for Meta Pixel
+  // Track audio playback events - fire pixel when audio starts
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -304,6 +328,8 @@ const Dentists: React.FC = () => {
 
     const handlePlaying = () => {
       setIsPlaying(true);
+      // Track audio demo started in Meta Pixel
+      trackAudioDemoPlay();
     };
 
     const handlePause = () => {
