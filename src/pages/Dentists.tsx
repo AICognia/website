@@ -500,10 +500,6 @@ const Dentists: React.FC = () => {
     {
       q: 'How long does setup take?',
       a: 'Full setup takes about 1 week. We customize the AI to your practice — your services, schedule, insurance policies, and communication style. Once configured, going live takes just 10 minutes.'
-    },
-    {
-      q: 'What\'s included in the $199/month?',
-      a: 'Everything: 24/7 call handling, appointment scheduling, PMS integration, bilingual support (English & Spanish), confirmation calls, and a dashboard to monitor all activity. No hidden fees.'
     }
   ];
 
