@@ -384,8 +384,8 @@ const Dentists: React.FC = () => {
       const randomStr = Math.random().toString(36).substr(2, 9);
       const trackingToken = `lead_${timestamp}_${randomStr}`;
 
-      // Submit to n8n webhook
-      const response = await fetch('https://cogniaai.app.n8n.cloud/webhook/LEAD_FORM', {
+      // Submit to Formspree (Formspree webhooks to n8n automatically)
+      const response = await fetch('https://formspree.io/f/mqarlrwl', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -395,7 +395,7 @@ const Dentists: React.FC = () => {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          practice_name: formData.practiceName,
+          practiceName: formData.practiceName,
           tracking_token: trackingToken,
           landing_url: utmDataRef.current.landing_url || window.location.href,
           utm_source: utmDataRef.current.utm_source || 'website',
@@ -403,12 +403,16 @@ const Dentists: React.FC = () => {
           utm_campaign: utmDataRef.current.utm_campaign,
           utm_content: utmDataRef.current.utm_content,
           utm_term: utmDataRef.current.utm_term,
+          _subject: `Dentist Free Trial Request from ${formData.name}${formData.practiceName ? ` - ${formData.practiceName}` : ''}`,
+          form_type: 'dentist_landing_page_trial',
+          source: 'dentists_page_meta_ads',
+          industry: 'dental',
           submitted_at: new Date().toISOString(),
         }),
       });
 
       if (!response.ok) {
-        throw new Error('Webhook submission failed');
+        throw new Error('Form submission failed');
       }
 
       // Track conversion
