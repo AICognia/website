@@ -228,6 +228,28 @@ const Dentists: React.FC = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const finalFormRef = useRef<HTMLDivElement>(null);
 
+  // Capture UTM parameters and landing URL on mount
+  const [utmData, setUtmData] = useState({
+    landing_url: '',
+    utm_source: '',
+    utm_medium: '',
+    utm_campaign: '',
+    utm_content: '',
+    utm_term: '',
+  });
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    setUtmData({
+      landing_url: window.location.href,
+      utm_source: urlParams.get('utm_source') || '',
+      utm_medium: urlParams.get('utm_medium') || '',
+      utm_campaign: urlParams.get('utm_campaign') || '',
+      utm_content: urlParams.get('utm_content') || '',
+      utm_term: urlParams.get('utm_term') || '',
+    });
+  }, []);
+
   // Track Meta Pixel events on component mount
   useEffect(() => {
     if ((window as any).fbq) {
@@ -384,6 +406,7 @@ const Dentists: React.FC = () => {
         },
         body: JSON.stringify({
           ...formData,
+          ...utmData,
           _subject: `Dentist Free Trial Request from ${formData.name}${formData.practiceName ? ` - ${formData.practiceName}` : ''}`,
           form_type: 'dentist_landing_page_trial',
           source: 'dentists_page_meta_ads',
