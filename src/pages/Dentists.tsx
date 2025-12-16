@@ -37,7 +37,6 @@ interface TrialFormProps {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.FormEvent) => void;
   isSubmitting: boolean;
-  isSubmitted: boolean;
   error: string;
 }
 
@@ -47,7 +46,6 @@ const TrialForm: React.FC<TrialFormProps> = ({
   handleChange,
   handleSubmit,
   isSubmitting,
-  isSubmitted,
   error
 }) => {
   const isHero = variant === 'hero';
@@ -55,149 +53,111 @@ const TrialForm: React.FC<TrialFormProps> = ({
 
   return (
     <div className={`${isHero ? 'bg-white/[0.03] border-white/10' : 'bg-black/50 border-white/10'} border rounded-2xl ${isHero ? 'p-6 lg:p-8' : 'p-6 lg:p-8'} backdrop-blur-sm`}>
-      <AnimatePresence mode="wait">
-        {!isSubmitted ? (
-          <motion.div
-            key="form"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            {isHero && (
-              <div className="text-center mb-6">
-                <h3 className="text-xl lg:text-2xl font-semibold text-white mb-1">
-                  Start Your Free Trial
-                </h3>
-                <p className="text-sm text-gray-400">7 days free • No credit card</p>
-              </div>
-            )}
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Full Name *"
-                className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
-                autoComplete="name"
-              />
-              <input
-                type="text"
-                name="practiceName"
-                value={formData.practiceName}
-                onChange={handleChange}
-                placeholder="Practice Name *"
-                className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
-                autoComplete="organization"
-              />
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email Address *"
-                className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
-                autoComplete="email"
-              />
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="Phone Number *"
-                className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
-                autoComplete="tel"
-              />
+      {isHero && (
+        <div className="text-center mb-6">
+          <h3 className="text-xl lg:text-2xl font-semibold text-white mb-1">
+            Start Your Free Trial
+          </h3>
+          <p className="text-sm text-gray-400">7 days free • No credit card</p>
+        </div>
+      )}
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Full Name *"
+          className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
+          autoComplete="name"
+        />
+        <input
+          type="text"
+          name="practiceName"
+          value={formData.practiceName}
+          onChange={handleChange}
+          placeholder="Practice Name *"
+          className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
+          autoComplete="organization"
+        />
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Email Address *"
+          className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
+          autoComplete="email"
+        />
+        <input
+          type="tel"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          placeholder="Phone Number *"
+          className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
+          autoComplete="tel"
+        />
 
-              <AnimatePresence>
-                {error && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl"
-                  >
-                    <FaTimes className="text-red-400 text-sm flex-shrink-0" />
-                    <p className="text-red-400 text-sm">{error}</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+        <AnimatePresence>
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl"
+            >
+              <FaTimes className="text-red-400 text-sm flex-shrink-0" />
+              <p className="text-red-400 text-sm">{error}</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-base flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02]"
-              >
-                {isSubmitting ? (
-                  <>
-                    <FaSpinner className="animate-spin" />
-                    <span>Starting Trial...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Start Free Trial</span>
-                    <FaArrowRight className="text-sm" />
-                  </>
-                )}
-              </button>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-base flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02]"
+        >
+          {isSubmitting ? (
+            <>
+              <FaSpinner className="animate-spin" />
+              <span>Scheduling your demo...</span>
+            </>
+          ) : (
+            <>
+              <span>Start Free Trial</span>
+              <FaArrowRight className="text-sm" />
+            </>
+          )}
+        </button>
 
-              {/* Micro-reassurance - reduces fear */}
-              <p className="text-xs text-gray-500 text-center">
-                No disruption to your phone line • Patients think it's human
-              </p>
-            </form>
+        {/* Micro-reassurance - reduces fear */}
+        <p className="text-xs text-gray-500 text-center">
+          No disruption to your phone line • Patients think it's human
+        </p>
+      </form>
 
-            {/* What happens next - builds trust */}
-            {(isHero || isFinal) && (
-              <div className="mt-6 pt-5 border-t border-white/5">
-                <p className="text-xs text-gray-600 uppercase tracking-wider mb-3">After you sign up:</p>
-                <div className="space-y-2">
-                  {[
-                    'We review your practice info',
-                    'We connect to your PMS',
-                    'You go live in ~7 days'
-                  ].map((step, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-gray-500">
-                      <div className="w-4 h-4 rounded-full bg-cyan-400/10 flex items-center justify-center flex-shrink-0">
-                        <span className="text-[10px] text-cyan-400 font-medium">{i + 1}</span>
-                      </div>
-                      <span>{step}</span>
-                    </div>
-                  ))}
+      {/* What happens next - builds trust */}
+      {(isHero || isFinal) && (
+        <div className="mt-6 pt-5 border-t border-white/5">
+          <p className="text-xs text-gray-600 uppercase tracking-wider mb-3">After you sign up:</p>
+          <div className="space-y-2">
+            {[
+              'We review your practice info',
+              'We connect to your PMS',
+              'You go live in ~7 days'
+            ].map((step, i) => (
+              <div key={i} className="flex items-center gap-2 text-xs text-gray-500">
+                <div className="w-4 h-4 rounded-full bg-cyan-400/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[10px] text-cyan-400 font-medium">{i + 1}</span>
                 </div>
-                <p className="text-[11px] text-gray-600 mt-3">No obligation. Cancel anytime.</p>
+                <span>{step}</span>
               </div>
-            )}
-          </motion.div>
-        ) : (
-          <motion.div
-            key="success"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center"
-          >
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-cyan-400/10 rounded-full flex items-center justify-center">
-                <FaCheckCircle className="text-2xl text-cyan-400" />
-              </div>
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-2">
-              You're In!
-            </h3>
-            <p className="text-gray-400 text-sm mb-6">
-              Pick a time for your setup call below
-            </p>
-            <div className="rounded-xl overflow-hidden bg-white">
-              <iframe
-                src={`https://calendly.com/emrebenian-cogniaai/30min?hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=06b6d4&name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}`}
-                width="100%"
-                height="600"
-                frameBorder="0"
-                title="Schedule Setup Call"
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ))}
+          </div>
+          <p className="text-[11px] text-gray-600 mt-3">No obligation. Cancel anytime.</p>
+        </div>
+      )}
     </div>
   );
 };
@@ -211,7 +171,6 @@ const Dentists: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [showAudioModal, setShowAudioModal] = useState(false);
   const [audioEnded, setAudioEnded] = useState(false);
   const [showStickyCTA, setShowStickyCTA] = useState(false);
@@ -403,18 +362,6 @@ const Dentists: React.FC = () => {
     };
   }, [showAudioModal]);
 
-  // Listen for Calendly booking completion
-  useEffect(() => {
-    const handleCalendlyMessage = (e: MessageEvent) => {
-      if (e.data?.event && e.data.event === 'calendly.event_scheduled') {
-        // Tracking disabled - only PageView and ViewContent tracked
-      }
-    };
-
-    window.addEventListener('message', handleCalendlyMessage);
-    return () => window.removeEventListener('message', handleCalendlyMessage);
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -432,40 +379,60 @@ const Dentists: React.FC = () => {
     setError('');
 
     try {
-      const response = await fetch('https://formspree.io/f/mqarlrwl', {
+      // Generate unique tracking token
+      const timestamp = Date.now();
+      const randomStr = Math.random().toString(36).substr(2, 9);
+      const trackingToken = `lead_${timestamp}_${randomStr}`;
+
+      // Submit to n8n webhook
+      const response = await fetch('https://cogniaai.app.n8n.cloud/webhook/LEAD_FORM', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
-          ...formData,
-          // UTM data captured on page load
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          practice_name: formData.practiceName,
+          tracking_token: trackingToken,
           landing_url: utmDataRef.current.landing_url || window.location.href,
-          utm_source: utmDataRef.current.utm_source,
+          utm_source: utmDataRef.current.utm_source || 'website',
           utm_medium: utmDataRef.current.utm_medium,
           utm_campaign: utmDataRef.current.utm_campaign,
           utm_content: utmDataRef.current.utm_content,
           utm_term: utmDataRef.current.utm_term,
-          _subject: `Dentist Free Trial Request from ${formData.name}${formData.practiceName ? ` - ${formData.practiceName}` : ''}`,
-          form_type: 'dentist_landing_page_trial',
-          source: 'dentists_page_meta_ads',
-          industry: 'dental',
           submitted_at: new Date().toISOString(),
         }),
       });
 
-      if (response.ok) {
-        // Pixel tracking disabled - only PageView and ViewContent tracked
-        conversionTracker.trackDemoBooking('dentists_page');
-        conversionTracker.trackButtonClick('Dentist Free Trial Submitted', 'dentists_page');
-        setIsSubmitted(true);
-      } else {
-        setError('Something went wrong. Please try again.');
+      if (!response.ok) {
+        throw new Error('Webhook submission failed');
       }
+
+      // Track conversion
+      conversionTracker.trackDemoBooking('dentists_page');
+      conversionTracker.trackButtonClick('Dentist Free Trial Submitted', 'dentists_page');
+
+      // Build Calendly URL with prefilled data
+      const calendlyBase = 'https://calendly.com/emrebenian-cogniaai/30min';
+      const calendlyParams = new URLSearchParams({
+        name: formData.name,
+        email: formData.email,
+        a1: formData.phone,
+        utm_source: 'website',
+        utm_medium: 'form',
+        utm_content: trackingToken,
+        utm_campaign: 'dental_demo',
+      });
+
+      // Redirect to Calendly
+      window.location.href = `${calendlyBase}?${calendlyParams.toString()}`;
+
     } catch (err) {
       console.error('Form submission error:', err);
-      setError('Connection error. Please try again.');
-    } finally {
+      setError('Something went wrong. Please try again or contact us directly.');
       setIsSubmitting(false);
     }
   };
@@ -652,7 +619,7 @@ const Dentists: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="flex flex-col justify-center w-full"
                 >
-                  <TrialForm variant="hero" formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} isSubmitted={isSubmitted} error={error} />
+                  <TrialForm variant="hero" formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} error={error} />
                 </motion.div>
               </div>
 
@@ -691,7 +658,7 @@ const Dentists: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                  <TrialForm variant="hero" formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} isSubmitted={isSubmitted} error={error} />
+                  <TrialForm variant="hero" formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} error={error} />
                 </motion.div>
 
                 {/* Compact stats row */}
@@ -1194,7 +1161,7 @@ const Dentists: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
               >
-                <TrialForm variant="final" formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} isSubmitted={isSubmitted} error={error} />
+                <TrialForm variant="final" formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} error={error} />
               </motion.div>
 
               <motion.div
