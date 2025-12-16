@@ -85,7 +85,7 @@ const TrialForm: React.FC<TrialFormProps> = ({
                 name="practiceName"
                 value={formData.practiceName}
                 onChange={handleChange}
-                placeholder="Practice Name"
+                placeholder="Practice Name *"
                 className="w-full px-4 py-3.5 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all text-sm"
                 autoComplete="organization"
               />
@@ -232,7 +232,6 @@ const Dentists: React.FC = () => {
   useEffect(() => {
     if ((window as any).fbq) {
       (window as any).fbq('track', 'PageView');
-      (window as any).fbq('track', 'LandingPageView');
       (window as any).fbq('track', 'ViewContent', {
         content_category: 'dentist'
       });
@@ -241,17 +240,12 @@ const Dentists: React.FC = () => {
 
   // Track Hear AI Click (once per session)
   const trackHearAIClick = () => {
-    if ((window as any).fbq && !sessionStorage.getItem('hearAIClicked')) {
-      (window as any).fbq('trackCustom', 'Hear_AI_Click');
-      sessionStorage.setItem('hearAIClicked', 'true');
-    }
+    // Tracking disabled - only PageView and ViewContent tracked
   };
 
   // Track Start Trial CTA clicks
   const trackStartTrialClick = () => {
-    if ((window as any).fbq) {
-      (window as any).fbq('trackCustom', 'Start_Trial_Click');
-    }
+    // Tracking disabled - only PageView and ViewContent tracked
   };
 
   // Sticky CTA scroll listener with re-show after dismiss
@@ -286,13 +280,6 @@ const Dentists: React.FC = () => {
 
     const handlePlaying = () => {
       setIsPlaying(true);
-      if ((window as any).fbq && !audioPlayedTracked.current) {
-        (window as any).fbq('trackCustom', 'Audio_Played', {
-          content_category: 'dentist',
-          source: 'hear_ai_demo'
-        });
-        audioPlayedTracked.current = true;
-      }
     };
 
     const handlePause = () => {
@@ -301,13 +288,6 @@ const Dentists: React.FC = () => {
 
     const handleEnded = () => {
       setIsPlaying(false);
-      if ((window as any).fbq && !audioCompletedTracked.current) {
-        (window as any).fbq('trackCustom', 'Audio_Completed', {
-          content_category: 'dentist',
-          source: 'hear_ai_demo'
-        });
-        audioCompletedTracked.current = true;
-      }
       setAudioEnded(true);
     };
 
@@ -372,9 +352,7 @@ const Dentists: React.FC = () => {
   useEffect(() => {
     const handleCalendlyMessage = (e: MessageEvent) => {
       if (e.data?.event && e.data.event === 'calendly.event_scheduled') {
-        if ((window as any).fbq) {
-          (window as any).fbq('trackCustom', 'Schedule');
-        }
+        // Tracking disabled - only PageView and ViewContent tracked
       }
     };
 
@@ -385,7 +363,7 @@ const Dentists: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.phone) {
+    if (!formData.name || !formData.practiceName || !formData.email || !formData.phone) {
       setError('Please fill in all required fields');
       return;
     }
@@ -415,10 +393,7 @@ const Dentists: React.FC = () => {
       });
 
       if (response.ok) {
-        if ((window as any).fbq) {
-          (window as any).fbq('track', 'Lead');
-        }
-
+        // Pixel tracking disabled - only PageView and ViewContent tracked
         conversionTracker.trackDemoBooking('dentists_page');
         conversionTracker.trackButtonClick('Dentist Free Trial Submitted', 'dentists_page');
         setIsSubmitted(true);
