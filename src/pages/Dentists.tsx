@@ -228,9 +228,9 @@ const Dentists: React.FC = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const finalFormRef = useRef<HTMLDivElement>(null);
 
-  // Capture UTM parameters and landing URL on mount
-  const [utmData, setUtmData] = useState({
-    landing_url: '',
+  // Capture UTM parameters and landing URL using ref (not state) for reliability
+  const utmDataRef = useRef({
+    landing_url: typeof window !== 'undefined' ? window.location.href : '',
     utm_source: '',
     utm_medium: '',
     utm_campaign: '',
@@ -240,14 +240,16 @@ const Dentists: React.FC = () => {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    setUtmData({
+    utmDataRef.current = {
       landing_url: window.location.href,
       utm_source: urlParams.get('utm_source') || '',
       utm_medium: urlParams.get('utm_medium') || '',
       utm_campaign: urlParams.get('utm_campaign') || '',
       utm_content: urlParams.get('utm_content') || '',
       utm_term: urlParams.get('utm_term') || '',
-    });
+    };
+    // Debug log - remove in production
+    console.log('UTM Data captured:', utmDataRef.current);
   }, []);
 
   // Track Meta Pixel events on component mount
@@ -406,7 +408,13 @@ const Dentists: React.FC = () => {
         },
         body: JSON.stringify({
           ...formData,
-          ...utmData,
+          // UTM data captured on page load
+          landing_url: utmDataRef.current.landing_url || window.location.href,
+          utm_source: utmDataRef.current.utm_source,
+          utm_medium: utmDataRef.current.utm_medium,
+          utm_campaign: utmDataRef.current.utm_campaign,
+          utm_content: utmDataRef.current.utm_content,
+          utm_term: utmDataRef.current.utm_term,
           _subject: `Dentist Free Trial Request from ${formData.name}${formData.practiceName ? ` - ${formData.practiceName}` : ''}`,
           form_type: 'dentist_landing_page_trial',
           source: 'dentists_page_meta_ads',
