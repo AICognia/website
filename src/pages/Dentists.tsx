@@ -256,20 +256,25 @@ const Dentists: React.FC = () => {
   useEffect(() => {
     // Initialize Meta Pixel with new ID - disable automatic button tracking
     if (!(window as any).fbq) {
-      const n = (window as any).fbq = function() {
-        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-      };
-      if (!(window as any)._fbq) (window as any)._fbq = n;
-      n.push = n;
-      n.loaded = true;
-      n.version = '2.0';
-      n.queue = [];
-
-      const t = document.createElement('script');
-      t.async = true;
-      t.src = 'https://connect.facebook.net/en_US/fbevents.js';
-      const s = document.getElementsByTagName('script')[0];
-      s.parentNode?.insertBefore(t, s);
+      /* eslint-disable */
+      (function(f: any, b: any, e: any, v: any) {
+        let n: any;
+        if (f.fbq) return;
+        n = f.fbq = function() {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        const t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        const s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      /* eslint-enable */
     }
 
     // Initialize with new pixel ID - autoConfig false to disable automatic button tracking
