@@ -187,28 +187,88 @@ const Dentists: React.FC = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const finalFormRef = useRef<HTMLDivElement>(null);
 
-  // Capture UTM parameters and landing URL using ref (not state) for reliability
-  const utmDataRef = useRef({
+  // Capture all attribution signals using ref (not state) for reliability
+  const attributionDataRef = useRef({
     landing_url: typeof window !== 'undefined' ? window.location.href : '',
     utm_source: '',
     utm_medium: '',
     utm_campaign: '',
     utm_content: '',
     utm_term: '',
+    fbclid: '',
+    gclid: '',
+    referrer: '',
   });
 
+  // Capture attribution signals on page load with localStorage backup
   useEffect(() => {
+    const STORAGE_KEY = 'cognia_attribution';
+    const EXPIRY_MS = 86400000; // 24 hours
+
+    // Extract current URL parameters
     const urlParams = new URLSearchParams(window.location.search);
-    utmDataRef.current = {
+
+    // Capture current page signals
+    const currentSignals = {
       landing_url: window.location.href,
       utm_source: urlParams.get('utm_source') || '',
       utm_medium: urlParams.get('utm_medium') || '',
       utm_campaign: urlParams.get('utm_campaign') || '',
       utm_content: urlParams.get('utm_content') || '',
       utm_term: urlParams.get('utm_term') || '',
+      fbclid: urlParams.get('fbclid') || '',
+      gclid: urlParams.get('gclid') || '',
+      referrer: document.referrer || '',
+      timestamp: Date.now(),
     };
-    // Debug log - remove in production
-    console.log('UTM Data captured:', utmDataRef.current);
+
+    // Check if we have any meaningful signals from current URL
+    const hasCurrentSignals = currentSignals.utm_source || currentSignals.fbclid ||
+                              currentSignals.gclid || currentSignals.referrer;
+
+    // Try to restore from localStorage if current signals are empty
+    let finalSignals = { ...currentSignals };
+
+    try {
+      const storedData = localStorage.getItem(STORAGE_KEY);
+      if (storedData) {
+        const parsed = JSON.parse(storedData);
+        const isRecent = (Date.now() - parsed.timestamp) < EXPIRY_MS;
+
+        if (isRecent) {
+          // Merge: use current signals if present, otherwise fall back to stored
+          finalSignals = {
+            landing_url: currentSignals.landing_url || parsed.landing_url || '',
+            utm_source: currentSignals.utm_source || parsed.utm_source || '',
+            utm_medium: currentSignals.utm_medium || parsed.utm_medium || '',
+            utm_campaign: currentSignals.utm_campaign || parsed.utm_campaign || '',
+            utm_content: currentSignals.utm_content || parsed.utm_content || '',
+            utm_term: currentSignals.utm_term || parsed.utm_term || '',
+            fbclid: currentSignals.fbclid || parsed.fbclid || '',
+            gclid: currentSignals.gclid || parsed.gclid || '',
+            referrer: currentSignals.referrer || parsed.referrer || '',
+            timestamp: currentSignals.timestamp,
+          };
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to read attribution from localStorage:', e);
+    }
+
+    // Save to localStorage if we have meaningful signals
+    if (hasCurrentSignals || finalSignals.utm_source || finalSignals.fbclid || finalSignals.gclid) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(finalSignals));
+      } catch (e) {
+        console.warn('Failed to save attribution to localStorage:', e);
+      }
+    }
+
+    // Update ref with final signals
+    attributionDataRef.current = finalSignals;
+
+    // Debug log
+    console.log('Attribution data captured:', attributionDataRef.current);
   }, []);
 
   // Initialize Meta Pixel and track PageView on component mount (only for /dentists page)
@@ -392,17 +452,25 @@ const Dentists: React.FC = () => {
           'Accept': 'application/json',
         },
         body: JSON.stringify({
+          // Form data
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
           practiceName: formData.practiceName,
           tracking_token: trackingToken,
-          landing_url: utmDataRef.current.landing_url || window.location.href,
-          utm_source: utmDataRef.current.utm_source || 'website',
-          utm_medium: utmDataRef.current.utm_medium,
-          utm_campaign: utmDataRef.current.utm_campaign,
-          utm_content: utmDataRef.current.utm_content,
-          utm_term: utmDataRef.current.utm_term,
+          // Attribution data - UTM parameters
+          landing_url: attributionDataRef.current.landing_url || window.location.href,
+          utm_source: attributionDataRef.current.utm_source || 'website',
+          utm_medium: attributionDataRef.current.utm_medium,
+          utm_campaign: attributionDataRef.current.utm_campaign,
+          utm_content: attributionDataRef.current.utm_content,
+          utm_term: attributionDataRef.current.utm_term,
+          // Attribution data - Click IDs (CRITICAL for ad tracking)
+          fbclid: attributionDataRef.current.fbclid,
+          gclid: attributionDataRef.current.gclid,
+          // Attribution data - Referrer
+          referrer: attributionDataRef.current.referrer,
+          // Meta fields
           _subject: `Dentist Free Trial Request from ${formData.name}${formData.practiceName ? ` - ${formData.practiceName}` : ''}`,
           form_type: 'dentist_landing_page_trial',
           source: 'dentists_page_meta_ads',
