@@ -25,6 +25,30 @@ import {
 import conversionTracker from '../utils/conversionTracking';
 import DynamicTechBackground from '../components/DynamicTechBackground';
 
+// Helper function to get cookie value by name
+const getCookie = (name: string): string => {
+  try {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      const cookieValue = parts.pop()?.split(';').shift();
+      return cookieValue || '';
+    }
+    return '';
+  } catch (e) {
+    console.warn('Failed to read cookie:', name, e);
+    return '';
+  }
+};
+
+// Generate fbc from fbclid if cookie doesn't exist
+// Format: fb.1.{timestamp}.{fbclid}
+const generateFbc = (fbclid: string): string => {
+  if (!fbclid) return '';
+  const timestamp = Date.now();
+  return `fb.1.${timestamp}.${fbclid}`;
+};
+
 // TrialForm component moved outside to prevent re-mounting on parent state changes
 interface TrialFormProps {
   variant?: 'default' | 'hero' | 'final';
@@ -198,6 +222,10 @@ const Dentists: React.FC = () => {
     fbclid: '',
     gclid: '',
     referrer: '',
+    // Meta CAPI required fields
+    fbp: '', // _fbp cookie from Meta Pixel
+    fbc: '', // _fbc cookie or generated from fbclid
+    user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
   });
 
   // Capture attribution signals on page load with localStorage backup
@@ -207,6 +235,13 @@ const Dentists: React.FC = () => {
 
     // Extract current URL parameters
     const urlParams = new URLSearchParams(window.location.search);
+    const currentFbclid = urlParams.get('fbclid') || '';
+
+    // Capture Meta Pixel cookies (fbp and fbc)
+    const fbpCookie = getCookie('_fbp'); // Set by Meta Pixel
+    const fbcCookie = getCookie('_fbc'); // Set by Meta Pixel or generated from fbclid
+    // If fbc cookie doesn't exist but we have fbclid, generate fbc
+    const fbcValue = fbcCookie || generateFbc(currentFbclid);
 
     // Capture current page signals
     const currentSignals = {
@@ -216,9 +251,13 @@ const Dentists: React.FC = () => {
       utm_campaign: urlParams.get('utm_campaign') || '',
       utm_content: urlParams.get('utm_content') || '',
       utm_term: urlParams.get('utm_term') || '',
-      fbclid: urlParams.get('fbclid') || '',
+      fbclid: currentFbclid,
       gclid: urlParams.get('gclid') || '',
       referrer: document.referrer || '',
+      // Meta CAPI fields - captured fresh on each page load
+      fbp: fbpCookie,
+      fbc: fbcValue,
+      user_agent: navigator.userAgent || '',
       timestamp: Date.now(),
     };
 
@@ -237,6 +276,7 @@ const Dentists: React.FC = () => {
 
         if (isRecent) {
           // Merge: use current signals if present, otherwise fall back to stored
+          // Note: fbp, fbc, user_agent are always captured fresh (not from storage)
           finalSignals = {
             landing_url: currentSignals.landing_url || parsed.landing_url || '',
             utm_source: currentSignals.utm_source || parsed.utm_source || '',
@@ -247,6 +287,10 @@ const Dentists: React.FC = () => {
             fbclid: currentSignals.fbclid || parsed.fbclid || '',
             gclid: currentSignals.gclid || parsed.gclid || '',
             referrer: currentSignals.referrer || parsed.referrer || '',
+            // Meta CAPI fields - always use current values (cookies are session-specific)
+            fbp: currentSignals.fbp,
+            fbc: currentSignals.fbc || generateFbc(parsed.fbclid || ''), // Generate from stored fbclid if needed
+            user_agent: currentSignals.user_agent,
             timestamp: currentSignals.timestamp,
           };
         }
@@ -255,7 +299,7 @@ const Dentists: React.FC = () => {
       console.warn('Failed to read attribution from localStorage:', e);
     }
 
-    // Save to localStorage if we have meaningful signals
+    // Save to localStorage if we have meaningful signals (excluding fbp/fbc/user_agent which are session-specific)
     if (hasCurrentSignals || finalSignals.utm_source || finalSignals.fbclid || finalSignals.gclid) {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(finalSignals));
@@ -458,6 +502,8 @@ const Dentists: React.FC = () => {
           phone: formData.phone,
           practiceName: formData.practiceName,
           tracking_token: trackingToken,
+          // CRITICAL: event_id for Meta CAPI deduplication (must match tracking_token)
+          event_id: trackingToken,
           // Attribution data - UTM parameters
           landing_url: attributionDataRef.current.landing_url || window.location.href,
           utm_source: attributionDataRef.current.utm_source || 'website',
@@ -470,6 +516,10 @@ const Dentists: React.FC = () => {
           gclid: attributionDataRef.current.gclid,
           // Attribution data - Referrer
           referrer: attributionDataRef.current.referrer,
+          // Meta CAPI required fields
+          fbp: attributionDataRef.current.fbp, // _fbp cookie from Meta Pixel
+          fbc: attributionDataRef.current.fbc, // _fbc cookie or generated from fbclid
+          user_agent: attributionDataRef.current.user_agent, // Browser user agent
           // Meta fields
           _subject: `Dentist Free Trial Request from ${formData.name}${formData.practiceName ? ` - ${formData.practiceName}` : ''}`,
           form_type: 'dentist_landing_page_trial',
