@@ -487,6 +487,17 @@ const Dentists: React.FC = () => {
       conversionTracker.trackDemoBooking('dentists_page');
       conversionTracker.trackButtonClick('Dentist Free Trial Submitted', 'dentists_page');
 
+      // Fire Meta Pixel Lead event with event_id for deduplication
+      // This event_id must match the one sent via CAPI (n8n) for Meta to deduplicate
+      if ((window as any).fbq) {
+        (window as any).fbq('track', 'Lead', {
+          content_name: 'Dentist Free Trial',
+          content_category: 'dental',
+        }, {
+          eventID: trackingToken, // Same as tracking_token sent to n8n for deduplication
+        });
+      }
+
       // Build Calendly URL with prefilled data
       const calendlyBase = 'https://calendly.com/emrebenian-cogniaai/30min';
       const calendlyParams = new URLSearchParams({
