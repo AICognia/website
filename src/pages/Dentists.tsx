@@ -341,8 +341,8 @@ const Dentists: React.FC = () => {
     }
 
     // Initialize with new pixel ID - autoConfig false to disable automatic button tracking
-    (window as any).fbq('set', 'autoConfig', false, '25874032308870150');
-    (window as any).fbq('init', '25874032308870150');
+    (window as any).fbq('set', 'autoConfig', false, '1394133785545074');
+    (window as any).fbq('init', '1394133785545074');
     (window as any).fbq('track', 'PageView');
   }, []);
 
