@@ -483,13 +483,10 @@ const Dentists: React.FC = () => {
     setError('');
 
     // Generate tracking token BEFORE submission for deduplication
-    const trackingToken = `${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+    // This SAME token must be sent to both: (1) Formspree/n8n for CAPI, (2) fbq pixel eventID
+    const trackingToken = `lead_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 
     try {
-      // Generate unique tracking token
-      const timestamp = Date.now();
-      const randomStr = Math.random().toString(36).substr(2, 9);
-      const trackingToken = `lead_${timestamp}_${randomStr}`;
 
       // Submit to Formspree (Formspree webhooks to n8n automatically)
       const response = await fetch('https://formspree.io/f/mqarlrwl', {
@@ -563,6 +560,10 @@ const Dentists: React.FC = () => {
         utm_content: trackingToken,
         utm_campaign: 'dental_demo',
       });
+
+      // Small delay to ensure pixel event is sent before redirect
+      // fbq is async - without this, the redirect may cancel the pixel request
+      await new Promise(resolve => setTimeout(resolve, 300));
 
       // Redirect to Calendly
       window.location.href = `${calendlyBase}?${calendlyParams.toString()}`;
