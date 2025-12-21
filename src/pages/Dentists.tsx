@@ -217,6 +217,9 @@ const Dentists: React.FC = () => {
     setIsSubmitting(true);
     setError('');
 
+    // Generate tracking token BEFORE submission for deduplication
+    const trackingToken = `${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+
     try {
       const response = await fetch('https://formspree.io/f/mqarlrwl', {
         method: 'POST',
@@ -230,13 +233,19 @@ const Dentists: React.FC = () => {
           source: 'dentists_page_meta_ads',
           industry: 'dental',
           submitted_at: new Date().toISOString(),
+          tracking_token: trackingToken,
         }),
       });
 
       if (response.ok) {
-        // Fire Meta Pixel Lead event on successful form submission
+        // Fire Meta Pixel Lead event with eventID for CAPI deduplication
         if ((window as any).fbq) {
-          (window as any).fbq('track', 'Lead');
+          (window as any).fbq('track', 'Lead', {
+            content_name: 'Dentist Free Trial',
+            content_category: 'dental'
+          }, {
+            eventID: trackingToken
+          });
         }
 
         conversionTracker.trackDemoBooking('dentists_page');
