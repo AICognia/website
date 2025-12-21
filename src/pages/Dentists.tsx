@@ -85,7 +85,7 @@ const TrialForm: React.FC<TrialFormProps> = ({
           <p className="text-sm text-gray-400">7 days free • No credit card</p>
         </div>
       )}
-      <form onSubmit={handleSubmit} className="space-y-3">
+      <form onSubmit={handleSubmit} className="space-y-3" data-fb-noscript="true">
         <input
           type="text"
           name="name"
@@ -340,9 +340,12 @@ const Dentists: React.FC = () => {
       /* eslint-enable */
     }
 
-    // Initialize with new pixel ID - autoConfig false to disable automatic button tracking
+    // Initialize with new pixel ID
+    // CRITICAL: Disable ALL automatic tracking to prevent duplicate Lead events
+    // autoConfig: false - disables automatic button/form tracking
+    // disablePushState: true - disables automatic page view tracking on SPA navigation
     (window as any).fbq('set', 'autoConfig', false, '1394133785545074');
-    (window as any).fbq('init', '1394133785545074');
+    (window as any).fbq('init', '1394133785545074', {}, { autoConfig: false });
     (window as any).fbq('track', 'PageView');
   }, []);
 
