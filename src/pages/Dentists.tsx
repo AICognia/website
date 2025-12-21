@@ -526,7 +526,6 @@ const Dentists: React.FC = () => {
           source: 'dentists_page_meta_ads',
           industry: 'dental',
           submitted_at: new Date().toISOString(),
-          tracking_token: trackingToken,
         }),
       });
 
