@@ -539,13 +539,21 @@ const Dentists: React.FC = () => {
 
       // Fire Meta Pixel Lead event with event_id for deduplication
       // This event_id must match the one sent via CAPI (n8n) for Meta to deduplicate
+      // DEBUG: Log tracking token to verify it's being sent correctly
+      console.log('[DEDUP DEBUG] trackingToken value:', trackingToken);
+      console.log('[DEDUP DEBUG] fbq available:', !!(window as any).fbq);
+
       if ((window as any).fbq) {
+        console.log('[DEDUP DEBUG] Firing fbq Lead event with eventID:', trackingToken);
         (window as any).fbq('track', 'Lead', {
           content_name: 'Dentist Free Trial',
           content_category: 'dental',
         }, {
-          eventID: trackingToken, // Same as tracking_token sent to n8n for deduplication
+          eventID: trackingToken,
         });
+        console.log('[DEDUP DEBUG] fbq Lead event fired');
+      } else {
+        console.error('[DEDUP DEBUG] fbq NOT available - pixel event NOT sent!');
       }
 
       // Build Calendly URL with prefilled data
@@ -560,9 +568,11 @@ const Dentists: React.FC = () => {
         utm_campaign: 'dental_demo',
       });
 
-      // Small delay to ensure pixel event is sent before redirect
-      // fbq is async - without this, the redirect may cancel the pixel request
-      await new Promise(resolve => setTimeout(resolve, 300));
+      // Wait 500ms to ensure pixel event network request completes before redirect
+      // fbq is async and redirect can cancel in-flight requests
+      console.log('[DEDUP DEBUG] Waiting 500ms for pixel to send...');
+      await new Promise(resolve => setTimeout(resolve, 500));
+      console.log('[DEDUP DEBUG] Redirecting to Calendly');
 
       // Redirect to Calendly
       window.location.href = `${calendlyBase}?${calendlyParams.toString()}`;
