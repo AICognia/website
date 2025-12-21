@@ -482,6 +482,9 @@ const Dentists: React.FC = () => {
     setIsSubmitting(true);
     setError('');
 
+    // Generate tracking token BEFORE submission for deduplication
+    const trackingToken = `${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+
     try {
       // Generate unique tracking token
       const timestamp = Date.now();
@@ -526,6 +529,7 @@ const Dentists: React.FC = () => {
           source: 'dentists_page_meta_ads',
           industry: 'dental',
           submitted_at: new Date().toISOString(),
+          tracking_token: trackingToken,
         }),
       });
 
