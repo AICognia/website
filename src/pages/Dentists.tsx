@@ -340,11 +340,11 @@ const Dentists: React.FC = () => {
       /* eslint-enable */
     }
 
-    // Initialize with new pixel ID: 25179796155026452
+    // Initialize with new pixel ID: 1224660309537951
     // CRITICAL: Disable ALL automatic tracking to prevent duplicate Lead events
     // autoConfig: false - disables automatic button/form tracking
-    (window as any).fbq('set', 'autoConfig', false, '25179796155026452');
-    (window as any).fbq('init', '25179796155026452', {}, { autoConfig: false });
+    (window as any).fbq('set', 'autoConfig', false, '1224660309537951');
+    (window as any).fbq('init', '1224660309537951', {}, { autoConfig: false });
     (window as any).fbq('track', 'PageView');
   }, []);
 
