@@ -238,40 +238,35 @@ const Chatbot: React.FC = () => {
         <div className="relative z-10 h-full flex flex-col">
           {/* Header */}
           <header className="flex-shrink-0 py-3 lg:py-6 border-b border-white/10 bg-black/50 backdrop-blur-xl">
-            <div className="w-full px-4">
-              <div className="flex items-center justify-between">
-                {/* Back Button */}
-                <a
-                  href="https://cogniaai.com"
-                  className="flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors text-sm"
+            <div className="w-full px-4 lg:px-8 relative">
+              {/* Back Button - Absolute positioned */}
+              <a
+                href="https://cogniaai.com"
+                className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                <FaArrowLeft className="text-xs" />
+                <span className="hidden sm:inline">Back to website</span>
+              </a>
+
+              {/* Logo - True Center */}
+              <div className="flex items-center justify-center gap-2 lg:gap-3">
+                <img
+                  src="/cognia-c-icon.png"
+                  alt="Cognia"
+                  className="h-10 lg:h-16 w-auto"
+                  style={{
+                    filter: 'drop-shadow(0 0 10px rgba(168, 139, 250, 0.9)) drop-shadow(0 0 20px rgba(96, 165, 250, 0.7))'
+                  }}
+                />
+                <span
+                  className="text-2xl lg:text-4xl font-medium text-white tracking-tight"
+                  style={{
+                    fontFamily: 'system-ui, -apple-system, sans-serif',
+                    textShadow: '0 0 15px rgba(168, 139, 250, 0.6), 0 0 30px rgba(96, 165, 250, 0.4)'
+                  }}
                 >
-                  <FaArrowLeft className="text-xs" />
-                  <span className="hidden sm:inline">Back to website</span>
-                </a>
-
-                {/* Logo - Centered */}
-                <div className="flex items-center gap-2 lg:gap-3">
-                  <img
-                    src="/cognia-c-icon.png"
-                    alt="Cognia"
-                    className="h-10 lg:h-16 w-auto"
-                    style={{
-                      filter: 'drop-shadow(0 0 10px rgba(168, 139, 250, 0.9)) drop-shadow(0 0 20px rgba(96, 165, 250, 0.7))'
-                    }}
-                  />
-                  <span
-                    className="text-2xl lg:text-4xl font-medium text-white tracking-tight"
-                    style={{
-                      fontFamily: 'system-ui, -apple-system, sans-serif',
-                      textShadow: '0 0 15px rgba(168, 139, 250, 0.6), 0 0 30px rgba(96, 165, 250, 0.4)'
-                    }}
-                  >
-                    Cognia
-                  </span>
-                </div>
-
-                {/* Spacer for centering */}
-                <div className="w-[100px] sm:w-[120px]"></div>
+                  Cognia
+                </span>
               </div>
             </div>
           </header>
