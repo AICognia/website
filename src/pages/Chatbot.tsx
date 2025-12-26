@@ -257,7 +257,7 @@ const Chatbot: React.FC = () => {
 
               {/* Message List */}
               {messages.length > 0 && (
-                <div className="space-y-3 lg:space-y-4">
+                <div className="space-y-3 lg:space-y-4 pb-4 lg:pb-6">
                   <AnimatePresence mode="popLayout">
                     {messages.map((message) => (
                       <MessageBubble key={message.id} message={message} />
