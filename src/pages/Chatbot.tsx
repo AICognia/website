@@ -195,9 +195,10 @@ const Chatbot: React.FC = () => {
         <title>AI Chat Assistant | Cognia AI</title>
         <meta name="description" content="Chat with our AI assistant to learn more about Cognia AI services." />
         <meta name="robots" content="noindex, nofollow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </Helmet>
 
-      <div className="h-screen h-[100dvh] relative bg-black text-white overflow-hidden">
+      <div className="h-screen h-[100dvh] w-screen max-w-full relative bg-black text-white overflow-x-hidden overflow-y-hidden">
         {/* Dynamic Tech Background */}
         <div className="fixed inset-0 z-0">
           <DynamicTechBackground />
@@ -206,19 +207,19 @@ const Chatbot: React.FC = () => {
         {/* Content */}
         <div className="relative z-10 h-full flex flex-col">
           {/* Header */}
-          <header className="flex-shrink-0 py-3 lg:py-4 border-b border-white/10 bg-black/50 backdrop-blur-xl">
-            <div className="container mx-auto px-4 lg:px-12">
-              <div className="flex items-center justify-center gap-2">
+          <header className="flex-shrink-0 py-3 lg:py-6 border-b border-white/10 bg-black/50 backdrop-blur-xl">
+            <div className="w-full px-4">
+              <div className="flex items-center justify-center gap-2 lg:gap-3">
                 <img
                   src="/cognia-c-icon.png"
                   alt="Cognia"
-                  className="h-8 lg:h-10 w-auto"
+                  className="h-10 lg:h-16 w-auto"
                   style={{
                     filter: 'drop-shadow(0 0 10px rgba(168, 139, 250, 0.9)) drop-shadow(0 0 20px rgba(96, 165, 250, 0.7))'
                   }}
                 />
                 <span
-                  className="text-xl lg:text-2xl font-medium text-white tracking-tight"
+                  className="text-2xl lg:text-4xl font-medium text-white tracking-tight"
                   style={{
                     fontFamily: 'system-ui, -apple-system, sans-serif',
                     textShadow: '0 0 15px rgba(168, 139, 250, 0.6), 0 0 30px rgba(96, 165, 250, 0.4)'
@@ -232,14 +233,14 @@ const Chatbot: React.FC = () => {
 
           {/* Messages Container */}
           <div className="flex-1 overflow-y-auto py-4 lg:py-6">
-            <div className="container mx-auto px-4 lg:px-12 max-w-3xl h-full">
+            <div className="w-full px-4 lg:max-w-3xl lg:mx-auto h-full">
               {/* Welcome Message (when empty) */}
               {messages.length === 0 && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="flex flex-col items-center justify-center h-full text-center px-4"
+                  className="flex flex-col items-center justify-center h-full text-center"
                 >
                   <div className="w-16 h-16 lg:w-20 lg:h-20 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center mb-4 lg:mb-6 shadow-lg shadow-cyan-400/20">
                     <FaRobot className="text-cyan-400 text-2xl lg:text-3xl" />
@@ -281,8 +282,8 @@ const Chatbot: React.FC = () => {
           </div>
 
           {/* Input Area */}
-          <div className="flex-shrink-0 border-t border-white/10 bg-black/80 backdrop-blur-xl">
-            <div className="container mx-auto px-4 lg:px-12 max-w-3xl py-3 lg:py-4">
+          <div className="flex-shrink-0 border-t border-white/10 bg-black/80 backdrop-blur-xl safe-area-bottom">
+            <div className="w-full px-4 lg:max-w-3xl lg:mx-auto py-3 lg:py-4">
               <form onSubmit={handleSubmit} className="relative">
                 <input
                   ref={inputRef}
