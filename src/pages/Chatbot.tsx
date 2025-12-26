@@ -23,22 +23,22 @@ const MessageBubble: React.FC<{ message: Message }> = ({ message }) => {
       transition={{ duration: 0.3 }}
       className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}
     >
-      <div className={`flex items-start gap-3 max-w-[85%] lg:max-w-[70%] ${isUser ? 'flex-row-reverse' : ''}`}>
+      <div className={`flex items-start gap-2 lg:gap-3 max-w-[85%] lg:max-w-[70%] ${isUser ? 'flex-row-reverse' : ''}`}>
         {/* Avatar */}
-        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
+        <div className={`flex-shrink-0 w-7 h-7 lg:w-8 lg:h-8 rounded-full flex items-center justify-center ${
           isUser
             ? 'bg-white/10 border border-white/20'
             : 'bg-cyan-400/10 border border-cyan-400/30'
         }`}>
           {isUser ? (
-            <FaUser className="text-white text-xs" />
+            <FaUser className="text-white text-[10px] lg:text-xs" />
           ) : (
-            <FaRobot className="text-cyan-400 text-xs" />
+            <FaRobot className="text-cyan-400 text-[10px] lg:text-xs" />
           )}
         </div>
 
         {/* Message Content */}
-        <div className={`px-4 py-3 rounded-2xl ${
+        <div className={`px-3 py-2 lg:px-4 lg:py-3 rounded-2xl ${
           isUser
             ? 'bg-white/10 border border-white/10'
             : 'bg-black/50 border border-cyan-400/20'
@@ -60,17 +60,17 @@ const TypingIndicator: React.FC = () => (
     exit={{ opacity: 0 }}
     className="flex justify-start"
   >
-    <div className="flex items-start gap-3">
-      <div className="w-8 h-8 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center">
-        <FaRobot className="text-cyan-400 text-xs" />
+    <div className="flex items-start gap-2 lg:gap-3">
+      <div className="w-7 h-7 lg:w-8 lg:h-8 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center">
+        <FaRobot className="text-cyan-400 text-[10px] lg:text-xs" />
       </div>
-      <div className="px-4 py-3 bg-black/50 border border-cyan-400/20 rounded-2xl">
-        <div className="flex gap-1.5">
+      <div className="px-3 py-2 lg:px-4 lg:py-3 bg-black/50 border border-cyan-400/20 rounded-2xl">
+        <div className="flex gap-1">
           {[0, 1, 2].map((i) => (
             <motion.div
               key={i}
-              className="w-2 h-2 bg-cyan-400 rounded-full"
-              animate={{ y: [0, -4, 0] }}
+              className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-cyan-400 rounded-full"
+              animate={{ y: [0, -3, 0] }}
               transition={{ duration: 0.6, delay: i * 0.15, repeat: Infinity }}
             />
           ))}
@@ -88,8 +88,8 @@ const ErrorDisplay: React.FC<{ error: string; onDismiss: () => void }> = ({ erro
     exit={{ opacity: 0 }}
     className="flex justify-center"
   >
-    <div className="flex items-center gap-3 px-4 py-3 bg-red-500/10 border border-red-500/30 rounded-xl">
-      <p className="text-sm text-red-400">{error}</p>
+    <div className="flex items-center gap-2 px-3 py-2 bg-red-500/10 border border-red-500/30 rounded-xl">
+      <p className="text-xs lg:text-sm text-red-400">{error}</p>
       <button
         onClick={onDismiss}
         className="text-red-400 hover:text-red-300 transition-colors"
@@ -177,7 +177,7 @@ const Chatbot: React.FC = () => {
       setMessages(prev => [...prev, assistantMsg]);
     } catch (err) {
       console.error('Webhook error:', err);
-      setError('Unable to connect. Please try again.');
+      setError('Connection failed. Please try again.');
     } finally {
       setIsLoading(false);
       inputRef.current?.focus();
@@ -197,136 +197,115 @@ const Chatbot: React.FC = () => {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      <div className="min-h-screen relative bg-black text-white">
+      <div className="h-screen h-[100dvh] relative bg-black text-white overflow-hidden">
         {/* Dynamic Tech Background */}
         <div className="fixed inset-0 z-0">
           <DynamicTechBackground />
         </div>
 
         {/* Content */}
-        <div className="relative z-10 min-h-screen flex flex-col">
+        <div className="relative z-10 h-full flex flex-col">
           {/* Header */}
-          <header className="py-6 lg:py-8 border-b border-white/10 bg-black/50 backdrop-blur-xl">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-              <div className="flex flex-col items-center justify-center gap-4">
-                {/* Logo */}
-                <div className="flex items-center gap-2">
-                  <img
-                    src="/cognia-c-icon.png"
-                    alt="Cognia"
-                    className="h-12 lg:h-14 w-auto"
-                    style={{
-                      filter: 'drop-shadow(0 0 10px rgba(168, 139, 250, 0.9)) drop-shadow(0 0 20px rgba(96, 165, 250, 0.7))'
-                    }}
-                  />
-                  <span
-                    className="text-2xl lg:text-3xl font-medium text-white tracking-tight"
-                    style={{
-                      fontFamily: 'system-ui, -apple-system, sans-serif',
-                      textShadow: '0 0 15px rgba(168, 139, 250, 0.6), 0 0 30px rgba(96, 165, 250, 0.4)'
-                    }}
-                  >
-                    Cognia
-                  </span>
-                </div>
-                {/* Title */}
-                <div className="text-center">
-                  <h1 className="text-xl lg:text-2xl font-medium text-white">AI Assistant</h1>
-                  <p className="text-xs lg:text-sm text-gray-400 mt-1">Ask me anything in any language</p>
-                </div>
+          <header className="flex-shrink-0 py-3 lg:py-4 border-b border-white/10 bg-black/50 backdrop-blur-xl">
+            <div className="container mx-auto px-4 lg:px-12">
+              <div className="flex items-center justify-center gap-2">
+                <img
+                  src="/cognia-c-icon.png"
+                  alt="Cognia"
+                  className="h-8 lg:h-10 w-auto"
+                  style={{
+                    filter: 'drop-shadow(0 0 10px rgba(168, 139, 250, 0.9)) drop-shadow(0 0 20px rgba(96, 165, 250, 0.7))'
+                  }}
+                />
+                <span
+                  className="text-xl lg:text-2xl font-medium text-white tracking-tight"
+                  style={{
+                    fontFamily: 'system-ui, -apple-system, sans-serif',
+                    textShadow: '0 0 15px rgba(168, 139, 250, 0.6), 0 0 30px rgba(96, 165, 250, 0.4)'
+                  }}
+                >
+                  Cognia
+                </span>
               </div>
             </div>
           </header>
 
           {/* Messages Container */}
-          <div className="flex-1 overflow-y-auto py-6 lg:py-8">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-12 max-w-3xl">
+          <div className="flex-1 overflow-y-auto py-4 lg:py-6">
+            <div className="container mx-auto px-4 lg:px-12 max-w-3xl h-full">
               {/* Welcome Message (when empty) */}
               {messages.length === 0 && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="text-center py-12 lg:py-20"
+                  className="flex flex-col items-center justify-center h-full text-center px-4"
                 >
-                  <div className="w-20 h-20 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-cyan-400/20">
-                    <FaRobot className="text-cyan-400 text-3xl" />
+                  <div className="w-16 h-16 lg:w-20 lg:h-20 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center mb-4 lg:mb-6 shadow-lg shadow-cyan-400/20">
+                    <FaRobot className="text-cyan-400 text-2xl lg:text-3xl" />
                   </div>
-                  <h2 className="text-2xl lg:text-3xl font-thin text-white mb-3">
-                    How can I <span className="text-cyan-400">help you</span> today?
+                  <h2 className="text-xl lg:text-2xl font-thin text-white mb-2">
+                    How can I <span className="text-cyan-400">help</span>?
                   </h2>
-                  <p className="text-gray-400 text-sm lg:text-base max-w-md mx-auto mb-6">
-                    Ask me anything about Cognia AI's voice agents and receptionist solutions. I'm here to help you understand how AI can transform your business communications.
-                  </p>
-                  <div className="flex items-center justify-center gap-2 text-gray-500 text-xs lg:text-sm">
+                  <p className="text-gray-500 text-xs lg:text-sm flex items-center gap-1.5">
                     <FaGlobe className="text-cyan-400/60" />
-                    <span>I speak 30+ languages — write in yours</span>
-                  </div>
+                    <span>30+ languages supported</span>
+                  </p>
                 </motion.div>
               )}
 
               {/* Message List */}
-              <div className="space-y-4">
-                <AnimatePresence mode="popLayout">
-                  {messages.map((message) => (
-                    <MessageBubble key={message.id} message={message} />
-                  ))}
-                </AnimatePresence>
-              </div>
+              {messages.length > 0 && (
+                <div className="space-y-3 lg:space-y-4">
+                  <AnimatePresence mode="popLayout">
+                    {messages.map((message) => (
+                      <MessageBubble key={message.id} message={message} />
+                    ))}
+                  </AnimatePresence>
 
-              {/* Loading Indicator */}
-              <AnimatePresence>
-                {isLoading && (
-                  <div className="mt-4">
-                    <TypingIndicator />
-                  </div>
-                )}
-              </AnimatePresence>
+                  {/* Loading Indicator */}
+                  <AnimatePresence>
+                    {isLoading && <TypingIndicator />}
+                  </AnimatePresence>
 
-              {/* Error Display */}
-              <AnimatePresence>
-                {error && (
-                  <div className="mt-4">
-                    <ErrorDisplay error={error} onDismiss={() => setError(null)} />
-                  </div>
-                )}
-              </AnimatePresence>
+                  {/* Error Display */}
+                  <AnimatePresence>
+                    {error && <ErrorDisplay error={error} onDismiss={() => setError(null)} />}
+                  </AnimatePresence>
 
-              {/* Scroll anchor */}
-              <div ref={messagesEndRef} />
+                  {/* Scroll anchor */}
+                  <div ref={messagesEndRef} />
+                </div>
+              )}
             </div>
           </div>
 
           {/* Input Area */}
-          <div className="border-t border-white/10 bg-black/80 backdrop-blur-xl">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-12 max-w-3xl py-4 lg:py-6">
+          <div className="flex-shrink-0 border-t border-white/10 bg-black/80 backdrop-blur-xl">
+            <div className="container mx-auto px-4 lg:px-12 max-w-3xl py-3 lg:py-4">
               <form onSubmit={handleSubmit} className="relative">
                 <input
                   ref={inputRef}
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Type your message in any language..."
+                  placeholder="Message in any language..."
                   disabled={isLoading}
-                  className="w-full px-5 py-4 pr-14 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 transition-all disabled:opacity-50"
+                  className="w-full px-4 py-3 lg:py-4 pr-12 bg-white/5 border border-white/10 rounded-xl lg:rounded-2xl text-sm lg:text-base text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/50 transition-all disabled:opacity-50"
                   autoComplete="off"
                 />
                 <button
                   type="submit"
                   disabled={!inputValue.trim() || isLoading}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-cyan-500 hover:bg-cyan-400 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-xl flex items-center justify-center transition-colors shadow-lg shadow-cyan-500/30 hover:shadow-cyan-400/40 disabled:shadow-none"
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 w-9 h-9 lg:w-10 lg:h-10 bg-cyan-500 hover:bg-cyan-400 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-lg lg:rounded-xl flex items-center justify-center transition-colors"
                 >
                   {isLoading ? (
-                    <FaSpinner className="text-white animate-spin" />
+                    <FaSpinner className="text-white text-sm animate-spin" />
                   ) : (
-                    <FaPaperPlane className="text-white text-sm" />
+                    <FaPaperPlane className="text-white text-xs lg:text-sm" />
                   )}
                 </button>
               </form>
-
-              <p className="text-center text-xs text-gray-500 mt-3">
-                Powered by <span className="text-cyan-400/70">Cognia AI</span>
-              </p>
             </div>
           </div>
         </div>
