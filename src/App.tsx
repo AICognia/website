@@ -20,6 +20,7 @@ const Contact = lazy(() => import('./pages/Contact'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Demo = lazy(() => import('./pages/Demo'));
 const Dentists = lazy(() => import('./pages/Dentists'));
+const LandingPage = lazy(() => import('./pages/LandingPage'));
 
 // Lazy load industry pages
 const Healthcare = lazy(() => import('./pages/industries/Healthcare'));
@@ -62,7 +63,7 @@ function AppContent() {
   const location = useLocation();
 
   // Landing pages that should not show navigation
-  const isLandingPage = location.pathname === '/dentists';
+  const isLandingPage = location.pathname === '/dentists' || location.pathname === '/lp';
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
@@ -87,6 +88,7 @@ function AppContent() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/dentists" element={<Dentists />} />
+            <Route path="/lp" element={<LandingPage />} />
             {/* Industry Pages */}
             <Route path="/industries/healthcare" element={<Healthcare />} />
             <Route path="/industries/legal" element={<Legal />} />
