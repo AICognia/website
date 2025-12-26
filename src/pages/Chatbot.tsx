@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { FaPaperPlane, FaSpinner, FaRobot, FaUser, FaTimes, FaGlobe } from 'react-icons/fa';
+import { FaPaperPlane, FaSpinner, FaRobot, FaUser, FaTimes, FaGlobe, FaArrowLeft } from 'react-icons/fa';
 import DynamicTechBackground from '../components/DynamicTechBackground';
 
 interface Message {
@@ -105,7 +105,9 @@ const Chatbot: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Initialize session ID
@@ -115,15 +117,37 @@ const Chatbot: React.FC = () => {
     }
   }, []);
 
+  // Handle mobile keyboard with visualViewport API
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+
+    const handleResize = () => {
+      // Calculate keyboard height by comparing viewport height to window height
+      const keyboardH = window.innerHeight - viewport.height;
+      setKeyboardHeight(keyboardH > 0 ? keyboardH : 0);
+
+      // Scroll to bottom when keyboard opens
+      if (keyboardH > 0) {
+        setTimeout(() => {
+          messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    };
+
+    viewport.addEventListener('resize', handleResize);
+    viewport.addEventListener('scroll', handleResize);
+
+    return () => {
+      viewport.removeEventListener('resize', handleResize);
+      viewport.removeEventListener('scroll', handleResize);
+    };
+  }, []);
+
   // Auto-scroll to latest message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isLoading]);
-
-  // Focus input on mount
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
 
   const sendMessage = async (userMessage: string) => {
     if (!userMessage.trim() || isLoading) return;
@@ -195,10 +219,16 @@ const Chatbot: React.FC = () => {
         <title>AI Chat Assistant | Cognia AI</title>
         <meta name="description" content="Chat with our AI assistant to learn more about Cognia AI services." />
         <meta name="robots" content="noindex, nofollow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content" />
       </Helmet>
 
-      <div className="h-screen h-[100dvh] w-screen max-w-full relative bg-black text-white overflow-x-hidden overflow-y-hidden">
+      <div
+        className="w-screen max-w-full relative bg-black text-white overflow-x-hidden"
+        style={{
+          height: keyboardHeight > 0 ? `calc(100dvh - ${keyboardHeight}px)` : '100dvh',
+          transition: 'height 0.1s ease-out'
+        }}
+      >
         {/* Dynamic Tech Background */}
         <div className="fixed inset-0 z-0">
           <DynamicTechBackground />
@@ -209,30 +239,45 @@ const Chatbot: React.FC = () => {
           {/* Header */}
           <header className="flex-shrink-0 py-3 lg:py-6 border-b border-white/10 bg-black/50 backdrop-blur-xl">
             <div className="w-full px-4">
-              <div className="flex items-center justify-center gap-2 lg:gap-3">
-                <img
-                  src="/cognia-c-icon.png"
-                  alt="Cognia"
-                  className="h-10 lg:h-16 w-auto"
-                  style={{
-                    filter: 'drop-shadow(0 0 10px rgba(168, 139, 250, 0.9)) drop-shadow(0 0 20px rgba(96, 165, 250, 0.7))'
-                  }}
-                />
-                <span
-                  className="text-2xl lg:text-4xl font-medium text-white tracking-tight"
-                  style={{
-                    fontFamily: 'system-ui, -apple-system, sans-serif',
-                    textShadow: '0 0 15px rgba(168, 139, 250, 0.6), 0 0 30px rgba(96, 165, 250, 0.4)'
-                  }}
+              <div className="flex items-center justify-between">
+                {/* Back Button */}
+                <a
+                  href="https://cogniaai.com"
+                  className="flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  Cognia
-                </span>
+                  <FaArrowLeft className="text-xs" />
+                  <span className="hidden sm:inline">Back to website</span>
+                </a>
+
+                {/* Logo - Centered */}
+                <div className="flex items-center gap-2 lg:gap-3">
+                  <img
+                    src="/cognia-c-icon.png"
+                    alt="Cognia"
+                    className="h-10 lg:h-16 w-auto"
+                    style={{
+                      filter: 'drop-shadow(0 0 10px rgba(168, 139, 250, 0.9)) drop-shadow(0 0 20px rgba(96, 165, 250, 0.7))'
+                    }}
+                  />
+                  <span
+                    className="text-2xl lg:text-4xl font-medium text-white tracking-tight"
+                    style={{
+                      fontFamily: 'system-ui, -apple-system, sans-serif',
+                      textShadow: '0 0 15px rgba(168, 139, 250, 0.6), 0 0 30px rgba(96, 165, 250, 0.4)'
+                    }}
+                  >
+                    Cognia
+                  </span>
+                </div>
+
+                {/* Spacer for centering */}
+                <div className="w-[100px] sm:w-[120px]"></div>
               </div>
             </div>
           </header>
 
           {/* Messages Container */}
-          <div className="flex-1 overflow-y-auto py-4 lg:py-6">
+          <div ref={messagesContainerRef} className="flex-1 overflow-y-auto py-4 lg:py-6">
             <div className="w-full px-4 lg:max-w-3xl lg:mx-auto h-full">
               {/* Welcome Message (when empty) */}
               {messages.length === 0 && (
@@ -282,7 +327,7 @@ const Chatbot: React.FC = () => {
           </div>
 
           {/* Input Area */}
-          <div className="flex-shrink-0 border-t border-white/10 bg-black/80 backdrop-blur-xl safe-area-bottom">
+          <div className="flex-shrink-0 border-t border-white/10 bg-black/80 backdrop-blur-xl">
             <div className="w-full px-4 lg:max-w-3xl lg:mx-auto py-3 lg:py-4">
               <form onSubmit={handleSubmit} className="relative">
                 <input
