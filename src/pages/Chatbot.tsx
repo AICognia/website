@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { FaPaperPlane, FaSpinner, FaRobot, FaUser, FaTimes } from 'react-icons/fa';
+import { FaPaperPlane, FaSpinner, FaRobot, FaUser, FaTimes, FaGlobe } from 'react-icons/fa';
 import DynamicTechBackground from '../components/DynamicTechBackground';
 
 interface Message {
@@ -208,13 +208,31 @@ const Chatbot: React.FC = () => {
           {/* Header */}
           <header className="py-6 lg:py-8 border-b border-white/10 bg-black/50 backdrop-blur-xl">
             <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-              <div className="flex items-center justify-center gap-3">
-                <div className="w-10 h-10 bg-cyan-400/10 border border-cyan-400/30 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/20">
-                  <FaRobot className="text-cyan-400 text-lg" />
+              <div className="flex flex-col items-center justify-center gap-4">
+                {/* Logo */}
+                <div className="flex items-center gap-2">
+                  <img
+                    src="/cognia-c-icon.png"
+                    alt="Cognia"
+                    className="h-12 lg:h-14 w-auto"
+                    style={{
+                      filter: 'drop-shadow(0 0 10px rgba(168, 139, 250, 0.9)) drop-shadow(0 0 20px rgba(96, 165, 250, 0.7))'
+                    }}
+                  />
+                  <span
+                    className="text-2xl lg:text-3xl font-medium text-white tracking-tight"
+                    style={{
+                      fontFamily: 'system-ui, -apple-system, sans-serif',
+                      textShadow: '0 0 15px rgba(168, 139, 250, 0.6), 0 0 30px rgba(96, 165, 250, 0.4)'
+                    }}
+                  >
+                    Cognia
+                  </span>
                 </div>
+                {/* Title */}
                 <div className="text-center">
-                  <h1 className="text-xl lg:text-2xl font-medium text-white">Cognia AI Assistant</h1>
-                  <p className="text-xs lg:text-sm text-gray-400">Ask me anything</p>
+                  <h1 className="text-xl lg:text-2xl font-medium text-white">AI Assistant</h1>
+                  <p className="text-xs lg:text-sm text-gray-400 mt-1">Ask me anything in any language</p>
                 </div>
               </div>
             </div>
@@ -237,9 +255,13 @@ const Chatbot: React.FC = () => {
                   <h2 className="text-2xl lg:text-3xl font-thin text-white mb-3">
                     How can I <span className="text-cyan-400">help you</span> today?
                   </h2>
-                  <p className="text-gray-400 text-sm lg:text-base max-w-md mx-auto">
-                    I'm here to answer your questions about Cognia AI's voice agent and receptionist solutions.
+                  <p className="text-gray-400 text-sm lg:text-base max-w-md mx-auto mb-6">
+                    Ask me anything about Cognia AI's voice agents and receptionist solutions. I'm here to help you understand how AI can transform your business communications.
                   </p>
+                  <div className="flex items-center justify-center gap-2 text-gray-500 text-xs lg:text-sm">
+                    <FaGlobe className="text-cyan-400/60" />
+                    <span>I speak 30+ languages — write in yours</span>
+                  </div>
                 </motion.div>
               )}
 
@@ -284,7 +306,7 @@ const Chatbot: React.FC = () => {
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Type your message..."
+                  placeholder="Type your message in any language..."
                   disabled={isLoading}
                   className="w-full px-5 py-4 pr-14 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 transition-all disabled:opacity-50"
                   autoComplete="off"
