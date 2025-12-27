@@ -161,12 +161,7 @@ const MobileHeroRedesigned: React.FC = () => {
         {/* Content container */}
         <div className="relative z-10 flex-1 flex flex-col justify-center px-6 py-16">
           {/* Main headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-4"
-          >
+          <div className="text-center mb-4">
             <h1 className="text-5xl font-light text-white mb-3 leading-tight">
               Your AI
               <br />
@@ -174,15 +169,10 @@ const MobileHeroRedesigned: React.FC = () => {
                 Receptionist
               </span>
             </h1>
-          </motion.div>
+          </div>
 
           {/* Subheadline with rotating word */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-center text-gray-400 text-lg mb-2"
-          >
+          <p className="text-center text-gray-400 text-lg mb-6">
             Never miss a call. Close more{' '}
             <span className="relative inline-block h-7 align-bottom overflow-hidden" style={{ minWidth: '5.5rem' }}>
               <AnimatePresence mode="wait">
@@ -198,31 +188,10 @@ const MobileHeroRedesigned: React.FC = () => {
                 </motion.span>
               </AnimatePresence>
             </span>
-          </motion.p>
+          </p>
 
-          {/* Urgency badge */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.12 }}
-            className="flex justify-center mb-6"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-500/10 border border-green-500/20 rounded-full">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400"></span>
-              </span>
-              <span className="text-xs text-green-400 font-medium">5 spots left this month</span>
-            </div>
-          </motion.div>
-
-          {/* CTA Buttons - MOVED ABOVE VISUALIZER */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="space-y-3 mb-8"
-          >
+          {/* CTA Buttons */}
+          <div className="space-y-3 mb-8">
             {/* Primary CTA */}
             <Link
               to="/demo"
@@ -261,15 +230,10 @@ const MobileHeroRedesigned: React.FC = () => {
                 No Card Required
               </span>
             </div>
-          </motion.div>
+          </div>
 
           {/* Sound Visualizer - Below CTAs */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="relative mb-6"
-          >
+          <div className="relative mb-6">
             <p className="text-center text-xs text-gray-500 mb-3">Hear our AI in action</p>
             <div className="relative flex items-center justify-center">
               {/* Background glow */}
@@ -309,15 +273,10 @@ const MobileHeroRedesigned: React.FC = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="grid grid-cols-3 gap-4"
-          >
+          <div className="grid grid-cols-3 gap-4">
             {[
               { value: '24/7', label: 'Available' },
               { value: '95%', label: 'Satisfaction' },
@@ -328,16 +287,11 @@ const MobileHeroRedesigned: React.FC = () => {
                 <div className="text-[10px] text-gray-500 uppercase tracking-wide">{stat.label}</div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-50">
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
@@ -345,7 +299,7 @@ const MobileHeroRedesigned: React.FC = () => {
           >
             <div className="w-1 h-1 bg-white/50 rounded-full" />
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

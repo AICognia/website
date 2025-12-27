@@ -34,8 +34,8 @@ const OptimizedHero: React.FC = () => {
         {/* Background - Pure black */}
         <div className="absolute inset-0 bg-black" />
 
-        <div className="relative container mx-auto px-6 lg:px-12 z-10 pt-2">
-          <div className="grid lg:grid-cols-2 gap-12 items-center py-16 lg:py-20">
+        <div className="relative container mx-auto px-6 lg:px-12 z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center py-12 lg:py-14">
             {/* Left Side - Content */}
             <div className="space-y-8">
               {/* Main Headline - Clear Value Proposition with AI */}
