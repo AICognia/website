@@ -100,7 +100,7 @@ const FAQAccordion: React.FC = () => {
         >
           <p className="text-gray-400 mb-4">Still have questions?</p>
           <Link
-            to="/demo"
+            to="/contact"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
           >
             Talk to Us

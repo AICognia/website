@@ -7,7 +7,6 @@ import MobileHeroRedesigned from '../components/MobileHeroRedesigned';
 import SocialProofSection from '../components/SocialProofSection';
 import FeaturesSection from '../components/FeaturesSection';
 import SolutionsGrid from '../components/SolutionsGrid';
-import HowItWorks from '../components/HowItWorks';
 import FAQAccordion from '../components/FAQAccordion';
 import FinalCTA from '../components/FinalCTA';
 import DynamicTechBackground from '../components/DynamicTechBackground';
@@ -84,10 +83,7 @@ const Home: React.FC = () => {
           {/* 5. Industries - Who it's for */}
           <SolutionsGrid />
 
-          {/* 6. How It Works - Timeline */}
-          <HowItWorks />
-
-          {/* 7. FAQ - Remove objections */}
+          {/* 6. FAQ - Remove objections */}
           <FAQAccordion />
 
           {/* 8. Final CTA - Close the deal */}
