@@ -3,10 +3,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaPhone,
   FaEnvelope,
+  FaLinkedin,
+  FaInstagram,
   FaArrowRight,
   FaCheck,
   FaSpinner,
-  FaLinkedin
+  FaShieldAlt,
+  FaHeadset,
+  FaGlobe,
+  FaCalendarCheck
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
@@ -16,6 +21,7 @@ const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    company: '',
     topic: '',
     message: ''
   });
@@ -25,9 +31,10 @@ const Contact: React.FC = () => {
 
   const topics = [
     { value: '', label: 'Select a topic' },
-    { value: 'partnership', label: 'Partnership Inquiry' },
+    { value: 'general', label: 'General Inquiry' },
+    { value: 'partnership', label: 'Partnership' },
     { value: 'support', label: 'Technical Support' },
-    { value: 'billing', label: 'Billing Question' },
+    { value: 'billing', label: 'Billing' },
     { value: 'media', label: 'Media / Press' },
     { value: 'other', label: 'Other' },
   ];
@@ -35,8 +42,8 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.topic || !formData.message) {
-      setError('Please fill in all fields');
+    if (!formData.name || !formData.email || !formData.message) {
+      setError('Please fill in all required fields');
       return;
     }
 
@@ -58,9 +65,10 @@ const Contact: React.FC = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          topic: formData.topic,
+          company: formData.company,
+          topic: formData.topic || 'General Inquiry',
           message: formData.message,
-          _subject: `[${formData.topic}] Contact from ${formData.name}`,
+          _subject: `${formData.topic ? `[${formData.topic}] ` : ''}Contact from ${formData.name}${formData.company ? ` - ${formData.company}` : ''}`,
           submitted_at: new Date().toISOString(),
         }),
       });
@@ -70,7 +78,7 @@ const Contact: React.FC = () => {
       }
 
       setIsSubmitted(true);
-      setFormData({ name: '', email: '', topic: '', message: '' });
+      setFormData({ name: '', email: '', company: '', topic: '', message: '' });
 
     } catch (err) {
       console.error('Form submission error:', err);
@@ -106,7 +114,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center">
+    <div className="min-h-screen bg-black text-white">
       <SEO
         page="contact"
         structuredData={[
@@ -115,45 +123,72 @@ const Contact: React.FC = () => {
         ]}
       />
 
-      {/* Ambient background glow */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-500/8 via-blue-500/5 to-purple-500/8 rounded-full blur-3xl" />
-      </div>
+      {/* Hero Section */}
+      <section className="relative py-20 lg:py-28 overflow-hidden">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-cyan-950/20 via-black to-black" />
 
-      <div className="relative w-full max-w-lg mx-auto px-6 py-12 lg:py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-2xl lg:text-3xl font-light text-white mb-2">
-              Get in Touch
+        <div className="relative container mx-auto px-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-3xl mx-auto text-center mb-16"
+          >
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+              </span>
+              <span className="text-sm text-gray-400">Get in Touch</span>
+            </div>
+
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-4">
+              Let's{' '}
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                Connect
+              </span>
             </h1>
-            <p className="text-sm text-gray-500">
-              Questions, partnerships, or support — we're here to help
+
+            {/* Subheadline */}
+            <p className="text-lg text-gray-400">
+              Have a question, partnership idea, or need support? We're here to help.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Form Card */}
-          <div className="relative">
-            {/* Subtle glow behind card */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-cyan-500/20 rounded-3xl blur-xl opacity-50" />
+          {/* Two Column Layout */}
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 max-w-6xl mx-auto">
+            {/* Left Column - Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <div className="bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/10 rounded-2xl p-6 lg:p-8">
+                <div className="mb-6">
+                  <h2 className="text-xl font-medium text-white mb-1">
+                    Send Us a Message
+                  </h2>
+                  <p className="text-sm text-gray-500">
+                    We'll get back to you within 24 hours
+                  </p>
+                </div>
 
-            <div className="relative bg-gradient-to-b from-white/[0.08] to-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-6 lg:p-8 shadow-2xl">
-              <AnimatePresence mode="wait">
-                {!isSubmitted ? (
-                  <motion.div
-                    key="form"
-                    initial={{ opacity: 1 }}
-                    exit={{ opacity: 0, y: -20 }}
-                  >
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                <AnimatePresence mode="wait">
+                  {!isSubmitted ? (
+                    <motion.form
+                      key="form"
+                      initial={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      onSubmit={handleSubmit}
+                      className="space-y-4"
+                    >
                       {/* Name */}
                       <div>
                         <label className="block text-xs font-medium text-gray-400 mb-1.5 ml-1">
-                          Your Name
+                          Full Name *
                         </label>
                         <input
                           type="text"
@@ -169,7 +204,7 @@ const Contact: React.FC = () => {
                       {/* Email */}
                       <div>
                         <label className="block text-xs font-medium text-gray-400 mb-1.5 ml-1">
-                          Email Address
+                          Email Address *
                         </label>
                         <input
                           type="email"
@@ -179,6 +214,22 @@ const Contact: React.FC = () => {
                           placeholder="john@company.com"
                           className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.08] focus:ring-2 focus:ring-cyan-500/20 transition-all text-sm"
                           autoComplete="email"
+                        />
+                      </div>
+
+                      {/* Company */}
+                      <div>
+                        <label className="block text-xs font-medium text-gray-400 mb-1.5 ml-1">
+                          Company
+                        </label>
+                        <input
+                          type="text"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleChange}
+                          placeholder="Acme Inc."
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.08] focus:ring-2 focus:ring-cyan-500/20 transition-all text-sm"
+                          autoComplete="organization"
                         />
                       </div>
 
@@ -205,7 +256,7 @@ const Contact: React.FC = () => {
                       {/* Message */}
                       <div>
                         <label className="block text-xs font-medium text-gray-400 mb-1.5 ml-1">
-                          Message
+                          Message *
                         </label>
                         <textarea
                           name="message"
@@ -224,7 +275,7 @@ const Contact: React.FC = () => {
                             initial={{ opacity: 0, y: -5 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -5 }}
-                            className="text-red-400 text-sm text-center"
+                            className="text-red-400 text-sm"
                           >
                             {error}
                           </motion.p>
@@ -235,7 +286,7 @@ const Contact: React.FC = () => {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full py-3.5 mt-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed group flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-[0.98]"
+                        className="w-full py-3.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed group flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
                       >
                         {isSubmitting ? (
                           <>
@@ -249,79 +300,146 @@ const Contact: React.FC = () => {
                           </>
                         )}
                       </button>
-                    </form>
-
-                    {/* Looking for a demo? */}
-                    <p className="mt-5 text-center text-xs text-gray-500">
-                      Looking to book a demo?{' '}
-                      <Link to="/demo" className="text-cyan-400 hover:text-cyan-300 transition-colors">
-                        Schedule here
-                      </Link>
-                    </p>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="success"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="py-8 text-center"
-                  >
-                    <div className="w-14 h-14 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-5">
-                      <FaCheck className="text-xl text-green-500" />
-                    </div>
-                    <h3 className="text-lg font-medium text-white mb-2">
-                      Message Sent!
-                    </h3>
-                    <p className="text-gray-400 text-sm mb-5">
-                      We'll get back to you within 24 hours.
-                    </p>
-                    <button
-                      onClick={() => setIsSubmitted(false)}
-                      className="text-cyan-400 hover:text-cyan-300 text-sm transition-colors"
+                    </motion.form>
+                  ) : (
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="py-12 text-center"
                     >
-                      Send another message
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
+                      <div className="w-14 h-14 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-5">
+                        <FaCheck className="text-xl text-green-500" />
+                      </div>
+                      <h3 className="text-lg font-medium text-white mb-2">
+                        Message Sent!
+                      </h3>
+                      <p className="text-gray-400 text-sm mb-5">
+                        We'll get back to you within 24 hours.
+                      </p>
+                      <button
+                        onClick={() => setIsSubmitted(false)}
+                        className="text-cyan-400 hover:text-cyan-300 text-sm transition-colors"
+                      >
+                        Send another message
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
 
-          {/* Direct Contact Options */}
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
-            <a
-              href="tel:+16163263328"
-              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+            {/* Right Column - Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="space-y-6"
             >
-              <FaPhone className="text-xs" />
-              <span>+1 (616) 326-3328</span>
-            </a>
-            <span className="hidden sm:block text-gray-700">•</span>
-            <a
-              href="mailto:hello@cogniaai.com"
-              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-            >
-              <FaEnvelope className="text-xs" />
-              <span>hello@cogniaai.com</span>
-            </a>
-            <span className="hidden sm:block text-gray-700">•</span>
-            <a
-              href="https://www.linkedin.com/company/cognia-ai-usa/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-            >
-              <FaLinkedin className="text-xs" />
-              <span>LinkedIn</span>
-            </a>
-          </div>
+              {/* Schedule Demo Card */}
+              <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
+                    <FaCalendarCheck className="text-xl text-cyan-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-medium text-white mb-1">
+                      Want to See a Demo?
+                    </h3>
+                    <p className="text-sm text-gray-400 mb-4">
+                      Book a free 30-minute demo to see how AI can transform your business.
+                    </p>
+                    <Link
+                      to="/demo"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-medium rounded-xl transition-all text-sm shadow-lg shadow-cyan-500/25"
+                    >
+                      Schedule Demo
+                      <FaArrowRight className="text-xs" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
 
-          {/* Trust indicator */}
-          <p className="text-center text-xs text-gray-600 mt-6">
-            We typically respond within 24 hours
-          </p>
-        </motion.div>
-      </div>
+              {/* Direct Contact */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-6">
+                <h3 className="text-lg font-medium text-white mb-4">
+                  Direct Contact
+                </h3>
+                <div className="space-y-4">
+                  <a
+                    href="tel:+16163263328"
+                    className="flex items-center gap-4 p-3 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 hover:bg-white/[0.08] transition-all group"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
+                      <FaPhone className="text-cyan-400" />
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-500 uppercase tracking-wider">Phone</div>
+                      <div className="text-white font-medium group-hover:text-cyan-400 transition-colors">+1 (616) 326-3328</div>
+                    </div>
+                  </a>
+
+                  <a
+                    href="mailto:hello@cogniaai.com"
+                    className="flex items-center gap-4 p-3 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 hover:bg-white/[0.08] transition-all group"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
+                      <FaEnvelope className="text-cyan-400" />
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-500 uppercase tracking-wider">Email</div>
+                      <div className="text-white font-medium group-hover:text-cyan-400 transition-colors">hello@cogniaai.com</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              {/* Social Media */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-6">
+                <h3 className="text-lg font-medium text-white mb-4">
+                  Follow Us
+                </h3>
+                <div className="flex gap-3">
+                  <a
+                    href="https://www.linkedin.com/company/cognia-ai-usa/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 p-4 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 hover:bg-white/[0.08] transition-all group"
+                  >
+                    <FaLinkedin className="text-xl text-gray-400 group-hover:text-cyan-400 transition-colors" />
+                    <span className="text-sm text-gray-400 group-hover:text-white transition-colors">LinkedIn</span>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/cognia.ai/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 p-4 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 hover:bg-white/[0.08] transition-all group"
+                  >
+                    <FaInstagram className="text-xl text-gray-400 group-hover:text-cyan-400 transition-colors" />
+                    <span className="text-sm text-gray-400 group-hover:text-white transition-colors">Instagram</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="grid grid-cols-3 gap-3">
+                <div className="text-center p-4 bg-white/[0.03] border border-white/10 rounded-xl">
+                  <FaShieldAlt className="text-xl text-cyan-400 mx-auto mb-2" />
+                  <div className="text-xs text-gray-400">HIPAA Compliant</div>
+                </div>
+                <div className="text-center p-4 bg-white/[0.03] border border-white/10 rounded-xl">
+                  <FaHeadset className="text-xl text-cyan-400 mx-auto mb-2" />
+                  <div className="text-xs text-gray-400">24/7 Support</div>
+                </div>
+                <div className="text-center p-4 bg-white/[0.03] border border-white/10 rounded-xl">
+                  <FaGlobe className="text-xl text-cyan-400 mx-auto mb-2" />
+                  <div className="text-xs text-gray-400">20+ Languages</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
