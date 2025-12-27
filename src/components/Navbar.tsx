@@ -34,26 +34,19 @@ const Navbar: React.FC = () => {
       { icon: FaHospital, title: 'Healthcare', description: 'HIPAA-compliant patient scheduling', path: '/industries/healthcare' },
       { icon: FaGavel, title: 'Legal Services', description: 'Client intake and case management', path: '/industries/legal' },
       { icon: FaStore, title: 'Retail', description: 'Multi-location customer support', path: '/industries/retail' },
-      { icon: FaBuilding, title: 'Enterprise', description: 'Scalable call distribution', path: '/industries/enterprise' },
-      { icon: FaHotel, title: 'Hospitality', description: 'Reservation and guest services', path: '/industries/hospitality' },
-      { icon: FaCar, title: 'Automotive', description: 'Service scheduling and support', path: '/industries/automotive' },
       { icon: FaHome, title: 'Home Services', description: 'Plumbing, HVAC, electrical & more', path: '/industries/home-services' }
     ],
     byFeature: [
       { icon: FaPhone, title: '24/7 Call Handling', description: 'Never miss a customer call', path: '/features/call-handling' },
       { icon: FaCalendar, title: 'Smart Scheduling', description: 'AI-powered appointment booking', path: '/features/smart-scheduling' },
       { icon: FaLanguage, title: 'Multi-Language', description: '20+ languages supported', path: '/features/multi-language' },
-      { icon: FaCog, title: 'CRM Integration', description: 'Connect with your systems', path: '/features/crm-integration' },
-      { icon: FaRobot, title: 'Natural Conversations', description: 'Human-like interactions', path: '/features/natural-conversations' },
       { icon: FaChartLine, title: 'Analytics Dashboard', description: 'Real-time insights and reports', path: '/features/analytics-dashboard' }
     ],
     byUseCase: [
       { icon: FaUsers, title: 'Patient Scheduling', description: 'Medical appointment management', path: '/usecases/patient-scheduling' },
-      { icon: FaFileAlt, title: 'Client Intake', description: 'Automated client onboarding', path: '/usecases/client-intake' },
       { icon: FaHeadset, title: 'Customer Support', description: 'Round-the-clock assistance', path: '/usecases/customer-support' },
       { icon: FaClock, title: 'After-Hours Service', description: 'Business continuity 24/7', path: '/usecases/after-hours-service' },
-      { icon: FaShieldAlt, title: 'Lead Qualification', description: 'Screen and route prospects', path: '/usecases/lead-qualification' },
-      { icon: FaShoppingCart, title: 'Order Processing', description: 'Automated order management', path: '/usecases/order-processing' }
+      { icon: FaShieldAlt, title: 'Lead Qualification', description: 'Screen and route prospects', path: '/usecases/lead-qualification' }
     ]
   };
 
@@ -145,6 +138,13 @@ const Navbar: React.FC = () => {
                                   </div>
                                 </Link>
                               ))}
+                              <Link
+                                to="/solutions"
+                                className="flex items-center gap-2 p-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+                              >
+                                View all industries
+                                <FaArrowRight className="text-xs" />
+                              </Link>
                             </div>
                           </div>
 
@@ -173,6 +173,13 @@ const Navbar: React.FC = () => {
                                   </div>
                                 </Link>
                               ))}
+                              <Link
+                                to="/solutions"
+                                className="flex items-center gap-2 p-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+                              >
+                                View all features
+                                <FaArrowRight className="text-xs" />
+                              </Link>
                             </div>
                           </div>
 
@@ -201,6 +208,13 @@ const Navbar: React.FC = () => {
                                   </div>
                                 </Link>
                               ))}
+                              <Link
+                                to="/solutions"
+                                className="flex items-center gap-2 p-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+                              >
+                                View all use cases
+                                <FaArrowRight className="text-xs" />
+                              </Link>
                             </div>
                           </div>
                         </div>
