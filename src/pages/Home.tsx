@@ -8,6 +8,7 @@ import SocialProofSection from '../components/SocialProofSection';
 import FeaturesSection from '../components/FeaturesSection';
 import SolutionsGrid from '../components/SolutionsGrid';
 import FAQAccordion from '../components/FAQAccordion';
+import HowItWorks from '../components/HowItWorks';
 import FinalCTA from '../components/FinalCTA';
 import DynamicTechBackground from '../components/DynamicTechBackground';
 import { VideoProvider } from '../contexts/VideoContext';
@@ -110,10 +111,13 @@ const Home: React.FC = () => {
           {/* 4. Features Section - What the AI does */}
           <FeaturesSection />
 
-          {/* 5. Industries - Who it's for */}
+          {/* 5. How It Works - Setup process */}
+          <HowItWorks />
+
+          {/* 6. Industries - Who it's for */}
           <SolutionsGrid />
 
-          {/* 6. FAQ - Remove objections */}
+          {/* 7. FAQ - Remove objections */}
           <FAQAccordion />
 
           {/* 8. Final CTA - Close the deal */}
