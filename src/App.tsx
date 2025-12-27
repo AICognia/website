@@ -8,7 +8,6 @@ import Navbar from './components/Navbar';
 import MobileNavbarRedesigned from './components/MobileNavbarRedesigned';
 import Footer from './components/Footer';
 import CookieConsentBanner from './components/CookieConsent';
-import Breadcrumb from './components/Breadcrumb';
 import { PageLoader } from './components/LoadingSkeleton';
 import StickyMobileCTARedesigned from './components/StickyMobileCTARedesigned';
 
@@ -75,7 +74,6 @@ function AppContent() {
           <Navbar />
         </div>
       )}
-      {!isLandingPage && location.pathname !== '/' && <Breadcrumb />}
       <main className="flex-grow">
         <Suspense fallback={<PageLoader />}>
           <Routes>
