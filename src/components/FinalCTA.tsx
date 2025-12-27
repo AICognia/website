@@ -1,69 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaPhone, FaCheckCircle, FaSpinner } from 'react-icons/fa';
+import { FaArrowRight, FaPhone, FaCheckCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
 
 const FinalCTA: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', email: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState('');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.email || !formData.name) {
-      setError('Please fill in your name and email');
-      return;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      setError('Please enter a valid email address');
-      return;
-    }
-
-    setIsSubmitting(true);
-    setError('');
-
-    try {
-      const response = await fetch('https://formspree.io/f/mqarlrwl', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          _subject: `Demo Request from ${formData.name}`,
-          form_type: 'final_cta_form',
-          source: 'homepage_final_cta',
-          submitted_at: new Date().toISOString(),
-        }),
-      });
-
-      if (response.ok) {
-        conversionTracker.trackButtonClick('Final CTA Form Submit', 'final_cta');
-        conversionTracker.trackDemoBooking('final_cta');
-
-        // Track Meta Pixel Lead event
-        if (typeof window !== 'undefined' && (window as any).fbq) {
-          (window as any).fbq('track', 'Lead', {
-            content_name: 'Final CTA Form Submission',
-            content_category: 'Lead Capture'
-          });
-        }
-
-        setIsSubmitted(true);
-        setTimeout(() => {
-          window.open('https://calendly.com/emrebenian-cogniaai/30min', '_blank');
-        }, 1000);
-      } else {
-        setError('Something went wrong. Please try again.');
-      }
-    } catch (err) {
-      console.error('Form submission error:', err);
-      setError('Connection error. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <section className="relative bg-black py-20 lg:py-28 overflow-hidden">
       {/* Background gradient */}
@@ -101,69 +42,33 @@ const FinalCTA: React.FC = () => {
             Get your AI receptionist live in 1 week.
           </p>
 
-          {/* Lead Capture Form */}
-          {!isSubmitted ? (
-            <form onSubmit={handleSubmit} className="max-w-md mx-auto mb-8">
-              <div className="flex flex-col sm:flex-row gap-3 mb-3">
-                <input
-                  type="text"
-                  placeholder="Your name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="flex-1 px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
-                  required
-                />
-                <input
-                  type="email"
-                  placeholder="Work email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="flex-1 px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
-                  required
-                />
-              </div>
-              {error && <p className="text-red-400 text-sm mb-3">{error}</p>}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 disabled:opacity-50"
-              >
-                {isSubmitting ? (
-                  <>
-                    <FaSpinner className="animate-spin" />
-                    <span>Submitting...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Start Your Free Trial</span>
-                    <FaArrowRight className="text-sm" />
-                  </>
-                )}
-              </button>
-            </form>
-          ) : (
-            <div className="max-w-md mx-auto mb-8 p-6 bg-green-500/10 border border-green-500/20 rounded-xl text-center">
-              <FaCheckCircle className="text-green-400 text-2xl mx-auto mb-3" />
-              <p className="text-white font-medium mb-2">You're all set!</p>
-              <p className="text-gray-400 text-sm">Opening Calendly to schedule your demo...</p>
-            </div>
-          )}
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+            {/* Primary CTA */}
+            <Link
+              to="/demo"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
+            >
+              Start Your Free Trial
+              <FaArrowRight className="text-sm" />
+            </Link>
 
-          {/* Secondary CTA */}
-          <a
-            href="tel:+16163263328"
-            onClick={() => {
-              conversionTracker.trackPhoneCall('+16163263328');
-              conversionTracker.trackButtonClick('Talk to AI', 'final_cta_secondary');
-            }}
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-          >
-            <FaPhone className="text-sm" />
-            <span>Or call to talk to our AI: +1 616-326-3328</span>
-          </a>
+            {/* Secondary CTA */}
+            <a
+              href="tel:+16163263328"
+              onClick={() => {
+                conversionTracker.trackPhoneCall('+16163263328');
+                conversionTracker.trackButtonClick('Talk to AI', 'final_cta_secondary');
+              }}
+              className="inline-flex items-center gap-2 px-6 py-4 border border-white/20 hover:bg-white/5 text-white font-medium rounded-xl transition-colors"
+            >
+              <FaPhone className="text-sm" />
+              <span>Talk to AI</span>
+            </a>
+          </div>
 
           {/* Trust badges */}
-          <div className="flex flex-wrap justify-center items-center gap-6 mt-10 text-xs text-gray-500">
+          <div className="flex flex-wrap justify-center items-center gap-6 text-xs text-gray-500">
             <span className="flex items-center gap-2">
               <FaCheckCircle className="text-green-400" />
               1 Week Free Trial
