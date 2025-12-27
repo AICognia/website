@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { FaHospital, FaGavel, FaHome, FaBuilding, FaHotel, FaStore } from 'react-icons/fa';
 
 const solutions = [
@@ -52,13 +51,7 @@ const SolutionsGrid: React.FC = () => {
     <section className="relative bg-black py-20 lg:py-28">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 mb-6 text-xs font-medium text-gray-400 bg-white/5 border border-white/10 rounded-full">
             Industries
           </span>
@@ -68,17 +61,13 @@ const SolutionsGrid: React.FC = () => {
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             AI trained on industry-specific workflows and terminology
           </p>
-        </motion.div>
+        </div>
 
         {/* Solutions Grid - Static 3 columns */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {solutions.map((solution, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-cyan-500/30 hover:bg-cyan-500/[0.02] transition-all duration-300"
             >
               {/* Icon & Industry */}
@@ -106,7 +95,7 @@ const SolutionsGrid: React.FC = () => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
