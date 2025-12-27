@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FaShieldAlt, FaCheckCircle, FaHeadset, FaClock, FaArrowRight } from 'react-icons/fa';
+import { FaShieldAlt, FaCheckCircle, FaHeadset, FaClock, FaArrowRight, FaPhone } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
 import SoundVisualizer from './SoundVisualizer';
 
@@ -9,6 +8,9 @@ const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
 
 const OptimizedHero: React.FC = () => {
   const [wordIndex, setWordIndex] = useState(0);
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -16,6 +18,27 @@ const OptimizedHero: React.FC = () => {
     }, 1500);
     return () => clearInterval(interval);
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !name) return;
+
+    setIsSubmitting(true);
+    conversionTracker.trackButtonClick('Hero Lead Form Submit', 'hero_form');
+
+    // Track Meta Pixel Lead event
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Lead', {
+        content_name: 'Hero Form Submission',
+        content_category: 'Lead Capture'
+      });
+    }
+
+    // Redirect to Calendly with pre-filled info
+    const calendlyUrl = `https://calendly.com/cognia-ai/demo?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+    window.open(calendlyUrl, '_blank');
+    setIsSubmitting(false);
+  };
 
   return (
     <>
@@ -89,40 +112,63 @@ const OptimizedHero: React.FC = () => {
                 ))}
               </div>
 
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                {/* Primary CTA - Book a Demo */}
-                <Link
-                  to="/demo"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black text-sm font-medium rounded-lg transition-colors"
+              {/* Lead Capture Form */}
+              <form onSubmit={handleSubmit} className="space-y-3 max-w-md">
+                <div className="flex gap-3">
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Work email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white text-sm font-semibold rounded-lg transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 disabled:opacity-50"
                 >
-                  Book a Demo
+                  {isSubmitting ? 'Opening Calendly...' : 'Start Free Trial'}
                   <FaArrowRight className="text-[10px]" />
-                </Link>
+                </button>
+              </form>
 
-                {/* Secondary CTA - Talk to AI */}
-                <a
-                  href="tel:+16163263328"
-                  onClick={() => {
-                    conversionTracker.trackPhoneCall('+16163263328');
-                    conversionTracker.trackButtonClick('Talk to AI', 'hero_secondary');
-                  }}
-                  className="inline-flex items-center justify-center gap-3 px-6 py-3 border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-900 text-white text-sm font-medium rounded-lg transition-colors"
-                >
-                  Talk to AI
-                  <span className="text-neutral-500">+1 616-326-3328</span>
-                </a>
-              </div>
+              {/* Secondary CTA - Talk to AI */}
+              <a
+                href="tel:+16163263328"
+                onClick={() => {
+                  conversionTracker.trackPhoneCall('+16163263328');
+                  conversionTracker.trackButtonClick('Talk to AI', 'hero_secondary');
+                }}
+                className="inline-flex items-center justify-center gap-3 px-6 py-3 border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-900 text-white text-sm font-medium rounded-lg transition-colors w-fit"
+              >
+                <FaPhone className="text-sm" />
+                Talk to AI
+                <span className="text-neutral-500">+1 616-326-3328</span>
+              </a>
 
               {/* Micro-trust */}
               <p className="text-xs text-gray-500 flex items-center gap-4">
                 <span className="flex items-center gap-1">
                   <FaCheckCircle className="text-green-400" />
-                  Free 1-week trial
+                  1 Week Free Trial
                 </span>
                 <span className="flex items-center gap-1">
                   <FaCheckCircle className="text-green-400" />
                   No credit card required
+                </span>
+                <span className="flex items-center gap-1">
+                  <FaCheckCircle className="text-green-400" />
+                  Setup in 1 week
                 </span>
               </p>
             </div>

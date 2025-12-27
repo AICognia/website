@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaPhone, FaArrowRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaPhone, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
 
 const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
@@ -9,6 +8,9 @@ const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
 const MobileHeroRedesigned: React.FC = () => {
   const [wordIndex, setWordIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
@@ -23,6 +25,27 @@ const MobileHeroRedesigned: React.FC = () => {
     }, 1500);
     return () => clearInterval(interval);
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !name) return;
+
+    setIsSubmitting(true);
+    conversionTracker.trackButtonClick('Mobile Hero Lead Form Submit', 'mobile_hero_form');
+
+    // Track Meta Pixel Lead event
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Lead', {
+        content_name: 'Mobile Hero Form Submission',
+        content_category: 'Lead Capture'
+      });
+    }
+
+    // Redirect to Calendly with pre-filled info
+    const calendlyUrl = `https://calendly.com/cognia-ai/demo?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+    window.open(calendlyUrl, '_blank');
+    setIsSubmitting(false);
+  };
 
   // Handle audio click
   const handleClick = async () => {
@@ -223,24 +246,38 @@ const MobileHeroRedesigned: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* CTA Buttons */}
-          <motion.div
+          {/* Lead Capture Form */}
+          <motion.form
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            onSubmit={handleSubmit}
             className="space-y-3"
           >
-            {/* Primary CTA - Book a Demo */}
-            <Link
-              to="/demo"
-              onClick={() => conversionTracker.trackButtonClick('Book a Demo', 'mobile_hero_primary')}
-              className="block w-full"
+            <input
+              type="text"
+              placeholder="Your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Work email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
+              required
+            />
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-lg shadow-lg shadow-cyan-500/25 disabled:opacity-50"
             >
-              <div className="bg-white text-black py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-lg">
-                <span>Book a Demo</span>
-                <FaArrowRight className="text-sm" />
-              </div>
-            </Link>
+              <span>{isSubmitting ? 'Opening...' : 'Start Free Trial'}</span>
+              <FaArrowRight className="text-sm" />
+            </button>
 
             {/* Secondary CTA - Talk to AI */}
             <a
@@ -251,13 +288,25 @@ const MobileHeroRedesigned: React.FC = () => {
               }}
               className="block w-full"
             >
-              <div className="border border-white/20 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-medium">
+              <div className="border border-white/20 text-white py-3.5 rounded-xl flex items-center justify-center gap-2 font-medium">
                 <FaPhone className="text-sm" />
                 <span>Talk to AI</span>
                 <span className="text-gray-500 text-sm">+1 616-326-3328</span>
               </div>
             </a>
-          </motion.div>
+
+            {/* Trust badges */}
+            <div className="flex items-center justify-center gap-3 pt-2 text-[11px] text-gray-500">
+              <span className="flex items-center gap-1">
+                <FaCheckCircle className="text-green-400 text-[10px]" />
+                1 Week Free
+              </span>
+              <span className="flex items-center gap-1">
+                <FaCheckCircle className="text-green-400 text-[10px]" />
+                No Card Required
+              </span>
+            </div>
+          </motion.form>
 
           {/* Stats */}
           <motion.div

@@ -12,6 +12,7 @@ const testimonials = [
     company: "",
     industry: "Healthcare",
     rating: 5,
+    initials: "JO",
   },
   {
     shortQuote: "After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, and we've noticed a pretty clear bump in jobs coming in.",
@@ -21,6 +22,7 @@ const testimonials = [
     company: "",
     industry: "Automotive",
     rating: 5,
+    initials: "EA",
   },
 ];
 
@@ -166,19 +168,25 @@ const SocialProofSection: React.FC = () => {
                 </div>
 
                 {/* Author - Bottom section */}
-                <div className="pt-6 mt-6 border-t border-white/10">
-                  {/* Rating */}
-                  <div className="flex gap-1 mb-2">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <FaStar key={i} className="text-yellow-400 text-sm" />
-                    ))}
+                <div className="pt-6 mt-6 border-t border-white/10 flex items-start gap-4">
+                  {/* Avatar with initials */}
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-semibold text-sm">{testimonial.initials}</span>
                   </div>
-                  <div className="font-medium text-white">{testimonial.author}</div>
-                  <div className="text-xs text-gray-500 mb-2">
-                    {testimonial.company ? `${testimonial.role} at ${testimonial.company}` : testimonial.role}
-                  </div>
-                  <div className="inline-block w-fit px-2 py-0.5 bg-cyan-500/10 text-cyan-400 text-xs rounded-full">
-                    {testimonial.industry}
+                  <div className="flex-1">
+                    {/* Rating */}
+                    <div className="flex gap-1 mb-1">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <FaStar key={i} className="text-yellow-400 text-xs" />
+                      ))}
+                    </div>
+                    <div className="font-medium text-white">{testimonial.author}</div>
+                    <div className="text-xs text-gray-500">
+                      {testimonial.company ? `${testimonial.role} at ${testimonial.company}` : testimonial.role}
+                    </div>
+                    <div className="inline-block w-fit px-2 py-0.5 mt-1 bg-cyan-500/10 text-cyan-400 text-[10px] rounded-full">
+                      {testimonial.industry}
+                    </div>
                   </div>
                 </div>
               </motion.div>
