@@ -1,4 +1,6 @@
 import React, { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa';
 import { useVideo } from '../contexts/VideoContext';
 
 const FeaturesSection: React.FC = () => {
@@ -118,6 +120,17 @@ const FeaturesSection: React.FC = () => {
               </div>
             ))}
           </div>
+
+          {/* Mobile CTA */}
+          <div className="mt-10 text-center">
+            <Link
+              to="/demo"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
+            >
+              Get Your AI Receptionist
+              <FaArrowRight className="text-sm" />
+            </Link>
+          </div>
         </div>
 
         {/* Desktop: Side by side */}
@@ -138,14 +151,14 @@ const FeaturesSection: React.FC = () => {
 
           {/* Right Side - Video */}
           <div className="relative flex items-center justify-center">
-            <div className="relative w-full h-[700px] flex items-center justify-center">
+            <div className="relative w-full h-[600px] flex items-center justify-center">
               <video
                 ref={videoRef}
                 loop
                 muted
                 playsInline
                 controls
-                className="h-[700px] w-auto rounded-2xl shadow-2xl"
+                className="h-[600px] w-auto rounded-2xl shadow-2xl"
                 style={{
                   objectFit: 'contain'
                 }}
@@ -154,6 +167,18 @@ const FeaturesSection: React.FC = () => {
               </video>
             </div>
           </div>
+        </div>
+
+        {/* Desktop CTA */}
+        <div className="hidden lg:block text-center mt-16">
+          <Link
+            to="/demo"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
+          >
+            Get Your AI Receptionist
+            <FaArrowRight className="text-sm" />
+          </Link>
+          <p className="text-xs text-gray-500 mt-3">1 week free trial. No credit card required.</p>
         </div>
       </div>
     </section>

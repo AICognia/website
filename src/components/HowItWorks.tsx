@@ -103,7 +103,7 @@ const HowItWorks: React.FC = () => {
             to="/demo"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
           >
-            Start Your Free Trial
+            Get Your AI Receptionist
             <FaArrowRight className="text-sm" />
           </Link>
           <p className="text-xs text-gray-500 mt-4">

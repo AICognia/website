@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown, FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const faqs = [
   {
     question: 'How long does setup take?',
     answer: 'We set up your system within 1 week. After analyzing your needs, we configure and activate your AI assistant. Most businesses are live within 5-7 days.',
-  },
-  {
-    question: 'Which languages do you support?',
-    answer: 'We support over 20 languages including Spanish, French, Mandarin, and more. Your AI assistant can communicate naturally in your customers\' preferred language.',
   },
   {
     question: 'Does it integrate with existing systems?',
@@ -18,10 +15,6 @@ const faqs = [
   {
     question: 'What about data security?',
     answer: 'We are HIPAA compliant. All data is encrypted in transit and at rest. We conduct regular security audits and never share your data with third parties.',
-  },
-  {
-    question: 'What happens if the AI can\'t handle a call?',
-    answer: 'The AI seamlessly transfers complex calls to your team with full context. You set the escalation rules, and the AI follows them precisely. Nothing falls through the cracks.',
   },
   {
     question: 'Is there a free trial?',
@@ -96,6 +89,24 @@ const FAQAccordion: React.FC = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* CTA after FAQ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-center mt-12"
+        >
+          <p className="text-gray-400 mb-4">Still have questions?</p>
+          <Link
+            to="/demo"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
+          >
+            Talk to Us
+            <FaArrowRight className="text-sm" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

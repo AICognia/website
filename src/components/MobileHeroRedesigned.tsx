@@ -157,7 +157,7 @@ const MobileHeroRedesigned: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-center text-gray-400 text-lg mb-6"
+            className="text-center text-gray-400 text-lg mb-2"
           >
             Never miss a call. Close more{' '}
             <span className="relative inline-block h-7 align-bottom overflow-hidden" style={{ minWidth: '5.5rem' }}>
@@ -176,67 +176,36 @@ const MobileHeroRedesigned: React.FC = () => {
             </span>
           </motion.p>
 
-          {/* Sound Visualizer */}
+          {/* Urgency badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="relative mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.12 }}
+            className="flex justify-center mb-6"
           >
-            <div className="relative flex items-center justify-center">
-              {/* Background glow - smooth static radial gradient */}
-              <div
-                className="absolute w-64 h-64 rounded-full blur-3xl opacity-30"
-                style={{
-                  background: 'radial-gradient(circle, rgba(96, 165, 250, 0.5) 0%, rgba(167, 139, 250, 0.3) 50%, transparent 100%)',
-                }}
-              />
-
-              {/* Canvas for sound visualization - clickable */}
-              <div
-                onClick={handleClick}
-                className="relative z-10 cursor-pointer flex items-center justify-center"
-              >
-                <canvas
-                  ref={canvasRef}
-                  width={300}
-                  height={100}
-                  className="max-w-full"
-                  style={{
-                    filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.3))',
-                  }}
-                />
-                {/* Play/Pause indicator */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border-2 border-white/40 flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all duration-300 shadow-xl shadow-white/10">
-                    {!isPlaying ? (
-                      <div className="w-0 h-0 border-l-[18px] border-l-white border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1" />
-                    ) : (
-                      <div className="flex gap-1.5">
-                        <div className="w-1.5 h-6 bg-white rounded-full"></div>
-                        <div className="w-1.5 h-6 bg-white rounded-full"></div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-500/10 border border-green-500/20 rounded-full">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400"></span>
+              </span>
+              <span className="text-xs text-green-400 font-medium">5 spots left this month</span>
             </div>
           </motion.div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - MOVED ABOVE VISUALIZER */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-3"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="space-y-3 mb-8"
           >
-            {/* Primary CTA - Start Free Trial */}
+            {/* Primary CTA */}
             <Link
               to="/demo"
               className="block w-full"
             >
               <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-lg shadow-lg shadow-cyan-500/25">
-                <span>Start Free Trial</span>
+                <span>Get Your AI Receptionist</span>
                 <FaArrowRight className="text-sm" />
               </div>
             </Link>
@@ -252,12 +221,12 @@ const MobileHeroRedesigned: React.FC = () => {
             >
               <div className="border border-white/20 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-medium text-lg">
                 <FaPhone className="text-sm" />
-                <span>Talk to AI</span>
+                <span>Talk to AI Now</span>
               </div>
             </a>
 
             {/* Trust badges */}
-            <div className="flex items-center justify-center gap-3 pt-2 text-[11px] text-gray-500">
+            <div className="flex items-center justify-center gap-3 pt-1 text-[11px] text-gray-500">
               <span className="flex items-center gap-1">
                 <FaCheckCircle className="text-green-400 text-[10px]" />
                 1 Week Free
@@ -269,12 +238,60 @@ const MobileHeroRedesigned: React.FC = () => {
             </div>
           </motion.div>
 
+          {/* Sound Visualizer - Below CTAs */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="relative mb-6"
+          >
+            <p className="text-center text-xs text-gray-500 mb-3">Hear our AI in action</p>
+            <div className="relative flex items-center justify-center">
+              {/* Background glow */}
+              <div
+                className="absolute w-48 h-48 rounded-full blur-3xl opacity-20"
+                style={{
+                  background: 'radial-gradient(circle, rgba(96, 165, 250, 0.5) 0%, transparent 70%)',
+                }}
+              />
+
+              {/* Canvas for sound visualization - clickable */}
+              <div
+                onClick={handleClick}
+                className="relative z-10 cursor-pointer flex items-center justify-center"
+              >
+                <canvas
+                  ref={canvasRef}
+                  width={280}
+                  height={80}
+                  className="max-w-full"
+                  style={{
+                    filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.4))',
+                  }}
+                />
+                {/* Play/Pause indicator */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border-2 border-white/40 flex items-center justify-center hover:bg-white/20 transition-all duration-300">
+                    {!isPlaying ? (
+                      <div className="w-0 h-0 border-l-[14px] border-l-white border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent ml-1" />
+                    ) : (
+                      <div className="flex gap-1">
+                        <div className="w-1.5 h-5 bg-white rounded-full"></div>
+                        <div className="w-1.5 h-5 bg-white rounded-full"></div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Stats */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="grid grid-cols-3 gap-4 mt-10"
+            className="grid grid-cols-3 gap-4"
           >
             {[
               { value: '24/7', label: 'Available' },
@@ -282,8 +299,8 @@ const MobileHeroRedesigned: React.FC = () => {
               { value: '1 Week', label: 'Setup' },
             ].map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="text-2xl font-bold text-cyan-400">{stat.value}</div>
-                <div className="text-xs text-gray-500 uppercase tracking-wide">{stat.label}</div>
+                <div className="text-xl font-bold text-cyan-400">{stat.value}</div>
+                <div className="text-[10px] text-gray-500 uppercase tracking-wide">{stat.label}</div>
               </div>
             ))}
           </motion.div>

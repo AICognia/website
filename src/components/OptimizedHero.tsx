@@ -25,19 +25,22 @@ const OptimizedHero: React.FC = () => {
         <div className="absolute inset-0 bg-black" />
 
         <div className="relative container mx-auto px-6 lg:px-12 z-10 pt-2">
-          {/* Trust Badge Strip - Above the fold */}
+          {/* Urgency + Trust Badge Strip - Above the fold */}
           <div className="flex items-center justify-center gap-8 py-4 border-b border-white/5">
+            <div className="flex items-center gap-2 text-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
+              </span>
+              <span className="text-green-400 font-medium">5 spots left this month</span>
+            </div>
             <div className="flex items-center gap-2 text-sm text-gray-400">
               <FaShieldAlt className="text-green-400" />
               <span>HIPAA Compliant</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-400">
-              <FaHeadset className="text-green-400" />
-              <span>24/7 Support</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
               <FaClock className="text-green-400" />
-              <span>1 Week Setup</span>
+              <span>Live in 1 Week</span>
             </div>
           </div>
 
@@ -91,12 +94,12 @@ const OptimizedHero: React.FC = () => {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 items-start">
-                {/* Primary CTA - Book a Demo */}
+                {/* Primary CTA */}
                 <Link
                   to="/demo"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
                 >
-                  Start Free Trial
+                  Get Your AI Receptionist
                   <FaArrowRight className="text-sm" />
                 </Link>
 
@@ -110,7 +113,7 @@ const OptimizedHero: React.FC = () => {
                   className="inline-flex items-center justify-center gap-3 px-6 py-4 border border-white/20 hover:bg-white/5 text-white font-medium rounded-xl transition-colors"
                 >
                   <FaPhone className="text-sm" />
-                  Talk to AI
+                  Talk to AI Now
                 </a>
               </div>
 

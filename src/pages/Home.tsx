@@ -4,11 +4,9 @@ import { structuredDataTemplates } from '../config/seoConfig';
 import ScrollProgress from '../components/ScrollProgress';
 import OptimizedHero from '../components/OptimizedHero';
 import MobileHeroRedesigned from '../components/MobileHeroRedesigned';
-import ProblemSection from '../components/ProblemSection';
 import SocialProofSection from '../components/SocialProofSection';
 import FeaturesSection from '../components/FeaturesSection';
 import SolutionsGrid from '../components/SolutionsGrid';
-import IntegrationsStrip from '../components/IntegrationsStrip';
 import HowItWorks from '../components/HowItWorks';
 import FAQAccordion from '../components/FAQAccordion';
 import FinalCTA from '../components/FinalCTA';
@@ -77,28 +75,22 @@ const Home: React.FC = () => {
           {/* 2. Hero Section - Mobile */}
           <MobileHeroRedesigned />
 
-          {/* 3. Problem Section - Pain points that resonate */}
-          <ProblemSection />
-
-          {/* 4. Social Proof - Testimonials & stats */}
+          {/* 3. Social Proof - Testimonials & stats */}
           <SocialProofSection />
 
-          {/* 5. Features Section - What the AI does */}
+          {/* 4. Features Section - What the AI does */}
           <FeaturesSection />
 
-          {/* 6. Industries - Who it's for */}
+          {/* 5. Industries - Who it's for */}
           <SolutionsGrid />
 
-          {/* 8. Integrations Strip - Quick trust signal */}
-          <IntegrationsStrip />
-
-          {/* 9. How It Works - Timeline */}
+          {/* 6. How It Works - Timeline */}
           <HowItWorks />
 
-          {/* 10. FAQ - Remove objections */}
+          {/* 7. FAQ - Remove objections */}
           <FAQAccordion />
 
-          {/* 11. Final CTA - Close the deal */}
+          {/* 8. Final CTA - Close the deal */}
           <FinalCTA />
         </div>
       </div>
