@@ -10,7 +10,8 @@ import {
   FaBolt,
   FaGlobeAmericas,
   FaArrowRight,
-  FaCheckCircle
+  FaCheckCircle,
+  FaSearchDollar
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
@@ -52,6 +53,11 @@ const Company: React.FC = () => {
       icon: FaChartBar,
       title: 'Business Intelligence',
       description: 'Turn data into decisions with AI analytics, reporting dashboards, and predictive insights.',
+    },
+    {
+      icon: FaSearchDollar,
+      title: 'AI Audit',
+      description: 'Comprehensive analysis of your business to identify AI opportunities that drive ROI and efficiency.',
     },
     {
       icon: FaRobot,

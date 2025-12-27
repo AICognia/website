@@ -315,15 +315,17 @@ const Demo: React.FC = () => {
       <div className="min-h-screen bg-black flex items-center justify-center">
         {/* Ambient background glow */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-500/8 via-blue-500/5 to-purple-500/8 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-cyan-500/10 via-blue-500/8 to-purple-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-2xl animate-pulse" />
+          <div className="absolute bottom-1/3 right-1/3 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
 
         <div className="relative w-full max-w-md lg:max-w-lg mx-auto px-6 py-12 lg:py-16">
           {/* Centered Form Card */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             {/* Header - Minimal */}
             <div className="text-center mb-8">
@@ -335,12 +337,33 @@ const Demo: React.FC = () => {
               </p>
             </div>
 
-            {/* Elegant Form Card */}
-            <div className="relative">
-              {/* Subtle glow behind card */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-cyan-500/20 rounded-3xl blur-xl opacity-50" />
+            {/* Elegant Form Card with Deep 3D Effect */}
+            <div className="relative perspective-1000">
+              {/* Multiple layered glows for depth */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/30 via-blue-500/20 to-purple-500/30 rounded-3xl blur-2xl opacity-60" />
+              <div className="absolute -inset-2 bg-gradient-to-b from-cyan-400/20 to-blue-600/20 rounded-3xl blur-xl opacity-40" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/25 via-blue-500/25 to-cyan-500/25 rounded-3xl blur-lg opacity-50" />
 
-              <div className="relative bg-gradient-to-b from-white/[0.08] to-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-6 lg:p-8 shadow-2xl">
+              {/* Outer shadow layer */}
+              <div className="absolute inset-0 bg-black/50 rounded-2xl translate-y-2 blur-md" />
+
+              {/* Main card with enhanced depth */}
+              <div
+                className="relative bg-gradient-to-b from-white/[0.12] via-white/[0.06] to-white/[0.02] backdrop-blur-2xl border border-white/20 rounded-2xl p-6 lg:p-8"
+                style={{
+                  boxShadow: `
+                    0 0 0 1px rgba(255,255,255,0.1),
+                    0 4px 6px -1px rgba(0, 0, 0, 0.3),
+                    0 10px 15px -3px rgba(0, 0, 0, 0.4),
+                    0 20px 25px -5px rgba(0, 0, 0, 0.5),
+                    0 25px 50px -12px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 0 rgba(255,255,255,0.1),
+                    inset 0 -1px 0 0 rgba(0,0,0,0.2),
+                    0 0 60px -15px rgba(34, 211, 238, 0.3),
+                    0 0 100px -20px rgba(59, 130, 246, 0.2)
+                  `
+                }}
+              >
                 <AnimatePresence mode="wait">
                   {!isSubmitted ? (
                     <motion.div
