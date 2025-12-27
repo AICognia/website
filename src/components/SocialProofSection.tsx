@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaStar, FaQuoteLeft, FaShieldAlt, FaClock, FaHeadset, FaHospital, FaGavel, FaStore, FaBuilding, FaHotel, FaFileInvoiceDollar, FaHome, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaStar, FaQuoteLeft, FaClock, FaHeadset, FaHospital, FaGavel, FaStore, FaBuilding, FaHotel, FaFileInvoiceDollar, FaHome, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 // Testimonials data
 const testimonials = [
@@ -32,13 +32,6 @@ const stats = [
   { value: '1 Week', label: 'Avg Setup Time', icon: FaClock },
 ];
 
-// Trust badges
-const trustBadges = [
-  { icon: FaShieldAlt, label: 'HIPAA Compliant', color: 'text-green-400' },
-  { icon: FaHeadset, label: '24/7 Support', color: 'text-cyan-400' },
-  { icon: FaClock, label: '99.9% Uptime', color: 'text-purple-400' },
-];
-
 // Industries served
 const industries = [
   { icon: FaHospital, label: 'Healthcare' },
@@ -51,10 +44,19 @@ const industries = [
 ];
 
 const SocialProofSection: React.FC = () => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  // Use a Set to allow multiple testimonials to be expanded independently
+  const [expandedIndices, setExpandedIndices] = useState<Set<number>>(new Set());
 
   const toggleExpand = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+    setExpandedIndices(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        newSet.add(index);
+      }
+      return newSet;
+    });
   };
 
   return (
@@ -73,26 +75,6 @@ const SocialProofSection: React.FC = () => {
           <p className="text-gray-400 max-w-2xl mx-auto">
             See why businesses trust Cognia AI to handle their most important customer conversations
           </p>
-        </div>
-
-        {/* Trust Badges - Horizontal Strip */}
-        <div className="flex flex-wrap justify-center items-center gap-4 lg:gap-8 mb-12 py-4 border-y border-white/5">
-          {trustBadges.map((badge, index) => {
-            const Icon = badge.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="flex items-center gap-2"
-              >
-                <Icon className={`${badge.color}`} />
-                <span className="text-sm text-gray-400">{badge.label}</span>
-              </motion.div>
-            );
-          })}
         </div>
 
         {/* Stats Grid */}
@@ -123,7 +105,7 @@ const SocialProofSection: React.FC = () => {
         {/* Testimonials - Side by Side Grid */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           {testimonials.map((testimonial, index) => {
-            const isExpanded = expandedIndex === index;
+            const isExpanded = expandedIndices.has(index);
             return (
               <motion.div
                 key={index}

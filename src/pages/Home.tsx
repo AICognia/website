@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaPhone, FaCheckCircle, FaRocket, FaShieldAlt, FaClock, FaChartLine, FaUsers, FaHeadset, FaRobot, FaMicrophone, FaLanguage, FaCalendarAlt, FaHospital, FaBalanceScale, FaStore, FaBuilding, FaHotel, FaCar, FaCalendarAlt as FaCalendar, FaCog, FaUserTie, FaPlug, FaSync, FaCloud, FaDatabase, FaHome, FaArrowRight } from 'react-icons/fa';
+import { FaPhone, FaCheckCircle, FaRocket, FaShieldAlt, FaClock, FaChartLine, FaUsers, FaHeadset, FaCalendarAlt, FaHospital, FaHotel, FaPlug, FaSync, FaCloud, FaDatabase, FaBuilding, FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
@@ -88,159 +88,6 @@ const Home: React.FC = () => {
 
         {/* Demo Section - Scale.com style */}
         <DemoSection />
-
-        {/* By Industry, Feature, Use Case Section */}
-        <TechSection
-          badge="Solutions"
-          title="Tailored AI for Every Need"
-          subtitle="Industry-specific solutions with powerful features for every use case"
-        >
-          <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-12">
-              {/* BY INDUSTRY */}
-              <div>
-                <h3 className="text-xs text-gray-500 uppercase tracking-widest mb-8">By Industry</h3>
-                <div className="space-y-6">
-                  {[
-                    { icon: FaHospital, title: 'Healthcare', desc: 'HIPAA-compliant patient scheduling', link: '/industries/healthcare' },
-                    { icon: FaBalanceScale, title: 'Legal Services', desc: 'Client intake and case management', link: '/industries/legal' },
-                    { icon: FaStore, title: 'Retail', desc: 'Multi-location customer support', link: '/industries/retail' },
-                    { icon: FaBuilding, title: 'Enterprise', desc: 'Scalable call distribution', link: '/industries/enterprise' },
-                    { icon: FaHotel, title: 'Hospitality', desc: 'Reservation and guest services', link: '/industries/hospitality' },
-                    { icon: FaCar, title: 'Automotive', desc: 'Service scheduling and support', link: '/industries/automotive' },
-                    { icon: FaHome, title: 'Home Services', desc: 'Plumbing, HVAC, electrical & more', link: '/industries/home-services' }
-                  ].map((item, index) => (
-                    <Link key={index} to={item.link} className="flex items-start gap-4 hover:opacity-80 transition-opacity cursor-pointer">
-                      <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                        <item.icon className="text-white text-lg" />
-                      </div>
-                      <div>
-                        <div className="text-white font-medium mb-1">{item.title}</div>
-                        <div className="text-sm text-gray-400">{item.desc}</div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* BY FEATURE */}
-              <div>
-                <h3 className="text-xs text-gray-500 uppercase tracking-widest mb-8">By Feature</h3>
-                <div className="space-y-6">
-                  {[
-                    { icon: FaPhone, title: '24/7 Call Handling', desc: 'Never miss a customer call', link: '/features/call-handling' },
-                    { icon: FaCalendarAlt, title: 'Smart Scheduling', desc: 'AI-powered appointment booking', link: '/features/smart-scheduling' },
-                    { icon: FaLanguage, title: 'Multi-Language', desc: '20+ languages supported', link: '/features/multi-language' },
-                    { icon: FaCog, title: 'CRM Integration', desc: 'Connect with your systems', link: '/features/crm-integration' },
-                    { icon: FaRobot, title: 'Natural Conversations', desc: 'Human-like interactions', link: '/features/natural-conversations' },
-                    { icon: FaChartLine, title: 'Analytics Dashboard', desc: 'Real-time insights and reports', link: '/features/analytics-dashboard' }
-                  ].map((item, index) => (
-                    <Link key={index} to={item.link} className="flex items-start gap-4 hover:opacity-80 transition-opacity cursor-pointer">
-                      <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                        <item.icon className="text-white text-lg" />
-                      </div>
-                      <div>
-                        <div className="text-white font-medium mb-1">{item.title}</div>
-                        <div className="text-sm text-gray-400">{item.desc}</div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* BY USE CASE */}
-              <div>
-                <h3 className="text-xs text-gray-500 uppercase tracking-widest mb-8">By Use Case</h3>
-                <div className="space-y-6">
-                  {[
-                    { icon: FaUsers, title: 'Patient Scheduling', desc: 'Medical appointment management', link: '/usecases/patient-scheduling' },
-                    { icon: FaUserTie, title: 'Client Intake', desc: 'Automated client onboarding', link: '/usecases/client-intake' },
-                    { icon: FaHeadset, title: 'Customer Support', desc: 'Round-the-clock assistance', link: '/usecases/customer-support' },
-                    { icon: FaClock, title: 'After-Hours Service', desc: 'Business continuity 24/7', link: '/usecases/after-hours-service' },
-                    { icon: FaShieldAlt, title: 'Lead Qualification', desc: 'Screen and route prospects', link: '/usecases/lead-qualification' },
-                    { icon: FaCheckCircle, title: 'Order Processing', desc: 'Automated order management', link: '/usecases/order-processing' }
-                  ].map((item, index) => (
-                    <Link key={index} to={item.link} className="flex items-start gap-4 hover:opacity-80 transition-opacity cursor-pointer">
-                      <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                        <item.icon className="text-white text-lg" />
-                      </div>
-                      <div>
-                        <div className="text-white font-medium mb-1">{item.title}</div>
-                        <div className="text-sm text-gray-400">{item.desc}</div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </TechSection>
-
-        {/* Experience Our AI Section */}
-        <TechSection
-          badge="Try It Now"
-          title="Experience Our AI"
-          subtitle="Call our AI receptionist and see the magic happen"
-        >
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              {/* Main Container - Clean and Minimal */}
-              <div className="bg-black/50 border border-white/10 rounded-3xl p-8 md:p-12">
-                {/* Content */}
-                <div className="text-center space-y-8">
-                  {/* Header */}
-                  <div>
-                    <div className="inline-flex items-center gap-2 mb-4">
-                      <span className="inline-flex h-2 w-2 rounded-full bg-green-400"></span>
-                      <span className="text-sm font-medium text-green-400">Live & Ready</span>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                      Call Our AI Receptionist
-                    </h3>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
-                      Experience firsthand how our AI handles calls, books appointments, and answers questions - just like a human receptionist would.
-                    </p>
-                  </div>
-
-                  {/* Phone Number Box */}
-                  <a
-                    href="tel:+16163263328"
-                    className="block bg-white/5 border border-white/10 hover:border-white/20 rounded-2xl px-8 py-10 transition-colors"
-                  >
-                    <div className="flex items-center justify-center gap-4 mb-3">
-                      <FaPhone className="text-2xl text-white" />
-                      <div className="text-3xl md:text-4xl font-bold text-white">
-                        +1 616-326-3328
-                      </div>
-                    </div>
-                    <div className="text-gray-400 text-sm">
-                      Tap to Talk to AI
-                    </div>
-                  </a>
-
-                  {/* Features Grid */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {[
-                      { icon: FaMicrophone, label: 'Natural Voice' },
-                      { icon: FaLanguage, label: '20+ Languages' },
-                      { icon: FaCalendarAlt, label: 'Books Appointments' },
-                      { icon: FaRobot, label: 'Human-Like' }
-                    ].map((item, index) => (
-                      <div
-                        key={index}
-                        className="bg-white/5 border border-white/10 rounded-xl p-4 text-center"
-                      >
-                        <item.icon className="text-xl mb-2 mx-auto text-white" />
-                        <div className="text-xs text-gray-400">{item.label}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </TechSection>
 
         {/* Seamless Software Integration Section */}
         <TechSection
@@ -435,32 +282,6 @@ const Home: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
-        </TechSection>
-
-        {/* Stats Section */}
-        <TechSection
-          badge="Results"
-          title="Proven Performance"
-          subtitle="Real results from real businesses"
-        >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {[
-              { value: '10-20%', label: 'Revenue Increase', suffix: '↑' },
-              { value: '95%', label: 'Customer Satisfaction', suffix: '+' },
-              { value: '76%', label: 'Cost Reduction', suffix: '↓' },
-              { value: '24/7', label: 'Uptime Guarantee', suffix: '' }
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-white mb-2">
-                  {stat.value}
-                  <span className="text-2xl ml-1">{stat.suffix}</span>
-                </div>
-                <div className="text-xs sm:text-sm text-gray-400">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
           </div>
         </TechSection>
 
