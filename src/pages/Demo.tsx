@@ -318,7 +318,7 @@ const Demo: React.FC = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-500/8 via-blue-500/5 to-purple-500/8 rounded-full blur-3xl" />
         </div>
 
-        <div className="relative w-full max-w-md mx-auto px-6 py-12 lg:py-16">
+        <div className="relative w-full max-w-md lg:max-w-lg mx-auto px-6 py-12 lg:py-16">
           {/* Centered Form Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
