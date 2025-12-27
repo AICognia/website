@@ -14,7 +14,29 @@ const MobileHeroRedesigned: React.FC = () => {
   const animationRef = useRef<number | undefined>(undefined);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
+  const audioPlayTrackedRef = useRef(false);
   const bars = 60;
+
+  // Track audio demo play in Meta Pixel (only once per session)
+  const trackAudioDemoPlay = () => {
+    if ((window as any).fbq && !audioPlayTrackedRef.current) {
+      (window as any).fbq('trackCustom', 'AudioDemoStarted', {
+        content_name: 'Mobile Hero Audio Demo',
+        source: 'mobile_hero',
+      });
+      audioPlayTrackedRef.current = true;
+    }
+  };
+
+  // Track CTA click to /demo page
+  const trackCTAClick = () => {
+    if ((window as any).fbq) {
+      (window as any).fbq('trackCustom', 'InitiateCheckout', {
+        content_name: 'Get Your AI Receptionist',
+        source: 'mobile_hero',
+      });
+    }
+  };
 
   // Rotate words
   useEffect(() => {
@@ -54,6 +76,8 @@ const MobileHeroRedesigned: React.FC = () => {
 
         await audio.play();
         setIsPlaying(true);
+        // Track audio demo started
+        trackAudioDemoPlay();
       } catch (error) {
         console.error('Audio playback failed:', error);
         setIsPlaying(false);
@@ -203,6 +227,7 @@ const MobileHeroRedesigned: React.FC = () => {
             <Link
               to="/demo"
               className="block w-full"
+              onClick={trackCTAClick}
             >
               <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-lg shadow-lg shadow-cyan-500/25">
                 <span>Get Your AI Receptionist</span>

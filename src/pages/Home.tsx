@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
 import ScrollProgress from '../components/ScrollProgress';
@@ -13,6 +13,36 @@ import DynamicTechBackground from '../components/DynamicTechBackground';
 import { VideoProvider } from '../contexts/VideoContext';
 
 const Home: React.FC = () => {
+  // Initialize Meta Pixel and track PageView on component mount
+  useEffect(() => {
+    // Initialize Meta Pixel with pixel ID: 1224660309537951
+    if (!(window as any).fbq) {
+      /* eslint-disable */
+      (function(f: any, b: any, e: any, v: any) {
+        let n: any;
+        if (f.fbq) return;
+        n = f.fbq = function() {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        const t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        const s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      /* eslint-enable */
+    }
+
+    // Initialize with pixel ID and disable automatic tracking to prevent duplicates
+    (window as any).fbq('set', 'autoConfig', false, '1224660309537951');
+    (window as any).fbq('init', '1224660309537951', {}, { autoConfig: false });
+    (window as any).fbq('track', 'PageView');
+  }, []);
 
   // FAQ structured data for the home page
   const faqStructuredData = {

@@ -17,6 +17,16 @@ const OptimizedHero: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Track CTA click to /demo page
+  const trackCTAClick = () => {
+    if ((window as any).fbq) {
+      (window as any).fbq('trackCustom', 'InitiateCheckout', {
+        content_name: 'Get Your AI Receptionist',
+        source: 'desktop_hero',
+      });
+    }
+  };
+
   return (
     <>
       {/* Desktop Hero - Hidden on mobile (mobile uses MobileHeroRedesigned) */}
@@ -97,6 +107,7 @@ const OptimizedHero: React.FC = () => {
                 {/* Primary CTA */}
                 <Link
                   to="/demo"
+                  onClick={trackCTAClick}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
                 >
                   Get Your AI Receptionist
