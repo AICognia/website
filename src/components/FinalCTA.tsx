@@ -1,32 +1,67 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaPhone, FaCheckCircle } from 'react-icons/fa';
+import { FaArrowRight, FaPhone, FaCheckCircle, FaSpinner } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
 
 const FinalCTA: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
+  const [formData, setFormData] = useState({ name: '', email: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !name) return;
-
-    setIsSubmitting(true);
-    conversionTracker.trackButtonClick('Final CTA Form Submit', 'final_cta');
-
-    // Track Meta Pixel Lead event
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'Lead', {
-        content_name: 'Final CTA Form Submission',
-        content_category: 'Lead Capture'
-      });
+    if (!formData.email || !formData.name) {
+      setError('Please fill in your name and email');
+      return;
     }
 
-    // Redirect to Calendly with pre-filled info
-    const calendlyUrl = `https://calendly.com/cognia-ai/demo?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
-    window.open(calendlyUrl, '_blank');
-    setIsSubmitting(false);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      const response = await fetch('https://formspree.io/f/mqarlrwl', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `Demo Request from ${formData.name}`,
+          form_type: 'final_cta_form',
+          source: 'homepage_final_cta',
+          submitted_at: new Date().toISOString(),
+        }),
+      });
+
+      if (response.ok) {
+        conversionTracker.trackButtonClick('Final CTA Form Submit', 'final_cta');
+        conversionTracker.trackDemoBooking('final_cta');
+
+        // Track Meta Pixel Lead event
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('track', 'Lead', {
+            content_name: 'Final CTA Form Submission',
+            content_category: 'Lead Capture'
+          });
+        }
+
+        setIsSubmitted(true);
+        setTimeout(() => {
+          window.open('https://calendly.com/emrebenian-cogniaai/30min', '_blank');
+        }, 1000);
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError('Connection error. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -67,34 +102,52 @@ const FinalCTA: React.FC = () => {
           </p>
 
           {/* Lead Capture Form */}
-          <form onSubmit={handleSubmit} className="max-w-md mx-auto mb-8">
-            <div className="flex flex-col sm:flex-row gap-3 mb-3">
-              <input
-                type="text"
-                placeholder="Your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="flex-1 px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
-                required
-              />
-              <input
-                type="email"
-                placeholder="Work email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
-                required
-              />
+          {!isSubmitted ? (
+            <form onSubmit={handleSubmit} className="max-w-md mx-auto mb-8">
+              <div className="flex flex-col sm:flex-row gap-3 mb-3">
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="flex-1 px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Work email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="flex-1 px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
+                  required
+                />
+              </div>
+              {error && <p className="text-red-400 text-sm mb-3">{error}</p>}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 disabled:opacity-50"
+              >
+                {isSubmitting ? (
+                  <>
+                    <FaSpinner className="animate-spin" />
+                    <span>Submitting...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Start Your Free Trial</span>
+                    <FaArrowRight className="text-sm" />
+                  </>
+                )}
+              </button>
+            </form>
+          ) : (
+            <div className="max-w-md mx-auto mb-8 p-6 bg-green-500/10 border border-green-500/20 rounded-xl text-center">
+              <FaCheckCircle className="text-green-400 text-2xl mx-auto mb-3" />
+              <p className="text-white font-medium mb-2">You're all set!</p>
+              <p className="text-gray-400 text-sm">Opening Calendly to schedule your demo...</p>
             </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 disabled:opacity-50"
-            >
-              {isSubmitting ? 'Opening Calendly...' : 'Start Your Free Trial'}
-              <FaArrowRight className="text-sm" />
-            </button>
-          </form>
+          )}
 
           {/* Secondary CTA */}
           <a

@@ -4,39 +4,45 @@ import { FaHospital, FaGavel, FaHome, FaBuilding, FaHotel, FaStore } from 'react
 
 const solutions = [
   {
+    icon: FaHotel,
+    industry: 'Hospitality',
+    title: 'Hotels & Restaurants',
+    examples: 'Hotels, motels, restaurants, resorts',
+    features: ['Reservations', 'Special requests', 'Availability checks'],
+  },
+  {
     icon: FaHospital,
     industry: 'Healthcare',
     title: 'Medical & Dental Practices',
+    examples: 'Dentists, chiropractors, medspas, clinics',
     features: ['HIPAA-compliant', 'Patient scheduling', 'Prescription refills'],
-  },
-  {
-    icon: FaGavel,
-    industry: 'Legal',
-    title: 'Law Firms',
-    features: ['Client intake', 'Case screening', 'Appointment booking'],
   },
   {
     icon: FaHome,
     industry: 'Home Services',
     title: 'HVAC, Plumbing, Electric',
+    examples: 'Plumbers, HVAC technicians, electricians',
     features: ['Emergency dispatch', 'Quote requests', 'Service scheduling'],
+  },
+  {
+    icon: FaGavel,
+    industry: 'Legal',
+    title: 'Law Firms',
+    examples: 'Personal injury, family law, corporate',
+    features: ['Client intake', 'Case screening', 'Appointment booking'],
   },
   {
     icon: FaBuilding,
     industry: 'Real Estate',
     title: 'Property Management',
+    examples: 'Brokers, property managers, agents',
     features: ['Showing scheduling', 'Lead qualification', 'Maintenance requests'],
-  },
-  {
-    icon: FaHotel,
-    industry: 'Hospitality',
-    title: 'Hotels & Restaurants',
-    features: ['Reservations', 'Special requests', 'Availability checks'],
   },
   {
     icon: FaStore,
     industry: 'Retail',
     title: 'Stores & E-commerce',
+    examples: 'Boutiques, auto shops, service centers',
     features: ['Order status', 'Product inquiries', 'Returns processing'],
   },
 ];
@@ -86,7 +92,10 @@ const SolutionsGrid: React.FC = () => {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-medium text-white mb-3">{solution.title}</h3>
+              <h3 className="text-lg font-medium text-white mb-1">{solution.title}</h3>
+
+              {/* Examples */}
+              <p className="text-xs text-gray-500 mb-3">{solution.examples}</p>
 
               {/* Features */}
               <ul className="space-y-2">

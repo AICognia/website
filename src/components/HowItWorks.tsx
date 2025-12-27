@@ -56,9 +56,6 @@ const HowItWorks: React.FC = () => {
         {/* Timeline */}
         <div className="max-w-4xl mx-auto mb-16">
           <div className="relative">
-            {/* Vertical line for desktop */}
-            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/50 via-cyan-500/20 to-transparent" />
-
             {steps.map((step, index) => (
               <motion.div
                 key={index}

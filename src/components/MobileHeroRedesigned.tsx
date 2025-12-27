@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaPhone, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
+import { FaPhone, FaArrowRight, FaCheckCircle, FaSpinner } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
 
 const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
@@ -8,9 +8,10 @@ const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
 const MobileHeroRedesigned: React.FC = () => {
   const [wordIndex, setWordIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
+  const [formData, setFormData] = useState({ name: '', email: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
@@ -28,23 +29,57 @@ const MobileHeroRedesigned: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !name) return;
-
-    setIsSubmitting(true);
-    conversionTracker.trackButtonClick('Mobile Hero Lead Form Submit', 'mobile_hero_form');
-
-    // Track Meta Pixel Lead event
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'Lead', {
-        content_name: 'Mobile Hero Form Submission',
-        content_category: 'Lead Capture'
-      });
+    if (!formData.email || !formData.name) {
+      setError('Please fill in your name and email');
+      return;
     }
 
-    // Redirect to Calendly with pre-filled info
-    const calendlyUrl = `https://calendly.com/cognia-ai/demo?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
-    window.open(calendlyUrl, '_blank');
-    setIsSubmitting(false);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      const response = await fetch('https://formspree.io/f/mqarlrwl', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `Demo Request from ${formData.name}`,
+          form_type: 'mobile_hero_form',
+          source: 'homepage_mobile_hero',
+          submitted_at: new Date().toISOString(),
+        }),
+      });
+
+      if (response.ok) {
+        conversionTracker.trackButtonClick('Mobile Hero Lead Form Submit', 'mobile_hero_form');
+        conversionTracker.trackDemoBooking('mobile_hero_form');
+
+        // Track Meta Pixel Lead event
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('track', 'Lead', {
+            content_name: 'Mobile Hero Form Submission',
+            content_category: 'Lead Capture'
+          });
+        }
+
+        setIsSubmitted(true);
+        setTimeout(() => {
+          window.open('https://calendly.com/emrebenian-cogniaai/30min', '_blank');
+        }, 1000);
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError('Connection error. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Handle audio click
@@ -247,37 +282,56 @@ const MobileHeroRedesigned: React.FC = () => {
           </motion.div>
 
           {/* Lead Capture Form */}
-          <motion.form
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            onSubmit={handleSubmit}
             className="space-y-3"
           >
-            <input
-              type="text"
-              placeholder="Your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
-              required
-            />
-            <input
-              type="email"
-              placeholder="Work email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
-              required
-            />
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-lg shadow-lg shadow-cyan-500/25 disabled:opacity-50"
-            >
-              <span>{isSubmitting ? 'Opening...' : 'Start Free Trial'}</span>
-              <FaArrowRight className="text-sm" />
-            </button>
+            {!isSubmitted ? (
+              <form onSubmit={handleSubmit} className="space-y-3">
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Work email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
+                  required
+                />
+                {error && <p className="text-red-400 text-sm text-center">{error}</p>}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-lg shadow-lg shadow-cyan-500/25 disabled:opacity-50"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <FaSpinner className="animate-spin" />
+                      <span>Submitting...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Start Free Trial</span>
+                      <FaArrowRight className="text-sm" />
+                    </>
+                  )}
+                </button>
+              </form>
+            ) : (
+              <div className="p-6 bg-green-500/10 border border-green-500/20 rounded-xl text-center">
+                <FaCheckCircle className="text-green-400 text-2xl mx-auto mb-3" />
+                <p className="text-white font-medium mb-2">You're all set!</p>
+                <p className="text-gray-400 text-sm">Opening Calendly to schedule your demo...</p>
+              </div>
+            )}
 
             {/* Secondary CTA - Talk to AI */}
             <a
@@ -306,7 +360,7 @@ const MobileHeroRedesigned: React.FC = () => {
                 No Card Required
               </span>
             </div>
-          </motion.form>
+          </motion.div>
 
           {/* Stats */}
           <motion.div

@@ -8,7 +8,6 @@ import ProblemSection from '../components/ProblemSection';
 import SocialProofSection from '../components/SocialProofSection';
 import FeaturesSection from '../components/FeaturesSection';
 import SolutionsGrid from '../components/SolutionsGrid';
-import DemoSection from '../components/DemoSection';
 import IntegrationsStrip from '../components/IntegrationsStrip';
 import HowItWorks from '../components/HowItWorks';
 import FAQAccordion from '../components/FAQAccordion';
@@ -87,10 +86,7 @@ const Home: React.FC = () => {
           {/* 5. Features Section - What the AI does */}
           <FeaturesSection />
 
-          {/* 6. Demo Section - See it in action */}
-          <DemoSection />
-
-          {/* 7. Industries - Who it's for */}
+          {/* 6. Industries - Who it's for */}
           <SolutionsGrid />
 
           {/* 8. Integrations Strip - Quick trust signal */}
