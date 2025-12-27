@@ -283,56 +283,91 @@ const FinalCTA: React.FC = () => {
             Get your AI receptionist live in 1 week.
           </p>
 
-          {/* Form */}
-          <div className="max-w-md mx-auto">
+          {/* Form Card */}
+          <div className="max-w-lg mx-auto">
             <AnimatePresence mode="wait">
               {!isSubmitted ? (
                 <motion.div
                   key="form"
                   initial={{ opacity: 1 }}
                   exit={{ opacity: 0, y: -20 }}
+                  className="bg-gradient-to-b from-white/[0.08] to-white/[0.03] backdrop-blur-sm border border-white/10 rounded-2xl p-8 shadow-2xl"
                 >
-                  <form onSubmit={handleSubmit} className="space-y-4" data-fb-noscript="true">
-                    {/* Name & Business Name Row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Form Header */}
+                  <div className="text-center mb-6">
+                    <h3 className="text-xl font-medium text-white mb-2">
+                      Book Your Free Demo
+                    </h3>
+                    <p className="text-sm text-gray-400">
+                      See how AI can transform your business in 30 minutes
+                    </p>
+                  </div>
+
+                  <form onSubmit={handleSubmit} className="space-y-5" data-fb-noscript="true">
+                    {/* Full Name */}
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                        Full Name
+                      </label>
                       <input
                         type="text"
+                        id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Full name *"
-                        className="w-full px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.07] transition-all text-sm"
+                        placeholder="John Smith"
+                        className="w-full px-4 py-3.5 bg-black/40 border border-white/15 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/60 focus:ring-2 focus:ring-cyan-500/20 transition-all"
                         autoComplete="name"
                       />
+                    </div>
+
+                    {/* Business Name */}
+                    <div>
+                      <label htmlFor="businessName" className="block text-sm font-medium text-gray-300 mb-2">
+                        Business Name
+                      </label>
                       <input
                         type="text"
+                        id="businessName"
                         name="businessName"
                         value={formData.businessName}
                         onChange={handleChange}
-                        placeholder="Business name *"
-                        className="w-full px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.07] transition-all text-sm"
+                        placeholder="Acme Inc."
+                        className="w-full px-4 py-3.5 bg-black/40 border border-white/15 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/60 focus:ring-2 focus:ring-cyan-500/20 transition-all"
                         autoComplete="organization"
                       />
                     </div>
 
-                    {/* Email & Phone Row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Email */}
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                        Work Email
+                      </label>
                       <input
                         type="email"
+                        id="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="Work email *"
-                        className="w-full px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.07] transition-all text-sm"
+                        placeholder="john@acme.com"
+                        className="w-full px-4 py-3.5 bg-black/40 border border-white/15 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/60 focus:ring-2 focus:ring-cyan-500/20 transition-all"
                         autoComplete="email"
                       />
+                    </div>
+
+                    {/* Phone */}
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+                        Phone Number
+                      </label>
                       <input
                         type="tel"
+                        id="phone"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="Phone number *"
-                        className="w-full px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.07] transition-all text-sm"
+                        placeholder="(555) 123-4567"
+                        className="w-full px-4 py-3.5 bg-black/40 border border-white/15 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/60 focus:ring-2 focus:ring-cyan-500/20 transition-all"
                         autoComplete="tel"
                       />
                     </div>
@@ -344,53 +379,53 @@ const FinalCTA: React.FC = () => {
                           initial={{ opacity: 0, y: -5 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -5 }}
-                          className="text-red-400 text-sm text-left"
+                          className="text-red-400 text-sm"
                         >
                           {error}
                         </motion.p>
                       )}
                     </AnimatePresence>
 
-                    {/* Submit */}
+                    {/* Submit Button */}
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm group flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
+                      className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed group flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-[0.98]"
                     >
                       {isSubmitting ? (
                         <>
-                          <FaSpinner className="animate-spin text-xs" />
+                          <FaSpinner className="animate-spin" />
                           <span>Submitting...</span>
                         </>
                       ) : (
                         <>
                           <span>Get Your AI Receptionist</span>
-                          <FaArrowRight className="text-xs group-hover:translate-x-0.5 transition-transform" />
+                          <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                         </>
                       )}
                     </button>
-                  </form>
 
-                  {/* Privacy note */}
-                  <p className="mt-4 text-center text-xs text-gray-600">
-                    By submitting, you agree to our{' '}
-                    <Link to="/privacy-policy" className="text-gray-500 hover:text-gray-400 underline underline-offset-2 transition-colors">
-                      Privacy Policy
-                    </Link>
-                  </p>
+                    {/* Privacy note */}
+                    <p className="text-center text-xs text-gray-500 pt-2">
+                      By submitting, you agree to our{' '}
+                      <Link to="/privacy-policy" className="text-gray-400 hover:text-cyan-400 underline underline-offset-2 transition-colors">
+                        Privacy Policy
+                      </Link>
+                    </p>
+                  </form>
                 </motion.div>
               ) : (
                 <motion.div
                   key="success"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="py-8 text-center"
+                  className="bg-gradient-to-b from-white/[0.08] to-white/[0.03] backdrop-blur-sm border border-white/10 rounded-2xl p-8 shadow-2xl text-center"
                 >
                   <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <FaCheck className="text-2xl text-green-500" />
                   </div>
                   <h3 className="text-xl font-medium text-white mb-3">
-                    You're all set
+                    You're all set!
                   </h3>
                   <p className="text-gray-400 text-sm mb-6 max-w-sm mx-auto">
                     Redirecting to Calendly to schedule your demo...
@@ -399,7 +434,7 @@ const FinalCTA: React.FC = () => {
                     href="https://calendly.com/emrebenian-cogniaai/30min"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-medium rounded-xl transition-all text-sm shadow-lg shadow-cyan-500/25"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-medium rounded-xl transition-all shadow-lg shadow-cyan-500/25"
                   >
                     Open Calendly
                     <FaArrowRight className="text-xs" />

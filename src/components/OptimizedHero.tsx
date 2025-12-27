@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaShieldAlt, FaCheckCircle, FaHeadset, FaClock, FaArrowRight, FaPhone } from 'react-icons/fa';
+import { FaCheckCircle, FaArrowRight, FaPhone } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
@@ -35,26 +35,7 @@ const OptimizedHero: React.FC = () => {
         <div className="absolute inset-0 bg-black" />
 
         <div className="relative container mx-auto px-6 lg:px-12 z-10 pt-2">
-          {/* Urgency + Trust Badge Strip - Above the fold */}
-          <div className="flex items-center justify-center gap-8 py-4 border-b border-white/5">
-            <div className="flex items-center gap-2 text-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
-              </span>
-              <span className="text-green-400 font-medium">5 spots left this month</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
-              <FaShieldAlt className="text-green-400" />
-              <span>HIPAA Compliant</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
-              <FaClock className="text-green-400" />
-              <span>Live in 1 Week</span>
-            </div>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center py-12 lg:py-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-center py-16 lg:py-20">
             {/* Left Side - Content */}
             <div className="space-y-8">
               {/* Main Headline - Clear Value Proposition with AI */}
