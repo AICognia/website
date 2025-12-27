@@ -29,22 +29,6 @@ const generateFbc = (fbclid: string): string => {
   return `fb.1.${timestamp}.${fbclid}`;
 };
 
-const features = [
-  'AI-powered call handling 24/7',
-  'Seamless calendar integration',
-  'Natural, human-like conversations',
-  'Custom training for your business',
-];
-
-const trustedIndustries = [
-  'Healthcare',
-  'Legal',
-  'Retail',
-  'Enterprise',
-  'Hospitality',
-  'Automotive',
-  'Home Services',
-];
 
 const Demo: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -328,82 +312,35 @@ const Demo: React.FC = () => {
         <meta name="description" content="Schedule a personalized demo to see how Cognia AI can transform your customer communications with AI-powered call handling." />
       </Helmet>
 
-      <div className="min-h-screen bg-black">
-        {/* Subtle gradient background */}
-        <div className="fixed inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        {/* Ambient background glow */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-500/8 via-blue-500/5 to-purple-500/8 rounded-full blur-3xl" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-            {/* Left Column - Value Proposition */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="lg:sticky lg:top-24"
-            >
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-neutral-900 border border-neutral-800 rounded-full text-xs text-neutral-400 mb-8">
-                <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                Free 7-day trial included
-              </div>
-
-              {/* Headline */}
-              <h1 className="text-4xl lg:text-5xl font-medium text-white tracking-tight leading-tight mb-6">
-                See Cognia AI
-                <span className="block text-neutral-500">in action</span>
+        <div className="relative w-full max-w-md mx-auto px-6 py-12 lg:py-16">
+          {/* Centered Form Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {/* Header - Minimal */}
+            <div className="text-center mb-8">
+              <h1 className="text-2xl lg:text-3xl font-light text-white mb-2">
+                Book Your Free Demo
               </h1>
-
-              {/* Description */}
-              <p className="text-lg text-neutral-400 leading-relaxed mb-10 max-w-lg">
-                Schedule a personalized demo with our team. We'll show you exactly how AI can handle your calls, book appointments, and never let a customer slip through the cracks.
+              <p className="text-sm text-gray-500">
+                See your AI receptionist in action
               </p>
+            </div>
 
-              {/* Features */}
-              <div className="space-y-4 mb-12">
-                {features.map((feature, index) => (
-                  <motion.div
-                    key={feature}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: 0.1 * index }}
-                    className="flex items-center gap-3"
-                  >
-                    <div className="w-5 h-5 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center flex-shrink-0">
-                      <FaCheck className="text-[10px] text-neutral-500" />
-                    </div>
-                    <span className="text-neutral-300 text-sm">{feature}</span>
-                  </motion.div>
-                ))}
-              </div>
+            {/* Elegant Form Card */}
+            <div className="relative">
+              {/* Subtle glow behind card */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-cyan-500/20 rounded-3xl blur-xl opacity-50" />
 
-              {/* Social Proof - Subtle */}
-              <div className="pt-8 border-t border-neutral-900">
-                <p className="text-xs text-neutral-600 uppercase tracking-wider mb-4">
-                  Trusted by businesses across industries
-                </p>
-                <div className="flex flex-wrap items-center gap-3">
-                  {trustedIndustries.map((industry, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1.5 text-xs text-neutral-400 bg-neutral-900 border border-neutral-800 rounded-full"
-                    >
-                      {industry}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right Column - Form */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <div className="bg-neutral-950 border border-neutral-900 rounded-2xl p-8 lg:p-10">
+              <div className="relative bg-gradient-to-b from-white/[0.08] to-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-6 lg:p-8 shadow-2xl">
                 <AnimatePresence mode="wait">
                   {!isSubmitted ? (
                     <motion.div
@@ -411,38 +348,28 @@ const Demo: React.FC = () => {
                       initial={{ opacity: 1 }}
                       exit={{ opacity: 0, y: -20 }}
                     >
-                      {/* Form Header */}
-                      <div className="mb-8">
-                        <h2 className="text-xl font-medium text-white mb-2">
-                          Request a demo
-                        </h2>
-                        <p className="text-sm text-neutral-500">
-                          Fill in your details below and we'll be in touch.
-                        </p>
-                      </div>
-
                       {/* Form */}
-                      <form onSubmit={handleSubmit} className="space-y-5" data-fb-noscript="true">
+                      <form onSubmit={handleSubmit} className="space-y-4" data-fb-noscript="true">
                         {/* Name */}
                         <div>
-                          <label className="block text-sm text-neutral-400 mb-2">
-                            Full name *
+                          <label className="block text-xs font-medium text-gray-400 mb-1.5 ml-1">
+                            Full Name
                           </label>
                           <input
                             type="text"
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            placeholder="Jane Smith"
-                            className="w-full px-4 py-3.5 bg-neutral-900/50 border border-neutral-800 rounded-xl text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-700 focus:bg-neutral-900 transition-all text-sm"
+                            placeholder="John Smith"
+                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.08] focus:ring-2 focus:ring-cyan-500/20 transition-all text-sm"
                             autoComplete="name"
                           />
                         </div>
 
                         {/* Business Name */}
                         <div>
-                          <label className="block text-sm text-neutral-400 mb-2">
-                            Business name *
+                          <label className="block text-xs font-medium text-gray-400 mb-1.5 ml-1">
+                            Business Name
                           </label>
                           <input
                             type="text"
@@ -450,31 +377,31 @@ const Demo: React.FC = () => {
                             value={formData.businessName}
                             onChange={handleChange}
                             placeholder="Acme Inc."
-                            className="w-full px-4 py-3.5 bg-neutral-900/50 border border-neutral-800 rounded-xl text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-700 focus:bg-neutral-900 transition-all text-sm"
+                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.08] focus:ring-2 focus:ring-cyan-500/20 transition-all text-sm"
                             autoComplete="organization"
                           />
                         </div>
 
                         {/* Email */}
                         <div>
-                          <label className="block text-sm text-neutral-400 mb-2">
-                            Work email *
+                          <label className="block text-xs font-medium text-gray-400 mb-1.5 ml-1">
+                            Work Email
                           </label>
                           <input
                             type="email"
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            placeholder="jane@company.com"
-                            className="w-full px-4 py-3.5 bg-neutral-900/50 border border-neutral-800 rounded-xl text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-700 focus:bg-neutral-900 transition-all text-sm"
+                            placeholder="john@company.com"
+                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.08] focus:ring-2 focus:ring-cyan-500/20 transition-all text-sm"
                             autoComplete="email"
                           />
                         </div>
 
                         {/* Phone */}
                         <div>
-                          <label className="block text-sm text-neutral-400 mb-2">
-                            Phone number *
+                          <label className="block text-xs font-medium text-gray-400 mb-1.5 ml-1">
+                            Phone Number
                           </label>
                           <input
                             type="tel"
@@ -482,7 +409,7 @@ const Demo: React.FC = () => {
                             value={formData.phone}
                             onChange={handleChange}
                             placeholder="(555) 123-4567"
-                            className="w-full px-4 py-3.5 bg-neutral-900/50 border border-neutral-800 rounded-xl text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-700 focus:bg-neutral-900 transition-all text-sm"
+                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.08] focus:ring-2 focus:ring-cyan-500/20 transition-all text-sm"
                             autoComplete="tel"
                           />
                         </div>
@@ -494,37 +421,53 @@ const Demo: React.FC = () => {
                               initial={{ opacity: 0, y: -5 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -5 }}
-                              className="text-red-400 text-sm"
+                              className="text-red-400 text-sm text-center"
                             >
                               {error}
                             </motion.p>
                           )}
                         </AnimatePresence>
 
-                        {/* Submit */}
+                        {/* Submit Button */}
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full py-3.5 bg-white hover:bg-neutral-100 text-black font-medium rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm group flex items-center justify-center gap-2"
+                          className="w-full py-3.5 mt-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed group flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-[0.98]"
                         >
                           {isSubmitting ? (
                             <>
-                              <FaSpinner className="animate-spin text-xs" />
+                              <FaSpinner className="animate-spin" />
                               <span>Submitting...</span>
                             </>
                           ) : (
                             <>
-                              <span>Continue to scheduling</span>
-                              <FaArrowRight className="text-xs group-hover:translate-x-0.5 transition-transform" />
+                              <span>Book My Free Demo</span>
+                              <FaArrowRight className="text-sm group-hover:translate-x-0.5 transition-transform" />
                             </>
                           )}
                         </button>
                       </form>
 
-                      {/* Footer */}
-                      <p className="mt-6 text-center text-xs text-neutral-600">
+                      {/* Trust indicators */}
+                      <div className="flex items-center justify-center gap-4 mt-5 text-[11px] text-gray-500">
+                        <span className="flex items-center gap-1">
+                          <FaCheck className="text-green-500 text-[8px]" />
+                          1 Week Free
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <FaCheck className="text-green-500 text-[8px]" />
+                          No Card Required
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <FaCheck className="text-green-500 text-[8px]" />
+                          HIPAA Compliant
+                        </span>
+                      </div>
+
+                      {/* Privacy */}
+                      <p className="mt-4 text-center text-[10px] text-gray-600">
                         By submitting, you agree to our{' '}
-                        <Link to="/privacy-policy" className="text-neutral-500 hover:text-neutral-400 underline underline-offset-2 transition-colors">
+                        <Link to="/privacy-policy" className="text-gray-500 hover:text-cyan-400 underline underline-offset-2 transition-colors">
                           Privacy Policy
                         </Link>
                       </p>
@@ -534,22 +477,22 @@ const Demo: React.FC = () => {
                       key="success"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="py-12 text-center"
+                      className="py-8 text-center"
                     >
-                      <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <FaCheck className="text-2xl text-green-500" />
+                      <div className="w-14 h-14 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-5">
+                        <FaCheck className="text-xl text-green-500" />
                       </div>
-                      <h3 className="text-xl font-medium text-white mb-3">
-                        You're all set
+                      <h3 className="text-lg font-medium text-white mb-2">
+                        You're all set!
                       </h3>
-                      <p className="text-neutral-400 text-sm mb-6 max-w-sm mx-auto">
-                        Redirecting to Calendly to schedule your demo...
+                      <p className="text-gray-400 text-sm mb-5">
+                        Redirecting to schedule your demo...
                       </p>
                       <a
                         href="https://calendly.com/emrebenian-cogniaai/30min"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black font-medium rounded-xl transition-colors text-sm"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-medium rounded-xl transition-all text-sm shadow-lg shadow-cyan-500/25"
                       >
                         Open Calendly
                         <FaArrowRight className="text-xs" />
@@ -558,24 +501,20 @@ const Demo: React.FC = () => {
                   )}
                 </AnimatePresence>
               </div>
+            </div>
 
-              {/* Additional Info */}
-              <div className="mt-6 flex items-center justify-center gap-6 text-xs text-neutral-600">
-                <span className="flex items-center gap-1.5">
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                  HIPAA Compliant
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  No credit card required
-                </span>
-              </div>
-            </motion.div>
-          </div>
+            {/* Phone alternative */}
+            <p className="text-center text-xs text-gray-600 mt-6">
+              Prefer to talk?{' '}
+              <a
+                href="tel:+16163263328"
+                className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                onClick={() => conversionTracker.trackPhoneCall('+16163263328')}
+              >
+                Call our AI now
+              </a>
+            </p>
+          </motion.div>
         </div>
       </div>
     </>

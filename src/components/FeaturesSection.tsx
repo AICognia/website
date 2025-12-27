@@ -66,16 +66,16 @@ const FeaturesSection: React.FC = () => {
 
   const features = [
     {
-      title: 'AI Call Handling',
-      description: 'Advanced AI receptionists handle every call with natural conversation, booking appointments and answering questions like a human would.'
+      title: 'Never Miss a Call Again',
+      description: 'Every call answered in under 1 second, 24/7. No more lost leads going to voicemail or competitors. Your AI books appointments while you sleep.'
     },
     {
-      title: 'Multi-Language Support',
-      description: 'Communicate with customers in over 20 languages. Our AI adapts to your customers\' preferred language automatically.'
+      title: 'Win More International Customers',
+      description: 'Serve customers in 20+ languages without hiring multilingual staff. Expand your market reach and close deals you\'d otherwise lose.'
     },
     {
-      title: 'CRM Integration',
-      description: 'Seamlessly integrate with your existing CRM, ERP, and booking systems. Our API provides full connectivity with your enterprise data.'
+      title: 'Your Calendar Fills Itself',
+      description: 'AI syncs with your CRM and booking system to schedule appointments instantly. No double-bookings, no back-and-forth, no manual entry.'
     }
   ];
 
