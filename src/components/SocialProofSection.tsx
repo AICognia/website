@@ -90,7 +90,7 @@ const SocialProofSection: React.FC = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center p-4 lg:p-6 bg-white/5 border border-white/10 rounded-xl"
+                className="text-center p-4 lg:p-6 bg-white/5 border border-white/10 rounded-xl hover:border-cyan-500/30 hover:bg-white/[0.07] transition-all duration-300"
               >
                 <Icon className="text-2xl text-cyan-400 mx-auto mb-2" />
                 <div className="text-2xl lg:text-3xl font-bold text-white mb-1">
@@ -115,7 +115,7 @@ const SocialProofSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.15 }}
                 viewport={{ once: true }}
-                className="relative bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-2xl p-6 lg:p-8 flex flex-col"
+                className="relative bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-2xl p-6 lg:p-8 flex flex-col hover:border-cyan-500/20 hover:from-white/[0.07] transition-all duration-300"
               >
                 {/* Quote icon */}
                 <FaQuoteLeft className="text-cyan-500/30 text-2xl mb-4" />

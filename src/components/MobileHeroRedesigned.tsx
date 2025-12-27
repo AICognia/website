@@ -250,10 +250,9 @@ const MobileHeroRedesigned: React.FC = () => {
               }}
               className="block w-full"
             >
-              <div className="border border-white/20 text-white py-3.5 rounded-xl flex items-center justify-center gap-2 font-medium">
+              <div className="border border-white/20 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-medium text-lg">
                 <FaPhone className="text-sm" />
                 <span>Talk to AI</span>
-                <span className="text-gray-500 text-sm">+1 616-326-3328</span>
               </div>
             </a>
 

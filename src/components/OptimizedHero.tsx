@@ -90,7 +90,7 @@ const OptimizedHero: React.FC = () => {
               </div>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 items-start">
                 {/* Primary CTA - Book a Demo */}
                 <Link
                   to="/demo"
@@ -99,21 +99,20 @@ const OptimizedHero: React.FC = () => {
                   Start Free Trial
                   <FaArrowRight className="text-sm" />
                 </Link>
-              </div>
 
-              {/* Secondary CTA - Talk to AI */}
-              <a
-                href="tel:+16163263328"
-                onClick={() => {
-                  conversionTracker.trackPhoneCall('+16163263328');
-                  conversionTracker.trackButtonClick('Talk to AI', 'hero_secondary');
-                }}
-                className="inline-flex items-center justify-center gap-3 px-6 py-3 border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-900 text-white text-sm font-medium rounded-lg transition-colors w-fit"
-              >
-                <FaPhone className="text-sm" />
-                Talk to AI
-                <span className="text-neutral-500">+1 616-326-3328</span>
-              </a>
+                {/* Secondary CTA - Talk to AI */}
+                <a
+                  href="tel:+16163263328"
+                  onClick={() => {
+                    conversionTracker.trackPhoneCall('+16163263328');
+                    conversionTracker.trackButtonClick('Talk to AI', 'hero_secondary');
+                  }}
+                  className="inline-flex items-center justify-center gap-3 px-6 py-4 border border-white/20 hover:bg-white/5 text-white font-medium rounded-xl transition-colors"
+                >
+                  <FaPhone className="text-sm" />
+                  Talk to AI
+                </a>
+              </div>
 
               {/* Micro-trust */}
               <p className="text-xs text-gray-500 flex items-center gap-4">

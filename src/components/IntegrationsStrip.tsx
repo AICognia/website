@@ -22,7 +22,7 @@ const IntegrationsStrip: React.FC = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-center"
+            className="text-center px-4 py-3 rounded-lg hover:bg-white/5 transition-colors cursor-default"
           >
             <span className="text-lg lg:text-xl text-white font-medium">CRM</span>
             <p className="text-xs text-gray-500 mt-1">Customer Relationship</p>
@@ -32,7 +32,7 @@ const IntegrationsStrip: React.FC = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-center"
+            className="text-center px-4 py-3 rounded-lg hover:bg-white/5 transition-colors cursor-default"
           >
             <span className="text-lg lg:text-xl text-white font-medium">PMS</span>
             <p className="text-xs text-gray-500 mt-1">Practice Management</p>
@@ -42,7 +42,7 @@ const IntegrationsStrip: React.FC = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="text-center"
+            className="text-center px-4 py-3 rounded-lg hover:bg-white/5 transition-colors cursor-default"
           >
             <span className="text-lg lg:text-xl text-white font-medium">ERP</span>
             <p className="text-xs text-gray-500 mt-1">Enterprise Resource</p>
@@ -52,7 +52,7 @@ const IntegrationsStrip: React.FC = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="text-center"
+            className="text-center px-4 py-3 rounded-lg hover:bg-white/5 transition-colors cursor-default"
           >
             <span className="text-lg lg:text-xl text-white font-medium">EHR</span>
             <p className="text-xs text-gray-500 mt-1">Electronic Health Records</p>
@@ -62,7 +62,7 @@ const IntegrationsStrip: React.FC = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
-            className="text-center"
+            className="text-center px-4 py-3 rounded-lg hover:bg-white/5 transition-colors cursor-default"
           >
             <span className="text-lg lg:text-xl text-white font-medium">Calendars</span>
             <p className="text-xs text-gray-500 mt-1">Scheduling Systems</p>

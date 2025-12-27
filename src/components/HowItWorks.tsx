@@ -75,12 +75,12 @@ const HowItWorks: React.FC = () => {
                 </div>
 
                 {/* Number Badge - Center on desktop */}
-                <div className="hidden lg:flex w-12 h-12 bg-cyan-500/10 border border-cyan-500/30 rounded-full items-center justify-center flex-shrink-0">
+                <div className="hidden lg:flex w-14 h-14 bg-gradient-to-br from-cyan-500/20 to-blue-500/10 border border-cyan-500/40 rounded-full items-center justify-center flex-shrink-0 shadow-lg shadow-cyan-500/10">
                   <span className="text-sm font-bold text-cyan-400">{step.number}</span>
                 </div>
 
                 {/* Mobile number badge */}
-                <div className="lg:hidden flex w-10 h-10 bg-cyan-500/10 border border-cyan-500/30 rounded-full items-center justify-center flex-shrink-0 order-first">
+                <div className="lg:hidden flex w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-blue-500/10 border border-cyan-500/40 rounded-full items-center justify-center flex-shrink-0 order-first shadow-lg shadow-cyan-500/10">
                   <span className="text-xs font-bold text-cyan-400">{step.number}</span>
                 </div>
 

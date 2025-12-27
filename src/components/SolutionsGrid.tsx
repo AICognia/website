@@ -79,11 +79,11 @@ const SolutionsGrid: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-cyan-500/20 transition-colors"
+              className="group p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-cyan-500/30 hover:bg-cyan-500/[0.02] transition-all duration-300"
             >
               {/* Icon & Industry */}
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-cyan-500/10 border border-cyan-500/20 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-cyan-500/10 border border-cyan-500/20 rounded-lg flex items-center justify-center group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all duration-300">
                   <solution.icon className="text-lg text-cyan-400" />
                 </div>
                 <span className="text-xs text-cyan-400 font-medium uppercase tracking-wider">
@@ -92,7 +92,7 @@ const SolutionsGrid: React.FC = () => {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-medium text-white mb-1">{solution.title}</h3>
+              <h3 className="text-lg font-medium text-white mb-1 group-hover:text-cyan-50 transition-colors">{solution.title}</h3>
 
               {/* Examples */}
               <p className="text-xs text-gray-500 mb-3">{solution.examples}</p>

@@ -64,7 +64,7 @@ const ProblemSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-red-500/20 transition-colors"
+              className="group relative p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-red-500/30 hover:bg-red-500/[0.02] transition-all duration-300"
             >
               {/* Icon */}
               <div className="w-12 h-12 mb-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center justify-center">
@@ -72,9 +72,9 @@ const ProblemSection: React.FC = () => {
               </div>
 
               {/* Stat */}
-              <div className="text-4xl font-bold text-white mb-1">{point.stat}</div>
+              <div className="text-4xl font-bold text-white mb-1 group-hover:text-red-100 transition-colors">{point.stat}</div>
               <div className="text-sm font-medium text-red-400 mb-2">{point.label}</div>
-              <p className="text-sm text-gray-500">{point.description}</p>
+              <p className="text-sm text-gray-500 group-hover:text-gray-400 transition-colors">{point.description}</p>
             </motion.div>
           ))}
         </div>

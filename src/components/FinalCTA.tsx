@@ -43,7 +43,7 @@ const FinalCTA: React.FC = () => {
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch mb-8">
             {/* Primary CTA */}
             <Link
               to="/demo"
@@ -60,7 +60,7 @@ const FinalCTA: React.FC = () => {
                 conversionTracker.trackPhoneCall('+16163263328');
                 conversionTracker.trackButtonClick('Talk to AI', 'final_cta_secondary');
               }}
-              className="inline-flex items-center gap-2 px-6 py-4 border border-white/20 hover:bg-white/5 text-white font-medium rounded-xl transition-colors"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/20 hover:bg-white/5 text-white font-medium rounded-xl transition-colors"
             >
               <FaPhone className="text-sm" />
               <span>Talk to AI</span>

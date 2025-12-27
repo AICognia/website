@@ -63,13 +63,17 @@ const FAQAccordion: React.FC = () => {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full flex items-center justify-between p-5 bg-white/[0.02] border border-white/5 rounded-xl hover:border-white/10 transition-colors text-left"
+                className={`w-full flex items-center justify-between p-5 bg-white/[0.02] border rounded-xl transition-all duration-300 text-left ${
+                  openIndex === index
+                    ? 'border-cyan-500/30 bg-cyan-500/[0.03]'
+                    : 'border-white/5 hover:border-white/15 hover:bg-white/[0.03]'
+                }`}
               >
                 <span className="text-white font-medium pr-4">{faq.question}</span>
                 <motion.span
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.2 }}
-                  className="text-gray-400 flex-shrink-0"
+                  className={`flex-shrink-0 transition-colors ${openIndex === index ? 'text-cyan-400' : 'text-gray-400'}`}
                 >
                   <FaChevronDown className="text-sm" />
                 </motion.span>
