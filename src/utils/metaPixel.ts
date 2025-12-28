@@ -15,7 +15,8 @@ type EventSource =
   | 'how_it_works' | 'features_section'
   | 'announcement_banner' | 'company_hero' | 'company_bottom_cta'
   | 'ai_receptionist_page' | 'ai_chatbot_page' | 'workflow_automation_page'
-  | 'ai_audit_page' | 'business_intelligence_page' | 'custom_ai_page';
+  | 'ai_audit_page' | 'business_intelligence_page' | 'custom_ai_page'
+  | 'company_page';
 
 interface TrackingOptions {
   source: EventSource;

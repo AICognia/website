@@ -11,6 +11,7 @@ import {
   FaRocket
 } from 'react-icons/fa';
 import SEO from '../../components/SEO';
+import { trackCTAClick } from '../../utils/metaPixel';
 
 const AIAudit: React.FC = () => {
   const breadcrumbs = [
@@ -90,6 +91,7 @@ const AIAudit: React.FC = () => {
 
             <Link
               to="/demo"
+              onClick={() => trackCTAClick('ai_audit_page')}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
             >
               Get Your Free Audit
@@ -191,6 +193,7 @@ const AIAudit: React.FC = () => {
 
             <Link
               to="/demo"
+              onClick={() => trackCTAClick('ai_audit_page')}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
             >
               Book Free Consultation

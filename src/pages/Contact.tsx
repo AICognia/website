@@ -16,6 +16,7 @@ import {
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { structuredDataTemplates } from '../config/seoConfig';
+import { trackCTAClick } from '../utils/metaPixel';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -351,6 +352,7 @@ const Contact: React.FC = () => {
                     </p>
                     <Link
                       to="/demo"
+                      onClick={() => trackCTAClick('contact_page')}
                       className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-medium rounded-xl transition-all text-sm shadow-lg shadow-cyan-500/25"
                     >
                       Schedule Demo
