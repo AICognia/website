@@ -18,6 +18,7 @@ const Company = lazy(() => import('./pages/Company'));
 const Contact = lazy(() => import('./pages/Contact'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Demo = lazy(() => import('./pages/Demo'));
+const Chatbot = lazy(() => import('./pages/Chatbot'));
 
 // Lazy load industry pages
 const Healthcare = lazy(() => import('./pages/industries/Healthcare'));
@@ -59,17 +60,18 @@ function ScrollToTop() {
 function AppContent() {
   const location = useLocation();
 
-  // Landing pages that should not show navigation
+  // Pages that should not show navigation (standalone pages)
+  const isStandalonePage = location.pathname === '/chatbot';
   const isLandingPage = false;
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
       {/* Announcement Banner */}
-      {!isLandingPage && <AnnouncementBanner />}
+      {!isLandingPage && !isStandalonePage && <AnnouncementBanner />}
       {/* Mobile Navigation - Redesigned with simplified menu */}
-      {!isLandingPage && <MobileNavbarRedesigned />}
+      {!isLandingPage && !isStandalonePage && <MobileNavbarRedesigned />}
       {/* Desktop Navigation */}
-      {!isLandingPage && (
+      {!isLandingPage && !isStandalonePage && (
         <div className="hidden lg:block">
           <Navbar />
         </div>
@@ -105,14 +107,16 @@ function AppContent() {
             <Route path="/usecases/after-hours-service" element={<AfterHoursService />} />
             <Route path="/usecases/lead-qualification" element={<LeadQualification />} />
             <Route path="/usecases/order-processing" element={<OrderProcessing />} />
+            {/* Standalone Pages */}
+            <Route path="/chatbot" element={<Chatbot />} />
           </Routes>
         </Suspense>
       </main>
-      {!isLandingPage && <Footer />}
-      {!isLandingPage && <CookieConsentBanner />}
+      {!isLandingPage && !isStandalonePage && <Footer />}
+      {!isLandingPage && !isStandalonePage && <CookieConsentBanner />}
 
       {/* Conversion Optimization Components */}
-      {!isLandingPage && <StickyMobileCTARedesigned />}
+      {!isLandingPage && !isStandalonePage && <StickyMobileCTARedesigned />}
     </div>
   );
 }
