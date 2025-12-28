@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
 import SoundVisualizer from './SoundVisualizer';
-import { trackCTAClick, trackTalkToAI } from '../utils/metaPixel';
+import { trackTalkToAI } from '../utils/metaPixel';
 
 const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
 
@@ -17,11 +17,6 @@ const OptimizedHero: React.FC = () => {
     }, 1500);
     return () => clearInterval(interval);
   }, []);
-
-  // Track CTA click to /demo page
-  const handleCTAClick = () => {
-    trackCTAClick('desktop_hero');
-  };
 
   // Track "Talk to AI" click
   const handleTalkToAIClick = () => {
@@ -91,7 +86,6 @@ const OptimizedHero: React.FC = () => {
                 {/* Primary CTA */}
                 <Link
                   to="/demo"
-                  onClick={handleCTAClick}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
                 >
                   Get Your AI Receptionist

@@ -6,7 +6,7 @@ import {
   FaComments, FaCogs, FaSearchDollar, FaChartBar, FaRobot, FaArrowRight
 } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
-import { trackTalkToAI, trackBookDemo } from '../utils/metaPixel';
+import { trackTalkToAI } from '../utils/metaPixel';
 
 // Product solutions
 const products = [
@@ -30,10 +30,6 @@ const MobileNavbarRedesigned: React.FC = () => {
     conversionTracker.trackButtonClick('Talk to AI', 'mobile_navbar');
   };
 
-  // Track "Book Demo" click
-  const handleBookDemoClick = () => {
-    trackBookDemo('mobile_navbar');
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -257,7 +253,7 @@ const MobileNavbarRedesigned: React.FC = () => {
                   </a>
                   <Link
                     to="/demo"
-                    onClick={() => { handleBookDemoClick(); setIsOpen(false); }}
+                    onClick={() => setIsOpen(false)}
                     className="flex-1 flex items-center justify-center gap-2 py-3 bg-white text-black font-medium rounded-xl"
                   >
                     <span>Book Demo</span>

@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaCalendarCheck, FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { trackCTAClick } from '../utils/metaPixel';
 
 const DemoSection: React.FC = () => {
   return (
@@ -154,7 +153,6 @@ const DemoSection: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link
                 to="/demo"
-                onClick={() => trackCTAClick('demo_page')}
                 className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25"
               >
                 <FaCalendarCheck />

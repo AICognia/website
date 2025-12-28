@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
-import { trackCTAClick } from '../utils/metaPixel';
 
 const steps = [
   {
@@ -102,7 +101,6 @@ const HowItWorks: React.FC = () => {
         >
           <Link
             to="/demo"
-            onClick={() => trackCTAClick('how_it_works')}
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
           >
             Get Your AI Receptionist

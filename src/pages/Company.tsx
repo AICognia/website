@@ -60,17 +60,6 @@ const Company: React.FC = () => {
     (window as any).fbq('track', 'PageView');
   }, []);
 
-  // Track CTA clicks
-  const trackCTAClick = (source: string) => {
-    if ((window as any).fbq) {
-      (window as any).fbq('trackCustom', 'InitiateCheckout', {
-        content_name: 'Company Page CTA',
-        source: source,
-      });
-    }
-    conversionTracker.trackButtonClick('CTA Click', source);
-  };
-
   // Track phone call
   const trackPhoneClick = () => {
     if ((window as any).fbq) {
@@ -194,7 +183,6 @@ const Company: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/demo"
-                onClick={() => trackCTAClick('company_hero')}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
               >
                 Get Your Free AI Audit
@@ -508,7 +496,6 @@ const Company: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/demo"
-                onClick={() => trackCTAClick('company_bottom_cta')}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
               >
                 Get Your Free AI Audit

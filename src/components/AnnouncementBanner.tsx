@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { trackCTAClick } from '../utils/metaPixel';
 
 const AnnouncementBanner: React.FC = () => {
   return (
@@ -9,7 +8,6 @@ const AnnouncementBanner: React.FC = () => {
       <div className="container mx-auto px-6 lg:px-12 py-3">
         <Link
           to="/demo"
-          onClick={() => trackCTAClick('announcement_banner')}
           className="flex items-center justify-center gap-2 text-sm text-white hover:text-gray-300 transition-colors w-full"
         >
           <span className="flex items-center gap-2">

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
-import { trackCTAClick, trackTalkToAI, trackAudioDemo } from '../utils/metaPixel';
+import { trackTalkToAI, trackAudioDemo } from '../utils/metaPixel';
 
 const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
 
@@ -24,11 +24,6 @@ const MobileHeroRedesigned: React.FC = () => {
       trackAudioDemo('mobile_hero');
       audioPlayTrackedRef.current = true;
     }
-  };
-
-  // Track CTA click to /demo page
-  const handleCTAClick = () => {
-    trackCTAClick('mobile_hero');
   };
 
   // Track "Talk to AI" click
@@ -196,7 +191,6 @@ const MobileHeroRedesigned: React.FC = () => {
             <Link
               to="/demo"
               className="block w-full"
-              onClick={handleCTAClick}
             >
               <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-lg shadow-lg shadow-cyan-500/25">
                 <span>Get Your AI Receptionist</span>

@@ -176,6 +176,14 @@ const Demo: React.FC = () => {
     (window as any).fbq('set', 'autoConfig', false, '1224660309537951');
     (window as any).fbq('init', '1224660309537951', {}, { autoConfig: false });
     (window as any).fbq('track', 'PageView');
+
+    // Fire InitiateCheckout on page load (not on CTA clicks)
+    // This is the single funnel point: PageView → InitiateCheckout → Lead
+    (window as any).fbq('track', 'InitiateCheckout', {
+      content_name: 'Demo Page',
+      content_category: 'demo_booking',
+    });
+    console.log('[Meta Pixel] InitiateCheckout fired on /demo page load');
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {

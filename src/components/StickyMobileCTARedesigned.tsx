@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaTimes, FaWhatsapp, FaChevronUp, FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
-import { trackBookDemo, trackTalkToAI, trackWhatsAppClick } from '../utils/metaPixel';
+import { trackTalkToAI, trackWhatsAppClick } from '../utils/metaPixel';
 
 // Urgency messages that rotate
 const urgencyMessages = [
@@ -177,7 +177,6 @@ const StickyMobileCTARedesigned: React.FC = () => {
                     to="/demo"
                     onClick={(e) => {
                       e.stopPropagation();
-                      trackBookDemo('sticky_cta');
                       conversionTracker.trackButtonClick('Book a Demo', 'sticky_cta_primary');
                     }}
                     className="flex-1 flex items-center justify-center gap-2 py-3 bg-white text-black font-bold rounded-xl active:bg-gray-200"
