@@ -105,7 +105,7 @@ const Contact: React.FC = () => {
       url: 'https://cogniaai.com',
       contactPoint: {
         '@type': 'ContactPoint',
-        telephone: '+1-616-326-3328',
+        telephone: '+1-217-693-8413',
         contactType: 'sales',
         availableLanguage: ['English', 'Spanish'],
         areaServed: 'Worldwide'
@@ -367,7 +367,7 @@ const Contact: React.FC = () => {
                 </h3>
                 <div className="space-y-4">
                   <a
-                    href="tel:+16163263328"
+                    href="tel:+12176938413"
                     className="flex items-center gap-4 p-3 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 hover:bg-white/[0.08] transition-all group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
@@ -375,12 +375,12 @@ const Contact: React.FC = () => {
                     </div>
                     <div>
                       <div className="text-xs text-gray-500 uppercase tracking-wider">Phone</div>
-                      <div className="text-white font-medium group-hover:text-cyan-400 transition-colors">+1 (616) 326-3328</div>
+                      <div className="text-white font-medium group-hover:text-cyan-400 transition-colors">+1 (217) 693-8413</div>
                     </div>
                   </a>
 
                   <a
-                    href="mailto:hello@cogniaai.com"
+                    href="mailto:emrebenian@cogniaai.com"
                     className="flex items-center gap-4 p-3 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 hover:bg-white/[0.08] transition-all group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
@@ -388,7 +388,7 @@ const Contact: React.FC = () => {
                     </div>
                     <div>
                       <div className="text-xs text-gray-500 uppercase tracking-wider">Email</div>
-                      <div className="text-white font-medium group-hover:text-cyan-400 transition-colors">hello@cogniaai.com</div>
+                      <div className="text-white font-medium group-hover:text-cyan-400 transition-colors">emrebenian@cogniaai.com</div>
                     </div>
                   </a>
                 </div>
