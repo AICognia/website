@@ -6,6 +6,7 @@ import {
   FaComments, FaCogs, FaSearchDollar, FaChartBar, FaRobot, FaArrowRight
 } from 'react-icons/fa';
 import conversionTracker from '../utils/conversionTracking';
+import { trackTalkToAI, trackBookDemo } from '../utils/metaPixel';
 
 // Product solutions
 const products = [
@@ -23,15 +24,15 @@ const MobileNavbarRedesigned: React.FC = () => {
   const location = useLocation();
 
   // Track "Talk to AI" click
-  const trackTalkToAIClick = () => {
-    if ((window as any).fbq) {
-      (window as any).fbq('trackCustom', 'TalkToAIClick', {
-        content_name: 'Talk to AI Now',
-        source: 'mobile_navbar',
-      });
-    }
+  const handleTalkToAIClick = () => {
+    trackTalkToAI('mobile_navbar');
     conversionTracker.trackPhoneCall('+16163263328');
     conversionTracker.trackButtonClick('Talk to AI', 'mobile_navbar');
+  };
+
+  // Track "Book Demo" click
+  const handleBookDemoClick = () => {
+    trackBookDemo('mobile_navbar');
   };
 
   useEffect(() => {
@@ -91,7 +92,7 @@ const MobileNavbarRedesigned: React.FC = () => {
               {/* Call Button - Always Visible */}
               <a
                 href="tel:+16163263328"
-                onClick={trackTalkToAIClick}
+                onClick={handleTalkToAIClick}
                 className="flex items-center gap-2 px-3 py-2 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400"
               >
                 <FaPhone className="text-sm" />
@@ -248,7 +249,7 @@ const MobileNavbarRedesigned: React.FC = () => {
                 <div className="flex gap-2">
                   <a
                     href="tel:+16163263328"
-                    onClick={trackTalkToAIClick}
+                    onClick={handleTalkToAIClick}
                     className="flex-1 flex items-center justify-center gap-2 py-3 bg-white/10 border border-white/20 text-white font-medium rounded-xl"
                   >
                     <FaPhone />
@@ -256,7 +257,7 @@ const MobileNavbarRedesigned: React.FC = () => {
                   </a>
                   <Link
                     to="/demo"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => { handleBookDemoClick(); setIsOpen(false); }}
                     className="flex-1 flex items-center justify-center gap-2 py-3 bg-white text-black font-medium rounded-xl"
                   >
                     <span>Book Demo</span>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaPhone, FaRobot, FaChartBar, FaCogs, FaSearchDollar, FaComments, FaArrowRight } from 'react-icons/fa';
+import { trackBookDemo, trackTalkToAI } from '../utils/metaPixel';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -143,6 +144,7 @@ const Navbar: React.FC = () => {
               <div className="flex items-center gap-3 ml-4">
                 <Link
                   to="/demo"
+                  onClick={() => trackBookDemo('desktop_navbar')}
                   className="flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-neutral-100 text-black text-sm font-medium rounded-lg transition-colors"
                 >
                   Book a Demo
@@ -151,6 +153,7 @@ const Navbar: React.FC = () => {
 
                 <a
                   href="tel:+16163263328"
+                  onClick={() => trackTalkToAI('desktop_navbar')}
                   className="flex items-center gap-2 px-4 py-2.5 border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-900 text-white text-sm font-medium rounded-lg transition-colors"
                 >
                   <FaPhone className="text-xs" />

@@ -12,6 +12,7 @@ import HowItWorks from '../components/HowItWorks';
 import FinalCTA from '../components/FinalCTA';
 import DynamicTechBackground from '../components/DynamicTechBackground';
 import { VideoProvider } from '../contexts/VideoContext';
+import { initEngagementTracking } from '../utils/metaPixel';
 
 const Home: React.FC = () => {
   // Initialize Meta Pixel and track PageView on component mount
@@ -43,6 +44,10 @@ const Home: React.FC = () => {
     (window as any).fbq('set', 'autoConfig', false, '1224660309537951');
     (window as any).fbq('init', '1224660309537951', {}, { autoConfig: false });
     (window as any).fbq('track', 'PageView');
+
+    // Initialize scroll depth and time on site tracking
+    const cleanup = initEngagementTracking();
+    return cleanup;
   }, []);
 
   // FAQ structured data for the home page

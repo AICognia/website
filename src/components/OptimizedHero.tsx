@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
 import SoundVisualizer from './SoundVisualizer';
+import { trackCTAClick, trackTalkToAI } from '../utils/metaPixel';
 
 const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
 
@@ -18,23 +19,13 @@ const OptimizedHero: React.FC = () => {
   }, []);
 
   // Track CTA click to /demo page
-  const trackCTAClick = () => {
-    if ((window as any).fbq) {
-      (window as any).fbq('trackCustom', 'InitiateCheckout', {
-        content_name: 'Get Your AI Receptionist',
-        source: 'desktop_hero',
-      });
-    }
+  const handleCTAClick = () => {
+    trackCTAClick('desktop_hero');
   };
 
   // Track "Talk to AI" click
-  const trackTalkToAIClick = () => {
-    if ((window as any).fbq) {
-      (window as any).fbq('trackCustom', 'TalkToAIClick', {
-        content_name: 'Talk to AI Now',
-        source: 'desktop_hero',
-      });
-    }
+  const handleTalkToAIClick = () => {
+    trackTalkToAI('desktop_hero');
     conversionTracker.trackPhoneCall('+16163263328');
     conversionTracker.trackButtonClick('Talk to AI', 'hero_secondary');
   };
@@ -100,7 +91,7 @@ const OptimizedHero: React.FC = () => {
                 {/* Primary CTA */}
                 <Link
                   to="/demo"
-                  onClick={trackCTAClick}
+                  onClick={handleCTAClick}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
                 >
                   Get Your AI Receptionist
@@ -110,7 +101,7 @@ const OptimizedHero: React.FC = () => {
                 {/* Secondary CTA - Talk to AI */}
                 <a
                   href="tel:+16163263328"
-                  onClick={trackTalkToAIClick}
+                  onClick={handleTalkToAIClick}
                   className="inline-flex items-center justify-center gap-3 px-6 py-4 border border-white/20 hover:bg-white/5 text-white font-medium rounded-xl transition-colors"
                 >
                   <FaPhone className="text-sm" />

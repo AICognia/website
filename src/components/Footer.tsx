@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
+import { trackSocialClick } from '../utils/metaPixel';
 
 const Footer: React.FC = () => {
   const { t, language } = useLanguage();
@@ -28,6 +29,7 @@ const Footer: React.FC = () => {
                 href="https://www.linkedin.com/company/cognia-ai-usa/"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackSocialClick('linkedin', 'footer')}
                 className="p-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 text-white transition-colors"
               >
                 <FaLinkedin size={18} />
@@ -36,6 +38,7 @@ const Footer: React.FC = () => {
                 href="https://www.instagram.com/cognia.ai/"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackSocialClick('instagram', 'footer')}
                 className="p-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 text-white transition-colors"
               >
                 <FaInstagram size={18} />

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
+import { trackCTAClick, trackTalkToAI, trackAudioDemo } from '../utils/metaPixel';
 
 const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
 
@@ -17,35 +18,22 @@ const MobileHeroRedesigned: React.FC = () => {
   const audioPlayTrackedRef = useRef(false);
   const bars = 60;
 
-  // Track audio demo play in Meta Pixel (only once per session)
-  const trackAudioDemoPlay = () => {
-    if ((window as any).fbq && !audioPlayTrackedRef.current) {
-      (window as any).fbq('trackCustom', 'AudioDemoStarted', {
-        content_name: 'Mobile Hero Audio Demo',
-        source: 'mobile_hero',
-      });
+  // Track audio demo play (only once per session)
+  const handleAudioDemoPlay = () => {
+    if (!audioPlayTrackedRef.current) {
+      trackAudioDemo('mobile_hero');
       audioPlayTrackedRef.current = true;
     }
   };
 
   // Track CTA click to /demo page
-  const trackCTAClick = () => {
-    if ((window as any).fbq) {
-      (window as any).fbq('trackCustom', 'InitiateCheckout', {
-        content_name: 'Get Your AI Receptionist',
-        source: 'mobile_hero',
-      });
-    }
+  const handleCTAClick = () => {
+    trackCTAClick('mobile_hero');
   };
 
   // Track "Talk to AI" click
-  const trackTalkToAIClick = () => {
-    if ((window as any).fbq) {
-      (window as any).fbq('trackCustom', 'TalkToAIClick', {
-        content_name: 'Talk to AI Now',
-        source: 'mobile_hero',
-      });
-    }
+  const handleTalkToAIClick = () => {
+    trackTalkToAI('mobile_hero');
     conversionTracker.trackPhoneCall('+16163263328');
     conversionTracker.trackButtonClick('Talk to AI', 'mobile_hero_secondary');
   };
@@ -89,7 +77,7 @@ const MobileHeroRedesigned: React.FC = () => {
         await audio.play();
         setIsPlaying(true);
         // Track audio demo started
-        trackAudioDemoPlay();
+        handleAudioDemoPlay();
       } catch (error) {
         console.error('Audio playback failed:', error);
         setIsPlaying(false);
@@ -208,7 +196,7 @@ const MobileHeroRedesigned: React.FC = () => {
             <Link
               to="/demo"
               className="block w-full"
-              onClick={trackCTAClick}
+              onClick={handleCTAClick}
             >
               <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-lg shadow-lg shadow-cyan-500/25">
                 <span>Get Your AI Receptionist</span>
@@ -219,7 +207,7 @@ const MobileHeroRedesigned: React.FC = () => {
             {/* Secondary CTA - Talk to AI */}
             <a
               href="tel:+16163263328"
-              onClick={trackTalkToAIClick}
+              onClick={handleTalkToAIClick}
               className="block w-full"
             >
               <div className="border border-white/20 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-medium text-lg">
