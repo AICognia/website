@@ -56,7 +56,7 @@ const FinalCTA: React.FC = () => {
     user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
   });
 
-  // Capture attribution signals on component mount
+  // Capture attribution signals on component mount with localStorage backup
   useEffect(() => {
     const STORAGE_KEY = 'cognia_attribution';
     const EXPIRY_MS = 86400000; // 24 hours
@@ -66,8 +66,9 @@ const FinalCTA: React.FC = () => {
     const currentFbclid = urlParams.get('fbclid') || '';
 
     // Capture Meta Pixel cookies (fbp and fbc)
-    const fbpCookie = getCookie('_fbp');
-    const fbcCookie = getCookie('_fbc');
+    const fbpCookie = getCookie('_fbp'); // Set by Meta Pixel
+    const fbcCookie = getCookie('_fbc'); // Set by Meta Pixel or generated from fbclid
+    // If fbc cookie doesn't exist but we have fbclid, generate fbc
     const fbcValue = fbcCookie || generateFbc(currentFbclid);
 
     // Capture current page signals
@@ -81,6 +82,7 @@ const FinalCTA: React.FC = () => {
       fbclid: currentFbclid,
       gclid: urlParams.get('gclid') || '',
       referrer: document.referrer || '',
+      // Meta CAPI fields - captured fresh on each page load
       fbp: fbpCookie,
       fbc: fbcValue,
       user_agent: navigator.userAgent || '',
@@ -101,6 +103,8 @@ const FinalCTA: React.FC = () => {
         const isRecent = (Date.now() - parsed.timestamp) < EXPIRY_MS;
 
         if (isRecent) {
+          // Merge: use current signals if present, otherwise fall back to stored
+          // Note: fbp, fbc, user_agent are always captured fresh (not from storage)
           finalSignals = {
             landing_url: currentSignals.landing_url || parsed.landing_url || '',
             utm_source: currentSignals.utm_source || parsed.utm_source || '',
@@ -111,8 +115,9 @@ const FinalCTA: React.FC = () => {
             fbclid: currentSignals.fbclid || parsed.fbclid || '',
             gclid: currentSignals.gclid || parsed.gclid || '',
             referrer: currentSignals.referrer || parsed.referrer || '',
+            // Meta CAPI fields - always use current values (cookies are session-specific)
             fbp: currentSignals.fbp,
-            fbc: currentSignals.fbc || generateFbc(parsed.fbclid || ''),
+            fbc: currentSignals.fbc || generateFbc(parsed.fbclid || ''), // Generate from stored fbclid if needed
             user_agent: currentSignals.user_agent,
             timestamp: currentSignals.timestamp,
           };
@@ -122,7 +127,7 @@ const FinalCTA: React.FC = () => {
       console.warn('Failed to read attribution from localStorage:', e);
     }
 
-    // Save to localStorage if we have meaningful signals
+    // Save to localStorage if we have meaningful signals (excluding fbp/fbc/user_agent which are session-specific)
     if (hasCurrentSignals || finalSignals.utm_source || finalSignals.fbclid || finalSignals.gclid) {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(finalSignals));
@@ -133,6 +138,42 @@ const FinalCTA: React.FC = () => {
 
     // Update ref with final signals
     attributionDataRef.current = finalSignals;
+
+    // Debug log
+    console.log('Attribution data captured:', attributionDataRef.current);
+  }, []);
+
+  // Ensure Meta Pixel is initialized (in case it wasn't loaded globally)
+  useEffect(() => {
+    // Initialize Meta Pixel with new ID - disable automatic button tracking
+    if (!(window as any).fbq) {
+      /* eslint-disable */
+      (function(f: any, b: any, e: any, v: any) {
+        let n: any;
+        if (f.fbq) return;
+        n = f.fbq = function() {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        const t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        const s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      /* eslint-enable */
+    }
+
+    // Initialize with pixel ID: 1224660309537951
+    // CRITICAL: Disable ALL automatic tracking to prevent duplicate Lead events
+    // autoConfig: false - disables automatic button/form tracking
+    (window as any).fbq('set', 'autoConfig', false, '1224660309537951');
+    (window as any).fbq('init', '1224660309537951', {}, { autoConfig: false });
+    // Note: PageView is NOT fired here - it should be fired at the page level (Home.tsx)
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -208,13 +249,20 @@ const FinalCTA: React.FC = () => {
       conversionTracker.trackButtonClick('Lead Form Submitted', 'final_cta');
 
       // Fire Meta Pixel Lead event with event_id for deduplication
+      console.log('[DEDUP DEBUG] trackingToken value:', trackingToken);
+      console.log('[DEDUP DEBUG] fbq available:', !!(window as any).fbq);
+
       if ((window as any).fbq) {
+        console.log('[DEDUP DEBUG] Firing fbq Lead event with eventID:', trackingToken);
         (window as any).fbq('track', 'Lead', {
           content_name: 'Demo Request',
           content_category: 'general',
         }, {
           eventID: trackingToken,
         });
+        console.log('[DEDUP DEBUG] fbq Lead event fired');
+      } else {
+        console.error('[DEDUP DEBUG] fbq NOT available - pixel event NOT sent!');
       }
 
       // Build Calendly URL with prefilled data
@@ -229,8 +277,10 @@ const FinalCTA: React.FC = () => {
         utm_campaign: 'final_cta',
       });
 
-      // Wait for pixel to send before redirect
+      // Wait 500ms to ensure pixel event network request completes before redirect
+      console.log('[DEDUP DEBUG] Waiting 500ms for pixel to send...');
       await new Promise(resolve => setTimeout(resolve, 500));
+      console.log('[DEDUP DEBUG] Redirecting to Calendly');
 
       setIsSubmitted(true);
 
