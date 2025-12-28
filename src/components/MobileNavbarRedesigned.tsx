@@ -8,7 +8,7 @@ import {
 
 // Product solutions
 const products = [
-  { icon: FaComments, title: 'AI Chatbot', description: 'Convert visitors 24/7', path: '/solutions/chatbot' },
+  { icon: FaComments, title: 'AI Chatbot', description: 'Convert visitors 24/7', path: '/chatbot' },
   { icon: FaPhone, title: 'AI Receptionist', description: 'Never miss a call', path: '/solutions/ai-receptionist' },
   { icon: FaCogs, title: 'Workflow Automation', description: 'Eliminate manual work', path: '/solutions/workflow-automation' },
   { icon: FaSearchDollar, title: 'AI Audit', description: 'Find AI opportunities', path: '/solutions/ai-audit' },

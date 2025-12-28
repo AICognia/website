@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
   ];
 
   const products = [
-    { icon: FaComments, title: 'AI Chatbot', description: 'Convert visitors 24/7 on any channel', path: '/solutions/chatbot' },
+    { icon: FaComments, title: 'AI Chatbot', description: 'Convert visitors 24/7 on any channel', path: '/chatbot' },
     { icon: FaPhone, title: 'AI Receptionist', description: 'Never miss a call, book appointments', path: '/solutions/ai-receptionist' },
     { icon: FaCogs, title: 'Workflow Automation', description: 'Connect tools, eliminate manual work', path: '/solutions/workflow-automation' },
     { icon: FaSearchDollar, title: 'AI Audit', description: 'Discover AI opportunities in your business', path: '/solutions/ai-audit' },
