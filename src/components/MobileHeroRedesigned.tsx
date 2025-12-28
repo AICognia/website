@@ -38,6 +38,18 @@ const MobileHeroRedesigned: React.FC = () => {
     }
   };
 
+  // Track "Talk to AI" click
+  const trackTalkToAIClick = () => {
+    if ((window as any).fbq) {
+      (window as any).fbq('trackCustom', 'TalkToAIClick', {
+        content_name: 'Talk to AI Now',
+        source: 'mobile_hero',
+      });
+    }
+    conversionTracker.trackPhoneCall('+16163263328');
+    conversionTracker.trackButtonClick('Talk to AI', 'mobile_hero_secondary');
+  };
+
   // Rotate words
   useEffect(() => {
     const interval = setInterval(() => {
@@ -207,10 +219,7 @@ const MobileHeroRedesigned: React.FC = () => {
             {/* Secondary CTA - Talk to AI */}
             <a
               href="tel:+16163263328"
-              onClick={() => {
-                conversionTracker.trackPhoneCall('+16163263328');
-                conversionTracker.trackButtonClick('Talk to AI', 'mobile_hero_secondary');
-              }}
+              onClick={trackTalkToAIClick}
               className="block w-full"
             >
               <div className="border border-white/20 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-medium text-lg">

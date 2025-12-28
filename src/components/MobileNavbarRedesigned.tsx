@@ -5,6 +5,7 @@ import {
   FaBars, FaTimes, FaPhone, FaHome, FaBuilding, FaEnvelope,
   FaComments, FaCogs, FaSearchDollar, FaChartBar, FaRobot, FaArrowRight
 } from 'react-icons/fa';
+import conversionTracker from '../utils/conversionTracking';
 
 // Product solutions
 const products = [
@@ -20,6 +21,18 @@ const MobileNavbarRedesigned: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  // Track "Talk to AI" click
+  const trackTalkToAIClick = () => {
+    if ((window as any).fbq) {
+      (window as any).fbq('trackCustom', 'TalkToAIClick', {
+        content_name: 'Talk to AI Now',
+        source: 'mobile_navbar',
+      });
+    }
+    conversionTracker.trackPhoneCall('+16163263328');
+    conversionTracker.trackButtonClick('Talk to AI', 'mobile_navbar');
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,6 +91,7 @@ const MobileNavbarRedesigned: React.FC = () => {
               {/* Call Button - Always Visible */}
               <a
                 href="tel:+16163263328"
+                onClick={trackTalkToAIClick}
                 className="flex items-center gap-2 px-3 py-2 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400"
               >
                 <FaPhone className="text-sm" />
@@ -234,6 +248,7 @@ const MobileNavbarRedesigned: React.FC = () => {
                 <div className="flex gap-2">
                   <a
                     href="tel:+16163263328"
+                    onClick={trackTalkToAIClick}
                     className="flex-1 flex items-center justify-center gap-2 py-3 bg-white/10 border border-white/20 text-white font-medium rounded-xl"
                   >
                     <FaPhone />

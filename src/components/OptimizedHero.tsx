@@ -27,6 +27,18 @@ const OptimizedHero: React.FC = () => {
     }
   };
 
+  // Track "Talk to AI" click
+  const trackTalkToAIClick = () => {
+    if ((window as any).fbq) {
+      (window as any).fbq('trackCustom', 'TalkToAIClick', {
+        content_name: 'Talk to AI Now',
+        source: 'desktop_hero',
+      });
+    }
+    conversionTracker.trackPhoneCall('+16163263328');
+    conversionTracker.trackButtonClick('Talk to AI', 'hero_secondary');
+  };
+
   return (
     <>
       {/* Desktop Hero - Hidden on mobile (mobile uses MobileHeroRedesigned) */}
@@ -98,10 +110,7 @@ const OptimizedHero: React.FC = () => {
                 {/* Secondary CTA - Talk to AI */}
                 <a
                   href="tel:+16163263328"
-                  onClick={() => {
-                    conversionTracker.trackPhoneCall('+16163263328');
-                    conversionTracker.trackButtonClick('Talk to AI', 'hero_secondary');
-                  }}
+                  onClick={trackTalkToAIClick}
                   className="inline-flex items-center justify-center gap-3 px-6 py-4 border border-white/20 hover:bg-white/5 text-white font-medium rounded-xl transition-colors"
                 >
                   <FaPhone className="text-sm" />
