@@ -11,7 +11,11 @@ type EventSource =
   | 'desktop_navbar' | 'mobile_navbar'
   | 'sticky_cta' | 'final_cta' | 'footer'
   | 'demo_page' | 'contact_page'
-  | 'solutions_page' | 'chatbot_page';
+  | 'solutions_page' | 'chatbot_page'
+  | 'how_it_works' | 'features_section'
+  | 'announcement_banner' | 'company_hero' | 'company_bottom_cta'
+  | 'ai_receptionist_page' | 'ai_chatbot_page' | 'workflow_automation_page'
+  | 'ai_audit_page' | 'business_intelligence_page' | 'custom_ai_page';
 
 interface TrackingOptions {
   source: EventSource;
@@ -87,11 +91,12 @@ export const trackTalkToAI = (source: EventSource) => {
 };
 
 /**
- * Track "Book Demo" button clicks
- * Event: Schedule (standard event for scheduling)
+ * Track "Book Demo" / "Get AI Receptionist" button clicks
+ * Event: InitiateCheckout (standard event for high-intent actions)
+ * NOTE: All demo booking CTAs should use InitiateCheckout for consistency
  */
 export const trackBookDemo = (source: EventSource) => {
-  fireEvent('track', 'Schedule', {
+  fireEvent('track', 'InitiateCheckout', {
     content_name: 'Book Demo',
     content_category: 'demo_booking',
     source,

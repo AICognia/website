@@ -197,7 +197,10 @@ const Navbar: React.FC = () => {
               <div className="pt-3 border-t border-white/10 space-y-2">
                 <Link
                   to="/demo"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    trackBookDemo('mobile_navbar');
+                    setIsOpen(false);
+                  }}
                   className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white text-black text-sm font-medium rounded-lg"
                 >
                   Book a Demo
@@ -206,7 +209,10 @@ const Navbar: React.FC = () => {
 
                 <a
                   href="tel:+16163263328"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    trackTalkToAI('mobile_navbar');
+                    setIsOpen(false);
+                  }}
                   className="flex items-center justify-center gap-2 py-2.5 text-sm text-white hover:text-gray-300 transition-colors"
                 >
                   <FaPhone className="text-xs" />
