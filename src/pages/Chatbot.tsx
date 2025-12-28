@@ -264,10 +264,16 @@ const Chatbot: React.FC = () => {
                   <h2 className="text-xl lg:text-2xl font-thin text-white mb-2">
                     How can I <span className="text-cyan-400">help</span>?
                   </h2>
-                  <p className="text-gray-500 text-xs lg:text-sm flex items-center gap-1.5">
+                  <p className="text-gray-500 text-xs lg:text-sm flex items-center gap-1.5 mb-4">
                     <FaGlobe className="text-cyan-400/60" />
                     <span>30+ languages supported</span>
                   </p>
+                  <Link
+                    to="/solutions/chatbot"
+                    className="text-xs text-cyan-400/70 hover:text-cyan-400 transition-colors"
+                  >
+                    Learn more about our AI Chatbot →
+                  </Link>
                 </motion.div>
               )}
 
