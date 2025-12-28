@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaBars, FaTimes, FaHospital, FaGavel, FaStore, FaBuilding, FaPhone, FaLanguage, FaCog, FaUserMd, FaFileAlt, FaHeadset, FaClock, FaHotel, FaCar, FaRobot, FaChartLine, FaUsers, FaShieldAlt, FaShoppingCart, FaHome, FaArrowRight, FaCalendarAlt as FaCalendar } from 'react-icons/fa';
+import { FaBars, FaTimes, FaPhone, FaRobot, FaChartBar, FaCogs, FaSearchDollar, FaComments, FaArrowRight } from 'react-icons/fa';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,26 +29,14 @@ const Navbar: React.FC = () => {
     { name: 'Contact', path: '/contact' }
   ];
 
-  const solutionsMenuData = {
-    byIndustry: [
-      { icon: FaHospital, title: 'Healthcare', description: 'HIPAA-compliant patient scheduling', path: '/industries/healthcare' },
-      { icon: FaGavel, title: 'Legal Services', description: 'Client intake and case management', path: '/industries/legal' },
-      { icon: FaStore, title: 'Retail', description: 'Multi-location customer support', path: '/industries/retail' },
-      { icon: FaHome, title: 'Home Services', description: 'Plumbing, HVAC, electrical & more', path: '/industries/home-services' }
-    ],
-    byFeature: [
-      { icon: FaPhone, title: '24/7 Call Handling', description: 'Never miss a customer call', path: '/features/call-handling' },
-      { icon: FaCalendar, title: 'Smart Scheduling', description: 'AI-powered appointment booking', path: '/features/smart-scheduling' },
-      { icon: FaLanguage, title: 'Multi-Language', description: '20+ languages supported', path: '/features/multi-language' },
-      { icon: FaChartLine, title: 'Analytics Dashboard', description: 'Real-time insights and reports', path: '/features/analytics-dashboard' }
-    ],
-    byUseCase: [
-      { icon: FaUsers, title: 'Patient Scheduling', description: 'Medical appointment management', path: '/usecases/patient-scheduling' },
-      { icon: FaHeadset, title: 'Customer Support', description: 'Round-the-clock assistance', path: '/usecases/customer-support' },
-      { icon: FaClock, title: 'After-Hours Service', description: 'Business continuity 24/7', path: '/usecases/after-hours-service' },
-      { icon: FaShieldAlt, title: 'Lead Qualification', description: 'Screen and route prospects', path: '/usecases/lead-qualification' }
-    ]
-  };
+  const products = [
+    { icon: FaComments, title: 'AI Chatbot', description: 'Convert visitors 24/7 on any channel', path: '/solutions/chatbot' },
+    { icon: FaPhone, title: 'AI Receptionist', description: 'Never miss a call, book appointments', path: '/solutions/ai-receptionist' },
+    { icon: FaCogs, title: 'Workflow Automation', description: 'Connect tools, eliminate manual work', path: '/solutions/workflow-automation' },
+    { icon: FaSearchDollar, title: 'AI Audit', description: 'Discover AI opportunities in your business', path: '/solutions/ai-audit' },
+    { icon: FaChartBar, title: 'Business Intelligence', description: 'Data-driven decisions with AI insights', path: '/solutions/business-intelligence' },
+    { icon: FaRobot, title: 'Custom AI', description: 'Bespoke solutions for unique challenges', path: '/solutions/custom-ai' }
+  ];
 
   return (
     <>
@@ -110,113 +98,40 @@ const Navbar: React.FC = () => {
 
                   {/* Mega Menu Dropdown - Solutions */}
                   {item.hasDropdown && showSolutionsMenu && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-screen max-w-5xl">
-                      <div className="bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
-                        <div className="grid grid-cols-3 gap-8">
-                          {/* BY INDUSTRY */}
-                          <div>
-                            <h3 className="text-xs uppercase tracking-widest text-gray-500 mb-4">
-                              By Industry
-                            </h3>
-                            <div className="space-y-3">
-                              {solutionsMenuData.byIndustry.map((solution, idx) => (
-                                <Link
-                                  key={idx}
-                                  to={solution.path}
-                                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors group"
-                                >
-                                  <div className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <solution.icon className="text-white text-sm" />
-                                  </div>
-                                  <div>
-                                    <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors">
-                                      {solution.title}
-                                    </div>
-                                    <div className="text-xs text-gray-400 mt-0.5">
-                                      {solution.description}
-                                    </div>
-                                  </div>
-                                </Link>
-                              ))}
-                              <Link
-                                to="/solutions"
-                                className="flex items-center gap-2 p-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
-                              >
-                                View all industries
-                                <FaArrowRight className="text-xs" />
-                              </Link>
-                            </div>
-                          </div>
-
-                          {/* BY FEATURE */}
-                          <div>
-                            <h3 className="text-xs uppercase tracking-widest text-gray-500 mb-4">
-                              By Feature
-                            </h3>
-                            <div className="space-y-3">
-                              {solutionsMenuData.byFeature.map((solution, idx) => (
-                                <Link
-                                  key={idx}
-                                  to={solution.path}
-                                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors group"
-                                >
-                                  <div className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <solution.icon className="text-white text-sm" />
-                                  </div>
-                                  <div>
-                                    <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors">
-                                      {solution.title}
-                                    </div>
-                                    <div className="text-xs text-gray-400 mt-0.5">
-                                      {solution.description}
-                                    </div>
-                                  </div>
-                                </Link>
-                              ))}
-                              <Link
-                                to="/solutions"
-                                className="flex items-center gap-2 p-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
-                              >
-                                View all features
-                                <FaArrowRight className="text-xs" />
-                              </Link>
-                            </div>
-                          </div>
-
-                          {/* BY USE CASE */}
-                          <div>
-                            <h3 className="text-xs uppercase tracking-widest text-gray-500 mb-4">
-                              By Use Case
-                            </h3>
-                            <div className="space-y-3">
-                              {solutionsMenuData.byUseCase.map((solution, idx) => (
-                                <Link
-                                  key={idx}
-                                  to={solution.path}
-                                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors group"
-                                >
-                                  <div className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <solution.icon className="text-white text-sm" />
-                                  </div>
-                                  <div>
-                                    <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors">
-                                      {solution.title}
-                                    </div>
-                                    <div className="text-xs text-gray-400 mt-0.5">
-                                      {solution.description}
-                                    </div>
-                                  </div>
-                                </Link>
-                              ))}
-                              <Link
-                                to="/solutions"
-                                className="flex items-center gap-2 p-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
-                              >
-                                View all use cases
-                                <FaArrowRight className="text-xs" />
-                              </Link>
-                            </div>
-                          </div>
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-screen max-w-3xl">
+                      <div className="bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl">
+                        <h3 className="text-xs uppercase tracking-widest text-gray-500 mb-4">
+                          Our Products
+                        </h3>
+                        <div className="grid grid-cols-2 gap-3">
+                          {products.map((product, idx) => (
+                            <Link
+                              key={idx}
+                              to={product.path}
+                              className="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group"
+                            >
+                              <div className="w-10 h-10 bg-cyan-500/10 border border-cyan-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <product.icon className="text-cyan-400 text-sm" />
+                              </div>
+                              <div>
+                                <div className="text-sm font-medium text-white group-hover:text-cyan-400 transition-colors">
+                                  {product.title}
+                                </div>
+                                <div className="text-xs text-gray-400 mt-0.5">
+                                  {product.description}
+                                </div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="mt-4 pt-4 border-t border-white/10">
+                          <Link
+                            to="/solutions"
+                            className="flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+                          >
+                            View all solutions
+                            <FaArrowRight className="text-xs" />
+                          </Link>
                         </div>
                       </div>
                     </div>
