@@ -63,7 +63,7 @@ function AppContent() {
   const location = useLocation();
 
   // Landing pages that should not show navigation
-  const isLandingPage = location.pathname === '/dentists';
+  const isLandingPage = location.pathname === '/dentists' || location.pathname === '/dashboard';
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
