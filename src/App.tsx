@@ -20,6 +20,7 @@ const Contact = lazy(() => import('./pages/Contact'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Demo = lazy(() => import('./pages/Demo'));
 const Dentists = lazy(() => import('./pages/Dentists'));
+const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
 
 // Lazy load industry pages
 const Healthcare = lazy(() => import('./pages/industries/Healthcare'));
@@ -87,6 +88,7 @@ function AppContent() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/dentists" element={<Dentists />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             {/* Industry Pages */}
             <Route path="/industries/healthcare" element={<Healthcare />} />
             <Route path="/industries/legal" element={<Legal />} />
