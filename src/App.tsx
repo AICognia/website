@@ -19,6 +19,7 @@ const Contact = lazy(() => import('./pages/Contact'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Demo = lazy(() => import('./pages/Demo'));
 const Chatbot = lazy(() => import('./pages/Chatbot'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
 
 // Lazy load solution pages
 const AIChatbot = lazy(() => import('./pages/solutions/AIChatbot'));
@@ -44,7 +45,7 @@ function AppContent() {
   const location = useLocation();
 
   // Pages that should not show navigation (standalone pages)
-  const isStandalonePage = location.pathname === '/chatbot';
+  const isStandalonePage = location.pathname === '/chatbot' || location.pathname === '/dashboard';
   const isLandingPage = false;
 
   return (
@@ -77,6 +78,7 @@ function AppContent() {
             <Route path="/solutions/custom-ai" element={<CustomAI />} />
             {/* Standalone Pages */}
             <Route path="/chatbot" element={<Chatbot />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </Suspense>
       </main>
