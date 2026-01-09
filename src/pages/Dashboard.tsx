@@ -128,7 +128,6 @@ const MobileSidebar: React.FC<{
 
   return (
     <>
-      {/* Overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/60 z-40 lg:hidden"
@@ -136,14 +135,12 @@ const MobileSidebar: React.FC<{
         />
       )}
 
-      {/* Sidebar */}
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-[#0a0f1a] border-r border-[#1e293b] z-50 transform transition-transform duration-300 lg:hidden ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="p-6">
-          {/* Close Button */}
           <button
             onClick={onClose}
             className="absolute top-6 right-6 text-gray-400 hover:text-white"
@@ -151,12 +148,10 @@ const MobileSidebar: React.FC<{
             <X size={24} />
           </button>
 
-          {/* Logo */}
           <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-8">
             <span className="text-xl font-bold text-white">C</span>
           </div>
 
-          {/* Navigation */}
           <nav className="flex flex-col gap-2">
             {navItems.map((item) => (
               <button
@@ -177,7 +172,6 @@ const MobileSidebar: React.FC<{
             ))}
           </nav>
 
-          {/* Alert Badge */}
           <div className="mt-8 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
             <div className="flex items-center gap-3">
               <Bell size={20} className="text-red-500" />
@@ -203,12 +197,10 @@ const Sidebar: React.FC<{ activeView: string; setActiveView: (view: string) => v
 
   return (
     <aside className="hidden lg:flex w-18 bg-[#0a0f1a] border-r border-[#1e293b] flex-col items-center py-5 sticky top-0 h-screen">
-      {/* Logo */}
       <div className="w-11 h-11 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-8 shadow-lg shadow-indigo-500/25">
         <span className="text-lg font-bold text-white">C</span>
       </div>
 
-      {/* Navigation */}
       <nav className="flex flex-col gap-2">
         {navItems.map((item) => (
           <button
@@ -226,7 +218,6 @@ const Sidebar: React.FC<{ activeView: string; setActiveView: (view: string) => v
         ))}
       </nav>
 
-      {/* Alert Badge */}
       <div className="mt-auto mb-4">
         <div className="relative w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center">
           <Bell size={20} className="text-red-500" />
@@ -249,7 +240,6 @@ const Header: React.FC<{ onMenuClick: () => void }> = ({ onMenuClick }) => {
   return (
     <header className="h-16 lg:h-18 bg-[#0a0f1a] border-b border-[#1e293b] flex items-center justify-between px-4 lg:px-8 sticky top-0 z-30 backdrop-blur-sm">
       <div className="flex items-center gap-4">
-        {/* Mobile Menu Button */}
         <button
           onClick={onMenuClick}
           className="lg:hidden text-gray-400 hover:text-white"
@@ -271,7 +261,6 @@ const Header: React.FC<{ onMenuClick: () => void }> = ({ onMenuClick }) => {
       </div>
 
       <div className="flex items-center gap-3 lg:gap-5">
-        {/* Search - Hidden on mobile */}
         <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-[#0f1629] border border-[#1e293b] rounded-lg w-64">
           <Search size={16} className="text-gray-500" />
           <input
@@ -281,7 +270,6 @@ const Header: React.FC<{ onMenuClick: () => void }> = ({ onMenuClick }) => {
           <span className="text-xs text-gray-600 bg-[#0a0f1a] px-2 py-0.5 rounded">⌘K</span>
         </div>
 
-        {/* Time */}
         <div className="hidden sm:block text-right min-w-20">
           <div className="text-sm lg:text-base font-semibold text-white font-mono">
             {time.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}
@@ -291,7 +279,6 @@ const Header: React.FC<{ onMenuClick: () => void }> = ({ onMenuClick }) => {
           </div>
         </div>
 
-        {/* User */}
         <div className="flex items-center gap-3 px-3 py-2 bg-[#0f1629] rounded-lg cursor-pointer hover:bg-[#151d30] transition-colors">
           <div className="w-8 h-8 lg:w-9 lg:h-9 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center text-sm font-semibold text-white">
             EB
@@ -318,7 +305,6 @@ const DailyBriefHero: React.FC = () => {
       animate={{ opacity: 1, y: 0 }}
       className="bg-gradient-to-br from-[#0f1629] to-[#151d30] rounded-2xl border border-[#1e293b] overflow-hidden"
     >
-      {/* Hero Header */}
       <div className="p-5 lg:p-7 border-b border-[#1e293b] bg-gradient-to-r from-indigo-500/5 to-transparent">
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4">
           <div>
@@ -347,7 +333,6 @@ const DailyBriefHero: React.FC = () => {
           </div>
         </div>
 
-        {/* AI Summary */}
         <div className="mt-5 p-4 bg-indigo-500/8 border-l-4 border-indigo-500 rounded-lg flex gap-3">
           <Sparkles size={20} className="text-indigo-400 flex-shrink-0 mt-0.5" />
           <div>
@@ -360,7 +345,6 @@ const DailyBriefHero: React.FC = () => {
           </div>
         </div>
 
-        {/* Quick KPIs */}
         <div className="grid grid-cols-3 gap-4 mt-5">
           {[
             { label: 'Dünkü Ciro', ...dailyBrief.kpiSummary.ciro },
@@ -383,9 +367,7 @@ const DailyBriefHero: React.FC = () => {
         </div>
       </div>
 
-      {/* Insights & Actions */}
       <div className="grid lg:grid-cols-[1.2fr,1fr] border-t border-[#1e293b]">
-        {/* Insights */}
         <div className="p-5 lg:p-7 border-b lg:border-b-0 lg:border-r border-[#1e293b]">
           <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">
             Öne Çıkanlar
@@ -411,7 +393,6 @@ const DailyBriefHero: React.FC = () => {
           </div>
         </div>
 
-        {/* Actions */}
         <div className="p-5 lg:p-7">
           <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">
             Önerilen Aksiyonlar
@@ -572,10 +553,8 @@ const ProgressBar: React.FC<{ label: string; current: number; target: number; un
 // Dashboard View
 const DashboardView: React.FC = () => (
   <div className="p-4 lg:p-7 flex flex-col gap-5 lg:gap-6">
-    {/* Daily Brief Hero */}
     <DailyBriefHero />
 
-    {/* KPIs Row */}
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
       <KPICard label="Toplam Gelir" value="₺24.8M" change="+12.5%" changeType="up" target="₺23M" icon={DollarSign} />
       <KPICard label="Sipariş Sayısı" value="1,847" change="+8.2%" changeType="up" target="1,600" icon={Package} />
@@ -583,9 +562,7 @@ const DashboardView: React.FC = () => (
       <KPICard label="Ort. Sipariş" value="₺13.4K" change="-2.1%" changeType="down" icon={TrendingUp} />
     </div>
 
-    {/* Main Grid */}
     <div className="grid lg:grid-cols-[2fr,1fr] gap-5">
-      {/* Revenue Chart */}
       <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-4 lg:p-6">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
           <div>
@@ -644,9 +621,7 @@ const DashboardView: React.FC = () => (
         </div>
       </div>
 
-      {/* Right Column */}
       <div className="flex flex-col gap-5">
-        {/* Alerts */}
         <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-4 lg:p-5">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-base font-semibold text-white">Aktif Uyarılar</h3>
@@ -661,7 +636,6 @@ const DashboardView: React.FC = () => (
           </div>
         </div>
 
-        {/* Performance */}
         <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-4 lg:p-5">
           <h3 className="text-base font-semibold text-white mb-5">Hedef Durumu</h3>
           {performanceMetrics.map((m, i) => (
@@ -671,9 +645,7 @@ const DashboardView: React.FC = () => (
       </div>
     </div>
 
-    {/* Bottom Row */}
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {/* Top Products */}
       <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-4 lg:p-6">
         <h3 className="text-base font-semibold text-white mb-5">En İyi Ürünler</h3>
         <div className="flex flex-col gap-3">
@@ -690,7 +662,6 @@ const DashboardView: React.FC = () => (
         </div>
       </div>
 
-      {/* Live Activity Feed */}
       <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-4 lg:p-6">
         <div className="flex justify-between items-center mb-5">
           <h3 className="text-base font-semibold text-white">Canlı Aktivite</h3>
@@ -726,7 +697,6 @@ const DashboardView: React.FC = () => (
         </div>
       </div>
 
-      {/* Data Sources Panel */}
       <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-4 lg:p-6">
         <div className="flex justify-between items-center mb-5">
           <h3 className="text-base font-semibold text-white">Veri Kaynakları</h3>
@@ -757,7 +727,6 @@ const DashboardView: React.FC = () => (
       </div>
     </div>
 
-    {/* Regional Distribution */}
     <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-4 lg:p-6">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-5">
         <h3 className="text-base font-semibold text-white">Bölgesel Performans</h3>
@@ -796,7 +765,493 @@ const DashboardView: React.FC = () => (
   </div>
 );
 
-// Truncated for length - AIView and AnalyticsView would follow with similar mobile optimizations
+// AI View Component
+const AIView: React.FC = () => {
+  const [messages, setMessages] = useState([
+    {
+      role: 'assistant',
+      content: 'Merhaba! Ben Cognia AI asistanınız. 5 veri kaynağına bağlıyım ve 7.9 milyon kayda erişimim var.\n\nBana Türkçe sorular sorabilirsiniz. Örneğin:\n• "Geçen aya göre en çok düşen ürünler hangileri?"\n• "Marmara bölgesi performansını özetle"\n• "Stok durumu kritik ürünleri listele"\n• "Önümüzdeki ay için satış tahmini"'
+    }
+  ]);
+  const [input, setInput] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [processingStep, setProcessingStep] = useState(0);
+
+  const dataSources = [
+    { name: 'ERP Sistemi', records: '2.4M', status: 'active' },
+    { name: 'CRM Veritabanı', records: '856K', status: 'active' },
+    { name: 'Finans Modülü', records: '3.1M', status: 'active' },
+    { name: 'Lojistik API', records: '1.2M', status: 'active' },
+    { name: 'E-Ticaret', records: '428K', status: 'active' },
+  ];
+
+  const processingSteps = [
+    { label: 'Veri kaynakları taranıyor', sources: ['ERP', 'CRM', 'Finans'] },
+    { label: 'AI modeli çalıştırılıyor' },
+    { label: 'Sonuçlar derleniyor' },
+  ];
+
+  const handleSend = () => {
+    if (!input.trim() || isProcessing) return;
+
+    setMessages(prev => [...prev, { role: 'user', content: input }]);
+    const query = input;
+    setInput('');
+    setIsProcessing(true);
+    setProcessingStep(0);
+
+    const stepInterval = setInterval(() => {
+      setProcessingStep(prev => {
+        if (prev >= processingSteps.length - 1) {
+          clearInterval(stepInterval);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 600);
+
+    setTimeout(() => {
+      clearInterval(stepInterval);
+      let response = '';
+
+      if (query.toLowerCase().includes('düş') || query.toLowerCase().includes('geril')) {
+        response = `## 📉 Satış Düşüşü Analizi
+
+**Son 30 Günde En Çok Gerileyen Ürünler:**
+
+| Sıra | Ürün | Düşüş | Ana Sebep |
+|------|------|-------|-----------|
+| 1 | Basic Widget E | -8.5% | Rakip fiyat indirimi |
+| 2 | Deluxe Widget D | -3.2% | Mevsimsel düşüş |
+| 3 | Standard Widget B | -1.2% | Tedarik gecikmesi |
+
+**🔍 Kök Neden Analizi:**
+- Basic Widget E: Rakip XYZ firması %15 indirim kampanyası başlattı
+- Deluxe Widget D: Ocak ayı tarihsel olarak düşük talep dönemi
+
+**💡 AI Önerisi:**
+Basic Widget E için fiyat eşitleme veya değer odaklı kampanya önerilir. Tahmini etki: +₺125K/ay
+
+*Güven skoru: %94 | 847K kayıt analiz edildi*`;
+      } else if (query.toLowerCase().includes('marmara')) {
+        response = `## 📊 Marmara Bölgesi Performans Raporu
+
+**Genel Durum:** 🟢 Hedefin Üzerinde
+
+### Temel Metrikler
+| Metrik | Değer | vs Hedef | vs Geçen Ay |
+|--------|-------|----------|-------------|
+| Aylık Ciro | ₺8.42M | +5.2% | +15.2% |
+| Sipariş Sayısı | 724 | +8% | +12.8% |
+| Yeni Müşteri | 28 | +40% | +18% |
+| Ort. Sipariş | ₺11.6K | -2% | +2.1% |
+
+### Başarı Faktörleri
+✅ İstanbul Avrupa: Kurumsal satışlar %34 arttı
+✅ Kocaeli: Yeni lojistik merkezi teslimatı 1.2 güne düşürdü
+✅ Bursa: Bölge müdürü değişikliği pozitif etki yarattı
+
+**💡 AI Önerisi:**
+Başarı modelini İç Anadolu'ya uyarlamak için bölge müdürleri arası bilgi transferi toplantısı düzenlenmeli.
+
+*Güven skoru: %96 | 156K kayıt analiz edildi*`;
+      } else if (query.toLowerCase().includes('stok')) {
+        response = `## 📦 Stok Durumu Raporu
+
+### 🔴 Kritik (Acil Aksiyon)
+| Ürün | Stok | Günlük Satış | Tükenme |
+|------|------|--------------|---------|
+| Premium Widget A | 52 | 12.4 | **4.2 gün** |
+
+### 🟢 Normal
+- Standard Widget B: 324 adet (42 gün)
+- Economy Widget C: 890 adet (28 gün)
+
+**💡 AI Önerisi:**
+1. Premium Widget A: 250 adet acil sipariş (ABC Ltd. - 3 gün teslimat)
+2. Basic Widget E: %10 indirim kampanyası ile stok eritme
+
+*Güven skoru: %98 | Gerçek zamanlı veri*`;
+      } else {
+        response = `Sorgunuz analiz edildi. "${query.slice(0, 50)}..." ile ilgili 5 veri kaynağından bilgi toplandı.
+
+**Analiz Özeti:**
+• 2.4M kayıt tarandı
+• İlgili 847 veri noktası bulundu
+• İstatistiksel anlamlılık: %92
+
+Daha spesifik sonuçlar için lütfen:
+• Belirli bir ürün veya kategori
+• Tarih aralığı
+• Bölge veya departman belirtin.
+
+*Örnek: "Marmara bölgesi Ocak ayı satış performansı"*`;
+      }
+
+      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+      setIsProcessing(false);
+    }, 2200);
+  };
+
+  return (
+    <div className="flex flex-col lg:flex-row h-[calc(100vh-4rem)] lg:h-[calc(100vh-72px)] p-4 lg:p-7 gap-5">
+      <div className="flex-1 bg-[#0f1629] border border-[#1e293b] rounded-2xl flex flex-col overflow-hidden">
+        <div className="p-4 lg:p-5 border-b border-[#1e293b] flex items-center gap-4">
+          <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center">
+            <Brain size={24} className="text-white" />
+          </div>
+          <div>
+            <h2 className="text-base lg:text-lg font-semibold text-white">Cognia AI</h2>
+            <div className="text-xs lg:text-sm text-emerald-500 flex items-center gap-2">
+              <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+              Türkçe NLP aktif • 7.9M kayıt bağlı
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-5">
+          {messages.map((msg, i) => (
+            <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div className={`max-w-full lg:max-w-3xl px-4 py-3 rounded-2xl text-sm lg:text-base whitespace-pre-wrap ${
+                msg.role === 'user'
+                  ? 'bg-indigo-600 text-white rounded-br-sm'
+                  : 'bg-[#151d30] text-white rounded-bl-sm'
+              }`}>
+                {msg.content}
+              </div>
+            </div>
+          ))}
+          {isProcessing && (
+            <div className="bg-[#151d30] rounded-2xl rounded-bl-sm p-5 max-w-full lg:max-w-md">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse" />
+                <span className="text-sm font-semibold text-cyan-500">AI İşliyor</span>
+              </div>
+              {processingSteps.map((step, i) => {
+                const isActive = i === processingStep;
+                const isDone = i < processingStep;
+                return (
+                  <div key={i} className={`flex items-center gap-3 mb-3 ${isDone || isActive ? 'opacity-100' : 'opacity-40'}`}>
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                      isDone ? 'bg-emerald-500' : isActive ? 'bg-cyan-500' : 'border-2 border-gray-600'
+                    }`}>
+                      {isDone && <CheckCircle2 size={12} className="text-white" />}
+                    </div>
+                    <span className={`text-xs lg:text-sm ${isDone ? 'text-emerald-500' : isActive ? 'text-white' : 'text-gray-500'}`}>
+                      {step.label}
+                    </span>
+                    {step.sources && isActive && (
+                      <div className="flex gap-2 ml-2">
+                        {step.sources.map((s, j) => (
+                          <span key={j} className="text-xs px-2 py-1 bg-cyan-500/10 text-cyan-500 rounded font-medium">
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        <div className="p-4 lg:p-5 border-t border-[#1e293b]">
+          <div className="flex gap-3">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+              placeholder="Türkçe soru sorun..."
+              className="flex-1 px-4 py-3 bg-[#0a0f1a] border border-[#1e293b] rounded-xl text-white text-sm lg:text-base outline-none focus:border-indigo-500 transition-colors"
+            />
+            <button
+              onClick={handleSend}
+              disabled={isProcessing}
+              className="px-6 py-3 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl text-white font-semibold flex items-center gap-2 hover:from-indigo-600 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            >
+              <Send size={18} />
+              <span className="hidden sm:inline">Gönder</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full lg:w-80 space-y-5">
+        <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-5">
+          <h3 className="text-sm font-semibold text-white mb-4">Örnek Sorular</h3>
+          <div className="space-y-2">
+            {[
+              'Geçen aya göre en çok düşen ürünler?',
+              'Marmara bölgesi performansını özetle',
+              'Stok durumu kritik ürünleri listele',
+              'Önümüzdeki ay satış tahmini',
+            ].map((q, i) => (
+              <button
+                key={i}
+                onClick={() => setInput(q)}
+                className="w-full text-left px-4 py-3 bg-[#0a0f1a] border border-[#1e293b] rounded-lg text-sm text-gray-400 hover:text-white hover:border-indigo-500 transition-all"
+              >
+                {q}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-5">
+          <h3 className="text-sm font-semibold text-white mb-4">Bağlı Veri Kaynakları</h3>
+          <div className="space-y-2.5">
+            {dataSources.map((source, i) => (
+              <div key={i} className="flex items-center gap-3 p-2.5 bg-[#0a0f1a] rounded-lg">
+                <div className="w-2 h-2 bg-emerald-500 rounded-full shadow-lg shadow-emerald-500/50" />
+                <span className="text-sm text-white flex-1">{source.name}</span>
+                <span className="text-xs text-gray-500 font-medium">{source.records}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 p-3 bg-emerald-500/10 rounded-lg flex justify-between items-center">
+            <span className="text-xs text-emerald-500">Toplam Kayıt</span>
+            <span className="text-sm font-bold text-emerald-500">7.9M</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Analytics View Component
+const AnalyticsView: React.FC = () => {
+  const trendData = [
+    { week: 'H48', ciro: 5200, siparis: 412, oncekiYil: 4800 },
+    { week: 'H49', ciro: 5650, siparis: 438, oncekiYil: 5100 },
+    { week: 'H50', ciro: 5400, siparis: 425, oncekiYil: 4950 },
+    { week: 'H51', ciro: 6100, siparis: 468, oncekiYil: 5400 },
+    { week: 'H52', ciro: 5800, siparis: 445, oncekiYil: 5200 },
+    { week: 'H1', ciro: 6200, siparis: 472, oncekiYil: 5500 },
+    { week: 'H2', ciro: 6450, siparis: 485, oncekiYil: 5700 },
+  ];
+
+  const categoryComparison = [
+    { name: 'Premium', buAy: 2450, gecenAy: 2126, change: 15.2 },
+    { name: 'Standard', buAy: 1895, gecenAy: 1748, change: 8.4 },
+    { name: 'Economy', buAy: 1562, gecenAy: 1272, change: 22.8 },
+    { name: 'Deluxe', buAy: 1348, gecenAy: 1393, change: -3.2 },
+    { name: 'Basic', buAy: 984, gecenAy: 1075, change: -8.5 },
+  ];
+
+  const aiInsights = [
+    { type: 'trend', icon: TrendingUp, title: 'Büyüme Trendi', text: 'Economy Widget C son 4 haftada %22.8 büyüme gösterdi', confidence: 96 },
+    { type: 'warning', icon: AlertTriangle, title: 'Düşüş Uyarısı', text: 'Basic Widget E satışları 3 haftadır geriliyor', confidence: 91 },
+    { type: 'opportunity', icon: Lightbulb, title: 'Fırsat', text: 'Premium segmentte fiyat artışı için alan var', confidence: 87 },
+  ];
+
+  const productDetails = [
+    { name: 'Premium Widget A', revenue: 2450000, units: 1247, change: 15.2, margin: 32.5, stock: 52, trend: [40, 42, 38, 45, 52, 48, 55] },
+    { name: 'Standard Widget B', revenue: 1895000, units: 2156, change: 8.4, margin: 28.1, stock: 324, trend: [35, 38, 36, 40, 42, 41, 44] },
+    { name: 'Economy Widget C', revenue: 1562000, units: 3892, change: 22.8, margin: 18.4, stock: 890, trend: [28, 32, 35, 38, 42, 48, 52] },
+    { name: 'Deluxe Widget D', revenue: 1348000, units: 567, change: -3.2, margin: 41.2, stock: 156, trend: [48, 45, 44, 42, 40, 38, 36] },
+    { name: 'Basic Widget E', revenue: 984000, units: 4521, change: -8.5, margin: 12.8, stock: 1240, trend: [42, 40, 38, 35, 32, 30, 28] },
+  ];
+
+  const MiniSparkline: React.FC<{ data: number[]; color: string; width?: number; height?: number }> = ({
+    data,
+    color,
+    width = 80,
+    height = 24
+  }) => {
+    const max = Math.max(...data);
+    const min = Math.min(...data);
+    const range = max - min || 1;
+    const points = data.map((v, i) => {
+      const x = (i / (data.length - 1)) * width;
+      const y = height - ((v - min) / range) * height;
+      return `${x},${y}`;
+    }).join(' ');
+    return (
+      <svg width={width} height={height}>
+        <polyline points={points} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  };
+
+  return (
+    <div className="p-4 lg:p-7 space-y-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+        <div>
+          <h2 className="text-xl lg:text-2xl font-semibold text-white">Analitik Dashboard</h2>
+          <p className="text-sm text-gray-400 mt-1">Detaylı performans analizi ve AI öngörüleri</p>
+        </div>
+        <div className="flex gap-3">
+          <button className="flex items-center gap-2 px-4 py-2 bg-[#0f1629] border border-[#1e293b] rounded-lg text-gray-400 text-sm hover:bg-[#151d30] transition-colors">
+            <Calendar size={16} />
+            <span className="hidden sm:inline">Son 8 Hafta</span>
+          </button>
+          <button className="flex items-center gap-2 px-5 py-2 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg text-white text-sm font-semibold hover:from-indigo-600 hover:to-indigo-700 transition-all">
+            <Download size={16} />
+            <span className="hidden sm:inline">Rapor İndir</span>
+          </button>
+        </div>
+      </div>
+
+      <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-5">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-9 h-9 bg-gradient-to-br from-cyan-500 to-indigo-500 rounded-xl flex items-center justify-center">
+            <Sparkles size={18} className="text-white" />
+          </div>
+          <h3 className="text-base font-semibold text-white">AI Otomatik Tespitler</h3>
+        </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          {aiInsights.map((insight, i) => (
+            <div key={i} className="p-4 bg-[#0a0f1a] border border-[#1e293b] rounded-xl">
+              <div className="flex items-center gap-2 mb-2">
+                <insight.icon size={18} className={
+                  insight.type === 'trend' ? 'text-emerald-500' :
+                  insight.type === 'warning' ? 'text-amber-500' : 'text-cyan-500'
+                } />
+                <span className="text-xs font-semibold text-gray-400 uppercase">{insight.title}</span>
+                <span className="ml-auto text-xs text-emerald-500">%{insight.confidence}</span>
+              </div>
+              <p className="text-sm text-white leading-relaxed">{insight.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid lg:grid-cols-[1.4fr,1fr] gap-5">
+        <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-5">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-5">
+            <h3 className="text-base font-semibold text-white">Haftalık Performans Trendi</h3>
+            <div className="flex gap-4 text-xs">
+              {[
+                { label: 'Ciro (₺K)', color: 'bg-indigo-500' },
+                { label: 'Sipariş', color: 'bg-cyan-500' },
+                { label: 'Geçen Yıl', color: 'bg-gray-600' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <div className={`w-3 h-1 ${item.color} rounded`} />
+                  <span className="text-gray-500">{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <ResponsiveContainer width="100%" height={260}>
+            <ComposedChart data={trendData}>
+              <defs>
+                <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#6366f1" stopOpacity={0.2} />
+                  <stop offset="100%" stopColor="#6366f1" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+              <XAxis dataKey="week" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+              <YAxis yAxisId="left" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+              <YAxis yAxisId="right" orientation="right" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+              <Tooltip
+                contentStyle={{ backgroundColor: '#151d30', border: '1px solid #1e293b', borderRadius: 8 }}
+                labelStyle={{ color: '#f8fafc', fontWeight: 600 }}
+              />
+              <Area yAxisId="left" type="monotone" dataKey="ciro" stroke="#6366f1" strokeWidth={2} fill="url(#trendGrad)" />
+              <Line yAxisId="left" type="monotone" dataKey="oncekiYil" stroke="#64748b" strokeWidth={1.5} strokeDasharray="4 4" dot={false} />
+              <Line yAxisId="right" type="monotone" dataKey="siparis" stroke="#06b6d4" strokeWidth={2} dot={{ fill: '#06b6d4', r: 3 }} />
+            </ComposedChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-5">
+          <div className="flex justify-between items-center mb-5">
+            <h3 className="text-base font-semibold text-white">Kategori Karşılaştırması</h3>
+            <span className="text-xs text-gray-500">Bu Ay vs Geçen Ay</span>
+          </div>
+          <ResponsiveContainer width="100%" height={260}>
+            <BarChart data={categoryComparison} layout="vertical">
+              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
+              <XAxis type="number" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+              <YAxis type="category" dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} width={70} />
+              <Tooltip
+                contentStyle={{ backgroundColor: '#151d30', border: '1px solid #1e293b', borderRadius: 8 }}
+                labelStyle={{ color: '#f8fafc', fontWeight: 600 }}
+              />
+              <Bar dataKey="gecenAy" fill="#64748b" radius={[0, 4, 4, 0]} name="Geçen Ay" opacity={0.5} />
+              <Bar dataKey="buAy" radius={[0, 4, 4, 0]} name="Bu Ay">
+                {categoryComparison.map((entry, i) => (
+                  <Cell key={i} fill={entry.change >= 0 ? '#6366f1' : '#ef4444'} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl overflow-hidden">
+        <div className="p-5 border-b border-[#1e293b] flex justify-between items-center">
+          <h3 className="text-base font-semibold text-white">Detaylı Ürün Performansı</h3>
+          <div className="flex items-center gap-2">
+            <Search size={16} className="text-gray-500" />
+            <input
+              placeholder="Ürün ara..."
+              className="bg-transparent text-sm text-white outline-none w-32"
+            />
+          </div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-[#0a0f1a]">
+              <tr>
+                {['Ürün', 'Ciro', 'Adet', 'Değişim', 'Kar Marjı', 'Stok', 'Trend'].map(h => (
+                  <th key={h} className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {productDetails.map((row, i) => (
+                <tr key={i} className="border-b border-[#1e293b]">
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-2">
+                      {row.stock < 100 && <AlertCircle size={16} className="text-red-500" />}
+                      <span className="text-sm font-medium text-white">{row.name}</span>
+                    </div>
+                  </td>
+                  <td className="px-5 py-4 text-sm font-semibold text-white">
+                    ₺{(row.revenue / 1000000).toFixed(2)}M
+                  </td>
+                  <td className="px-5 py-4 text-sm text-gray-400">
+                    {row.units.toLocaleString()}
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className={`flex items-center gap-1 text-sm font-semibold ${
+                      row.change >= 0 ? 'text-emerald-500' : 'text-red-500'
+                    }`}>
+                      {row.change >= 0 ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
+                      {row.change >= 0 ? '+' : ''}{row.change}%
+                    </div>
+                  </td>
+                  <td className="px-5 py-4 text-sm text-white">{row.margin}%</td>
+                  <td className="px-5 py-4">
+                    <span className={`px-3 py-1 rounded-lg text-xs font-semibold ${
+                      row.stock < 100 ? 'bg-red-500/10 text-red-500' :
+                      row.stock > 1000 ? 'bg-amber-500/10 text-amber-500' :
+                      'bg-emerald-500/10 text-emerald-500'
+                    }`}>
+                      {row.stock}
+                    </span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <MiniSparkline
+                      data={row.trend}
+                      color={row.change >= 0 ? '#10b981' : '#ef4444'}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function Dashboard() {
   const [activeView, setActiveView] = useState('dashboard');
@@ -819,8 +1274,8 @@ export default function Dashboard() {
           <Header onMenuClick={() => setMobileMenuOpen(true)} />
           <main className="flex-1 overflow-y-auto bg-[#0a0f1a]">
             {activeView === 'dashboard' && <DashboardView />}
-            {activeView === 'ai' && <div className="p-8 text-center text-gray-400">AI View - Coming Soon</div>}
-            {activeView === 'analytics' && <div className="p-8 text-center text-gray-400">Analytics View - Coming Soon</div>}
+            {activeView === 'ai' && <AIView />}
+            {activeView === 'analytics' && <AnalyticsView />}
           </main>
         </div>
       </div>
