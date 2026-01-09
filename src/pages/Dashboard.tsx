@@ -776,6 +776,16 @@ const AIView: React.FC = () => {
   const [input, setInput] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [processingStep, setProcessingStep] = useState(0);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const messagesEndRef = React.useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isProcessing]);
 
   const dataSources = [
     { name: 'ERP Sistemi', records: '2.4M', status: 'active' },
@@ -894,19 +904,27 @@ Daha spesifik sonuçlar için lütfen:
   };
 
   return (
-    <div className="flex flex-col lg:flex-row h-[calc(100vh-4rem)] lg:h-[calc(100vh-72px)] p-4 lg:p-7 gap-5">
-      <div className="flex-1 bg-[#0f1629] border border-[#1e293b] rounded-2xl flex flex-col overflow-hidden">
-        <div className="p-4 lg:p-5 border-b border-[#1e293b] flex items-center gap-4">
-          <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center">
-            <Brain size={24} className="text-white" />
-          </div>
-          <div>
-            <h2 className="text-base lg:text-lg font-semibold text-white">Cognia AI</h2>
-            <div className="text-xs lg:text-sm text-emerald-500 flex items-center gap-2">
-              <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
-              Türkçe NLP aktif • 7.9M kayıt bağlı
+    <div className="flex flex-col lg:flex-row h-auto lg:h-[calc(100vh-72px)] p-4 lg:p-7 gap-5">
+      <div className="flex-1 bg-[#0f1629] border border-[#1e293b] rounded-2xl flex flex-col overflow-hidden min-h-[600px] lg:min-h-0">
+        <div className="p-4 lg:p-5 border-b border-[#1e293b] flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center">
+              <Brain size={24} className="text-white" />
+            </div>
+            <div>
+              <h2 className="text-base lg:text-lg font-semibold text-white">Cognia AI</h2>
+              <div className="text-xs lg:text-sm text-emerald-500 flex items-center gap-2">
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+                Türkçe NLP aktif • 7.9M kayıt bağlı
+              </div>
             </div>
           </div>
+          <button
+            onClick={() => setShowSidebar(!showSidebar)}
+            className="lg:hidden px-3 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-lg text-indigo-400 text-sm font-medium"
+          >
+            {showSidebar ? 'Gizle' : 'Paneller'}
+          </button>
         </div>
 
         <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-5">
@@ -954,6 +972,7 @@ Daha spesifik sonuçlar için lütfen:
               })}
             </div>
           )}
+          <div ref={messagesEndRef} />
         </div>
 
         <div className="p-4 lg:p-5 border-t border-[#1e293b]">
@@ -977,7 +996,7 @@ Daha spesifik sonuçlar için lütfen:
         </div>
       </div>
 
-      <div className="w-full lg:w-80 space-y-5">
+      <div className={`w-full lg:w-80 space-y-5 max-h-[calc(100vh-8rem)] overflow-y-auto ${showSidebar ? 'block' : 'hidden lg:block'}`}>
         <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-5">
           <h3 className="text-sm font-semibold text-white mb-4">Örnek Sorular</h3>
           <div className="space-y-2">
@@ -999,6 +1018,30 @@ Daha spesifik sonuçlar için lütfen:
         </div>
 
         <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-5">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-sm font-semibold text-white">Son Sorgular</h3>
+            <Clock size={14} className="text-gray-500" />
+          </div>
+          <div className="space-y-2">
+            {[
+              { query: 'Q4 satış projeksiyonu', time: '2 saat önce', dept: 'Satış' },
+              { query: 'Stok optimizasyonu', time: '5 saat önce', dept: 'Operasyon' },
+              { query: 'Müşteri segmentasyonu', time: 'Dün', dept: 'Pazarlama' },
+            ].map((item, i) => (
+              <div key={i} className="p-3 bg-[#0a0f1a] rounded-lg cursor-pointer hover:bg-[#151d30] transition-colors">
+                <div className="text-sm text-white mb-1">{item.query}</div>
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-gray-500">{item.time}</span>
+                  <span className="text-xs px-2 py-0.5 bg-indigo-500/10 text-indigo-400 rounded font-medium">
+                    {item.dept}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-5">
           <h3 className="text-sm font-semibold text-white mb-4">Bağlı Veri Kaynakları</h3>
           <div className="space-y-2.5">
             {dataSources.map((source, i) => (
@@ -1012,6 +1055,28 @@ Daha spesifik sonuçlar için lütfen:
           <div className="mt-4 p-3 bg-emerald-500/10 rounded-lg flex justify-between items-center">
             <span className="text-xs text-emerald-500">Toplam Kayıt</span>
             <span className="text-sm font-bold text-emerald-500">7.9M</span>
+          </div>
+        </div>
+
+        <div className="bg-[#0f1629] border border-[#1e293b] rounded-2xl p-5">
+          <h3 className="text-sm font-semibold text-white mb-4">AI Yetenekleri</h3>
+          <div className="space-y-3.5">
+            {[
+              { icon: AlertTriangle, label: 'Anomali Tespiti', desc: 'Beklenmedik değişimleri yakalar' },
+              { icon: TrendingUp, label: 'Tahminleme', desc: 'Gelecek performansı öngörür' },
+              { icon: FileText, label: 'Günlük Özet', desc: 'Her sabah yönetici briefingi' },
+              { icon: Zap, label: 'Türkçe NLP', desc: 'Doğal dilde soru-cevap' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <div className="w-9 h-9 bg-indigo-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <item.icon size={18} className="text-indigo-400" />
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-white">{item.label}</div>
+                  <div className="text-xs text-gray-500">{item.desc}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
