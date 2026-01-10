@@ -1,175 +1,104 @@
 import React from 'react';
-import { FaHospital, FaGavel, FaStore, FaBuilding, FaPhone, FaCalendar } from 'react-icons/fa';
+import { FaHospital, FaGavel, FaHome, FaBuilding, FaHotel, FaStore } from 'react-icons/fa';
+
+const solutions = [
+  {
+    icon: FaHotel,
+    industry: 'Hospitality',
+    title: 'Hotels & Restaurants',
+    examples: 'Hotels, motels, restaurants, resorts',
+    features: ['Reservations', 'Special requests', 'Availability checks'],
+  },
+  {
+    icon: FaHospital,
+    industry: 'Healthcare',
+    title: 'Medical & Dental Practices',
+    examples: 'Dentists, chiropractors, medspas, clinics',
+    features: ['HIPAA-compliant', 'Patient scheduling', 'Prescription refills'],
+  },
+  {
+    icon: FaHome,
+    industry: 'Home Services',
+    title: 'HVAC, Plumbing, Electric',
+    examples: 'Plumbers, HVAC technicians, electricians',
+    features: ['Emergency dispatch', 'Quote requests', 'Service scheduling'],
+  },
+  {
+    icon: FaGavel,
+    industry: 'Legal',
+    title: 'Law Firms',
+    examples: 'Personal injury, family law, corporate',
+    features: ['Client intake', 'Case screening', 'Appointment booking'],
+  },
+  {
+    icon: FaBuilding,
+    industry: 'Real Estate',
+    title: 'Property Management',
+    examples: 'Brokers, property managers, agents',
+    features: ['Showing scheduling', 'Lead qualification', 'Maintenance requests'],
+  },
+  {
+    icon: FaStore,
+    industry: 'Retail',
+    title: 'Stores & E-commerce',
+    examples: 'Boutiques, auto shops, service centers',
+    features: ['Order status', 'Product inquiries', 'Returns processing'],
+  },
+];
 
 const SolutionsGrid: React.FC = () => {
-  const solutions = [
-    {
-      badge: 'Healthcare',
-      icon: FaHospital,
-      title: 'HIPAA-Compliant Patient Scheduling',
-      description: 'Secure AI receptionists for medical practices',
-      link: '/solutions#healthcare'
-    },
-    {
-      badge: 'Legal',
-      icon: FaGavel,
-      title: 'Client Intake & Case Management',
-      description: 'Professional call handling for law firms',
-      link: '/solutions#legal'
-    },
-    {
-      badge: 'Retail',
-      icon: FaStore,
-      title: 'Customer Service Excellence',
-      description: 'Multi-location support and order management',
-      link: '/solutions#retail'
-    },
-    {
-      badge: 'Enterprise',
-      icon: FaBuilding,
-      title: 'Enterprise Call Distribution',
-      description: 'Scalable solutions for large organizations',
-      link: '/solutions#enterprise'
-    },
-    {
-      badge: 'Appointment',
-      icon: FaCalendar,
-      title: 'Smart Booking Systems',
-      description: 'AI-powered scheduling and reminders',
-      link: '/solutions#booking'
-    },
-    {
-      badge: 'Support',
-      icon: FaPhone,
-      title: '24/7 Customer Support',
-      description: 'Round-the-clock availability for your customers',
-      link: '/solutions#support'
-    }
-  ];
-
   return (
-    <section className="relative bg-black text-white py-32 overflow-hidden">
+    <section className="relative bg-black py-20 lg:py-28">
       <div className="container mx-auto px-6 lg:px-12">
-        {/* Centered Header */}
-        <div className="text-center max-w-4xl mx-auto mb-20">
-          <div className="inline-block px-3 py-1 bg-white/5 border border-white/10 rounded-full mb-6">
-            <span className="text-xs text-gray-400 uppercase tracking-widest">
-              Trusted by Industry Leaders
-            </span>
-          </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-thin text-white mb-6">
-            AI Solutions for Every Industry
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-1.5 mb-6 text-xs font-medium text-gray-400 bg-white/5 border border-white/10 rounded-full">
+            Industries
+          </span>
+          <h2 className="text-3xl lg:text-5xl font-light text-white mb-4">
+            Built for Your Industry
           </h2>
-          <p className="text-lg sm:text-xl text-gray-400">
-            Our AI-powered call center solutions adapt to your specific business needs,
-            providing intelligent automation and exceptional customer experiences across all sectors.
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            AI trained on industry-specific workflows and terminology
           </p>
         </div>
 
-        {/* Sliding Cards Container */}
-        <div className="relative max-w-7xl mx-auto">
-          <div className="flex gap-6 animate-slideInfinite">
-            {/* First set of cards */}
-            {solutions.map((solution, index) => (
-              <a
-                key={`first-${index}`}
-                href={solution.link}
-                className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all duration-300 flex-shrink-0 w-[350px]"
-              >
-                {/* Badge */}
-                <div className="mb-6">
-                  <span className="text-xs text-gray-400 uppercase tracking-wider">
-                    {solution.badge}
-                  </span>
+        {/* Solutions Grid - Static 3 columns */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {solutions.map((solution, index) => (
+            <div
+              key={index}
+              className="group p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-cyan-500/30 hover:bg-cyan-500/[0.02] transition-all duration-300"
+            >
+              {/* Icon & Industry */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-cyan-500/10 border border-cyan-500/20 rounded-lg flex items-center justify-center group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all duration-300">
+                  <solution.icon className="text-lg text-cyan-400" />
                 </div>
+                <span className="text-xs text-cyan-400 font-medium uppercase tracking-wider">
+                  {solution.industry}
+                </span>
+              </div>
 
-                {/* Icon */}
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center">
-                    <solution.icon className="text-2xl text-white" />
-                  </div>
-                </div>
+              {/* Title */}
+              <h3 className="text-lg font-medium text-white mb-1 group-hover:text-cyan-50 transition-colors">{solution.title}</h3>
 
-                {/* Title */}
-                <h3 className="text-xl font-medium text-white mb-3 leading-tight">
-                  {solution.title}
-                </h3>
+              {/* Examples */}
+              <p className="text-xs text-gray-500 mb-3">{solution.examples}</p>
 
-                {/* Description */}
-                <p className="text-sm text-gray-400 mb-6">
-                  {solution.description}
-                </p>
-
-                {/* Arrow Button */}
-                <div className="absolute bottom-8 right-8">
-                  <div className="w-8 h-8 bg-white/5 border border-white/10 rounded-full flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                    <span className="text-white text-sm">→</span>
-                  </div>
-                </div>
-              </a>
-            ))}
-
-            {/* Duplicate set for infinite scroll */}
-            {solutions.map((solution, index) => (
-              <a
-                key={`second-${index}`}
-                href={solution.link}
-                className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all duration-300 flex-shrink-0 w-[350px]"
-              >
-                {/* Badge */}
-                <div className="mb-6">
-                  <span className="text-xs text-gray-400 uppercase tracking-wider">
-                    {solution.badge}
-                  </span>
-                </div>
-
-                {/* Icon */}
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center">
-                    <solution.icon className="text-2xl text-white" />
-                  </div>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-medium text-white mb-3 leading-tight">
-                  {solution.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-gray-400 mb-6">
-                  {solution.description}
-                </p>
-
-                {/* Arrow Button */}
-                <div className="absolute bottom-8 right-8">
-                  <div className="w-8 h-8 bg-white/5 border border-white/10 rounded-full flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                    <span className="text-white text-sm">→</span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
+              {/* Features */}
+              <ul className="space-y-2">
+                {solution.features.map((feature, i) => (
+                  <li key={i} className="flex items-center gap-2 text-sm text-gray-400">
+                    <span className="w-1 h-1 bg-cyan-400 rounded-full" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
-
-      <style>{`
-        @keyframes slideInfinite {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(calc(-350px * 6 - 1.5rem * 6));
-          }
-        }
-
-        .animate-slideInfinite {
-          animation: slideInfinite 30s linear infinite;
-        }
-
-        .animate-slideInfinite:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   );
 };

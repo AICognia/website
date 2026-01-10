@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaPhone, FaArrowRight } from 'react-icons/fa';
+import { FaPhone, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
+import { trackTalkToAI, trackAudioDemo } from '../utils/metaPixel';
 
 const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
 
@@ -14,7 +15,23 @@ const MobileHeroRedesigned: React.FC = () => {
   const animationRef = useRef<number | undefined>(undefined);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
+  const audioPlayTrackedRef = useRef(false);
   const bars = 60;
+
+  // Track audio demo play (only once per session)
+  const handleAudioDemoPlay = () => {
+    if (!audioPlayTrackedRef.current) {
+      trackAudioDemo('mobile_hero');
+      audioPlayTrackedRef.current = true;
+    }
+  };
+
+  // Track "Talk to AI" click
+  const handleTalkToAIClick = () => {
+    trackTalkToAI('mobile_hero');
+    conversionTracker.trackPhoneCall('+16163263328');
+    conversionTracker.trackButtonClick('Talk to AI', 'mobile_hero_secondary');
+  };
 
   // Rotate words
   useEffect(() => {
@@ -54,6 +71,8 @@ const MobileHeroRedesigned: React.FC = () => {
 
         await audio.play();
         setIsPlaying(true);
+        // Track audio demo started
+        handleAudioDemoPlay();
       } catch (error) {
         console.error('Audio playback failed:', error);
         setIsPlaying(false);
@@ -137,12 +156,7 @@ const MobileHeroRedesigned: React.FC = () => {
         {/* Content container */}
         <div className="relative z-10 flex-1 flex flex-col justify-center px-6 py-16">
           {/* Main headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-4"
-          >
+          <div className="text-center mb-4">
             <h1 className="text-5xl font-light text-white mb-3 leading-tight">
               Your AI
               <br />
@@ -150,15 +164,10 @@ const MobileHeroRedesigned: React.FC = () => {
                 Receptionist
               </span>
             </h1>
-          </motion.div>
+          </div>
 
           {/* Subheadline with rotating word */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-center text-gray-400 text-lg mb-6"
-          >
+          <p className="text-center text-gray-400 text-lg mb-6">
             Never miss a call. Close more{' '}
             <span className="relative inline-block h-7 align-bottom overflow-hidden" style={{ minWidth: '5.5rem' }}>
               <AnimatePresence mode="wait">
@@ -174,21 +183,55 @@ const MobileHeroRedesigned: React.FC = () => {
                 </motion.span>
               </AnimatePresence>
             </span>
-          </motion.p>
+          </p>
 
-          {/* Sound Visualizer */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="relative mb-8"
-          >
+          {/* CTA Buttons */}
+          <div className="space-y-3 mb-8">
+            {/* Primary CTA */}
+            <Link
+              to="/demo"
+              className="block w-full"
+            >
+              <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-lg shadow-lg shadow-cyan-500/25">
+                <span>Get Your AI Receptionist</span>
+                <FaArrowRight className="text-sm" />
+              </div>
+            </Link>
+
+            {/* Secondary CTA - Talk to AI */}
+            <a
+              href="tel:+16163263328"
+              onClick={handleTalkToAIClick}
+              className="block w-full"
+            >
+              <div className="border border-white/20 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-medium text-lg">
+                <FaPhone className="text-sm" />
+                <span>Talk to AI Now</span>
+              </div>
+            </a>
+
+            {/* Trust badges */}
+            <div className="flex items-center justify-center gap-3 pt-1 text-[11px] text-gray-500">
+              <span className="flex items-center gap-1">
+                <FaCheckCircle className="text-green-400 text-[10px]" />
+                1 Week Free
+              </span>
+              <span className="flex items-center gap-1">
+                <FaCheckCircle className="text-green-400 text-[10px]" />
+                No Card Required
+              </span>
+            </div>
+          </div>
+
+          {/* Sound Visualizer - Below CTAs */}
+          <div className="relative mb-6">
+            <p className="text-center text-xs text-gray-500 mb-3">Hear our AI in action</p>
             <div className="relative flex items-center justify-center">
-              {/* Background glow - smooth static radial gradient */}
+              {/* Background glow */}
               <div
-                className="absolute w-64 h-64 rounded-full blur-3xl opacity-30"
+                className="absolute w-48 h-48 rounded-full blur-3xl opacity-20"
                 style={{
-                  background: 'radial-gradient(circle, rgba(96, 165, 250, 0.5) 0%, rgba(167, 139, 250, 0.3) 50%, transparent 100%)',
+                  background: 'radial-gradient(circle, rgba(96, 165, 250, 0.5) 0%, transparent 70%)',
                 }}
               />
 
@@ -199,93 +242,47 @@ const MobileHeroRedesigned: React.FC = () => {
               >
                 <canvas
                   ref={canvasRef}
-                  width={300}
-                  height={100}
+                  width={280}
+                  height={80}
                   className="max-w-full"
                   style={{
-                    filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.3))',
+                    filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.4))',
                   }}
                 />
                 {/* Play/Pause indicator */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border-2 border-white/40 flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all duration-300 shadow-xl shadow-white/10">
+                  <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border-2 border-white/40 flex items-center justify-center hover:bg-white/20 transition-all duration-300">
                     {!isPlaying ? (
-                      <div className="w-0 h-0 border-l-[18px] border-l-white border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1" />
+                      <div className="w-0 h-0 border-l-[14px] border-l-white border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent ml-1" />
                     ) : (
-                      <div className="flex gap-1.5">
-                        <div className="w-1.5 h-6 bg-white rounded-full"></div>
-                        <div className="w-1.5 h-6 bg-white rounded-full"></div>
+                      <div className="flex gap-1">
+                        <div className="w-1.5 h-5 bg-white rounded-full"></div>
+                        <div className="w-1.5 h-5 bg-white rounded-full"></div>
                       </div>
                     )}
                   </div>
                 </div>
               </div>
             </div>
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-3"
-          >
-            {/* Primary CTA - Book a Demo */}
-            <Link
-              to="/demo"
-              onClick={() => conversionTracker.trackButtonClick('Book a Demo', 'mobile_hero_primary')}
-              className="block w-full"
-            >
-              <div className="bg-white text-black py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-lg">
-                <span>Book a Demo</span>
-                <FaArrowRight className="text-sm" />
-              </div>
-            </Link>
-
-            {/* Secondary CTA - Talk to AI */}
-            <a
-              href="tel:+16163263328"
-              onClick={() => {
-                conversionTracker.trackPhoneCall('+16163263328');
-                conversionTracker.trackButtonClick('Talk to AI', 'mobile_hero_secondary');
-              }}
-              className="block w-full"
-            >
-              <div className="border border-white/20 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-medium">
-                <FaPhone className="text-sm" />
-                <span>Talk to AI</span>
-                <span className="text-gray-500 text-sm">+1 616-326-3328</span>
-              </div>
-            </a>
-          </motion.div>
+          </div>
 
           {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="grid grid-cols-3 gap-4 mt-10"
-          >
+          <div className="grid grid-cols-3 gap-4">
             {[
               { value: '24/7', label: 'Available' },
               { value: '95%', label: 'Satisfaction' },
               { value: '1 Week', label: 'Setup' },
             ].map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="text-2xl font-bold text-cyan-400">{stat.value}</div>
-                <div className="text-xs text-gray-500 uppercase tracking-wide">{stat.label}</div>
+                <div className="text-xl font-bold text-cyan-400">{stat.value}</div>
+                <div className="text-[10px] text-gray-500 uppercase tracking-wide">{stat.label}</div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-50">
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
@@ -293,7 +290,7 @@ const MobileHeroRedesigned: React.FC = () => {
           >
             <div className="w-1 h-1 bg-white/50 rounded-full" />
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

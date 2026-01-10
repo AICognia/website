@@ -8,7 +8,6 @@ import Navbar from './components/Navbar';
 import MobileNavbarRedesigned from './components/MobileNavbarRedesigned';
 import Footer from './components/Footer';
 import CookieConsentBanner from './components/CookieConsent';
-import Breadcrumb from './components/Breadcrumb';
 import { PageLoader } from './components/LoadingSkeleton';
 import StickyMobileCTARedesigned from './components/StickyMobileCTARedesigned';
 
@@ -19,33 +18,16 @@ const Company = lazy(() => import('./pages/Company'));
 const Contact = lazy(() => import('./pages/Contact'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Demo = lazy(() => import('./pages/Demo'));
-const Dentists = lazy(() => import('./pages/Dentists'));
-const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
+const Chatbot = lazy(() => import('./pages/Chatbot'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
 
-// Lazy load industry pages
-const Healthcare = lazy(() => import('./pages/industries/Healthcare'));
-const Legal = lazy(() => import('./pages/industries/Legal'));
-const Retail = lazy(() => import('./pages/industries/Retail'));
-const Enterprise = lazy(() => import('./pages/industries/Enterprise'));
-const Hospitality = lazy(() => import('./pages/industries/Hospitality'));
-const Automotive = lazy(() => import('./pages/industries/Automotive'));
-const HomeServices = lazy(() => import('./pages/industries/HomeServices'));
-
-// Lazy load feature pages
-const CallHandling = lazy(() => import('./pages/features/CallHandling'));
-const SmartScheduling = lazy(() => import('./pages/features/SmartScheduling'));
-const MultiLanguage = lazy(() => import('./pages/features/MultiLanguage'));
-const CRMIntegration = lazy(() => import('./pages/features/CRMIntegration'));
-const NaturalConversations = lazy(() => import('./pages/features/NaturalConversations'));
-const AnalyticsDashboard = lazy(() => import('./pages/features/AnalyticsDashboard'));
-
-// Lazy load use case pages
-const PatientScheduling = lazy(() => import('./pages/usecases/PatientScheduling'));
-const ClientIntake = lazy(() => import('./pages/usecases/ClientIntake'));
-const CustomerSupport = lazy(() => import('./pages/usecases/CustomerSupport'));
-const AfterHoursService = lazy(() => import('./pages/usecases/AfterHoursService'));
-const LeadQualification = lazy(() => import('./pages/usecases/LeadQualification'));
-const OrderProcessing = lazy(() => import('./pages/usecases/OrderProcessing'));
+// Lazy load solution pages
+const AIChatbot = lazy(() => import('./pages/solutions/AIChatbot'));
+const AIReceptionist = lazy(() => import('./pages/solutions/AIReceptionist'));
+const WorkflowAutomation = lazy(() => import('./pages/solutions/WorkflowAutomation'));
+const AIAudit = lazy(() => import('./pages/solutions/AIAudit'));
+const BusinessIntelligence = lazy(() => import('./pages/solutions/BusinessIntelligence'));
+const CustomAI = lazy(() => import('./pages/solutions/CustomAI'));
 
 // Scroll to top component
 function ScrollToTop() {
@@ -62,22 +44,22 @@ function ScrollToTop() {
 function AppContent() {
   const location = useLocation();
 
-  // Landing pages that should not show navigation
-  const isLandingPage = location.pathname === '/dentists' || location.pathname === '/dashboard';
+  // Pages that should not show navigation (standalone pages)
+  const isStandalonePage = location.pathname === '/chatbot' || location.pathname === '/dashboard';
+  const isLandingPage = false;
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
       {/* Announcement Banner */}
-      {!isLandingPage && <AnnouncementBanner />}
+      {!isLandingPage && !isStandalonePage && <AnnouncementBanner />}
       {/* Mobile Navigation - Redesigned with simplified menu */}
-      {!isLandingPage && <MobileNavbarRedesigned />}
+      {!isLandingPage && !isStandalonePage && <MobileNavbarRedesigned />}
       {/* Desktop Navigation */}
-      {!isLandingPage && (
+      {!isLandingPage && !isStandalonePage && (
         <div className="hidden lg:block">
           <Navbar />
         </div>
       )}
-      {!isLandingPage && location.pathname !== '/' && <Breadcrumb />}
       <main className="flex-grow">
         <Suspense fallback={<PageLoader />}>
           <Routes>
@@ -87,38 +69,24 @@ function AppContent() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/demo" element={<Demo />} />
-            <Route path="/dentists" element={<Dentists />} />
+            {/* Solution Pages */}
+            <Route path="/solutions/chatbot" element={<AIChatbot />} />
+            <Route path="/solutions/ai-receptionist" element={<AIReceptionist />} />
+            <Route path="/solutions/workflow-automation" element={<WorkflowAutomation />} />
+            <Route path="/solutions/ai-audit" element={<AIAudit />} />
+            <Route path="/solutions/business-intelligence" element={<BusinessIntelligence />} />
+            <Route path="/solutions/custom-ai" element={<CustomAI />} />
+            {/* Standalone Pages */}
+            <Route path="/chatbot" element={<Chatbot />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            {/* Industry Pages */}
-            <Route path="/industries/healthcare" element={<Healthcare />} />
-            <Route path="/industries/legal" element={<Legal />} />
-            <Route path="/industries/retail" element={<Retail />} />
-            <Route path="/industries/enterprise" element={<Enterprise />} />
-            <Route path="/industries/hospitality" element={<Hospitality />} />
-            <Route path="/industries/automotive" element={<Automotive />} />
-            <Route path="/industries/home-services" element={<HomeServices />} />
-            {/* Feature Pages */}
-            <Route path="/features/call-handling" element={<CallHandling />} />
-            <Route path="/features/smart-scheduling" element={<SmartScheduling />} />
-            <Route path="/features/multi-language" element={<MultiLanguage />} />
-            <Route path="/features/crm-integration" element={<CRMIntegration />} />
-            <Route path="/features/natural-conversations" element={<NaturalConversations />} />
-            <Route path="/features/analytics-dashboard" element={<AnalyticsDashboard />} />
-            {/* Use Case Pages */}
-            <Route path="/usecases/patient-scheduling" element={<PatientScheduling />} />
-            <Route path="/usecases/client-intake" element={<ClientIntake />} />
-            <Route path="/usecases/customer-support" element={<CustomerSupport />} />
-            <Route path="/usecases/after-hours-service" element={<AfterHoursService />} />
-            <Route path="/usecases/lead-qualification" element={<LeadQualification />} />
-            <Route path="/usecases/order-processing" element={<OrderProcessing />} />
           </Routes>
         </Suspense>
       </main>
-      {!isLandingPage && <Footer />}
-      {!isLandingPage && <CookieConsentBanner />}
+      {!isLandingPage && !isStandalonePage && <Footer />}
+      {!isLandingPage && !isStandalonePage && <CookieConsentBanner />}
 
       {/* Conversion Optimization Components */}
-      {!isLandingPage && <StickyMobileCTARedesigned />}
+      {!isLandingPage && !isStandalonePage && <StickyMobileCTARedesigned />}
     </div>
   );
 }

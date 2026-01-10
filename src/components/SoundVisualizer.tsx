@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { trackAudioDemo } from '../utils/metaPixel';
 
 const SoundVisualizer: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -40,6 +41,8 @@ const SoundVisualizer: React.FC = () => {
 
         await audio.play();
         setIsPlaying(true);
+        // Track audio demo play
+        trackAudioDemo('desktop_hero');
       } catch (error) {
         console.error('Audio playback failed:', error);
         setIsPlaying(false);

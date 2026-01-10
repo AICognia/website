@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaTimes, FaWhatsapp, FaChevronUp, FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
+import { trackTalkToAI, trackWhatsAppClick } from '../utils/metaPixel';
 
 // Urgency messages that rotate
 const urgencyMessages = [
@@ -138,6 +139,7 @@ const StickyMobileCTARedesigned: React.FC = () => {
                           rel="noopener noreferrer"
                           onClick={(e) => {
                             e.stopPropagation();
+                            trackWhatsAppClick('sticky_cta');
                             conversionTracker.trackButtonClick('WhatsApp', 'sticky_cta');
                           }}
                           className="flex items-center justify-center gap-2 py-2.5 bg-green-600 text-white text-sm font-medium rounded-lg active:bg-green-700"
@@ -188,6 +190,7 @@ const StickyMobileCTARedesigned: React.FC = () => {
                     href="tel:+16163263328"
                     onClick={(e) => {
                       e.stopPropagation();
+                      trackTalkToAI('sticky_cta');
                       conversionTracker.trackPhoneCall('+16163263328');
                       conversionTracker.trackButtonClick('Talk to AI', 'sticky_cta_secondary');
                     }}

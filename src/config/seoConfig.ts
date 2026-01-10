@@ -113,6 +113,22 @@ export const seoConfig: Record<string, PageSEO> = {
     },
     canonicalPath: '/privacy-policy',
     ogImage: '/og-image.png'
+  },
+  dashboard: {
+    title: {
+      tr: 'Cognia Platform Dashboard | AI İş Zekası ve Analitik',
+      en: 'Cognia Platform Dashboard | AI Business Intelligence & Analytics'
+    },
+    description: {
+      tr: 'Kurumsal veri platformu. Gerçek zamanlı dashboard, AI destekli tahminler, otomatik raporlama ve akıllı analizler.',
+      en: 'Enterprise data intelligence platform. Real-time dashboard, AI-powered insights, automated reporting and smart analytics.'
+    },
+    keywords: {
+      tr: ['dashboard', 'iş zekası', 'AI analitik', 'veri görselleştirme', 'gerçek zamanlı dashboard', 'AI tahminleme', 'otomatik raporlama', 'KPI izleme'],
+      en: ['dashboard', 'business intelligence', 'AI analytics', 'data visualization', 'real-time dashboard', 'AI forecasting', 'automated reporting', 'KPI tracking']
+    },
+    canonicalPath: '/dashboard',
+    ogImage: '/og-image-dashboard.png'
   }
 };
 

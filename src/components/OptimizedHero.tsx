@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { FaShieldAlt, FaCheckCircle, FaHeadset, FaClock, FaArrowRight } from 'react-icons/fa';
+import { FaCheckCircle, FaArrowRight, FaPhone } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import conversionTracker from '../utils/conversionTracking';
 import SoundVisualizer from './SoundVisualizer';
+import { trackTalkToAI } from '../utils/metaPixel';
 
 const rotatingWords = ['deals', 'patients', 'jobs', 'clients', 'customers'];
 
@@ -17,6 +18,13 @@ const OptimizedHero: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Track "Talk to AI" click
+  const handleTalkToAIClick = () => {
+    trackTalkToAI('desktop_hero');
+    conversionTracker.trackPhoneCall('+16163263328');
+    conversionTracker.trackButtonClick('Talk to AI', 'hero_secondary');
+  };
+
   return (
     <>
       {/* Desktop Hero - Hidden on mobile (mobile uses MobileHeroRedesigned) */}
@@ -24,24 +32,8 @@ const OptimizedHero: React.FC = () => {
         {/* Background - Pure black */}
         <div className="absolute inset-0 bg-black" />
 
-        <div className="relative container mx-auto px-6 lg:px-12 z-10 pt-2">
-          {/* Trust Badge Strip - Above the fold */}
-          <div className="flex items-center justify-center gap-8 py-4 border-b border-white/5">
-            <div className="flex items-center gap-2 text-sm text-gray-400">
-              <FaShieldAlt className="text-green-400" />
-              <span>HIPAA Compliant</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
-              <FaHeadset className="text-green-400" />
-              <span>24/7 Support</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
-              <FaClock className="text-green-400" />
-              <span>1 Week Setup</span>
-            </div>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center py-12 lg:py-16">
+        <div className="relative container mx-auto px-6 lg:px-12 z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center py-12 lg:py-14">
             {/* Left Side - Content */}
             <div className="space-y-8">
               {/* Main Headline - Clear Value Proposition with AI */}
@@ -90,27 +82,24 @@ const OptimizedHero: React.FC = () => {
               </div>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                {/* Primary CTA - Book a Demo */}
+              <div className="flex flex-col sm:flex-row gap-4 items-start">
+                {/* Primary CTA */}
                 <Link
                   to="/demo"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100 text-black text-sm font-medium rounded-lg transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
                 >
-                  Book a Demo
-                  <FaArrowRight className="text-[10px]" />
+                  Get Your AI Receptionist
+                  <FaArrowRight className="text-sm" />
                 </Link>
 
                 {/* Secondary CTA - Talk to AI */}
                 <a
                   href="tel:+16163263328"
-                  onClick={() => {
-                    conversionTracker.trackPhoneCall('+16163263328');
-                    conversionTracker.trackButtonClick('Talk to AI', 'hero_secondary');
-                  }}
-                  className="inline-flex items-center justify-center gap-3 px-6 py-3 border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-900 text-white text-sm font-medium rounded-lg transition-colors"
+                  onClick={handleTalkToAIClick}
+                  className="inline-flex items-center justify-center gap-3 px-6 py-4 border border-white/20 hover:bg-white/5 text-white font-medium rounded-xl transition-colors"
                 >
-                  Talk to AI
-                  <span className="text-neutral-500">+1 616-326-3328</span>
+                  <FaPhone className="text-sm" />
+                  Talk to AI Now
                 </a>
               </div>
 
@@ -118,11 +107,15 @@ const OptimizedHero: React.FC = () => {
               <p className="text-xs text-gray-500 flex items-center gap-4">
                 <span className="flex items-center gap-1">
                   <FaCheckCircle className="text-green-400" />
-                  Free 1-week trial
+                  1 Week Free Trial
                 </span>
                 <span className="flex items-center gap-1">
                   <FaCheckCircle className="text-green-400" />
                   No credit card required
+                </span>
+                <span className="flex items-center gap-1">
+                  <FaCheckCircle className="text-green-400" />
+                  Setup in 1 week
                 </span>
               </p>
             </div>
