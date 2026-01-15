@@ -115,7 +115,7 @@ const aiInsights = [
   }
 ];
 
-const kpiData = [
+const kpiData: Array<{ label: string; value: string; change: string; trend: 'up' | 'down'; target: string; progress: number }> = [
   { label: 'Günlük Ciro', value: '₺847K', change: '+12.3%', trend: 'up', target: '₺750K', progress: 113 },
   { label: 'Aktif Sipariş', value: '68', change: '+8.2%', trend: 'up', target: '60', progress: 113 },
   { label: 'Yeni Müşteri', value: '12', change: '+3', trend: 'up', target: '10', progress: 120 },
