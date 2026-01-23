@@ -177,14 +177,14 @@ const Hero: React.FC = () => {
               </motion.div>
 
               <h1 className={`text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-serif font-light leading-[1.08] mb-6 lg:mb-8 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                Never Miss a Call{' '}
+                From Data Chaos to{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500">
-                  Ever Again
+                  Strategic Clarity
                 </span>
               </h1>
 
               <p className={`text-lg lg:text-xl 2xl:text-2xl max-w-xl lg:max-w-2xl mb-8 lg:mb-10 leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-                AI voice agents that answer calls 24/7, book appointments, and handle customer inquiries — so you can focus on growing your business.
+                We unify your scattered enterprise data, deploy AI-powered analytics, and give your executives the insights they need.
               </p>
 
               {/* Stats Row */}

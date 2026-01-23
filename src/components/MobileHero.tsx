@@ -64,9 +64,9 @@ const MobileHero: React.FC = () => {
           transition={{ duration: 0.4, delay: 0.05 }}
           className={`text-[2rem] leading-[1.15] font-serif font-light tracking-tight mb-5 ${isDark ? 'text-white' : 'text-slate-900'}`}
         >
-          Never Miss a Call{' '}
+          From Data Chaos to{' '}
           <span className={`${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
-            Ever Again
+            Strategic Clarity
           </span>
         </motion.h1>
 
@@ -77,7 +77,7 @@ const MobileHero: React.FC = () => {
           transition={{ duration: 0.4, delay: 0.1 }}
           className={`text-base leading-relaxed mb-8 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
         >
-          AI voice agents that answer calls 24/7, book appointments, and handle customer inquiries.
+          We unify your scattered enterprise data, deploy AI-powered analytics, and give your executives the insights they need.
         </motion.p>
 
         {/* Stats row - simpler design */}
