@@ -1,9 +1,8 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useTheme } from 'next-themes'
 import {
   FaHospital,
   FaBalanceScale,
@@ -16,326 +15,279 @@ import {
   FaBolt,
   FaLandmark,
   FaHome,
-  FaArrowRight
+  FaArrowRight,
+  FaCheckCircle,
+  FaPhone
 } from 'react-icons/fa'
+import { useLanguage } from '../contexts/LanguageContext'
 import SEO from '../components/SEO'
-import HeroBackgroundGrid from '../components/HeroBackgroundGrid'
+import TechSection from '../components/TechSection'
+import TechCard from '../components/TechCard'
 
 const industries = [
   {
     name: 'Healthcare',
+    nameTr: 'Sağlık',
     path: '/industries/healthcare',
     icon: FaHospital,
     description: 'Secure AI for patient scheduling and care coordination',
-    color: 'emerald'
+    descriptionTr: 'Hasta planlaması ve bakım koordinasyonu için güvenli AI',
+    features: ['HIPAA Compliant', '24/7 Patient Calls', 'EHR Integration'],
+    featuresTr: ['HIPAA Uyumlu', '7/24 Hasta Aramaları', 'EHR Entegrasyonu']
   },
   {
     name: 'Legal Services',
+    nameTr: 'Hukuk Hizmetleri',
     path: '/industries/legal',
     icon: FaBalanceScale,
     description: 'Confidential client intake and appointment management',
-    color: 'blue'
+    descriptionTr: 'Gizli müşteri alımı ve randevu yönetimi',
+    features: ['Client Screening', 'Intake Automation', 'Secure Handling'],
+    featuresTr: ['Müşteri Taraması', 'Alım Otomasyonu', 'Güvenli İşlem']
   },
   {
     name: 'Hospitality',
+    nameTr: 'Konaklama',
     path: '/industries/hospitality',
     icon: FaHotel,
     description: 'AI concierge for hotels, restaurants and resorts',
-    color: 'amber'
+    descriptionTr: 'Oteller, restoranlar ve tatil köyleri için AI concierge',
+    features: ['Reservation Handling', 'Guest Services', 'Multi-language'],
+    featuresTr: ['Rezervasyon İşlemleri', 'Misafir Hizmetleri', 'Çoklu Dil']
   },
   {
     name: 'Retail',
+    nameTr: 'Perakende',
     path: '/industries/retail',
     icon: FaShoppingCart,
     description: 'Omnichannel customer service and order management',
-    color: 'pink'
+    descriptionTr: 'Omnichannel müşteri hizmetleri ve sipariş yönetimi',
+    features: ['Order Tracking', 'Returns Processing', 'Customer Support'],
+    featuresTr: ['Sipariş Takibi', 'İade İşlemleri', 'Müşteri Desteği']
   },
   {
     name: 'Automotive',
+    nameTr: 'Otomotiv',
     path: '/industries/automotive',
     icon: FaCar,
     description: 'Service scheduling and lead qualification for dealerships',
-    color: 'orange'
+    descriptionTr: 'Bayiler için servis planlaması ve potansiyel müşteri değerlendirmesi',
+    features: ['Service Booking', 'Lead Qualification', 'Follow-up Calls'],
+    featuresTr: ['Servis Rezervasyonu', 'Lead Değerlendirme', 'Takip Aramaları']
   },
   {
     name: 'Enterprise',
+    nameTr: 'Kurumsal',
     path: '/industries/enterprise',
     icon: FaBuilding,
     description: 'Scalable AI solutions with custom integrations',
-    color: 'indigo'
+    descriptionTr: 'Özel entegrasyonlarla ölçeklenebilir AI çözümleri',
+    features: ['Custom Integration', 'Volume Handling', 'Analytics'],
+    featuresTr: ['Özel Entegrasyon', 'Yüksek Hacim', 'Analitik']
   },
   {
     name: 'Technology',
+    nameTr: 'Teknoloji',
     path: '/industries/technology',
     icon: FaLaptopCode,
     description: 'Technical support automation and customer onboarding',
-    color: 'violet'
+    descriptionTr: 'Teknik destek otomasyonu ve müşteri karşılama',
+    features: ['Tech Support', 'Onboarding', 'Tier-1 Automation'],
+    featuresTr: ['Teknik Destek', 'Onboarding', 'Tier-1 Otomasyon']
   },
   {
     name: 'Financial Services',
+    nameTr: 'Finansal Hizmetler',
     path: '/industries/financial-services',
     icon: FaUniversity,
     description: 'Secure AI for banks, insurance and fintech',
-    color: 'cyan'
+    descriptionTr: 'Bankalar, sigorta ve fintech için güvenli AI',
+    features: ['Compliance Ready', 'Account Services', 'Fraud Detection'],
+    featuresTr: ['Uyumluluk', 'Hesap Hizmetleri', 'Dolandırıcılık Tespiti']
   },
   {
     name: 'Energy & Utilities',
+    nameTr: 'Enerji & Altyapı',
     path: '/industries/energy',
     icon: FaBolt,
     description: 'Billing inquiries, outage reporting and service requests',
-    color: 'yellow'
+    descriptionTr: 'Fatura sorguları, arıza bildirimi ve servis talepleri',
+    features: ['Billing Support', 'Outage Reports', 'Service Requests'],
+    featuresTr: ['Fatura Desteği', 'Arıza Raporları', 'Servis Talepleri']
   },
   {
     name: 'Public Sector',
+    nameTr: 'Kamu Sektörü',
     path: '/industries/public-sector',
     icon: FaLandmark,
     description: 'ADA-compliant citizen services and information hotlines',
-    color: 'slate'
+    descriptionTr: 'ADA uyumlu vatandaş hizmetleri ve bilgi hatları',
+    features: ['ADA Compliant', 'Citizen Services', 'Multi-language'],
+    featuresTr: ['ADA Uyumlu', 'Vatandaş Hizmetleri', 'Çoklu Dil']
   },
   {
     name: 'Home Services',
+    nameTr: 'Ev Hizmetleri',
     path: '/industries/HomeServices',
     icon: FaHome,
     description: 'Service scheduling for contractors, plumbers and HVAC',
-    color: 'teal'
+    descriptionTr: 'Müteahhitler, tesisatçılar ve HVAC için servis planlaması',
+    features: ['Emergency Calls', 'Job Scheduling', 'Customer Follow-up'],
+    featuresTr: ['Acil Aramalar', 'İş Planlaması', 'Müşteri Takibi']
   }
 ]
 
-const colorMap: Record<string, { bg: string; border: string; text: string; iconBg: string }> = {
-  emerald: {
-    bg: 'bg-emerald-500/10',
-    border: 'border-emerald-500/30',
-    text: 'text-emerald-400',
-    iconBg: 'bg-emerald-500/20'
-  },
-  blue: {
-    bg: 'bg-blue-500/10',
-    border: 'border-blue-500/30',
-    text: 'text-blue-400',
-    iconBg: 'bg-blue-500/20'
-  },
-  amber: {
-    bg: 'bg-amber-500/10',
-    border: 'border-amber-500/30',
-    text: 'text-amber-400',
-    iconBg: 'bg-amber-500/20'
-  },
-  pink: {
-    bg: 'bg-pink-500/10',
-    border: 'border-pink-500/30',
-    text: 'text-pink-400',
-    iconBg: 'bg-pink-500/20'
-  },
-  orange: {
-    bg: 'bg-orange-500/10',
-    border: 'border-orange-500/30',
-    text: 'text-orange-400',
-    iconBg: 'bg-orange-500/20'
-  },
-  indigo: {
-    bg: 'bg-indigo-500/10',
-    border: 'border-indigo-500/30',
-    text: 'text-indigo-400',
-    iconBg: 'bg-indigo-500/20'
-  },
-  violet: {
-    bg: 'bg-violet-500/10',
-    border: 'border-violet-500/30',
-    text: 'text-violet-400',
-    iconBg: 'bg-violet-500/20'
-  },
-  cyan: {
-    bg: 'bg-cyan-500/10',
-    border: 'border-cyan-500/30',
-    text: 'text-cyan-400',
-    iconBg: 'bg-cyan-500/20'
-  },
-  yellow: {
-    bg: 'bg-yellow-500/10',
-    border: 'border-yellow-500/30',
-    text: 'text-yellow-400',
-    iconBg: 'bg-yellow-500/20'
-  },
-  slate: {
-    bg: 'bg-slate-500/10',
-    border: 'border-slate-500/30',
-    text: 'text-slate-400',
-    iconBg: 'bg-slate-500/20'
-  },
-  teal: {
-    bg: 'bg-teal-500/10',
-    border: 'border-teal-500/30',
-    text: 'text-teal-400',
-    iconBg: 'bg-teal-500/20'
-  }
-}
-
 const Industries: React.FC = () => {
-  const [mounted, setMounted] = useState(false)
-  const { resolvedTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  const isDark = !mounted || resolvedTheme === 'dark'
-
-  const glassOpacity = isDark ? 0.30 : 0.30
-  const glassBlur = 22
-
-  const glassStyle = {
-    borderWidth: '0.5px',
-    background: isDark
-      ? `rgba(31, 41, 55, ${glassOpacity})`
-      : `rgba(255, 255, 255, ${glassOpacity})`,
-    backdropFilter: `blur(${glassBlur}px)`,
-    WebkitBackdropFilter: `blur(${glassBlur}px)`,
-    boxShadow: isDark
-      ? 'inset 0 3px 6px rgba(120, 184, 255, 0.2), inset 0 1px 3px rgba(255, 255, 255, 0.15), inset 0 -3px 6px rgba(120, 184, 255, 0.12), inset 3px 0 6px rgba(120, 184, 255, 0.08), inset -3px 0 6px rgba(120, 184, 255, 0.08), 0 4px 12px rgba(0, 0, 0, 0.3)'
-      : 'inset 0 1px 2px rgba(14, 165, 233, 0.15), inset 0 -1px 2px rgba(14, 165, 233, 0.08), inset 1px 0 2px rgba(14, 165, 233, 0.12), inset -1px 0 2px rgba(14, 165, 233, 0.05), 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03)',
-  }
+  const { language } = useLanguage()
 
   return (
-    <div className="min-h-screen transition-colors duration-300 bg-gray-900 dark:bg-gray-900" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <div className="w-full">
       <SEO
         page="solutions"
-        customTitle="Industries We Serve | AI Solutions for Every Sector | Cognia AI"
-        customDescription="Discover AI solutions tailored for your industry. Healthcare, legal, hospitality, retail, automotive, and more. Transform your operations with industry-specific AI."
+        customTitle={language === 'tr' ? 'Sektörler | Her Sektör İçin AI Çözümleri | Cognia AI' : 'Industries We Serve | AI Solutions for Every Sector | Cognia AI'}
+        customDescription={language === 'tr' ? 'Sektörünüze özel AI çözümlerini keşfedin.' : 'Discover AI solutions tailored for your industry.'}
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex flex-col items-center overflow-hidden pt-0 select-none transition-colors duration-300">
-        <HeroBackgroundGrid isPlaying={false} />
+      <section className="relative pt-24 sm:pt-24 lg:pt-32 pb-16 sm:pb-24 lg:pb-32">
+        <div className="w-full max-w-none px-4 sm:px-6 md:px-8 lg:px-0 lg:max-w-[1060px] mx-auto">
+          <div className="max-w-4xl mx-auto text-center py-10 sm:py-16 lg:py-20 border-b border-[rgba(55,50,47,0.12)] shadow-[0_1px_0px_white]">
+            <div className="inline-block px-2.5 sm:px-3 py-1 bg-[rgba(55,50,47,0.04)] border border-[rgba(55,50,47,0.12)] rounded-full mb-4 sm:mb-6">
+              <span className="text-[10px] sm:text-xs text-[rgba(55,50,47,0.70)] uppercase tracking-widest">
+                {language === 'tr' ? 'Sektörler' : 'Industries'}
+              </span>
+            </div>
 
-        <div className={`absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none ${isDark ? 'from-gray-900/10 to-gray-900' : 'from-white/10 to-white'}`} />
-        <div className={`absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none ${isDark ? 'from-gray-900 via-gray-900/40' : 'from-white via-white/40'}`} />
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-serif font-normal text-[#37322F] mb-4 sm:mb-6">
+              {language === 'tr' ? 'Her Sektör İçin' : 'AI Solutions for'}
+              <br />
+              {language === 'tr' ? 'AI Çözümleri' : 'Every Industry'}
+            </h1>
 
-        <div
-          className="absolute inset-y-0 left-0 w-[65%] pointer-events-none z-[5]"
-          style={{
-            background: isDark
-              ? 'radial-gradient(ellipse 100% 90% at 20% 50%, rgba(17,24,39,0.95) 0%, rgba(17,24,39,0.85) 30%, rgba(17,24,39,0.6) 50%, rgba(17,24,39,0.3) 70%, rgba(17,24,39,0) 90%)'
-              : 'radial-gradient(ellipse 80% 60% at 25% 45%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.35) 40%, rgba(255,255,255,0.1) 60%, rgba(255,255,255,0) 75%)',
-          }}
-        />
-
-        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 relative z-10 flex-1 flex items-center pt-24 sm:pt-28 lg:pt-32 pb-12">
-          <motion.div
-            className={`max-w-3xl rounded-2xl sm:rounded-[2rem] border p-6 sm:p-10 lg:p-12 ${isDark ? 'border-blue-500/30' : 'border-[#e2e8f0]'}`}
-            style={glassStyle}
-            initial={{ x: -20 }}
-            animate={{ x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div
-                className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-8 ${
-                  isDark
-                    ? 'bg-blue-900/40 border border-blue-500/30'
-                    : 'bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/60'
-                }`}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-              >
-                <div className="relative">
-                  <div className={`w-2.5 h-2.5 rounded-full ${isDark ? 'bg-blue-400' : 'bg-blue-500'}`} />
-                  <div className={`absolute inset-0 w-2.5 h-2.5 rounded-full ${isDark ? 'bg-blue-400' : 'bg-blue-500'} animate-ping opacity-75`} />
-                </div>
-                <span className={`text-sm font-semibold tracking-wide ${isDark ? 'text-blue-400' : 'text-blue-700'}`}>
-                  Industries
-                </span>
-              </motion.div>
-
-              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-light leading-[1.1] mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                AI Solutions for{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500">
-                  Every Industry
-                </span>
-              </h1>
-
-              <p className={`text-base sm:text-lg lg:text-xl max-w-2xl leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                We understand that each industry has unique challenges. Our AI solutions are tailored to meet your specific needs and compliance requirements.
-              </p>
-            </motion.div>
-          </motion.div>
+            <p className="text-sm sm:text-base lg:text-lg text-[rgba(55,50,47,0.70)] max-w-3xl mx-auto px-2">
+              {language === 'tr'
+                ? 'Her sektörün kendine özgü zorlukları var. AI çözümlerimiz özel ihtiyaçlarınıza ve uyumluluk gereksinimlerinize göre şekillendirildi.'
+                : 'We understand that each industry has unique challenges. Our AI solutions are tailored to meet your specific needs and compliance requirements.'}
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Industries Grid */}
-      <section className="py-16 sm:py-20 lg:py-24 relative">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {industries.map((industry, index) => {
-              const Icon = industry.icon
-              const colors = colorMap[industry.color]
-              return (
-                <motion.div
-                  key={industry.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                >
-                  <Link
-                    href={industry.path}
-                    className={`group block rounded-2xl border p-6 transition-all duration-300 hover:scale-[1.02] ${
-                      isDark
-                        ? `border-gray-700 hover:${colors.border} bg-gray-800/50 hover:bg-gray-800/80`
-                        : 'border-slate-200 hover:border-slate-300 bg-white/50 hover:bg-white/80'
-                    }`}
-                    style={{
-                      backdropFilter: 'blur(12px)',
-                      WebkitBackdropFilter: 'blur(12px)',
-                    }}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                        isDark ? colors.iconBg : 'bg-slate-100'
-                      }`}>
-                        <Icon className={`w-6 h-6 ${isDark ? colors.text : 'text-slate-600'}`} />
+      <TechSection
+        title={language === 'tr' ? 'Hizmet Verdiğimiz Sektörler' : 'Industries We Serve'}
+        subtitle={language === 'tr'
+          ? 'Sektöre özel AI çözümleri ile operasyonlarınızı dönüştürün'
+          : 'Transform your operations with industry-specific AI solutions'}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 max-w-7xl mx-auto">
+          {industries.map((industry, index) => {
+            const Icon = industry.icon
+            return (
+              <motion.div
+                key={industry.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: index * 0.03 }}
+              >
+                <Link href={industry.path}>
+                  <TechCard className="h-full group">
+                    <div className="flex flex-col h-full">
+                      {/* Icon */}
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 mb-3 sm:mb-4 bg-[rgba(55,50,47,0.04)] border border-[rgba(55,50,47,0.12)] rounded-md flex items-center justify-center group-hover:bg-[rgba(55,50,47,0.08)] transition-colors">
+                        <Icon className="text-lg sm:text-xl lg:text-2xl text-[rgba(55,50,47,0.80)]" />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className={`text-lg font-semibold mb-1 flex items-center gap-2 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                          {industry.name}
-                          <FaArrowRight className={`w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ${isDark ? colors.text : 'text-slate-400'}`} />
-                        </h3>
-                        <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                          {industry.description}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              )
-            })}
-          </div>
 
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-16 text-center"
-          >
-            <p className={`text-lg mb-6 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-              Don't see your industry? We work with businesses of all types.
-            </p>
+                      {/* Title & Description */}
+                      <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
+                        <h3 className="text-base sm:text-lg lg:text-xl font-serif font-normal text-[#37322F]">
+                          {language === 'tr' ? industry.nameTr : industry.name}
+                        </h3>
+                        <FaArrowRight className="w-3 h-3 text-[rgba(55,50,47,0.40)] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                      </div>
+                      <p className="text-xs sm:text-sm text-[rgba(55,50,47,0.70)] mb-3 sm:mb-4">
+                        {language === 'tr' ? industry.descriptionTr : industry.description}
+                      </p>
+
+                      {/* Features */}
+                      <ul className="space-y-1.5 sm:space-y-2 flex-grow">
+                        {(language === 'tr' ? industry.featuresTr : industry.features).map((feature, idx) => (
+                          <li key={idx} className="flex items-center gap-1.5 sm:gap-2 text-[rgba(55,50,47,0.80)] text-xs sm:text-sm">
+                            <FaCheckCircle className="flex-shrink-0 text-[rgba(55,50,47,0.60)] text-[10px] sm:text-xs" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </TechCard>
+                </Link>
+              </motion.div>
+            )
+          })}
+        </div>
+      </TechSection>
+
+      {/* Stats Section */}
+      <TechSection
+        title={language === 'tr' ? 'Neden Cognia AI?' : 'Why Choose Cognia AI?'}
+        subtitle={language === 'tr'
+          ? 'Ölçülebilir sonuçlarla müşteri hizmetlerinizi dönüştürün'
+          : 'Transform your customer service with measurable results'}
+      >
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 max-w-6xl mx-auto">
+          {[
+            { value: '87%', label: language === 'tr' ? 'Dönüşüm Artışı' : 'Conversion Rate', suffix: '↑' },
+            { value: '24/7', label: language === 'tr' ? 'Kesintisiz' : 'Always On', suffix: '' },
+            { value: '76%', label: language === 'tr' ? 'Maliyet Azalışı' : 'Cost Reduction', suffix: '↓' },
+            { value: '0.5s', label: language === 'tr' ? 'Yanıt Süresi' : 'Response Time', suffix: '' }
+          ].map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="text-center"
+            >
+              <div className="text-2xl sm:text-4xl lg:text-5xl font-serif font-normal text-[#37322F] mb-1 sm:mb-2">
+                {stat.value}
+                {stat.suffix && <span className="text-base sm:text-xl lg:text-2xl ml-0.5 sm:ml-1">{stat.suffix}</span>}
+              </div>
+              <div className="text-[10px] sm:text-xs lg:text-sm text-[rgba(55,50,47,0.70)]">
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </TechSection>
+
+      {/* CTA Section */}
+      <TechSection
+        title={language === 'tr' ? 'Sektörünüzü Görmüyor musunuz?' : "Don't See Your Industry?"}
+        subtitle={language === 'tr'
+          ? 'Her türlü işletmeyle çalışıyoruz. Sizin için özel bir çözüm oluşturalım.'
+          : 'We work with businesses of all types. Let us create a custom solution for you.'}
+      >
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
             <Link
               href="/demo"
-              className="btn-primary h-12 sm:h-14 px-8 rounded-xl inline-flex items-center justify-center gap-2"
+              className="btn-primary w-full sm:w-auto"
             >
-              <span>Schedule a Consultation</span>
-              <FaArrowRight className="w-4 h-4" />
+              <span>{language === 'tr' ? 'Ücretsiz Demo' : 'Schedule Free Demo'}</span>
             </Link>
-          </motion.div>
+
+            <a
+              href="tel:+16163263328"
+              className="flex items-center justify-center gap-2 sm:gap-3 w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-[rgba(55,50,47,0.12)] hover:bg-[rgba(55,50,47,0.04)] text-[rgba(55,50,47,0.80)] text-base sm:text-lg font-medium rounded-md transition-colors"
+            >
+              <FaPhone className="text-xs sm:text-sm" />
+              +1 616-326-3328
+            </a>
+          </div>
         </div>
-      </section>
+      </TechSection>
     </div>
   )
 }
