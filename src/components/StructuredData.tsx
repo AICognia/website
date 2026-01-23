@@ -303,8 +303,8 @@ export function HomePageStructuredData() {
       answer: 'Cognia AI supports over 45 languages with native fluency, enabling global customer communication without language barriers.'
     },
     {
-      question: 'Is Cognia AI HIPAA compliant?',
-      answer: 'Yes, Cognia AI is fully HIPAA compliant for healthcare applications, as well as SOC 2 Type I, SOC 2 Type II, and GDPR compliant.'
+      question: 'Is Cognia AI secure for healthcare?',
+      answer: 'Yes, Cognia AI provides enterprise-grade security for healthcare applications with encrypted data transmission, secure storage, and comprehensive audit logging.'
     }
   ]
 

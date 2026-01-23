@@ -90,7 +90,7 @@ const FeaturesSection: React.FC = () => {
               </div>
               <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3 font-serif">Healthcare Teams</h3>
               <p className="text-slate-500 text-sm sm:text-base leading-relaxed font-serif max-w-full sm:max-w-[80%]">
-                HIPAA-compliant patient scheduling and routine inquiry automation.
+                Secure patient scheduling and routine inquiry automation.
               </p>
             </div>
 

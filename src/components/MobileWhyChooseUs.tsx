@@ -97,7 +97,7 @@ const MobileWhyChooseUs: React.FC = () => {
         className="mt-4"
       >
         <p className={`text-xs ${isDark ? 'text-gray-500' : 'text-slate-400'}`}>
-          <span className="font-medium">Enterprise ready:</span> SOC 2 • HIPAA • GDPR • PCI DSS
+          <span className="font-medium">Enterprise ready:</span> Secure • Encrypted • Compliant • Reliable
         </p>
       </motion.div>
       </div>

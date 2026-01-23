@@ -33,7 +33,7 @@ const translations = {
     'hero.benefit2': 'Lead Qualification & Follow-ups',
     'hero.benefit3': '24/7 Full Automation',
     'hero.benefit4': 'Appointment Scheduling & Confirmations',
-    'hero.trustBadge': 'GDPR Compliant',
+    'hero.trustBadge': 'Enterprise Security',
     'hero.demoButton': 'Get Free Demo',
     'hero.watchDemo': 'Watch Demo',
     'hero.aiAssistants': 'Our AI Call Center Services',

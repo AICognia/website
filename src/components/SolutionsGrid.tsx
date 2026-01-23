@@ -6,7 +6,7 @@ const SolutionsGrid: React.FC = () => {
     {
       badge: 'Healthcare',
       icon: FaHospital,
-      title: 'HIPAA-Compliant Patient Scheduling',
+      title: 'Secure Patient Scheduling',
       description: 'Secure AI receptionists for medical practices',
       link: '/solutions#healthcare'
     },

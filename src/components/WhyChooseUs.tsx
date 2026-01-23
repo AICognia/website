@@ -161,10 +161,10 @@ const WhyChooseUs: React.FC = () => {
                                 </p>
                             </div>
                             <div className="grid grid-cols-2 gap-2 sm:gap-3 mt-auto">
-                                <Badge icon={<FaCheckCircle />} text="SOC 2 Type II" isDark={isDark} />
-                                <Badge icon={<FaLock />} text="HIPAA" isDark={isDark} />
-                                <Badge icon={<FaShieldAlt />} text="GDPR" isDark={isDark} />
-                                <Badge icon={<FaFileContract />} text="PCI DSS" isDark={isDark} />
+                                <Badge icon={<FaCheckCircle />} text="Encrypted" isDark={isDark} />
+                                <Badge icon={<FaLock />} text="Secure" isDark={isDark} />
+                                <Badge icon={<FaShieldAlt />} text="Protected" isDark={isDark} />
+                                <Badge icon={<FaFileContract />} text="Audited" isDark={isDark} />
                             </div>
                         </motion.div>
 
