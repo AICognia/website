@@ -9,18 +9,11 @@ import {
   FaHotel,
   FaShoppingCart,
   FaCar,
-  FaBuilding,
-  FaLaptopCode,
-  FaUniversity,
-  FaBolt,
-  FaLandmark,
-  FaHome,
   FaArrowRight,
   FaCheckCircle,
   FaPhone
 } from 'react-icons/fa'
 import { useLanguage } from '../contexts/LanguageContext'
-import SEO from '../components/SEO'
 import TechSection from '../components/TechSection'
 import TechCard from '../components/TechCard'
 
@@ -30,8 +23,8 @@ const industries = [
     nameTr: 'Sağlık',
     path: '/industries/healthcare',
     icon: FaHospital,
-    description: 'Secure AI for patient scheduling and care coordination',
-    descriptionTr: 'Hasta planlaması ve bakım koordinasyonu için güvenli AI',
+    description: 'AI-powered patient scheduling, appointment reminders, and care coordination',
+    descriptionTr: 'AI destekli hasta planlaması, randevu hatırlatmaları ve bakım koordinasyonu',
     features: ['HIPAA Compliant', '24/7 Patient Calls', 'EHR Integration'],
     featuresTr: ['HIPAA Uyumlu', '7/24 Hasta Aramaları', 'EHR Entegrasyonu']
   },
@@ -40,28 +33,28 @@ const industries = [
     nameTr: 'Hukuk Hizmetleri',
     path: '/industries/legal',
     icon: FaBalanceScale,
-    description: 'Confidential client intake and appointment management',
-    descriptionTr: 'Gizli müşteri alımı ve randevu yönetimi',
-    features: ['Client Screening', 'Intake Automation', 'Secure Handling'],
-    featuresTr: ['Müşteri Taraması', 'Alım Otomasyonu', 'Güvenli İşlem']
+    description: 'Confidential client intake, appointment scheduling, and case inquiries',
+    descriptionTr: 'Gizli müşteri alımı, randevu planlaması ve dava sorguları',
+    features: ['Client Screening', 'Intake Automation', 'Confidential Handling'],
+    featuresTr: ['Müşteri Taraması', 'Alım Otomasyonu', 'Gizli İşlem']
   },
   {
     name: 'Hospitality',
     nameTr: 'Konaklama',
     path: '/industries/hospitality',
     icon: FaHotel,
-    description: 'AI concierge for hotels, restaurants and resorts',
-    descriptionTr: 'Oteller, restoranlar ve tatil köyleri için AI concierge',
-    features: ['Reservation Handling', 'Guest Services', 'Multi-language'],
-    featuresTr: ['Rezervasyon İşlemleri', 'Misafir Hizmetleri', 'Çoklu Dil']
+    description: 'AI concierge for reservations, guest services, and inquiries',
+    descriptionTr: 'Rezervasyonlar, misafir hizmetleri ve sorular için AI concierge',
+    features: ['Reservation Handling', 'Guest Services', '45+ Languages'],
+    featuresTr: ['Rezervasyon İşlemleri', 'Misafir Hizmetleri', '45+ Dil']
   },
   {
     name: 'Retail',
     nameTr: 'Perakende',
     path: '/industries/retail',
     icon: FaShoppingCart,
-    description: 'Omnichannel customer service and order management',
-    descriptionTr: 'Omnichannel müşteri hizmetleri ve sipariş yönetimi',
+    description: 'Customer service, order tracking, and support automation',
+    descriptionTr: 'Müşteri hizmetleri, sipariş takibi ve destek otomasyonu',
     features: ['Order Tracking', 'Returns Processing', 'Customer Support'],
     featuresTr: ['Sipariş Takibi', 'İade İşlemleri', 'Müşteri Desteği']
   },
@@ -70,70 +63,10 @@ const industries = [
     nameTr: 'Otomotiv',
     path: '/industries/automotive',
     icon: FaCar,
-    description: 'Service scheduling and lead qualification for dealerships',
-    descriptionTr: 'Bayiler için servis planlaması ve potansiyel müşteri değerlendirmesi',
+    description: 'Service scheduling, lead qualification, and follow-up calls',
+    descriptionTr: 'Servis planlaması, potansiyel müşteri değerlendirmesi ve takip aramaları',
     features: ['Service Booking', 'Lead Qualification', 'Follow-up Calls'],
     featuresTr: ['Servis Rezervasyonu', 'Lead Değerlendirme', 'Takip Aramaları']
-  },
-  {
-    name: 'Enterprise',
-    nameTr: 'Kurumsal',
-    path: '/industries/enterprise',
-    icon: FaBuilding,
-    description: 'Scalable AI solutions with custom integrations',
-    descriptionTr: 'Özel entegrasyonlarla ölçeklenebilir AI çözümleri',
-    features: ['Custom Integration', 'Volume Handling', 'Analytics'],
-    featuresTr: ['Özel Entegrasyon', 'Yüksek Hacim', 'Analitik']
-  },
-  {
-    name: 'Technology',
-    nameTr: 'Teknoloji',
-    path: '/industries/technology',
-    icon: FaLaptopCode,
-    description: 'Technical support automation and customer onboarding',
-    descriptionTr: 'Teknik destek otomasyonu ve müşteri karşılama',
-    features: ['Tech Support', 'Onboarding', 'Tier-1 Automation'],
-    featuresTr: ['Teknik Destek', 'Onboarding', 'Tier-1 Otomasyon']
-  },
-  {
-    name: 'Financial Services',
-    nameTr: 'Finansal Hizmetler',
-    path: '/industries/financial-services',
-    icon: FaUniversity,
-    description: 'Secure AI for banks, insurance and fintech',
-    descriptionTr: 'Bankalar, sigorta ve fintech için güvenli AI',
-    features: ['Compliance Ready', 'Account Services', 'Fraud Detection'],
-    featuresTr: ['Uyumluluk', 'Hesap Hizmetleri', 'Dolandırıcılık Tespiti']
-  },
-  {
-    name: 'Energy & Utilities',
-    nameTr: 'Enerji & Altyapı',
-    path: '/industries/energy',
-    icon: FaBolt,
-    description: 'Billing inquiries, outage reporting and service requests',
-    descriptionTr: 'Fatura sorguları, arıza bildirimi ve servis talepleri',
-    features: ['Billing Support', 'Outage Reports', 'Service Requests'],
-    featuresTr: ['Fatura Desteği', 'Arıza Raporları', 'Servis Talepleri']
-  },
-  {
-    name: 'Public Sector',
-    nameTr: 'Kamu Sektörü',
-    path: '/industries/public-sector',
-    icon: FaLandmark,
-    description: 'ADA-compliant citizen services and information hotlines',
-    descriptionTr: 'ADA uyumlu vatandaş hizmetleri ve bilgi hatları',
-    features: ['ADA Compliant', 'Citizen Services', 'Multi-language'],
-    featuresTr: ['ADA Uyumlu', 'Vatandaş Hizmetleri', 'Çoklu Dil']
-  },
-  {
-    name: 'Home Services',
-    nameTr: 'Ev Hizmetleri',
-    path: '/industries/HomeServices',
-    icon: FaHome,
-    description: 'Service scheduling for contractors, plumbers and HVAC',
-    descriptionTr: 'Müteahhitler, tesisatçılar ve HVAC için servis planlaması',
-    features: ['Emergency Calls', 'Job Scheduling', 'Customer Follow-up'],
-    featuresTr: ['Acil Aramalar', 'İş Planlaması', 'Müşteri Takibi']
   }
 ]
 
@@ -142,12 +75,6 @@ const Industries: React.FC = () => {
 
   return (
     <div className="w-full">
-      <SEO
-        page="solutions"
-        customTitle={language === 'tr' ? 'Sektörler | Her Sektör İçin AI Çözümleri | Cognia AI' : 'Industries We Serve | AI Solutions for Every Sector | Cognia AI'}
-        customDescription={language === 'tr' ? 'Sektörünüze özel AI çözümlerini keşfedin.' : 'Discover AI solutions tailored for your industry.'}
-      />
-
       {/* Hero Section */}
       <section className="relative pt-24 sm:pt-24 lg:pt-32 pb-16 sm:pb-24 lg:pb-32">
         <div className="w-full max-w-none px-4 sm:px-6 md:px-8 lg:px-0 lg:max-w-[1060px] mx-auto">
@@ -159,15 +86,15 @@ const Industries: React.FC = () => {
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-7xl font-serif font-normal text-[#37322F] mb-4 sm:mb-6">
-              {language === 'tr' ? 'Her Sektör İçin' : 'AI Solutions for'}
+              {language === 'tr' ? 'Hizmet Verdiğimiz' : 'Industries'}
               <br />
-              {language === 'tr' ? 'AI Çözümleri' : 'Every Industry'}
+              {language === 'tr' ? 'Sektörler' : 'We Serve'}
             </h1>
 
             <p className="text-sm sm:text-base lg:text-lg text-[rgba(55,50,47,0.70)] max-w-3xl mx-auto px-2">
               {language === 'tr'
-                ? 'Her sektörün kendine özgü zorlukları var. AI çözümlerimiz özel ihtiyaçlarınıza ve uyumluluk gereksinimlerinize göre şekillendirildi.'
-                : 'We understand that each industry has unique challenges. Our AI solutions are tailored to meet your specific needs and compliance requirements.'}
+                ? 'Sektörünüze özel AI çözümleri ile müşteri deneyiminizi dönüştürün. Her sektörün kendine özgü ihtiyaçlarını anlıyoruz.'
+                : 'Transform your customer experience with industry-specific AI solutions. We understand the unique needs of each sector.'}
             </p>
           </div>
         </div>
@@ -175,12 +102,12 @@ const Industries: React.FC = () => {
 
       {/* Industries Grid */}
       <TechSection
-        title={language === 'tr' ? 'Hizmet Verdiğimiz Sektörler' : 'Industries We Serve'}
+        title={language === 'tr' ? 'Sektöre Özel Çözümler' : 'Industry Solutions'}
         subtitle={language === 'tr'
-          ? 'Sektöre özel AI çözümleri ile operasyonlarınızı dönüştürün'
-          : 'Transform your operations with industry-specific AI solutions'}
+          ? 'AI destekli çözümlerle operasyonlarınızı optimize edin'
+          : 'Optimize your operations with AI-powered solutions'}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 max-w-6xl mx-auto">
           {industries.map((industry, index) => {
             const Icon = industry.icon
             return (
@@ -189,7 +116,7 @@ const Industries: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.4, delay: index * 0.03 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
               >
                 <Link href={industry.path}>
                   <TechCard className="h-full group">
@@ -230,17 +157,17 @@ const Industries: React.FC = () => {
 
       {/* Stats Section */}
       <TechSection
-        title={language === 'tr' ? 'Neden Cognia AI?' : 'Why Choose Cognia AI?'}
+        title={language === 'tr' ? 'Ölçülebilir Sonuçlar' : 'Measurable Results'}
         subtitle={language === 'tr'
-          ? 'Ölçülebilir sonuçlarla müşteri hizmetlerinizi dönüştürün'
-          : 'Transform your customer service with measurable results'}
+          ? 'Müşterilerimizin elde ettiği sonuçlar'
+          : 'Results our clients achieve'}
       >
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 max-w-5xl mx-auto">
           {[
-            { value: '87%', label: language === 'tr' ? 'Dönüşüm Artışı' : 'Conversion Rate', suffix: '↑' },
-            { value: '24/7', label: language === 'tr' ? 'Kesintisiz' : 'Always On', suffix: '' },
-            { value: '76%', label: language === 'tr' ? 'Maliyet Azalışı' : 'Cost Reduction', suffix: '↓' },
-            { value: '0.5s', label: language === 'tr' ? 'Yanıt Süresi' : 'Response Time', suffix: '' }
+            { value: '87%', label: language === 'tr' ? 'Dönüşüm Artışı' : 'Higher Conversion', suffix: '' },
+            { value: '24/7', label: language === 'tr' ? 'Kesintisiz Hizmet' : 'Always Available', suffix: '' },
+            { value: '76%', label: language === 'tr' ? 'Maliyet Azalışı' : 'Cost Reduction', suffix: '' },
+            { value: '<1s', label: language === 'tr' ? 'Yanıt Süresi' : 'Response Time', suffix: '' }
           ].map((stat, index) => (
             <motion.div
               key={index}
@@ -252,7 +179,6 @@ const Industries: React.FC = () => {
             >
               <div className="text-2xl sm:text-4xl lg:text-5xl font-serif font-normal text-[#37322F] mb-1 sm:mb-2">
                 {stat.value}
-                {stat.suffix && <span className="text-base sm:text-xl lg:text-2xl ml-0.5 sm:ml-1">{stat.suffix}</span>}
               </div>
               <div className="text-[10px] sm:text-xs lg:text-sm text-[rgba(55,50,47,0.70)]">
                 {stat.label}
@@ -264,10 +190,10 @@ const Industries: React.FC = () => {
 
       {/* CTA Section */}
       <TechSection
-        title={language === 'tr' ? 'Sektörünüzü Görmüyor musunuz?' : "Don't See Your Industry?"}
+        title={language === 'tr' ? 'Başlamaya Hazır mısınız?' : 'Ready to Get Started?'}
         subtitle={language === 'tr'
-          ? 'Her türlü işletmeyle çalışıyoruz. Sizin için özel bir çözüm oluşturalım.'
-          : 'We work with businesses of all types. Let us create a custom solution for you.'}
+          ? 'Sektörünüze özel AI çözümünüzü birlikte oluşturalım'
+          : 'Let us create a custom AI solution for your industry'}
       >
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
