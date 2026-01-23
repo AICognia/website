@@ -1,0 +1,243 @@
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import { Source_Serif_4 } from 'next/font/google'
+import './globals.css'
+import { ClerkProviderWrapper } from '@/src/providers/ClerkProviderWrapper'
+import { LanguageProvider } from '@/src/contexts/LanguageContext'
+import { LeadCaptureProvider } from '@/src/contexts/LeadCaptureContext'
+import Navbar from '@/src/components/Navbar'
+import MobileNavbar from '@/src/components/MobileNavbar'
+import Footer from '@/src/components/Footer'
+import CookieConsentBanner from '@/src/components/CookieConsent'
+import StickyMobileCTA from '@/src/components/StickyMobileCTA'
+import { VideoProvider } from '@/src/contexts/VideoContext'
+import { HelmetClientProvider } from '@/src/providers/HelmetClientProvider'
+import TactileBackground from '@/src/components/TactileBackground'
+import { ThemeProvider } from '@/src/providers/ThemeProvider'
+import DarkModeToggle from '@/src/components/DarkModeToggle'
+import FloatingAuthButton from '@/src/components/FloatingAuthButton'
+
+const inter = Inter({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+const sourceSerif = Source_Serif_4({
+  variable: '--font-source-serif',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+})
+
+export const metadata: Metadata = {
+  title: {
+    default: 'Cognia AI - AI Receptionist & Voice Agents | 24/7 Automated Customer Service',
+    template: '%s | Cognia AI'
+  },
+  description: 'Transform your business with AI receptionist and voice agents. Never miss a call, book appointments 24/7 with 95% first-call resolution. Guaranteed 10-20% more customers. Operating in US & Turkey. Enterprise-grade AI with CRM integration. Setup in 1 week. Free demo available.',
+  keywords: [
+    // Primary keywords
+    'AI receptionist', 'virtual receptionist', 'AI voice agent', 'automated phone answering',
+    // Service keywords
+    'chatbot', 'WhatsApp bot', 'Instagram bot', 'business automation', 'customer support automation',
+    // Feature keywords
+    '24/7 receptionist', 'appointment booking AI', 'call handling AI', 'multilingual AI',
+    // Industry keywords
+    'healthcare AI', 'legal AI', 'hospitality AI', 'retail AI', 'enterprise AI solutions',
+    // Geographic keywords
+    'US AI company', 'Turkey AI company', 'Cognia AI', 'AI consultancy',
+    // Benefit keywords
+    'reduce missed calls', 'increase bookings', 'AI customer service', 'voice automation'
+  ],
+  authors: [{ name: 'Cognia AI', url: 'https://cogniaai.com' }],
+  creator: 'Cognia AI',
+  publisher: 'Cognia AI',
+  metadataBase: new URL('https://cogniaai.com'),
+  applicationName: 'Cognia AI',
+  category: 'Technology',
+  classification: 'Business Software',
+  referrer: 'origin-when-cross-origin',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    alternateLocale: ['tr_TR'],
+    url: 'https://cogniaai.com',
+    siteName: 'Cognia AI',
+    title: 'Cognia AI - AI Receptionist & Voice Agents | Never Miss a Call',
+    description: 'Transform your business with AI receptionist solutions. 24/7 automated call handling, appointment booking, and customer support. 95% first-call resolution.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Cognia AI - AI Receptionist & Voice Agent Solutions',
+        type: 'image/png',
+      },
+    ],
+    countryName: 'United States',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@cognia_ai',
+    creator: '@cognia_ai',
+    title: 'Cognia AI - AI Receptionist & Voice Agents',
+    description: 'Never miss a call. Book 24/7. AI receptionist with 95% first-call resolution. Enterprise-grade security.',
+    images: {
+      url: '/og-image.png',
+      alt: 'Cognia AI - AI Receptionist Solutions',
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'googlea9ba80c2320d77e2',
+  },
+  alternates: {
+    canonical: 'https://cogniaai.com',
+    languages: {
+      'en-US': 'https://cogniaai.com',
+      'tr-TR': 'https://cogniaai.com?lang=tr',
+    },
+  },
+  other: {
+    'msapplication-TileColor': '#162B4D',
+    'msapplication-config': '/browserconfig.xml',
+  },
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning className="dark">
+      <head>
+        {/* Blocking script to prevent theme flash - runs before any paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (!theme) theme = 'dark';
+                  // Remove default class and add correct one
+                  document.documentElement.classList.remove('dark', 'light');
+                  document.documentElement.classList.add(theme);
+                  document.documentElement.style.colorScheme = theme;
+                  // Set background color immediately to prevent flash
+                  var bgColor = theme === 'dark' ? '#111827' : '#ffffff';
+                  document.documentElement.style.backgroundColor = bgColor;
+                } catch (e) {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.style.colorScheme = 'dark';
+                  document.documentElement.style.backgroundColor = '#111827';
+                }
+              })();
+            `,
+          }}
+        />
+        {/* Preconnect to critical third-party origins for faster resource loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.sanity.io" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+
+        {/* DNS prefetch for additional third-party domains */}
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        <link rel="dns-prefetch" href="https://platform.twitter.com" />
+        <link rel="dns-prefetch" href="https://www.linkedin.com" />
+
+        {/* Note: og-image.png is not preloaded as it's only needed for social sharing metadata */}
+
+        {/* Favicon and app icons */}
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/logo192.png" />
+        <link rel="manifest" href="/manifest.json" />
+
+        {/* PWA and mobile optimization */}
+        <meta name="theme-color" content="#162B4D" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Cognia AI" />
+        <meta name="mobile-web-app-capable" content="yes" />
+
+        {/* Additional SEO meta tags */}
+        <meta name="rating" content="General" />
+        <meta name="revisit-after" content="7 days" />
+        <meta httpEquiv="x-ua-compatible" content="IE=edge" />
+      </head>
+      <body className={`${inter.variable} ${sourceSerif.variable}`}>
+        {/* Skip to main content link for accessibility - visible on focus */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#162B4D] focus:text-white focus:rounded-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#162B4D] transition-all"
+        >
+          Skip to main content
+        </a>
+        <ClerkProviderWrapper>
+        <ThemeProvider>
+          <HelmetClientProvider>
+            <LanguageProvider>
+              <LeadCaptureProvider>
+                <VideoProvider>
+                  <TactileBackground />
+                  <FloatingAuthButton />
+                  <DarkModeToggle />
+                  <div className="w-full min-h-screen relative mesh-gradient transition-colors duration-300">
+                    {/* Level 2: Centering wrapper */}
+                    <div className="relative flex flex-col justify-start items-center w-full">
+                      {/* Level 3: Main content container - removed max-width to allow overflow */}
+                      <div className="w-full relative flex flex-col justify-start items-start min-h-screen">
+                        {/* Level 4: Actual content */}
+                        <div className="w-full relative z-10 flex flex-col flex-grow">
+                          <div className="w-full relative">
+                            <MobileNavbar />
+                            <div className="hidden lg:block">
+                              <Navbar />
+                            </div>
+                          </div>
+                          <main id="main-content" className="flex-grow" role="main" aria-label="Main content">
+                            {children}
+                          </main>
+                          <Footer />
+                          <CookieConsentBanner />
+                          <StickyMobileCTA />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </VideoProvider>
+              </LeadCaptureProvider>
+            </LanguageProvider>
+          </HelmetClientProvider>
+        </ThemeProvider>
+        </ClerkProviderWrapper>
+      </body>
+    </html>
+  )
+}
+

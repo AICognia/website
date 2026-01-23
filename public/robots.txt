@@ -1,0 +1,40 @@
+# Cognia AI Robots.txt
+# Allow all bots to crawl the site
+
+User-agent: *
+Allow: /
+Crawl-delay: 0
+
+# Explicitly allow AI and search engine bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Sitemap location
+Sitemap: https://cogniaai.com/sitemap.xml
