@@ -11,6 +11,8 @@ const testimonials = [
     author: "Jacob Ojalvo",
     role: "Owner",
     company: "My Smile Miami",
+    logo: "/logos/mysmilemiami.webp",
+    darkModeInvert: false,
     image: "/images/industries/healthcare.jpg"
   },
   {
@@ -18,6 +20,8 @@ const testimonials = [
     author: "Elite Auto Repair",
     role: "Auto Repair Shop",
     company: "Automotive",
+    logo: "/logos/hallsheatingandair.png",
+    darkModeInvert: true,
     image: "/images/industries/technology.jpg"
   }
 ];
@@ -164,7 +168,11 @@ const SocialProofSection: React.FC = () => {
               <div className="w-10/12">
                 <div className="flex h-full flex-col">
                   <div className={`mb-6 transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
-                    <img src="https://cdn.sanity.io/images/rjtqmwfu/web3-prod/09b6e6444aac06250b30224a8ba39c9df8eef1e0-100x50.svg" width="100" height="50" alt="Fujitsu Logo" className="h-12 w-auto sm:h-14" />
+                    <img
+                      src={currentTestimonial.logo}
+                      alt={`${currentTestimonial.company} Logo`}
+                      className={`h-12 w-auto sm:h-14 max-w-[180px] object-contain opacity-80 grayscale ${currentTestimonial.darkModeInvert ? 'dark:invert' : ''}`}
+                    />
                   </div>
                   
                   <div className={`mb-6 lg:mb-10 transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
@@ -245,7 +253,11 @@ const SocialProofSection: React.FC = () => {
           >
             <div className="flex flex-col">
               <div className="mb-4 sm:mb-6">
-                <img src="https://cdn.sanity.io/images/rjtqmwfu/web3-prod/09b6e6444aac06250b30224a8ba39c9df8eef1e0-100x50.svg" width="80" height="40" alt="Fujitsu Logo" className="h-8 sm:h-12 w-auto" />
+                <img
+                  src={currentTestimonial.logo}
+                  alt={`${currentTestimonial.company} Logo`}
+                  className={`h-8 sm:h-12 w-auto max-w-[140px] sm:max-w-[160px] object-contain opacity-80 grayscale ${currentTestimonial.darkModeInvert ? 'dark:invert' : ''}`}
+                />
               </div>
 
               <div className="mb-4 sm:mb-6">
