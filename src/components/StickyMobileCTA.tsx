@@ -11,10 +11,23 @@ const StickyMobileCTA: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [isDismissed, setIsDismissed] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [cookieConsented, setCookieConsented] = useState(false)
   const { resolvedTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
+    // Check if cookie consent already given
+    const hasConsent = localStorage.getItem('cognia_cookie_consent') === 'true'
+    setCookieConsented(hasConsent)
+
+    // Listen for cookie consent changes
+    const handleConsentChange = (e: CustomEvent) => {
+      if (e.detail?.consented) {
+        setCookieConsented(true)
+      }
+    }
+    window.addEventListener('cookieConsentChange', handleConsentChange as EventListener)
+    return () => window.removeEventListener('cookieConsentChange', handleConsentChange as EventListener)
   }, [])
 
   // Default to dark to prevent flash (dark is the default theme)
@@ -36,6 +49,12 @@ const StickyMobileCTA: React.FC = () => {
   }
 
   const handleScroll = useCallback(() => {
+    // Don't show until cookie consent is given
+    if (!cookieConsented) {
+      setIsVisible(false)
+      return
+    }
+
     const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
 
     if (scrollPercentage > 15 && !isDismissed) {
@@ -45,7 +64,7 @@ const StickyMobileCTA: React.FC = () => {
     if (scrollPercentage > 90) {
       setIsVisible(false)
     }
-  }, [isDismissed])
+  }, [isDismissed, cookieConsented])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
