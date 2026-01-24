@@ -52,7 +52,7 @@ export default function NotFound() {
               Looking for something specific?
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <Link href="/solutions" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/what-we-do" className="text-blue-600 dark:text-blue-400 hover:underline">
                 Solutions
               </Link>
               <span className="text-slate-300 dark:text-gray-600">|</span>

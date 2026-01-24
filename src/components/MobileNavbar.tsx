@@ -112,7 +112,6 @@ const MobileNavbar: React.FC = () => {
   const [showSolutions, setShowSolutions] = useState(false)
   const [showIndustries, setShowIndustries] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
   const { resolvedTheme, setTheme } = useTheme()
@@ -128,24 +127,34 @@ const MobileNavbar: React.FC = () => {
   const glassOpacity = isDark ? 0.55 : 0.30
   const glassBlur = 22
 
-  // Hide on scroll functionality
+  // Hide on scroll functionality - using ref to avoid re-attaching listener
   useEffect(() => {
+    let lastScrollYRef = 0
+    let ticking = false
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY
+      if (!ticking) {
+        // Throttle scroll handling using requestAnimationFrame
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY
 
-      if (currentScrollY <= 0 || currentScrollY < lastScrollY) {
-        setIsVisible(true)
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false)
-        setIsOpen(false)
+          if (currentScrollY <= 0 || currentScrollY < lastScrollYRef) {
+            setIsVisible(true)
+          } else if (currentScrollY > lastScrollYRef && currentScrollY > 100) {
+            setIsVisible(false)
+            setIsOpen(false)
+          }
+
+          lastScrollYRef = currentScrollY
+          ticking = false
+        })
+        ticking = true
       }
-
-      setLastScrollY(currentScrollY)
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [lastScrollY])
+  }, [])
 
   // Close menu on route change
   useEffect(() => {
@@ -453,6 +462,13 @@ const MobileNavbar: React.FC = () => {
                                     {industry.name}
                                   </Link>
                                 ))}
+                                <Link
+                                  href="/industries"
+                                  onClick={() => setIsOpen(false)}
+                                  className="block py-3 text-base font-medium transition-colors text-blue-600 dark:text-sky-400 hover:text-blue-700 dark:hover:text-sky-300"
+                                >
+                                  View All Industries →
+                                </Link>
                               </div>
                             </motion.div>
                           )}

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { ArrowRight } from 'lucide-react'
-import HeroBackgroundGrid from './HeroBackgroundGrid'
+import MobileHeroBackground from './MobileHeroBackground'
 
 const MobileHero: React.FC = () => {
   const [mounted, setMounted] = useState(false)
@@ -21,9 +21,9 @@ const MobileHero: React.FC = () => {
   return (
     <section className={`lg:hidden relative overflow-hidden transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
 
-      {/* Dynamic Background Grid */}
+      {/* Lightweight animated background - runs for 3s then pauses */}
       <div className="absolute inset-0">
-        <HeroBackgroundGrid isPlaying={false} />
+        <MobileHeroBackground />
       </div>
 
       {/* Gradient overlay for text readability */}
@@ -31,8 +31,8 @@ const MobileHero: React.FC = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           background: isDark
-            ? 'linear-gradient(to bottom, rgba(17,24,39,0.85) 0%, rgba(17,24,39,0.7) 40%, rgba(17,24,39,0.5) 100%)'
-            : 'linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.75) 40%, rgba(255,255,255,0.5) 100%)'
+            ? 'linear-gradient(to bottom, rgba(17,24,39,0.75) 0%, rgba(17,24,39,0.5) 50%, rgba(17,24,39,0.3) 100%)'
+            : 'linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.3) 100%)'
         }}
       />
 
@@ -77,7 +77,7 @@ const MobileHero: React.FC = () => {
           transition={{ duration: 0.4, delay: 0.1 }}
           className={`text-base leading-relaxed mb-8 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
         >
-          We unify your scattered enterprise data, deploy AI-powered analytics, and give your executives the insights they need.
+          We design and deploy AI solutions that automate your workflows, empower your teams, and accelerate your business.
         </motion.p>
 
         {/* Stats row - simpler design */}
@@ -88,9 +88,9 @@ const MobileHero: React.FC = () => {
           className="flex justify-between mb-8 px-2"
         >
           {[
-            { value: '50+', label: 'Businesses' },
-            { value: '100K+', label: 'Calls Handled' },
-            { value: '95%', label: 'Satisfaction' },
+            { value: '99.9%', label: 'Uptime SLA' },
+            { value: '3x', label: 'Faster Decisions' },
+            { value: '500+', label: 'Integrations' },
           ].map((stat, i) => (
             <div key={i} className="text-center">
               <div className={`text-2xl font-serif font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>

@@ -164,7 +164,7 @@ const BusinessIntelligence: React.FC = () => {
 
   const industries = [
     { icon: FaIndustry, name: 'Manufacturing', desc: 'Production optimization & supply chain' },
-    { icon: FaBuilding, name: 'Financial Services', desc: 'Risk analytics & compliance reporting' },
+    { icon: FaBuilding, name: 'Financial Services', desc: 'Risk analytics & performance reporting' },
     { icon: FaShoppingCart, name: 'Retail & E-commerce', desc: 'Inventory & customer insights' },
     { icon: FaHeartbeat, name: 'Healthcare', desc: 'Patient outcomes & operations' },
   ]
@@ -654,7 +654,7 @@ const BusinessIntelligence: React.FC = () => {
               Built for Your Industry
             </h2>
             <p className={`text-base sm:text-lg max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-              Our platform adapts to your industry's unique data landscape, compliance requirements, and strategic priorities.
+              Our platform adapts to your industry's unique data landscape, security requirements, and strategic priorities.
             </p>
           </motion.div>
 

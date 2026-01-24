@@ -248,7 +248,7 @@ export default function RelatedContent({
 
         <div className="mt-8 text-center">
           <Link
-            href="/solutions"
+            href="/what-we-do"
             className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors ${
               isDark
                 ? 'bg-blue-600 hover:bg-blue-700 text-white'

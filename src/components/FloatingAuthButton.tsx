@@ -32,10 +32,10 @@ export default function FloatingAuthButton() {
   const glassOpacity = isDark ? 0.55 : 0.30
   const glassBlur = 22
 
-  // Position: to the left of dark mode toggle (which is at right-6, width 56px)
-  // right-6 = 24px, toggle width = 56px, gap = 8px
-  // So auth button right = 24px + 56px + 8px = 88px
-  const rightPosition = 'calc(1.5rem + 56px + 8px)' // right-6 (1.5rem/24px) + toggle width + gap
+  // Position: to the left of dark mode toggle
+  // Dark mode toggle is at right: 1rem, width 56px, 8px gap
+  // Auth button is positioned to the left of that
+  const rightPosition = 'calc(1rem + 56px + 8px)'
 
   const baseButtonStyles = {
     background: isDark
@@ -51,7 +51,7 @@ export default function FloatingAuthButton() {
   if (!mounted) {
     return (
       <div
-        className="hidden lg:block fixed top-2 sm:top-3 z-[100] h-12 sm:h-14 rounded-[1rem] sm:rounded-[1.25rem]"
+        className="hidden xl:block fixed top-2 sm:top-3 z-[100] h-12 sm:h-14 rounded-[1rem] sm:rounded-[1.25rem]"
         style={{
           right: rightPosition,
           background: 'rgba(17, 24, 39, 0.55)',
@@ -65,7 +65,7 @@ export default function FloatingAuthButton() {
   if (isSignedIn) {
     return (
       <div
-        className="hidden lg:block fixed top-2 sm:top-3 z-[100]"
+        className="hidden xl:block fixed top-2 sm:top-3 z-[100]"
         style={{ right: rightPosition }}
       >
         <motion.button
@@ -158,7 +158,7 @@ export default function FloatingAuthButton() {
     <Link href="/sign-in">
       <motion.div
         className={`
-          hidden lg:flex
+          hidden xl:flex
           fixed top-2 sm:top-3 z-[100]
           h-12 sm:h-14 rounded-[1rem] sm:rounded-[1.25rem]
           flex items-center justify-center gap-2

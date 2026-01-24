@@ -192,7 +192,7 @@ const CRMIntegration: React.FC = () => {
                 <FaArrowRight className="text-sm" />
               </Link>
               <Link
-                href="/solutions"
+                href="/what-we-do"
                 className="px-6 sm:px-8 py-3 sm:py-4 border border-gray-200 hover:bg-gray-50 text-white text-base sm:text-lg font-medium rounded-md transition-colors w-full sm:w-auto text-center"
               >
                 View All Features
@@ -200,7 +200,7 @@ const CRMIntegration: React.FC = () => {
             </div>
 
             <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-xs text-gray-500">
-              <span className="flex items-center gap-2"><FaCheckCircle />100+ Integrations</span>
+              <span className="flex items-center gap-2"><FaCheckCircle />500+ Integrations</span>
               <span className="flex items-center gap-2"><FaCheckCircle />Real-Time Sync</span>
               <span className="flex items-center gap-2"><FaCheckCircle />Easy Setup</span>
               <span className="flex items-center gap-2"><FaCheckCircle />Custom API</span>

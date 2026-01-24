@@ -48,7 +48,7 @@ export const seoConfig: Record<string, PageSEO> = {
       tr: ['AI çözümleri', 'sesli asistan çözümleri', 'chatbot çözümleri', 'kurumsal AI', 'sektörel AI', 'AI otomasyon', 'müşteri desteği AI', 'WhatsApp AI', 'Instagram chatbot', 'telefon otomasyonu', 'çok kanallı AI', 'CRM AI entegrasyonu'],
       en: ['AI solutions', 'voice agent solutions', 'chatbot solutions', 'enterprise AI', 'industry AI', 'AI automation', 'customer support AI', 'WhatsApp AI', 'Instagram chatbot', 'phone automation', 'omnichannel AI', 'CRM AI integration']
     },
-    canonicalPath: '/solutions',
+    canonicalPath: '/what-we-do',
     ogImage: '/og-image.png'
   },
   platform: {

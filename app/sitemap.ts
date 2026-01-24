@@ -6,12 +6,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const mainPages = [
     { url: '', priority: 1.0, changeFrequency: 'daily' as const },
-    { url: '/solutions', priority: 0.95, changeFrequency: 'weekly' as const },
+    { url: '/what-we-do', priority: 0.95, changeFrequency: 'weekly' as const },
     { url: '/demo', priority: 0.95, changeFrequency: 'weekly' as const },
     { url: '/products/ai-receptionist', priority: 0.95, changeFrequency: 'weekly' as const },
     { url: '/contact', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/about', priority: 0.85, changeFrequency: 'monthly' as const },
-    { url: '/what-we-do', priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: '/industries', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/business-intelligence', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/solutions/chatbot', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/solutions/workflow-automation', priority: 0.9, changeFrequency: 'weekly' as const },

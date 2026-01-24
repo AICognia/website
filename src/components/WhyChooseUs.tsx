@@ -26,6 +26,41 @@ export interface OrbitingCirclesProps {
   path?: boolean
 }
 
+// Data Fragmentation Bars - animates once on mount, no re-triggers
+const DataFragmentationBars = ({ isDark }: { isDark: boolean }) => {
+  const [hasAnimated, setHasAnimated] = useState(false)
+  const barHeights = [35, 55, 40, 65, 50, 75, 60, 85, 70, 95]
+
+  return (
+    <div className="flex-1 w-full h-24 sm:h-28 md:h-32 flex items-end justify-between gap-1 sm:gap-1.5 px-1 sm:px-2 relative">
+      {/* Decorative background glow */}
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary/5 to-transparent blur-xl pointer-events-none" />
+
+      {barHeights.map((height, i) => (
+        <div
+          key={i}
+          className={`flex-1 rounded-full relative overflow-hidden ${isDark ? 'bg-gray-700/50' : 'bg-slate-200/50'}`}
+          style={{ height: `${height}%` }}
+        >
+          <motion.div
+            initial={{ height: 0 }}
+            whileInView={{ height: '65%' }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ delay: i * 0.08, duration: 0.8, ease: "easeOut" }}
+            onAnimationComplete={() => setHasAnimated(true)}
+            className={`absolute bottom-0 left-0 w-full rounded-full ${
+              i % 7 === 0 || i % 7 === 3 ? 'bg-gradient-to-t from-primary/60 to-primary-light' : 'bg-gradient-to-t from-primary/80 to-primary-light'
+            }`}
+            style={hasAnimated ? { height: '65%' } : undefined}
+          >
+            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white/20 to-transparent" />
+          </motion.div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function OrbitingCircles({
   className,
   children,
@@ -119,30 +154,7 @@ const WhyChooseUs: React.FC = () => {
                                     <span className="hidden sm:inline">Every department works in a different system: inventory in one place, sales in another platform, logistics in the ERP.</span>
                                 </p>
                             </div>
-                            <div className="flex-1 w-full h-24 sm:h-28 md:h-32 flex items-end justify-between gap-1 sm:gap-1.5 px-1 sm:px-2 relative">
-                                {/* Decorative background glow */}
-                                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary/5 to-transparent blur-xl pointer-events-none" />
-
-                                {[35, 55, 40, 65, 50, 75, 60, 85, 70, 95].map((height, i) => (
-                                    <div
-                                        key={i}
-                                        className={`flex-1 rounded-full relative overflow-hidden ${isDark ? 'bg-gray-700/50' : 'bg-slate-200/50'}`}
-                                        style={{ height: `${height}%` }}
-                                    >
-                                        <motion.div
-                                            initial={{ height: 0 }}
-                                            whileInView={{ height: '65%' }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: i * 0.1, duration: 1 }}
-                                            className={`absolute bottom-0 left-0 w-full rounded-full ${
-                                                i % 7 === 0 || i % 7 === 3 ? 'bg-gradient-to-t from-primary/60 to-primary-light' : 'bg-gradient-to-t from-primary/80 to-primary-light'
-                                            }`}
-                                        >
-                                            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white/20 to-transparent" />
-                                        </motion.div>
-                                    </div>
-                                ))}
-                            </div>
+                            <DataFragmentationBars isDark={isDark} />
                         </motion.div>
 
                         {/* Card 2: Security & Compliance */}

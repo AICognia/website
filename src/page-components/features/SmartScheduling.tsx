@@ -246,7 +246,7 @@ const SmartScheduling: React.FC = () => {
                 <FaArrowRight className="text-sm" />
               </Link>
               <Link
-                href="/solutions"
+                href="/what-we-do"
                 className="px-6 sm:px-8 py-3 sm:py-4 border border-gray-200 hover:bg-gray-50 text-white text-base sm:text-lg font-medium rounded-md transition-colors w-full sm:w-auto text-center"
               >
                 View All Features

@@ -25,8 +25,8 @@ const industries = [
     name: 'Healthcare',
     path: '/industries/healthcare',
     icon: FaHospital,
-    description: 'HIPAA-compliant AI for patient scheduling, appointment reminders, and care coordination.',
-    features: ['HIPAA Compliant', '24/7 Patient Calls', 'EHR Integration', 'Appointment Reminders'],
+    description: 'Secure AI for patient scheduling, appointment reminders, and care coordination.',
+    features: ['Enterprise Security', '24/7 Patient Calls', 'EHR Integration', 'Appointment Reminders'],
     color: 'blue'
   },
   {
@@ -66,6 +66,47 @@ const industries = [
 const Industries: React.FC = () => {
   const [mounted, setMounted] = useState(false)
   const { resolvedTheme } = useTheme()
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('https://formspree.io/f/mqarlrwl', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `Industries Page Inquiry from ${formData.name}${formData.company ? ` at ${formData.company}` : ''}`,
+          form_type: 'industries_contact',
+          source: 'industries_page',
+          submitted_at: new Date().toISOString(),
+        }),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', company: '', message: '' })
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch {
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -403,7 +444,7 @@ const Industries: React.FC = () => {
             {[
               { icon: FaHeadset, title: '24/7 Coverage', desc: 'Never miss a call. Our AI handles inquiries around the clock.' },
               { icon: FaGlobe, title: '45+ Languages', desc: 'Serve customers in their preferred language, automatically.' },
-              { icon: FaCheckCircle, title: 'Compliance Ready', desc: 'HIPAA, SOC 2, and industry-specific compliance built in.' }
+              { icon: FaCheckCircle, title: 'Enterprise Security', desc: 'Industry-leading security standards built in.' }
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -425,7 +466,7 @@ const Industries: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section - Explore Solutions */}
       <section className={`py-12 sm:py-16 md:py-24 lg:py-32 ${isDark ? 'bg-gray-800/30' : 'bg-slate-50/50'}`}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
@@ -433,40 +474,128 @@ const Industries: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className={`rounded-2xl sm:rounded-[2rem] border p-6 sm:p-10 lg:p-16 text-center ${isDark ? 'border-gray-700' : 'border-slate-200'}`}
+            className={`rounded-2xl sm:rounded-[2rem] border p-6 sm:p-10 lg:p-12 ${isDark ? 'border-gray-700' : 'border-[#e2e8f0]'}`}
             style={glassStyle}
           >
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-normal mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-              Ready to Transform Your Industry?
-            </h2>
-            <p className={`text-base sm:text-lg max-w-2xl mx-auto mb-6 sm:mb-8 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-              Schedule a free consultation to see how AI can work for your specific needs.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link
-                href="/demo"
-                className="btn-primary h-12 sm:h-14 px-6 sm:px-8 rounded-xl flex items-center justify-center gap-2 text-base sm:text-lg w-full sm:w-auto"
-              >
-                <FaCalendarCheck />
-                Schedule Demo
-              </Link>
-              <a
-                href="tel:+16163263328"
-                className={`h-12 sm:h-14 px-6 sm:px-8 rounded-xl flex items-center justify-center gap-2 text-base sm:text-lg border transition-colors w-full sm:w-auto ${isDark ? 'border-gray-600 text-gray-300 hover:bg-gray-800' : 'border-slate-200 text-slate-700 hover:bg-slate-50'}`}
-              >
-                <FaPhone className="text-sm" />
-                Talk to Expert
-              </a>
-            </div>
-
-            <div className="mt-6 sm:mt-10 flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-[10px] sm:text-xs">
-              {['Enterprise Ready', 'HIPAA Compliant', 'SOC 2 Certified', '24/7 Support'].map((item, i) => (
-                <span key={i} className={`flex items-center gap-1 sm:gap-2 ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-                  <FaCheckCircle className={`text-[10px] sm:text-xs ${isDark ? 'text-blue-400' : 'text-blue-500'}`} />
-                  {item}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              {/* Left Content */}
+              <div>
+                <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full mb-4 sm:mb-6 ${isDark ? 'text-blue-400 bg-blue-900/30' : 'text-blue-600 bg-blue-50'}`}>
+                  Next Steps
                 </span>
-              ))}
+                <h2 className={`text-2xl sm:text-3xl md:text-4xl font-serif font-normal mb-4 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+                  Ready to Transform Your Operations?
+                </h2>
+                <p className={`text-base sm:text-lg mb-6 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+                  Explore our full suite of AI solutions or schedule a consultation to discuss your specific needs.
+                </p>
+
+                <div className="space-y-3 mb-6">
+                  {['Custom AI solutions for your industry', 'Seamless integration with existing systems', 'Dedicated support & implementation team'].map((item, i) => (
+                    <div key={i} className={`flex items-center gap-3 text-sm ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
+                      <FaCheckCircle className={`flex-shrink-0 ${isDark ? 'text-blue-400' : 'text-blue-500'}`} />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link
+                    href="/what-we-do"
+                    className={`h-12 px-6 rounded-xl flex items-center justify-center gap-2 text-sm font-medium border transition-all w-full sm:w-auto ${isDark ? 'border-gray-600 text-gray-200 hover:bg-gray-700/50 hover:border-gray-500' : 'border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300'}`}
+                  >
+                    <span>Explore Solutions</span>
+                    <FaArrowRight className="w-3 h-3" />
+                  </Link>
+                  <Link
+                    href="/demo"
+                    className="btn-primary h-12 px-6 rounded-xl flex items-center justify-center gap-2 text-sm w-full sm:w-auto"
+                  >
+                    <FaCalendarCheck />
+                    Schedule Demo
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right - Quick Contact Form */}
+              <div className={`rounded-2xl border p-5 sm:p-6 ${isDark ? 'border-gray-600 bg-gray-800/50' : 'border-slate-200 bg-white/50'}`}>
+                <h3 className={`text-lg font-serif font-medium mb-4 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+                  Get in Touch
+                </h3>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input
+                      type="text"
+                      placeholder="Your name"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${isDark ? 'border-gray-600 bg-gray-700/80 text-white placeholder-gray-500' : 'border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400'}`}
+                    />
+                    <input
+                      type="email"
+                      placeholder="Work email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${isDark ? 'border-gray-600 bg-gray-700/80 text-white placeholder-gray-500' : 'border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400'}`}
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Company name"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${isDark ? 'border-gray-600 bg-gray-700/80 text-white placeholder-gray-500' : 'border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400'}`}
+                  />
+                  <textarea
+                    placeholder="Tell us about your needs..."
+                    rows={3}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none ${isDark ? 'border-gray-600 bg-gray-700/80 text-white placeholder-gray-500' : 'border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400'}`}
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-primary w-full h-12 rounded-xl text-sm disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <span>Send Message</span>
+                    )}
+                  </button>
+
+                  {submitStatus !== 'idle' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`p-3 rounded-xl text-center text-sm font-medium ${
+                        submitStatus === 'success'
+                          ? isDark ? 'bg-green-900/30 text-green-400 border border-green-500/30' : 'bg-green-50 text-green-700 border border-green-200'
+                          : isDark ? 'bg-red-900/30 text-red-400 border border-red-500/30' : 'bg-red-50 text-red-700 border border-red-200'
+                      }`}
+                    >
+                      {submitStatus === 'success'
+                        ? "Thank you! We'll be in touch soon."
+                        : 'Something went wrong. Please try again.'}
+                    </motion.div>
+                  )}
+                </form>
+
+                {submitStatus === 'idle' && (
+                  <p className={`text-xs text-center mt-4 ${isDark ? 'text-gray-500' : 'text-slate-400'}`}>
+                    We'll respond within 24 hours
+                  </p>
+                )}
+              </div>
             </div>
           </motion.div>
         </div>

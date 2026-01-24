@@ -29,9 +29,9 @@ const features = [
 ];
 
 const stats = [
-  { value: '50+', label: 'Businesses Served' },
-  { value: '100K+', label: 'Calls Handled' },
-  { value: '95%', label: 'Satisfaction Rate' },
+  { value: '99.9%', label: 'Uptime SLA' },
+  { value: '3x', label: 'Faster Decisions' },
+  { value: '500+', label: 'Integrations' },
 ];
 
 const Demo: React.FC = () => {

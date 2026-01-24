@@ -25,11 +25,18 @@ export default function DarkModeToggle() {
   const glassOpacity = isDark ? 0.55 : 0.30
   const glassBlur = 22
 
+  // Calculate right position: navbar is max-w-5xl (1024px) centered
+  // The space between navbar edge and viewport edge is: (100vw - 1024px) / 2
+  // We position the button within that space, 16px from the right edge
+  // Only show on xl: screens (1280px+) to ensure enough space
+  const rightPosition = '1rem'
+
   if (!mounted) {
     return (
       <div
-        className="hidden lg:block fixed top-2 sm:top-3 right-3 sm:right-6 z-[100] w-12 sm:w-14 h-12 sm:h-14 rounded-[1rem] sm:rounded-[1.25rem]"
+        className="hidden xl:block fixed top-2 sm:top-3 z-[100] w-12 sm:w-14 h-12 sm:h-14 rounded-[1rem] sm:rounded-[1.25rem]"
         style={{
+          right: rightPosition,
           background: 'rgba(17, 24, 39, 0.55)',
           backdropFilter: 'blur(22px)',
         }}
@@ -45,8 +52,8 @@ export default function DarkModeToggle() {
     <motion.button
       onClick={toggleTheme}
       className={`
-        hidden lg:flex
-        fixed top-2 sm:top-3 right-3 sm:right-6 z-[100]
+        hidden xl:flex
+        fixed top-2 sm:top-3 z-[100]
         w-12 sm:w-14 h-12 sm:h-14 rounded-[1rem] sm:rounded-[1.25rem]
         flex items-center justify-center
         border shadow-lg
@@ -59,6 +66,7 @@ export default function DarkModeToggle() {
         }
       `}
       style={{
+        right: rightPosition,
         background: isDark
           ? `rgba(17, 24, 39, ${glassOpacity})`
           : `rgba(255, 255, 255, ${glassOpacity})`,

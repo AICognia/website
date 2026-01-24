@@ -91,8 +91,8 @@ const WorkflowAutomation: React.FC = () => {
     {
       icon: FaPlug,
       title: 'Connect Everything',
-      description: 'Link your CRM, calendar, email, billing, and 1000+ other tools. No more copy-pasting between systems.',
-      features: ['1000+ Integrations', 'API Connections', 'Custom Webhooks', 'Real-time Sync']
+      description: 'Link your CRM, calendar, email, billing, and 500+ other tools. No more copy-pasting between systems.',
+      features: ['500+ Integrations', 'API Connections', 'Custom Webhooks', 'Real-time Sync']
     },
     {
       icon: FaBolt,
@@ -126,7 +126,7 @@ const WorkflowAutomation: React.FC = () => {
   const stats = [
     { value: '10+', label: 'Hours Saved Weekly' },
     { value: '99.9%', label: 'Accuracy Rate' },
-    { value: '1000+', label: 'App Integrations' },
+    { value: '500+', label: 'App Integrations' },
   ]
 
   return (
@@ -134,7 +134,7 @@ const WorkflowAutomation: React.FC = () => {
       <SEO
         page="solutions"
         customTitle="Workflow Automation - Stop Doing Repetitive Work | Cognia AI"
-        customDescription="Custom automations that connect your tools, eliminate manual tasks, and free your team to focus on what matters. 1000+ integrations, instant triggers, error-free operations."
+        customDescription="Custom automations that connect your tools, eliminate manual tasks, and free your team to focus on what matters. 500+ integrations, instant triggers, error-free operations."
       />
 
       {/* Mobile Hero */}

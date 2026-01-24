@@ -21,7 +21,7 @@ const IndustriesSection: React.FC = () => {
     {
       icon: FaHospital,
       title: 'Healthcare & Medical',
-      description: 'Patient scheduling, clinical workflows, compliance automation'
+      description: 'Patient scheduling, clinical workflows, workflow automation'
     },
     {
       icon: FaHotel,

@@ -184,15 +184,15 @@ const Hero: React.FC = () => {
               </h1>
 
               <p className={`text-lg lg:text-xl 2xl:text-2xl max-w-xl lg:max-w-2xl mb-8 lg:mb-10 leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-                We unify your scattered enterprise data, deploy AI-powered analytics, and give your executives the insights they need.
+                We design and deploy AI solutions that automate your workflows, empower your teams, and accelerate your business.
               </p>
 
               {/* Stats Row */}
               <div className="flex flex-wrap items-stretch gap-4 lg:gap-5">
                 {[
-                  { val: '50+', label: 'Businesses Served' },
-                  { val: '100K+', label: 'Calls Handled' },
-                  { val: '95%', label: 'Satisfaction Rate' },
+                  { val: '99.9%', label: 'Uptime SLA' },
+                  { val: '3x', label: 'Faster Decisions' },
+                  { val: '500+', label: 'Integrations' },
                 ].map((item, i) => (
                   <motion.div
                     key={i}

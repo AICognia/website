@@ -13,7 +13,7 @@ const testimonials = [
     company: "My Smile Miami",
     logo: "/logos/mysmilemiami.webp",
     darkModeInvert: false,
-    image: "/images/industries/healthcare.jpg"
+    image: "/images/industries/dental.jpg"
   },
   {
     quote: "It took about a week to get everything set up, which honestly wasn't bad considering how busy we were at the time. Before this, we were missing way more calls than we ever thought. After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we're tied up or out on the road, and customers get a response right away instead of voicemail. Over the last few weeks, we've noticed a pretty clear bump in jobs coming in. You stop missing calls, you stop missing work.",
@@ -22,7 +22,7 @@ const testimonials = [
     company: "Automotive",
     logo: "/logos/hallsheatingandair.png",
     darkModeInvert: true,
-    image: "/images/industries/technology.jpg"
+    image: "/images/industries/autorepair.jpeg"
   }
 ];
 
@@ -334,7 +334,7 @@ const SocialProofSection: React.FC = () => {
 
         {/* CTA Section */}
         <div className="mt-10 sm:mt-12 md:mt-16 text-center">
-          <p className={`text-xs sm:text-sm font-serif mb-4 sm:mb-6 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>Join 50+ businesses answering every call with AI</p>
+          <p className={`text-xs sm:text-sm font-serif mb-4 sm:mb-6 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>Join 50+ businesses transforming with AI</p>
           <Link
             href="/demo"
             className="btn-primary h-10 sm:h-12 px-6 sm:px-8 rounded-full text-sm sm:text-base w-full sm:w-auto inline-flex justify-center"

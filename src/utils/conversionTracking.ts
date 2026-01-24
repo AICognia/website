@@ -68,12 +68,17 @@ class ConversionTracker {
     }
 
     if ((window as any).gtag) {
-      (window as any).gtag('event', 'conversion', {
-        send_to: 'AW-XXXXXXXXX/XXXXX',
-        value: event.value,
-        currency: event.currency,
-        transaction_id: Date.now().toString()
-      });
+      // TODO: Replace with actual Google Ads conversion ID before going live
+      // Format: 'AW-XXXXXXXXX/XXXXX' - Get this from Google Ads > Conversions
+      const GOOGLE_ADS_CONVERSION_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
+      if (GOOGLE_ADS_CONVERSION_ID) {
+        (window as any).gtag('event', 'conversion', {
+          send_to: GOOGLE_ADS_CONVERSION_ID,
+          value: event.value,
+          currency: event.currency,
+          transaction_id: Date.now().toString()
+        });
+      }
     }
 
     if ((window as any).leadsy) {

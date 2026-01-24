@@ -143,9 +143,9 @@ const Contact: React.FC = () => {
   ]
 
   const stats = [
-    { value: '24h', label: language === 'tr' ? 'Yanıt Süresi' : 'Response Time' },
-    { value: '50+', label: language === 'tr' ? 'İşletme' : 'Businesses Served' },
-    { value: '95%', label: language === 'tr' ? 'Memnuniyet' : 'Satisfaction' },
+    { value: '99.9%', label: language === 'tr' ? 'Çalışma Süresi' : 'Uptime SLA' },
+    { value: '3x', label: language === 'tr' ? 'Daha Hızlı' : 'Faster Decisions' },
+    { value: '500+', label: language === 'tr' ? 'Entegrasyon' : 'Integrations' },
   ]
 
   return (

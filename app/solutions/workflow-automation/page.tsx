@@ -3,7 +3,7 @@ import WorkflowAutomationClient from './WorkflowAutomationClient'
 
 export const metadata: Metadata = {
   title: 'Workflow Automation - Stop Doing Repetitive Work',
-  description: 'Custom automations that connect your tools, eliminate manual tasks, and free your team. 1000+ app integrations, instant triggers, bi-directional sync, and error-free operations.',
+  description: 'Custom automations that connect your tools, eliminate manual tasks, and free your team. 500+ app integrations, instant triggers, bi-directional sync, and error-free operations.',
   keywords: [
     'workflow automation', 'business automation', 'process automation', 'task automation',
     'Zapier alternative', 'automation platform', 'CRM automation', 'lead automation',
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Workflow Automation | Stop Doing Repetitive Work',
-    description: 'Connect 1000+ tools. Eliminate manual tasks. Save 10+ hours weekly.',
+    description: 'Connect 500+ tools. Eliminate manual tasks. Save 10+ hours weekly.',
     url: 'https://cogniaai.com/solutions/workflow-automation',
     type: 'website',
   },
