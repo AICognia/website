@@ -8,6 +8,7 @@ import { FaPhone, FaClock, FaCalendarCheck, FaGlobe, FaChartLine, FaShieldAlt, F
 import { ArrowRight } from 'lucide-react'
 import SEO from '../../components/SEO'
 import HeroBackgroundGrid from '../../components/HeroBackgroundGrid'
+import MobileHeroBackground from '../../components/MobileHeroBackground'
 import VoiceDemo from '../../components/VoiceDemo'
 
 const AIReceptionist: React.FC = () => {
@@ -106,39 +107,39 @@ const AIReceptionist: React.FC = () => {
   const features = [
     {
       icon: FaClock,
-      title: '24/7 Availability',
-      description: 'Never miss a call again. Our AI receptionist answers every call instantly, day or night, weekends and holidays included.',
-      features: ['Instant Answer', 'No Hold Times', 'Holiday Coverage', 'Overflow Handling']
+      title: '24/7 Voice Agent',
+      description: 'Phone calls handled on autopilot. Our AI answers every call instantly with human-like conversations, day or night, weekends and holidays included.',
+      features: ['Instant Answer', 'No Hold Times', 'Natural Conversations', 'Overflow Handling']
+    },
+    {
+      icon: FaChartLine,
+      title: 'Lead Generation & Scoring',
+      description: 'Qualify, score, and route leads automatically. Every call becomes structured data with intent signals and priority ranking.',
+      features: ['Auto-Qualification', 'Lead Scoring', 'Smart Routing', 'Intent Detection']
+    },
+    {
+      icon: FaBell,
+      title: 'SMS Automation',
+      description: 'Reminders and follow-ups at scale. Automatic appointment confirmations, follow-up sequences, and two-way SMS conversations.',
+      features: ['Auto-Reminders', 'Follow-up Sequences', 'Two-Way SMS', 'Bulk Messaging']
+    },
+    {
+      icon: FaCalendarCheck,
+      title: 'Smart Scheduling',
+      description: 'Book, confirm, and reschedule meetings automatically. Seamlessly integrates with your existing calendar systems.',
+      features: ['Calendar Sync', 'Auto-Booking', 'Confirmations', 'Conflict Detection']
+    },
+    {
+      icon: FaRobot,
+      title: 'Sales Assistant & CRM',
+      description: 'CRM enrichment and AI outreach. Automatically log calls, update records, and trigger follow-up sequences in Salesforce, HubSpot, and more.',
+      features: ['CRM Enrichment', 'Auto-Logging', 'AI Outreach', 'Custom APIs']
     },
     {
       icon: FaGlobe,
       title: 'Multi-Language Support',
       description: 'Communicate with customers in their preferred language. Support for 30+ languages with natural, fluent conversations.',
       features: ['30+ Languages', 'Auto-Detection', 'Native Fluency', 'Cultural Awareness']
-    },
-    {
-      icon: FaCalendarCheck,
-      title: 'Smart Scheduling',
-      description: 'Automatically book, reschedule, and manage appointments. Seamlessly integrates with your existing calendar systems.',
-      features: ['Calendar Sync', 'Auto-Booking', 'Reminders', 'Conflict Detection']
-    },
-    {
-      icon: FaChartLine,
-      title: 'Analytics Dashboard',
-      description: 'Gain insights into call patterns, customer sentiment, and business opportunities with comprehensive analytics.',
-      features: ['Call Analytics', 'Sentiment Analysis', 'Peak Hour Reports', 'Lead Scoring']
-    },
-    {
-      icon: FaShieldAlt,
-      title: 'Enterprise Security',
-      description: 'Bank-level security with end-to-end encryption for all conversations and comprehensive audit logging.',
-      features: ['Data Encryption', 'Secure Storage', 'Encryption', 'Audit Logs']
-    },
-    {
-      icon: FaRobot,
-      title: 'CRM Integration',
-      description: 'Seamlessly connects with Salesforce, HubSpot, and other CRMs. Automatically log calls and update customer records.',
-      features: ['Salesforce', 'HubSpot', 'Zoho CRM', 'Custom APIs']
     }
   ]
 
@@ -160,13 +161,13 @@ const AIReceptionist: React.FC = () => {
     <div className="min-h-screen transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <SEO
         page="solutions"
-        customTitle="AI Receptionist - 24/7 Intelligent Call Handling | Cognia AI"
-        customDescription="Transform your business communications with Cognia AI's AI Receptionist. 24/7 availability, multi-language support, smart scheduling, and seamless CRM integration."
+        customTitle="AI Voice Agent - Calls, Lead Scoring, SMS, CRM Automation | Cognia AI"
+        customDescription="Phone calls handled on autopilot. Qualify and score leads automatically. SMS reminders at scale. CRM enrichment and AI outreach. 24/7 availability, 30+ languages."
       />
 
       <section className={`lg:hidden relative overflow-hidden transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
         <div className="absolute inset-0">
-          <HeroBackgroundGrid isPlaying={false} />
+          <MobileHeroBackground />
         </div>
 
         <div
@@ -217,7 +218,7 @@ const AIReceptionist: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className={`text-base leading-relaxed mb-8 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
           >
-            Transform every phone call into a business opportunity. Our AI receptionist handles calls with human-like intelligence, 24/7.
+            Phone calls on autopilot. Lead scoring. SMS at scale. CRM enrichment. All handled by AI, 24/7.
           </motion.p>
 
           <motion.div
@@ -343,7 +344,7 @@ const AIReceptionist: React.FC = () => {
                 </h1>
 
                 <p className={`text-base sm:text-lg lg:text-xl 2xl:text-2xl max-w-xl lg:max-w-2xl mb-5 sm:mb-8 lg:mb-10 leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-                  Transform every phone call into a business opportunity. Our AI receptionist handles calls with human-like intelligence, 24/7.
+                  Phone calls handled on autopilot. Qualify and score leads automatically. Send SMS reminders at scale. CRM enrichment and AI outreach—all in one.
                 </p>
 
                 <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-stretch gap-2 sm:gap-4 lg:gap-5 mb-5 sm:mb-8">
@@ -541,10 +542,10 @@ const AIReceptionist: React.FC = () => {
                 Capabilities
               </span>
               <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                Everything You Need in an AI Receptionist
+                Complete Customer-Facing AI
               </h2>
               <p className={`text-base sm:text-lg mb-4 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-                Powerful features designed for modern businesses that demand excellence in customer communication.
+                Voice, SMS, lead generation, and CRM automation—everything you need to capture and convert more customers.
               </p>
 
               <div className="mt-5 sm:mt-8">
@@ -741,21 +742,26 @@ const AIReceptionist: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-3xl mx-auto"
           >
-            <FaQuoteLeft className={`text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 mx-auto ${isDark ? 'text-gray-700' : 'text-slate-200'}`} />
-            <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed mb-6 sm:mb-8 font-serif ${isDark ? 'text-white' : 'text-slate-800'}`}>
-              "Working with Cognia has been a game-changer for our office. What I appreciate the most is how they completely transformed our Monday mornings. Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time. And if a patient requests an appointment over the weekend, Cognia schedules it for us — no backlog, no delays."
-            </p>
-            <div className="flex items-center justify-center gap-3 sm:gap-4">
-              <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${isDark ? 'bg-blue-900/50' : 'bg-blue-100'}`}>
-                <span className={`text-sm sm:text-base font-bold ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
-                  JO
-                </span>
-              </div>
-              <div className="text-left">
-                <div className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Jacob Ojalvo</div>
-                <div className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Owner, My Smile Miami</div>
+            <div
+              className={`rounded-2xl border p-6 sm:p-8 lg:p-10 aspect-square flex flex-col items-center justify-center text-center ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200 bg-white'}`}
+              style={glassStyle}
+            >
+              <FaQuoteLeft className={`text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 ${isDark ? 'text-blue-500/30' : 'text-blue-200'}`} />
+              <p className={`text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8 font-serif ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                "Working with Cognia has been a game-changer for our office. What I appreciate the most is how they completely transformed our Monday mornings. Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time."
+              </p>
+              <div className="flex items-center justify-center gap-3 sm:gap-4">
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${isDark ? 'bg-blue-900/50' : 'bg-blue-100'}`}>
+                  <span className={`text-sm sm:text-base font-bold ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
+                    JO
+                  </span>
+                </div>
+                <div className="text-left">
+                  <div className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Jacob Ojalvo</div>
+                  <div className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Office Manager, My Smile Miami</div>
+                </div>
               </div>
             </div>
           </motion.div>

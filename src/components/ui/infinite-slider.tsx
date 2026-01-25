@@ -1,8 +1,6 @@
 'use client';
 import { cn } from '@/src/lib/utils';
-import { useMotionValue, animate, motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import useMeasure from 'react-use-measure';
+import { useRef, useEffect, useState, useId } from 'react';
 
 type InfiniteSliderProps = {
     children: React.ReactNode;
@@ -23,93 +21,66 @@ export function InfiniteSlider({
     durationOnHover,
     direction = 'horizontal',
     reverse = false,
-    speed,
-    speedOnHover,
     className,
 }: InfiniteSliderProps) {
-    // Use speed if provided, otherwise fall back to duration
-    const actualDuration = speed ? 60 / speed : duration;
-    const actualDurationOnHover = speedOnHover ? 60 / speedOnHover : durationOnHover;
-    
-    const [currentDuration, setCurrentDuration] = useState(actualDuration);
-    const [ref, { width, height }] = useMeasure();
-    const translation = useMotionValue(0);
-    const [isTransitioning, setIsTransitioning] = useState(false);
-    const [key, setKey] = useState(0);
+    const scrollerRef = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+    const [copies, setCopies] = useState(3);
+    const uniqueId = useId().replace(/:/g, '');
 
     useEffect(() => {
-        let controls;
-        const size = direction === 'horizontal' ? width : height;
-        const contentSize = size + gap;
-        const from = reverse ? -contentSize / 2 : 0;
-        const to = reverse ? 0 : -contentSize / 2;
+        if (!scrollerRef.current || !contentRef.current) return;
 
-        if (isTransitioning) {
-            controls = animate(translation, [translation.get(), to], {
-                ease: 'linear',
-                duration:
-                    currentDuration * Math.abs((translation.get() - to) / contentSize),
-                onComplete: () => {
-                    setIsTransitioning(false);
-                    setKey((prevKey) => prevKey + 1);
-                },
-            });
-        } else {
-            controls = animate(translation, [from, to], {
-                ease: 'linear',
-                duration: currentDuration,
-                repeat: Infinity,
-                repeatType: 'loop',
-                repeatDelay: 0,
-                onRepeat: () => {
-                    translation.set(from);
-                },
-            });
-        }
+        const content = contentRef.current;
+        const scroller = scrollerRef.current.parentElement;
 
-        return controls?.stop;
-    }, [
-        key,
-        translation,
-        currentDuration,
-        width,
-        height,
-        gap,
-        isTransitioning,
-        direction,
-        reverse,
-    ]);
+        if (!scroller) return;
 
-    const hoverProps = actualDurationOnHover
-        ? {
-            onHoverStart: () => {
-                setIsTransitioning(true);
-                setCurrentDuration(actualDurationOnHover);
-            },
-            onHoverEnd: () => {
-                setIsTransitioning(true);
-                setCurrentDuration(actualDuration);
-            },
-        }
-        : {};
+        // Get the width of one set of content
+        const contentWidth = content.offsetWidth;
+        const viewportWidth = scroller.offsetWidth;
+
+        // Calculate how many copies we need to ensure seamless scrolling
+        // Need enough to fill viewport + one extra set for the seamless loop
+        const copiesNeeded = Math.max(3, Math.ceil((viewportWidth * 2) / contentWidth) + 2);
+
+        setCopies(copiesNeeded);
+    }, [children]);
+
+    const animationName = `infinite-scroll-${uniqueId}`;
 
     return (
         <div className={cn('overflow-hidden', className)}>
-            <motion.div
-                className='flex w-max'
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                    @keyframes ${animationName} {
+                        from { transform: translateX(0); }
+                        to { transform: translateX(calc(-100% / ${copies} - ${gap / copies}px)); }
+                    }
+                `
+            }} />
+            <div
+                ref={scrollerRef}
+                className="flex w-max"
                 style={{
-                    ...(direction === 'horizontal'
-                        ? { x: translation }
-                        : { y: translation }),
                     gap: `${gap}px`,
                     flexDirection: direction === 'horizontal' ? 'row' : 'column',
+                    animation: `${animationName} ${duration}s linear infinite`,
+                    animationDirection: reverse ? 'reverse' : 'normal',
                 }}
-                ref={ref}
-                {...hoverProps}
             >
-                {children}
-                {children}
-            </motion.div>
+                {Array.from({ length: copies }).map((_, i) => (
+                    <div
+                        key={i}
+                        ref={i === 0 ? contentRef : undefined}
+                        className="flex shrink-0"
+                        style={{ gap: `${gap}px` }}
+                        aria-hidden={i > 0 ? true : undefined}
+                    >
+                        {children}
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

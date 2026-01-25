@@ -15,6 +15,7 @@ import {
 } from 'react-icons/fa'
 import SEO from '../components/SEO'
 import HeroBackgroundGrid from '../components/HeroBackgroundGrid'
+import MobileHeroBackground from '../components/MobileHeroBackground'
 import IndustriesCarousel from '../components/IndustriesCarousel'
 
 const WhatWeDo: React.FC = () => {
@@ -125,59 +126,59 @@ const WhatWeDo: React.FC = () => {
   const engagementTypes = [
     {
       icon: FaRoute,
-      title: 'AI Strategy & Assessment',
-      subtitle: 'For companies exploring AI possibilities',
-      description: 'We start with a comprehensive audit of your operations and data landscape, identifying where AI can deliver the highest impact.',
+      title: 'AI Audit',
+      subtitle: '$2,500 - 4 weeks',
+      description: 'Our flagship discovery process. We identify highest-ROI AI opportunities and build your roadmap. The plan is yours to keep — whether you work with us or not.',
       features: [
-        'Comprehensive Audit',
-        'Opportunity Mapping',
-        'ROI Modeling',
-        'Transformation Roadmap'
-      ]
-    },
-    {
-      icon: FaDatabase,
-      title: 'Data Intelligence Platform',
-      subtitle: 'For companies drowning in disconnected data',
-      description: 'Our flagship offering. We unify your scattered data, deploy AI-powered analytics, and give your executives strategic insights.',
-      features: [
-        'Full BI Deployment',
-        'AI Analytics Layer',
-        'Executive Dashboards',
-        'Natural Language Queries'
+        'Discovery (Week 1-2)',
+        'Assessment & Mapping (Week 3)',
+        'Deliverable & Roadmap (Week 4)',
+        'ROI-Ranked Matrix'
       ],
       featured: true
     },
     {
-      icon: FaRobot,
-      title: 'Intelligent Operations',
-      subtitle: 'For high-volume customer interactions',
-      description: 'AI-powered automation for customer-facing and back-office processes. Voice agents, chatbots, and workflow automation.',
+      icon: FaDatabase,
+      title: 'AI Sprint',
+      subtitle: '$1,000 - 2 weeks',
+      description: 'Quick-start option for companies wanting to test the waters. 3 departmental discoveries, AI-readiness assessment, and workforce AI workshop.',
       features: [
-        'AI Voice Agents',
-        'Conversational AI',
+        '3 Departmental Discoveries',
+        'Process Mapping',
+        'AI-Readiness Assessment',
+        'Implementation Roadmap'
+      ]
+    },
+    {
+      icon: FaRobot,
+      title: 'Build & Ship',
+      subtitle: 'Custom pricing - 4+ weeks',
+      description: 'We implement the solutions from your audit. Customer-facing AI, internal operations automation, and data infrastructure — we build what we recommend.',
+      features: [
+        'Voice Agents & Chatbots',
         'Workflow Automation',
-        'System Integrations'
+        'BI Dashboards',
+        'RAG & Knowledge Base'
       ]
     },
     {
       icon: FaHandshake,
-      title: 'Managed AI Partnership',
-      subtitle: 'For companies wanting ongoing AI support',
-      description: 'We become your AI team. Continuous optimization, new use case development, training, and strategic guidance.',
+      title: 'Data Intelligence',
+      subtitle: 'Ongoing partnership',
+      description: 'BI systems, automation expansion, continuous optimization. We become your AI team for the long haul.',
       features: [
-        'Dedicated Team',
-        'Continuous Optimization',
-        'New Use Cases',
-        'Training & Enablement'
+        'Real-time Dashboards',
+        'Predictive Models',
+        'API Integrations',
+        'Continuous Optimization'
       ]
     }
   ]
 
   const heroStats = [
-    { value: '50+', label: 'Transformations' },
-    { value: '94%', label: 'Retention Rate' },
-    { value: '3.2x', label: 'Average ROI' }
+    { value: '60', label: 'Days to Transform' },
+    { value: '95%', label: 'AI Projects Fail' },
+    { value: '$1K', label: 'Starting Price' }
   ]
 
   return (
@@ -192,7 +193,7 @@ const WhatWeDo: React.FC = () => {
       {/* Mobile Hero - Compact Design */}
       <section className={`lg:hidden relative overflow-hidden transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
         <div className="absolute inset-0">
-          <HeroBackgroundGrid isPlaying={false} />
+          <MobileHeroBackground />
         </div>
 
         {/* Gradient overlay for readability */}
@@ -243,9 +244,9 @@ const WhatWeDo: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className={`text-sm leading-relaxed mb-6 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
           >
-            We partner with businesses to transform how they operate using AI.{' '}
+            AI strategy to transformed ops in 60 days.{' '}
             <span className={`font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              Every engagement is custom.
+              We build only what pays back.
             </span>
           </motion.p>
 
@@ -270,8 +271,8 @@ const WhatWeDo: React.FC = () => {
         </div>
       </section>
 
-      {/* Desktop Hero - Full Height Design */}
-      <section className="hidden lg:flex min-h-screen flex-col items-center overflow-hidden relative mb-0 pt-0 select-none transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      {/* Desktop Hero - Condensed Design (matching Industries page) */}
+      <section className="hidden lg:flex min-h-[70vh] flex-col items-center overflow-hidden relative" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <HeroBackgroundGrid isPlaying={false} />
 
         {/* Gradient Overlays */}
@@ -289,7 +290,7 @@ const WhatWeDo: React.FC = () => {
         />
 
         {/* Main container */}
-        <div className="w-full max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-6 lg:px-12 xl:px-16 2xl:px-20 relative z-10 flex-1 flex items-center pt-20 pb-24">
+        <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-12 xl:px-16 relative z-10 flex-1 flex items-center pt-20 pb-16">
           <div className="w-full">
             <motion.div
               className="text-center max-w-4xl mx-auto"
@@ -298,7 +299,7 @@ const WhatWeDo: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <motion.div
-                className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-8 lg:mb-10 ${
+                className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-8 ${
                   isDark
                     ? 'bg-blue-500/10 border border-blue-500/20'
                     : 'bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/60'
@@ -322,37 +323,57 @@ const WhatWeDo: React.FC = () => {
                 <FaBrain className={`w-4 h-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
               </motion.div>
 
-              <h1 className={`text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-serif font-normal leading-[1.08] mb-6 lg:mb-8 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+              <h1 className={`text-4xl lg:text-5xl xl:text-6xl font-serif font-normal leading-[1.08] mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
                 What We Do
               </h1>
 
-              <p className={`text-lg lg:text-xl 2xl:text-2xl max-w-2xl mx-auto mb-4 leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-                We don't sell software. We don't do one-off projects.
-              </p>
-              <p className={`text-lg lg:text-xl 2xl:text-2xl max-w-3xl mx-auto mb-10 leading-relaxed ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
-                We partner with businesses to fundamentally transform how they operate using AI.
-                <span className={`font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}> Every engagement is custom. Every solution is built for your specific challenges.</span>
+              <p className={`text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+                From AI strategy to transformed operations in 60 days.{' '}
+                <span className={`font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  Find the highest-ROI AI opportunities. Then build only what pays back.
+                </span>
               </p>
 
               {/* Stats Row */}
-              <div className="flex items-stretch justify-center gap-4 lg:gap-5">
+              <div className="flex items-stretch justify-center gap-4 lg:gap-5 mb-10">
                 {heroStats.map((stat, i) => (
                   <motion.div
                     key={i}
-                    className={`min-w-[140px] rounded-2xl border px-6 py-4 ${isDark ? 'border-gray-700' : 'border-slate-200/80'}`}
+                    className={`min-w-[100px] rounded-xl border px-4 py-3 ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200/80 bg-white/50'}`}
                     style={statCardStyle}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 + i * 0.1 }}
+                    transition={{ delay: 0.3 + i * 0.1 }}
                   >
-                    <div className={`text-3xl lg:text-4xl font-serif font-normal ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                    <div className={`text-xl lg:text-2xl font-serif font-normal ${isDark ? 'text-white' : 'text-slate-800'}`}>
                       {stat.value}
                     </div>
-                    <div className={`text-[10px] 2xl:text-xs uppercase tracking-[0.12em] font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                    <div className={`text-[9px] uppercase tracking-[0.12em] font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
                       {stat.label}
                     </div>
                   </motion.div>
                 ))}
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex items-center justify-center gap-4">
+                <Link
+                  href="/demo"
+                  className="btn-primary h-14 px-8 rounded-xl text-lg inline-flex items-center gap-2"
+                >
+                  <span>Schedule Consultation</span>
+                  <FaArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/industries"
+                  className={`h-14 px-8 rounded-xl border font-medium transition-colors inline-flex items-center gap-3 ${
+                    isDark
+                      ? 'border-gray-700 text-gray-300 hover:bg-gray-800'
+                      : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                  }`}
+                >
+                  <span>View Industries</span>
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -546,10 +567,10 @@ const WhatWeDo: React.FC = () => {
               Our Difference
             </motion.span>
             <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-normal mb-3 sm:mb-4 ${isDark ? 'text-gray-100' : ''}`}>
-              We're Not a Vendor. We're Your AI Team.
+              Consultants Advise. Engineers Build. We Do Both.
             </h2>
             <p className={`text-base sm:text-lg leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-              Most AI companies sell you software and disappear. We take a fundamentally different approach.
+              95% of AI projects fail — twice the rate of standard IT projects. Here's why we're different.
             </p>
           </div>
 
@@ -563,50 +584,71 @@ const WhatWeDo: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="md:col-span-2 lg:col-span-2"
             >
-              <div className={`bento-card h-full p-5 sm:p-8`}>
-                <h3 className={`text-base sm:text-lg font-serif font-medium mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
+              <div className={`bento-card h-full p-4 sm:p-6`}>
+                <h3 className={`text-base sm:text-lg font-serif font-medium mb-3 sm:mb-4 ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
                   The Cognia AI Difference
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                  <div className={`rounded-xl p-4 sm:p-6 ${isDark ? 'bg-gray-700/50' : 'bg-slate-100'}`}>
-                    <div className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4 ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>Typical Vendor</div>
-                    <ul className={`space-y-2 sm:space-y-3 text-xs sm:text-sm ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                  <div className={`rounded-lg p-3 sm:p-4 ${isDark ? 'bg-gray-700/50' : 'bg-slate-100'}`}>
+                    <div className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3 ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>Typical Consultants</div>
+                    <ul className={`space-y-1.5 sm:space-y-2 text-xs sm:text-sm ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
                       <li className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
-                        Sells software license
+                        Strategic advice
                       </li>
                       <li className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
-                        One-time implementation
+                        Slide decks
                       </li>
                       <li className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
-                        Generic solutions
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0" />
+                        No implementation
                       </li>
                       <li className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
-                        Support tickets
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0" />
+                        $50K+ engagements
                       </li>
                     </ul>
                   </div>
-                  <div className={`rounded-xl p-4 sm:p-6 border-2 ${isDark ? 'bg-blue-900/30 border-blue-500/30' : 'bg-blue-50 border-blue-200'}`}>
-                    <div className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>Cognia AI</div>
-                    <ul className={`space-y-2 sm:space-y-3 text-xs sm:text-sm ${isDark ? 'text-gray-200' : 'text-slate-700'}`}>
+                  <div className={`rounded-lg p-3 sm:p-4 ${isDark ? 'bg-gray-700/50' : 'bg-slate-100'}`}>
+                    <div className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3 ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>Typical Dev Shops</div>
+                    <ul className={`space-y-1.5 sm:space-y-2 text-xs sm:text-sm ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                      <li className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
+                        Technical builds
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
+                        Fast execution
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0" />
+                        No strategy
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0" />
+                        Build wrong thing
+                      </li>
+                    </ul>
+                  </div>
+                  <div className={`rounded-lg p-3 sm:p-4 border-2 ${isDark ? 'bg-blue-900/30 border-blue-500/30' : 'bg-blue-50 border-blue-200'}`}>
+                    <div className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>Cognia AI</div>
+                    <ul className={`space-y-1.5 sm:space-y-2 text-xs sm:text-sm ${isDark ? 'text-gray-200' : 'text-slate-700'}`}>
                       <li className="flex items-center gap-2">
                         <FaCheckCircle className={`flex-shrink-0 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
-                        Strategic partnership
+                        Strategic roadmap
                       </li>
                       <li className="flex items-center gap-2">
                         <FaCheckCircle className={`flex-shrink-0 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
-                        Ongoing evolution
+                        We build what we recommend
                       </li>
                       <li className="flex items-center gap-2">
                         <FaCheckCircle className={`flex-shrink-0 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
-                        Custom-built solutions
+                        ROI in weeks, not years
                       </li>
                       <li className="flex items-center gap-2">
                         <FaCheckCircle className={`flex-shrink-0 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
-                        Dedicated team
+                        Starts at $1,000
                       </li>
                     </ul>
                   </div>
@@ -621,16 +663,16 @@ const WhatWeDo: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className={`bento-card h-full p-5 sm:p-8`}>
-                <h3 className={`text-base sm:text-lg font-serif font-medium mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
+              <div className={`bento-card h-full p-4 sm:p-6`}>
+                <h3 className={`text-base sm:text-lg font-serif font-medium mb-3 sm:mb-4 ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
                   Our Values
                 </h3>
-                <div className="space-y-3 sm:space-y-4">
+                <div className="space-y-2 sm:space-y-3">
                   {[
-                    { title: 'Business-First', desc: 'Your challenges drive our solutions' },
-                    { title: 'Custom Built', desc: 'No off-the-shelf templates' },
-                    { title: 'Long-Term', desc: 'We stay engaged, always' },
-                    { title: 'Accessible', desc: 'AI for everyone, not just data scientists' }
+                    { title: 'ROI-First', desc: 'We only build what pays back' },
+                    { title: '60 Days', desc: 'Strategy to transformed operations' },
+                    { title: 'Your Roadmap', desc: 'The plan is yours to keep' },
+                    { title: '20+ Wins', desc: 'Proven transformations delivered' }
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-2 sm:gap-3">
                       <FaCheckCircle className={`flex-shrink-0 mt-0.5 text-sm sm:text-base ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />

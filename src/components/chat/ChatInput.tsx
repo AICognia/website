@@ -31,14 +31,14 @@ export function ChatInput({
     }
   }, [value]);
 
-  // Focus on mount
+  // Focus on mount (with preventScroll to avoid page jumping)
   useEffect(() => {
-    textareaRef.current?.focus();
+    textareaRef.current?.focus({ preventScroll: true });
   }, []);
 
-  // Click container to focus textarea
+  // Click container to focus textarea (with preventScroll to avoid page jumping)
   const handleContainerClick = () => {
-    textareaRef.current?.focus();
+    textareaRef.current?.focus({ preventScroll: true });
   };
 
   const handleSubmit = () => {

@@ -7,24 +7,24 @@ function getOgImageUrl(title: string, description: string): string {
 }
 
 export const homePageMetadata: Metadata = {
-  title: 'AI Receptionist & Voice Agents | 24/7 Automated Call Handling',
-  description: 'Transform your business with Cognia AI receptionist. Never miss a call, book appointments 24/7 with 95% first-call resolution. Guaranteed 10-20% more customers. Free demo available.',
+  title: 'AI Transformation Agency | From Data Chaos to Strategic Clarity',
+  description: 'AI transformation agency that turns data chaos into strategic clarity. Automate workflows, empower teams, accelerate growth.',
   keywords: [
-    'AI receptionist', 'virtual receptionist', 'AI voice agent', 'automated phone answering',
-    '24/7 receptionist', 'appointment booking AI', 'customer support automation', 'voice AI',
-    'call handling AI', 'business phone automation', 'enterprise AI solutions'
+    'AI transformation agency', 'data intelligence', 'AI solutions', 'business automation',
+    'AI consulting', 'workflow automation', 'enterprise AI', 'data analytics AI',
+    'strategic clarity', 'digital transformation', 'AI deployment'
   ],
   openGraph: {
-    title: 'Cognia AI - AI Receptionist & Voice Agents | Never Miss a Call',
-    description: 'AI receptionist with 95% first-call resolution. Book appointments 24/7. Enterprise-grade security.',
+    title: 'Cognia AI - AI Transformation Agency | Data to Strategic Clarity',
+    description: 'AI transformation agency. Automate workflows, empower teams, accelerate business growth.',
     url: baseUrl,
     type: 'website',
-    images: [{ url: `${baseUrl}/og-image.png`, width: 1200, height: 630, alt: 'Cognia AI - AI Receptionist Solutions' }],
+    images: [{ url: `${baseUrl}/og-image.png`, width: 1200, height: 630, alt: 'Cognia AI - AI Transformation Agency' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cognia AI - AI Receptionist & Voice Agents',
-    description: 'Never miss a call. Book 24/7. 95% first-call resolution. Enterprise-grade security.',
+    title: 'Cognia AI - From Data Chaos to Strategic Clarity',
+    description: 'AI transformation agency. Automate workflows, empower teams, accelerate growth.',
     images: [`${baseUrl}/og-image.png`],
   },
   alternates: {

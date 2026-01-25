@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ChatMessage } from './ChatMessage';
@@ -19,15 +20,46 @@ const SUGGESTIONS = [
 export function ChatArea() {
   const { currentChatId, getMessages } = useChatStore();
   const { isLoading, sendMessage, cancelRequest, regenerateLastResponse } = useChatApi();
-  const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const searchParams = useSearchParams();
+  const initialMessageSent = useRef(false);
+  const sendMessageRef = useRef(sendMessage);
+
+  // Keep sendMessage ref updated
+  useEffect(() => {
+    sendMessageRef.current = sendMessage;
+  }, [sendMessage]);
 
   const messages = currentChatId ? getMessages(currentChatId) : [];
   const showWelcome = !currentChatId || messages.length === 0;
 
-  // Auto-scroll to bottom
+  // Handle initial message from URL parameter (e.g., from demo section)
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const messageParam = searchParams.get('message');
+    if (messageParam && !initialMessageSent.current) {
+      initialMessageSent.current = true;
+      // Small delay to ensure the chat is ready
+      const timer = setTimeout(() => {
+        sendMessageRef.current(messageParam);
+        // Clean up URL by removing the message parameter
+        if (typeof window !== 'undefined') {
+          const url = new URL(window.location.href);
+          url.searchParams.delete('message');
+          window.history.replaceState({}, '', url.pathname);
+        }
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams]);
+
+  // Auto-scroll to bottom (scoped to scroll container to prevent page-level jumps)
+  useEffect(() => {
+    if (scrollContainerRef.current && messages.length > 0) {
+      scrollContainerRef.current.scrollTo({
+        top: scrollContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
   }, [messages]);
 
   const handleSuggestionClick = (suggestion: string) => {
@@ -54,7 +86,6 @@ export function ChatArea() {
                 }
               />
             ))}
-            <div ref={messagesEndRef} className="h-px" />
           </div>
         )}
       </div>

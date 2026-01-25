@@ -26,28 +26,38 @@ const Navbar: React.FC = () => {
 
   // Glass effect settings - different for light/dark
   const glassOpacity = isDark ? 0.55 : 0.30;
-  const glassBlur = 22;
+  const glassBlur = 12; // Reduced from 22px for better mobile performance
 
-  // Hide on scroll functionality
+  // Hide on scroll functionality - using ref to avoid re-attaching listener
   useEffect(() => {
+    let lastScrollYRef = 0;
+    let ticking = false;
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
 
-      // Show navbar if at top or scrolling up
-      if (currentScrollY <= 0 || currentScrollY < lastScrollY) {
-        setIsVisible(true);
-      }
-      // Hide navbar if scrolling down and past threshold
-      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-      }
+          // Show navbar if at top or scrolling up
+          if (currentScrollY <= 0 || currentScrollY < lastScrollYRef) {
+            setIsVisible(true);
+          }
+          // Hide navbar if scrolling down and past threshold
+          else if (currentScrollY > lastScrollYRef && currentScrollY > 100) {
+            setIsVisible(false);
+          }
 
-      setLastScrollY(currentScrollY);
+          lastScrollYRef = currentScrollY;
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -65,11 +75,11 @@ const Navbar: React.FC = () => {
   ];
 
   const solutions = [
-    { name: 'AI Receptionist', path: '/products/ai-receptionist', description: '24/7 intelligent call handling' },
-    { name: 'AI Chatbot', path: '/solutions/chatbot', description: 'Convert visitors into customers' },
     { name: 'Business Intelligence', path: '/business-intelligence', description: 'AI-powered data insights' },
     { name: 'Workflow Automation', path: '/solutions/workflow-automation', description: 'Eliminate repetitive tasks' },
     { name: 'Custom AI', path: '/solutions/custom-ai', description: 'AI built for your needs' },
+    { name: 'AI Receptionist', path: '/products/ai-receptionist', description: '24/7 intelligent call handling' },
+    { name: 'AI Chatbot', path: '/solutions/chatbot', description: 'Convert visitors into customers' },
     { name: 'AI Audit', path: '/ai-audit', description: 'Assess your AI readiness' },
   ];
 
@@ -77,8 +87,12 @@ const Navbar: React.FC = () => {
     { name: 'Healthcare', path: '/industries/healthcare' },
     { name: 'Legal Services', path: '/industries/legal' },
     { name: 'Hospitality', path: '/industries/hospitality' },
-    { name: 'Retail', path: '/industries/retail' },
+    { name: 'Retail / eCommerce', path: '/industries/retail' },
     { name: 'Automotive', path: '/industries/automotive' },
+    { name: 'Manufacturing', path: '/industries/manufacturing' },
+    { name: 'Service Businesses', path: '/industries/service-businesses' },
+    { name: 'Real Estate', path: '/industries/real-estate' },
+    { name: 'Construction', path: '/industries/construction' },
   ];
 
   return (
@@ -325,7 +339,7 @@ const Navbar: React.FC = () => {
                 />
 
                 <div
-                  className={`w-[220px] rounded-2xl border overflow-hidden ${isDark ? 'border-blue-500/30' : 'border-[#e2e8f0]'}`}
+                  className={`w-[380px] rounded-2xl border overflow-hidden ${isDark ? 'border-blue-500/30' : 'border-[#e2e8f0]'}`}
                   style={{
                     background: isDark
                       ? `rgba(17, 24, 39, 0.85)`
@@ -337,8 +351,8 @@ const Navbar: React.FC = () => {
                       : '0 8px 32px rgba(0, 0, 0, 0.08)',
                   }}
                 >
-                  <div className="p-3">
-                    <div className="space-y-0.5">
+                  <div className="p-4">
+                    <div className="grid grid-cols-2 gap-1">
                       {industries.map((item) => (
                         <Link
                           key={item.name}

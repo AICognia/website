@@ -120,17 +120,17 @@ const WhyChooseUs: React.FC = () => {
     const isDark = !mounted || resolvedTheme === 'dark';
 
     return (
-        <section className={`py-10 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 relative overflow-hidden transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-            <div className="container-responsive">
-                <div className="text-left max-w-3xl mb-6 sm:mb-10 md:mb-16">
+        <section className={`py-12 sm:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 relative overflow-hidden transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+            <div className="max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1400px] mx-auto px-2 sm:px-4 lg:px-8 xl:px-12">
+                <div className="text-left max-w-3xl mb-6 sm:mb-8 md:mb-12 lg:mb-14">
                     <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-normal mb-2 sm:mb-4 md:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                        Your Data Is an Asset.
-                        <span className="hidden sm:inline"> Are You Using It?</span>
+                        95% of AI Projects Fail.
+                        <span className="hidden sm:inline"> Here's Why.</span>
                     </h2>
                     <p className={`text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-                        <span className="sm:hidden">Data lives in silos. No one sees the full picture. We change that.</span>
-                        <span className="hidden sm:inline">In most companies, data lives in silos. Sales figures in one system. Operations in another.
-                        Logistics in spreadsheets. Everyone knows their piece, but no one sees the full picture. We change that.</span>
+                        <span className="sm:hidden">That's 2x higher than standard IT. Most companies know they need AI but don't know where to start.</span>
+                        <span className="hidden sm:inline">That's more than twice the failure rate of standard IT projects. Most organizations know they need AI.
+                        Few know where to start. We fix that with a clear roadmap before building anything.</span>
                     </p>
                 </div>
 
@@ -145,13 +145,13 @@ const WhyChooseUs: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="group bento-card flex flex-col gap-4 sm:gap-6 md:flex-row md:gap-10 items-center p-4 sm:p-6 md:p-8"
+                            className="group bento-card flex flex-col gap-4 sm:gap-5 md:flex-row md:gap-8 items-center"
                         >
                             <div className="flex-1">
-                                <h3 className={`text-sm sm:text-base md:text-lg font-semibold mb-1.5 sm:mb-2 md:mb-3 font-serif ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>Data Fragmentation</h3>
+                                <h3 className={`text-sm sm:text-base md:text-lg font-semibold mb-1.5 sm:mb-2 md:mb-3 font-serif ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>No Clear Starting Point</h3>
                                 <p className={`text-[11px] sm:text-xs md:text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                                    <span className="sm:hidden">Systems scattered across departments with no unified view.</span>
-                                    <span className="hidden sm:inline">Every department works in a different system: inventory in one place, sales in another platform, logistics in the ERP.</span>
+                                    <span className="sm:hidden">75% believe in AI but don't know where to start.</span>
+                                    <span className="hidden sm:inline">75% of organizations believe in AI's impact but don't know where or how to start. No roadmap means no progress.</span>
                                 </p>
                             </div>
                             <DataFragmentationBars isDark={isDark} />
@@ -163,13 +163,13 @@ const WhyChooseUs: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="group bento-card flex flex-col justify-between p-4 sm:p-6 md:p-8"
+                            className="group bento-card flex flex-col justify-between"
                         >
                             <div>
-                                <h3 className={`text-sm sm:text-base md:text-lg font-semibold mb-1.5 sm:mb-2 md:mb-3 font-serif ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>No Strategic Intelligence</h3>
+                                <h3 className={`text-sm sm:text-base md:text-lg font-semibold mb-1.5 sm:mb-2 md:mb-3 font-serif ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>No In-House AI Expertise</h3>
                                 <p className={`text-[11px] sm:text-xs md:text-sm leading-relaxed mb-3 sm:mb-5 md:mb-8 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                                    <span className="sm:hidden">No unified view to drive strategic decisions.</span>
-                                    <span className="hidden sm:inline">Each unit knows their own numbers, but there's no mechanism that sees the whole picture to drive strategic decisions.</span>
+                                    <span className="sm:hidden">55% struggle with data quality, 46% face a talent gap.</span>
+                                    <span className="hidden sm:inline">55% of executives struggle with data quality, 46% face a talent gap. The market urgently needs expert guidance.</span>
                                 </p>
                             </div>
                             <div className="grid grid-cols-2 gap-2 sm:gap-3 mt-auto">
@@ -191,12 +191,12 @@ const WhyChooseUs: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
-                            className="group bento-card flex flex-col overflow-hidden p-4 sm:p-6 md:p-8"
+                            className="group bento-card flex flex-col overflow-hidden"
                         >
-                            <h3 className={`text-sm sm:text-base md:text-lg font-semibold mb-1.5 sm:mb-2 md:mb-3 font-serif ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>Manual Bottlenecks</h3>
+                            <h3 className={`text-sm sm:text-base md:text-lg font-semibold mb-1.5 sm:mb-2 md:mb-3 font-serif ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>No ROI Before You Build</h3>
                             <p className={`text-[11px] sm:text-xs md:text-sm leading-relaxed mb-3 sm:mb-5 md:mb-6 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                                <span className="sm:hidden">Data sits unused without manual analysis.</span>
-                                <span className="hidden sm:inline">Until data is manually assembled and analyzed, it just takes up storage without producing value.</span>
+                                <span className="sm:hidden">ROI isn't calculated before projects are built.</span>
+                                <span className="hidden sm:inline">ROI is not calculated accurately before projects are built. Complex formulas aren't utilized and lack of knowledge reduces accuracy.</span>
                             </p>
 
                             <div className="relative h-[120px] sm:h-[160px] md:h-[220px] w-full flex items-center justify-center">
@@ -260,12 +260,12 @@ const WhyChooseUs: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.3 }}
-                            className="group bento-card flex flex-col p-4 sm:p-6 md:p-8"
+                            className="group bento-card flex flex-col"
                         >
-                            <h3 className={`text-sm sm:text-base md:text-lg font-semibold mb-1.5 sm:mb-2 md:mb-3 font-serif ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>Reactive Decisions</h3>
+                            <h3 className={`text-sm sm:text-base md:text-lg font-semibold mb-1.5 sm:mb-2 md:mb-3 font-serif ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>Common Symptoms</h3>
                             <p className={`text-[11px] sm:text-xs md:text-sm leading-relaxed mb-3 sm:mb-5 md:mb-8 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                                <span className="sm:hidden">Decisions based on stale data, not real-time insights.</span>
-                                <span className="hidden sm:inline">Executives make decisions based on incomplete information and historical reports rather than real-time insights.</span>
+                                <span className="sm:hidden">Inconsistent follow-up, unused data, AI that didn't stick.</span>
+                                <span className="hidden sm:inline">"Leads come in but follow-up is inconsistent." "We have data but can't use it." "We tried AI but it didn't stick."</span>
                             </p>
 
                             <div className="flex-1 space-y-3 sm:space-y-4">
@@ -287,12 +287,12 @@ const WhyChooseUs: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.4 }}
-                            className="group bento-card flex flex-col overflow-hidden p-4 sm:p-6 md:p-8 sm:col-span-2 md:col-span-1"
+                            className="group bento-card flex flex-col overflow-hidden sm:col-span-2 md:col-span-1"
                         >
-                            <h3 className={`text-sm sm:text-base md:text-lg font-semibold mb-1.5 sm:mb-2 md:mb-3 font-serif ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>Missed Opportunities</h3>
+                            <h3 className={`text-sm sm:text-base md:text-lg font-semibold mb-1.5 sm:mb-2 md:mb-3 font-serif ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>The Real Cost</h3>
                             <p className={`text-[11px] sm:text-xs md:text-sm leading-relaxed mb-3 sm:mb-5 md:mb-10 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                                <span className="sm:hidden">Hidden patterns cost you market advantage daily.</span>
-                                <span className="hidden sm:inline">Patterns, trends, and opportunities hidden in your data remain invisible - costing you market advantage every day.</span>
+                                <span className="sm:hidden">Most failed AI projects cost $30K-$100K.</span>
+                                <span className="hidden sm:inline">Most failed AI projects cost $30K–$100K. Our AI Audit is insurance — starts at $1,000 and gives you a roadmap before you invest.</span>
                             </p>
 
                             <div className="relative">
@@ -338,10 +338,10 @@ const ToggleRow = ({ label, active, isDark }: { label: string; active?: boolean;
             <div className={`w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full transition-all duration-300 ${active ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]' : isDark ? 'bg-gray-600' : 'bg-slate-300'}`} />
             <span className={`text-[11px] sm:text-[14px] font-medium font-serif transition-colors ${isDark ? 'text-gray-300 group-hover/row:text-gray-100' : 'text-slate-600 group-hover/row:text-slate-900'}`}>{label}</span>
         </div>
-        <div className={`w-8 sm:w-10 h-4 sm:h-5.5 rounded-full p-0.5 sm:p-1 flex items-center justify-end transition-colors duration-300 ${active ? 'bg-primary' : isDark ? 'bg-gray-700' : 'bg-slate-200'}`}>
+        <div className={`w-8 sm:w-10 h-4 sm:h-5 rounded-full px-0.5 py-0.5 flex items-center justify-end transition-colors duration-300 ${active ? 'bg-primary' : isDark ? 'bg-gray-700' : 'bg-slate-200'}`}>
             <motion.div
                 layout
-                className="w-3 sm:w-3.5 h-3 sm:h-3.5 bg-white rounded-full shadow-sm"
+                className="w-3 sm:w-4 h-3 sm:h-4 bg-white rounded-full shadow-sm"
             />
         </div>
     </div>

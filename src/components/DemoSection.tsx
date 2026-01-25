@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   IconChevronRightFill18,
   IconPaperPlane2Fill18,
@@ -29,25 +30,15 @@ const AnimatedCounter = ({ value, suffix = '', prefix = '' }: { value: number; s
   return <span>{prefix}{displayValue.toLocaleString()}{suffix}</span>;
 };
 
-// Pre-defined conversation responses for the fake interactive demo
-const demoResponses = [
-  "I'd be happy to help! What date works best for your consultation?",
-  "Perfect! I have availability at 10 AM, 2 PM, or 4 PM. Which time works for you?",
-  "You're all set! I've sent a calendar invite to your email with all the details.",
-  "Is there anything else I can help you with today?",
-];
-
 const DemoSection: React.FC = () => {
-  const [messages, setMessages] = useState([
+  const router = useRouter();
+  const [messages] = useState([
     { id: 1, text: "Hi! I'd like to book a consultation.", sender: 'user' },
     { id: 2, text: "I'd be happy to help! What date works best for your consultation?", sender: 'bot' },
     { id: 3, text: "How about next Tuesday?", sender: 'user' },
     { id: 4, text: "Tuesday works! I have 10 AM, 2 PM, or 4 PM available. Which time suits you?", sender: 'bot' },
   ]);
   const [inputValue, setInputValue] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const [responseIndex, setResponseIndex] = useState(1);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
@@ -59,43 +50,11 @@ const DemoSection: React.FC = () => {
   // Default to dark to prevent flash (dark is the default theme)
   const isDark = !mounted || resolvedTheme === 'dark';
 
-  // Track if user has interacted with the chat
-  const [hasInteracted, setHasInteracted] = useState(false);
-
-  // Auto-scroll to bottom when new messages arrive (only after user interaction)
-  useEffect(() => {
-    if (messagesEndRef.current && hasInteracted) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [messages, isTyping, hasInteracted]);
-
   const handleSendMessage = () => {
-    if (inputValue.trim() && !isTyping) {
-      // Mark as interacted so auto-scroll starts working
-      setHasInteracted(true);
-
-      // Add user message
-      const userMessage = {
-        id: messages.length + 1,
-        text: inputValue,
-        sender: 'user' as const,
-      };
-
-      setMessages(prev => [...prev, userMessage]);
-      setInputValue('');
-      setIsTyping(true);
-
-      // Simulate bot typing and response
-      setTimeout(() => {
-        const botResponse = {
-          id: messages.length + 2,
-          text: demoResponses[responseIndex % demoResponses.length],
-          sender: 'bot' as const,
-        };
-        setMessages(prev => [...prev, botResponse]);
-        setResponseIndex(prev => prev + 1);
-        setIsTyping(false);
-      }, 1200);
+    if (inputValue.trim()) {
+      // Navigate to /chat with the message as a query parameter
+      const encodedMessage = encodeURIComponent(inputValue.trim());
+      router.push(`/chat?message=${encodedMessage}`);
     }
   };
 
@@ -107,10 +66,10 @@ const DemoSection: React.FC = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 relative transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
-      <div className="container-responsive">
+    <section className="py-12 sm:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 relative transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <div className="max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1400px] mx-auto px-2 sm:px-4 lg:px-8 xl:px-12">
 
-        <div className="text-left max-w-3xl mb-8 sm:mb-12 md:mb-16">
+        <div className="text-left max-w-3xl mb-6 sm:mb-8 md:mb-12 lg:mb-14">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -168,7 +127,7 @@ const DemoSection: React.FC = () => {
                 </p>
               </div>
 
-              {/* Chat Interface */}
+              {/* Chat Interface - fills card height */}
               <div className={`flex-1 border rounded-lg sm:rounded-xl overflow-hidden flex flex-col ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-gray-200 bg-gray-50/50'}`}>
                 {/* Messages Area - scrollable */}
                 <div
@@ -193,27 +152,6 @@ const DemoSection: React.FC = () => {
                       </div>
                     </motion.div>
                   ))}
-                  {isTyping && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="flex justify-start"
-                    >
-                      <div className={`border rounded-xl sm:rounded-2xl rounded-bl-md shadow-sm px-3 sm:px-4 py-2 sm:py-3 ${isDark ? 'bg-gray-700 text-gray-200 border-gray-600' : 'bg-white text-gray-800 border-gray-200'}`}>
-                        <div className="flex gap-1">
-                          {[0, 0.15, 0.3].map((delay, i) => (
-                            <motion.div
-                              key={i}
-                              animate={{ scale: [1, 1.3, 1], opacity: [0.4, 1, 0.4] }}
-                              transition={{ duration: 0.6, repeat: Infinity, delay }}
-                              className={`w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full ${isDark ? 'bg-gray-500' : 'bg-gray-400'}`}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                  <div ref={messagesEndRef} />
                 </div>
 
                 {/* Input Bar - fixed at bottom of chat container */}
@@ -223,14 +161,13 @@ const DemoSection: React.FC = () => {
                       type="text"
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
-                      onKeyPress={handleKeyPress}
-                      placeholder="Type a message..."
-                      disabled={isTyping}
-                      className={`flex-1 text-xs sm:text-sm outline-none bg-transparent disabled:opacity-50 ${isDark ? 'text-gray-200 placeholder-gray-500' : 'text-gray-800 placeholder-gray-400'}`}
+                      onKeyDown={handleKeyPress}
+                      placeholder="Try our AI assistant..."
+                      className={`flex-1 text-xs sm:text-sm outline-none bg-transparent ${isDark ? 'text-gray-200 placeholder-gray-500' : 'text-gray-800 placeholder-gray-400'}`}
                     />
                     <button
                       onClick={handleSendMessage}
-                      disabled={isTyping || !inputValue.trim()}
+                      disabled={!inputValue.trim()}
                       className="w-7 sm:w-8 h-7 sm:h-8 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <IconPaperPlane2Fill18 size={12} />

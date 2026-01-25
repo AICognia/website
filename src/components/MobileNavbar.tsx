@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { KeyRound, ChevronRight, Plus, Minus, ArrowRight } from 'lucide-react'
+import { ChevronRight, Plus, Minus, ArrowRight } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
 const navItems = [
@@ -16,11 +16,11 @@ const navItems = [
 ]
 
 const solutions = [
-  { name: 'AI Receptionist', path: '/products/ai-receptionist' },
-  { name: 'AI Chatbot', path: '/solutions/chatbot' },
   { name: 'Business Intelligence', path: '/business-intelligence' },
   { name: 'Workflow Automation', path: '/solutions/workflow-automation' },
   { name: 'Custom AI', path: '/solutions/custom-ai' },
+  { name: 'AI Receptionist', path: '/products/ai-receptionist' },
+  { name: 'AI Chatbot', path: '/solutions/chatbot' },
   { name: 'AI Audit', path: '/ai-audit' },
 ]
 
@@ -28,8 +28,12 @@ const industries = [
   { name: 'Healthcare', path: '/industries/healthcare' },
   { name: 'Legal Services', path: '/industries/legal' },
   { name: 'Hospitality', path: '/industries/hospitality' },
-  { name: 'Retail', path: '/industries/retail' },
+  { name: 'Retail / eCommerce', path: '/industries/retail' },
   { name: 'Automotive', path: '/industries/automotive' },
+  { name: 'Manufacturing', path: '/industries/manufacturing' },
+  { name: 'Service Businesses', path: '/industries/service-businesses' },
+  { name: 'Real Estate', path: '/industries/real-estate' },
+  { name: 'Construction', path: '/industries/construction' },
 ]
 
 // Sun icon SVG matching desktop DarkModeToggle
@@ -123,9 +127,9 @@ const MobileNavbar: React.FC = () => {
   // Default to dark to prevent flash (dark is the default theme)
   const isDark = !mounted || resolvedTheme === 'dark'
 
-  // Glass effect settings - matching desktop navbar
-  const glassOpacity = isDark ? 0.55 : 0.30
-  const glassBlur = 22
+  // Glass effect settings - reduced blur for mobile performance
+  const glassOpacity = isDark ? 0.75 : 0.85
+  const glassBlur = 12 // Reduced from 22px for better mobile performance
 
   // Hide on scroll functionality - using ref to avoid re-attaching listener
   useEffect(() => {
@@ -507,17 +511,6 @@ const MobileNavbar: React.FC = () => {
                 </Link>
               </div>
 
-              {/* Sign In Link */}
-              <div className={`relative z-10 px-6 py-4 border-t ${isDark ? 'border-gray-700/30' : 'border-gray-200/50'}`}>
-                <Link
-                  href="/sign-in"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-center gap-2 py-3 text-base font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  <KeyRound className="w-5 h-5" />
-                  <span>Sign in to your account</span>
-                </Link>
-              </div>
             </div>
           </motion.div>
         )}

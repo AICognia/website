@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react';
 import { cn } from '../lib/utils';
-import { useTheme } from 'next-themes';
+import { useThemeWithoutFlash } from '@/src/hooks/useThemeWithoutFlash';
 
 interface HeroBackgroundGridProps {
     isPlaying: boolean;
@@ -12,15 +12,7 @@ const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) =>
     const animationFrameRef = useRef<number>(0);
     const [isVisible, setIsVisible] = useState(false);
     const [animationReady, setAnimationReady] = useState(false);
-    const [mounted, setMounted] = useState(false);
-    const { resolvedTheme } = useTheme();
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    // Default to dark to prevent flash (dark is the default theme)
-    const isDark = !mounted || resolvedTheme === 'dark';
+    const { isDark } = useThemeWithoutFlash();
 
     const stateRef = useRef({
         time: 0,
@@ -105,17 +97,20 @@ const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) =>
     const { COLS, ROWS, SPACING, BASE_RADIUS, ANIMATION_SPEED } = getResponsiveParams();
 
     useEffect(() => {
-        const containerTimer = setTimeout(() => {
-            setIsVisible(true);
-        }, 50);
+        // Use requestAnimationFrame for smoother startup
+        let rafId1: number;
+        let rafId2: number;
 
-        const animationTimer = setTimeout(() => {
-            setAnimationReady(true);
-        }, 150);
+        rafId1 = requestAnimationFrame(() => {
+            setIsVisible(true);
+            rafId2 = requestAnimationFrame(() => {
+                setAnimationReady(true);
+            });
+        });
 
         return () => {
-            clearTimeout(containerTimer);
-            clearTimeout(animationTimer);
+            cancelAnimationFrame(rafId1);
+            cancelAnimationFrame(rafId2);
         };
     }, []);
 
@@ -631,13 +626,18 @@ const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) =>
     return (
         <div
             className="absolute inset-0 overflow-hidden transition-colors duration-300"
-            style={{ backgroundColor: isDark ? '#111827' : '#ffffff' }}
+            style={{
+                backgroundColor: isDark ? '#111827' : '#ffffff',
+                willChange: 'transform', // GPU acceleration hint
+                contain: 'paint layout', // Layout isolation for better perf
+            }}
         >
             <canvas
                 ref={canvasRef}
                 className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-out ${
                     isVisible && animationReady ? 'opacity-90' : 'opacity-0'
                 }`}
+                style={{ willChange: 'contents' }} // Hint for canvas content changes
             />
 
             {/* Bottom radial fade for menu visibility */}

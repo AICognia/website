@@ -5,11 +5,6 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import {
-  FaHospital,
-  FaBalanceScale,
-  FaHotel,
-  FaShoppingCart,
-  FaCar,
   FaArrowRight,
   FaCheckCircle,
   FaPhone,
@@ -19,49 +14,9 @@ import {
 } from 'react-icons/fa'
 import SEO from '../components/SEO'
 import HeroBackgroundGrid from '../components/HeroBackgroundGrid'
-
-const industries = [
-  {
-    name: 'Healthcare',
-    path: '/industries/healthcare',
-    icon: FaHospital,
-    description: 'Secure AI for patient scheduling, appointment reminders, and care coordination.',
-    features: ['Enterprise Security', '24/7 Patient Calls', 'EHR Integration', 'Appointment Reminders'],
-    color: 'blue'
-  },
-  {
-    name: 'Legal Services',
-    path: '/industries/legal',
-    icon: FaBalanceScale,
-    description: 'Confidential client intake, appointment scheduling, and intelligent case screening.',
-    features: ['Client Screening', 'Intake Automation', 'Confidential Handling', 'Calendar Sync'],
-    color: 'blue'
-  },
-  {
-    name: 'Hospitality',
-    path: '/industries/hospitality',
-    icon: FaHotel,
-    description: 'AI concierge for reservations, guest services, and multilingual support.',
-    features: ['Reservation Handling', 'Guest Services', '45+ Languages', 'Concierge AI'],
-    color: 'blue'
-  },
-  {
-    name: 'Retail',
-    path: '/industries/retail',
-    icon: FaShoppingCart,
-    description: 'Omnichannel customer service, order tracking, and support automation.',
-    features: ['Order Tracking', 'Returns Processing', 'Customer Support', 'FAQ Automation'],
-    color: 'blue'
-  },
-  {
-    name: 'Automotive',
-    path: '/industries/automotive',
-    icon: FaCar,
-    description: 'Service scheduling, lead qualification, and automated follow-up calls.',
-    features: ['Service Booking', 'Lead Qualification', 'Follow-up Calls', 'Parts Inquiries'],
-    color: 'blue'
-  }
-]
+import MobileHeroBackground from '../components/MobileHeroBackground'
+import IndustriesCarousel from '../components/IndustriesCarousel'
+import MobileIndustriesCarousel from '../components/MobileIndustriesCarousel'
 
 const Industries: React.FC = () => {
   const [mounted, setMounted] = useState(false)
@@ -142,10 +97,10 @@ const Industries: React.FC = () => {
   })
 
   const heroStats = [
-    { value: '76%', label: 'Cost Reduction' },
+    { value: '15+', label: 'Industries' },
     { value: '24/7', label: 'Availability' },
-    { value: '87%', label: 'Conversion' },
-    { value: '<1s', label: 'Response' }
+    { value: '99.9%', label: 'Uptime' },
+    { value: '45+', label: 'Languages' }
   ]
 
   return (
@@ -153,20 +108,20 @@ const Industries: React.FC = () => {
       <SEO
         page="solutions"
         customTitle="Industries We Serve | AI Solutions | Cognia AI"
-        customDescription="AI solutions tailored for Healthcare, Legal, Hospitality, Retail, and Automotive industries."
+        customDescription="AI solutions tailored for Healthcare, Manufacturing, Financial Services, Retail, Automotive, and 10+ more industries."
       />
 
       {/* Mobile Hero */}
-      <section className={`lg:hidden relative overflow-hidden ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+      <section className="lg:hidden relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="absolute inset-0">
-          <HeroBackgroundGrid isPlaying={false} />
+          <MobileHeroBackground />
         </div>
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background: isDark
-              ? 'linear-gradient(to bottom, rgba(17,24,39,0.85) 0%, rgba(17,24,39,0.7) 50%, rgba(17,24,39,0.9) 100%)'
-              : 'linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,0.95) 100%)'
+              ? 'linear-gradient(to bottom, rgba(17,24,39,0.75) 0%, rgba(17,24,39,0.5) 50%, rgba(17,24,39,0.3) 100%)'
+              : 'linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.3) 100%)'
           }}
         />
         <div className="relative z-10 px-5 pt-24 pb-10">
@@ -185,15 +140,18 @@ const Industries: React.FC = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.05 }}
-            className={`text-2xl font-serif font-normal mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}
+            className={`text-[1.875rem] leading-[1.15] font-serif font-light tracking-tight mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}
           >
-            Industries We Serve
+            Industries{' '}
+            <span className={`${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
+              We Serve
+            </span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className={`text-sm leading-relaxed mb-6 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
+            className={`text-base leading-relaxed mb-6 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
           >
             AI solutions tailored for your industry's unique challenges.
           </motion.p>
@@ -201,20 +159,45 @@ const Industries: React.FC = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.15 }}
-            className="flex justify-between"
+            className="flex justify-between mb-6 px-2"
           >
             {heroStats.map((stat, i) => (
               <div key={i} className="text-center">
                 <div className={`text-xl font-serif font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>{stat.value}</div>
-                <div className={`text-[9px] uppercase tracking-wider font-medium mt-0.5 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>{stat.label}</div>
+                <div className={`text-[9px] uppercase tracking-wider font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>{stat.label}</div>
               </div>
             ))}
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="space-y-3"
+          >
+            <Link
+              href="/demo"
+              className="btn-primary flex items-center justify-center gap-2 w-full h-14 rounded-2xl text-base font-semibold"
+            >
+              <span>Schedule Demo</span>
+              <FaArrowRight className="w-3 h-3" />
+            </Link>
+            <a
+              href="tel:+16163263328"
+              className={`flex items-center justify-center gap-2 w-full h-12 rounded-xl border font-medium transition-colors ${
+                isDark
+                  ? 'border-gray-700 text-gray-300 hover:bg-gray-800'
+                  : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+              }`}
+            >
+              <FaPhone className="w-3 h-3" />
+              <span>+1 616-326-3328</span>
+            </a>
           </motion.div>
         </div>
       </section>
 
       {/* Desktop Hero */}
-      <section className="hidden lg:flex min-h-[80vh] flex-col items-center overflow-hidden relative" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <section className="hidden lg:flex min-h-[70vh] flex-col items-center overflow-hidden relative" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <HeroBackgroundGrid isPlaying={false} />
         <div className={`absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none ${isDark ? 'from-gray-900/10 to-gray-900' : 'from-white/10 to-white'}`} />
         <div className={`absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none ${isDark ? 'from-gray-900 via-gray-900/40' : 'from-white via-white/40'}`} />
@@ -255,7 +238,10 @@ const Industries: React.FC = () => {
               </motion.div>
 
               <h1 className={`text-4xl lg:text-5xl xl:text-6xl font-serif font-normal leading-[1.08] mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                Industries We Serve
+                Industries We{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-500">
+                  Serve
+                </span>
               </h1>
 
               <p className={`text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
@@ -266,7 +252,7 @@ const Industries: React.FC = () => {
               </p>
 
               {/* Stats Row */}
-              <div className="flex items-stretch justify-center gap-4 lg:gap-5">
+              <div className="flex items-stretch justify-center gap-4 lg:gap-5 mb-10">
                 {heroStats.map((stat, i) => (
                   <motion.div
                     key={i}
@@ -281,144 +267,38 @@ const Industries: React.FC = () => {
                   </motion.div>
                 ))}
               </div>
+
+              {/* CTA Buttons */}
+              <div className="flex items-center justify-center gap-4">
+                <Link
+                  href="/demo"
+                  className="btn-primary h-14 px-8 rounded-xl text-lg inline-flex items-center gap-2"
+                >
+                  <span>Schedule Demo</span>
+                  <FaArrowRight className="w-4 h-4" />
+                </Link>
+                <a
+                  href="tel:+16163263328"
+                  className={`h-14 px-8 rounded-xl border font-medium transition-colors inline-flex items-center gap-3 ${
+                    isDark
+                      ? 'border-gray-700 text-gray-300 hover:bg-gray-800'
+                      : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                  }`}
+                >
+                  <FaPhone className="w-4 h-4" />
+                  <span>Talk to Expert</span>
+                </a>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Industries Bento Grid */}
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 relative ${isDark ? 'bg-gray-900/50' : 'bg-slate-50/30'}`}>
-        <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-800' : 'via-slate-200'}`} />
-
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-10 sm:mb-16"
-          >
-            <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full mb-4 sm:mb-6 ${isDark ? 'text-blue-400 bg-blue-900/30' : 'text-blue-600 bg-blue-50'}`}>
-              Industry Solutions
-            </span>
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-normal mb-4 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-              Tailored AI for Every Sector
-            </h2>
-            <p className={`text-base sm:text-lg max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-              Select your industry to see how we can transform your operations
-            </p>
-          </motion.div>
-
-          {/* Bento Grid - 2 large + 3 medium layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 sm:gap-6">
-            {/* Healthcare - Large Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="lg:col-span-3 lg:row-span-2"
-            >
-              <Link href={industries[0].path}>
-                <div
-                  className={`group h-full rounded-2xl border p-6 sm:p-8 transition-all duration-300 hover:scale-[1.01] ${isDark ? 'border-gray-700/80 hover:border-blue-500/40' : 'border-slate-200/80 hover:border-blue-300'}`}
-                  style={cardGlassStyle()}
-                >
-                  <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-5 ${isDark ? 'bg-blue-900/40 text-blue-400' : 'bg-blue-50 text-blue-600'}`}>
-                    <FaHospital className="w-7 h-7 sm:w-8 sm:h-8" />
-                  </div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <h3 className={`text-xl sm:text-2xl font-serif font-normal ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>{industries[0].name}</h3>
-                    <FaArrowRight className={`w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isDark ? 'text-blue-400' : 'text-blue-500'}`} />
-                  </div>
-                  <p className={`text-sm sm:text-base mb-6 leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>{industries[0].description}</p>
-                  <div className="grid grid-cols-2 gap-2">
-                    {industries[0].features.map((feature, idx) => (
-                      <div key={idx} className={`flex items-center gap-2 text-xs sm:text-sm ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
-                        <FaCheckCircle className={`flex-shrink-0 ${isDark ? 'text-blue-400' : 'text-blue-500'}`} />
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Legal - Large Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="lg:col-span-3 lg:row-span-2"
-            >
-              <Link href={industries[1].path}>
-                <div
-                  className={`group h-full rounded-2xl border p-6 sm:p-8 transition-all duration-300 hover:scale-[1.01] ${isDark ? 'border-gray-700/80 hover:border-blue-500/40' : 'border-slate-200/80 hover:border-blue-300'}`}
-                  style={cardGlassStyle()}
-                >
-                  <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-5 ${isDark ? 'bg-blue-900/40 text-blue-400' : 'bg-blue-50 text-blue-600'}`}>
-                    <FaBalanceScale className="w-7 h-7 sm:w-8 sm:h-8" />
-                  </div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <h3 className={`text-xl sm:text-2xl font-serif font-normal ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>{industries[1].name}</h3>
-                    <FaArrowRight className={`w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isDark ? 'text-blue-400' : 'text-blue-500'}`} />
-                  </div>
-                  <p className={`text-sm sm:text-base mb-6 leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>{industries[1].description}</p>
-                  <div className="grid grid-cols-2 gap-2">
-                    {industries[1].features.map((feature, idx) => (
-                      <div key={idx} className={`flex items-center gap-2 text-xs sm:text-sm ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
-                        <FaCheckCircle className={`flex-shrink-0 ${isDark ? 'text-blue-400' : 'text-blue-500'}`} />
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Hospitality, Retail, Automotive - Medium Cards */}
-            {industries.slice(2).map((industry, index) => {
-              const Icon = industry.icon
-              return (
-                <motion.div
-                  key={industry.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                  className="lg:col-span-2"
-                >
-                  <Link href={industry.path}>
-                    <div
-                      className={`group h-full rounded-2xl border p-5 sm:p-6 transition-all duration-300 hover:scale-[1.02] ${isDark ? 'border-gray-700/80 hover:border-blue-500/40' : 'border-slate-200/80 hover:border-blue-300'}`}
-                      style={cardGlassStyle()}
-                    >
-                      <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 ${isDark ? 'bg-blue-900/40 text-blue-400' : 'bg-blue-50 text-blue-600'}`}>
-                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                      </div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <h3 className={`text-base sm:text-lg font-serif font-normal ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>{industry.name}</h3>
-                        <FaArrowRight className={`w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isDark ? 'text-blue-400' : 'text-blue-500'}`} />
-                      </div>
-                      <p className={`text-xs sm:text-sm mb-4 leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>{industry.description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {industry.features.slice(0, 3).map((feature, idx) => (
-                          <span key={idx} className={`text-[10px] sm:text-xs px-2 py-1 rounded-full ${isDark ? 'bg-gray-700/50 text-gray-300' : 'bg-slate-100 text-slate-600'}`}>
-                            {feature}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              )
-            })}
-          </div>
-        </div>
-
-        <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-800' : 'via-slate-200'}`} />
-      </section>
+      {/* Industries Carousel */}
+      <div className="hidden lg:block">
+        <IndustriesCarousel />
+      </div>
+      <MobileIndustriesCarousel />
 
       {/* Why Choose Us - Bento */}
       <section className={`py-12 sm:py-16 md:py-24 lg:py-32 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
@@ -466,7 +346,7 @@ const Industries: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section - Explore Solutions */}
+      {/* CTA Section */}
       <section className={`py-12 sm:py-16 md:py-24 lg:py-32 ${isDark ? 'bg-gray-800/30' : 'bg-slate-50/50'}`}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div

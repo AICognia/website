@@ -19,6 +19,7 @@ import {
 } from 'react-icons/fa'
 import SEO from '../components/SEO'
 import HeroBackgroundGrid from '../components/HeroBackgroundGrid'
+import MobileHeroBackground from '../components/MobileHeroBackground'
 import StructuredData from '../components/StructuredData'
 
 const About: React.FC = () => {
@@ -33,8 +34,8 @@ const About: React.FC = () => {
   const isDark = !mounted || resolvedTheme === 'dark'
 
   // Glass style matching Contact page exactly
-  const glassOpacity = isDark ? 0.30 : 0.30
-  const glassBlur = 22
+  const glassOpacity = isDark ? 0.20 : 0.18
+  const glassBlur = 10
 
   const glassStyle = {
     borderWidth: '0.5px',
@@ -70,29 +71,29 @@ const About: React.FC = () => {
   ]
 
   const stats = [
-    { value: '76%', label: 'Cost Reduction' },
-    { value: '10-20%', label: 'Revenue Increase' },
-    { value: '24/7', label: 'Availability' },
-    { value: '1 Week', label: 'Time to Launch' },
+    { value: '60', label: 'Days to Transform' },
+    { value: '95%', label: 'AI Projects Fail' },
+    { value: '20+', label: 'Transformations' },
+    { value: '$1K', label: 'Starting Price' },
   ]
 
   const differentiators = [
     {
       icon: FaRocket,
-      title: 'End-to-End Delivery',
-      description: 'From strategy to deployment, we handle everything.',
+      title: 'We Build What We Recommend',
+      description: 'Consultants advise. Engineers build. We do both.',
       color: 'blue'
     },
     {
       icon: FaShieldAlt,
-      title: 'Enterprise Security',
-      description: 'Enterprise-grade security and data protection.',
+      title: 'The Plan Is Yours',
+      description: 'Whether you work with us or not, the roadmap is yours to keep.',
       color: 'blue'
     },
     {
       icon: FaChartLine,
-      title: 'Measurable ROI',
-      description: 'Clear metrics and accountability from day one.',
+      title: 'ROI in Weeks, Not Years',
+      description: 'We prioritize opportunities that pay back fast.',
       color: 'blue'
     }
   ]
@@ -122,7 +123,7 @@ const About: React.FC = () => {
 
       <section className="lg:hidden relative overflow-hidden transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="absolute inset-0">
-          <HeroBackgroundGrid isPlaying={false} />
+          <MobileHeroBackground />
         </div>
         <div
           className="absolute inset-0 pointer-events-none"
@@ -150,8 +151,8 @@ const About: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.05 }}
             className={`text-[1.875rem] leading-[1.15] font-serif font-light tracking-tight mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}
           >
-            Your AI{' '}
-            <span className={`${isDark ? 'text-blue-400' : 'text-blue-600'}`}>Transformation Partner</span>
+            We Advise.{' '}
+            <span className={`${isDark ? 'text-blue-400' : 'text-blue-600'}`}>We Build. We Do Both.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -159,7 +160,7 @@ const About: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className={`text-base leading-relaxed mb-6 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
           >
-            We bridge the gap between business operations and AI technology — helping enterprises turn scattered data into strategic advantage.
+            From AI strategy to transformed operations in 60 days. Find the highest-ROI opportunities. Build only what pays back.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -207,12 +208,12 @@ const About: React.FC = () => {
               : 'radial-gradient(ellipse 80% 60% at 25% 45%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.35) 40%, rgba(255,255,255,0.1) 60%, rgba(255,255,255,0) 75%)',
           }}
         />
-        <div className="w-full max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-20 relative z-10 flex-1 flex items-center pt-16 lg:pt-20 pb-24 3xl:-mt-16">
+        <div className="w-full max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1440px] 3xl:max-w-[1584px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 relative z-10 flex-1 flex items-center pt-8 lg:pt-12 pb-24 -mt-8 lg:-mt-12">
           <div className="grid grid-cols-12 gap-6 xl:gap-8 2xl:gap-10 items-stretch w-full">
 
             {/* Left Column - Value Proposition (7 cols) */}
             <motion.div
-              className={`col-span-7 relative rounded-[2rem] border p-10 xl:p-12 h-full ${isDark ? 'border-blue-500/30' : 'border-[#e2e8f0]'}`}
+              className={`col-span-7 relative rounded-2xl border p-6 xl:p-8 h-full ${isDark ? 'border-blue-500/30' : 'border-[#e2e8f0]'}`}
               style={glassStyle}
               initial={{ x: -20 }}
               animate={{ x: 0 }}
@@ -225,7 +226,7 @@ const About: React.FC = () => {
                 transition={{ duration: 0.3 }}
               >
                 <motion.div
-                  className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-10 ${
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 ${
                     isDark
                       ? 'bg-blue-900/40 border border-blue-500/30'
                       : 'bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/60'
@@ -249,32 +250,32 @@ const About: React.FC = () => {
                   <FaGlobe className={`w-3.5 h-3.5 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
                 </motion.div>
 
-                <h1 className={`text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-serif font-light leading-[1.08] mb-8 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                  Your AI{' '}
+                <h1 className={`text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-serif font-light leading-[1.08] mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+                  Consultants Advise.{' '}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500">
-                    Transformation Partner
+                    Engineers Build. We Do Both.
                   </span>
                 </h1>
 
-                <p className={`text-xl 2xl:text-2xl max-w-2xl mb-10 leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-                  We bridge the gap between business operations and AI technology — helping enterprises
-                  turn scattered data into strategic advantage.
+                <p className={`text-lg 2xl:text-xl max-w-xl mb-8 leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
+                  From AI strategy to transformed operations in 60 days. Find the highest-ROI AI opportunities.
+                  Then build only what pays back.
                 </p>
 
                 {/* Stats Row */}
-                <div className="flex items-stretch gap-5 mb-8">
+                <div className="flex items-stretch gap-4 mb-6">
                   {stats.map((item, i) => (
                     <motion.div
                       key={i}
-                      className={`flex-1 min-w-[120px] rounded-2xl border px-5 py-4 ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200/80 bg-white/50'}`}
+                      className={`flex-1 min-w-[100px] rounded-xl border px-4 py-3 ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200/80 bg-white/50'}`}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 + i * 0.1 }}
                     >
-                      <div className={`text-4xl 2xl:text-5xl font-semibold tracking-tight ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                      <div className={`text-2xl 2xl:text-3xl font-semibold tracking-tight ${isDark ? 'text-white' : 'text-slate-800'}`}>
                         {item.value}
                       </div>
-                      <div className={`text-[10px] 2xl:text-xs uppercase tracking-[0.12em] font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                      <div className={`text-[9px] 2xl:text-[10px] uppercase tracking-[0.12em] font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
                         {item.label}
                       </div>
                     </motion.div>
@@ -312,7 +313,7 @@ const About: React.FC = () => {
 
             {/* Right Column - Our Approach (5 cols) */}
             <motion.div
-              className={`col-span-5 rounded-[2rem] border p-10 xl:p-12 h-full flex flex-col ${isDark ? 'border-gray-700' : 'border-[#e2e8f0]'}`}
+              className={`col-span-5 rounded-2xl border p-6 xl:p-8 h-full flex flex-col ${isDark ? 'border-gray-700' : 'border-[#e2e8f0]'}`}
               style={glassStyle}
               initial={{ x: 20 }}
               animate={{ x: 0 }}
@@ -334,15 +335,15 @@ const About: React.FC = () => {
 
                 {/* Visual Timeline */}
                 <div className="flex-1 relative">
-                  {/* Connecting Line */}
-                  <div className={`absolute left-[19px] top-4 bottom-4 w-0.5 ${isDark ? 'bg-gradient-to-b from-blue-500 via-blue-400 to-blue-300' : 'bg-gradient-to-b from-blue-500 via-blue-400 to-blue-200'}`} />
+                  {/* Connecting Line - stops before the last step */}
+                  <div className={`absolute left-[19px] top-4 h-[calc(100%-80px)] w-0.5 ${isDark ? 'bg-gradient-to-b from-blue-500 via-blue-400 to-blue-300' : 'bg-gradient-to-b from-blue-500 via-blue-400 to-blue-200'}`} />
 
                   <div className="space-y-6">
                     {[
-                      { num: '01', title: 'Discover', desc: 'Deep-dive into your operations to identify high-impact AI opportunities', icon: FaBrain },
-                      { num: '02', title: 'Design', desc: 'Architect custom solutions tailored to your specific workflows', icon: FaRocket },
-                      { num: '03', title: 'Deploy', desc: 'Implement with minimal disruption and measurable KPIs', icon: FaShieldAlt },
-                      { num: '04', title: 'Evolve', desc: 'Continuously optimize and scale as your business grows', icon: FaChartLine }
+                      { num: '01', title: 'Discovery', desc: 'Key player interviews, workflow mapping, data identification (2 weeks)', icon: FaBrain },
+                      { num: '02', title: 'Assessment', desc: 'AI-readiness scoring, data maturity evaluation, ROI calculations (1 week)', icon: FaRocket },
+                      { num: '03', title: 'Deliverable', desc: 'AI Readiness Report with roadmap and investment analysis (Final week)', icon: FaShieldAlt },
+                      { num: '04', title: 'Build & Ship', desc: 'We implement the solutions you choose. ROI in weeks, not years.', icon: FaChartLine }
                     ].map((step, index) => {
                       const Icon = step.icon
                       return (

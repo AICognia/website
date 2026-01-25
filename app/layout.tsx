@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Source_Serif_4 } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import { ClerkProviderWrapper } from '@/src/providers/ClerkProviderWrapper'
 import { LanguageProvider } from '@/src/contexts/LanguageContext'
@@ -12,10 +13,10 @@ import CookieConsentBanner from '@/src/components/CookieConsent'
 import StickyMobileCTA from '@/src/components/StickyMobileCTA'
 import { VideoProvider } from '@/src/contexts/VideoContext'
 import { HelmetClientProvider } from '@/src/providers/HelmetClientProvider'
-import TactileBackground from '@/src/components/TactileBackground'
+// TactileBackground removed - redundant with HeroBackgroundGrid, was causing double canvas rendering
+// import TactileBackground from '@/src/components/TactileBackground'
 import { ThemeProvider } from '@/src/providers/ThemeProvider'
 import DarkModeToggle from '@/src/components/DarkModeToggle'
-import FloatingAuthButton from '@/src/components/FloatingAuthButton'
 
 const inter = Inter({
   variable: '--font-geist-sans',
@@ -26,28 +27,28 @@ const inter = Inter({
 const sourceSerif = Source_Serif_4({
   variable: '--font-source-serif',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400', '600', '700'], // Reduced from 6 weights to 3 for ~60% smaller font payload
 })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Cognia AI - AI Receptionist & Voice Agents | 24/7 Automated Customer Service',
+    default: 'Cognia AI - AI Transformation Agency | From Data Chaos to Strategic Clarity',
     template: '%s | Cognia AI'
   },
-  description: 'Transform your business with AI receptionist and voice agents. Never miss a call, book appointments 24/7 with 95% first-call resolution. Guaranteed 10-20% more customers. Operating in US & Turkey. Enterprise-grade AI with CRM integration. Setup in 1 week. Free demo available.',
+  description: 'AI transformation agency turning data chaos into strategic clarity. Automate workflows, empower teams, accelerate growth.',
   keywords: [
     // Primary keywords
-    'AI receptionist', 'virtual receptionist', 'AI voice agent', 'automated phone answering',
+    'AI transformation agency', 'data intelligence', 'AI solutions', 'business automation',
     // Service keywords
-    'chatbot', 'WhatsApp bot', 'Instagram bot', 'business automation', 'customer support automation',
+    'AI consulting', 'workflow automation', 'AI deployment', 'enterprise AI', 'data analytics AI',
     // Feature keywords
-    '24/7 receptionist', 'appointment booking AI', 'call handling AI', 'multilingual AI',
+    'AI integration', 'CRM automation', 'business intelligence', 'predictive analytics',
     // Industry keywords
     'healthcare AI', 'legal AI', 'hospitality AI', 'retail AI', 'enterprise AI solutions',
     // Geographic keywords
     'US AI company', 'Turkey AI company', 'Cognia AI', 'AI consultancy',
     // Benefit keywords
-    'reduce missed calls', 'increase bookings', 'AI customer service', 'voice automation'
+    'strategic clarity', 'data-driven decisions', 'AI automation', 'digital transformation'
   ],
   authors: [{ name: 'Cognia AI', url: 'https://cogniaai.com' }],
   creator: 'Cognia AI',
@@ -68,14 +69,14 @@ export const metadata: Metadata = {
     alternateLocale: ['tr_TR'],
     url: 'https://cogniaai.com',
     siteName: 'Cognia AI',
-    title: 'Cognia AI - AI Receptionist & Voice Agents | Never Miss a Call',
-    description: 'Transform your business with AI receptionist solutions. 24/7 automated call handling, appointment booking, and customer support. 95% first-call resolution.',
+    title: 'Cognia AI - AI Transformation Agency | Data to Strategic Clarity',
+    description: 'AI transformation agency that designs and deploys solutions to automate workflows, empower teams, and accelerate business growth.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Cognia AI - AI Receptionist & Voice Agent Solutions',
+        alt: 'Cognia AI - AI Transformation Agency',
         type: 'image/png',
       },
     ],
@@ -85,11 +86,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@cognia_ai',
     creator: '@cognia_ai',
-    title: 'Cognia AI - AI Receptionist & Voice Agents',
-    description: 'Never miss a call. Book 24/7. AI receptionist with 95% first-call resolution. Enterprise-grade security.',
+    title: 'Cognia AI - From Data Chaos to Strategic Clarity',
+    description: 'AI transformation agency. Automate workflows, empower teams, accelerate growth. Enterprise-grade solutions.',
     images: {
       url: '/og-image.png',
-      alt: 'Cognia AI - AI Receptionist Solutions',
+      alt: 'Cognia AI - AI Transformation Agency',
     },
   },
   robots: {
@@ -134,21 +135,16 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                try {
-                  var theme = localStorage.getItem('theme');
-                  if (!theme) theme = 'dark';
-                  // Remove default class and add correct one
-                  document.documentElement.classList.remove('dark', 'light');
-                  document.documentElement.classList.add(theme);
-                  document.documentElement.style.colorScheme = theme;
-                  // Set background color immediately to prevent flash
-                  var bgColor = theme === 'dark' ? '#111827' : '#ffffff';
-                  document.documentElement.style.backgroundColor = bgColor;
-                } catch (e) {
-                  document.documentElement.classList.add('dark');
-                  document.documentElement.style.colorScheme = 'dark';
-                  document.documentElement.style.backgroundColor = '#111827';
-                }
+                var d = document.documentElement;
+                var stored = null;
+                try { stored = localStorage.getItem('theme'); } catch(e) {}
+                var theme = stored || 'dark';
+                d.classList.remove('dark', 'light');
+                d.classList.add(theme);
+                d.style.colorScheme = theme;
+                d.style.backgroundColor = theme === 'dark' ? '#111827' : '#ffffff';
+                d.setAttribute('data-theme', theme);
+                window.__theme = theme;
               })();
             `,
           }}
@@ -167,26 +163,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://platform.twitter.com" />
         <link rel="dns-prefetch" href="https://www.linkedin.com" />
 
-        {/* Meta Pixel Code - Set NEXT_PUBLIC_META_PIXEL_ID in .env.local */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              var pixelId = '${process.env.NEXT_PUBLIC_META_PIXEL_ID || ''}';
-              if (pixelId) {
-                fbq('init', pixelId);
-                fbq('track', 'PageView');
-              }
-            `,
-          }}
-        />
+        {/* Meta Pixel Code moved to afterInteractive for better performance */}
 
         {/* Note: og-image.png is not preloaded as it's only needed for social sharing metadata */}
 
@@ -212,6 +189,28 @@ export default function RootLayout({
         <meta httpEquiv="x-ua-compatible" content="IE=edge" />
       </head>
       <body className={`${inter.variable} ${sourceSerif.variable}`}>
+        {/* Meta Pixel - deferred to afterInteractive for better TTI */}
+        <Script
+          id="meta-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              var pixelId = '${process.env.NEXT_PUBLIC_META_PIXEL_ID || ''}';
+              if (pixelId) {
+                fbq('init', pixelId);
+                fbq('track', 'PageView');
+              }
+            `,
+          }}
+        />
         {/* Skip to main content link for accessibility - visible on focus */}
         <a
           href="#main-content"
@@ -225,8 +224,7 @@ export default function RootLayout({
             <LanguageProvider>
               <LeadCaptureProvider>
                 <VideoProvider>
-                  <TactileBackground />
-                  <FloatingAuthButton />
+                  {/* TactileBackground removed for performance - was running 60fps canvas globally */}
                   <DarkModeToggle />
                   <div className="w-full min-h-screen relative mesh-gradient transition-colors duration-300">
                     {/* Level 2: Centering wrapper */}

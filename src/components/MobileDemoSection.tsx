@@ -21,7 +21,7 @@ const MobileDemoSection: React.FC = () => {
   const [inputValue, setInputValue] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const [responseIndex, setResponseIndex] = useState(0)
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const chatContainerRef = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
   const { resolvedTheme } = useTheme()
 
@@ -32,13 +32,23 @@ const MobileDemoSection: React.FC = () => {
   // Default to dark to prevent flash (dark is the default theme)
   const isDark = !mounted || resolvedTheme === 'dark'
 
+  // Track user interaction to only auto-scroll after user sends a message
+  const [hasInteracted, setHasInteracted] = useState(false)
+
+  // Use scrollTo on container instead of scrollIntoView to prevent page-level scroll jumps
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages, isTyping])
+    if (chatContainerRef.current && hasInteracted) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      })
+    }
+  }, [messages, isTyping, hasInteracted])
 
   const handleSend = () => {
     if (!inputValue.trim() || isTyping) return
 
+    setHasInteracted(true)
     setMessages(prev => [...prev, { id: Date.now(), text: inputValue, sender: 'user' }])
     setInputValue('')
     setIsTyping(true)
@@ -129,8 +139,8 @@ const MobileDemoSection: React.FC = () => {
           </span>
         </div>
 
-        {/* Messages */}
-        <div className="h-48 overflow-y-auto p-4 space-y-3">
+        {/* Messages - fixed height to prevent layout shifts */}
+        <div ref={chatContainerRef} className="h-48 overflow-y-auto p-4 space-y-3">
           {messages.map((msg) => (
             <motion.div
               key={msg.id}
@@ -165,7 +175,6 @@ const MobileDemoSection: React.FC = () => {
               </div>
             </motion.div>
           )}
-          <div ref={messagesEndRef} />
         </div>
 
         <div className={`p-3 border-t ${isDark ? 'border-gray-700' : 'border-gray-200'}`}>

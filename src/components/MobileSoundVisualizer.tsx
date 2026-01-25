@@ -157,7 +157,7 @@ const MobileSoundVisualizer: React.FC = () => {
         {/* Main container */}
         <div
           onClick={handleClick}
-          className="relative bg-black/60 backdrop-blur-xl border border-white/20 rounded-2xl p-4 cursor-pointer active:scale-[0.98] transition-transform"
+          className="relative bg-black/60 backdrop-blur-md border border-white/20 rounded-2xl p-4 cursor-pointer active:scale-[0.98] transition-transform"
         >
           {/* Label */}
           <div className="flex items-center justify-between mb-3">

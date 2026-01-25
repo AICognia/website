@@ -15,10 +15,7 @@ import {
   FaConciergeBell,
   FaCalendarAlt,
   FaUsers,
-  FaSeedling,
-  FaWarehouse,
   FaLeaf,
-  FaTractor,
   FaShoppingCart,
   FaStore,
   FaChartBar,
@@ -51,7 +48,7 @@ export const healthcareData: IndustryData = {
   title: 'AI Transformation for',
   titleHighlight: 'Healthcare',
   subtitle: 'Unify patient data, automate clinical workflows, and deliver AI-powered insights for better care coordination and operational efficiency.',
-  heroImage: '/images/industries/healthcare.jpg',
+  heroImage: '/images/industries/healthcare.webp',
   heroWidget: {
     title: 'Unified Patient Intelligence',
     items: ['EHR Integration', 'Predictive Analytics', 'Smart Scheduling', 'Enterprise Security']
@@ -141,7 +138,7 @@ export const healthcareData: IndustryData = {
   testimonial: {
     quote: 'Working with Cognia has been a game-changer for our office. What I appreciate the most is how they completely transformed our Monday mornings. Before Cognia, I would spend 45 minutes just waiting for the voicemail system to run so I could go through every message. Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time.',
     author: 'Jacob Ojalvo',
-    role: 'Owner',
+    role: 'Office Manager',
     company: 'My Smile Miami'
   },
   useCasesTitle: 'Healthcare Practices We Serve',
@@ -179,7 +176,7 @@ export const manufacturingData: IndustryData = {
   title: 'AI Transformation for',
   titleHighlight: 'Manufacturing',
   subtitle: 'Unify production data, predict equipment failures, and optimize operations with AI-powered intelligence across your entire manufacturing operation.',
-  heroImage: '/images/industries/technology.jpg',
+  heroImage: '/images/industries/manufacturing.webp',
   heroWidget: {
     title: 'Production Intelligence Hub',
     items: ['MES Integration', 'Predictive Maintenance', 'Quality Analytics', 'Supply Chain Sync']
@@ -221,11 +218,11 @@ export const manufacturingData: IndustryData = {
       title: 'Equipment Health',
       description: 'OEE scores across your production lines.',
       data: [
-        { label: 'Line A', value: 62 },
-        { label: 'Line B', value: 78 },
-        { label: 'Line C', value: 45 },
-        { label: 'Line D', value: 71 },
-        { label: 'Line E', value: 58 }
+        { label: 'Assembly', value: 62 },
+        { label: 'Welding', value: 78 },
+        { label: 'Packaging', value: 45 },
+        { label: 'CNC', value: 71 },
+        { label: 'Paint', value: 58 }
       ],
       statusBadge: 'Below Target',
       statusColor: 'orange'
@@ -266,12 +263,6 @@ export const manufacturingData: IndustryData = {
     { value: '3 weeks', label: 'Earlier Detection' },
     { value: '$2.4M', label: 'Annual Savings' }
   ],
-  testimonial: {
-    quote: 'After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we\'re tied up or out on the road, and customers get a response right away instead of voicemail. Over the last few weeks, we\'ve noticed a pretty clear bump in jobs coming in. You stop missing calls, you stop missing work.',
-    author: 'Elite Auto Repair',
-    role: 'Auto Repair Shop',
-    company: 'Automotive'
-  },
   useCasesTitle: 'Manufacturing Operations We Serve',
   useCases: [
     {
@@ -307,7 +298,7 @@ export const hospitalityData: IndustryData = {
   title: 'AI Transformation for',
   titleHighlight: 'Hospitality',
   subtitle: 'Unify guest data, optimize revenue management, and deliver personalized experiences with AI-powered intelligence across your properties.',
-  heroImage: '/images/industries/public_sector.jpg',
+  heroImage: '/images/industries/hospitality.webp',
   heroWidget: {
     title: 'Guest Experience Platform',
     items: ['PMS Integration', 'Revenue Optimization', 'Guest Analytics', 'Multi-Property Sync']
@@ -394,12 +385,6 @@ export const hospitalityData: IndustryData = {
     { value: '60%', label: 'Inquiry Automation' },
     { value: '24/7', label: 'Service Availability' }
   ],
-  testimonial: {
-    quote: 'Working with Cognia has been a game-changer for our office. What I appreciate the most is how they completely transformed our Monday mornings. Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time.',
-    author: 'Jacob Ojalvo',
-    role: 'Owner',
-    company: 'My Smile Miami'
-  },
   useCasesTitle: 'Hospitality Operations We Serve',
   useCases: [
     {
@@ -427,128 +412,6 @@ export const hospitalityData: IndustryData = {
   ctaSubtitle: 'Schedule a consultation to see how AI can drive revenue while delighting guests.'
 }
 
-export const agricultureData: IndustryData = {
-  slug: 'agriculture',
-  seoTitle: 'AI Transformation for Agriculture | Cognia AI',
-  seoDescription: 'Unify farm data, optimize supply chains, and make data-driven decisions with AI-powered intelligence across your agricultural operations.',
-  badge: 'Agriculture & Food',
-  title: 'AI Transformation for',
-  titleHighlight: 'Agriculture',
-  subtitle: 'Unify farm data, optimize supply chains, and make data-driven decisions with AI-powered intelligence across your agricultural operations.',
-  heroImage: '/images/industries/technology.jpg',
-  heroWidget: {
-    title: 'Agricultural Intelligence',
-    items: ['Yield Analytics', 'Supply Chain', 'Weather Integration', 'IoT Sensors']
-  },
-  heroStats: [
-    { value: '24%', label: 'Yield Improvement' },
-    { value: '35%', label: 'Waste Reduction' },
-    { value: '94%', label: 'Forecast Accuracy' },
-    { value: '$1.2M', label: 'Annual Savings' }
-  ],
-  problemTitle: 'Agricultural Data is Scattered',
-  problemDescription: 'Field data, weather information, market prices, and supply chain logistics exist in separate systems. Making informed decisions requires manual data gathering.',
-  bentoContent: {
-    mainChallenge: {
-      badge: 'Farm Data Silos',
-      title: 'Disconnected Operations',
-      description: 'Field sensors, equipment, and market data in separate systems.'
-    },
-    radarChart: {
-      categories: [
-        { label: 'Yield', current: 58, potential: 92 },
-        { label: 'Sustainability', current: 40, potential: 88 },
-        { label: 'Supply Chain', current: 35, potential: 90 },
-        { label: 'Forecasting', current: 28, potential: 94 },
-        { label: 'Resource Use', current: 45, potential: 86 },
-      ],
-      colors: { current: '#f59e0b', potential: '#22c55e' },
-      style: 'dots'
-    },
-    ringChart: {
-      percentage: 35,
-      title: 'Post-Harvest Loss',
-      description: 'Crop waste from poor visibility and timing decisions.',
-      metric: 'Annual Waste',
-      metricValue: '~$1.2M/year',
-      color: 'amber'
-    },
-    barChart: {
-      title: 'Yield by Field',
-      description: 'Production variability across your operation.',
-      data: [
-        { label: 'North', value: 72 },
-        { label: 'South', value: 58 },
-        { label: 'East', value: 85 },
-        { label: 'West', value: 64 },
-        { label: 'Center', value: 78 }
-      ],
-      statusBadge: 'Optimization Needed',
-      statusColor: 'amber'
-    }
-  },
-  challenges: [
-    'Farm data scattered across equipment, sensors, and spreadsheets',
-    'Supply chain visibility gaps leading to waste and inefficiency',
-    'Weather and market volatility without predictive capabilities',
-    'Quality tracking disconnected from production and logistics'
-  ],
-  solutionsTitle: 'Agriculture-Specific AI Solutions',
-  solutionsSubtitle: 'Purpose-built for agricultural operations with predictive analytics and supply chain intelligence.',
-  solutions: [
-    {
-      icon: FaDatabase,
-      title: 'Unified Farm Intelligence',
-      description: 'Connect equipment, sensors, and operational systems into one data platform.',
-      features: ['Equipment integration', 'Sensor data unification', 'Field mapping', 'Weather integration']
-    },
-    {
-      icon: FaChartLine,
-      title: 'Predictive Analytics',
-      description: 'AI-powered forecasting for yields, demand, and optimal harvest timing.',
-      features: ['Yield prediction', 'Demand forecasting', 'Price optimization', 'Risk assessment']
-    },
-    {
-      icon: FaTruck,
-      title: 'Supply Chain Intelligence',
-      description: 'End-to-end visibility from farm to market with quality tracking and logistics optimization.',
-      features: ['Traceability', 'Quality monitoring', 'Logistics optimization', 'Market connectivity']
-    }
-  ],
-  resultsTitle: 'Measurable Agricultural Impact',
-  results: [
-    { value: '24%', label: 'Yield Improvement', suffix: '↑' },
-    { value: '35%', label: 'Waste Reduction', suffix: '↓' },
-    { value: '94%', label: 'Forecast Accuracy' },
-    { value: '28%', label: 'Cost Reduction', suffix: '↓' }
-  ],
-  useCasesTitle: 'Agricultural Operations We Serve',
-  useCases: [
-    {
-      icon: FaTractor,
-      title: 'Farm Operations',
-      features: ['Crop planning', 'Equipment management', 'Input optimization', 'Yield tracking']
-    },
-    {
-      icon: FaWarehouse,
-      title: 'Food Processing',
-      features: ['Quality control', 'Batch tracking', 'Compliance management', 'Waste reduction']
-    },
-    {
-      icon: FaLeaf,
-      title: 'Agribusiness',
-      features: ['Supply chain visibility', 'Market analytics', 'Contract management', 'Risk assessment']
-    },
-    {
-      icon: FaSeedling,
-      title: 'Sustainable Agriculture',
-      features: ['Resource optimization', 'Carbon tracking', 'Certification management', 'Impact reporting']
-    }
-  ],
-  ctaTitle: 'Ready to Modernize Your Operations?',
-  ctaSubtitle: 'Schedule a consultation to see how AI can improve yields while reducing waste.'
-}
-
 export const retailData: IndustryData = {
   slug: 'retail',
   seoTitle: 'AI Transformation for Retail | Cognia AI',
@@ -557,7 +420,7 @@ export const retailData: IndustryData = {
   title: 'AI Transformation for',
   titleHighlight: 'Retail',
   subtitle: 'Unify customer data, optimize inventory, and deliver personalized experiences with AI-powered intelligence across all your channels.',
-  heroImage: '/images/industries/financial_services.png',
+  heroImage: '/images/industries/retail.webp',
   heroWidget: {
     title: 'Unified Retail Intelligence',
     items: ['Inventory AI', 'Customer 360°', 'Demand Forecasting', 'Omnichannel Sync']
@@ -644,12 +507,6 @@ export const retailData: IndustryData = {
     { value: '89%', label: 'Stockout Prevention' },
     { value: '4.2x', label: 'ROI Year One' }
   ],
-  testimonial: {
-    quote: 'After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we\'re tied up or out on the road, and customers get a response right away instead of voicemail. Over the last few weeks, we\'ve noticed a pretty clear bump in jobs coming in. You stop missing calls, you stop missing work.',
-    author: 'Elite Auto Repair',
-    role: 'Auto Repair Shop',
-    company: 'Automotive'
-  },
   useCasesTitle: 'Retail Operations We Serve',
   useCases: [
     {
@@ -685,7 +542,7 @@ export const professionalServicesData: IndustryData = {
   title: 'AI Transformation for',
   titleHighlight: 'Professional Services',
   subtitle: 'Unify client data, optimize resource utilization, and deliver exceptional service with AI-powered intelligence across your practice.',
-  heroImage: '/images/industries/technology.jpg',
+  heroImage: '/images/industries/professional_services.webp',
   heroWidget: {
     title: 'Practice Intelligence',
     items: ['Client Management', 'Resource Planning', 'Billing Automation', 'Project Analytics']
@@ -807,7 +664,7 @@ export const legalData: IndustryData = {
   title: 'AI Transformation for',
   titleHighlight: 'Legal',
   subtitle: 'Unify case data, automate client intake, and deliver data-driven insights with AI-powered intelligence across your practice.',
-  heroImage: '/images/industries/financial_services.png',
+  heroImage: '/images/industries/legal.webp',
   heroWidget: {
     title: 'Legal Intelligence Platform',
     items: ['Case Management', 'Client Intake AI', 'Document Analysis', 'Billing Insights']
@@ -929,7 +786,7 @@ export const automotiveData: IndustryData = {
   title: 'AI Transformation for',
   titleHighlight: 'Automotive',
   subtitle: 'Unify customer data, optimize service operations, and deliver exceptional experiences with AI-powered intelligence across your dealership.',
-  heroImage: '/images/industries/energy.png',
+  heroImage: '/images/industries/autorepair.webp',
   heroWidget: {
     title: 'Dealership Intelligence',
     items: ['DMS Integration', 'Service Optimization', 'Lead Management', 'Inventory Analytics']
@@ -1016,6 +873,12 @@ export const automotiveData: IndustryData = {
     { value: '28%', label: 'Customer Retention', suffix: '↑' },
     { value: '24/7', label: 'Availability' }
   ],
+  testimonial: {
+    quote: 'After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we\'re tied up or out on the road, and customers get a response right away instead of voicemail. Over the last few weeks, we\'ve noticed a pretty clear bump in jobs coming in. You stop missing calls, you stop missing work.',
+    author: 'Elite Auto Repair',
+    role: 'Auto Repair Shop',
+    company: 'Automotive'
+  },
   useCasesTitle: 'Automotive Operations We Serve',
   useCases: [
     {
@@ -1051,7 +914,7 @@ export const homeServicesData: IndustryData = {
   title: 'AI Transformation for',
   titleHighlight: 'Home Services',
   subtitle: 'Unify customer data, optimize field operations, and deliver exceptional service with AI-powered intelligence across your business.',
-  heroImage: '/images/industries/public_sector.jpg',
+  heroImage: '/images/industries/home_services.webp',
   heroWidget: {
     title: 'Field Service Intelligence',
     items: ['Route Optimization', 'Dispatch AI', 'Customer Management', 'Technician Scheduling']
@@ -1093,11 +956,11 @@ export const homeServicesData: IndustryData = {
       title: 'Technician Utilization',
       description: 'Daily productivity across your field team.',
       data: [
-        { label: 'Tech A', value: 72 },
-        { label: 'Tech B', value: 85 },
-        { label: 'Tech C', value: 58 },
-        { label: 'Tech D', value: 91 },
-        { label: 'Tech E', value: 64 }
+        { label: 'HVAC', value: 72 },
+        { label: 'Plumbing', value: 85 },
+        { label: 'Electrical', value: 58 },
+        { label: 'Roofing', value: 91 },
+        { label: 'General', value: 64 }
       ],
       statusBadge: 'Route Gaps',
       statusColor: 'orange'
@@ -1173,7 +1036,7 @@ export const technologyData: IndustryData = {
   title: 'AI Transformation for',
   titleHighlight: 'Technology',
   subtitle: 'Unify product data, optimize engineering operations, and accelerate innovation with AI-powered intelligence across your technology organization.',
-  heroImage: '/images/industries/technology.jpg',
+  heroImage: '/images/industries/technology.webp',
   heroWidget: {
     title: 'Tech Intelligence Platform',
     items: ['DevOps Integration', 'Product Analytics', 'Engineering Insights', 'Customer Intelligence']
@@ -1260,12 +1123,6 @@ export const technologyData: IndustryData = {
     { value: '3.2x', label: 'Dev Productivity' },
     { value: '99.9%', label: 'Uptime' }
   ],
-  testimonial: {
-    quote: 'Working with Cognia has been a game-changer for our office. What I appreciate the most is how they completely transformed our Monday mornings. Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time.',
-    author: 'Jacob Ojalvo',
-    role: 'Owner',
-    company: 'My Smile Miami'
-  },
   useCasesTitle: 'Technology Companies We Serve',
   useCases: [
     {
@@ -1301,7 +1158,7 @@ export const financialServicesData: IndustryData = {
   title: 'AI Transformation for',
   titleHighlight: 'Financial Services',
   subtitle: 'Unify client data, automate compliance workflows, and deliver personalized experiences with AI-powered intelligence across your financial institution.',
-  heroImage: '/images/industries/financial_services.png',
+  heroImage: '/images/industries/financial_services.webp',
   heroWidget: {
     title: 'Financial Intelligence',
     items: ['Client 360°', 'Compliance AI', 'Risk Analytics', 'Process Automation']
@@ -1388,12 +1245,6 @@ export const financialServicesData: IndustryData = {
     { value: '75%', label: 'Faster Onboarding' },
     { value: '$2.1M', label: 'Annual Savings' }
   ],
-  testimonial: {
-    quote: 'After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we\'re tied up or out on the road, and customers get a response right away instead of voicemail. Over the last few weeks, we\'ve noticed a pretty clear bump in jobs coming in. You stop missing calls, you stop missing work.',
-    author: 'Elite Auto Repair',
-    role: 'Auto Repair Shop',
-    company: 'Automotive'
-  },
   useCasesTitle: 'Financial Institutions We Serve',
   useCases: [
     {
@@ -1429,7 +1280,7 @@ export const energyData: IndustryData = {
   title: 'AI Transformation for',
   titleHighlight: 'Energy & Utilities',
   subtitle: 'Unify operational data, optimize grid performance, and improve customer service with AI-powered intelligence across your energy organization.',
-  heroImage: '/images/industries/energy.png',
+  heroImage: '/images/industries/energy.webp',
   heroWidget: {
     title: 'Energy Intelligence',
     items: ['Grid Analytics', 'Asset Management', 'Customer Service', 'Demand Forecasting']
@@ -1516,12 +1367,6 @@ export const energyData: IndustryData = {
     { value: '35%', label: 'Maintenance Costs', suffix: '↓' },
     { value: '$3.5M', label: 'Annual Savings' }
   ],
-  testimonial: {
-    quote: 'Working with Cognia has been a game-changer for our office. What I appreciate the most is how they completely transformed our Monday mornings. Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time.',
-    author: 'Jacob Ojalvo',
-    role: 'Owner',
-    company: 'My Smile Miami'
-  },
   useCasesTitle: 'Energy Organizations We Serve',
   useCases: [
     {
@@ -1557,7 +1402,7 @@ export const publicSectorData: IndustryData = {
   title: 'AI Transformation for',
   titleHighlight: 'Public Sector',
   subtitle: 'Unify citizen data, streamline government services, and improve operational efficiency with AI-powered intelligence across your public organization.',
-  heroImage: '/images/industries/public_sector.jpg',
+  heroImage: '/images/industries/public_sector.webp',
   heroWidget: {
     title: 'Government Intelligence',
     items: ['Citizen Services', 'Process Automation', 'Data Integration', 'Compliance Ready']
@@ -1644,12 +1489,6 @@ export const publicSectorData: IndustryData = {
     { value: '92%', label: 'Citizen Satisfaction' },
     { value: '24/7', label: 'Service Access' }
   ],
-  testimonial: {
-    quote: 'After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we\'re tied up or out on the road, and customers get a response right away instead of voicemail. Over the last few weeks, we\'ve noticed a pretty clear bump in jobs coming in. You stop missing calls, you stop missing work.',
-    author: 'Elite Auto Repair',
-    role: 'Auto Repair Shop',
-    company: 'Automotive'
-  },
   useCasesTitle: 'Public Organizations We Serve',
   useCases: [
     {
@@ -1677,12 +1516,255 @@ export const publicSectorData: IndustryData = {
   ctaSubtitle: 'Schedule a consultation to see how AI can improve citizen service while reducing costs.'
 }
 
+export const realEstateData: IndustryData = {
+  slug: 'real-estate',
+  seoTitle: 'AI Transformation for Real Estate | Cognia AI',
+  seoDescription: 'Streamline property management, automate client communications, and gain market insights with AI-powered intelligence.',
+  badge: 'Real Estate',
+  title: 'AI Transformation for',
+  titleHighlight: 'Real Estate',
+  subtitle: 'Streamline property management, automate client communications, and gain market insights with AI-powered intelligence across your portfolio.',
+  heroImage: '/images/industries/real_estate.webp',
+  heroWidget: {
+    title: 'Property Intelligence Hub',
+    items: ['Lead Management', 'Property Analytics', 'Client Communications', 'Market Insights']
+  },
+  heroStats: [
+    { value: '45%', label: 'Lead Conversion Increase' },
+    { value: '60%', label: 'Response Time Reduction' },
+    { value: '28%', label: 'Deals Closed Faster' },
+    { value: '94%', label: 'Client Satisfaction' }
+  ],
+  problemTitle: 'Real Estate Data is Fragmented',
+  problemDescription: 'Leads in CRM, listings in MLS, client communications scattered. Without unified insights, deals slip through the cracks.',
+  bentoContent: {
+    mainChallenge: {
+      badge: 'Data Silos',
+      title: 'Disconnected Property Data',
+      description: 'CRM, MLS, and communications in separate systems.'
+    },
+    radarChart: {
+      categories: [
+        { label: 'Lead Mgmt', current: 55, potential: 92 },
+        { label: 'Response', current: 40, potential: 95 },
+        { label: 'Conversion', current: 35, potential: 88 },
+        { label: 'Client Intel', current: 45, potential: 90 },
+        { label: 'Market Intel', current: 50, potential: 94 },
+      ],
+      colors: { current: '#f97316', potential: '#3b82f6' },
+      style: 'default'
+    },
+    ringChart: {
+      percentage: 35,
+      title: 'Lead Response Rate',
+      description: 'Leads going cold due to slow response times.',
+      metric: 'Missed Opportunity',
+      metricValue: '$500K/year',
+      color: 'orange'
+    },
+    barChart: {
+      title: 'Lead Sources',
+      description: 'Conversion rates by lead source.',
+      data: [
+        { label: 'Website', value: 45 },
+        { label: 'Referral', value: 78 },
+        { label: 'Portal', value: 32 },
+        { label: 'Social', value: 28 },
+        { label: 'Cold', value: 15 }
+      ],
+      statusBadge: 'Underperforming',
+      statusColor: 'orange'
+    }
+  },
+  challenges: [
+    'Lead data scattered across multiple platforms',
+    'Slow response times losing potential clients',
+    'No predictive insights for market trends',
+    'Manual follow-up processes missing opportunities'
+  ],
+  solutionsTitle: 'Real Estate AI Solutions',
+  solutionsSubtitle: 'Purpose-built for property professionals with lead intelligence and market analytics.',
+  solutions: [
+    {
+      icon: FaDatabase,
+      title: 'Unified Lead Intelligence',
+      description: 'Connect all lead sources, CRM, and communications into one intelligent platform.',
+      features: ['Lead scoring', 'Automatic follow-up', 'Source attribution', 'Pipeline analytics']
+    },
+    {
+      icon: FaChartLine,
+      title: 'Market Analytics',
+      description: 'AI-powered market insights and pricing recommendations.',
+      features: ['Price prediction', 'Market trends', 'Comp analysis', 'Investment scoring']
+    },
+    {
+      icon: FaRobot,
+      title: '24/7 Client Response',
+      description: 'AI handles inquiries, schedules viewings, and qualifies leads around the clock.',
+      features: ['Instant response', 'Viewing scheduling', 'Lead qualification', 'Follow-up automation']
+    }
+  ],
+  resultsTitle: 'Measurable Real Estate Impact',
+  results: [
+    { value: '45%', label: 'Lead Conversion', suffix: '↑' },
+    { value: '60%', label: 'Response Time', suffix: '↓' },
+    { value: '28%', label: 'Faster Closings', suffix: '↑' },
+    { value: '94%', label: 'Client Satisfaction' }
+  ],
+  useCasesTitle: 'Real Estate Operations We Serve',
+  useCases: [
+    {
+      icon: FaHome,
+      title: 'Residential Agents',
+      features: ['Lead management', 'Showing scheduling', 'Client communications', 'Market reports']
+    },
+    {
+      icon: FaBriefcase,
+      title: 'Commercial Real Estate',
+      features: ['Tenant management', 'Lease analytics', 'Investment analysis', 'Portfolio insights']
+    },
+    {
+      icon: FaUsers,
+      title: 'Property Management',
+      features: ['Tenant communications', 'Maintenance requests', 'Rent collection', 'Vacancy tracking']
+    },
+    {
+      icon: FaChartBar,
+      title: 'Real Estate Teams',
+      features: ['Team performance', 'Lead distribution', 'Commission tracking', 'Pipeline management']
+    }
+  ],
+  ctaTitle: 'Ready to Transform Your Real Estate Business?',
+  ctaSubtitle: 'Schedule a consultation to see how AI can increase conversions while saving time.'
+}
+
+export const constructionData: IndustryData = {
+  slug: 'construction',
+  seoTitle: 'AI Transformation for Construction | Cognia AI',
+  seoDescription: 'Streamline project management, automate client communications, and optimize operations with AI-powered intelligence.',
+  badge: 'Construction',
+  title: 'AI Transformation for',
+  titleHighlight: 'Construction',
+  subtitle: 'Streamline project management, automate client communications, and optimize operations with AI-powered intelligence across your projects.',
+  heroImage: '/images/industries/construction.webp',
+  heroWidget: {
+    title: 'Construction Intelligence Hub',
+    items: ['Lead Capture', 'Project Tracking', 'Client Updates', 'Crew Scheduling']
+  },
+  heroStats: [
+    { value: '40%', label: 'More Leads Captured' },
+    { value: '55%', label: 'Admin Time Saved' },
+    { value: '24/7', label: 'Client Response' },
+    { value: '30%', label: 'Project Efficiency' }
+  ],
+  problemTitle: 'Construction Communication is Broken',
+  problemDescription: 'Missed calls during jobs, estimates lost in voicemail, project updates scattered. You lose business when you cant answer the phone.',
+  bentoContent: {
+    mainChallenge: {
+      badge: 'Missed Opportunities',
+      title: 'Calls Go Unanswered',
+      description: 'On the job site means missing new business calls.'
+    },
+    radarChart: {
+      categories: [
+        { label: 'Lead Capture', current: 40, potential: 95 },
+        { label: 'Response', current: 35, potential: 92 },
+        { label: 'Scheduling', current: 50, potential: 90 },
+        { label: 'Client Comm', current: 45, potential: 88 },
+        { label: 'Project Mgmt', current: 55, potential: 85 },
+      ],
+      colors: { current: '#f97316', potential: '#3b82f6' },
+      style: 'default'
+    },
+    ringChart: {
+      percentage: 45,
+      title: 'Missed Calls',
+      description: 'Potential jobs lost because no one answered.',
+      metric: 'Lost Revenue',
+      metricValue: '$200K/year',
+      color: 'orange'
+    },
+    barChart: {
+      title: 'Call Sources',
+      description: 'Where your leads are coming from.',
+      data: [
+        { label: 'Referral', value: 82 },
+        { label: 'Google', value: 65 },
+        { label: 'Website', value: 48 },
+        { label: 'Social', value: 35 },
+        { label: 'Other', value: 22 }
+      ],
+      statusBadge: 'Many Missed',
+      statusColor: 'orange'
+    }
+  },
+  challenges: [
+    'Missing calls while on job sites or in meetings',
+    'Estimates and quotes lost in voicemail',
+    'No consistent follow-up with prospects',
+    'Client updates require constant phone calls'
+  ],
+  solutionsTitle: 'Construction AI Solutions',
+  solutionsSubtitle: 'Purpose-built for contractors, builders, and construction companies.',
+  solutions: [
+    {
+      icon: FaRobot,
+      title: '24/7 Call Answering',
+      description: 'AI answers every call, captures leads, and schedules estimates when youre busy.',
+      features: ['Never miss a lead', 'Estimate scheduling', 'Call summaries', 'Priority routing']
+    },
+    {
+      icon: FaClipboardList,
+      title: 'Project Updates',
+      description: 'Automated client communications keep customers informed without constant calls.',
+      features: ['Progress updates', 'Photo sharing', 'Schedule changes', 'Milestone alerts']
+    },
+    {
+      icon: FaTools,
+      title: 'Crew & Schedule Management',
+      description: 'Coordinate crews, manage schedules, and track project timelines.',
+      features: ['Crew scheduling', 'Job assignments', 'Time tracking', 'Resource planning']
+    }
+  ],
+  resultsTitle: 'Measurable Construction Impact',
+  results: [
+    { value: '40%', label: 'More Leads', suffix: '↑' },
+    { value: '55%', label: 'Admin Time Saved', suffix: '↓' },
+    { value: '24/7', label: 'Call Coverage' },
+    { value: '30%', label: 'Efficiency Gain', suffix: '↑' }
+  ],
+  useCasesTitle: 'Construction Businesses We Serve',
+  useCases: [
+    {
+      icon: FaHome,
+      title: 'General Contractors',
+      features: ['Lead capture', 'Estimate scheduling', 'Project updates', 'Client communications']
+    },
+    {
+      icon: FaTools,
+      title: 'Specialty Trades',
+      features: ['Service calls', 'Quote requests', 'Job scheduling', 'Follow-up automation']
+    },
+    {
+      icon: FaIndustry,
+      title: 'Commercial Builders',
+      features: ['RFQ management', 'Bid tracking', 'Stakeholder updates', 'Document handling']
+    },
+    {
+      icon: FaWrench,
+      title: 'Remodelers',
+      features: ['Consultation booking', 'Design reviews', 'Progress photos', 'Change orders']
+    }
+  ],
+  ctaTitle: 'Ready to Grow Your Construction Business?',
+  ctaSubtitle: 'Schedule a consultation to see how AI can capture more leads while you focus on building.'
+}
+
 // Export all industry data
 export const allIndustryData: Record<string, IndustryData> = {
   healthcare: healthcareData,
   manufacturing: manufacturingData,
   hospitality: hospitalityData,
-  agriculture: agricultureData,
   retail: retailData,
   'professional-services': professionalServicesData,
   legal: legalData,
@@ -1691,5 +1773,7 @@ export const allIndustryData: Record<string, IndustryData> = {
   technology: technologyData,
   'financial-services': financialServicesData,
   energy: energyData,
-  'public-sector': publicSectorData
+  'public-sector': publicSectorData,
+  'real-estate': realEstateData,
+  'construction': constructionData
 }

@@ -10,6 +10,7 @@ import { motion } from 'framer-motion'
 import { Mail, Lock, Eye, EyeOff, ArrowRight, ArrowLeft } from 'lucide-react'
 import { FaBrain, FaRocket, FaShieldAlt, FaChartLine } from 'react-icons/fa'
 import HeroBackgroundGrid from '@/src/components/HeroBackgroundGrid'
+import MobileHeroBackground from '@/src/components/MobileHeroBackground'
 
 export default function SignInClient() {
   const clerkSignIn = isClerkConfigured ? useSignIn() : { isLoaded: true, signIn: null, setActive: async () => {} }

@@ -9,7 +9,7 @@ const testimonials = [
   {
     quote: "Working with Cognia has been a game-changer for our office. What I appreciate the most is how they completely transformed our Monday mornings. Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time.",
     author: "Jacob Ojalvo",
-    role: "Owner, My Smile Miami"
+    role: "Office Manager, My Smile Miami"
   },
   {
     quote: "After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we're tied up or out on the road, and customers get a response right away instead of voicemail. We've noticed a pretty clear bump in jobs coming in. You stop missing calls, you stop missing work.",

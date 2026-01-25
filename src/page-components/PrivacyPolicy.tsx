@@ -24,6 +24,7 @@ import {
 } from 'react-icons/fa'
 import SEO from '../components/SEO'
 import HeroBackgroundGrid from '../components/HeroBackgroundGrid'
+import MobileHeroBackground from '../components/MobileHeroBackground'
 
 const PrivacyPolicy: React.FC = () => {
   const [mounted, setMounted] = useState(false)
@@ -371,7 +372,7 @@ const PrivacyPolicy: React.FC = () => {
       {/* Hero Section - Mobile */}
       <section className="lg:hidden relative overflow-hidden transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="absolute inset-0">
-          <HeroBackgroundGrid isPlaying={false} />
+          <MobileHeroBackground />
         </div>
         <div
           className="absolute inset-0 pointer-events-none"
@@ -434,15 +435,15 @@ const PrivacyPolicy: React.FC = () => {
               : 'radial-gradient(ellipse 80% 60% at 25% 45%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.35) 40%, rgba(255,255,255,0.1) 60%, rgba(255,255,255,0) 75%)',
           }}
         />
-        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 relative z-10 flex-1 flex items-center pt-16 lg:pt-24 pb-16">
+        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 relative z-10 flex-1 flex items-center justify-center pt-16 lg:pt-24 pb-16">
           <motion.div
-            className="max-w-3xl"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            className="max-w-3xl text-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             <motion.div
-              className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-8 ${
+              className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-8 mx-auto ${
                 isDark
                   ? 'bg-blue-900/40 border border-blue-500/30'
                   : 'bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/60'
@@ -473,7 +474,7 @@ const PrivacyPolicy: React.FC = () => {
               Last updated: {lastUpdated}
             </p>
 
-            <p className={`text-xl max-w-2xl leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+            <p className={`text-xl max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
               Welcome to CogniaAI. Your privacy is important to us. This Privacy Policy explains how we collect, use, share, and protect your personal data when you visit or use our website, services, or applications.
             </p>
           </motion.div>

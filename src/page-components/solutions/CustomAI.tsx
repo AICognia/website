@@ -15,12 +15,13 @@ import {
   FaBrain,
   FaRobot,
   FaChartLine,
-  FaEye,
+  FaDatabase,
   FaMicrochip
 } from 'react-icons/fa'
 import { ArrowRight, Sparkles, Settings, Lock, Headphones } from 'lucide-react'
 import SEO from '../../components/SEO'
 import HeroBackgroundGrid from '../../components/HeroBackgroundGrid'
+import MobileHeroBackground from '../../components/MobileHeroBackground'
 
 const CustomAI: React.FC = () => {
   const [mounted, setMounted] = useState(false)
@@ -89,38 +90,38 @@ const CustomAI: React.FC = () => {
 
   const approach = [
     {
-      icon: FaCogs,
-      title: 'Built for You',
-      description: 'Not a template. Custom AI solutions designed specifically for your industry, workflows, and goals. We start from scratch to solve your unique challenges.',
-      features: ['Industry-Specific', 'Custom Workflows', 'Your Goals', 'Unique Solutions']
+      icon: FaBrain,
+      title: 'RAG Systems',
+      description: 'AI that actually knows your business. Retrieval-augmented generation connects AI to your documents, data, and knowledge for accurate, contextual answers.',
+      features: ['Document Search', 'Contextual Answers', 'Source Citations', 'Real-time Updates']
+    },
+    {
+      icon: FaDatabase,
+      title: 'Vector Database & Knowledge Base',
+      description: 'Semantic search across all your data. All docs instantly searchable by AI. Find information by meaning, not just keywords.',
+      features: ['Semantic Search', 'Embeddings', 'Fast Retrieval', 'Scalable Storage']
+    },
+    {
+      icon: FaChartLine,
+      title: 'BI Dashboards & Predictive Models',
+      description: 'Real-time insights without SQL. Forecast demand, churn, and inventory. Turn your data into actionable intelligence.',
+      features: ['Real-time Insights', 'Demand Forecasting', 'Churn Prediction', 'No SQL Required']
     },
     {
       icon: FaPlug,
-      title: 'Perfect Integration',
-      description: 'Works seamlessly with your existing tools and processes. No disruption to current operations. We adapt to your tech stack, not the other way around.',
-      features: ['API Integrations', 'Legacy Support', 'Zero Disruption', 'Gradual Rollout']
-    },
-    {
-      icon: FaLifeRing,
-      title: 'Ongoing Support',
-      description: 'We don\'t just build and disappear. Continuous optimization and support to ensure success. Your AI gets better over time.',
-      features: ['24/7 Support', 'Continuous Learning', 'Performance Tuning', 'Regular Updates']
-    },
-    {
-      icon: FaShieldAlt,
-      title: 'Enterprise Security',
-      description: 'Built with security first. Enterprise-grade encryption and comprehensive audit logging. Your data stays protected.',
-      features: ['Data Protection', 'Secure Storage', 'End-to-End Encryption', 'Audit Logs']
+      title: 'API Integrations',
+      description: 'Connect all your existing tools. Works seamlessly with your current systems. We adapt to your tech stack, not the other way around.',
+      features: ['500+ Connectors', 'Custom APIs', 'Real-time Sync', 'Zero Disruption']
     }
   ]
 
   const capabilities = [
-    { icon: FaFileAlt, text: 'AI-powered document processing and extraction' },
-    { icon: FaBrain, text: 'Custom NLP models for your domain' },
-    { icon: FaRobot, text: 'Intelligent process automation' },
-    { icon: FaChartLine, text: 'Predictive analytics and forecasting' },
-    { icon: FaEye, text: 'Computer vision applications' },
-    { icon: FaMicrochip, text: 'Custom LLM fine-tuning and deployment' },
+    { icon: FaBrain, text: 'RAG Systems: AI that actually knows your business' },
+    { icon: FaDatabase, text: 'Vector Database: Semantic search across all data' },
+    { icon: FaFileAlt, text: 'Knowledge Base: All docs instantly searchable by AI' },
+    { icon: FaChartLine, text: 'BI Dashboards: Real-time insights without SQL' },
+    { icon: FaPlug, text: 'API Integrations: Connect all your existing tools' },
+    { icon: FaMicrochip, text: 'Predictive Models: Forecast demand, churn, inventory' },
   ]
 
   const stats = [
@@ -133,14 +134,14 @@ const CustomAI: React.FC = () => {
     <div className="min-h-screen transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <SEO
         page="solutions"
-        customTitle="Custom AI Solutions - AI Built Just for You | Cognia AI"
-        customDescription="Your business is unique. Your AI should be too. We build custom AI solutions that solve your specific challenges with enterprise security and ongoing support."
+        customTitle="Data Infrastructure for AI - RAG, Vector DB, BI Dashboards | Cognia AI"
+        customDescription="RAG systems, vector databases, knowledge bases, BI dashboards, API integrations, and predictive models. Build the data foundation for AI that knows your business."
       />
 
       {/* Mobile Hero */}
       <section className={`lg:hidden relative overflow-hidden transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
         <div className="absolute inset-0">
-          <HeroBackgroundGrid isPlaying={false} />
+          <MobileHeroBackground />
         </div>
 
         <div
@@ -179,9 +180,9 @@ const CustomAI: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.05 }}
             className={`text-[2rem] leading-[1.15] font-serif font-light tracking-tight mb-5 ${isDark ? 'text-white' : 'text-slate-900'}`}
           >
-            AI Built{' '}
+            Data Infrastructure{' '}
             <span className={`${isDark ? 'text-violet-400' : 'text-violet-600'}`}>
-              Just for You
+              for AI
             </span>
           </motion.h1>
 
@@ -191,7 +192,7 @@ const CustomAI: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className={`text-base leading-relaxed mb-8 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
           >
-            Your business is unique. Your AI should be too. We build custom AI solutions that solve your specific challenges.
+            RAG, vector DB, knowledge base, BI dashboards, predictive models.
           </motion.p>
 
           <motion.div
@@ -286,14 +287,14 @@ const CustomAI: React.FC = () => {
                 </motion.div>
 
                 <h1 className={`text-2xl sm:text-3xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-serif font-light leading-[1.12] sm:leading-[1.08] mb-4 sm:mb-6 lg:mb-8 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                  AI Built{' '}
+                  Data Infrastructure{' '}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-500">
-                    Just for You
+                    for AI
                   </span>
                 </h1>
 
                 <p className={`text-base sm:text-lg lg:text-xl 2xl:text-2xl max-w-xl lg:max-w-2xl mb-5 sm:mb-8 lg:mb-10 leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-                  Your business is unique. Your AI should be too. We build custom AI solutions that solve your specific challenges.
+                  RAG systems, vector databases, knowledge bases, BI dashboards, API integrations, and predictive models—the foundation for AI that knows your business.
                 </p>
 
                 <div className="flex flex-wrap items-stretch gap-2 sm:gap-4 lg:gap-5 mb-5 sm:mb-8">
@@ -340,10 +341,10 @@ const CustomAI: React.FC = () => {
                 transition={{ delay: 0.2, duration: 0.3 }}
               >
                 <h2 className={`text-xl sm:text-2xl lg:text-3xl font-serif font-normal mb-2 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                  What We Can Build
+                  Data Infrastructure We Build
                 </h2>
                 <p className={`text-sm sm:text-base mb-5 sm:mb-8 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                  Custom AI solutions for your unique challenges.
+                  The foundation for AI that knows your business.
                 </p>
 
                 <div className="space-y-3 sm:space-y-4">
@@ -398,13 +399,13 @@ const CustomAI: React.FC = () => {
               className="lg:sticky lg:top-32"
             >
               <span className={`inline-block px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-semibold rounded-full mb-4 sm:mb-6 ${isDark ? 'text-violet-400 bg-violet-900/30' : 'text-violet-600 bg-violet-50'}`}>
-                Our Approach
+                Data Infrastructure
               </span>
               <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                From Discovery to Deployment
+                The Foundation for Smart AI
               </h2>
               <p className={`text-base sm:text-lg mb-4 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-                We partner with you to build AI that delivers real results. No templates, no one-size-fits-all solutions.
+                RAG systems, vector databases, knowledge bases, BI dashboards, and predictive models—everything your AI needs to truly understand your business.
               </p>
 
               <Link
@@ -535,29 +536,32 @@ const CustomAI: React.FC = () => {
       {/* Testimonial Section */}
       <section className={`py-12 sm:py-16 md:py-24 lg:py-32 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <FaQuoteLeft className={`text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 mx-auto ${isDark ? 'text-gray-700' : 'text-slate-200'}`} />
-            <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed mb-6 sm:mb-8 font-serif ${isDark ? 'text-white' : 'text-slate-800'}`}>
-              "After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we're tied up or out on the road, and customers get a response right away instead of voicemail. Over the last few weeks, we've noticed a pretty clear bump in jobs coming in. You stop missing calls, you stop missing work."
-            </p>
-            <div className="flex items-center justify-center gap-3 sm:gap-4">
-              <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${isDark ? 'bg-violet-900/50' : 'bg-violet-100'}`}>
-                <span className={`text-sm sm:text-base font-bold ${isDark ? 'text-violet-400' : 'text-violet-600'}`}>
-                  EA
-                </span>
+          <div className="max-w-xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className={`rounded-2xl border p-6 sm:p-8 lg:p-10 aspect-square flex flex-col items-center justify-center text-center ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200 bg-white'}`}
+              style={glassStyle}
+            >
+              <FaQuoteLeft className={`text-2xl sm:text-3xl mb-4 sm:mb-6 ${isDark ? 'text-gray-700' : 'text-slate-200'}`} />
+              <p className={`text-base sm:text-lg leading-relaxed mb-6 font-serif ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                "Calls get answered now, even when we're out on the road. Customers get a response right away instead of voicemail. We've seen a clear bump in jobs coming in."
+              </p>
+              <div className="flex items-center justify-center gap-3 sm:gap-4">
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${isDark ? 'bg-violet-900/50' : 'bg-violet-100'}`}>
+                  <span className={`text-sm sm:text-base font-bold ${isDark ? 'text-violet-400' : 'text-violet-600'}`}>
+                    EA
+                  </span>
+                </div>
+                <div className="text-left">
+                  <div className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Elite Auto Repair</div>
+                  <div className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Auto Repair Shop</div>
+                </div>
               </div>
-              <div className="text-left">
-                <div className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Elite Auto Repair</div>
-                <div className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Auto Repair Shop</div>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -573,10 +577,10 @@ const CustomAI: React.FC = () => {
             style={glassStyle}
           >
             <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-              Have a Unique Challenge?
+              Ready to Build Your Data Foundation?
             </h2>
             <p className={`text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mb-5 sm:mb-8 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-              Let's talk about what you're trying to solve. Book a free consultation with our AI architects.
+              Let's discuss RAG systems, vector databases, BI dashboards, and predictive models for your business.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">

@@ -9,6 +9,7 @@ import { useTheme } from 'next-themes'
 import { motion } from 'framer-motion'
 import { Mail, Lock, Eye, EyeOff, ArrowRight, ArrowLeft, User, Building2 } from 'lucide-react'
 import HeroBackgroundGrid from '@/src/components/HeroBackgroundGrid'
+import MobileHeroBackground from '@/src/components/MobileHeroBackground'
 import DatabaseWithRestApi from '@/src/components/ui/database-with-rest-api'
 
 export default function SignUpClient() {

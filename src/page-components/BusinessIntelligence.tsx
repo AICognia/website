@@ -15,18 +15,23 @@ import {
   FaCheckCircle,
   FaPlug,
   FaUsers,
-  FaQuoteLeft,
   FaIndustry,
   FaBuilding,
   FaShoppingCart,
   FaHeartbeat,
   FaCogs,
   FaLightbulb,
-  FaLayerGroup
+  FaLayerGroup,
+  FaHotel,
+  FaBalanceScale,
+  FaBriefcase,
+  FaLaptopCode,
+  FaBolt
 } from 'react-icons/fa'
 import { ArrowRight } from 'lucide-react'
 import SEO from '../components/SEO'
 import HeroBackgroundGrid from '../components/HeroBackgroundGrid'
+import MobileHeroBackground from '../components/MobileHeroBackground'
 import DatabaseWithRestApi from '../components/ui/database-with-rest-api'
 
 const BusinessIntelligence: React.FC = () => {
@@ -167,6 +172,10 @@ const BusinessIntelligence: React.FC = () => {
     { icon: FaBuilding, name: 'Financial Services', desc: 'Risk analytics & performance reporting' },
     { icon: FaShoppingCart, name: 'Retail & E-commerce', desc: 'Inventory & customer insights' },
     { icon: FaHeartbeat, name: 'Healthcare', desc: 'Patient outcomes & operations' },
+    { icon: FaLaptopCode, name: 'Technology', desc: 'Product analytics & engineering metrics' },
+    { icon: FaHotel, name: 'Hospitality', desc: 'Revenue management & guest insights' },
+    { icon: FaBalanceScale, name: 'Legal', desc: 'Case analytics & resource planning' },
+    { icon: FaBolt, name: 'Energy & Utilities', desc: 'Grid analytics & demand forecasting' },
   ]
 
   const stats = [
@@ -175,7 +184,7 @@ const BusinessIntelligence: React.FC = () => {
     { value: '40%', label: 'Time Saved' },
   ]
 
-  const integrations = ['SAP', 'Oracle', 'Salesforce', 'PostgreSQL', 'Excel', 'Custom APIs']
+  const integrations = ['SAP', 'Oracle', 'Salesforce', 'HubSpot', 'PostgreSQL', 'MySQL', 'MongoDB', 'Snowflake', 'BigQuery', 'Excel', 'Google Sheets', 'Slack', 'Microsoft 365', 'Custom APIs']
 
   return (
     <div className="min-h-screen text-gray-900 relative overflow-hidden transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
@@ -186,9 +195,9 @@ const BusinessIntelligence: React.FC = () => {
       />
 
       <section className={`lg:hidden relative overflow-hidden transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-        {/* Dynamic Background Grid */}
+        {/* Mobile Background Grid */}
         <div className="absolute inset-0">
-          <HeroBackgroundGrid isPlaying={false} />
+          <MobileHeroBackground />
         </div>
 
         {/* Gradient overlay for text readability */}
@@ -658,7 +667,7 @@ const BusinessIntelligence: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
             {industries.map((industry, index) => {
               const Icon = industry.icon
               return (
@@ -702,60 +711,23 @@ const BusinessIntelligence: React.FC = () => {
             className={`rounded-2xl sm:rounded-[2rem] border p-5 sm:p-8 lg:p-12 ${isDark ? 'border-gray-700' : 'border-[#e2e8f0]'}`}
             style={glassStyle}
           >
-            <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-8">
-              <div className="flex-1">
-                <span className={`inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold rounded-full mb-3 sm:mb-4 ${isDark ? 'text-blue-400 bg-blue-900/30' : 'text-blue-600 bg-blue-50'}`}>
-                  <FaPlug />
-                  Integrations
-                </span>
-                <h2 className={`text-xl sm:text-2xl md:text-3xl font-serif font-light mb-2 sm:mb-3 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                  Connect Your Entire Tech Stack
-                </h2>
-                <p className={`text-sm sm:text-base mb-4 sm:mb-6 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-                  We integrate with the tools you already use. No migration required. Your data stays where it is.
-                </p>
-                <div className="flex flex-wrap gap-2 sm:gap-3">
-                  {integrations.map((item) => (
-                    <span key={item} className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm ${isDark ? 'bg-gray-700 text-gray-300' : 'bg-slate-100 text-slate-700'}`}>
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-{/* HIDDEN: Compliance badges - uncomment to re-enable
-              <div className={`flex items-center gap-4 sm:gap-6 flex-wrap justify-center ${isDark ? 'opacity-60' : 'grayscale opacity-70'}`}>
-                <img src="/SOC2_Type1.svg" alt="SOC 2 Type I" className="h-8 sm:h-10 w-auto" />
-                <img src="/SOC2_Type2.svg" alt="SOC 2 Type II" className="h-8 sm:h-10 w-auto" />
-                <img src="/HIPAA.svg" alt="HIPAA" className="h-8 sm:h-10 w-auto" />
-              </div>
-              */}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <FaQuoteLeft className={`text-3xl sm:text-4xl mb-4 sm:mb-6 mx-auto ${isDark ? 'text-gray-700' : 'text-slate-200'}`} />
-            <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed mb-6 sm:mb-8 font-serif ${isDark ? 'text-white' : 'text-slate-800'}`}>
-              "Working with Cognia has been a game-changer for our office. What I appreciate the most is how they completely transformed our Monday mornings. Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time."
-            </p>
-            <div className="flex items-center justify-center gap-3 sm:gap-4">
-              <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${isDark ? 'bg-blue-900/50' : 'bg-blue-100'}`}>
-                <span className={`text-sm sm:text-base font-bold ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
-                  JO
-                </span>
-              </div>
-              <div className="text-left">
-                <div className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Jacob Ojalvo</div>
-                <div className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Owner, My Smile Miami</div>
+            <div className="text-center">
+              <span className={`inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold rounded-full mb-3 sm:mb-4 ${isDark ? 'text-blue-400 bg-blue-900/30' : 'text-blue-600 bg-blue-50'}`}>
+                <FaPlug />
+                Integrations
+              </span>
+              <h2 className={`text-xl sm:text-2xl md:text-3xl font-serif font-light mb-2 sm:mb-3 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+                Connect Your Entire Tech Stack
+              </h2>
+              <p className={`text-sm sm:text-base mb-6 sm:mb-8 max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+                We integrate with the tools you already use. No migration required. Your data stays where it is.
+              </p>
+              <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                {integrations.map((item) => (
+                  <span key={item} className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm ${isDark ? 'bg-gray-700 text-gray-300' : 'bg-slate-100 text-slate-700'}`}>
+                    {item}
+                  </span>
+                ))}
               </div>
             </div>
           </motion.div>

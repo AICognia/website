@@ -39,11 +39,12 @@ const GlassCard: React.FC<GlassCardProps> = ({
     };
   }, []);
 
+  // Reduced blur values for better mobile performance (md=12px instead of xl=20px or 2xl=40px)
   const variantClasses = {
-    default: 'bg-slate-800/40 backdrop-blur-xl border-slate-700/50',
-    premium: 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-2xl border-primary/20',
-    highlight: 'bg-gradient-to-br from-primary/10 to-primary-dark/10 backdrop-blur-xl border-primary/30',
-    subtle: 'bg-slate-900/20 backdrop-blur-md border-slate-800/30'
+    default: 'bg-slate-800/40 backdrop-blur-md border-slate-700/50',
+    premium: 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md border-primary/20',
+    highlight: 'bg-gradient-to-br from-primary/10 to-primary-dark/10 backdrop-blur-md border-primary/30',
+    subtle: 'bg-slate-900/20 backdrop-blur-sm border-slate-800/30'
   };
 
   const hoverEffects = {

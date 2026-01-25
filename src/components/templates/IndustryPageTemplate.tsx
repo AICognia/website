@@ -7,6 +7,7 @@ import { FaQuoteLeft } from 'react-icons/fa'
 import { IconType } from 'react-icons'
 import SEO from '../SEO'
 import HeroBackgroundGrid from '../HeroBackgroundGrid'
+import MobileHeroBackground from '../MobileHeroBackground'
 import { useTheme } from 'next-themes'
 import {
   RadarChart,
@@ -256,7 +257,7 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({ data }) => 
       <section className="lg:hidden relative overflow-hidden transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
         {/* Background Grid */}
         <div className="absolute inset-0">
-          <HeroBackgroundGrid isPlaying={false} />
+          <MobileHeroBackground />
         </div>
 
         {/* Gradient overlay for text readability */}
@@ -390,8 +391,8 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({ data }) => 
         />
 
         {/* Main container */}
-        <div className="w-full max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-20 relative z-10 flex-1 flex items-center pt-16 lg:pt-20 2xl:pt-12 3xl:pt-8 pb-24">
-          <div className="grid grid-cols-12 gap-8 lg:gap-10 xl:gap-12 2xl:gap-16 items-start w-full">
+        <div className="w-full max-w-[1280px] xl:max-w-[1400px] 2xl:max-w-[1520px] 3xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-16 relative z-10 flex-1 flex items-center pt-16 lg:pt-20 2xl:pt-12 3xl:pt-8 pb-24">
+          <div className="grid grid-cols-12 gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 items-start w-full">
 
             {/* Left Column - Value Proposition (7 cols) */}
             <motion.div
@@ -517,8 +518,8 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({ data }) => 
       </section>
 
       {/* Industry-Specific Bento Grid - The Problem Section */}
-      <section className="py-10 sm:py-16 md:py-20 lg:py-24 relative bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <div className="container-responsive">
+      <section className="py-10 sm:py-14 lg:py-18 xl:py-22 relative bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
+        <div className="max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14">
 
           <div className="text-left max-w-3xl mb-8 sm:mb-12">
             <motion.span
@@ -548,7 +549,7 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({ data }) => 
               transition={{ duration: 0.5 }}
               className="md:col-span-2 lg:col-span-5"
             >
-              <div className="bento-card h-full flex flex-col p-4 sm:p-6 lg:p-8">
+              <div className="bento-card compact h-full flex flex-col">
                 <div className="mb-3 sm:mb-4">
                   <span className={`inline-block px-2 sm:px-2.5 py-1 text-[10px] sm:text-[11px] font-semibold rounded-full mb-2 sm:mb-3 ${isDark ? 'text-red-400 bg-red-900/30' : 'text-red-600 bg-red-50'}`}>
                     {data.bentoContent?.mainChallenge?.badge || 'Data Silos'}
@@ -1013,7 +1014,7 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({ data }) => 
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 }}
-                  className="bento-card flex flex-col p-4 sm:p-6 lg:p-8"
+                  className="bento-card compact flex flex-col"
                 >
                   {(() => {
                     const ringData = data.bentoContent?.ringChart
@@ -1099,7 +1100,7 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({ data }) => 
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="bento-card flex flex-col p-4 sm:p-6 lg:p-8"
+                  className="bento-card compact flex flex-col"
                 >
                   {(() => {
                     const barData = data.bentoContent?.barChart
@@ -1206,7 +1207,7 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({ data }) => 
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="bento-card flex flex-col justify-between p-4 sm:p-6 lg:p-8"
+                  className="bento-card compact flex flex-col justify-between"
                 >
                   <div>
                     <span className={`inline-block px-2 sm:px-2.5 py-1 text-[10px] sm:text-[11px] font-semibold rounded-full mb-3 sm:mb-4 ${isDark ? 'text-blue-400 bg-blue-900/30' : 'text-primary bg-blue-50'}`}>
@@ -1233,11 +1234,11 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({ data }) => 
       </section>
 
       {/* Solutions Section - Accordion Style */}
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 relative ${isDark ? 'bg-gray-800/30' : 'bg-slate-50/50'}`}>
+      <section className={`py-10 sm:py-14 lg:py-18 xl:py-22 relative ${isDark ? 'bg-gray-800/30' : 'bg-slate-50/50'}`}>
         <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-700' : 'via-slate-200'}`} />
 
-        <div className="container-responsive">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-start">
+        <div className="max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-start">
             {/* Left: Section Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1382,7 +1383,7 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({ data }) => 
 
       {/* Testimonial Section */}
       {data.testimonial && (
-        <section className="py-12 sm:py-16 md:py-24 lg:py-32 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
+        <section className="py-10 sm:py-14 lg:py-18 xl:py-22 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
           <div className="container-responsive">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1424,8 +1425,8 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({ data }) => 
       )}
 
       {/* Full Width Contact Form Section */}
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 ${isDark ? 'bg-gray-800/30' : 'bg-slate-50/50'}`}>
-        <div className="container-responsive">
+      <section className={`py-10 sm:py-14 lg:py-18 xl:py-22 ${isDark ? 'bg-gray-800/30' : 'bg-slate-50/50'}`}>
+        <div className="max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1434,7 +1435,7 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({ data }) => 
             className="w-full"
           >
             <div
-              className={`rounded-xl sm:rounded-[2rem] border p-5 sm:p-8 lg:p-12 ${isDark ? 'border-gray-700' : 'border-[#e2e8f0]'}`}
+              className={`rounded-xl sm:rounded-2xl lg:rounded-3xl border p-4 sm:p-6 lg:p-10 ${isDark ? 'border-gray-700' : 'border-[#e2e8f0]'}`}
               style={glassStyle}
             >
               <div className="text-center mb-6 sm:mb-10">

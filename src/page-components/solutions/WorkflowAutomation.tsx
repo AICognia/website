@@ -21,6 +21,7 @@ import {
 import { ArrowRight, Zap, Link2, RefreshCw, ShieldCheck } from 'lucide-react'
 import SEO from '../../components/SEO'
 import HeroBackgroundGrid from '../../components/HeroBackgroundGrid'
+import MobileHeroBackground from '../../components/MobileHeroBackground'
 
 const WorkflowAutomation: React.FC = () => {
   const [mounted, setMounted] = useState(false)
@@ -89,38 +90,50 @@ const WorkflowAutomation: React.FC = () => {
 
   const features = [
     {
-      icon: FaPlug,
-      title: 'Connect Everything',
-      description: 'Link your CRM, calendar, email, billing, and 500+ other tools. No more copy-pasting between systems.',
-      features: ['500+ Integrations', 'API Connections', 'Custom Webhooks', 'Real-time Sync']
+      icon: FaFileInvoice,
+      title: 'Document Processing',
+      description: 'Extract, classify, and route documents automatically. Invoices, contracts, forms—AI handles the paperwork so your team doesn\'t have to.',
+      features: ['Auto-Extract', 'Classification', 'Smart Routing', 'Data Validation']
     },
     {
-      icon: FaBolt,
-      title: 'Instant Triggers',
-      description: 'New lead? Send an email, add to CRM, notify sales, and schedule follow-up—all automatically in seconds.',
-      features: ['Event-Based', 'Instant Actions', 'Multi-Step Flows', 'Conditional Logic']
+      icon: FaDatabase,
+      title: 'Data Extraction',
+      description: 'Pull insights from any source, any format, any time. Structured or unstructured—our AI extracts what matters.',
+      features: ['Any Format', 'Any Source', 'Real-time', 'Structured Output']
     },
     {
-      icon: FaSync,
-      title: 'Keep Data in Sync',
-      description: 'Update once, update everywhere. Customer data stays consistent across all your systems automatically.',
-      features: ['Bi-directional Sync', 'Conflict Resolution', 'Field Mapping', 'Version Control']
+      icon: FaChartBar,
+      title: 'Report Generation',
+      description: 'Auto-create weekly and monthly reports. No more manual data gathering or spreadsheet wrangling.',
+      features: ['Auto-Generate', 'Scheduled Reports', 'Custom Templates', 'Distribution']
     },
     {
       icon: FaCheckDouble,
-      title: 'Error-Free Operations',
-      description: 'Eliminate human error in repetitive tasks. Automations run perfectly every single time.',
-      features: ['100% Accuracy', 'Audit Trails', 'Error Handling', 'Retry Logic']
+      title: 'Quality Control',
+      description: 'Catch errors before they cost you money. AI-powered validation and anomaly detection across your operations.',
+      features: ['Error Detection', 'Anomaly Alerts', 'Validation Rules', 'Audit Trails']
+    },
+    {
+      icon: FaCalendarCheck,
+      title: 'Scheduling Agent',
+      description: 'Book, confirm, and reschedule meetings automatically. Eliminate the back-and-forth of calendar coordination.',
+      features: ['Auto-Booking', 'Confirmations', 'Rescheduling', 'Conflict Resolution']
+    },
+    {
+      icon: FaPlug,
+      title: 'Connect Everything',
+      description: 'Link your CRM, calendar, email, billing, and 500+ other tools. Connect systems, eliminate manual steps.',
+      features: ['500+ Integrations', 'API Connections', 'Custom Webhooks', 'Real-time Sync']
     }
   ]
 
   const automations = [
-    { icon: FaUserPlus, text: 'Automatic lead routing and follow-up sequences' },
-    { icon: FaFileInvoice, text: 'Invoice generation and payment reminders' },
+    { icon: FaFileInvoice, text: 'Document processing: extract, classify, route' },
+    { icon: FaDatabase, text: 'Data extraction from any source, any format' },
+    { icon: FaChartBar, text: 'Auto-generate weekly and monthly reports' },
+    { icon: FaCheckDouble, text: 'Quality control: catch errors before they cost' },
+    { icon: FaCalendarCheck, text: 'Scheduling agent: book, confirm, reschedule' },
     { icon: FaUserCheck, text: 'Customer onboarding workflows' },
-    { icon: FaCalendarCheck, text: 'Appointment confirmations and reminders' },
-    { icon: FaChartBar, text: 'Report generation and distribution' },
-    { icon: FaDatabase, text: 'Data entry and CRM updates' },
   ]
 
   const stats = [
@@ -133,14 +146,14 @@ const WorkflowAutomation: React.FC = () => {
     <div className="min-h-screen transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <SEO
         page="solutions"
-        customTitle="Workflow Automation - Stop Doing Repetitive Work | Cognia AI"
-        customDescription="Custom automations that connect your tools, eliminate manual tasks, and free your team to focus on what matters. 500+ integrations, instant triggers, error-free operations."
+        customTitle="Internal Operations Automation - Document Processing, Data Extraction | Cognia AI"
+        customDescription="Automate document processing, data extraction, report generation, quality control, and scheduling. Eliminate manual work and connect your systems with 500+ integrations."
       />
 
       {/* Mobile Hero */}
       <section className={`lg:hidden relative overflow-hidden transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
         <div className="absolute inset-0">
-          <HeroBackgroundGrid isPlaying={false} />
+          <MobileHeroBackground />
         </div>
 
         <div
@@ -191,7 +204,7 @@ const WorkflowAutomation: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className={`text-base leading-relaxed mb-8 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
           >
-            Custom automations that connect your tools, eliminate manual tasks, and free your team to focus on what matters.
+            Document processing. Data extraction. Reports. Quality control. All automated.
           </motion.p>
 
           <motion.div
@@ -293,7 +306,7 @@ const WorkflowAutomation: React.FC = () => {
                 </h1>
 
                 <p className={`text-base sm:text-lg lg:text-xl 2xl:text-2xl max-w-xl lg:max-w-2xl mb-5 sm:mb-8 lg:mb-10 leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-                  Custom automations that connect your tools, eliminate manual tasks, and free your team to focus on what matters.
+                  Document processing, data extraction, report generation, quality control, and scheduling—all automated so your team can focus on what matters.
                 </p>
 
                 <div className="flex flex-wrap items-stretch gap-2 sm:gap-4 lg:gap-5 mb-5 sm:mb-8">
@@ -340,10 +353,10 @@ const WorkflowAutomation: React.FC = () => {
                 transition={{ delay: 0.2, duration: 0.3 }}
               >
                 <h2 className={`text-xl sm:text-2xl lg:text-3xl font-serif font-normal mb-2 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                  Common Automations We Build
+                  Internal Operations We Automate
                 </h2>
                 <p className={`text-sm sm:text-base mb-5 sm:mb-8 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                  Save hours every week with custom workflows.
+                  Eliminate manual work across your operations.
                 </p>
 
                 <div className="space-y-3 sm:space-y-4">
@@ -398,13 +411,13 @@ const WorkflowAutomation: React.FC = () => {
               className="lg:sticky lg:top-32"
             >
               <span className={`inline-block px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-semibold rounded-full mb-4 sm:mb-6 ${isDark ? 'text-amber-400 bg-amber-900/30' : 'text-amber-600 bg-amber-50'}`}>
-                How It Works
+                Internal Operations
               </span>
               <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                Custom Automations for Your Exact Workflows
+                Automate Your Back Office
               </h2>
               <p className={`text-base sm:text-lg mb-4 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-                We build custom automations tailored to your exact workflows and tech stack. No generic solutions—just what your business needs.
+                Document processing, data extraction, report generation, quality control—eliminate the manual work that slows your team down.
               </p>
 
               <Link
@@ -535,29 +548,32 @@ const WorkflowAutomation: React.FC = () => {
       {/* Testimonial Section */}
       <section className={`py-12 sm:py-16 md:py-24 lg:py-32 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <FaQuoteLeft className={`text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 mx-auto ${isDark ? 'text-gray-700' : 'text-slate-200'}`} />
-            <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed mb-6 sm:mb-8 font-serif ${isDark ? 'text-white' : 'text-slate-800'}`}>
-              "After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we're tied up or out on the road, and customers get a response right away instead of voicemail. Over the last few weeks, we've noticed a pretty clear bump in jobs coming in. You stop missing calls, you stop missing work."
-            </p>
-            <div className="flex items-center justify-center gap-3 sm:gap-4">
-              <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${isDark ? 'bg-amber-900/50' : 'bg-amber-100'}`}>
-                <span className={`text-sm sm:text-base font-bold ${isDark ? 'text-amber-400' : 'text-amber-600'}`}>
-                  EA
-                </span>
+          <div className="max-w-xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className={`rounded-2xl border p-6 sm:p-8 lg:p-10 aspect-square flex flex-col items-center justify-center text-center ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200 bg-white'}`}
+              style={glassStyle}
+            >
+              <FaQuoteLeft className={`text-2xl sm:text-3xl mb-4 sm:mb-6 ${isDark ? 'text-gray-700' : 'text-slate-200'}`} />
+              <p className={`text-base sm:text-lg leading-relaxed mb-6 font-serif ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                "Calls get answered now, even when we're out on the road. Customers get a response right away instead of voicemail. We've seen a clear bump in jobs coming in."
+              </p>
+              <div className="flex items-center justify-center gap-3 sm:gap-4">
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${isDark ? 'bg-amber-900/50' : 'bg-amber-100'}`}>
+                  <span className={`text-sm sm:text-base font-bold ${isDark ? 'text-amber-400' : 'text-amber-600'}`}>
+                    EA
+                  </span>
+                </div>
+                <div className="text-left">
+                  <div className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Elite Auto Repair</div>
+                  <div className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Auto Repair Shop</div>
+                </div>
               </div>
-              <div className="text-left">
-                <div className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Elite Auto Repair</div>
-                <div className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Auto Repair Shop</div>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

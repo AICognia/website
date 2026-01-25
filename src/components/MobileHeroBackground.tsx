@@ -1,25 +1,18 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
-import { useTheme } from 'next-themes'
+import React, { useEffect, useRef } from 'react'
+import { useThemeWithoutFlash } from '@/src/hooks/useThemeWithoutFlash'
 
 /**
  * Performant mobile version of HeroBackgroundGrid
- * - Continuous smooth animation at lower frame rate
- * - Reduced dot count with larger spacing
- * - Same visual style as desktop (flowing waves from center)
- * - No mouse/touch interactions, no swarm/flow field overhead
+ * - Matches desktop visual quality with smooth flowing waves
+ * - 30fps frame limiting for battery efficiency
+ * - Optimized dot count and calculations
+ * - Water ripple effect from center like desktop
  */
 const MobileHeroBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationFrameRef = useRef<number>(0)
-  const [mounted, setMounted] = useState(false)
-  const { resolvedTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  const isDark = !mounted || resolvedTheme === 'dark'
+  const { isDark } = useThemeWithoutFlash()
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -42,15 +35,22 @@ const MobileHeroBackground: React.FC = () => {
       midBlend: { r: 220, g: 240, b: 255 },
     }
 
-    // Mobile-optimized: larger dots, more spacing = fewer calculations
-    const BASE_RADIUS = 6
-    const SPACING = BASE_RADIUS * 2.2
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5) // Cap DPR for performance
+    // Mobile-optimized settings
+    const BASE_RADIUS = 5.5
+    const SPACING = BASE_RADIUS * 2.1
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
 
     let time = 0
     let lastFrameTime = 0
-    const TARGET_FPS = 30 // 30fps is smooth enough, saves battery
+    const TARGET_FPS = 30
     const FRAME_INTERVAL = 1000 / TARGET_FPS
+
+    // State for water sloshing effect (like desktop)
+    let waterOffsetX = 0
+    let waterOffsetY = 0
+    let waterVelX = 0
+    let waterVelY = 0
+    let hasStarted = false
 
     const updateCanvasSize = () => {
       const parent = canvas.parentElement
@@ -77,23 +77,30 @@ const MobileHeroBackground: React.FC = () => {
       b: Math.round(lerp(c1.b, c2.b, t))
     })
 
-    // Same color function as desktop for visual consistency
-    function getSmoothColor(intensity: number): ColorObj {
+    // Smooth color gradient matching desktop
+    function getSmoothColor(intensity: number, x: number, y: number, cols: number, rows: number): ColorObj {
       const biased = Math.pow(intensity, 1.2)
 
-      if (biased < 0.25) {
-        return blendColor(COLORS.blue600, COLORS.blue500, biased * 4)
-      } else if (biased < 0.5) {
-        return blendColor(COLORS.blue500, COLORS.blue300, (biased - 0.25) * 4)
-      } else if (biased < 0.75) {
-        return blendColor(COLORS.blue300, COLORS.midBlend, (biased - 0.5) * 4)
+      // Add subtle spatial variation like desktop
+      const waveInfluence = Math.sin(x * 0.1 + time * 0.5) * Math.cos(y * 0.1 + time * 0.3)
+      const diagonalGradient = (x + y) / (cols + rows)
+
+      const gradient1 = Math.sin(diagonalGradient * Math.PI * 3 + time * 0.7) * 0.5 + 0.5
+      const combinedGradient = biased * 0.7 + gradient1 * 0.15 + waveInfluence * 0.05
+      const finalIntensity = Math.max(0.1, Math.min(1, combinedGradient))
+
+      if (finalIntensity < 0.25) {
+        return blendColor(COLORS.blue600, COLORS.blue500, finalIntensity * 4)
+      } else if (finalIntensity < 0.5) {
+        return blendColor(COLORS.blue500, COLORS.blue300, (finalIntensity - 0.25) * 4)
+      } else if (finalIntensity < 0.75) {
+        return blendColor(COLORS.blue300, COLORS.midBlend, (finalIntensity - 0.5) * 4)
       } else {
-        return blendColor(COLORS.midBlend, COLORS.background, (biased - 0.75) * 4)
+        return blendColor(COLORS.midBlend, COLORS.background, (finalIntensity - 0.75) * 4)
       }
     }
 
     function loop(currentTime: number) {
-      // Frame rate limiting for performance
       if (currentTime - lastFrameTime < FRAME_INTERVAL) {
         animationFrameRef.current = requestAnimationFrame(loop)
         return
@@ -102,7 +109,7 @@ const MobileHeroBackground: React.FC = () => {
 
       if (!canvas || !ctx) return
 
-      time += 0.015
+      time += 0.018
 
       const width = canvas.width / dpr
       const height = canvas.height / dpr
@@ -113,46 +120,87 @@ const MobileHeroBackground: React.FC = () => {
 
       ctx.clearRect(0, 0, width, height)
 
-      // Animation ramp up (0 to 1 over first second)
-      const animFactor = Math.min(1, time / 1)
+      // Animation ramp up
+      const animFactor = Math.min(1, time / 0.8)
+
+      // Trigger water effect after brief delay
+      if (time > 0.15 && !hasStarted) {
+        hasStarted = true
+      }
+
+      // Update water sloshing (simplified from desktop)
+      if (hasStarted) {
+        const sloshSpeed = 0.025
+        const sloshDamping = 0.992
+
+        waterVelX += (Math.sin(time * 0.7) * 0.015 + Math.sin(time * 1.3) * 0.008)
+        waterVelY += (Math.cos(time * 0.5) * 0.015 + Math.cos(time * 1.1) * 0.008)
+
+        waterVelX -= waterOffsetX * sloshSpeed
+        waterVelY -= waterOffsetY * sloshSpeed
+
+        waterVelX *= sloshDamping
+        waterVelY *= sloshDamping
+        waterOffsetX += waterVelX
+        waterOffsetY += waterVelY
+
+        const maxOffset = 4
+        waterOffsetX = Math.max(-maxOffset, Math.min(maxOffset, waterOffsetX))
+        waterOffsetY = Math.max(-maxOffset, Math.min(maxOffset, waterOffsetY))
+      }
+
+      // Water center moves with sloshing
+      const waterCenterX = centerX + waterOffsetX
+      const waterCenterY = centerY + waterOffsetY
 
       for (let j = 0; j < rows; j++) {
         for (let i = 0; i < cols; i++) {
           const px = i * SPACING
           const py = j * SPACING
 
-          const centerDist = Math.sqrt((i - centerX) ** 2 + (j - centerY) ** 2)
-          const maxRadius = Math.max(cols, rows) * 0.8
+          const centerDist = Math.sqrt((i - waterCenterX) ** 2 + (j - waterCenterY) ** 2)
 
-          // Base pool intensity - matching desktop
+          // Gentle expansion cycles (matching desktop)
+          const expansionCycle1 = Math.sin(time * 0.15) * 0.3 + 0.5
+          const expansionCycle2 = Math.cos(time * 0.23) * 0.2 + 0.6
+          const baseCoverage = 0.6 + expansionCycle1 * 0.2 + expansionCycle2 * 0.1
+          const maxWaveRadius = Math.max(cols, rows) * baseCoverage
+
           let intensity = 0.85
 
-          if (centerDist < maxRadius) {
+          if (centerDist < maxWaveRadius && hasStarted) {
             // Pool gradient from center
             const poolGradient = Math.sin(centerDist * 0.08 + time * 0.2) * 0.08 + 0.15
             const poolIntensity = Math.min(1, centerDist / 15 + poolGradient)
             intensity = 0.1 + poolIntensity * 0.7
 
-            // Smooth flowing waves - simplified from desktop but same feel
-            const wave1 = Math.sin(centerDist * 0.25 - time * 0.8) * 0.22
-            const wave2 = Math.cos(centerDist * 0.35 - time * 1.1) * 0.18
-            const wave3 = Math.sin(centerDist * 0.2 - time * 0.6) * 0.25
+            // Smooth flowing waves - matching desktop feel
+            const wave1 = Math.sin(centerDist * 0.25 - time * 0.8 + Math.sin(i * 0.12) * Math.cos(j * 0.15)) * 0.22
+            const wave2 = Math.cos(centerDist * 0.35 - time * 1.1 + Math.cos(i * 0.18) * Math.sin(j * 0.12)) * 0.18
+            const wave3 = Math.sin(centerDist * 0.2 - time * 0.6 + Math.sin(i * 0.15 - j * 0.1)) * 0.25
+            const wave4 = Math.cos(centerDist * 0.3 - time * 0.9 + Math.cos(i * 0.1 + j * 0.15)) * 0.18
 
-            // Directional flow
-            const flowAngle = Math.atan2(j - centerY, i - centerX)
-            const directionalWave = Math.sin(centerDist * 0.3 - time * 1.0 + flowAngle * 1.5) * 0.15
+            // Directional flow waves
+            const flowAngle = Math.atan2(j - waterCenterY, i - waterCenterX)
+            const directionalWave1 = Math.sin(centerDist * 0.3 - time * 1.0 + flowAngle * 1.5) * 0.15
+            const directionalWave2 = Math.cos(centerDist * 0.35 - time * 1.3 + flowAngle * 2) * 0.12
+
+            // Gentle surge patterns
+            const surgePhase = Math.sin(time * 0.12 + i * 0.06) * 0.5 + 0.5
+            const smoothSurge = Math.sin(centerDist * 0.15 - time * 0.5) * 0.14 * surgePhase
 
             // Gentle organic movement
-            const gentleMove = Math.sin(i * 0.4 + j * 0.2 - time * 0.5) * 0.08
+            const gentleMove1 = Math.sin(i * 0.35 + j * 0.15 - time * 0.5) * 0.07
+            const gentleMove2 = Math.cos(i * 0.2 - j * 0.25 + time * 0.6) * 0.06
 
-            intensity += (wave1 + wave2 + wave3 + directionalWave + gentleMove) * animFactor
+            intensity += (wave1 + wave2 + wave3 + wave4 + directionalWave1 + directionalWave2 + smoothSurge + gentleMove1 + gentleMove2) * animFactor
           }
 
           intensity = Math.max(0.1, Math.min(1, intensity))
 
-          const color = getSmoothColor(intensity)
+          const color = getSmoothColor(intensity, i, j, cols, rows)
 
-          // Alpha based on distance to background (fades dots near bg color)
+          // Alpha based on distance to background
           const bg = COLORS.background
           const distToBg = Math.sqrt(
             (color.r - bg.r) ** 2 +
@@ -161,9 +209,9 @@ const MobileHeroBackground: React.FC = () => {
           ) / 441.67
 
           let alpha = 1
-          if (distToBg < 0.1) alpha = 0.1
-          else if (distToBg < 0.25) alpha = 0.3
-          else if (distToBg < 0.4) alpha = 0.6
+          if (distToBg < 0.1) alpha = 0.15
+          else if (distToBg < 0.25) alpha = 0.4
+          else if (distToBg < 0.4) alpha = 0.7
 
           ctx.beginPath()
           ctx.arc(px, py, BASE_RADIUS, 0, Math.PI * 2)
@@ -175,7 +223,6 @@ const MobileHeroBackground: React.FC = () => {
       animationFrameRef.current = requestAnimationFrame(loop)
     }
 
-    // Start animation
     animationFrameRef.current = requestAnimationFrame(loop)
 
     return () => {
@@ -194,11 +241,16 @@ const MobileHeroBackground: React.FC = () => {
         className="absolute inset-0 w-full h-full opacity-90"
       />
 
-      {/* Bottom fade for content readability */}
+      {/* Gradient overlays for depth */}
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className={`absolute inset-0 bg-gradient-to-t to-transparent ${
-            isDark ? 'from-gray-900/95 via-gray-900/20' : 'from-white/95 via-white/20'
+          className={`absolute inset-0 bg-gradient-to-b via-transparent ${
+            isDark ? 'from-gray-900/10 to-gray-900' : 'from-white/10 to-white'
+          }`}
+        />
+        <div
+          className={`absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t to-transparent ${
+            isDark ? 'from-gray-900 via-gray-900/40' : 'from-white via-white/40'
           }`}
         />
       </div>

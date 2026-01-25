@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { FaSearch, FaMapMarkedAlt, FaListOl, FaRoute, FaCheckCircle, FaArrowRight } from 'react-icons/fa'
 import HeroBackgroundGrid from '@/src/components/HeroBackgroundGrid'
+import MobileHeroBackground from '@/src/components/MobileHeroBackground'
 
 const AIAuditClient: React.FC = () => {
   const [mounted, setMounted] = useState(false)
@@ -72,8 +73,13 @@ const AIAuditClient: React.FC = () => {
     <div className="min-h-screen transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
       {/* Hero Section */}
       <section className={`relative overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-24 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-        <div className="absolute inset-0">
+        {/* Desktop Background */}
+        <div className="hidden lg:block absolute inset-0">
           <HeroBackgroundGrid isPlaying={false} />
+        </div>
+        {/* Mobile Background */}
+        <div className="lg:hidden absolute inset-0">
+          <MobileHeroBackground />
         </div>
         <div
           className="absolute inset-0 pointer-events-none"

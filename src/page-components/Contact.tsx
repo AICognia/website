@@ -19,6 +19,7 @@ import { useLanguage } from '../contexts/LanguageContext'
 import SEO from '../components/SEO'
 import { structuredDataTemplates } from '../config/seoConfig'
 import HeroBackgroundGrid from '../components/HeroBackgroundGrid'
+import MobileHeroBackground from '../components/MobileHeroBackground'
 
 const Contact: React.FC = () => {
   const { language } = useLanguage()
@@ -127,9 +128,9 @@ const Contact: React.FC = () => {
     {
       icon: FaEnvelope,
       title: language === 'tr' ? 'E-posta' : 'Email',
-      value: 'hello@cogniaai.com',
+      value: 'emrebenian@cogniaai.com',
       subtitle: language === 'tr' ? '24 saat içinde yanıt' : 'Response within 24h',
-      href: 'mailto:hello@cogniaai.com',
+      href: 'mailto:emrebenian@cogniaai.com',
       color: 'green'
     },
     {
@@ -159,8 +160,15 @@ const Contact: React.FC = () => {
       />
 
       <section className="min-h-screen flex flex-col items-center overflow-hidden relative mb-0 pt-0 select-none transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        {/* Dynamic Background Grid - same as homepage */}
-        <HeroBackgroundGrid isPlaying={false} />
+        {/* Desktop Background */}
+        <div className="hidden lg:block absolute inset-0">
+          <HeroBackgroundGrid isPlaying={false} />
+        </div>
+
+        {/* Mobile Background */}
+        <div className="lg:hidden absolute inset-0">
+          <MobileHeroBackground />
+        </div>
 
         {/* Large Gradient Overlay for depth & bottom fade */}
         <div className={`absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none ${isDark ? 'from-gray-900/10 to-gray-900' : 'from-white/10 to-white'}`} />
@@ -177,7 +185,7 @@ const Contact: React.FC = () => {
         />
 
         {/* Main container */}
-        <div className="w-full max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-20 relative z-10 flex-1 flex items-center pt-20 sm:pt-16 lg:pt-20 pb-12 sm:pb-24 3xl:-mt-16">
+        <div className="w-full max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1440px] 3xl:max-w-[1584px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-20 relative z-10 flex-1 flex items-center pt-12 sm:pt-8 lg:pt-12 pb-12 sm:pb-24 -mt-8 lg:-mt-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-6 xl:gap-8 2xl:gap-10 items-stretch w-full">
 
             {/* Left Column - Value Proposition (7 cols) */}

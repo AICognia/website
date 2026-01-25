@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaTimes, FaArrowRight, FaPhone } from 'react-icons/fa'
 import Link from 'next/link'
@@ -33,9 +33,9 @@ const StickyMobileCTA: React.FC = () => {
   // Default to dark to prevent flash (dark is the default theme)
   const isDark = !mounted || resolvedTheme === 'dark'
 
-  // Glass effect settings - matching mobile navbar
-  const glassOpacity = isDark ? 0.55 : 0.30
-  const glassBlur = 22
+  // Glass effect settings - reduced blur for mobile performance
+  const glassOpacity = isDark ? 0.75 : 0.85
+  const glassBlur = 12 // Reduced from 22px for better mobile performance
 
   const glassStyle = {
     background: isDark
@@ -48,29 +48,39 @@ const StickyMobileCTA: React.FC = () => {
       : '0 -4px 20px rgba(0, 0, 0, 0.08)',
   }
 
-  const handleScroll = useCallback(() => {
-    // Don't show until cookie consent is given
-    if (!cookieConsented) {
-      setIsVisible(false)
-      return
-    }
-
-    const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
-
-    if (scrollPercentage > 15 && !isDismissed) {
-      setIsVisible(true)
-    }
-
-    if (scrollPercentage > 90) {
-      setIsVisible(false)
-    }
-  }, [isDismissed, cookieConsented])
-
+  // Throttled scroll handler using requestAnimationFrame
   useEffect(() => {
+    let ticking = false
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // Don't show until cookie consent is given
+          if (!cookieConsented) {
+            setIsVisible(false)
+            ticking = false
+            return
+          }
+
+          const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+
+          if (scrollPercentage > 15 && !isDismissed) {
+            setIsVisible(true)
+          }
+
+          if (scrollPercentage > 90) {
+            setIsVisible(false)
+          }
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
     window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [handleScroll])
+  }, [isDismissed, cookieConsented])
 
   const handleDismiss = () => {
     setIsVisible(false)
@@ -110,8 +120,8 @@ const StickyMobileCTA: React.FC = () => {
                     : 'bg-white/90 text-slate-500 hover:text-slate-700 hover:bg-white border border-slate-200/50'
                 }`}
                 style={{
-                  backdropFilter: 'blur(12px)',
-                  WebkitBackdropFilter: 'blur(12px)',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
                 }}
                 aria-label="Dismiss"
                 type="button"

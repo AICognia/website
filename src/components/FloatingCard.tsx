@@ -36,12 +36,12 @@ const FloatingCard: React.FC<FloatingCardProps> = ({
       <div className="relative">
         <div className={`absolute inset-0 bg-gradient-to-r ${gradients[gradient]} rounded-2xl`} />
 
-        <div className="relative bg-slate-900/90 backdrop-blur-xl rounded-2xl p-[1px] overflow-hidden">
+        <div className="relative bg-slate-900/90 backdrop-blur-md rounded-2xl p-[1px] overflow-hidden">
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
           </div>
 
-          <div className="relative bg-slate-900/80 backdrop-blur-xl rounded-xl">
+          <div className="relative bg-slate-900/80 backdrop-blur-md rounded-xl">
             {children}
           </div>
         </div>

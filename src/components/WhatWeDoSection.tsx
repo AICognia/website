@@ -11,7 +11,7 @@ import {
 import { useTheme } from 'next-themes';
 
 const WhatWeDoSection: React.FC = () => {
-  const [expandedId, setExpandedId] = useState<number | null>(2) // Start with featured item open
+  const [expandedId, setExpandedId] = useState<number | null>(1) // Start with featured item open
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
 
@@ -46,26 +46,26 @@ const WhatWeDoSection: React.FC = () => {
     {
       id: 1,
       icon: <IconNodesFill18 size={18} />,
-      title: "AI Strategy & Roadmapping",
-      description: "We assess your operations, identify high-impact AI opportunities, and build a transformation roadmap tailored to your business.",
-      keywords: ["AI readiness assessment", "Opportunity mapping", "ROI analysis", "Implementation planning"],
-      featured: false
+      title: "AI Audit & Strategy",
+      description: "Our 4-week discovery process identifies highest-ROI AI opportunities and builds your roadmap. The plan is yours to keep — whether you work with us or not.",
+      keywords: ["Discovery & Interviews", "ROI-Ranked Matrix", "Implementation Roadmap", "Starts at $1,000"],
+      featured: true,
+      cta: { text: "Start with AI Audit", href: "/demo" }
     },
     {
       id: 2,
       icon: <IconChartBarTrendUpFill18 size={18} />,
-      title: "Data Intelligence Platform",
-      description: "We unify your scattered data, build real-time dashboards, and deploy AI that detects anomalies, forecasts trends, and answers questions in plain language.",
-      keywords: ["Data unification", "AI analytics", "Executive dashboards", "Natural language queries"],
-      featured: true,
-      cta: { text: "Learn More", href: "/business-intelligence" }
+      title: "Build & Ship",
+      description: "We implement the solutions from your audit. Customer-facing AI, internal operations, and data infrastructure — we build what we recommend.",
+      keywords: ["Voice Agents & Chatbots", "Workflow Automation", "BI Dashboards", "RAG Systems"],
+      featured: false
     },
     {
       id: 3,
       icon: <IconGear2Fill18 size={18} />,
-      title: "Intelligent Operations",
-      description: "AI-powered voice agents, chatbots, and workflow automations that handle customer interactions and back-office tasks 24/7.",
-      keywords: ["Voice AI", "Conversational AI", "Process automation", "CRM integration"],
+      title: "Data Intelligence",
+      description: "Ongoing partnership for BI systems, automation expansion, and continuous optimization. Real-time insights without SQL.",
+      keywords: ["Real-time Dashboards", "Predictive Models", "API Integrations", "Continuous Optimization"],
       featured: false
     }
   ]
@@ -75,12 +75,12 @@ const WhatWeDoSection: React.FC = () => {
   }
 
   return (
-    <section className={`py-12 sm:py-16 md:py-24 lg:py-32 relative transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-gray-50/50'}`}>
+    <section className={`py-12 sm:py-16 lg:py-20 xl:py-24 relative transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-gray-50/50'}`}>
       {/* Subtle top divider */}
       <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-700' : 'via-gray-200'}`} />
 
-      <div className="container-responsive">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-20 items-start">
+      <div className="max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-16 items-start">
           {/* Left: Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -93,10 +93,10 @@ const WhatWeDoSection: React.FC = () => {
               What We Do
             </h2>
             <p className={`text-sm sm:text-base md:text-lg body-large mb-3 sm:mb-4 font-serif ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-              We don't sell software. We don't do one-off projects. We partner with businesses to fundamentally transform how they operate using AI.
+              From AI strategy to transformed operations in 60 days. Consultants advise. Engineers build. We do both.
             </p>
             <p className={`text-[13px] sm:text-[14px] md:text-[15px] mb-6 sm:mb-8 font-serif leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-              Every engagement is custom. Every solution is built for your specific challenges.
+              Find the highest-ROI AI opportunities. Then build only what pays back.
             </p>
             <Link
               href="/demo"

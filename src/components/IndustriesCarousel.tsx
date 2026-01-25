@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useTheme } from 'next-themes'
 
 interface Industry {
@@ -14,33 +15,87 @@ interface Industry {
 
 const industries: Industry[] = [
   {
+    name: 'Healthcare',
+    image: '/images/industries/healthcare.webp',
+    href: '/industries/healthcare',
+    textColor: 'white'
+  },
+  {
+    name: 'Manufacturing',
+    image: '/images/industries/manufacturing.webp',
+    href: '/industries/manufacturing',
+    textColor: 'white'
+  },
+  {
     name: 'Financial Services',
-    image: '/images/industries/financial_services.png',
+    image: '/images/industries/financial_services.webp',
     href: '/industries/financial-services',
     textColor: 'white'
   },
   {
-    name: 'Public Sector',
-    image: '/images/industries/public_sector.jpg',
-    href: '/industries/public-sector',
-    textColor: 'white'
-  },
-  {
-    name: 'Energy',
-    image: '/images/industries/energy.png',
-    href: '/industries/energy',
-    textColor: 'white'
-  },
-  {
     name: 'Technology',
-    image: '/images/industries/technology.jpg',
+    image: '/images/industries/technology.webp',
     href: '/industries/technology',
     textColor: 'white'
   },
   {
-    name: 'Healthcare',
-    image: '/images/industries/healthcare.jpg',
-    href: '/industries/healthcare',
+    name: 'Retail',
+    image: '/images/industries/retail.webp',
+    href: '/industries/retail',
+    textColor: 'white'
+  },
+  {
+    name: 'Automotive',
+    image: '/images/industries/autorepair.webp',
+    href: '/industries/automotive',
+    textColor: 'white'
+  },
+  {
+    name: 'Home Services',
+    image: '/images/industries/home_services.webp',
+    href: '/industries/HomeServices',
+    textColor: 'white'
+  },
+  {
+    name: 'Construction',
+    image: '/images/industries/construction.webp',
+    href: '/industries/construction',
+    textColor: 'white'
+  },
+  {
+    name: 'Energy',
+    image: '/images/industries/energy.webp',
+    href: '/industries/energy',
+    textColor: 'white'
+  },
+  {
+    name: 'Public Sector',
+    image: '/images/industries/public_sector.webp',
+    href: '/industries/public-sector',
+    textColor: 'white'
+  },
+  {
+    name: 'Real Estate',
+    image: '/images/industries/real_estate.webp',
+    href: '/industries/real-estate',
+    textColor: 'white'
+  },
+  {
+    name: 'Hospitality',
+    image: '/images/industries/hospitality.webp',
+    href: '/industries/hospitality',
+    textColor: 'white'
+  },
+  {
+    name: 'Legal',
+    image: '/images/industries/legal.webp',
+    href: '/industries/legal',
+    textColor: 'white'
+  },
+  {
+    name: 'Professional Services',
+    image: '/images/industries/professional_services.webp',
+    href: '/industries/service-businesses',
     textColor: 'white'
   }
 ]
@@ -52,6 +107,8 @@ const IndustriesCarousel: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
   const { resolvedTheme } = useTheme()
+  const targetScrollRef = useRef(0)
+  const animationRef = useRef<number | null>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -59,6 +116,34 @@ const IndustriesCarousel: React.FC = () => {
 
   // Default to dark to prevent flash (dark is the default theme)
   const isDark = !mounted || resolvedTheme === 'dark'
+
+  // Custom smooth scroll using lerp - always chases the target
+  const animateScroll = () => {
+    if (!scrollContainerRef.current) return
+
+    const container = scrollContainerRef.current
+    const lerp = 0.12 // Smoothing factor (higher = faster)
+    const threshold = 0.5 // Stop when close enough
+
+    const step = () => {
+      const currentPos = container.scrollLeft
+      const target = targetScrollRef.current
+      const distance = target - currentPos
+
+      if (Math.abs(distance) > threshold) {
+        container.scrollLeft = currentPos + distance * lerp
+        animationRef.current = requestAnimationFrame(step)
+      } else {
+        container.scrollLeft = target
+        animationRef.current = null
+      }
+    }
+
+    // Only start new animation if not already running
+    if (!animationRef.current) {
+      animationRef.current = requestAnimationFrame(step)
+    }
+  }
 
   const scroll = (direction: 'left' | 'right') => {
     if (!scrollContainerRef.current) return
@@ -70,21 +155,18 @@ const IndustriesCarousel: React.FC = () => {
     const gap = 16 // gap-4 is 16px
     const itemWidth = cardWidth + gap
     const scrollAmount = direction === 'left' ? -itemWidth : itemWidth
-
-    // Calculate target scroll position for immediate progress update
-    const currentScroll = container.scrollLeft
-    const targetScroll = Math.max(0, Math.min(currentScroll + scrollAmount, container.scrollWidth - container.clientWidth))
-
-    // Update progress immediately to prevent delay
     const maxScroll = container.scrollWidth - container.clientWidth
-    if (maxScroll > 0) {
-      setScrollProgress(targetScroll / maxScroll)
-    }
 
-    container.scrollBy({
-      left: scrollAmount,
-      behavior: 'smooth'
-    })
+    // Calculate new target from current target (allows stacking rapid clicks)
+    const newTarget = Math.max(0, Math.min(targetScrollRef.current + scrollAmount, maxScroll))
+    targetScrollRef.current = newTarget
+
+    // Update button states immediately based on target
+    setCanScrollLeft(newTarget > 20)
+    setCanScrollRight(newTarget < maxScroll - 20)
+
+    // Use custom animation instead of native smooth scroll
+    animateScroll()
   }
 
   const updateScrollStatus = () => {
@@ -92,17 +174,22 @@ const IndustriesCarousel: React.FC = () => {
 
     const container = scrollContainerRef.current
     const { scrollLeft, scrollWidth, clientWidth } = container
+    const maxScroll = scrollWidth - clientWidth
+
+    // Only sync target ref when not animating (user dragged or animation finished)
+    if (!animationRef.current) {
+      targetScrollRef.current = scrollLeft
+    }
 
     // Enable left chevron only if scrolled more than 20px
     const shouldEnableLeft = scrollLeft > 20
     // Enable right chevron only if more than 20px from end
-    const shouldEnableRight = scrollLeft < scrollWidth - clientWidth - 20
+    const shouldEnableRight = scrollLeft < maxScroll - 20
 
     setCanScrollLeft(shouldEnableLeft)
     setCanScrollRight(shouldEnableRight)
 
-    // Update progress
-    const maxScroll = scrollWidth - clientWidth
+    // Update progress from actual scroll position
     if (maxScroll > 0) {
       setScrollProgress(scrollLeft / maxScroll)
     } else {
@@ -121,11 +208,14 @@ const IndustriesCarousel: React.FC = () => {
     return () => {
       container.removeEventListener('scroll', updateScrollStatus)
       window.removeEventListener('resize', updateScrollStatus)
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
     }
   }, [])
 
   return (
-    <section className="overflow-hidden py-12 sm:py-16 md:py-24 lg:py-32 transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <section className="overflow-hidden py-10 sm:py-14 lg:py-18 xl:py-22 transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
       {/* Header Area - Constrained */}
       <div className="container-responsive px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 md:mb-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 md:gap-8">
@@ -171,7 +261,6 @@ const IndustriesCarousel: React.FC = () => {
             className="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide pb-6 sm:pb-8"
             style={{
               WebkitOverflowScrolling: 'touch',
-              scrollBehavior: 'smooth',
             }}
           >
             {industries.map((industry) => (
@@ -192,10 +281,12 @@ const IndustriesCarousel: React.FC = () => {
                       ? 'border-gray-600 shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)]'
                       : 'border-[#e2e8f0] shadow-[inset_0_1px_2px_rgba(14,165,233,0.1),inset_0_-1px_2px_rgba(14,165,233,0.05),0_4px_12px_rgba(0,0,0,0.04)] hover:shadow-[inset_0_1px_2px_rgba(14,165,233,0.2),inset_0_-1px_2px_rgba(14,165,233,0.1),0_8px_24px_rgba(14,165,233,0.08)]'
                   }`}>
-                    <img
+                    <Image
                       src={industry.image}
                       alt={industry.name}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      fill
+                      sizes="(max-width: 640px) 200px, (max-width: 768px) 240px, (max-width: 1024px) 280px, 320px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
 
                     {/* Subtle overall overlay */}
@@ -227,8 +318,8 @@ const IndustriesCarousel: React.FC = () => {
         <div className="flex items-center justify-center">
           <div className={`w-3/4 sm:w-2/3 md:w-1/2 h-1.5 sm:h-2 rounded-full overflow-hidden ${isDark ? 'bg-gray-700' : 'bg-slate-200'}`}>
             <div
-              className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-300"
-              style={{ width: `${Math.max(10, scrollProgress * 100)}%` }}
+              className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-none"
+              style={{ width: `${Math.max(10, scrollProgress * 100)}%`, transition: 'none' }}
             />
           </div>
         </div>

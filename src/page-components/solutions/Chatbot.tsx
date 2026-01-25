@@ -23,6 +23,7 @@ import {
 import { ArrowRight, MessageSquare, Zap, BarChart3, Users } from 'lucide-react'
 import SEO from '../../components/SEO'
 import HeroBackgroundGrid from '../../components/HeroBackgroundGrid'
+import MobileHeroBackground from '../../components/MobileHeroBackground'
 
 const Chatbot: React.FC = () => {
   const [mounted, setMounted] = useState(false)
@@ -92,31 +93,31 @@ const Chatbot: React.FC = () => {
   const features = [
     {
       icon: FaClock,
-      title: '24/7 Availability',
-      description: 'Never miss a lead. Your AI chatbot works around the clock, engaging visitors and capturing opportunities while you sleep.',
-      features: ['Always Online', 'Instant Responses', 'No Wait Times', 'Global Coverage']
-    },
-    {
-      icon: FaGlobe,
-      title: '30+ Languages',
-      description: 'Speak your customers\' language. Automatic detection and fluent responses in over 30 languages for global reach.',
-      features: ['Auto-Detection', 'Native Fluency', 'Cultural Context', 'Real-time Translation']
-    },
-    {
-      icon: FaShareAlt,
-      title: 'Multi-Channel',
-      description: 'Deploy on your website, WhatsApp, Facebook Messenger, Instagram, and more from a single platform.',
-      features: ['Website Widget', 'WhatsApp', 'Messenger', 'Instagram DM']
+      title: '24/7 Customer Support',
+      description: 'Customer support that actually helps. Your AI chatbot works around the clock, resolving issues and capturing opportunities while you sleep.',
+      features: ['Always Online', 'Instant Responses', 'Issue Resolution', 'Global Coverage']
     },
     {
       icon: FaUserCheck,
-      title: 'Lead Qualification',
-      description: 'Automatically qualify leads, book appointments, and route hot prospects to your sales team instantly.',
-      features: ['Smart Scoring', 'Auto-Routing', 'CRM Sync', 'Instant Alerts']
+      title: 'Lead Generation',
+      description: 'Qualify, score, and route leads automatically. Every conversation becomes structured data with buying signals and priority ranking.',
+      features: ['Auto-Qualification', 'Lead Scoring', 'Smart Routing', 'Intent Detection']
+    },
+    {
+      icon: FaComments,
+      title: 'Email Agent',
+      description: 'Respond, follow up, and close deals via email. AI-powered email handling that maintains your brand voice and never drops the ball.',
+      features: ['Auto-Responses', 'Follow-up Sequences', 'Deal Closing', 'Brand Voice']
+    },
+    {
+      icon: FaShareAlt,
+      title: 'Multi-Channel Deploy',
+      description: 'Website, WhatsApp, Facebook Messenger, Instagram, email—all from a single platform with unified conversation history.',
+      features: ['Website Widget', 'WhatsApp', 'Messenger', 'Email Integration']
     },
     {
       icon: FaHeadset,
-      title: 'Human Handoff',
+      title: 'Smart Handoff',
       description: 'Seamless escalation to human agents when needed. Your team gets full conversation context for smooth transitions.',
       features: ['Smart Escalation', 'Full Context', 'Queue Management', 'Agent Routing']
     },
@@ -129,9 +130,9 @@ const Chatbot: React.FC = () => {
   ]
 
   const benefits = [
-    { icon: Zap, text: 'Convert 3x more website visitors into leads' },
-    { icon: BarChart3, text: 'Reduce response time from hours to seconds' },
-    { icon: Users, text: 'Handle unlimited concurrent conversations' },
+    { icon: Zap, text: 'Chatbot: 24/7 support that actually helps' },
+    { icon: FaComments, text: 'Email Agent: Respond, follow up, close deals' },
+    { icon: Users, text: 'Lead Generation: Qualify, score, route automatically' },
     { icon: FaHandshake, text: 'Seamless handoff to human agents when needed' },
     { icon: FaChartBar, text: 'Full conversation analytics and insights' },
     { icon: FaBrain, text: 'Custom-trained on your business knowledge' },
@@ -148,14 +149,14 @@ const Chatbot: React.FC = () => {
     <div className="min-h-screen transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <SEO
         page="solutions"
-        customTitle="AI Chatbot - Convert Visitors into Customers 24/7 | Cognia AI"
-        customDescription="AI chatbots that engage, qualify, and convert your website visitors 24/7. Multi-channel deployment, 30+ languages, lead qualification, and seamless human handoff."
+        customTitle="Customer-Facing AI - Chatbot, Email Agent, Lead Generation | Cognia AI"
+        customDescription="24/7 chatbot support, email agent that responds and closes deals, lead generation that qualifies and scores automatically. Multi-channel deployment across website, WhatsApp, Messenger."
       />
 
       {/* Mobile Hero */}
       <section className={`lg:hidden relative overflow-hidden transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
         <div className="absolute inset-0">
-          <HeroBackgroundGrid isPlaying={false} />
+          <MobileHeroBackground />
         </div>
 
         <div
@@ -206,7 +207,7 @@ const Chatbot: React.FC = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className={`text-base leading-relaxed mb-8 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
           >
-            AI chatbots that engage, qualify, and convert your website visitors 24/7. No more missed opportunities.
+            Chatbot, email agent, lead generation. Engage, qualify, and convert 24/7.
           </motion.p>
 
           <motion.div
@@ -234,24 +235,24 @@ const Chatbot: React.FC = () => {
             className="space-y-3"
           >
             <Link
-              href="/demo"
+              href="/chat"
               className="btn-primary flex items-center justify-center gap-2 w-full h-14 rounded-2xl text-base font-semibold"
             >
-              <FaRocket className="w-4 h-4" />
-              <span>Get Started</span>
+              <MessageSquare className="w-4 h-4" />
+              <span>Try Live Demo</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
 
             <Link
-              href="/chat"
+              href="/demo"
               className={`flex items-center justify-center gap-2 w-full h-12 rounded-2xl text-sm font-medium transition-colors ${
                 isDark
                   ? 'bg-white/10 text-white border border-white/20 active:bg-white/15'
                   : 'bg-slate-900/5 text-slate-700 border border-slate-200 active:bg-slate-100'
               }`}
             >
-              <MessageSquare className="w-4 h-4" />
-              <span>Try Live Demo</span>
+              <FaRocket className="w-4 h-4" />
+              <span>Book Consultation</span>
             </Link>
           </motion.div>
         </div>
@@ -320,7 +321,7 @@ const Chatbot: React.FC = () => {
                 </h1>
 
                 <p className={`text-base sm:text-lg lg:text-xl 2xl:text-2xl max-w-xl lg:max-w-2xl mb-5 sm:mb-8 lg:mb-10 leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-                  AI chatbots that engage, qualify, and convert your website visitors 24/7. No more missed opportunities.
+                  Chatbot, email agent, and lead generation—all working 24/7 to engage, qualify, and convert your visitors into customers.
                 </p>
 
                 <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-stretch gap-2 sm:gap-4 lg:gap-5 mb-5 sm:mb-8">
@@ -344,22 +345,22 @@ const Chatbot: React.FC = () => {
 
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <Link
-                    href="/demo"
+                    href="/chat"
                     className="btn-primary h-11 sm:h-12 px-5 sm:px-6 rounded-xl flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto"
                   >
-                    <FaRocket />
-                    Get Started
+                    <MessageSquare className="w-4 h-4" />
+                    Try Live Demo
                   </Link>
                   <Link
-                    href="/chat"
+                    href="/demo"
                     className={`h-11 sm:h-12 px-5 sm:px-6 rounded-xl flex items-center justify-center gap-2 border transition-colors text-sm sm:text-base w-full sm:w-auto ${
                       isDark
                         ? 'border-gray-600 text-gray-300 hover:bg-gray-800'
                         : 'border-slate-200 text-slate-700 hover:bg-slate-50'
                     }`}
                   >
-                    <MessageSquare className="w-4 h-4" />
-                    Try Live Demo
+                    <FaRocket />
+                    Book Consultation
                   </Link>
                 </div>
               </motion.div>
@@ -439,10 +440,10 @@ const Chatbot: React.FC = () => {
                 Why Choose Us
               </span>
               <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                Not Just Another Chatbot
+                Complete Customer-Facing AI
               </h2>
               <p className={`text-base sm:text-lg mb-4 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-                An AI-powered sales and support agent that understands your business and converts visitors into customers.
+                Chatbot, email agent, and lead generation working together to handle every customer touchpoint automatically.
               </p>
 
               <Link
@@ -578,21 +579,26 @@ const Chatbot: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-3xl mx-auto"
           >
-            <FaQuoteLeft className={`text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 mx-auto ${isDark ? 'text-gray-700' : 'text-slate-200'}`} />
-            <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed mb-6 sm:mb-8 font-serif ${isDark ? 'text-white' : 'text-slate-800'}`}>
-              "After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we're tied up or out on the road, and customers get a response right away instead of voicemail. Over the last few weeks, we've noticed a pretty clear bump in jobs coming in. You stop missing calls, you stop missing work."
-            </p>
-            <div className="flex items-center justify-center gap-3 sm:gap-4">
-              <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${isDark ? 'bg-emerald-900/50' : 'bg-emerald-100'}`}>
-                <span className={`text-sm sm:text-base font-bold ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`}>
-                  EA
-                </span>
-              </div>
-              <div className="text-left">
-                <div className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Elite Auto Repair</div>
-                <div className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Auto Repair Shop</div>
+            <div
+              className={`rounded-2xl border p-6 sm:p-8 lg:p-10 aspect-square flex flex-col items-center justify-center text-center ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200 bg-white'}`}
+              style={glassStyle}
+            >
+              <FaQuoteLeft className={`text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 ${isDark ? 'text-emerald-500/30' : 'text-emerald-200'}`} />
+              <p className={`text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8 font-serif ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                "After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we're tied up or out on the road, and customers get a response right away instead of voicemail. You stop missing calls, you stop missing work."
+              </p>
+              <div className="flex items-center justify-center gap-3 sm:gap-4">
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${isDark ? 'bg-emerald-900/50' : 'bg-emerald-100'}`}>
+                  <span className={`text-sm sm:text-base font-bold ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`}>
+                    EA
+                  </span>
+                </div>
+                <div className="text-left">
+                  <div className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Elite Auto Repair</div>
+                  <div className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Auto Repair Shop</div>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -619,22 +625,22 @@ const Chatbot: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
-                href="/demo"
+                href="/chat"
                 className="btn-primary h-12 sm:h-14 px-6 sm:px-8 rounded-xl flex items-center justify-center gap-2 text-base sm:text-lg w-full sm:w-auto"
               >
-                <FaRocket />
-                Book Free Consultation
+                <MessageSquare className="w-5 h-5" />
+                Try Live Demo Now
               </Link>
               <Link
-                href="/chat"
+                href="/demo"
                 className={`h-12 sm:h-14 px-6 sm:px-8 rounded-xl flex items-center justify-center gap-2 text-base sm:text-lg border transition-colors w-full sm:w-auto ${
                   isDark
                     ? 'border-gray-600 text-gray-300 hover:bg-gray-800'
                     : 'border-slate-200 text-slate-700 hover:bg-slate-50'
                 }`}
               >
-                <MessageSquare className="w-5 h-5" />
-                Try Demo
+                <FaRocket />
+                Book Consultation
               </Link>
             </div>
 

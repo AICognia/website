@@ -21,16 +21,16 @@ const baseUrl = 'https://cogniaai.com'
 export const seoConfig: Record<string, PageSEO> = {
   home: {
     title: {
-      tr: 'Cognia AI - AI Resepsiyonist & Sesli Asistanlar | 24/7 Otomatik Müşteri Hizmetleri',
-      en: 'Cognia AI - AI Receptionist & Voice Agents | 24/7 Automated Customer Service'
+      tr: 'Cognia AI - AI Dönüşüm Ajansı | Veri Kaosundan Stratejik Netliğe',
+      en: 'Cognia AI - AI Transformation Agency | From Data Chaos to Strategic Clarity'
     },
     description: {
-      tr: 'AI resepsiyonist ve sesli asistan çözümleri. 24/7 otomatik randevu alma, %95 ilk aramada çözüm oranı. %10-20 daha fazla müşteri garantisi. Amerika ve Türkiye\'de hizmet.',
-      en: 'Transform your business with AI receptionist and voice agents. Never miss a call, book appointments 24/7 with 95% first-call resolution. Guaranteed 10-20% more customers.'
+      tr: 'Veri kaosunu stratejik netliğe dönüştüren AI dönüşüm ajansı. İş akışlarınızı otomatikleştiren, ekiplerinizi güçlendiren ve işinizi hızlandıran AI çözümleri.',
+      en: 'AI transformation agency that turns data chaos into strategic clarity. Automate workflows, empower teams, accelerate growth.'
     },
     keywords: {
-      tr: ['AI resepsiyonist', 'sanal resepsiyonist', 'sesli asistan', 'chatbot', 'WhatsApp bot', 'Instagram bot', 'AI otomasyon', 'iş otomasyonu', 'Türkiye AI', 'Amerika AI şirketi', 'Cognia AI', 'müşteri desteği otomasyonu', 'AI çözümleri', 'randevu alma AI', '24/7 çağrı merkezi'],
-      en: ['AI receptionist', 'virtual receptionist', 'AI voice agent', 'automated phone answering', '24/7 receptionist', 'appointment booking AI', 'chatbot', 'WhatsApp bot', 'Instagram bot', 'voice automation', 'US AI company', 'Turkey AI company', 'Cognia AI', 'customer support automation', 'AI solutions']
+      tr: ['AI dönüşüm ajansı', 'veri zekası', 'AI çözümleri', 'iş otomasyonu', 'AI danışmanlık', 'iş akışı otomasyonu', 'kurumsal AI', 'dijital dönüşüm', 'Türkiye AI', 'Amerika AI şirketi', 'Cognia AI', 'stratejik netlik'],
+      en: ['AI transformation agency', 'data intelligence', 'AI solutions', 'business automation', 'AI consulting', 'workflow automation', 'enterprise AI', 'digital transformation', 'US AI company', 'Turkey AI company', 'Cognia AI', 'strategic clarity']
     },
     canonicalPath: '/',
     ogImage: '/og-image.png'
@@ -133,7 +133,7 @@ export const structuredDataTemplates = {
       caption: 'Cognia AI Logo'
     },
     image: `${baseUrl}/og-image.png`,
-    description: 'AI receptionist and voice agent solutions for businesses. Never miss a call, book appointments 24/7 with 95% first-call resolution.',
+    description: 'AI transformation agency that turns data chaos into strategic clarity. We design and deploy AI solutions that automate workflows, empower teams, and accelerate business growth.',
     foundingDate: '2023',
     founders: [
       {
@@ -214,7 +214,7 @@ export const structuredDataTemplates = {
       'Enterprise AI Solutions'
     ],
     knowsLanguage: ['en', 'tr', 'de', 'fr', 'es', 'it', 'nl', 'pt', 'ar', 'zh', 'ja', 'ko'],
-    slogan: 'Never Miss a Call. Book 24/7.',
+    slogan: 'From Data Chaos to Strategic Clarity',
     brand: {
       '@type': 'Brand',
       name: 'Cognia AI',
@@ -244,7 +244,7 @@ export const structuredDataTemplates = {
     name: 'Cognia AI',
     alternateName: 'Cognia Artificial Intelligence',
     url: baseUrl,
-    description: 'AI receptionist and voice agent solutions. Never miss a call, book 24/7.',
+    description: 'AI transformation agency. From data chaos to strategic clarity.',
     publisher: {
       '@id': `${baseUrl}/#organization`
     },
@@ -306,9 +306,9 @@ export const structuredDataTemplates = {
     '@context': 'https://schema.org',
     '@type': 'Service',
     '@id': `${baseUrl}/#service`,
-    serviceType: 'AI Receptionist and Voice Agent Solutions',
+    serviceType: 'AI Transformation and Data Intelligence Solutions',
     name: 'Cognia AI Services',
-    description: 'Enterprise AI solutions including AI receptionist, voice agents, chatbots, and business automation.',
+    description: 'AI transformation agency offering workflow automation, data intelligence, and enterprise AI solutions that turn data chaos into strategic clarity.',
     provider: {
       '@id': `${baseUrl}/#organization`
     },
@@ -720,7 +720,7 @@ export const structuredDataTemplates = {
       author: {
         '@type': 'Person',
         name: 'Jacob Ojalvo',
-        jobTitle: 'Owner'
+        jobTitle: 'Office Manager'
       },
       publisher: {
         '@type': 'Organization',

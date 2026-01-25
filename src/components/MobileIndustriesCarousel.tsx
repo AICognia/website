@@ -3,15 +3,25 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { FaArrowRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { useTheme } from 'next-themes'
 
 const industries = [
-  { name: 'Healthcare', image: '/images/industries/healthcare.jpg', href: '/industries/healthcare' },
-  { name: 'Financial Services', image: '/images/industries/financial_services.png', href: '/industries/financial-services' },
-  { name: 'Technology', image: '/images/industries/technology.jpg', href: '/industries/technology' },
-  { name: 'Public Sector', image: '/images/industries/public_sector.jpg', href: '/industries/public-sector' },
-  { name: 'Energy', image: '/images/industries/energy.png', href: '/industries/energy' },
+  { name: 'Healthcare', image: '/images/industries/healthcare.webp', href: '/industries/healthcare' },
+  { name: 'Manufacturing', image: '/images/industries/manufacturing.webp', href: '/industries/manufacturing' },
+  { name: 'Financial Services', image: '/images/industries/financial_services.webp', href: '/industries/financial-services' },
+  { name: 'Technology', image: '/images/industries/technology.webp', href: '/industries/technology' },
+  { name: 'Retail', image: '/images/industries/retail.webp', href: '/industries/retail' },
+  { name: 'Automotive', image: '/images/industries/autorepair.webp', href: '/industries/automotive' },
+  { name: 'Home Services', image: '/images/industries/home_services.webp', href: '/industries/HomeServices' },
+  { name: 'Construction', image: '/images/industries/construction.webp', href: '/industries/construction' },
+  { name: 'Energy', image: '/images/industries/energy.webp', href: '/industries/energy' },
+  { name: 'Public Sector', image: '/images/industries/public_sector.webp', href: '/industries/public-sector' },
+  { name: 'Real Estate', image: '/images/industries/real_estate.webp', href: '/industries/real-estate' },
+  { name: 'Hospitality', image: '/images/industries/hospitality.webp', href: '/industries/hospitality' },
+  { name: 'Legal', image: '/images/industries/legal.webp', href: '/industries/legal' },
+  { name: 'Professional Services', image: '/images/industries/professional_services.webp', href: '/industries/service-businesses' },
 ]
 
 const MobileIndustriesCarousel: React.FC = () => {
@@ -119,17 +129,19 @@ const MobileIndustriesCarousel: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.05 }}
               className={`relative aspect-[4/5] rounded-[1.5rem] overflow-hidden border-t border-l ${
                 isDark
                   ? 'bg-gray-800/75 backdrop-blur-2xl border-gray-700 shadow-[10px_10px_30px_-10px_rgba(0,0,0,0.3)]'
                   : 'bg-white/75 backdrop-blur-2xl border-white shadow-[10px_10px_30px_-10px_rgba(0,0,0,0.05)]'
               }`}
             >
-              <img
+              <Image
                 src={industry.image}
                 alt={industry.name}
-                className="absolute inset-0 w-full h-full object-cover"
+                fill
+                sizes="260px"
+                className="object-cover"
               />
 
               {/* Gradient overlay */}
@@ -157,32 +169,16 @@ const MobileIndustriesCarousel: React.FC = () => {
         ))}
       </div>
 
-      {/* Progress Dots */}
+      {/* Progress Bar instead of dots for many items */}
       <div className="container-responsive">
-      <div className="flex justify-center gap-2 mt-4">
-        {industries.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => {
-              if (scrollRef.current) {
-                const cardWidth = 260 + 12
-                scrollRef.current.scrollTo({
-                  left: i * cardWidth,
-                  behavior: 'smooth'
-                })
-              }
-            }}
-            className={`h-1.5 rounded-full transition-all ${
-              i === activeIndex
-                ? 'w-6 bg-blue-600'
-                : isDark
-                  ? 'w-1.5 bg-gray-600'
-                  : 'w-1.5 bg-gray-300'
-            }`}
-            aria-label={`Go to industry ${i + 1}`}
-          />
-        ))}
-      </div>
+        <div className="flex justify-center mt-4">
+          <div className={`w-2/3 h-1.5 rounded-full overflow-hidden ${isDark ? 'bg-gray-700' : 'bg-gray-200'}`}>
+            <div
+              className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-300"
+              style={{ width: `${Math.max(10, ((activeIndex + 1) / industries.length) * 100)}%` }}
+            />
+          </div>
+        </div>
       </div>
 
       <style jsx>{`

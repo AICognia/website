@@ -9,20 +9,20 @@ const testimonials = [
   {
     quote: "Working with Cognia has been a game-changer for our office. What I appreciate the most is how they completely transformed our Monday mornings. Before Cognia, I would spend 45 minutes just waiting for the voicemail system to run so I could go through every message. Now, with Cognia, we receive a clear email summary along with call transcripts first thing in the morning. This lets us immediately prioritize call-backs without wasting time. And if a patient requests an appointment over the weekend, Cognia schedules it for us — no backlog, no delays.",
     author: "Jacob Ojalvo",
-    role: "Owner",
+    role: "Office Manager",
     company: "My Smile Miami",
-    logo: "/logos/mysmilemiami.webp",
+    logo: "/logos/mysmilemiami.webp",  // Verified: file exists
     darkModeInvert: false,
-    image: "/images/industries/dental.jpg"
+    image: "/images/industries/dental.webp"
   },
   {
     quote: "It took about a week to get everything set up, which honestly wasn't bad considering how busy we were at the time. Before this, we were missing way more calls than we ever thought. After we switched to Cognia AI, the whole situation changed. Calls actually get answered now, even when we're tied up or out on the road, and customers get a response right away instead of voicemail. Over the last few weeks, we've noticed a pretty clear bump in jobs coming in. You stop missing calls, you stop missing work.",
     author: "Elite Auto Repair",
     role: "Auto Repair Shop",
     company: "Automotive",
-    logo: "/logos/hallsheatingandair.png",
-    darkModeInvert: true,
-    image: "/images/industries/autorepair.jpeg"
+    logo: "", // Text-based logo - no image available
+    darkModeInvert: false,
+    image: "/images/industries/autorepair.webp"
   }
 ];
 
@@ -79,7 +79,7 @@ const SocialProofSection: React.FC = () => {
   const currentTestimonial = testimonials[activeIndex];
 
   return (
-    <section className={`overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+    <section className={`overflow-hidden py-10 sm:py-14 lg:py-18 xl:py-22 px-4 sm:px-6 lg:px-8 transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
       <div className="relative z-10">
 
         {/* SVG Filter for rounded corners */}
@@ -165,50 +165,36 @@ const SocialProofSection: React.FC = () => {
                   : 'inset 0 1px 2px rgba(14, 165, 233, 0.15), inset 0 -1px 2px rgba(14, 165, 233, 0.08), inset 1px 0 2px rgba(14, 165, 233, 0.12), inset -1px 0 2px rgba(14, 165, 233, 0.05), 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03)'
               }}
             >
-              <div className="w-10/12">
-                <div className="flex h-full flex-col">
-                  <div className={`mb-6 transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
-                    <img
-                      src={currentTestimonial.logo}
-                      alt={`${currentTestimonial.company} Logo`}
-                      className={`h-12 w-auto sm:h-14 max-w-[180px] object-contain opacity-80 grayscale ${currentTestimonial.darkModeInvert ? 'dark:invert' : ''}`}
-                    />
+              <div className="w-10/12 h-full">
+                <div className="flex h-full flex-col justify-between">
+                  {/* Top content */}
+                  <div>
+                    <div className={`mb-6 transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+                      {currentTestimonial.logo ? (
+                        <img
+                          src={currentTestimonial.logo}
+                          alt={`${currentTestimonial.company} Logo`}
+                          className={`h-12 w-auto sm:h-14 max-w-[180px] object-contain opacity-80 grayscale ${currentTestimonial.darkModeInvert ? 'dark:invert' : ''}`}
+                        />
+                      ) : (
+                        <span className={`text-xl sm:text-2xl font-bold tracking-tight ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                          {currentTestimonial.author}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className={`mb-6 lg:mb-8 transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+                      <h3 className="text-lg lg:text-xl leading-relaxed">
+                        "{currentTestimonial.quote}"
+                      </h3>
+                    </div>
                   </div>
-                  
-                  <div className={`mb-6 lg:mb-10 transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
-                    <h3 className="text-lg lg:text-xl leading-relaxed">
-                      "{currentTestimonial.quote}"
-                    </h3>
-                  </div>
-                  
+
+                  {/* Bottom content - author */}
                   <div className={`transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
                     <p className={`text-sm lg:text-base ${isDark ? 'text-gray-400' : 'text-[#6b7280]'}`}>
                       — {currentTestimonial.author}, {currentTestimonial.role}
                     </p>
-                  </div>
-
-                  <div className={`mt-6 sm:mt-16 lg:absolute lg:bottom-6 transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
-                    <a
-                      className="group inline-block max-w-full disabled:cursor-not-allowed focus-visible:outline-1 focus-visible:outline focus-visible:outline-blue-500 rounded-sm"
-                      target="_blank"
-                      href="/demo"
-                    >
-                      <span className={`flex items-center ${isDark ? 'text-gray-300' : 'text-[#37322f]'}`}>
-                        <span className="text-sm lg:text-base">
-                          <span className="text-sm lg:text-base">Read more</span>
-                        </span>
-                        <span className="ml-1 mr-2 flex items-center duration-400 transition-all ease-in-out group-hover:ml-2 group-hover:mr-1">
-                          <svg 
-                            className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" 
-                            viewBox="0 0 12 12" 
-                            fill="none" 
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </span>
-                      </span>
-                    </a>
                   </div>
                 </div>
               </div>
@@ -251,60 +237,35 @@ const SocialProofSection: React.FC = () => {
                 : 'inset 0 1px 2px rgba(14, 165, 233, 0.15), 0 2px 8px rgba(0, 0, 0, 0.04)'
             }}
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col h-full">
               <div className="mb-4 sm:mb-6">
-                <img
-                  src={currentTestimonial.logo}
-                  alt={`${currentTestimonial.company} Logo`}
-                  className={`h-8 sm:h-12 w-auto max-w-[140px] sm:max-w-[160px] object-contain opacity-80 grayscale ${currentTestimonial.darkModeInvert ? 'dark:invert' : ''}`}
-                />
+                {currentTestimonial.logo ? (
+                  <img
+                    src={currentTestimonial.logo}
+                    alt={`${currentTestimonial.company} Logo`}
+                    className={`h-8 sm:h-12 w-auto max-w-[140px] sm:max-w-[160px] object-contain opacity-80 grayscale ${currentTestimonial.darkModeInvert ? 'dark:invert' : ''}`}
+                  />
+                ) : (
+                  <span className={`text-lg sm:text-xl font-bold tracking-tight ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                    {currentTestimonial.author}
+                  </span>
+                )}
               </div>
 
-              <div className="mb-4 sm:mb-6">
+              <div className="mb-4 sm:mb-6 flex-grow">
                 <h3 className={`text-sm sm:text-base md:text-lg leading-relaxed ${isDark ? 'text-gray-100' : 'text-[#37322f]'}`}>
                   "{currentTestimonial.quote}"
                 </h3>
               </div>
 
-              <div>
+              <div className="mt-auto">
                 <p className={`text-xs sm:text-sm ${isDark ? 'text-gray-400' : 'text-[#6b7280]'}`}>
                   - {currentTestimonial.author}, {currentTestimonial.role}
                 </p>
               </div>
-
-              <div className="mt-4 sm:mt-6">
-                <Link
-                  href="/demo"
-                  className="group inline-block"
-                >
-                  <span className={`flex items-center ${isDark ? 'text-gray-300' : 'text-[#37322f]'}`}>
-                    <span className="text-xs sm:text-sm font-medium">Read more</span>
-                    <span className="ml-1 mr-2 flex items-center transition-all duration-300 group-hover:ml-2 group-hover:mr-1">
-                      <svg
-                        className="w-2.5 sm:w-3 h-2.5 sm:h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        viewBox="0 0 12 12"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </span>
-                  </span>
-                </Link>
-              </div>
             </div>
           </div>
 
-          {/* Mobile Image Card */}
-          <div
-            className="w-full h-32 sm:h-40 rounded-xl sm:rounded-2xl overflow-hidden"
-          >
-            <img
-              alt={currentTestimonial.company}
-              className="w-full h-full object-cover object-center"
-              src={currentTestimonial.image}
-            />
-          </div>
         </div>
 
         {/* Progress Bar */}
