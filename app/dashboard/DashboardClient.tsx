@@ -1062,7 +1062,7 @@ const RevenueChart: React.FC = () => (
         <Tooltip
           contentStyle={{ backgroundColor: '#151d30', border: '1px solid rgba(99, 102, 241, 0.3)', borderRadius: 12, boxShadow: '0 4px 20px rgba(0,0,0,0.5)' }}
           labelStyle={{ color: '#f8fafc', fontWeight: 600, marginBottom: 8 }}
-          formatter={(value: any, name: string) => [value ? `₺${value.toLocaleString()}K` : '-', name === 'actual' ? 'Gerçekleşen' : name === 'predicted' ? 'AI Tahmini' : 'Hedef']}
+          formatter={(value: any, name?: string) => [value ? `₺${value.toLocaleString()}K` : '-', name === 'actual' ? 'Gerçekleşen' : name === 'predicted' ? 'AI Tahmini' : 'Hedef']}
         />
         <Area type="monotone" dataKey="actual" stroke="#6366f1" strokeWidth={2.5} fill="url(#revenueGradient)" dot={{ fill: '#6366f1', r: 4, strokeWidth: 0 }} activeDot={{ r: 6, fill: '#6366f1', stroke: '#fff', strokeWidth: 2 }} />
         <Area type="monotone" dataKey="predicted" stroke="#a855f7" strokeWidth={2.5} strokeDasharray="6 4" fill="url(#predictionGradient)" dot={{ fill: '#a855f7', r: 4, strokeWidth: 0 }} />
