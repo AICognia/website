@@ -61,7 +61,7 @@ export function ChatInput({
   const canSend = value.trim().length > 0;
 
   return (
-    <div className="px-4 sm:px-6 pb-6 pt-2">
+    <div className="px-4 sm:px-6 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))] sm:pb-6 pt-2">
       {/* Main Input Container - Glass effect like HeroBento cards */}
       <motion.div
         ref={containerRef}

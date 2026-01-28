@@ -79,10 +79,10 @@ const MobileDemoSection: React.FC = () => {
           The Problem
         </span>
         <h2 className={`text-2xl font-serif font-normal mb-3 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-          The Hidden Costs of Manual Work
+          The Hidden Costs of Manual Operations
         </h2>
         <p className={`text-base leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-          Teams waste hours on tasks AI can handle instantly.
+          Teams waste hours on repetitive tasks that AI can automate.
         </p>
       </motion.div>
 
@@ -96,15 +96,15 @@ const MobileDemoSection: React.FC = () => {
       >
         <div className="text-center">
           <div className={`text-2xl font-serif font-normal ${isDark ? 'text-red-400' : 'text-red-600'}`}>30%</div>
-          <div className={`text-xs ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>Calls Missed</div>
+          <div className={`text-xs ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>Still Manual</div>
         </div>
         <div className="text-center">
           <div className={`text-2xl font-serif font-normal ${isDark ? 'text-orange-400' : 'text-orange-600'}`}>95%</div>
-          <div className={`text-xs ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>Team Capacity</div>
+          <div className={`text-xs ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>Team at Capacity</div>
         </div>
         <div className="text-center">
           <div className={`text-2xl font-serif font-normal ${isDark ? 'text-red-400' : 'text-red-600'}`}>$2.4K</div>
-          <div className={`text-xs ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>Lost Monthly</div>
+          <div className={`text-xs ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>Wasted Monthly</div>
         </div>
       </motion.div>
 
@@ -219,7 +219,7 @@ const MobileDemoSection: React.FC = () => {
           Focus on what matters.
         </h3>
         <p className={`text-sm leading-relaxed mb-6 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-          Let AI handle the routine while your team grows the business.
+          Let AI automate the routine while your team drives strategy.
         </p>
         <Link
           href="/demo"

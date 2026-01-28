@@ -127,7 +127,7 @@ const WhatWeDo: React.FC = () => {
     {
       icon: FaRoute,
       title: 'AI Audit',
-      subtitle: '$2,500 - 4 weeks',
+      subtitle: '4 weeks',
       description: 'Our flagship discovery process. We identify highest-ROI AI opportunities and build your roadmap. The plan is yours to keep — whether you work with us or not.',
       features: [
         'Discovery (Week 1-2)',
@@ -140,7 +140,7 @@ const WhatWeDo: React.FC = () => {
     {
       icon: FaDatabase,
       title: 'AI Sprint',
-      subtitle: '$1,000 - 2 weeks',
+      subtitle: '2 weeks',
       description: 'Quick-start option for companies wanting to test the waters. 3 departmental discoveries, AI-readiness assessment, and workforce AI workshop.',
       features: [
         '3 Departmental Discoveries',
@@ -177,8 +177,8 @@ const WhatWeDo: React.FC = () => {
 
   const heroStats = [
     { value: '60', label: 'Days to Transform' },
-    { value: '95%', label: 'AI Projects Fail' },
-    { value: '$1K', label: 'Starting Price' }
+    { value: '3x', label: 'Faster Decisions' },
+    { value: '4', label: 'Week Audit' }
   ]
 
   return (
@@ -191,7 +191,7 @@ const WhatWeDo: React.FC = () => {
 
       {/* Hero Section with Animated Grid Background */}
       {/* Mobile Hero - Compact Design */}
-      <section className={`lg:hidden relative overflow-hidden transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+      <section className="lg:hidden relative overflow-hidden transition-colors duration-300 bg-white dark:bg-gray-900">
         <div className="absolute inset-0">
           <MobileHeroBackground />
         </div>
@@ -199,11 +199,7 @@ const WhatWeDo: React.FC = () => {
         {/* Gradient overlay for readability */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{
-            background: isDark
-              ? 'linear-gradient(to bottom, rgba(17,24,39,0.85) 0%, rgba(17,24,39,0.7) 50%, rgba(17,24,39,0.9) 100%)'
-              : 'linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,0.95) 100%)'
-          }}
+          style={{ background: 'var(--hero-gradient-mobile)' }}
         />
 
         <div className="relative z-10 container-responsive pt-24 pb-10">
@@ -213,15 +209,9 @@ const WhatWeDo: React.FC = () => {
             transition={{ duration: 0.4 }}
             className="mb-4"
           >
-            <div
-              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${
-                isDark
-                  ? 'bg-blue-500/15 border border-blue-400/25'
-                  : 'bg-blue-50 border border-blue-200'
-              }`}
-            >
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 border border-blue-200 dark:border-blue-400/25">
               <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-              <span className={`text-xs font-semibold tracking-wide ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>
+              <span className="text-xs font-semibold tracking-wide text-blue-700 dark:text-blue-300">
                 Our Approach
               </span>
             </div>
@@ -232,7 +222,7 @@ const WhatWeDo: React.FC = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.05 }}
-            className={`text-2xl font-serif font-normal mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}
+            className="text-2xl font-serif font-normal mb-3 text-slate-900 dark:text-white"
           >
             What We Do
           </motion.h1>
@@ -242,10 +232,10 @@ const WhatWeDo: React.FC = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className={`text-sm leading-relaxed mb-6 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
+            className="text-sm leading-relaxed mb-6 text-slate-600 dark:text-gray-300"
           >
             AI strategy to transformed ops in 60 days.{' '}
-            <span className={`font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>
+            <span className="font-medium text-slate-900 dark:text-white">
               We build only what pays back.
             </span>
           </motion.p>
@@ -259,10 +249,10 @@ const WhatWeDo: React.FC = () => {
           >
             {heroStats.map((stat, i) => (
               <div key={i} className="text-center">
-                <div className={`text-xl font-serif font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <div className="text-xl font-serif font-medium text-slate-900 dark:text-white">
                   {stat.value}
                 </div>
-                <div className={`text-[9px] uppercase tracking-wider font-medium mt-0.5 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                <div className="text-[9px] uppercase tracking-wider font-medium mt-0.5 text-slate-500 dark:text-gray-400">
                   {stat.label}
                 </div>
               </div>
@@ -272,25 +262,18 @@ const WhatWeDo: React.FC = () => {
       </section>
 
       {/* Desktop Hero - Condensed Design (matching Industries page) */}
-      <section className="hidden lg:flex min-h-[70vh] flex-col items-center overflow-hidden relative" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <section className="hidden lg:flex min-h-[70vh] max-h-[800px] flex-col items-center overflow-hidden relative" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <HeroBackgroundGrid isPlaying={false} />
 
         {/* Gradient Overlays */}
-        <div className={`absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none ${isDark ? 'from-gray-900/10 to-gray-900' : 'from-white/10 to-white'}`} />
-        <div className={`absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none ${isDark ? 'from-gray-900 via-gray-900/40' : 'from-white via-white/40'}`} />
+        <div className="absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none from-white/10 to-white dark:from-gray-900/10 dark:to-gray-900" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none from-white via-white/40 dark:from-gray-900 dark:via-gray-900/40" />
 
         {/* Radial gradient for text readability */}
-        <div
-          className="absolute inset-0 pointer-events-none z-[5]"
-          style={{
-            background: isDark
-              ? 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(17,24,39,0.9) 0%, rgba(17,24,39,0.7) 40%, rgba(17,24,39,0.4) 60%, rgba(17,24,39,0) 80%)'
-              : 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0) 80%)',
-          }}
-        />
+        <div className="absolute inset-0 pointer-events-none z-[5] hero-centered-radial" />
 
         {/* Main container */}
-        <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-12 xl:px-16 relative z-10 flex-1 flex items-center pt-20 pb-16">
+        <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-12 xl:px-16 relative z-10 flex-1 flex items-start pb-16" style={{ paddingTop: '10rem' }}>
           <div className="w-full">
             <motion.div
               className="text-center max-w-4xl mx-auto"
@@ -299,16 +282,8 @@ const WhatWeDo: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <motion.div
-                className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-8 ${
-                  isDark
-                    ? 'bg-blue-500/10 border border-blue-500/20'
-                    : 'bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/60'
-                }`}
-                style={{
-                  boxShadow: isDark
-                    ? '0 0 20px rgba(59, 130, 246, 0.15)'
-                    : '0 2px 12px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(255,255,255,0.8)',
-                }}
+                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-transparent dark:to-transparent dark:bg-blue-500/10 border border-blue-200/60 dark:border-blue-500/20"
+                style={{ boxShadow: 'var(--hero-badge-shadow)' }}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
@@ -317,19 +292,19 @@ const WhatWeDo: React.FC = () => {
                   <div className="w-2.5 h-2.5 rounded-full bg-blue-500" />
                   <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-blue-500 animate-ping opacity-75" />
                 </div>
-                <span className={`text-sm font-semibold tracking-wide ${isDark ? 'text-blue-400' : 'text-blue-700'}`}>
+                <span className="text-sm font-semibold tracking-wide text-blue-700 dark:text-blue-400">
                   Our Approach
                 </span>
-                <FaBrain className={`w-4 h-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
+                <FaBrain className="w-4 h-4 text-blue-600 dark:text-blue-400" />
               </motion.div>
 
-              <h1 className={`text-4xl lg:text-5xl xl:text-6xl font-serif font-normal leading-[1.08] mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-normal leading-[1.08] mb-6 text-slate-900 dark:text-gray-100">
                 What We Do
               </h1>
 
-              <p className={`text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+              <p className="text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed text-slate-600 dark:text-gray-400">
                 From AI strategy to transformed operations in 60 days.{' '}
-                <span className={`font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className="font-medium text-slate-900 dark:text-white">
                   Find the highest-ROI AI opportunities. Then build only what pays back.
                 </span>
               </p>
@@ -339,16 +314,16 @@ const WhatWeDo: React.FC = () => {
                 {heroStats.map((stat, i) => (
                   <motion.div
                     key={i}
-                    className={`min-w-[100px] rounded-xl border px-4 py-3 ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200/80 bg-white/50'}`}
+                    className="min-w-[100px] rounded-xl border px-4 py-3 border-slate-200/80 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50"
                     style={statCardStyle}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 + i * 0.1 }}
                   >
-                    <div className={`text-xl lg:text-2xl font-serif font-normal ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                    <div className="text-xl lg:text-2xl font-serif font-normal text-slate-800 dark:text-white">
                       {stat.value}
                     </div>
-                    <div className={`text-[9px] uppercase tracking-[0.12em] font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                    <div className="text-[9px] uppercase tracking-[0.12em] font-medium mt-1 text-slate-500 dark:text-gray-400">
                       {stat.label}
                     </div>
                   </motion.div>
@@ -371,6 +346,10 @@ const WhatWeDo: React.FC = () => {
                       ? 'border-gray-700 text-gray-300 hover:bg-gray-800'
                       : 'border-slate-200 text-slate-600 hover:bg-slate-50'
                   }`}
+                  style={{
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                  }}
                 >
                   <span>View Industries</span>
                 </Link>
@@ -381,8 +360,8 @@ const WhatWeDo: React.FC = () => {
       </section>
 
       {/* Engagement Types - Redesigned Accordion */}
-      <section className={`py-16 sm:py-20 md:py-28 lg:py-36 relative ${isDark ? 'bg-gray-900/50' : 'bg-slate-50/30'}`}>
-        <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-800' : 'via-slate-200'}`} />
+      <section className="py-16 sm:py-20 md:py-28 lg:py-36 relative bg-slate-50/30 dark:bg-gray-900/50">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent via-slate-200 dark:via-gray-800" />
 
         <div className="container-responsive px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-start">
@@ -401,7 +380,7 @@ const WhatWeDo: React.FC = () => {
                 </span>
               </div>
               <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-serif font-light leading-[1.15] mb-5 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                How We Work{' '}
+                How We Work<br />
                 <span className={isDark ? 'text-gray-400' : 'text-slate-500'}>With You</span>
               </h2>
               <p className={`text-base sm:text-lg leading-relaxed mb-8 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
@@ -555,7 +534,7 @@ const WhatWeDo: React.FC = () => {
       <IndustriesCarousel />
 
       {/* What Makes Us Different - Bento Style */}
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 relative ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+      <section className="py-12 sm:py-16 md:py-24 lg:py-32 relative bg-white dark:bg-gray-900">
         <div className="container-responsive px-4 sm:px-6">
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16">
             <motion.span
@@ -567,7 +546,8 @@ const WhatWeDo: React.FC = () => {
               Our Difference
             </motion.span>
             <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-normal mb-3 sm:mb-4 ${isDark ? 'text-gray-100' : ''}`}>
-              Consultants Advise. Engineers Build. We Do Both.
+              Consultants Advise. Engineers Build.<br />
+              We Do Both.
             </h2>
             <p className={`text-base sm:text-lg leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
               95% of AI projects fail — twice the rate of standard IT projects. Here's why we're different.
@@ -606,7 +586,7 @@ const WhatWeDo: React.FC = () => {
                       </li>
                       <li className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0" />
-                        $50K+ engagements
+                        Long engagements
                       </li>
                     </ul>
                   </div>
@@ -648,7 +628,7 @@ const WhatWeDo: React.FC = () => {
                       </li>
                       <li className="flex items-center gap-2">
                         <FaCheckCircle className={`flex-shrink-0 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
-                        Starts at $1,000
+                        Results in weeks
                       </li>
                     </ul>
                   </div>

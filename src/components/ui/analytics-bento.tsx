@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState, useRef, useMemo, useEffect } from 'react'
+import React, { useState, useRef, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { useTheme } from 'next-themes'
+import { useThemeWithoutFlash } from '@/src/hooks/useThemeWithoutFlash'
 
 interface DataPoint {
   month: string
@@ -14,15 +14,7 @@ const ROIAnalyticsCard: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
   const svgRef = useRef<SVGSVGElement>(null)
-  const [mounted, setMounted] = useState(false)
-  const { resolvedTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark'
+  const { isDark } = useThemeWithoutFlash()
 
   // Sample data showing cost savings over 6 months
   const data: DataPoint[] = useMemo(() => [
@@ -74,16 +66,16 @@ const ROIAnalyticsCard: React.FC = () => {
     <div className="relative w-full h-full p-5 flex flex-col">
       {/* Header - Clean left alignment */}
       <div className="mb-5">
-        <div className={`text-[11px] font-medium uppercase tracking-wider mb-2 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+        <div className="text-[11px] font-medium uppercase tracking-wider mb-2 text-gray-400 dark:text-gray-500">
           Quarterly Performance
         </div>
         <div className="flex items-end gap-3">
-          <span className={`text-4xl font-bold leading-none ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
+          <span className="text-4xl font-bold font-serif leading-none text-gray-900 dark:text-gray-100">
             ${(totalSavings / 1000).toFixed(1)}K
           </span>
-          <span className={`text-sm font-semibold mb-1 ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`}>+312%</span>
+          <span className="text-sm font-semibold mb-1 text-emerald-600 dark:text-emerald-400">+312%</span>
         </div>
-        <div className={`text-sm mt-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Cost savings from AI automation</div>
+        <div className="text-sm mt-1 text-gray-500 dark:text-gray-400">Cost savings from AI automation</div>
       </div>
 
       {/* Chart - Centered with proper proportions */}
@@ -176,7 +168,7 @@ const ROIAnalyticsCard: React.FC = () => {
                 x={xScale(i)}
                 y={chartHeight - 8}
                 textAnchor="middle"
-                className={`text-[10px] font-medium ${isDark ? 'fill-gray-500' : 'fill-gray-400'}`}
+                className="text-[10px] font-medium fill-gray-400 dark:fill-gray-500"
               >
                 {d.month}
               </text>
@@ -189,19 +181,19 @@ const ROIAnalyticsCard: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`absolute z-10 px-3 py-2 rounded-lg shadow-xl text-xs pointer-events-none ${isDark ? 'bg-gray-800 text-white' : 'bg-gray-900 text-white'}`}
+            className="absolute z-10 px-3 py-2 rounded-lg shadow-xl text-xs pointer-events-none bg-gray-900 text-white dark:bg-gray-800"
             style={{
               left: Math.min(Math.max(tooltipPosition.x - 60, 10), 180),
               top: Math.max(tooltipPosition.y, 10)
             }}
           >
-            <div className={`font-semibold mb-1.5 ${isDark ? 'text-gray-200' : 'text-gray-300'}`}>{data[hoveredIndex].month} 2024</div>
+            <div className="font-semibold mb-1.5 text-gray-300 dark:text-gray-200">{data[hoveredIndex].month} 2024</div>
             <div className="flex items-center gap-2 text-white">
               <span className="w-2 h-2 rounded-full bg-primary" />
               <span>AI Savings:</span>
               <span className="font-semibold">${data[hoveredIndex].savings.toLocaleString()}</span>
             </div>
-            <div className={`flex items-center gap-2 mt-1 ${isDark ? 'text-gray-300' : 'text-gray-400'}`}>
+            <div className="flex items-center gap-2 mt-1 text-gray-400 dark:text-gray-300">
               <span className="w-2 h-2 rounded-full bg-gray-500" />
               <span>Manual:</span>
               <span className="font-medium">${data[hoveredIndex].manual.toLocaleString()}</span>
@@ -211,14 +203,14 @@ const ROIAnalyticsCard: React.FC = () => {
       </div>
 
       {/* Legend - Clean inline style */}
-      <div className={`flex items-center justify-center gap-6 mt-4 pt-4 border-t ${isDark ? 'border-gray-700' : 'border-gray-100'}`}>
+      <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
         <div className="flex items-center gap-2">
           <div className="w-3 h-0.5 bg-primary rounded-full" />
-          <span className={`text-[11px] font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>AI Savings</span>
+          <span className="text-[11px] font-medium text-gray-600 dark:text-gray-300">AI Savings</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-0.5 rounded-full" style={{ backgroundImage: isDark ? 'repeating-linear-gradient(90deg, #6b7280 0, #6b7280 3px, transparent 3px, transparent 6px)' : 'repeating-linear-gradient(90deg, #cbd5e1 0, #cbd5e1 3px, transparent 3px, transparent 6px)' }} />
-          <span className={`text-[11px] ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Manual Costs</span>
+          <span className="text-[11px] text-gray-400 dark:text-gray-500">Manual Costs</span>
         </div>
       </div>
     </div>

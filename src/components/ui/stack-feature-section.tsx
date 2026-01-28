@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
+import { useThemeWithoutFlash } from "@/src/hooks/useThemeWithoutFlash";
 import {
   FaPhone, FaRobot, FaHeadset, FaChartLine, FaGlobe,
   FaClock, FaCog, FaPlug, FaBrain, FaShieldAlt
@@ -33,27 +32,19 @@ export default function StackFeatureSection() {
   const orbitCount = 3;
   const orbitGap = 8;
   const iconsPerOrbit = Math.ceil(iconConfigs.length / orbitCount);
-  const [mounted, setMounted] = useState(false);
-  const { resolvedTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark';
+  const { isDark } = useThemeWithoutFlash();
 
   return (
-    <section className={`relative overflow-hidden py-8 sm:py-12 md:py-16 lg:py-20 transition-colors duration-300 ${isDark ? 'bg-gray-900' : ''}`}>
+    <section className="relative overflow-hidden py-8 sm:py-12 md:py-16 lg:py-20 transition-colors duration-300 dark:bg-gray-900">
       <div className="container-responsive px-4 sm:px-6">
         <div className="bento-card no-hover-movement pl-4 sm:pl-8 md:pl-12 lg:pl-16 overflow-hidden">
         <div className="flex flex-col md:flex-row items-center justify-between min-h-0 sm:min-h-[20rem] md:h-[30rem]">
       {/* Left side: Heading and Text */}
       <div className="w-full md:w-1/2 z-10 py-2 sm:py-6 md:py-0 px-2 sm:px-4 md:px-0">
-        <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-normal mb-3 sm:mb-4 md:mb-6 ${isDark ? 'text-gray-100' : ''}`}>
-          Ready to <span className={isDark ? 'text-blue-400' : 'text-[#1E40AF]'}>Transform?</span>
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-normal mb-3 sm:mb-4 md:mb-6 dark:text-gray-100">
+          Ready to <span className="text-[#1E40AF] dark:text-blue-400">Transform?</span>
         </h2>
-        <p className={`mb-4 sm:mb-6 max-w-lg text-sm sm:text-base md:text-lg ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+        <p className="mb-4 sm:mb-6 max-w-lg text-sm sm:text-base md:text-lg text-slate-600 dark:text-gray-400">
           Schedule a consultation. We'll show you exactly where AI can move the needle in your business.
         </p>
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
@@ -82,7 +73,7 @@ export default function StackFeatureSection() {
             return (
               <div
                 key={orbitIdx}
-                className={`absolute rounded-full border-2 border-dotted ${isDark ? 'border-gray-700' : 'border-slate-200'}`}
+                className="absolute rounded-full border-2 border-dotted border-slate-200 dark:border-gray-700"
                 style={{
                   width: size,
                   height: size,
@@ -93,18 +84,23 @@ export default function StackFeatureSection() {
                   .slice(orbitIdx * iconsPerOrbit, orbitIdx * iconsPerOrbit + iconsPerOrbit)
                   .map((cfg, iconIdx) => {
                     const angle = iconIdx * angleStep;
-                    const x = 50 + 50 * Math.cos(angle);
-                    const y = 50 + 50 * Math.sin(angle);
+                    // Round to 2 decimal places to prevent hydration mismatch
+                    const x = Math.round((50 + 50 * Math.cos(angle)) * 100) / 100;
+                    const y = Math.round((50 + 50 * Math.sin(angle)) * 100) / 100;
 
                     return (
                       <div
                         key={iconIdx}
-                        className={`absolute rounded-full p-1 sm:p-1.5 md:p-2 shadow-md border ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-slate-100'}`}
+                        className="absolute rounded-full p-1 sm:p-1.5 md:p-2 shadow-md border bg-white border-slate-100 dark:bg-gray-800 dark:border-gray-700"
                         style={{
                           left: `${x}%`,
                           top: `${y}%`,
                           transform: "translate(-50%, -50%)",
-                          animation: `counter-spin ${20 + orbitIdx * 8}s linear infinite ${orbitIdx % 2 === 0 ? '' : 'reverse'}`,
+                          animationName: 'counter-spin',
+                          animationDuration: `${20 + orbitIdx * 8}s`,
+                          animationTimingFunction: 'linear',
+                          animationIterationCount: 'infinite',
+                          animationDirection: orbitIdx % 2 === 0 ? 'normal' : 'reverse',
                         }}
                       >
                         {cfg.Icon && (

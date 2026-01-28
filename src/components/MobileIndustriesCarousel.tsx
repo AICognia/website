@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { FaArrowRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-import { useTheme } from 'next-themes'
 
 const industries = [
   { name: 'Healthcare', image: '/images/industries/healthcare.webp', href: '/industries/healthcare' },
@@ -29,15 +28,6 @@ const MobileIndustriesCarousel: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
-  const [mounted, setMounted] = useState(false)
-  const { resolvedTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark'
 
   const updateScrollState = () => {
     if (!scrollRef.current) return
@@ -76,7 +66,7 @@ const MobileIndustriesCarousel: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className={`text-2xl font-serif font-normal ${isDark ? 'text-gray-100' : 'text-slate-900'}`}
+          className="text-2xl font-serif font-normal text-slate-900 dark:text-gray-100"
         >
           Industries We Serve
         </motion.h2>
@@ -88,9 +78,7 @@ const MobileIndustriesCarousel: React.FC = () => {
             disabled={!canScrollLeft}
             className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all active:scale-95 ${
               canScrollLeft
-                ? isDark
-                  ? 'border-gray-700 text-gray-300 bg-gray-800'
-                  : 'border-gray-200 text-slate-600 bg-white'
+                ? 'border-gray-200 text-slate-600 bg-white dark:border-gray-700 dark:text-gray-300 dark:bg-gray-800'
                 : 'opacity-40'
             }`}
           >
@@ -101,9 +89,7 @@ const MobileIndustriesCarousel: React.FC = () => {
             disabled={!canScrollRight}
             className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all active:scale-95 ${
               canScrollRight
-                ? isDark
-                  ? 'border-gray-700 text-gray-300 bg-gray-800'
-                  : 'border-gray-200 text-slate-600 bg-white'
+                ? 'border-gray-200 text-slate-600 bg-white dark:border-gray-700 dark:text-gray-300 dark:bg-gray-800'
                 : 'opacity-40'
             }`}
           >
@@ -130,11 +116,7 @@ const MobileIndustriesCarousel: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className={`relative aspect-[4/5] rounded-[1.5rem] overflow-hidden border-t border-l ${
-                isDark
-                  ? 'bg-gray-800/75 backdrop-blur-2xl border-gray-700 shadow-[10px_10px_30px_-10px_rgba(0,0,0,0.3)]'
-                  : 'bg-white/75 backdrop-blur-2xl border-white shadow-[10px_10px_30px_-10px_rgba(0,0,0,0.05)]'
-              }`}
+              className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden border-t border-l bg-white/75 backdrop-blur-2xl border-white shadow-[10px_10px_30px_-10px_rgba(0,0,0,0.05)] dark:bg-gray-800/75 dark:border-gray-700 dark:shadow-[10px_10px_30px_-10px_rgba(0,0,0,0.3)]"
             >
               <Image
                 src={industry.image}
@@ -154,11 +136,7 @@ const MobileIndustriesCarousel: React.FC = () => {
 
                 {/* Action button - Always visible on mobile */}
                 <div className="flex justify-end">
-                  <div className={`backdrop-blur-sm rounded-full px-4 py-2.5 flex items-center gap-2 shadow-lg active:scale-95 transition-transform ${
-                    isDark
-                      ? 'bg-white/90 text-slate-800'
-                      : 'bg-white/90 text-slate-800'
-                  }`}>
+                  <div className="backdrop-blur-sm rounded-full px-4 py-2.5 flex items-center gap-2 shadow-lg active:scale-95 transition-transform bg-white/90 text-slate-800">
                     <span className="text-sm font-semibold">Explore</span>
                     <FaArrowRight className="w-3 h-3" />
                   </div>
@@ -172,7 +150,7 @@ const MobileIndustriesCarousel: React.FC = () => {
       {/* Progress Bar instead of dots for many items */}
       <div className="container-responsive">
         <div className="flex justify-center mt-4">
-          <div className={`w-2/3 h-1.5 rounded-full overflow-hidden ${isDark ? 'bg-gray-700' : 'bg-gray-200'}`}>
+          <div className="w-2/3 h-1.5 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
             <div
               className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-300"
               style={{ width: `${Math.max(10, ((activeIndex + 1) / industries.length) * 100)}%` }}

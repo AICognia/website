@@ -154,8 +154,8 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({ data }) => {
           className="absolute inset-0 pointer-events-none"
           style={{
             background: isDark
-              ? 'linear-gradient(to bottom, rgba(17,24,39,0.75) 0%, rgba(17,24,39,0.5) 50%, rgba(17,24,39,0.3) 100%)'
-              : 'linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.3) 100%)'
+              ? 'linear-gradient(to bottom, rgba(17,24,39,0.9) 0%, rgba(17,24,39,0.8) 50%, rgba(17,24,39,0.6) 100%)'
+              : 'linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.6) 100%)'
           }}
         />
 
@@ -255,63 +255,61 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({ data }) => {
       </section>
 
       {/* Desktop Hero */}
-      <section className="hidden lg:flex min-h-screen flex-col items-center overflow-hidden relative pt-0 select-none transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <section className="hidden lg:flex h-screen max-h-[960px] min-h-[700px] flex-col items-center overflow-hidden relative pt-0 select-none transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <HeroBackgroundGrid isPlaying={false} />
 
-        <div className={`absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none ${isDark ? 'from-gray-900/10 to-gray-900' : 'from-white/10 to-white'}`} />
-        <div className={`absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none ${isDark ? 'from-gray-900 via-gray-900/40' : 'from-white via-white/40'}`} />
+        <div className="absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none from-white/10 to-white dark:from-gray-900/10 dark:to-gray-900" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none from-white via-white/40 dark:from-gray-900 dark:via-gray-900/40" />
 
         <div
           className="absolute inset-y-0 left-0 w-[65%] pointer-events-none z-[5]"
           style={{
-            background: isDark
-              ? 'radial-gradient(ellipse 100% 90% at 20% 50%, rgba(17,24,39,0.95) 0%, rgba(17,24,39,0.85) 30%, rgba(17,24,39,0.6) 50%, rgba(17,24,39,0.3) 70%, rgba(17,24,39,0) 90%)'
-              : 'radial-gradient(ellipse 80% 60% at 25% 45%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.35) 40%, rgba(255,255,255,0.1) 60%, rgba(255,255,255,0) 75%)',
+            background: 'var(--hero-radial-desktop)',
           }}
         />
 
-        <div className="w-full max-w-[1280px] xl:max-w-[1400px] 2xl:max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 relative z-10 flex-1 flex items-center pt-16 lg:pt-20 pb-24">
-          <div className="grid grid-cols-12 gap-6 lg:gap-8 xl:gap-10 items-center w-full">
+        <div className="w-full max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 relative z-10 flex-1 flex items-start pb-24" style={{ paddingTop: '10rem' }}>
+          <div className="grid grid-cols-12 gap-6 lg:gap-6 xl:gap-8 2xl:gap-10 items-start w-full">
 
-            {/* Main Content - Full width since no sidebar */}
+            {/* Left Column - Value Proposition (7 cols) */}
             <motion.div
-              className="col-span-12 lg:col-span-10 lg:col-start-2 xl:col-span-8 xl:col-start-3 relative"
+              className={`col-span-7 relative rounded-2xl sm:rounded-[2rem] border p-5 lg:p-6 xl:p-8 ${isDark ? 'border-blue-500/30' : 'border-[#e2e8f0]'}`}
+              style={glassStyle}
               initial={{ x: -20 }}
               animate={{ x: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <motion.div
-                className="relative z-10"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
               >
                 <motion.div
-                  className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-10 ${
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 lg:mb-8 w-fit ${
                     isDark
                       ? 'bg-blue-500/10 border border-blue-500/20'
                       : 'bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/60'
                   }`}
                   style={{
                     boxShadow: isDark
-                      ? '0 0 20px rgba(59, 130, 246, 0.15)'
+                      ? 'inset 0 1px 2px rgba(120, 184, 255, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.05)'
                       : '0 2px 12px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(255,255,255,0.8)',
                   }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                 >
-                  {data.badgeIcon && <data.badgeIcon className={`w-4 h-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />}
-                  <span className={`text-sm font-semibold tracking-wide uppercase ${isDark ? 'text-blue-400' : 'text-blue-700'}`}>
+                  {data.badgeIcon && <data.badgeIcon className={`w-3.5 h-3.5 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />}
+                  <span className={`text-xs font-semibold tracking-wide ${isDark ? 'text-blue-400' : 'text-blue-700'}`}>
                     {data.badge}
                   </span>
                 </motion.div>
 
-                <h1 className={`text-5xl xl:text-6xl 2xl:text-7xl font-serif font-normal leading-[1.08] mb-8 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+                <h1 className={`text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-serif font-normal leading-[1.08] mb-4 lg:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
                   {data.title}
                   {data.titleHighlight && (
                     <>
-                      <br />
+                      {' '}
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-500">
                         {data.titleHighlight}
                       </span>
@@ -319,51 +317,90 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({ data }) => {
                   )}
                 </h1>
 
-                <p className={`text-xl 2xl:text-2xl max-w-2xl mb-10 leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+                <p className={`text-base lg:text-lg 2xl:text-xl max-w-xl lg:max-w-2xl mb-6 lg:mb-8 leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
                   {data.subtitle}
                 </p>
 
                 {/* Stats Row */}
-                <div className="flex items-stretch gap-5 mb-10">
+                <div className="flex flex-wrap items-stretch gap-3 lg:gap-4">
                   {data.heroStats.slice(0, 3).map((stat, i) => (
                     <motion.div
                       key={i}
-                      className={`flex-1 min-w-[140px] rounded-2xl border px-5 py-4 ${isDark ? 'border-gray-700' : 'border-slate-200/80'}`}
-                      style={statCardStyle}
+                      className={`flex-1 min-w-[110px] rounded-xl border px-4 py-3 ${isDark ? 'border-gray-700' : 'border-slate-200/80'} bg-white/50 dark:bg-gray-800/50`}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 + i * 0.1 }}
                     >
-                      <div className={`text-4xl 2xl:text-5xl font-serif font-normal ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                      <div className={`text-2xl lg:text-3xl 2xl:text-4xl font-serif font-normal ${isDark ? 'text-white' : 'text-slate-800'}`}>
                         {stat.value}
                       </div>
-                      <div className={`text-[10px] 2xl:text-xs uppercase tracking-[0.12em] font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                      <div className={`text-[9px] 2xl:text-[10px] uppercase tracking-[0.12em] font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
                         {stat.label}
                       </div>
                     </motion.div>
                   ))}
                 </div>
 
-                {/* CTA Buttons */}
-                <div className="flex items-center gap-4">
+                {/* CTA Button */}
+                <motion.div
+                  className="mt-6 lg:mt-8"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                >
                   <Link
                     href="/demo"
-                    className="btn-primary h-14 px-8 rounded-xl text-lg inline-flex items-center gap-2"
+                    className="btn-primary inline-flex items-center gap-2 h-11 px-6 rounded-xl text-sm font-semibold"
                   >
-                    <span>Schedule Demo</span>
-                    <FaArrowRight className="w-4 h-4" />
+                    <span>Schedule Consultation</span>
+                    <FaArrowRight className="w-3.5 h-3.5" />
                   </Link>
-                  <a
-                    href="tel:+16163263328"
-                    className={`h-14 px-8 rounded-xl border font-medium transition-colors inline-flex items-center gap-3 ${
-                      isDark
-                        ? 'border-gray-700 text-gray-300 hover:bg-gray-800'
-                        : 'border-slate-200 text-slate-600 hover:bg-slate-50'
-                    }`}
-                  >
-                    <FaPhone className="w-4 h-4" />
-                    <span>Talk to Expert</span>
-                  </a>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Column - Key Features (5 cols) */}
+            <motion.div
+              className={`col-span-5 rounded-2xl sm:rounded-[2rem] border p-5 lg:p-6 xl:p-8 ${isDark ? 'border-blue-500/30' : 'border-[#e2e8f0]'}`}
+              style={glassStyle}
+              initial={{ x: 20 }}
+              animate={{ x: 0 }}
+              transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+            >
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.3 }}
+              >
+                <h2 className={`text-xl lg:text-2xl font-serif font-normal mb-1 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+                  Key Capabilities
+                </h2>
+                <p className={`text-sm mb-6 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                  What this solution delivers.
+                </p>
+
+                <div className="space-y-3">
+                  {data.features.slice(0, 4).map((feature, i) => (
+                    <motion.div
+                      key={i}
+                      className={`flex items-start gap-3 rounded-xl border px-4 py-3 ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200/80 bg-white/50'}`}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 + i * 0.1 }}
+                    >
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 ${isDark ? 'bg-blue-500/15 text-blue-400' : 'bg-blue-50 text-blue-600'}`}>
+                        <feature.icon className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className={`text-sm font-semibold ${isDark ? 'text-gray-200' : 'text-slate-800'}`}>
+                          {feature.title}
+                        </div>
+                        <div className={`text-xs leading-relaxed mt-0.5 ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
+                          {feature.description.length > 80 ? feature.description.slice(0, 80) + '...' : feature.description}
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             </motion.div>

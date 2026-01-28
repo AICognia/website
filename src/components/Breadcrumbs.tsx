@@ -3,8 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronRight, Home } from 'lucide-react'
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
 
 interface BreadcrumbItem {
   label: string
@@ -103,15 +101,6 @@ export default function Breadcrumbs({
   return null
 
   const pathname = usePathname()
-  const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark'
 
   // Don't show breadcrumbs on home page
   if (pathname === '/') return null
@@ -152,25 +141,21 @@ export default function Breadcrumbs({
             >
               {index > 0 && (
                 <ChevronRight
-                  className={`w-4 h-4 mx-1 flex-shrink-0 ${
-                    isDark ? 'text-gray-500' : 'text-slate-400'
-                  }`}
+                  className="w-4 h-4 mx-1 flex-shrink-0 text-slate-400 dark:text-gray-500"
                   aria-hidden="true"
                 />
               )}
 
               {item.label === '...' ? (
                 <span
-                  className={`px-1 ${isDark ? 'text-gray-500' : 'text-slate-400'}`}
+                  className="px-1 text-slate-400 dark:text-gray-500"
                   aria-hidden="true"
                 >
                   ...
                 </span>
               ) : isLast ? (
                 <span
-                  className={`font-medium ${
-                    isDark ? 'text-gray-200' : 'text-slate-900'
-                  }`}
+                  className="font-medium text-slate-900 dark:text-gray-200"
                   aria-current="page"
                   itemProp="name"
                 >
@@ -186,11 +171,7 @@ export default function Breadcrumbs({
               ) : (
                 <Link
                   href={item.href}
-                  className={`hover:underline underline-offset-4 transition-colors ${
-                    isDark
-                      ? 'text-gray-400 hover:text-gray-200'
-                      : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                  className="hover:underline underline-offset-4 transition-colors text-slate-600 hover:text-slate-900 dark:text-gray-400 dark:hover:text-gray-200"
                   itemProp="item"
                 >
                   {index === 0 && showHomeIcon ? (

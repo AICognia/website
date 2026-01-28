@@ -1,16 +1,14 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { useTheme } from 'next-themes'
 import {
   FaPlug,
   FaBolt,
   FaSync,
   FaCheckDouble,
   FaCheckCircle,
-  FaQuoteLeft,
   FaUserPlus,
   FaFileInvoice,
   FaUserCheck,
@@ -24,9 +22,7 @@ import HeroBackgroundGrid from '../../components/HeroBackgroundGrid'
 import MobileHeroBackground from '../../components/MobileHeroBackground'
 
 const WorkflowAutomation: React.FC = () => {
-  const [mounted, setMounted] = useState(false)
   const [expandedId, setExpandedId] = useState<number | null>(0)
-  const { resolvedTheme } = useTheme()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,25 +31,12 @@ const WorkflowAutomation: React.FC = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  const isDark = !mounted || resolvedTheme === 'dark'
-
-  const glassOpacity = isDark ? 0.30 : 0.30
-  const glassBlur = 22
-
   const glassStyle = {
     borderWidth: '0.5px',
-    background: isDark
-      ? `rgba(31, 41, 55, ${glassOpacity})`
-      : `rgba(255, 255, 255, ${glassOpacity})`,
-    backdropFilter: `blur(${glassBlur}px)`,
-    WebkitBackdropFilter: `blur(${glassBlur}px)`,
-    boxShadow: isDark
-      ? 'inset 0 3px 6px rgba(120, 184, 255, 0.2), inset 0 1px 3px rgba(255, 255, 255, 0.15), inset 0 -3px 6px rgba(120, 184, 255, 0.12), inset 3px 0 6px rgba(120, 184, 255, 0.08), inset -3px 0 6px rgba(120, 184, 255, 0.08), 0 4px 12px rgba(0, 0, 0, 0.3)'
-      : 'inset 0 1px 2px rgba(14, 165, 233, 0.15), inset 0 -1px 2px rgba(14, 165, 233, 0.08), inset 1px 0 2px rgba(14, 165, 233, 0.12), inset -1px 0 2px rgba(14, 165, 233, 0.05), 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03)',
+    background: 'var(--hero-glass-bg)',
+    backdropFilter: 'blur(22px)',
+    WebkitBackdropFilter: 'blur(22px)',
+    boxShadow: 'var(--hero-glass-shadow)',
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,22 +53,10 @@ const WorkflowAutomation: React.FC = () => {
   }
 
   const accordionGlassStyle = (isExpanded: boolean) => ({
-    background: isDark
-      ? isExpanded
-        ? 'rgba(31, 41, 55, 0.7)'
-        : 'rgba(31, 41, 55, 0.4)'
-      : isExpanded
-        ? 'rgba(255, 255, 255, 0.85)'
-        : 'rgba(255, 255, 255, 0.6)',
+    background: isExpanded ? 'var(--accordion-bg-expanded)' : 'var(--accordion-bg)',
     backdropFilter: 'blur(12px)',
     WebkitBackdropFilter: 'blur(12px)',
-    boxShadow: isDark
-      ? isExpanded
-        ? 'inset 0 1px 1px rgba(255, 255, 255, 0.03), 0 4px 12px rgba(0, 0, 0, 0.25)'
-        : 'inset 0 1px 1px rgba(255, 255, 255, 0.02), 0 2px 6px rgba(0, 0, 0, 0.15)'
-      : isExpanded
-        ? 'inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 4px 12px rgba(0, 0, 0, 0.06)'
-        : 'inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 2px 6px rgba(0, 0, 0, 0.03)',
+    boxShadow: isExpanded ? 'var(--accordion-shadow-expanded)' : 'var(--accordion-shadow)',
   })
 
   const features = [
@@ -151,7 +122,7 @@ const WorkflowAutomation: React.FC = () => {
       />
 
       {/* Mobile Hero */}
-      <section className={`lg:hidden relative overflow-hidden transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+      <section className="lg:hidden relative overflow-hidden transition-colors duration-300 bg-white dark:bg-gray-900">
         <div className="absolute inset-0">
           <MobileHeroBackground />
         </div>
@@ -159,9 +130,7 @@ const WorkflowAutomation: React.FC = () => {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: isDark
-              ? 'linear-gradient(to bottom, rgba(17,24,39,0.85) 0%, rgba(17,24,39,0.7) 40%, rgba(17,24,39,0.5) 100%)'
-              : 'linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.75) 40%, rgba(255,255,255,0.5) 100%)'
+            background: 'var(--hero-gradient-mobile)'
           }}
         />
 
@@ -173,14 +142,10 @@ const WorkflowAutomation: React.FC = () => {
             className="mb-6"
           >
             <div
-              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${
-                isDark
-                  ? 'bg-amber-500/20 border border-amber-400/30'
-                  : 'bg-amber-50 border border-amber-200'
-              }`}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 dark:bg-amber-500/20 dark:border-amber-400/30"
             >
-              <div className={`w-2 h-2 rounded-full ${isDark ? 'bg-amber-400' : 'bg-amber-500'}`} />
-              <span className={`text-xs font-semibold tracking-wide ${isDark ? 'text-amber-300' : 'text-amber-700'}`}>
+              <div className="w-2 h-2 rounded-full bg-amber-500 dark:bg-amber-400" />
+              <span className="text-xs font-semibold tracking-wide text-amber-700 dark:text-amber-300">
                 Workflow Automation
               </span>
             </div>
@@ -190,10 +155,10 @@ const WorkflowAutomation: React.FC = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.05 }}
-            className={`text-[2rem] leading-[1.15] font-serif font-light tracking-tight mb-5 ${isDark ? 'text-white' : 'text-slate-900'}`}
+            className="text-[2rem] leading-[1.15] font-serif font-light tracking-tight mb-5 text-slate-900 dark:text-white"
           >
             Stop Doing{' '}
-            <span className={`${isDark ? 'text-amber-400' : 'text-amber-600'}`}>
+            <span className="text-amber-600 dark:text-amber-400">
               Repetitive Work
             </span>
           </motion.h1>
@@ -202,7 +167,7 @@ const WorkflowAutomation: React.FC = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className={`text-base leading-relaxed mb-8 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
+            className="text-base leading-relaxed mb-8 text-slate-600 dark:text-gray-300"
           >
             Document processing. Data extraction. Reports. Quality control. All automated.
           </motion.p>
@@ -215,10 +180,10 @@ const WorkflowAutomation: React.FC = () => {
           >
             {stats.map((stat, i) => (
               <div key={i} className="text-center">
-                <div className={`text-2xl font-serif font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <div className="text-2xl font-serif font-medium text-slate-900 dark:text-white">
                   {stat.value}
                 </div>
-                <div className={`text-[10px] uppercase tracking-wider font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                <div className="text-[10px] uppercase tracking-wider font-medium mt-1 text-slate-500 dark:text-gray-400">
                   {stat.label}
                 </div>
               </div>
@@ -244,26 +209,24 @@ const WorkflowAutomation: React.FC = () => {
       </section>
 
       {/* Desktop Hero */}
-      <section className="hidden lg:flex min-h-screen flex-col items-center overflow-hidden relative mb-0 pt-0 select-none transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <section className="hidden lg:flex h-screen max-h-[960px] min-h-[700px] flex-col items-center overflow-hidden relative mb-0 pt-0 select-none transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <HeroBackgroundGrid isPlaying={false} />
 
-        <div className={`absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none ${isDark ? 'from-gray-900/10 to-gray-900' : 'from-white/10 to-white'}`} />
-        <div className={`absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none ${isDark ? 'from-gray-900 via-gray-900/40' : 'from-white via-white/40'}`} />
+        <div className="absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none from-white/10 to-white dark:from-gray-900/10 dark:to-gray-900" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none from-white via-white/40 dark:from-gray-900 dark:via-gray-900/40" />
 
         <div
           className="absolute inset-y-0 left-0 w-[65%] pointer-events-none z-[5]"
           style={{
-            background: isDark
-              ? 'radial-gradient(ellipse 100% 90% at 20% 50%, rgba(17,24,39,0.95) 0%, rgba(17,24,39,0.85) 30%, rgba(17,24,39,0.6) 50%, rgba(17,24,39,0.3) 70%, rgba(17,24,39,0) 90%)'
-              : 'radial-gradient(ellipse 80% 60% at 25% 45%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.35) 40%, rgba(255,255,255,0.1) 60%, rgba(255,255,255,0) 75%)',
+            background: 'var(--hero-radial-desktop)',
           }}
         />
 
-        <div className="w-full max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-20 relative z-10 flex-1 flex items-center pt-24 sm:pt-20 lg:pt-20 pb-12 sm:pb-16 lg:pb-24 3xl:-mt-16">
-          <div className="grid grid-cols-12 gap-4 sm:gap-6 lg:gap-6 xl:gap-8 2xl:gap-10 items-stretch w-full">
+        <div className="w-full max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1440px] 3xl:max-w-[1584px] mx-auto px-6 lg:px-10 xl:px-12 2xl:px-16 relative z-10 flex-1 flex items-start pb-24" style={{ paddingTop: '10rem' }}>
+          <div className="grid grid-cols-12 gap-6 lg:gap-6 xl:gap-8 2xl:gap-10 items-stretch w-full">
 
             <motion.div
-              className={`col-span-12 lg:col-span-7 relative rounded-xl sm:rounded-2xl lg:rounded-[2rem] border p-5 sm:p-6 lg:p-10 xl:p-12 h-full ${isDark ? 'border-amber-500/30' : 'border-[#e2e8f0]'}`}
+              className="col-span-12 lg:col-span-7 relative rounded-2xl sm:rounded-[2rem] border p-5 lg:p-6 xl:p-8 h-full border-[#e2e8f0] dark:border-amber-500/30"
               style={glassStyle}
               initial={{ x: -20 }}
               animate={{ x: 0 }}
@@ -275,53 +238,44 @@ const WorkflowAutomation: React.FC = () => {
                 transition={{ duration: 0.3 }}
               >
                 <motion.div
-                  className={`inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full mb-5 sm:mb-8 lg:mb-10 ${
-                    isDark
-                      ? 'bg-amber-900/40 border border-amber-500/30'
-                      : 'bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/60'
-                  }`}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 lg:mb-8 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/60 dark:bg-none dark:bg-amber-900/40 dark:border-amber-500/30"
                   style={{
-                    boxShadow: isDark
-                      ? 'inset 0 1px 2px rgba(251, 191, 36, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.05)'
-                      : '0 2px 12px rgba(245, 158, 11, 0.1), inset 0 1px 0 rgba(255,255,255,0.8)',
+                    boxShadow: 'var(--hero-badge-shadow)',
                   }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                 >
-                  <div className="relative">
-                    <div className={`w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full ${isDark ? 'bg-amber-400' : 'bg-amber-500'}`} />
-                    <div className={`absolute inset-0 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full ${isDark ? 'bg-amber-400' : 'bg-amber-500'} animate-ping opacity-75`} />
-                  </div>
-                  <span className={`text-xs sm:text-sm font-semibold tracking-wide ${isDark ? 'text-amber-400' : 'text-amber-700'}`}>
+                  <div className="w-2 h-2 rounded-full border-[1.5px] border-amber-500 dark:border-amber-400" />
+                  <span className="text-xs font-semibold tracking-wide text-amber-700 dark:text-amber-400">
                     Workflow Automation
                   </span>
                 </motion.div>
 
-                <h1 className={`text-2xl sm:text-3xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-serif font-light leading-[1.12] sm:leading-[1.08] mb-4 sm:mb-6 lg:mb-8 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                  Stop Doing{' '}
+                <p className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-serif font-light leading-[1.08] mb-4 lg:mb-6 text-slate-900 dark:text-gray-100" aria-hidden="true">
+                  Stop Doing<br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
                     Repetitive Work
                   </span>
-                </h1>
+                </p>
 
-                <p className={`text-base sm:text-lg lg:text-xl 2xl:text-2xl max-w-xl lg:max-w-2xl mb-5 sm:mb-8 lg:mb-10 leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
+                <p className="text-base lg:text-lg 2xl:text-xl max-w-xl lg:max-w-2xl mb-6 lg:mb-8 leading-relaxed text-slate-500 dark:text-gray-500">
                   Document processing, data extraction, report generation, quality control, and scheduling—all automated so your team can focus on what matters.
                 </p>
 
-                <div className="flex flex-wrap items-stretch gap-2 sm:gap-4 lg:gap-5 mb-5 sm:mb-8">
+                <div className="flex flex-wrap items-stretch gap-3 lg:gap-4 mb-6 lg:mb-8">
                   {stats.map((stat, i) => (
                     <motion.div
                       key={i}
-                      className={`flex-1 min-w-[90px] sm:min-w-[120px] rounded-xl sm:rounded-2xl border px-3 sm:px-5 py-3 sm:py-4 ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200/80 bg-white/50'}`}
+                      className="flex-1 min-w-[110px] rounded-xl border px-4 py-3 border-slate-200/80 bg-white/50 dark:border-gray-700 dark:bg-gray-800/50"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 + i * 0.1 }}
                     >
-                      <div className={`text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl font-serif font-normal ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                      <div className="text-2xl lg:text-3xl 2xl:text-4xl font-serif font-normal text-slate-800 dark:text-white">
                         {stat.value}
                       </div>
-                      <div className={`text-[9px] sm:text-[10px] 2xl:text-xs uppercase tracking-[0.12em] font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                      <div className="text-[9px] 2xl:text-[10px] uppercase tracking-[0.12em] font-medium mt-1 text-slate-500 dark:text-gray-400">
                         {stat.label}
                       </div>
                     </motion.div>
@@ -341,7 +295,7 @@ const WorkflowAutomation: React.FC = () => {
             </motion.div>
 
             <motion.div
-              className={`col-span-12 lg:col-span-5 rounded-xl sm:rounded-2xl lg:rounded-[2rem] border p-5 sm:p-6 lg:p-10 xl:p-12 h-full pointer-events-auto ${isDark ? 'border-gray-700' : 'border-[#e2e8f0]'}`}
+              className="col-span-12 lg:col-span-5 rounded-2xl sm:rounded-[2rem] border p-5 lg:p-6 xl:p-8 h-full pointer-events-auto border-[#e2e8f0] dark:border-gray-700"
               style={glassStyle}
               initial={{ x: 20 }}
               animate={{ x: 0 }}
@@ -352,10 +306,10 @@ const WorkflowAutomation: React.FC = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.3 }}
               >
-                <h2 className={`text-xl sm:text-2xl lg:text-3xl font-serif font-normal mb-2 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-serif font-normal mb-2 text-slate-900 dark:text-gray-100">
                   Internal Operations We Automate
                 </h2>
-                <p className={`text-sm sm:text-base mb-5 sm:mb-8 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                <p className="text-sm sm:text-base mb-5 sm:mb-8 text-slate-500 dark:text-gray-400">
                   Eliminate manual work across your operations.
                 </p>
 
@@ -370,10 +324,10 @@ const WorkflowAutomation: React.FC = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.5 + i * 0.1 }}
                       >
-                        <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 ${isDark ? 'bg-amber-900/50 border border-amber-500/30' : 'bg-amber-50 border border-amber-100'}`}>
-                          <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${isDark ? 'text-amber-400' : 'text-amber-600'}`} />
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 bg-amber-50 border border-amber-100 dark:bg-amber-900/50 dark:border-amber-500/30">
+                          <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600 dark:text-amber-400" />
                         </div>
-                        <span className={`text-xs sm:text-sm font-medium ${isDark ? 'text-gray-200' : 'text-slate-700'}`}>
+                        <span className="text-xs sm:text-sm font-medium text-slate-700 dark:text-gray-200">
                           {automation.text}
                         </span>
                       </motion.div>
@@ -383,7 +337,7 @@ const WorkflowAutomation: React.FC = () => {
 
 {/* HIDDEN: Compliance badges - uncomment to re-enable
                 <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-200 dark:border-gray-700">
-                  <div className={`flex items-center justify-center gap-3 sm:gap-4 flex-wrap ${isDark ? 'opacity-50' : 'grayscale opacity-60'}`}>
+                  <div className={`flex items-center justify-center gap-3 sm:gap-4 flex-wrap grayscale opacity-60 dark:grayscale-0 dark:opacity-50`}>
                     <img src="/SOC2_Type1.svg" alt="SOC 2 Type I Certified" width={24} height={24} className="h-5 sm:h-6 w-auto" loading="lazy" />
                     <img src="/SOC2_Type2.svg" alt="SOC 2 Type II Certified" width={24} height={24} className="h-5 sm:h-6 w-auto" loading="lazy" />
                     <img src="/GDPR.svg" alt="GDPR Compliant" width={24} height={24} className="h-5 sm:h-6 w-auto" loading="lazy" />
@@ -398,8 +352,8 @@ const WorkflowAutomation: React.FC = () => {
       </section>
 
       {/* How It Works Section */}
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 relative ${isDark ? 'bg-gray-800/30' : 'bg-slate-50/50'}`}>
-        <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-700' : 'via-slate-200'}`} />
+      <section className="py-12 sm:py-16 md:py-24 lg:py-32 relative bg-slate-50/50 dark:bg-gray-800/30">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent via-slate-200 dark:via-gray-700" />
 
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-20 items-start">
@@ -410,13 +364,13 @@ const WorkflowAutomation: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="lg:sticky lg:top-32"
             >
-              <span className={`inline-block px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-semibold rounded-full mb-4 sm:mb-6 ${isDark ? 'text-amber-400 bg-amber-900/30' : 'text-amber-600 bg-amber-50'}`}>
+              <span className="inline-block px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-semibold rounded-full mb-4 sm:mb-6 text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-900/30">
                 Internal Operations
               </span>
-              <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light mb-4 sm:mb-6 text-slate-900 dark:text-gray-100">
                 Automate Your Back Office
               </h2>
-              <p className={`text-base sm:text-lg mb-4 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+              <p className="text-base sm:text-lg mb-4 text-slate-600 dark:text-gray-400">
                 Document processing, data extraction, report generation, quality control—eliminate the manual work that slows your team down.
               </p>
 
@@ -449,12 +403,8 @@ const WorkflowAutomation: React.FC = () => {
                     className={`
                       rounded-lg sm:rounded-xl border transition-all duration-300
                       ${isExpanded
-                        ? isDark
-                          ? 'border-gray-700/80'
-                          : 'border-gray-200/80'
-                        : isDark
-                          ? 'border-gray-700/50 hover:border-gray-700/70'
-                          : 'border-gray-200/50 hover:border-gray-200/80'
+                        ? 'border-gray-200/80 dark:border-gray-700/80'
+                        : 'border-gray-200/50 hover:border-gray-200/80 dark:border-gray-700/50 dark:hover:border-gray-700/70'
                       }
                     `}
                     style={accordionGlassStyle(isExpanded)}
@@ -468,9 +418,7 @@ const WorkflowAutomation: React.FC = () => {
                           w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl flex items-center justify-center transition-all duration-300 flex-shrink-0
                           ${isExpanded
                             ? 'bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-lg shadow-amber-500/25'
-                            : isDark
-                              ? 'bg-gray-700 text-gray-400 group-hover:bg-gray-600'
-                              : 'bg-gray-100 text-gray-500 group-hover:bg-gray-200'
+                            : 'bg-gray-100 text-gray-500 group-hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-400 dark:group-hover:bg-gray-600'
                           }
                         `}>
                           <Icon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
@@ -478,8 +426,8 @@ const WorkflowAutomation: React.FC = () => {
                         <h3 className={`
                           text-sm sm:text-[15px] font-semibold transition-colors duration-200
                           ${isExpanded
-                            ? isDark ? 'text-gray-100' : 'text-gray-900'
-                            : isDark ? 'text-gray-300 group-hover:text-gray-100' : 'text-gray-700 group-hover:text-gray-900'}
+                            ? 'text-gray-900 dark:text-gray-100'
+                            : 'text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-100'}
                         `}>
                           {feature.title}
                         </h3>
@@ -489,9 +437,7 @@ const WorkflowAutomation: React.FC = () => {
                         w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0
                         ${isExpanded
                           ? 'bg-amber-500/10 text-amber-500'
-                          : isDark
-                            ? 'bg-gray-700 text-gray-500 group-hover:bg-gray-600'
-                            : 'bg-gray-100 text-gray-400 group-hover:bg-gray-200'
+                          : 'bg-gray-100 text-gray-400 group-hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-500 dark:group-hover:bg-gray-600'
                         }
                       `}>
                         <motion.svg
@@ -517,7 +463,7 @@ const WorkflowAutomation: React.FC = () => {
                           className="overflow-hidden"
                         >
                           <div className="px-3 sm:px-5 pb-4 sm:pb-5 pt-0 pl-[2.75rem] sm:pl-[3.75rem]">
-                            <p className={`text-[13px] sm:text-[14px] leading-relaxed mb-3 sm:mb-4 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+                            <p className="text-[13px] sm:text-[14px] leading-relaxed mb-3 sm:mb-4 text-slate-600 dark:text-gray-400">
                               {feature.description}
                             </p>
 
@@ -525,7 +471,7 @@ const WorkflowAutomation: React.FC = () => {
                               {feature.features.map((f, i) => (
                                 <span
                                   key={i}
-                                  className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[9px] sm:text-[10px] font-bold tracking-wider ${isDark ? 'bg-amber-900/40 text-amber-400' : 'bg-amber-100 text-amber-700'}`}
+                                  className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[9px] sm:text-[10px] font-bold tracking-wider bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400"
                                 >
                                   {f}
                                 </span>
@@ -542,56 +488,24 @@ const WorkflowAutomation: React.FC = () => {
           </div>
         </div>
 
-        <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-700' : 'via-slate-200'}`} />
-      </section>
-
-      {/* Testimonial Section */}
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="max-w-xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className={`rounded-2xl border p-6 sm:p-8 lg:p-10 aspect-square flex flex-col items-center justify-center text-center ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200 bg-white'}`}
-              style={glassStyle}
-            >
-              <FaQuoteLeft className={`text-2xl sm:text-3xl mb-4 sm:mb-6 ${isDark ? 'text-gray-700' : 'text-slate-200'}`} />
-              <p className={`text-base sm:text-lg leading-relaxed mb-6 font-serif ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                "Calls get answered now, even when we're out on the road. Customers get a response right away instead of voicemail. We've seen a clear bump in jobs coming in."
-              </p>
-              <div className="flex items-center justify-center gap-3 sm:gap-4">
-                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${isDark ? 'bg-amber-900/50' : 'bg-amber-100'}`}>
-                  <span className={`text-sm sm:text-base font-bold ${isDark ? 'text-amber-400' : 'text-amber-600'}`}>
-                    EA
-                  </span>
-                </div>
-                <div className="text-left">
-                  <div className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Elite Auto Repair</div>
-                  <div className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Auto Repair Shop</div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent to-transparent via-slate-200 dark:via-gray-700" />
       </section>
 
       {/* CTA Section */}
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 ${isDark ? 'bg-gray-800/30' : 'bg-slate-50/50'}`}>
+      <section className="py-12 sm:py-16 md:py-24 lg:py-32 bg-slate-50/50 dark:bg-gray-800/30">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className={`rounded-xl sm:rounded-2xl lg:rounded-[2rem] border p-6 sm:p-8 lg:p-12 xl:p-16 text-center ${isDark ? 'border-gray-700' : 'border-slate-200'}`}
+            className="rounded-xl sm:rounded-2xl lg:rounded-[2rem] border p-6 sm:p-8 lg:p-12 xl:p-16 text-center border-slate-200 dark:border-gray-700"
             style={glassStyle}
           >
-            <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light mb-4 sm:mb-6 text-slate-900 dark:text-gray-100">
               Ready to Automate Your Workflows?
             </h2>
-            <p className={`text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mb-5 sm:mb-8 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+            <p className="text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mb-5 sm:mb-8 text-slate-600 dark:text-gray-400">
               Book a free consultation and we'll identify automation opportunities that save you hours every week.
             </p>
 
@@ -607,8 +521,8 @@ const WorkflowAutomation: React.FC = () => {
 
             <div className="mt-6 sm:mt-10 grid grid-cols-2 sm:flex sm:flex-wrap justify-center items-center gap-3 sm:gap-6 text-[10px] sm:text-xs">
               {['Free Consultation', 'No Commitment', 'Custom Analysis', 'ROI Estimate'].map((item, i) => (
-                <span key={i} className={`flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-                  <FaCheckCircle className={`text-[10px] sm:text-xs ${isDark ? 'text-amber-400' : 'text-amber-500'}`} />
+                <span key={i} className="flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 text-slate-500 dark:text-gray-500">
+                  <FaCheckCircle className="text-[10px] sm:text-xs text-amber-500 dark:text-amber-400" />
                   {item}
                 </span>
               ))}

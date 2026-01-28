@@ -5,12 +5,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
   IconChevronRightFill18,
-  IconPaperPlane2Fill18,
-  IconPhoneFill18,
-  IconFlameFill18
+  IconFlameFill18,
+  IconChartBarTrendUpFill18
 } from 'nucleo-ui-essential-fill-18';
+import { ArrowUp } from 'lucide-react';
 import ROIAnalyticsCard from './ui/analytics-bento';
-import { useTheme } from 'next-themes';
+import { useThemeWithoutFlash } from '@/src/hooks/useThemeWithoutFlash';
 
 // Animated Counter Component
 const AnimatedCounter = ({ value, suffix = '', prefix = '' }: { value: number; suffix?: string; prefix?: string }) => {
@@ -33,22 +33,14 @@ const AnimatedCounter = ({ value, suffix = '', prefix = '' }: { value: number; s
 const DemoSection: React.FC = () => {
   const router = useRouter();
   const [messages] = useState([
-    { id: 1, text: "Hi! I'd like to book a consultation.", sender: 'user' },
-    { id: 2, text: "I'd be happy to help! What date works best for your consultation?", sender: 'bot' },
-    { id: 3, text: "How about next Tuesday?", sender: 'user' },
-    { id: 4, text: "Tuesday works! I have 10 AM, 2 PM, or 4 PM available. Which time suits you?", sender: 'bot' },
+    { id: 1, text: "Can you pull this week's pipeline report?", sender: 'user' },
+    { id: 2, text: "Here's your pipeline summary: 34 active deals worth $127K. 8 need follow-up today.", sender: 'bot' },
+    { id: 3, text: "Auto-send follow-ups for the stale ones.", sender: 'user' },
+    { id: 4, text: "Done — 8 personalized follow-ups queued. I'll flag any replies for you.", sender: 'bot' },
   ]);
   const [inputValue, setInputValue] = useState('');
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-  const { resolvedTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark';
+  const { isDark } = useThemeWithoutFlash();
 
   const handleSendMessage = () => {
     if (inputValue.trim()) {
@@ -74,12 +66,12 @@ const DemoSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className={`inline-block px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-semibold rounded-full mb-4 sm:mb-6 ${isDark ? 'text-red-400 bg-red-900/30' : 'text-red-600 bg-red-50'}`}
+            className="inline-block px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-semibold rounded-full mb-4 sm:mb-6 text-red-600 bg-red-50 dark:text-red-400 dark:bg-red-900/30"
           >
             The Problem
           </motion.span>
-          <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-normal mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : ''}`}>
-            The Hidden Costs of Manual Work
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-normal mb-4 sm:mb-6 dark:text-gray-100">
+            The Hidden Costs of Manual Operations
           </h2>
         </div>
 
@@ -100,7 +92,7 @@ const DemoSection: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 0.4 }}
-              className={`absolute -top-2 sm:-top-3 -right-1 sm:-right-2 z-30 rounded-lg sm:rounded-xl shadow-lg border px-2 sm:px-3 py-1.5 sm:py-2 ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200/50'}`}
+              className="absolute -top-2 sm:-top-3 -right-1 sm:-right-2 z-30 rounded-lg sm:rounded-xl shadow-lg border px-2 sm:px-3 py-1.5 sm:py-2 bg-white border-gray-200/50 dark:bg-gray-800 dark:border-gray-700"
             >
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <div className="w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-500 flex items-center justify-center">
@@ -109,8 +101,8 @@ const DemoSection: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <div className={`text-[9px] sm:text-[11px] font-semibold ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>Booking Confirmed</div>
-                  <div className={`text-[8px] sm:text-[10px] ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Just now</div>
+                  <div className="text-[9px] sm:text-[11px] font-semibold text-gray-900 dark:text-gray-100">Task Automated</div>
+                  <div className="text-[8px] sm:text-[10px] text-gray-500 dark:text-gray-400">Just now</div>
                 </div>
               </div>
             </motion.div>
@@ -118,17 +110,17 @@ const DemoSection: React.FC = () => {
             <div className="bento-card flex flex-col h-full">
               {/* Card Header */}
               <div className="mb-3 sm:mb-4">
-                <span className={`inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-[11px] font-semibold rounded-full mb-2 sm:mb-3 ${isDark ? 'text-emerald-400 bg-emerald-900/30' : 'text-emerald-600 bg-emerald-50'}`}>
+                <span className="inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-[11px] font-semibold rounded-full mb-2 sm:mb-3 text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-900/30">
                   Live Demo
                 </span>
-                <h3 className={`text-lg sm:text-xl font-serif font-medium mb-1 ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>Never Miss a Customer.</h3>
-                <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                  AI assistants handle calls 24/7 so you capture every opportunity.
+                <h3 className="text-lg sm:text-xl font-serif font-medium mb-1 text-gray-900 dark:text-gray-100">AI That Works for You.</h3>
+                <p className="text-xs sm:text-sm leading-relaxed text-slate-500 dark:text-gray-400">
+                  AI agents handle customer interactions, automate workflows, and surface insights — so your team focuses on what matters.
                 </p>
               </div>
 
               {/* Chat Interface - fills card height */}
-              <div className={`flex-1 border rounded-lg sm:rounded-xl overflow-hidden flex flex-col ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-gray-200 bg-gray-50/50'}`}>
+              <div className="flex-1 border rounded-lg sm:rounded-xl overflow-hidden flex flex-col border-gray-200 bg-gray-50/50 dark:border-gray-700 dark:bg-gray-800/50">
                 {/* Messages Area - scrollable */}
                 <div
                   ref={chatContainerRef}
@@ -144,9 +136,7 @@ const DemoSection: React.FC = () => {
                     >
                       <div className={`max-w-[85%] sm:max-w-[80%] px-2.5 sm:px-3.5 py-2 sm:py-2.5 text-[11px] sm:text-[13px] leading-relaxed ${msg.sender === 'user'
                         ? 'bg-primary text-white rounded-xl sm:rounded-2xl rounded-br-md'
-                        : isDark
-                          ? 'bg-gray-700 text-gray-200 border border-gray-600 rounded-xl sm:rounded-2xl rounded-bl-md shadow-sm'
-                          : 'bg-white text-gray-800 border border-gray-200 rounded-xl sm:rounded-2xl rounded-bl-md shadow-sm'
+                        : 'bg-white text-gray-800 border border-gray-200 rounded-xl sm:rounded-2xl rounded-bl-md shadow-sm dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600'
                         }`}>
                         {msg.text}
                       </div>
@@ -155,22 +145,32 @@ const DemoSection: React.FC = () => {
                 </div>
 
                 {/* Input Bar - fixed at bottom of chat container */}
-                <div className={`shrink-0 p-2 sm:p-3 border-t ${isDark ? 'border-gray-700' : 'border-gray-200'}`}>
-                  <div className={`flex items-center gap-2 rounded-lg sm:rounded-xl border px-2 sm:px-3 py-1.5 sm:py-2 ${isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200'}`}>
+                <div className="shrink-0 p-2 sm:p-3 border-t border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-2 rounded-lg sm:rounded-xl border px-2 sm:px-3 py-1.5 sm:py-2 bg-white border-gray-200 dark:bg-gray-700 dark:border-gray-600">
                     <input
                       type="text"
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
                       onKeyDown={handleKeyPress}
                       placeholder="Try our AI assistant..."
-                      className={`flex-1 text-xs sm:text-sm outline-none bg-transparent ${isDark ? 'text-gray-200 placeholder-gray-500' : 'text-gray-800 placeholder-gray-400'}`}
+
+                      style={{ outline: 'none', boxShadow: 'none', border: 'none' }}
+                      className="flex-1 text-xs sm:text-sm bg-transparent appearance-none outline-none ring-0 border-none shadow-none focus:outline-none focus:ring-0 focus:border-none focus:shadow-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:shadow-none text-gray-800 placeholder-gray-400 dark:text-gray-200 dark:placeholder-gray-500"
                     />
                     <button
                       onClick={handleSendMessage}
                       disabled={!inputValue.trim()}
-                      className="w-7 sm:w-8 h-7 sm:h-8 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className={`w-7 sm:w-8 h-7 sm:h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
+                        inputValue.trim()
+                          ? 'text-white active:scale-95'
+                          : 'bg-gray-200 text-gray-400 cursor-not-allowed dark:bg-gray-600 dark:text-gray-400'
+                      }`}
+                      style={inputValue.trim() ? {
+                        background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%)',
+                        boxShadow: '0 2px 4px rgba(30, 64, 175, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.2)',
+                      } : undefined}
                     >
-                      <IconPaperPlane2Fill18 size={12} />
+                      <ArrowUp className="w-3.5 sm:w-4 h-3.5 sm:h-4" strokeWidth={2.5} />
                     </button>
                   </div>
                 </div>
@@ -193,18 +193,18 @@ const DemoSection: React.FC = () => {
                 className="bento-card flex flex-col"
               >
                 <div className="mb-3 sm:mb-4">
-                  <div className={`w-8 sm:w-10 h-8 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 border ${isDark ? 'bg-red-900/30 text-red-400 border-red-800/50' : 'bg-red-50 text-red-500 border-red-100'}`}>
-                    <IconPhoneFill18 size={16} />
+                  <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 border bg-red-50 text-red-500 border-red-100 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800/50">
+                    <IconChartBarTrendUpFill18 size={16} />
                   </div>
-                  <h3 className={`text-base sm:text-lg font-semibold mb-1 font-serif ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>Missed Revenue</h3>
-                  <p className={`text-[11px] sm:text-[13px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                    Unanswered calls during business hours.
+                  <h3 className="text-base sm:text-lg font-semibold mb-1 font-serif text-gray-900 dark:text-gray-100">Lost Revenue</h3>
+                  <p className="text-[11px] sm:text-[13px] leading-relaxed text-slate-500 dark:text-gray-400">
+                    Slow responses and manual bottlenecks cost deals.
                   </p>
                 </div>
 
                 {/* Ring chart on glass card */}
                 <div className="flex-1 flex items-center justify-center">
-                  <div className={`backdrop-blur-sm border rounded-xl sm:rounded-2xl p-3 sm:p-5 ${isDark ? 'bg-gray-800/60 border-gray-700 shadow-[0_4px_20px_rgba(0,0,0,0.3)]' : 'bg-white/60 border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.06)]'}`}>
+                  <div className="backdrop-blur-sm border rounded-xl sm:rounded-2xl p-3 sm:p-5 bg-white/60 border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.06)] dark:bg-gray-800/60 dark:border-gray-700 dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
                     <div className="flex items-center gap-3 sm:gap-5">
                       {/* Ring */}
                       <div className="relative w-16 sm:w-24 h-16 sm:h-24 shrink-0">
@@ -239,7 +239,7 @@ const DemoSection: React.FC = () => {
                           </defs>
                         </svg>
                         <div className="absolute inset-0 flex flex-col items-center justify-center">
-                          <span className={`text-base sm:text-xl font-bold ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
+                          <span className="text-base sm:text-xl font-bold text-gray-900 dark:text-gray-100">
                             <AnimatedCounter value={30} suffix="%" />
                           </span>
                         </div>
@@ -248,12 +248,12 @@ const DemoSection: React.FC = () => {
                       {/* Stats */}
                       <div className="space-y-1.5 sm:space-y-2">
                         <div>
-                          <div className={`text-[8px] sm:text-[10px] uppercase tracking-wide ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Calls Missed</div>
-                          <div className={`text-sm sm:text-base font-semibold ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>3 in 10</div>
+                          <div className="text-[8px] sm:text-[10px] uppercase tracking-wide text-gray-400 dark:text-gray-500">Still Manual</div>
+                          <div className="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100">3 in 10 tasks</div>
                         </div>
                         <div>
-                          <div className={`text-[8px] sm:text-[10px] uppercase tracking-wide ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Monthly Loss</div>
-                          <div className={`text-sm sm:text-base font-bold ${isDark ? 'text-red-400' : 'text-red-600'}`}>~$<AnimatedCounter value={2400} /></div>
+                          <div className="text-[8px] sm:text-[10px] uppercase tracking-wide text-gray-400 dark:text-gray-500">Wasted Monthly</div>
+                          <div className="text-sm sm:text-base font-bold text-red-600 dark:text-red-400">~$<AnimatedCounter value={2400} /></div>
                         </div>
                       </div>
                     </div>
@@ -270,12 +270,12 @@ const DemoSection: React.FC = () => {
                 className="bento-card flex flex-col"
               >
                 <div className="mb-3 sm:mb-4">
-                  <div className={`w-8 sm:w-10 h-8 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 border ${isDark ? 'bg-orange-900/30 text-orange-400 border-orange-800/50' : 'bg-orange-50 text-orange-500 border-orange-100'}`}>
+                  <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 border bg-orange-50 text-orange-500 border-orange-100 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800/50">
                     <IconFlameFill18 size={16} />
                   </div>
-                  <h3 className={`text-base sm:text-lg font-semibold mb-1 font-serif ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>Team Overload</h3>
-                  <p className={`text-[11px] sm:text-[13px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                    Repetitive questions drain your team.
+                  <h3 className="text-base sm:text-lg font-semibold mb-1 font-serif text-gray-900 dark:text-gray-100">Team Overload</h3>
+                  <p className="text-[11px] sm:text-[13px] leading-relaxed text-slate-500 dark:text-gray-400">
+                    Repetitive tasks and manual processes drain your team.
                   </p>
                 </div>
 
@@ -291,7 +291,7 @@ const DemoSection: React.FC = () => {
                     ].map((item, i) => (
                       <div key={i} className="flex flex-col items-center flex-1 h-full">
                         <div className="flex-1 w-full flex flex-col justify-end relative">
-                          <div className={`absolute inset-0 rounded-lg ${isDark ? 'bg-gray-700' : 'bg-gray-100'}`} />
+                          <div className="absolute inset-0 rounded-lg bg-gray-100 dark:bg-gray-700" />
                           <motion.div
                             initial={{ height: 0 }}
                             whileInView={{ height: `${item.value}%` }}
@@ -304,7 +304,7 @@ const DemoSection: React.FC = () => {
                             }`}
                           />
                         </div>
-                        <span className={`text-[8px] sm:text-[10px] mt-1.5 sm:mt-2 font-medium ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>{item.day}</span>
+                        <span className="text-[8px] sm:text-[10px] mt-1.5 sm:mt-2 font-medium text-gray-400 dark:text-gray-500">{item.day}</span>
                       </div>
                     ))}
                   </div>
@@ -317,9 +317,9 @@ const DemoSection: React.FC = () => {
                     transition={{ delay: 0.8 }}
                     className="flex justify-center mt-3 sm:mt-4"
                   >
-                    <div className={`inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border ${isDark ? 'bg-red-900/30 border-red-800/50' : 'bg-red-50 border-red-100'}`}>
+                    <div className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border bg-red-50 border-red-100 dark:bg-red-900/30 dark:border-red-800/50">
                       <div className="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-red-500 animate-pulse" />
-                      <span className={`text-[8px] sm:text-[10px] font-semibold uppercase tracking-wide ${isDark ? 'text-red-400' : 'text-red-600'}`}>At Capacity</span>
+                      <span className="text-[8px] sm:text-[10px] font-semibold uppercase tracking-wide text-red-600 dark:text-red-400">At Capacity</span>
                     </div>
                   </motion.div>
                 </div>
@@ -348,12 +348,12 @@ const DemoSection: React.FC = () => {
                 className="bento-card flex flex-col justify-between"
               >
                 <div>
-                  <span className={`inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-[11px] font-semibold rounded-full mb-3 sm:mb-4 ${isDark ? 'text-blue-400 bg-blue-900/30' : 'text-primary bg-blue-50'}`}>
+                  <span className="inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-[11px] font-semibold rounded-full mb-3 sm:mb-4 text-primary bg-blue-50 dark:text-blue-400 dark:bg-blue-900/30">
                     The Solution
                   </span>
-                  <h3 className={`text-lg sm:text-xl font-serif font-medium mb-1.5 sm:mb-2 ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>Focus on what matters.</h3>
-                  <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                    Let AI handle the routine while your team grows the business. See measurable ROI from day one.
+                  <h3 className="text-lg sm:text-xl font-serif font-medium mb-1.5 sm:mb-2 text-gray-900 dark:text-gray-100">Focus on what matters.</h3>
+                  <p className="text-xs sm:text-sm leading-relaxed text-slate-500 dark:text-gray-400">
+                    Let AI automate the routine while your team drives strategy. See measurable ROI from day one.
                   </p>
                 </div>
 

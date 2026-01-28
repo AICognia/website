@@ -18,17 +18,8 @@ export default function DarkModeToggle() {
   const isAuthPage = pathname?.startsWith('/sign-in') || pathname?.startsWith('/sign-up')
   if (isAuthPage) return null
 
-  // Default to dark to prevent flash
   const isDark = !mounted || resolvedTheme === 'dark'
-
-  // Glass effect settings - matching navbar exactly
-  const glassOpacity = isDark ? 0.55 : 0.30
   const glassBlur = 22
-
-  // Calculate right position: navbar is max-w-5xl (1024px) centered
-  // The space between navbar edge and viewport edge is: (100vw - 1024px) / 2
-  // We position the button within that space, 16px from the right edge
-  // Only show on xl: screens (1280px+) to ensure enough space
   const rightPosition = '1rem'
 
   if (!mounted) {
@@ -37,7 +28,7 @@ export default function DarkModeToggle() {
         className="hidden xl:block fixed top-2 sm:top-3 z-[100] w-12 sm:w-14 h-12 sm:h-14 rounded-[1rem] sm:rounded-[1.25rem]"
         style={{
           right: rightPosition,
-          background: 'rgba(17, 24, 39, 0.55)',
+          background: 'var(--toggle-bg)',
           backdropFilter: 'blur(22px)',
         }}
       />
@@ -51,7 +42,7 @@ export default function DarkModeToggle() {
   return (
     <motion.button
       onClick={toggleTheme}
-      className={`
+      className="
         hidden xl:flex
         fixed top-2 sm:top-3 z-[100]
         w-12 sm:w-14 h-12 sm:h-14 rounded-[1rem] sm:rounded-[1.25rem]
@@ -60,21 +51,14 @@ export default function DarkModeToggle() {
         transition-all duration-300 ease-out
         hover:scale-105 active:scale-95
         focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2
-        ${isDark
-          ? 'border-blue-500/30 shadow-black/20'
-          : 'border-[#e2e8f0] shadow-black/[0.03]'
-        }
-      `}
+        border-blue-500/30 shadow-black/20 dark-toggle-border
+      "
       style={{
         right: rightPosition,
-        background: isDark
-          ? `rgba(17, 24, 39, ${glassOpacity})`
-          : `rgba(255, 255, 255, ${glassOpacity})`,
+        background: 'var(--toggle-bg)',
         backdropFilter: `blur(${glassBlur}px)`,
         WebkitBackdropFilter: `blur(${glassBlur}px)`,
-        boxShadow: isDark
-          ? 'inset 0 2px 4px rgba(120, 184, 255, 0.18), inset 0 1px 2px rgba(255, 255, 255, 0.12), inset 0 -2px 4px rgba(120, 184, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.3)'
-          : undefined,
+        boxShadow: 'var(--toggle-shadow)',
       }}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       whileTap={{ scale: 0.9 }}

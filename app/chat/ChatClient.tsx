@@ -20,7 +20,7 @@ export default function ChatClient() {
         [class*="Footer"], [class*="CookieConsent"],
         [class*="StickyMobileCTA"], [class*="TactileBackground"],
         [class*="FloatingAuth"], [class*="DarkModeToggle"],
-        .mobile-navbar {
+        .mobile-navbar, .sticky-mobile-cta {
           display: none !important;
         }
       `}} />

@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useTheme } from 'next-themes';
+import { useThemeWithoutFlash } from '@/src/hooks/useThemeWithoutFlash';
 
 interface VoiceDemoProps {
   audioSrc?: string;
@@ -23,13 +23,8 @@ const VoiceDemo: React.FC<VoiceDemoProps> = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [mounted, setMounted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const { resolvedTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { isDark } = useThemeWithoutFlash();
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -52,9 +47,6 @@ const VoiceDemo: React.FC<VoiceDemoProps> = ({
       audio.removeEventListener('ended', handleEnded);
     };
   }, []);
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark';
 
   const formatTime = (time: number) => {
     if (!isFinite(time)) return '0:00';
@@ -95,7 +87,7 @@ const VoiceDemo: React.FC<VoiceDemoProps> = ({
 
   return (
     <motion.div
-      className={`${containerClasses[variant]} ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200/80 bg-white/50'} ${className}`}
+      className={`${containerClasses[variant]} border-slate-200/80 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 ${className}`}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
@@ -105,12 +97,12 @@ const VoiceDemo: React.FC<VoiceDemoProps> = ({
       {(title || subtitle) && (
         <div className="mb-3 sm:mb-4">
           {title && (
-            <h4 className={`text-xs sm:text-sm font-semibold ${isDark ? 'text-gray-200' : 'text-slate-800'}`}>
+            <h4 className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-gray-200">
               {title}
             </h4>
           )}
           {subtitle && (
-            <p className={`text-[10px] sm:text-xs mt-0.5 sm:mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+            <p className="text-[10px] sm:text-xs mt-0.5 sm:mt-1 text-slate-500 dark:text-gray-400">
               {subtitle}
             </p>
           )}
@@ -183,7 +175,7 @@ const VoiceDemo: React.FC<VoiceDemoProps> = ({
           })}
         </div>
 
-        <span className={`text-[10px] sm:text-xs font-mono tabular-nums flex-shrink-0 min-w-[32px] sm:min-w-[40px] text-right ${isDark ? 'text-gray-500' : 'text-slate-400'}`}>
+        <span className="text-[10px] sm:text-xs font-mono tabular-nums flex-shrink-0 min-w-[32px] sm:min-w-[40px] text-right text-slate-400 dark:text-gray-500">
           {formatTime(currentTime)}
         </span>
       </div>

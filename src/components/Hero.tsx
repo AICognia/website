@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import HeroBackgroundGrid from './HeroBackgroundGrid';
-import { useTheme } from 'next-themes';
+import { useThemeWithoutFlash } from '@/src/hooks/useThemeWithoutFlash';
 
 const Hero: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -14,13 +14,8 @@ const Hero: React.FC = () => {
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const { resolvedTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { isDark } = useThemeWithoutFlash();
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -40,9 +35,6 @@ const Hero: React.FC = () => {
       audio.removeEventListener('ended', handleEnded);
     };
   }, []);
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark';
 
   const formatTime = (time: number) => {
     const mins = Math.floor(time / 60);
@@ -66,9 +58,9 @@ const Hero: React.FC = () => {
     }
   };
 
-  // Lower opacity to let background show through more
-  const glassOpacity = isDark ? 0.20 : 0.22;
-  const glassBlur = 10; // Reduced blur for subtler glass effect
+  // Glass effect matching Contact page
+  const glassOpacity = 0.30;
+  const glassBlur = 22;
 
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -105,47 +97,41 @@ const Hero: React.FC = () => {
     }
   };
 
-  // Softer glass style - less dominant, more subtle shadows
+  // Glass style - uses CSS custom properties to avoid theme flash
   const glassStyle = {
     borderWidth: '0.5px',
-    background: isDark
-      ? `rgba(31, 41, 55, ${glassOpacity})`
-      : `rgba(255, 255, 255, ${glassOpacity})`,
+    background: 'var(--hero-glass-bg)',
     backdropFilter: `blur(${glassBlur}px)`,
     WebkitBackdropFilter: `blur(${glassBlur}px)`,
-    boxShadow: isDark
-      ? 'inset 0 1px 3px rgba(120, 184, 255, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.08), 0 2px 8px rgba(0, 0, 0, 0.15)'
-      : 'inset 0 1px 2px rgba(14, 165, 233, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03)',
+    boxShadow: 'var(--hero-glass-shadow)',
   };
 
   return (
-    <section className={`min-h-screen flex flex-col items-center justify-start overflow-hidden hidden lg:flex relative mb-0 pt-0 select-none transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+    <section className="h-screen max-h-[960px] min-h-[700px] flex flex-col items-center justify-center overflow-hidden hidden lg:flex relative mb-0 pt-0 select-none transition-colors duration-300 bg-white dark:bg-gray-900">
       {/* Dynamic Background Grid */}
       <HeroBackgroundGrid isPlaying={isPlaying} />
 
       <audio ref={audioRef} loop src="https://kd1hbax1fjerwnrt.public.blob.vercel-storage.com/Sequence%2005.mp3" />
 
       {/* Large Gradient Overlay for depth & bottom fade */}
-      <div className={`absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none ${isDark ? 'from-gray-900/10 to-gray-900' : 'from-white/10 to-white'}`} />
-      <div className={`absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none ${isDark ? 'from-gray-900 via-gray-900/40' : 'from-white via-white/40'}`} />
+      <div className="absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none from-white/10 to-white dark:from-gray-900/10 dark:to-gray-900" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none from-white via-white/40 dark:from-gray-900 dark:via-gray-900/40" />
 
       {/* Radial gradient for text readability - reduced opacity to show more background */}
       <div
         className="absolute inset-y-0 left-0 w-[55%] pointer-events-none z-[5]"
         style={{
-          background: isDark
-            ? 'radial-gradient(ellipse 90% 80% at 15% 50%, rgba(17,24,39,0.7) 0%, rgba(17,24,39,0.5) 30%, rgba(17,24,39,0.25) 50%, rgba(17,24,39,0) 70%)'
-            : 'radial-gradient(ellipse 70% 50% at 20% 45%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0) 60%)',
+          background: 'var(--hero-radial-desktop)',
         }}
       />
 
       {/* Main container - compact max-width, cards don't stretch full height */}
-      <div className="w-full max-w-[845px] xl:max-w-[915px] 2xl:max-w-[986px] mx-auto px-6 lg:px-8 xl:px-10 relative z-10 flex items-start pt-24 pb-16">
-        <div className="grid grid-cols-12 gap-4 lg:gap-5 items-start w-full">
+      <div className="w-full max-w-[845px] xl:max-w-[915px] 2xl:max-w-[986px] mx-auto px-6 lg:px-8 xl:px-10 relative z-10 flex items-start pb-0" style={{ paddingTop: '10rem' }}>
+        <div className="grid grid-cols-12 gap-4 lg:gap-5 items-stretch w-full">
 
-          {/* Left Column - Value Proposition (7 cols) - compact card */}
+          {/* Left Column - Value Proposition (7 cols) */}
           <motion.div
-            className={`col-span-12 lg:col-span-7 relative rounded-xl border p-4 lg:p-5 ${isDark ? 'border-blue-500/20' : 'border-slate-200/50'}`}
+            className="col-span-12 lg:col-span-7 relative rounded-2xl sm:rounded-[2rem] border p-5 lg:p-6 border-slate-200/50 dark:border-blue-500/30"
             style={glassStyle}
             initial={{ x: -20 }}
             animate={{ x: 0 }}
@@ -157,34 +143,28 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.3 }}
             >
               <motion.div
-                className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full mb-4 ${
-                  isDark
-                    ? 'bg-blue-900/30 border border-blue-500/20'
-                    : 'bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/40'
-                }`}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full mb-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/40 dark:bg-none dark:bg-blue-900/30 dark:border-blue-500/20"
                 style={{
-                  boxShadow: isDark
-                    ? 'inset 0 1px 2px rgba(120, 184, 255, 0.08)'
-                    : '0 1px 8px rgba(59, 130, 246, 0.06)',
+                  boxShadow: 'var(--hero-badge-shadow)',
                 }}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
               >
-                <div className={`w-1.5 h-1.5 rounded-full border-[1.5px] ${isDark ? 'border-blue-400' : 'border-blue-500'}`} />
-                <span className={`text-[10px] font-semibold tracking-wide ${isDark ? 'text-blue-400' : 'text-blue-700'}`}>
+                <div className="w-1.5 h-1.5 rounded-full border-[1.5px] border-blue-500 dark:border-blue-400" />
+                <span className="text-[10px] font-semibold tracking-wide text-blue-700 dark:text-blue-400">
                   AI Transformation Agency
                 </span>
               </motion.div>
 
-              <h1 className={`text-xl md:text-2xl lg:text-2xl xl:text-3xl font-serif font-light leading-[1.2] mb-3 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+              <h1 className="text-xl md:text-2xl lg:text-2xl xl:text-3xl font-serif font-light leading-[1.2] mb-3 text-slate-900 dark:text-gray-100">
                 From Data Chaos to{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500">
                   Strategic Clarity
                 </span>
               </h1>
 
-              <p className={`text-xs lg:text-sm max-w-md mb-4 leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+              <p className="text-xs lg:text-sm max-w-md mb-4 leading-relaxed text-slate-500 dark:text-gray-400">
                 We design and deploy AI solutions that automate your workflows, empower your teams, and accelerate your business.
               </p>
 
@@ -197,15 +177,15 @@ const Hero: React.FC = () => {
                 ].map((item, i) => (
                   <motion.div
                     key={i}
-                    className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border ${isDark ? 'border-gray-700/50 bg-gray-800/20' : 'border-slate-200/50 bg-white/20'}`}
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-slate-200/50 bg-white/20 dark:border-gray-700/50 dark:bg-gray-800/20"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 + i * 0.1 }}
                   >
-                    <span className={`text-sm lg:text-base font-serif font-medium ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                    <span className="text-sm lg:text-base font-serif font-medium text-slate-800 dark:text-white">
                       {item.val}
                     </span>
-                    <span className={`text-[9px] uppercase tracking-wider font-medium ${isDark ? 'text-gray-500' : 'text-slate-400'}`}>
+                    <span className="text-[9px] uppercase tracking-wider font-medium text-slate-400 dark:text-gray-500">
                       {item.label}
                     </span>
                   </motion.div>
@@ -214,7 +194,7 @@ const Hero: React.FC = () => {
 
               {/* Audio Demo - slim inline */}
               <motion.div
-                className={`rounded-md border p-2 ${isDark ? 'border-gray-700/50 bg-gray-800/20' : 'border-slate-200/50 bg-white/20'}`}
+                className="rounded-md border p-2 border-slate-200/50 bg-white/20 dark:border-gray-700/50 dark:bg-gray-800/20"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
@@ -277,7 +257,7 @@ const Hero: React.FC = () => {
                     })}
                   </div>
 
-                  <span className={`text-[10px] font-mono tabular-nums flex-shrink-0 ${isDark ? 'text-gray-500' : 'text-slate-400'}`}>
+                  <span className="text-[10px] font-mono tabular-nums flex-shrink-0 text-slate-400 dark:text-gray-500">
                     {formatTime(currentTime)}
                   </span>
                 </div>
@@ -285,9 +265,9 @@ const Hero: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Contact Form (5 cols) - compact card */}
+          {/* Right Column - Contact Form (5 cols) */}
           <motion.div
-            className={`col-span-12 lg:col-span-5 rounded-xl border p-4 lg:p-5 pointer-events-auto ${isDark ? 'border-gray-700/40' : 'border-slate-200/50'}`}
+            className="col-span-12 lg:col-span-5 rounded-2xl sm:rounded-[2rem] border p-5 lg:p-6 pointer-events-auto border-slate-200/50 dark:border-gray-700"
             style={glassStyle}
             initial={{ x: 20 }}
             animate={{ x: 0 }}
@@ -298,16 +278,16 @@ const Hero: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.3 }}
             >
-              <h2 className={`text-base lg:text-lg font-serif font-normal mb-1 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+              <h2 className="text-xl lg:text-2xl font-serif font-normal mb-1.5 text-slate-900 dark:text-gray-100">
                 Get Started
               </h2>
-              <p className={`text-[11px] mb-4 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+              <p className="text-sm mb-5 text-slate-500 dark:text-gray-400">
                 Schedule a free consultation with our team.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-2.5">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="name" className={`block text-[11px] font-semibold mb-1 ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
+                  <label htmlFor="name" className="block text-sm font-semibold mb-2 text-slate-700 dark:text-gray-300">
                     Full Name
                   </label>
                   <input
@@ -316,13 +296,13 @@ const Hero: React.FC = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`w-full px-2.5 py-2 text-sm rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${isDark ? 'border-gray-600 bg-gray-800/50 text-gray-100 placeholder-gray-500' : 'border-slate-200 bg-white/50 text-slate-900 placeholder-slate-400'}`}
+                    className="w-full px-4 py-3 text-base rounded-xl border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400 dark:border-gray-600 dark:bg-gray-800/80 dark:text-gray-100 dark:placeholder-gray-500"
                     placeholder="John Smith"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className={`block text-[11px] font-semibold mb-1 ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
+                  <label htmlFor="email" className="block text-sm font-semibold mb-2 text-slate-700 dark:text-gray-300">
                     Work Email
                   </label>
                   <input
@@ -331,13 +311,13 @@ const Hero: React.FC = () => {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={`w-full px-2.5 py-2 text-sm rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${isDark ? 'border-gray-600 bg-gray-800/50 text-gray-100 placeholder-gray-500' : 'border-slate-200 bg-white/50 text-slate-900 placeholder-slate-400'}`}
+                    className="w-full px-4 py-3 text-base rounded-xl border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400 dark:border-gray-600 dark:bg-gray-800/80 dark:text-gray-100 dark:placeholder-gray-500"
                     placeholder="john@company.com"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="company" className={`block text-[11px] font-semibold mb-1 ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
+                  <label htmlFor="company" className="block text-sm font-semibold mb-2 text-slate-700 dark:text-gray-300">
                     Company
                   </label>
                   <input
@@ -346,16 +326,15 @@ const Hero: React.FC = () => {
                     required
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className={`w-full px-2.5 py-2 text-sm rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${isDark ? 'border-gray-600 bg-gray-800/50 text-gray-100 placeholder-gray-500' : 'border-slate-200 bg-white/50 text-slate-900 placeholder-slate-400'}`}
+                    className="w-full px-4 py-3 text-base rounded-xl border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400 dark:border-gray-600 dark:bg-gray-800/80 dark:text-gray-100 dark:placeholder-gray-500"
                     placeholder="Acme Corp"
                   />
                 </div>
 
-                {/* btn-primary style button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary w-full h-9 rounded-md text-sm disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-3"
+                  className="btn-primary w-full h-12 rounded-xl disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-1"
                 >
                   {isSubmitting ? (
                     <>
@@ -374,10 +353,10 @@ const Hero: React.FC = () => {
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`p-2 rounded-md text-center text-[11px] font-medium ${
+                    className={`p-4 rounded-xl text-center text-sm font-medium ${
                       submitStatus === 'success'
-                        ? isDark ? 'bg-green-900/30 text-green-400 border border-green-500/30' : 'bg-green-50 text-green-700 border border-green-200'
-                        : isDark ? 'bg-red-900/30 text-red-400 border border-red-500/30' : 'bg-red-50 text-red-700 border border-red-200'
+                        ? 'bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-500/30'
+                        : 'bg-red-50 text-red-700 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-500/30'
                     }`}
                   >
                     {submitStatus === 'success'

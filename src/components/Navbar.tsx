@@ -5,27 +5,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes, FaArrowRight } from 'react-icons/fa';
-import { useTheme } from 'next-themes';
-
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showSolutionsMenu, setShowSolutionsMenu] = useState(false);
   const [showIndustriesMenu, setShowIndustriesMenu] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-  const { resolvedTheme } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark';
-
-  // Glass effect settings - different for light/dark
-  const glassOpacity = isDark ? 0.55 : 0.30;
   const glassBlur = 12; // Reduced from 22px for better mobile performance
 
   // Hide on scroll functionality - using ref to avoid re-attaching listener
@@ -100,25 +87,18 @@ const Navbar: React.FC = () => {
       <header className={`fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 md:px-16 lg:px-24 transition-transform duration-300 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         {/* Navbar Container */}
         <nav
-          className={`
+          className="
             mt-2 sm:mt-3 max-w-5xl h-12 sm:h-14 rounded-[1rem] sm:rounded-[1.25rem] border shadow-lg
             mx-auto flex items-center justify-between pl-3 sm:pl-6 pr-1.5 sm:pr-2.5
             transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
             overflow-hidden
-            ${isDark
-              ? 'border-blue-500/30 shadow-black/20'
-              : 'border-[#e2e8f0] shadow-black/[0.03]'
-            }
-          `}
+            border-[#e2e8f0] shadow-black/[0.03] dark:border-blue-500/30 dark:shadow-black/20
+          "
           style={{
-            background: isDark
-              ? `rgba(17, 24, 39, ${glassOpacity})`
-              : `rgba(255, 255, 255, ${glassOpacity})`,
+            background: 'var(--navbar-bg-glass)',
             backdropFilter: `blur(${glassBlur}px)`,
             WebkitBackdropFilter: `blur(${glassBlur}px)`,
-            boxShadow: isDark
-              ? 'inset 0 2px 4px rgba(120, 184, 255, 0.18), inset 0 1px 2px rgba(255, 255, 255, 0.12), inset 0 -2px 4px rgba(120, 184, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.3)'
-              : undefined,
+            boxShadow: 'var(--navbar-shadow)',
           }}
         >
           {/* Logo */}
@@ -133,14 +113,9 @@ const Navbar: React.FC = () => {
               alt="Cognia AI - AI Receptionist & Voice Agents"
               width={24}
               height={24}
-              className="h-5 w-5 sm:h-6 sm:w-6 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
-              style={{
-                filter: isDark
-                  ? 'brightness(0) saturate(100%) invert(70%) sepia(50%) saturate(500%) hue-rotate(187deg) brightness(100%) contrast(90%)'
-                  : 'brightness(0) saturate(100%) invert(37%) sepia(89%) saturate(925%) hue-rotate(187deg) brightness(91%) contrast(88%)'
-              }}
+              className="h-5 w-5 sm:h-6 sm:w-6 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] navbar-logo-icon"
             />
-            <span className={`font-serif font-light tracking-tight text-base sm:text-lg transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+            <span className="font-serif font-light tracking-tight text-base sm:text-lg transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] text-slate-900 dark:text-gray-100">
               Cognia AI
             </span>
           </Link>
@@ -260,16 +235,12 @@ const Navbar: React.FC = () => {
                 />
 
                 <div
-                  className={`w-[420px] rounded-2xl border overflow-hidden ${isDark ? 'border-blue-500/30' : 'border-[#e2e8f0]'}`}
+                  className="w-[420px] rounded-2xl border overflow-hidden border-[#e2e8f0] dark:border-blue-500/30"
                   style={{
-                    background: isDark
-                      ? `rgba(17, 24, 39, 0.85)`
-                      : `rgba(255, 255, 255, 0.85)`,
+                    background: 'var(--navbar-dropdown-bg)',
                     backdropFilter: `blur(${glassBlur}px)`,
                     WebkitBackdropFilter: `blur(${glassBlur}px)`,
-                    boxShadow: isDark
-                      ? 'inset 0 1px 2px rgba(120, 184, 255, 0.12), 0 8px 32px rgba(0, 0, 0, 0.4)'
-                      : '0 8px 32px rgba(0, 0, 0, 0.08)',
+                    boxShadow: 'var(--navbar-dropdown-shadow)',
                   }}
                 >
                   {/* 2-Column Solutions Grid */}
@@ -279,10 +250,10 @@ const Navbar: React.FC = () => {
                         <Link
                           key={item.name}
                           href={item.path}
-                          className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${isDark ? 'hover:bg-white/5' : 'hover:bg-slate-50'}`}
+                          className="px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 hover:bg-slate-50 dark:hover:bg-white/5"
                         >
-                          <div className={isDark ? 'text-gray-200' : 'text-slate-700'}>{item.name}</div>
-                          <div className={`text-[11px] font-normal mt-0.5 ${isDark ? 'text-gray-500' : 'text-slate-400'}`}>{item.description}</div>
+                          <div className="text-slate-700 dark:text-gray-200">{item.name}</div>
+                          <div className="text-[11px] font-normal mt-0.5 text-slate-400 dark:text-gray-500">{item.description}</div>
                         </Link>
                       ))}
                     </div>
@@ -291,13 +262,13 @@ const Navbar: React.FC = () => {
                   {/* All Solutions CTA Bar */}
                   <Link
                     href="/what-we-do"
-                    className={`flex items-center justify-between px-5 py-3 border-t transition-colors ${isDark ? 'border-blue-500/20 hover:bg-blue-500/10' : 'border-slate-100 hover:bg-slate-50'}`}
+                    className="flex items-center justify-between px-5 py-3 border-t transition-colors border-slate-100 hover:bg-slate-50 dark:border-blue-500/20 dark:hover:bg-blue-500/10"
                   >
                     <div>
-                      <div className={`text-sm font-semibold ${isDark ? 'text-gray-200' : 'text-slate-700'}`}>View All Solutions</div>
-                      <div className={`text-xs ${isDark ? 'text-gray-500' : 'text-slate-400'}`}>Explore our complete AI suite</div>
+                      <div className="text-sm font-semibold text-slate-700 dark:text-gray-200">View All Solutions</div>
+                      <div className="text-xs text-slate-400 dark:text-gray-500">Explore our complete AI suite</div>
                     </div>
-                    <div className={`p-2 rounded-lg ${isDark ? 'bg-blue-500/20 text-blue-400' : 'bg-primary/10 text-primary'}`}>
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary dark:bg-blue-500/20 dark:text-blue-400">
                       <FaArrowRight size={12} />
                     </div>
                   </Link>
@@ -339,16 +310,12 @@ const Navbar: React.FC = () => {
                 />
 
                 <div
-                  className={`w-[380px] rounded-2xl border overflow-hidden ${isDark ? 'border-blue-500/30' : 'border-[#e2e8f0]'}`}
+                  className="w-[380px] rounded-2xl border overflow-hidden border-[#e2e8f0] dark:border-blue-500/30"
                   style={{
-                    background: isDark
-                      ? `rgba(17, 24, 39, 0.85)`
-                      : `rgba(255, 255, 255, 0.85)`,
+                    background: 'var(--navbar-dropdown-bg)',
                     backdropFilter: `blur(${glassBlur}px)`,
                     WebkitBackdropFilter: `blur(${glassBlur}px)`,
-                    boxShadow: isDark
-                      ? 'inset 0 1px 2px rgba(120, 184, 255, 0.12), 0 8px 32px rgba(0, 0, 0, 0.4)'
-                      : '0 8px 32px rgba(0, 0, 0, 0.08)',
+                    boxShadow: 'var(--navbar-dropdown-shadow)',
                   }}
                 >
                   <div className="p-4">
@@ -357,7 +324,7 @@ const Navbar: React.FC = () => {
                         <Link
                           key={item.name}
                           href={item.path}
-                          className={`block px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${isDark ? 'text-gray-200 hover:bg-white/5' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+                          className="block px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-gray-200 dark:hover:bg-white/5"
                         >
                           {item.name}
                         </Link>
@@ -379,20 +346,18 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: "spring", damping: 35, stiffness: 350, mass: 0.8 }}
-            className={`fixed inset-0 z-[60] md:hidden shadow-xl border ${isDark ? 'border-gray-700' : 'border-[#e2e8f0]'}`}
+            className="fixed inset-0 z-[60] md:hidden shadow-xl border border-[#e2e8f0] dark:border-gray-700"
             style={{
-              background: isDark
-                ? `rgba(17, 24, 39, ${glassOpacity})`
-                : `rgba(255, 255, 255, ${glassOpacity})`,
+              background: 'var(--navbar-mobile-bg)',
               backdropFilter: `blur(${glassBlur}px)`,
               WebkitBackdropFilter: `blur(${glassBlur}px)`,
             }}
           >
             <div className="flex flex-col h-full">
-              <div className={`flex items-center justify-between px-4 sm:px-6 h-14 sm:h-16 border-b ${isDark ? 'border-gray-700' : 'border-gray-200'}`}>
-                <span className={`text-lg sm:text-xl font-semibold font-inter ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>Menu</span>
-                <button onClick={() => setIsOpen(false)} className={`p-2.5 rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${isDark ? 'bg-gray-700 hover:bg-gray-600' : 'bg-slate-50 hover:bg-slate-100'}`}>
-                  <FaTimes size={20} className={isDark ? 'text-gray-300' : 'text-slate-600'} />
+              <div className="flex items-center justify-between px-4 sm:px-6 h-14 sm:h-16 border-b border-gray-200 dark:border-gray-700">
+                <span className="text-lg sm:text-xl font-semibold font-inter text-gray-900 dark:text-gray-100">Menu</span>
+                <button onClick={() => setIsOpen(false)} className="p-2.5 rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center bg-slate-50 hover:bg-slate-100 dark:bg-gray-700 dark:hover:bg-gray-600">
+                  <FaTimes size={20} className="text-slate-600 dark:text-gray-300" />
                 </button>
               </div>
               <div className="flex flex-col p-4 sm:p-6 space-y-1 sm:space-y-2 overflow-y-auto">
@@ -409,10 +374,10 @@ const Navbar: React.FC = () => {
                 ))}
 
                 {/* What We Do / Solutions Section */}
-                <div className={`h-px w-full my-3 sm:my-4 ${isDark ? 'bg-gray-700' : 'bg-slate-100'}`} />
+                <div className="h-px w-full my-3 sm:my-4 bg-slate-100 dark:bg-gray-700" />
                 <div className="space-y-1 sm:space-y-2 pt-1 sm:pt-2">
-                  <div className={`inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-lg mb-3 sm:mb-4 ml-3 sm:ml-4 ${isDark ? 'bg-blue-900/30 border border-blue-800/50' : 'bg-primary/5 border border-primary/10'}`}>
-                    <span className={`text-[10px] sm:text-[11px] uppercase tracking-wider font-semibold font-inter ${isDark ? 'text-blue-400' : 'text-primary'}`}>
+                  <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-lg mb-3 sm:mb-4 ml-3 sm:ml-4 bg-primary/5 border border-primary/10 dark:bg-blue-900/30 dark:border-blue-800/50">
+                    <span className="text-[10px] sm:text-[11px] uppercase tracking-wider font-semibold font-inter text-primary dark:text-blue-400">
                       What We Do
                     </span>
                   </div>
@@ -431,10 +396,10 @@ const Navbar: React.FC = () => {
                 </div>
 
                 {/* Industries Section */}
-                <div className={`h-px w-full my-3 sm:my-4 ${isDark ? 'bg-gray-700' : 'bg-slate-100'}`} />
+                <div className="h-px w-full my-3 sm:my-4 bg-slate-100 dark:bg-gray-700" />
                 <div className="space-y-1 sm:space-y-2 pt-1 sm:pt-2">
-                  <div className={`inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-lg mb-3 sm:mb-4 ml-3 sm:ml-4 ${isDark ? 'bg-blue-900/30 border border-blue-800/50' : 'bg-primary/5 border border-primary/10'}`}>
-                    <span className={`text-[10px] sm:text-[11px] uppercase tracking-wider font-semibold font-inter ${isDark ? 'text-blue-400' : 'text-primary'}`}>
+                  <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-lg mb-3 sm:mb-4 ml-3 sm:ml-4 bg-primary/5 border border-primary/10 dark:bg-blue-900/30 dark:border-blue-800/50">
+                    <span className="text-[10px] sm:text-[11px] uppercase tracking-wider font-semibold font-inter text-primary dark:text-blue-400">
                       Industries
                     </span>
                   </div>
@@ -452,7 +417,7 @@ const Navbar: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className={`mt-auto p-4 sm:p-6 border-t ${isDark ? 'bg-gray-800/50 border-gray-700/80' : 'bg-slate-50/50 border-slate-100/80'}`}>
+              <div className="mt-auto p-4 sm:p-6 border-t bg-slate-50/50 border-slate-100/80 dark:bg-gray-800/50 dark:border-gray-700/80">
                 <Link
                   href="/demo"
                   onClick={() => setIsOpen(false)}

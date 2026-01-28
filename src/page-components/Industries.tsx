@@ -112,17 +112,13 @@ const Industries: React.FC = () => {
       />
 
       {/* Mobile Hero */}
-      <section className="lg:hidden relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <section className="lg:hidden relative overflow-hidden bg-white dark:bg-gray-900">
         <div className="absolute inset-0">
           <MobileHeroBackground />
         </div>
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{
-            background: isDark
-              ? 'linear-gradient(to bottom, rgba(17,24,39,0.75) 0%, rgba(17,24,39,0.5) 50%, rgba(17,24,39,0.3) 100%)'
-              : 'linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.3) 100%)'
-          }}
+          style={{ background: 'var(--hero-gradient-mobile)' }}
         />
         <div className="relative z-10 px-5 pt-24 pb-10">
           <motion.div
@@ -131,19 +127,19 @@ const Industries: React.FC = () => {
             transition={{ duration: 0.4 }}
             className="mb-4"
           >
-            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${isDark ? 'bg-blue-500/15 border border-blue-400/25' : 'bg-blue-50 border border-blue-200'}`}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 border border-blue-200 dark:border-blue-400/25">
               <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-              <span className={`text-xs font-semibold tracking-wide ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>Industries</span>
+              <span className="text-xs font-semibold tracking-wide text-blue-700 dark:text-blue-300">Industries</span>
             </div>
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.05 }}
-            className={`text-[1.875rem] leading-[1.15] font-serif font-light tracking-tight mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}
+            className="text-[1.875rem] leading-[1.15] font-serif font-light tracking-tight mb-4 text-slate-900 dark:text-white"
           >
             Industries{' '}
-            <span className={`${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
+            <span className="text-blue-600 dark:text-blue-400">
               We Serve
             </span>
           </motion.h1>
@@ -151,7 +147,7 @@ const Industries: React.FC = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className={`text-base leading-relaxed mb-6 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
+            className="text-base leading-relaxed mb-6 text-slate-600 dark:text-gray-300"
           >
             AI solutions tailored for your industry's unique challenges.
           </motion.p>
@@ -163,8 +159,8 @@ const Industries: React.FC = () => {
           >
             {heroStats.map((stat, i) => (
               <div key={i} className="text-center">
-                <div className={`text-xl font-serif font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>{stat.value}</div>
-                <div className={`text-[9px] uppercase tracking-wider font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>{stat.label}</div>
+                <div className="text-xl font-serif font-medium text-slate-900 dark:text-white">{stat.value}</div>
+                <div className="text-[9px] uppercase tracking-wider font-medium mt-1 text-slate-500 dark:text-gray-400">{stat.label}</div>
               </div>
             ))}
           </motion.div>
@@ -183,11 +179,7 @@ const Industries: React.FC = () => {
             </Link>
             <a
               href="tel:+16163263328"
-              className={`flex items-center justify-center gap-2 w-full h-12 rounded-xl border font-medium transition-colors ${
-                isDark
-                  ? 'border-gray-700 text-gray-300 hover:bg-gray-800'
-                  : 'border-slate-200 text-slate-600 hover:bg-slate-50'
-              }`}
+              className="flex items-center justify-center gap-2 w-full h-12 rounded-xl border font-medium transition-colors border-slate-200 dark:border-gray-700 text-slate-600 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-800"
             >
               <FaPhone className="w-3 h-3" />
               <span>+1 616-326-3328</span>
@@ -197,20 +189,13 @@ const Industries: React.FC = () => {
       </section>
 
       {/* Desktop Hero */}
-      <section className="hidden lg:flex min-h-[70vh] flex-col items-center overflow-hidden relative" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <section className="hidden lg:flex min-h-[70vh] max-h-[800px] flex-col items-center overflow-hidden relative" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <HeroBackgroundGrid isPlaying={false} />
-        <div className={`absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none ${isDark ? 'from-gray-900/10 to-gray-900' : 'from-white/10 to-white'}`} />
-        <div className={`absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none ${isDark ? 'from-gray-900 via-gray-900/40' : 'from-white via-white/40'}`} />
-        <div
-          className="absolute inset-0 pointer-events-none z-[5]"
-          style={{
-            background: isDark
-              ? 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(17,24,39,0.9) 0%, rgba(17,24,39,0.7) 40%, rgba(17,24,39,0.4) 60%, rgba(17,24,39,0) 80%)'
-              : 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0) 80%)',
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none from-white/10 to-white dark:from-gray-900/10 dark:to-gray-900" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none from-white via-white/40 dark:from-gray-900 dark:via-gray-900/40" />
+        <div className="absolute inset-0 pointer-events-none z-[5] hero-centered-radial" />
 
-        <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-12 xl:px-16 relative z-10 flex-1 flex items-center pt-20 pb-16">
+        <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-12 xl:px-16 relative z-10 flex-1 flex items-start pb-16" style={{ paddingTop: '10rem' }}>
           <div className="w-full">
             <motion.div
               className="text-center max-w-4xl mx-auto"
@@ -219,12 +204,8 @@ const Industries: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <motion.div
-                className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-8 ${isDark ? 'bg-blue-500/10 border border-blue-500/20' : 'bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/60'}`}
-                style={{
-                  boxShadow: isDark
-                    ? '0 0 20px rgba(59, 130, 246, 0.15)'
-                    : '0 2px 12px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(255,255,255,0.8)',
-                }}
+                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-transparent dark:to-transparent dark:bg-blue-500/10 border border-blue-200/60 dark:border-blue-500/20"
+                style={{ boxShadow: 'var(--hero-badge-shadow)' }}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
@@ -233,20 +214,20 @@ const Industries: React.FC = () => {
                   <div className="w-2.5 h-2.5 rounded-full bg-blue-500" />
                   <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-blue-500 animate-ping opacity-75" />
                 </div>
-                <span className={`text-sm font-semibold tracking-wide ${isDark ? 'text-blue-400' : 'text-blue-700'}`}>Industries</span>
-                <FaGlobe className={`w-4 h-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
+                <span className="text-sm font-semibold tracking-wide text-blue-700 dark:text-blue-400">Industries</span>
+                <FaGlobe className="w-4 h-4 text-blue-600 dark:text-blue-400" />
               </motion.div>
 
-              <h1 className={`text-4xl lg:text-5xl xl:text-6xl font-serif font-normal leading-[1.08] mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-normal leading-[1.08] mb-6 text-slate-900 dark:text-gray-100">
                 Industries We{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-500">
                   Serve
                 </span>
               </h1>
 
-              <p className={`text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+              <p className="text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed text-slate-600 dark:text-gray-400">
                 Every industry has unique challenges. Our AI adapts to yours with{' '}
-                <span className={`font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className="font-medium text-slate-900 dark:text-white">
                   custom solutions built for your specific needs.
                 </span>
               </p>
@@ -256,14 +237,14 @@ const Industries: React.FC = () => {
                 {heroStats.map((stat, i) => (
                   <motion.div
                     key={i}
-                    className={`min-w-[120px] rounded-2xl border px-5 py-4 ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200/80 bg-white/50'}`}
+                    className="min-w-[120px] rounded-2xl border px-5 py-4 border-slate-200/80 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50"
                     style={cardGlassStyle()}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 + i * 0.1 }}
                   >
-                    <div className={`text-2xl lg:text-3xl font-serif font-normal ${isDark ? 'text-white' : 'text-slate-800'}`}>{stat.value}</div>
-                    <div className={`text-[10px] uppercase tracking-[0.12em] font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>{stat.label}</div>
+                    <div className="text-2xl lg:text-3xl font-serif font-normal text-slate-800 dark:text-white">{stat.value}</div>
+                    <div className="text-[10px] uppercase tracking-[0.12em] font-medium mt-1 text-slate-500 dark:text-gray-400">{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
@@ -279,11 +260,11 @@ const Industries: React.FC = () => {
                 </Link>
                 <a
                   href="tel:+16163263328"
-                  className={`h-14 px-8 rounded-xl border font-medium transition-colors inline-flex items-center gap-3 ${
-                    isDark
-                      ? 'border-gray-700 text-gray-300 hover:bg-gray-800'
-                      : 'border-slate-200 text-slate-600 hover:bg-slate-50'
-                  }`}
+                  className="h-14 px-8 rounded-xl border font-medium transition-colors inline-flex items-center gap-3 border-slate-200 dark:border-gray-700 text-slate-600 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-800"
+                  style={{
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                  }}
                 >
                   <FaPhone className="w-4 h-4" />
                   <span>Talk to Expert</span>
@@ -301,7 +282,7 @@ const Industries: React.FC = () => {
       <MobileIndustriesCarousel />
 
       {/* Why Choose Us - Bento */}
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+      <section className="py-12 sm:py-16 md:py-24 lg:py-32 bg-white dark:bg-gray-900">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
             <motion.span

@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useTheme } from 'next-themes'
 import { FaChevronDown } from 'react-icons/fa'
+import { useThemeWithoutFlash } from '@/src/hooks/useThemeWithoutFlash'
 
 const pillars = [
   {
@@ -26,17 +26,9 @@ const pillars = [
 
 const MobileWhatWeDoSection: React.FC = () => {
   const [expandedId, setExpandedId] = useState<number>(2)
-  const [mounted, setMounted] = useState(false)
-  const { resolvedTheme } = useTheme()
+  const { isDark } = useThemeWithoutFlash()
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark'
-
-  // Subtle glass style for accordion items
+  // Subtle glass style for accordion items (inline styles need isDark)
   const accordionItemStyle = (isExpanded: boolean) => ({
     background: isDark
       ? isExpanded
@@ -58,10 +50,10 @@ const MobileWhatWeDoSection: React.FC = () => {
         viewport={{ once: true }}
         className="mb-4"
       >
-        <h2 className={`text-xl font-serif font-normal mb-2 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+        <h2 className="text-xl font-serif font-normal mb-2 text-slate-900 dark:text-gray-100">
           What We Do
         </h2>
-        <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+        <p className="text-sm text-slate-500 dark:text-gray-400">
           Transform how you operate using AI.
         </p>
       </motion.div>
@@ -76,8 +68,8 @@ const MobileWhatWeDoSection: React.FC = () => {
               key={pillar.id}
               className={`rounded-xl border transition-all duration-200 ${
                 isExpanded
-                  ? isDark ? 'border-gray-700/60' : 'border-gray-200/80'
-                  : isDark ? 'border-gray-800/40' : 'border-gray-200/50'
+                  ? 'border-gray-200/80 dark:border-gray-700/60'
+                  : 'border-gray-200/50 dark:border-gray-800/40'
               }`}
               style={accordionItemStyle(isExpanded)}
             >
@@ -87,27 +79,25 @@ const MobileWhatWeDoSection: React.FC = () => {
               >
                 <div className="flex items-center gap-3">
                   <span className={`text-xs font-mono ${
-                    isExpanded ? 'text-blue-500' : isDark ? 'text-gray-600' : 'text-gray-400'
+                    isExpanded ? 'text-blue-500' : 'text-gray-400 dark:text-gray-600'
                   }`}>
                     0{pillar.id}
                   </span>
                   <span className={`text-sm font-semibold ${
                     isExpanded
-                      ? isDark ? 'text-gray-100' : 'text-slate-900'
-                      : isDark ? 'text-gray-400' : 'text-slate-600'
+                      ? 'text-slate-900 dark:text-gray-100'
+                      : 'text-slate-600 dark:text-gray-400'
                   }`}>
                     {pillar.title}
                   </span>
                   {pillar.featured && (
-                    <span className={`px-1.5 py-0.5 text-[8px] font-bold rounded uppercase ${
-                      isDark ? 'bg-blue-900/50 text-blue-400' : 'bg-blue-100 text-blue-600'
-                    }`}>
+                    <span className="px-1.5 py-0.5 text-[8px] font-bold rounded uppercase bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400">
                       Featured
                     </span>
                   )}
                 </div>
                 <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                  <FaChevronDown className={`text-xs ${isDark ? 'text-gray-600' : 'text-gray-400'}`} />
+                  <FaChevronDown className="text-xs text-gray-400 dark:text-gray-600" />
                 </motion.div>
               </button>
 
@@ -120,7 +110,7 @@ const MobileWhatWeDoSection: React.FC = () => {
                     transition={{ duration: 0.2 }}
                     className="overflow-hidden"
                   >
-                    <p className={`pb-4 px-4 pl-12 text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                    <p className="pb-4 px-4 pl-12 text-sm leading-relaxed text-slate-500 dark:text-gray-400">
                       {pillar.description}
                     </p>
                   </motion.div>

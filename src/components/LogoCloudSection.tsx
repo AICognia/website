@@ -5,31 +5,30 @@ import { useThemeWithoutFlash } from '@/src/hooks/useThemeWithoutFlash';
 
 const logos = [
   {
-    src: "/logos/mysmilemiami.webp",
+    src: "/logos/mysmilemiami-light.webp",
     darkSrc: "/logos/mysmilemiami.webp",
     alt: "My Smile Miami Logo",
   },
   {
     src: "/logos/nopeltipkitabevleri.webp",
-    darkSrc: "/logos/nopeltipkitabevleri.webp", // Use same logo - dark version has incorrect orange color
+    darkSrc: "/logos/nopeltipkitabevleri-dark.webp",
     alt: "Nobel Tip Kitabevleri Logo",
-    needsBrightnessBoost: true, // Boost brightness in dark mode for visibility
   },
   {
-    src: "/logos/hallsheatingandair.png",
-    darkSrc: "/logos/hallsheatingandair.png",
+    src: "/logos/hallsheatingandair.webp",
+    darkSrc: "/logos/hallsheatingandair.webp",
     alt: "Hall's Heating Air Plumbing Logo",
   },
   {
-    src: "/logos/monk-logo.svg",
+    src: "/logos/monk-logo.svg?v=2",
     darkSrc: "/logos/monk-logo-dark.svg",
     alt: "Monk Logo",
   },
   {
-    src: "/logos/steamespresso.webp",
-    darkSrc: "/logos/steamespresso-dark.webp",
+    src: "/logos/steamespresso-nobg.webp",
     alt: "Steam Espresso Logo",
-    // Removed clipSides - was cutting off logo edges
+    wideFormat: true, // Logo is wider aspect ratio, needs more horizontal space
+    invertInDark: true, // Invert black logo to white in dark mode
   },
 ];
 
@@ -38,7 +37,7 @@ export default function LogoCloudSection() {
 
   return (
     <section
-      className={`relative w-full mt-0 lg:-mt-20 pt-6 lg:pt-4 pb-4 sm:pb-6 md:pb-8 ${isDark ? 'bg-gray-900' : 'bg-white'}`}
+      className="relative w-full mt-0 lg:-mt-20 pt-6 lg:pt-4 pb-4 sm:pb-6 md:pb-8 bg-white dark:bg-gray-900"
     >
       {/* Full-width centered marquee container */}
       <div className="w-full overflow-hidden">

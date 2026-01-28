@@ -173,4 +173,22 @@ export const PageLoader: React.FC = () => {
   );
 };
 
+/**
+ * Theme-aware page loading skeleton that uses CSS variables
+ * to properly display in both light and dark modes without flash.
+ *
+ * Uses var(--bg-primary) which is set by the blocking script
+ * in layout.tsx before hydration. Simple fade-in approach that
+ * won't flicker with theme changes.
+ */
+export const PageLoadingSkeleton: React.FC = () => (
+  <div
+    className="min-h-screen"
+    style={{
+      backgroundColor: 'var(--bg-primary)',
+      animation: 'page-fade-in 0.3s ease-out',
+    }}
+  />
+)
+
 export default LoadingSkeleton;

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, Suspense } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChatSidebar } from './ChatSidebar';
 import { ChatArea } from './ChatArea';
@@ -15,8 +15,15 @@ function ChatAreaLoading() {
 }
 
 export function ChatPage() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  // Start with sidebar closed on mobile, open on desktop
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
+
+  // Set initial sidebar state based on screen size
+  useEffect(() => {
+    const isDesktop = window.innerWidth >= 1024; // lg breakpoint
+    setSidebarOpen(isDesktop);
+  }, []);
 
   const handleBack = () => {
     router.push('/');

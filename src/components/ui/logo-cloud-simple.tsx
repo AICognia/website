@@ -10,6 +10,8 @@ type Logo = {
   alt: string;
   clipSides?: number; // Pixels to clip from each side
   needsBrightnessBoost?: boolean; // Boost brightness in dark mode for logos with dark elements
+  wideFormat?: boolean; // Allow more width for wide logos
+  invertInDark?: boolean; // Invert black logo to white in dark mode using CSS filter
 };
 
 type LogoCloudProps = React.ComponentProps<"div"> & {
@@ -31,7 +33,7 @@ export function LogoCloud({ className, logos, ...props }: LogoCloudProps) {
         {logos.map((logo) => (
           <div
             key={`logo-${logo.alt}-${isDark ? 'dark' : 'light'}`}
-            className="overflow-hidden flex-shrink-0"
+            className={cn("overflow-hidden flex-shrink-0")}
             style={logo.clipSides ? {
               clipPath: `inset(0 ${logo.clipSides}px 0 ${logo.clipSides}px)`,
               margin: `0 -${logo.clipSides}px`,
@@ -40,14 +42,19 @@ export function LogoCloud({ className, logos, ...props }: LogoCloudProps) {
             <img
               alt={logo.alt}
               className={cn(
-                "pointer-events-none h-12 w-auto max-w-[160px] md:h-16 lg:h-20 md:max-w-[220px] lg:max-w-[240px] select-none object-contain",
+                "pointer-events-none h-12 w-auto md:h-16 lg:h-20 select-none object-contain",
+                // Width constraints - wider for wide format logos
+                logo.wideFormat
+                  ? "max-w-[220px] md:max-w-[280px] lg:max-w-[320px]"
+                  : "max-w-[160px] md:max-w-[220px] lg:max-w-[240px]",
                 // Full color logos in both modes
                 isDark
-                  ? logo.needsBrightnessBoost
-                    ? "opacity-90 brightness-[1.3] contrast-[1.1]" // Boost visibility for logos with dark parts
-                    : "opacity-80"
-                  // Light mode: subtle drop shadow for logos with white parts
-                  : "opacity-90 drop-shadow-[0_0_1px_rgba(0,0,0,0.3)]"
+                  ? logo.invertInDark
+                    ? "opacity-90 invert" // Invert black to white for dark mode
+                    : logo.needsBrightnessBoost
+                      ? "opacity-90 brightness-[1.3] contrast-[1.1]" // Boost visibility for logos with dark parts
+                      : "opacity-80"
+                  : "opacity-90"
               )}
               loading="lazy"
               src={isDark && logo.darkSrc ? logo.darkSrc : logo.src}

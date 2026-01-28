@@ -1,22 +1,11 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { FaCheck } from 'react-icons/fa'
 import Link from 'next/link'
-import { useTheme } from 'next-themes'
 
 const MobileWhyChooseUs: React.FC = () => {
-  const [mounted, setMounted] = useState(false)
-  const { resolvedTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark'
-
   const capabilities = [
     'Unified data platform',
     'Real-time AI analytics',
@@ -24,7 +13,7 @@ const MobileWhyChooseUs: React.FC = () => {
   ]
 
   return (
-    <section className={`lg:hidden py-12 transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+    <section className="lg:hidden py-12 transition-colors duration-300 bg-white dark:bg-gray-900">
       <div className="container-responsive">
       {/* Header - Compact */}
       <motion.div
@@ -33,10 +22,10 @@ const MobileWhyChooseUs: React.FC = () => {
         viewport={{ once: true }}
         className="mb-6"
       >
-        <h2 className={`text-xl font-serif font-normal leading-tight mb-3 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+        <h2 className="text-xl font-serif font-normal leading-tight mb-3 text-slate-900 dark:text-gray-100">
           Your Data Is an Asset
         </h2>
-        <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+        <p className="text-sm leading-relaxed text-slate-500 dark:text-gray-400">
           We unify scattered data into actionable intelligence.
         </p>
       </motion.div>
@@ -53,13 +42,9 @@ const MobileWhyChooseUs: React.FC = () => {
           {capabilities.map((item) => (
             <span
               key={item}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium ${
-                isDark
-                  ? 'bg-gray-800 text-gray-300 border border-gray-700'
-                  : 'bg-gray-50 text-gray-600 border border-gray-200'
-              }`}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 border border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700"
             >
-              <FaCheck className={`text-[8px] ${isDark ? 'text-blue-400' : 'text-blue-500'}`} />
+              <FaCheck className="text-[8px] text-blue-500 dark:text-blue-400" />
               {item}
             </span>
           ))}
@@ -72,19 +57,19 @@ const MobileWhyChooseUs: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2 }}
-        className={`flex justify-between py-4 border-y ${isDark ? 'border-gray-800' : 'border-gray-100'}`}
+        className="flex justify-between py-4 border-y border-gray-100 dark:border-gray-800"
       >
         <div className="text-center">
-          <div className={`text-xl font-serif ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>50+</div>
-          <div className={`text-[10px] uppercase tracking-wider ${isDark ? 'text-gray-500' : 'text-slate-400'}`}>Enterprises</div>
+          <div className="text-xl font-serif text-slate-900 dark:text-gray-100">50+</div>
+          <div className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-gray-500">Enterprises</div>
         </div>
         <div className="text-center">
-          <div className={`text-xl font-serif ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>99.9%</div>
-          <div className={`text-[10px] uppercase tracking-wider ${isDark ? 'text-gray-500' : 'text-slate-400'}`}>Uptime</div>
+          <div className="text-xl font-serif text-slate-900 dark:text-gray-100">99.9%</div>
+          <div className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-gray-500">Uptime</div>
         </div>
         <div className="text-center">
-          <div className={`text-xl font-serif ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>$10M+</div>
-          <div className={`text-[10px] uppercase tracking-wider ${isDark ? 'text-gray-500' : 'text-slate-400'}`}>Saved</div>
+          <div className="text-xl font-serif text-slate-900 dark:text-gray-100">$10M+</div>
+          <div className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-gray-500">Saved</div>
         </div>
       </motion.div>
 
@@ -96,7 +81,7 @@ const MobileWhyChooseUs: React.FC = () => {
         transition={{ delay: 0.3 }}
         className="mt-4"
       >
-        <p className={`text-xs ${isDark ? 'text-gray-500' : 'text-slate-400'}`}>
+        <p className="text-xs text-slate-400 dark:text-gray-500">
           <span className="font-medium">Enterprise ready:</span> Secure • Encrypted • Compliant • Reliable
         </p>
       </motion.div>

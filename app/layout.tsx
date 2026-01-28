@@ -226,7 +226,7 @@ export default function RootLayout({
                 <VideoProvider>
                   {/* TactileBackground removed for performance - was running 60fps canvas globally */}
                   <DarkModeToggle />
-                  <div className="w-full min-h-screen relative mesh-gradient transition-colors duration-300">
+                  <div className="w-full min-h-screen relative mesh-gradient">
                     {/* Level 2: Centering wrapper */}
                     <div className="relative flex flex-col justify-start items-center w-full">
                       {/* Level 3: Main content container - removed max-width to allow overflow */}

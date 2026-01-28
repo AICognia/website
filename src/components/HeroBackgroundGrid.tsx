@@ -1,10 +1,14 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react';
-import { cn } from '../lib/utils';
-import { useThemeWithoutFlash } from '@/src/hooks/useThemeWithoutFlash';
 
 interface HeroBackgroundGridProps {
     isPlaying: boolean;
+}
+
+/** Read theme directly from <html> class — synchronous, no flash */
+function getIsDarkFromDOM(): boolean {
+    if (typeof document === 'undefined') return true;
+    return !document.documentElement.classList.contains('light');
 }
 
 const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) => {
@@ -12,7 +16,7 @@ const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) =>
     const animationFrameRef = useRef<number>(0);
     const [isVisible, setIsVisible] = useState(false);
     const [animationReady, setAnimationReady] = useState(false);
-    const { isDark } = useThemeWithoutFlash();
+    const isDarkRef = useRef(getIsDarkFromDOM());
 
     const stateRef = useRef({
         time: 0,
@@ -108,9 +112,16 @@ const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) =>
             });
         });
 
+        // Watch for theme class changes on <html> so canvas re-renders
+        const observer = new MutationObserver(() => {
+            isDarkRef.current = getIsDarkFromDOM();
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
         return () => {
             cancelAnimationFrame(rafId1);
             cancelAnimationFrame(rafId2);
+            observer.disconnect();
         };
     }, []);
 
@@ -121,19 +132,22 @@ const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) =>
         const ctx = canvas.getContext('2d', { alpha: true });
         if (!ctx) return;
 
-        const COLORS = isDark ? {
-            background: { r: 17, g: 24, b: 39 }, // gray-900 - the actual background
-            blue300: { r: 135, g: 200, b: 255 }, // Brighter, more saturated blue
-            blue500: { r: 99, g: 170, b: 255 }, // Vibrant, saturated medium blue
-            blue600: { r: 70, g: 140, b: 255 }, // Vibrant deep blue
-            midBlend: { r: 80, g: 115, b: 190 }, // Richer blue-gray for smooth transitions
-        } : {
-            background: { r: 255, g: 255, b: 255 },
-            blue300: { r: 147, g: 197, b: 253 }, // Lighter, softer blue
-            blue500: { r: 96, g: 165, b: 250 }, // Softer medium blue
-            blue600: { r: 59, g: 130, b: 246 }, // Keep this as the darkest
-            midBlend: { r: 220, g: 240, b: 255 }, // Light blue for mid transition
+        const COLORS_DARK = {
+            background: { r: 17, g: 24, b: 39 },
+            blue300: { r: 135, g: 200, b: 255 },
+            blue500: { r: 99, g: 170, b: 255 },
+            blue600: { r: 70, g: 140, b: 255 },
+            midBlend: { r: 80, g: 115, b: 190 },
         };
+        const COLORS_LIGHT = {
+            background: { r: 255, g: 255, b: 255 },
+            blue300: { r: 147, g: 197, b: 253 },
+            blue500: { r: 96, g: 165, b: 250 },
+            blue600: { r: 59, g: 130, b: 246 },
+            midBlend: { r: 220, g: 240, b: 255 },
+        };
+        // Read from ref each frame — no stale closure
+        const getColors = () => isDarkRef.current ? COLORS_DARK : COLORS_LIGHT;
 
         const SPRING = { stiffness: 0.01, damping: 0.95, mass: 1.6 };
 
@@ -201,6 +215,7 @@ const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) =>
         });
 
         function getSmoothColor(intensity: number, x: number, y: number, cols: number, rows: number) {
+            const COLORS = getColors();
             const biased = Math.pow(intensity, 1.2);
 
             const time = stateRef.current.time;
@@ -232,11 +247,12 @@ const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) =>
         }
 
         function drawInsetCircle(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number, color: ColorObj, intensity: number) {
+            const currentIsDark = isDarkRef.current;
             ctx.beginPath();
             ctx.arc(x, y, radius, 0, Math.PI * 2);
 
             // Calculate how close this color is to the background color
-            const bg = COLORS.background;
+            const bg = getColors().background;
             const distToBackground = Math.sqrt(
                 Math.pow(color.r - bg.r, 2) +
                 Math.pow(color.g - bg.g, 2) +
@@ -258,12 +274,12 @@ const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) =>
 
             if (alpha > 0.5) {
                 const effectStrength = distToBackground;
-                const shadowPower = isDark
+                const shadowPower = currentIsDark
                     ? (0.2 + (1 - intensity) * 0.2) * effectStrength  // Stronger shadow in dark mode
                     : (0.15 + (1 - intensity) * 0.15) * effectStrength;
 
                 if (shadowPower > 0.01) {
-                    const shadowColor = isDark ? '79, 150, 255' : '147, 197, 253';
+                    const shadowColor = currentIsDark ? '79, 150, 255' : '147, 197, 253';
                     const innerShadow = ctx.createRadialGradient(x, y, radius * 0.7, x, y, radius);
                     innerShadow.addColorStop(0, `rgba(${shadowColor}, 0)`);
                     innerShadow.addColorStop(1, `rgba(${shadowColor}, ${shadowPower * 0.5})`);
@@ -272,10 +288,10 @@ const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) =>
                     ctx.fill();
                 }
 
-                const glowPower = isDark ? 0.25 * effectStrength : 0.15 * effectStrength;
+                const glowPower = currentIsDark ? 0.25 * effectStrength : 0.15 * effectStrength;
 
                 if (glowPower > 0.01) {
-                    const glowColor = isDark ? '79, 150, 255' : '147, 197, 253';
+                    const glowColor = currentIsDark ? '79, 150, 255' : '147, 197, 253';
                     const centerGlow = ctx.createRadialGradient(x, y, 0, x, y, radius * 0.8);
                     centerGlow.addColorStop(0, `rgba(${glowColor}, ${glowPower})`);
                     centerGlow.addColorStop(1, `rgba(${glowColor}, 0)`);
@@ -621,15 +637,14 @@ const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) =>
             canvas.removeEventListener('touchend', handleTouchEnd);
             window.removeEventListener('resize', updateCanvasSize);
         };
-    }, [isPlaying, animationReady, isDark]);
+    }, [isPlaying, animationReady]);
 
     return (
         <div
-            className="absolute inset-0 overflow-hidden transition-colors duration-300"
+            className="absolute inset-0 overflow-hidden transition-colors duration-300 bg-white dark:bg-gray-900"
             style={{
-                backgroundColor: isDark ? '#111827' : '#ffffff',
-                willChange: 'transform', // GPU acceleration hint
-                contain: 'paint layout', // Layout isolation for better perf
+                willChange: 'transform',
+                contain: 'paint layout',
             }}
         >
             <canvas
@@ -644,14 +659,9 @@ const HeroBackgroundGrid: React.FC<HeroBackgroundGridProps> = ({ isPlaying }) =>
             <div className={`absolute inset-0 pointer-events-none transition-opacity duration-1000 ease-out ${
                 isVisible && animationReady ? 'opacity-100' : 'opacity-0'
             }`}>
-                <div className={`absolute inset-0 bg-gradient-to-t to-transparent ${isDark ? 'from-gray-900/95 via-gray-900/20' : 'from-white/95 via-white/20'}`} />
+                <div className="absolute inset-0 bg-gradient-to-t to-transparent from-white/95 via-white/20 dark:from-gray-900/95 dark:via-gray-900/20" />
                 <div
-                    className="absolute inset-0 opacity-[0.3]"
-                    style={{
-                        background: isDark
-                            ? 'radial-gradient(ellipse at 50% 100%, rgb(17, 24, 39) 0%, rgb(17, 24, 39) 25%, transparent 45%)'
-                            : 'radial-gradient(ellipse at 50% 100%, white 0%, white 25%, transparent 45%)',
-                    }}
+                    className="absolute inset-0 opacity-[0.3] hero-grid-radial-fade"
                 />
             </div>
 

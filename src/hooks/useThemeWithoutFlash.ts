@@ -3,42 +3,33 @@
 import { useTheme } from 'next-themes'
 import { useState, useEffect } from 'react'
 
-declare global {
-  interface Window {
-    __theme?: string
-  }
-}
-
 /**
  * Hook that provides the current theme without causing hydration mismatches or flashes.
  *
- * On the server and initial client render, it reads from:
- * 1. window.__theme (set by blocking script in layout.tsx)
- * 2. Falls back to 'dark' (the default theme)
+ * The layout includes a blocking script that sets the `dark`/`light` class on
+ * <html> before any JS runs (reading from localStorage). The server always renders
+ * with className="dark", but the blocking script may change it to "light" before
+ * React hydrates — which would cause a hydration mismatch if our JS tried to
+ * branch on window/document during initial render.
  *
- * After mount, it uses next-themes' resolvedTheme for reactivity.
+ * Solution: always return `isDark = true` during the initial render (matching the
+ * server's hardcoded "dark" class). After mount, switch to next-themes' resolvedTheme.
+ * Components should use Tailwind `dark:` classes for CSS-based properties so the
+ * blocking script's class change takes effect via CSS without JS involvement.
+ * For inline styles that depend on isDark, there will be a single re-render after
+ * mount — the transition-colors CSS handles this smoothly.
  */
 export function useThemeWithoutFlash() {
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  // Get initial theme from blocking script or default
-  const getInitialTheme = (): 'dark' | 'light' => {
-    if (typeof window !== 'undefined' && window.__theme) {
-      return window.__theme as 'dark' | 'light'
-    }
-    return 'dark'
-  }
-
-  const [initialTheme] = useState(getInitialTheme)
-
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  // Before mount: use initial theme (from blocking script or default)
+  // Before mount: always 'dark' to match server render (html className="dark")
   // After mount: use next-themes' resolved theme for reactivity
-  const isDark = mounted ? resolvedTheme === 'dark' : initialTheme === 'dark'
+  const isDark = mounted ? resolvedTheme === 'dark' : true
 
   return {
     isDark,

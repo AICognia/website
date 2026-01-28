@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useTheme } from 'next-themes'
 
 interface Industry {
   name: string
@@ -105,17 +104,8 @@ const IndustriesCarousel: React.FC = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false) // Start disabled
   const [canScrollRight, setCanScrollRight] = useState(true)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [mounted, setMounted] = useState(false)
-  const { resolvedTheme } = useTheme()
   const targetScrollRef = useRef(0)
   const animationRef = useRef<number | null>(null)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark'
 
   // Custom smooth scroll using lerp - always chases the target
   const animateScroll = () => {
@@ -215,12 +205,12 @@ const IndustriesCarousel: React.FC = () => {
   }, [])
 
   return (
-    <section className="overflow-hidden py-10 sm:py-14 lg:py-18 xl:py-22 transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <section className="overflow-x-clip py-10 sm:py-14 lg:py-18 xl:py-22 transition-colors duration-300 bg-white dark:bg-gray-900">
       {/* Header Area - Constrained */}
       <div className="container-responsive px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 md:mb-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 md:gap-8">
           <div className="space-y-2 sm:space-y-4">
-            <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl heading-2 ${isDark ? 'text-gray-100' : ''}`}>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl heading-2 dark:text-gray-100">
               Powering progress across industries
             </h2>
           </div>
@@ -229,24 +219,20 @@ const IndustriesCarousel: React.FC = () => {
             <button
               onClick={() => scroll('left')}
               disabled={!canScrollLeft}
-              className={`w-9 sm:w-11 h-9 sm:h-11 flex items-center justify-center rounded-full border transition-all duration-300 ${canScrollLeft
-                ? isDark
-                  ? 'bg-gray-800 border-gray-700 text-gray-300 hover:border-blue-500/30'
-                  : 'bg-white border-[#e2e8f0] text-[#37322f] hover:border-[#0ea5e9]/30 hover:shadow-[inset_0_1px_2px_rgba(14,165,233,0.15),0_2px_8px_rgba(14,165,233,0.1)]'
+              className={`w-9 sm:w-11 h-9 sm:h-11 flex items-center justify-center rounded-full border transition-all duration-300 bg-white dark:bg-gray-800 border-[#e2e8f0] dark:border-gray-700 text-[#37322f] dark:text-gray-300 ${canScrollLeft
+                ? 'hover:border-[#0ea5e9]/30 dark:hover:border-blue-500/30 hover:shadow-[inset_0_1px_2px_rgba(14,165,233,0.15),0_2px_8px_rgba(14,165,233,0.1)]'
                 : 'opacity-40 cursor-not-allowed'
-              } ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-[#e2e8f0]'}`}
+              }`}
             >
               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 18 18"><path d="M11.5 16C11.308 16 11.116 15.9271 10.97 15.7801L4.71999 9.53005C4.42699 9.23705 4.42699 8.76202 4.71999 8.46902L10.97 2.21999C11.263 1.92699 11.738 1.92699 12.031 2.21999C12.324 2.51299 12.324 2.98803 12.031 3.28103L6.311 9.001L12.031 14.721C12.324 15.014 12.324 15.489 12.031 15.782C11.885 15.928 11.693 16.002 11.501 16.002L11.5 16Z" fill="currentColor"></path></svg>
             </button>
             <button
               onClick={() => scroll('right')}
               disabled={!canScrollRight}
-              className={`w-9 sm:w-11 h-9 sm:h-11 flex items-center justify-center rounded-full border transition-all duration-300 ${canScrollRight
-                ? isDark
-                  ? 'bg-gray-800 border-gray-700 text-gray-300 hover:border-blue-500/30'
-                  : 'bg-white border-[#e2e8f0] text-[#37322f] hover:border-[#0ea5e9]/30 hover:shadow-[inset_0_1px_2px_rgba(14,165,233,0.15),0_2px_8px_rgba(14,165,233,0.1)]'
+              className={`w-9 sm:w-11 h-9 sm:h-11 flex items-center justify-center rounded-full border transition-all duration-300 bg-white dark:bg-gray-800 border-[#e2e8f0] dark:border-gray-700 text-[#37322f] dark:text-gray-300 ${canScrollRight
+                ? 'hover:border-[#0ea5e9]/30 dark:hover:border-blue-500/30 hover:shadow-[inset_0_1px_2px_rgba(14,165,233,0.15),0_2px_8px_rgba(14,165,233,0.1)]'
                 : 'opacity-40 cursor-not-allowed'
-              } ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-[#e2e8f0]'}`}
+              }`}
             >
               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 18 18"><path d="M13.28 8.46999L7.03 2.21999C6.737 1.92699 6.262 1.92699 5.969 2.21999C5.676 2.51299 5.676 2.98803 5.969 3.28103L11.689 9.001L5.969 14.721C5.676 15.014 5.676 15.489 5.969 15.782C6.115 15.928 6.307 16.002 6.499 16.002C6.691 16.002 6.883 15.929 7.029 15.782L13.279 9.53201C13.572 9.23901 13.572 8.76403 13.279 8.47103L13.28 8.46999Z" fill="currentColor"></path></svg>
             </button>
@@ -254,11 +240,11 @@ const IndustriesCarousel: React.FC = () => {
         </div>
       </div>
 
-      {/* Carousel Container - Constrained to match other sections */}
+      {/* Carousel Container - with top padding so hover translate doesn't clip */}
       <div className="container-responsive px-4 sm:px-6 lg:px-8">
           <div
             ref={scrollContainerRef}
-            className="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide pb-6 sm:pb-8"
+            className="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide pt-2 pb-6 sm:pb-8"
             style={{
               WebkitOverflowScrolling: 'touch',
             }}
@@ -270,17 +256,9 @@ const IndustriesCarousel: React.FC = () => {
                 className="flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px] lg:w-[320px] group"
               >
                 <div
-                  className={`relative aspect-square rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[2rem] transition-all duration-500 p-1.5 sm:p-2 border backdrop-blur-xl hover:-translate-y-px ${
-                    isDark
-                      ? 'border-gray-700 bg-gray-800/70 hover:bg-gray-800/90 shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.4)]'
-                      : 'border-[#e2e8f0] bg-white/50 hover:bg-white/70 shadow-[inset_0_1px_2px_rgba(14,165,233,0.15),inset_0_-1px_2px_rgba(14,165,233,0.08),inset_1px_0_2px_rgba(14,165,233,0.12),inset_-1px_0_2px_rgba(14,165,233,0.05),0_2px_4px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[inset_0_1px_2px_rgba(14,165,233,0.2),inset_0_-1px_2px_rgba(14,165,233,0.1),inset_1px_0_2px_rgba(14,165,233,0.15),inset_-1px_0_2px_rgba(14,165,233,0.08),0_2px_4px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.03)]'
-                  }`}
+                  className="relative aspect-square rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[2rem] transition-all duration-500 p-1.5 sm:p-2 border backdrop-blur-xl hover:-translate-y-1 border-[#e2e8f0] dark:border-gray-700 bg-white/50 dark:bg-gray-800/70 hover:bg-white/70 dark:hover:bg-gray-800/90 shadow-[inset_0_1px_2px_rgba(14,165,233,0.15),inset_0_-1px_2px_rgba(14,165,233,0.08),inset_1px_0_2px_rgba(14,165,233,0.12),inset_-1px_0_2px_rgba(14,165,233,0.05),0_2px_4px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:shadow-[inset_0_1px_2px_rgba(14,165,233,0.2),inset_0_-1px_2px_rgba(14,165,233,0.1),inset_1px_0_2px_rgba(14,165,233,0.15),inset_-1px_0_2px_rgba(14,165,233,0.08),0_2px_4px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.03)] dark:hover:shadow-[0_8px_20px_rgba(0,0,0,0.4)]"
                 >
-                  <div className={`relative w-full h-full rounded-[1rem] sm:rounded-[1.25rem] md:rounded-[1.5rem] overflow-hidden border ${
-                    isDark
-                      ? 'border-gray-600 shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)]'
-                      : 'border-[#e2e8f0] shadow-[inset_0_1px_2px_rgba(14,165,233,0.1),inset_0_-1px_2px_rgba(14,165,233,0.05),0_4px_12px_rgba(0,0,0,0.04)] hover:shadow-[inset_0_1px_2px_rgba(14,165,233,0.2),inset_0_-1px_2px_rgba(14,165,233,0.1),0_8px_24px_rgba(14,165,233,0.08)]'
-                  }`}>
+                  <div className="relative w-full h-full rounded-[1rem] sm:rounded-[1.25rem] md:rounded-[1.5rem] overflow-hidden border border-[#e2e8f0] dark:border-gray-600 shadow-[inset_0_1px_2px_rgba(14,165,233,0.1),inset_0_-1px_2px_rgba(14,165,233,0.05),0_4px_12px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
                     <Image
                       src={industry.image}
                       alt={industry.name}
@@ -316,7 +294,7 @@ const IndustriesCarousel: React.FC = () => {
       {/* Progress Bar Area - Constrained */}
       <div className="container-responsive px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8">
         <div className="flex items-center justify-center">
-          <div className={`w-3/4 sm:w-2/3 md:w-1/2 h-1.5 sm:h-2 rounded-full overflow-hidden ${isDark ? 'bg-gray-700' : 'bg-slate-200'}`}>
+          <div className="w-3/4 sm:w-2/3 md:w-1/2 h-1.5 sm:h-2 rounded-full overflow-hidden bg-slate-200 dark:bg-gray-700">
             <div
               className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-none"
               style={{ width: `${Math.max(10, scrollProgress * 100)}%`, transition: 'none' }}

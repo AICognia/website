@@ -2,10 +2,11 @@
 
 import dynamic from 'next/dynamic'
 import SEOHead from '@/src/components/SEOHead'
+import { PageLoadingSkeleton } from '@/src/components/LoadingSkeleton'
 
 const Contact = dynamic(() => import('@/src/page-components/Contact'), {
-  ssr: false,
-  loading: () => <div className="min-h-screen bg-gray-900 dark:bg-gray-900 flex items-center justify-center"><div className="text-gray-100">Loading...</div></div>
+  ssr: true,
+  loading: () => <PageLoadingSkeleton />
 })
 
 export default function ContactClient() {

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import {
@@ -8,21 +8,13 @@ import {
   IconNodesFill18,
   IconGear2Fill18
 } from 'nucleo-ui-essential-fill-18';
-import { useTheme } from 'next-themes';
+import { useThemeWithoutFlash } from '@/src/hooks/useThemeWithoutFlash';
 
 const WhatWeDoSection: React.FC = () => {
   const [expandedId, setExpandedId] = useState<number | null>(1) // Start with featured item open
-  const [mounted, setMounted] = useState(false);
-  const { resolvedTheme } = useTheme();
+  const { isDark, mounted } = useThemeWithoutFlash();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark';
-
-  // Subtle glass style for accordion cards
+  // Subtle glass style for accordion cards - inline styles still need isDark
   const accordionGlassStyle = (isExpanded: boolean) => ({
     background: isDark
       ? isExpanded
@@ -48,7 +40,7 @@ const WhatWeDoSection: React.FC = () => {
       icon: <IconNodesFill18 size={18} />,
       title: "AI Audit & Strategy",
       description: "Our 4-week discovery process identifies highest-ROI AI opportunities and builds your roadmap. The plan is yours to keep — whether you work with us or not.",
-      keywords: ["Discovery & Interviews", "ROI-Ranked Matrix", "Implementation Roadmap", "Starts at $1,000"],
+      keywords: ["Discovery & Interviews", "ROI-Ranked Matrix", "Implementation Roadmap", "4 Week Process"],
       featured: true,
       cta: { text: "Start with AI Audit", href: "/demo" }
     },
@@ -75,9 +67,9 @@ const WhatWeDoSection: React.FC = () => {
   }
 
   return (
-    <section className={`py-12 sm:py-16 lg:py-20 xl:py-24 relative transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-gray-50/50'}`}>
+    <section className="py-12 sm:py-16 lg:py-20 xl:py-24 relative transition-colors duration-300 bg-gray-50/50 dark:bg-gray-900">
       {/* Subtle top divider */}
-      <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-700' : 'via-gray-200'}`} />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent" />
 
       <div className="max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-16 items-start">
@@ -89,13 +81,13 @@ const WhatWeDoSection: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="lg:sticky lg:top-32"
           >
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-normal mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : ''}`}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-normal mb-4 sm:mb-6 dark:text-gray-100">
               What We Do
             </h2>
-            <p className={`text-sm sm:text-base md:text-lg body-large mb-3 sm:mb-4 font-serif ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+            <p className="text-sm sm:text-base md:text-lg body-large mb-3 sm:mb-4 font-serif text-slate-600 dark:text-gray-400">
               From AI strategy to transformed operations in 60 days. Consultants advise. Engineers build. We do both.
             </p>
-            <p className={`text-[13px] sm:text-[14px] md:text-[15px] mb-6 sm:mb-8 font-serif leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
+            <p className="text-[13px] sm:text-[14px] md:text-[15px] mb-6 sm:mb-8 font-serif leading-relaxed text-slate-500 dark:text-gray-500">
               Find the highest-ROI AI opportunities. Then build only what pays back.
             </p>
             <Link
@@ -120,19 +112,15 @@ const WhatWeDoSection: React.FC = () => {
               return (
                 <motion.div
                   key={pillar.id}
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={mounted ? { opacity: 0, y: 15 } : false}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  transition={{ duration: 0.4, delay: mounted ? index * 0.1 : 0 }}
                   className={`
                     rounded-xl border transition-all duration-300
                     ${isExpanded
-                      ? isDark
-                        ? 'border-gray-700/80'
-                        : 'border-gray-200/80'
-                      : isDark
-                        ? 'border-gray-700/50 hover:border-gray-700/70'
-                        : 'border-gray-200/50 hover:border-gray-200/80'
+                      ? 'border-gray-200/80 dark:border-gray-700/80'
+                      : 'border-gray-200/50 hover:border-gray-200/80 dark:border-gray-700/50 dark:hover:border-gray-700/70'
                     }
                   `}
                   style={accordionGlassStyle(isExpanded)}
@@ -147,9 +135,7 @@ const WhatWeDoSection: React.FC = () => {
                         w-8 sm:w-9 h-8 sm:h-9 rounded-lg sm:rounded-xl flex items-center justify-center transition-all duration-300
                         ${isExpanded
                           ? 'bg-gradient-to-br from-primary to-primary-dark text-white shadow-lg shadow-primary/25'
-                          : isDark
-                            ? 'bg-gray-700 text-gray-400 group-hover:bg-gray-600'
-                            : 'bg-gray-100 text-gray-500 group-hover:bg-gray-200'
+                          : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 group-hover:bg-gray-200 dark:group-hover:bg-gray-600'
                         }
                       `}>
                         {pillar.icon}
@@ -158,13 +144,13 @@ const WhatWeDoSection: React.FC = () => {
                         <h3 className={`
                           text-[13px] sm:text-[15px] font-semibold font-serif transition-colors duration-200
                           ${isExpanded
-                            ? isDark ? 'text-gray-100' : 'text-gray-900'
-                            : isDark ? 'text-gray-300 group-hover:text-gray-100' : 'text-gray-700 group-hover:text-gray-900'}
+                            ? 'text-gray-900 dark:text-gray-100'
+                            : 'text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-100'}
                         `}>
                           {pillar.title}
                         </h3>
                         {pillar.featured && (
-                          <span className={`px-1.5 sm:px-2 py-0.5 text-[8px] sm:text-[10px] font-bold rounded-md sm:rounded-lg uppercase tracking-wider w-fit ${isDark ? 'bg-blue-900/50 text-blue-400 shadow-[2px_2px_4px_rgba(59,130,246,0.1)]' : 'bg-blue-100 text-[#1E40AF] shadow-[2px_2px_4px_rgba(30,64,175,0.1),-1px_-1px_2px_rgba(255,255,255,0.8)]'}`}>
+                          <span className="px-1.5 sm:px-2 py-0.5 text-[8px] sm:text-[10px] font-bold rounded-md sm:rounded-lg uppercase tracking-wider w-fit bg-blue-100 dark:bg-blue-900/50 text-[#1E40AF] dark:text-blue-400 shadow-[2px_2px_4px_rgba(30,64,175,0.1),-1px_-1px_2px_rgba(255,255,255,0.8)] dark:shadow-[2px_2px_4px_rgba(59,130,246,0.1)]">
                             Featured
                           </span>
                         )}
@@ -176,9 +162,7 @@ const WhatWeDoSection: React.FC = () => {
                       w-6 sm:w-7 h-6 sm:h-7 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 ml-2
                       ${isExpanded
                         ? 'bg-primary/10 text-primary'
-                        : isDark
-                          ? 'bg-gray-700 text-gray-500 group-hover:bg-gray-600'
-                          : 'bg-gray-100 text-gray-400 group-hover:bg-gray-200'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 group-hover:bg-gray-200 dark:group-hover:bg-gray-600'
                       }
                     `}>
                       <motion.svg
@@ -195,17 +179,17 @@ const WhatWeDoSection: React.FC = () => {
                   </button>
 
                   {/* Accordion Content */}
-                  <AnimatePresence initial={false}>
+                  <AnimatePresence initial={false} mode="wait">
                     {isExpanded && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
+                        initial={mounted ? { height: 0, opacity: 0 } : false}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                        transition={{ duration: mounted ? 0.3 : 0, ease: [0.4, 0, 0.2, 1] }}
                         className="overflow-hidden"
                       >
                         <div className="px-3 sm:px-5 pb-4 sm:pb-5 pt-0 pl-[2.75rem] sm:pl-[3.75rem]">
-                          <p className={`text-[12px] sm:text-[14px] leading-relaxed mb-3 sm:mb-4 font-serif ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+                          <p className="text-[12px] sm:text-[14px] leading-relaxed mb-3 sm:mb-4 font-serif text-slate-600 dark:text-gray-400">
                             {pillar.description}
                           </p>
 
@@ -214,7 +198,7 @@ const WhatWeDoSection: React.FC = () => {
                             {pillar.keywords.map((keyword, i) => (
                               <span
                                 key={i}
-                                className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[8px] sm:text-[10px] font-bold tracking-wider font-serif ${isDark ? 'bg-blue-900/40 text-blue-400 shadow-[2px_2px_4px_rgba(59,130,246,0.1)]' : 'bg-blue-100 text-[#1E40AF] shadow-[2px_2px_4px_rgba(30,64,175,0.1),-2px_-2px_4px_rgba(255,255,255,0.8),inset_1px_1px_1px_rgba(255,255,255,0.5)]'}`}
+                                className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[8px] sm:text-[10px] font-bold tracking-wider font-serif bg-blue-100 dark:bg-blue-900/40 text-[#1E40AF] dark:text-blue-400 shadow-[2px_2px_4px_rgba(30,64,175,0.1),-2px_-2px_4px_rgba(255,255,255,0.8),inset_1px_1px_1px_rgba(255,255,255,0.5)] dark:shadow-[2px_2px_4px_rgba(59,130,246,0.1)]"
                               >
                                 {keyword}
                               </span>
@@ -225,7 +209,7 @@ const WhatWeDoSection: React.FC = () => {
                           {pillar.cta && (
                             <Link
                               href={pillar.cta.href}
-                              className={`group/link inline-flex items-center text-[11px] sm:text-[13px] font-medium font-serif transition-colors ${isDark ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-primary'}`}
+                              className="group/link inline-flex items-center text-[11px] sm:text-[13px] font-medium font-serif transition-colors text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white"
                             >
                               <span>{pillar.cta.text}</span>
                               <span className="ml-1 mr-2 flex items-center transition-all duration-300 group-hover/link:ml-2 group-hover/link:mr-1">
@@ -252,7 +236,7 @@ const WhatWeDoSection: React.FC = () => {
       </div>
 
       {/* Subtle bottom divider */}
-      <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-700' : 'via-gray-200'}`} />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent" />
     </section>
   )
 }

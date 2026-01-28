@@ -1,11 +1,9 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useTheme } from 'next-themes'
 import {
-  FaGlobe,
   FaHandshake,
   FaBrain,
   FaUsers,
@@ -23,30 +21,13 @@ import MobileHeroBackground from '../components/MobileHeroBackground'
 import StructuredData from '../components/StructuredData'
 
 const About: React.FC = () => {
-  const [mounted, setMounted] = useState(false)
-  const { resolvedTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark'
-
-  // Glass style matching Contact page exactly
-  const glassOpacity = isDark ? 0.20 : 0.18
-  const glassBlur = 10
-
+  // Glass style using CSS variables to prevent dark mode flash
   const glassStyle = {
     borderWidth: '0.5px',
-    background: isDark
-      ? `rgba(31, 41, 55, ${glassOpacity})`
-      : `rgba(255, 255, 255, ${glassOpacity})`,
-    backdropFilter: `blur(${glassBlur}px)`,
-    WebkitBackdropFilter: `blur(${glassBlur}px)`,
-    boxShadow: isDark
-      ? 'inset 0 3px 6px rgba(120, 184, 255, 0.2), inset 0 1px 3px rgba(255, 255, 255, 0.15), inset 0 -3px 6px rgba(120, 184, 255, 0.12), inset 3px 0 6px rgba(120, 184, 255, 0.08), inset -3px 0 6px rgba(120, 184, 255, 0.08), 0 4px 12px rgba(0, 0, 0, 0.3)'
-      : 'inset 0 1px 2px rgba(14, 165, 233, 0.15), inset 0 -1px 2px rgba(14, 165, 233, 0.08), inset 1px 0 2px rgba(14, 165, 233, 0.12), inset -1px 0 2px rgba(14, 165, 233, 0.05), 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03)',
+    background: 'var(--hero-glass-bg)',
+    backdropFilter: 'blur(10px)',
+    WebkitBackdropFilter: 'blur(10px)',
+    boxShadow: 'var(--hero-glass-shadow)',
   }
 
   const philosophy = [
@@ -71,10 +52,9 @@ const About: React.FC = () => {
   ]
 
   const stats = [
-    { value: '60', label: 'Days to Transform' },
-    { value: '95%', label: 'AI Projects Fail' },
-    { value: '20+', label: 'Transformations' },
-    { value: '$1K', label: 'Starting Price' },
+    { value: '60', label: 'Days to Launch' },
+    { value: '3x', label: 'Faster Decisions' },
+    { value: '20+', label: 'Clients Served' },
   ]
 
   const differentiators = [
@@ -99,7 +79,7 @@ const About: React.FC = () => {
   ]
 
   const colorClasses = {
-    blue: isDark ? 'bg-blue-900/30 text-blue-400' : 'bg-blue-50 text-blue-600',
+    blue: 'bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400',
   }
 
   return (
@@ -128,9 +108,7 @@ const About: React.FC = () => {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: isDark
-              ? 'linear-gradient(to bottom, rgba(17,24,39,0.85) 0%, rgba(17,24,39,0.7) 40%, rgba(17,24,39,0.5) 100%)'
-              : 'linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.75) 40%, rgba(255,255,255,0.5) 100%)'
+            background: 'var(--hero-gradient-mobile)'
           }}
         />
         <div className="relative z-10 px-5 pt-24 pb-8">
@@ -140,25 +118,25 @@ const About: React.FC = () => {
             transition={{ duration: 0.4 }}
             className="mb-5"
           >
-            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${isDark ? 'bg-blue-500/20 border border-blue-400/30' : 'bg-blue-50 border border-blue-200'}`}>
-              <div className={`w-2 h-2 rounded-full ${isDark ? 'bg-blue-400' : 'bg-blue-500'}`} />
-              <span className={`text-xs font-semibold tracking-wide ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>About Us</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200 dark:bg-blue-500/20 dark:border-blue-400/30">
+              <div className="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400" />
+              <span className="text-xs font-semibold tracking-wide text-blue-700 dark:text-blue-300">About Us</span>
             </div>
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.05 }}
-            className={`text-[1.875rem] leading-[1.15] font-serif font-light tracking-tight mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}
+            className="text-[1.875rem] leading-[1.15] font-serif font-light tracking-tight mb-4 text-slate-900 dark:text-white"
           >
-            We Advise.{' '}
-            <span className={`${isDark ? 'text-blue-400' : 'text-blue-600'}`}>We Build. We Do Both.</span>
+            We Advise.<br />We Engineer.<br />
+            <span className="text-blue-600 dark:text-blue-400">We Do Both.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className={`text-base leading-relaxed mb-6 ${isDark ? 'text-gray-300' : 'text-slate-600'}`}
+            className="text-base leading-relaxed mb-6 text-slate-600 dark:text-gray-300"
           >
             From AI strategy to transformed operations in 60 days. Find the highest-ROI opportunities. Build only what pays back.
           </motion.p>
@@ -170,8 +148,8 @@ const About: React.FC = () => {
           >
             {stats.map((item, i) => (
               <div key={i} className="text-center">
-                <div className={`text-xl font-serif font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.value}</div>
-                <div className={`text-[9px] uppercase tracking-wider font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>{item.label}</div>
+                <div className="text-xl font-serif font-medium text-slate-900 dark:text-white">{item.value}</div>
+                <div className="text-[9px] uppercase tracking-wider font-medium mt-1 text-slate-500 dark:text-gray-400">{item.label}</div>
               </div>
             ))}
           </motion.div>
@@ -187,7 +165,7 @@ const About: React.FC = () => {
             </Link>
             <a
               href="tel:+16163263328"
-              className={`flex items-center justify-center gap-2 w-full h-12 rounded-2xl text-sm font-medium transition-colors ${isDark ? 'bg-white/10 text-white border border-white/20' : 'bg-slate-100 text-slate-700 border border-slate-200'}`}
+              className="flex items-center justify-center gap-2 w-full h-12 rounded-2xl text-sm font-medium transition-colors bg-slate-100 text-slate-700 border border-slate-200 dark:bg-white/10 dark:text-white dark:border-white/20"
             >
               <FaPhone className="text-sm" />
               <span>Talk to Expert</span>
@@ -196,24 +174,25 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="hidden lg:flex min-h-screen flex-col items-center overflow-hidden relative mb-0 pt-0 select-none transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      {/* Desktop Hero - EXACTLY matching UnifiedHero (Home page) */}
+      <section className="hidden lg:flex min-h-[700px] flex-col items-center overflow-hidden relative mb-0 pt-0 select-none transition-colors duration-300 bg-gray-900 dark:bg-gray-900 light:bg-white" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <HeroBackgroundGrid isPlaying={false} />
-        <div className={`absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none ${isDark ? 'from-gray-900/10 to-gray-900' : 'from-white/10 to-white'}`} />
-        <div className={`absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none ${isDark ? 'from-gray-900 via-gray-900/40' : 'from-white via-white/40'}`} />
+        <div className="absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none from-white/10 to-white dark:from-gray-900/10 dark:to-gray-900" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t to-transparent pointer-events-none from-white via-white/40 dark:from-gray-900 dark:via-gray-900/40" />
         <div
           className="absolute inset-y-0 left-0 w-[65%] pointer-events-none z-[5]"
           style={{
-            background: isDark
-              ? 'radial-gradient(ellipse 100% 90% at 20% 50%, rgba(17,24,39,0.95) 0%, rgba(17,24,39,0.85) 30%, rgba(17,24,39,0.6) 50%, rgba(17,24,39,0.3) 70%, rgba(17,24,39,0) 90%)'
-              : 'radial-gradient(ellipse 80% 60% at 25% 45%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.35) 40%, rgba(255,255,255,0.1) 60%, rgba(255,255,255,0) 75%)',
+            background: 'var(--hero-radial-desktop)',
           }}
         />
-        <div className="w-full max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1440px] 3xl:max-w-[1584px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 relative z-10 flex-1 flex items-center pt-8 lg:pt-12 pb-24 -mt-8 lg:-mt-12">
-          <div className="grid grid-cols-12 gap-6 xl:gap-8 2xl:gap-10 items-stretch w-full">
 
-            {/* Left Column - Value Proposition (7 cols) */}
+        {/* Main container - EXACTLY matching UnifiedHero (Home page) */}
+        <div className="w-full max-w-[1200px] xl:max-w-[1320px] 2xl:max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12 2xl:px-16 relative z-10 flex-1 flex items-start pb-24" style={{ paddingTop: '10rem' }}>
+          <div className="grid grid-cols-12 gap-6 lg:gap-6 xl:gap-8 2xl:gap-10 items-stretch w-full">
+
+            {/* Left Column - Value Proposition (7 cols) - EXACTLY like UnifiedHero */}
             <motion.div
-              className={`col-span-7 relative rounded-2xl border p-6 xl:p-8 h-full ${isDark ? 'border-blue-500/30' : 'border-[#e2e8f0]'}`}
+              className="col-span-12 lg:col-span-7 relative rounded-2xl sm:rounded-[2rem] border p-5 lg:p-6 xl:p-8 h-full border-[#e2e8f0] dark:border-blue-500/30"
               style={glassStyle}
               initial={{ x: -20 }}
               animate={{ x: 0 }}
@@ -226,94 +205,73 @@ const About: React.FC = () => {
                 transition={{ duration: 0.3 }}
               >
                 <motion.div
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 ${
-                    isDark
-                      ? 'bg-blue-900/40 border border-blue-500/30'
-                      : 'bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/60'
-                  }`}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 lg:mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/60 dark:from-transparent dark:to-transparent dark:bg-blue-900/40 dark:border-blue-500/30"
                   style={{
-                    boxShadow: isDark
-                      ? 'inset 0 1px 2px rgba(120, 184, 255, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.05)'
-                      : '0 2px 12px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(255,255,255,0.8)',
+                    boxShadow: 'var(--hero-badge-shadow)',
                   }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                 >
-                  <div className="relative">
-                    <div className={`w-2.5 h-2.5 rounded-full ${isDark ? 'bg-blue-400' : 'bg-blue-500'}`} />
-                    <div className={`absolute inset-0 w-2.5 h-2.5 rounded-full ${isDark ? 'bg-blue-400' : 'bg-blue-500'} animate-ping opacity-75`} />
-                  </div>
-                  <span className={`text-sm font-semibold tracking-wide ${isDark ? 'text-blue-400' : 'text-blue-700'}`}>
+                  <div className="w-2 h-2 rounded-full border-[1.5px] border-blue-500 dark:border-blue-400" />
+                  <span className="text-xs font-semibold tracking-wide text-blue-700 dark:text-blue-400">
                     About Us
                   </span>
-                  <FaGlobe className={`w-3.5 h-3.5 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
                 </motion.div>
 
-                <h1 className={`text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-serif font-light leading-[1.08] mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                  Consultants Advise.{' '}
+                <h1 className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif font-light leading-[1.08] mb-4 lg:mb-6 text-slate-900 dark:text-gray-100">
+                  We Advise.<br />
+                  We Engineer.<br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500">
-                    Engineers Build. We Do Both.
+                    We Do Both.
                   </span>
                 </h1>
 
-                <p className={`text-lg 2xl:text-xl max-w-xl mb-8 leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-                  From AI strategy to transformed operations in 60 days. Find the highest-ROI AI opportunities.
-                  Then build only what pays back.
+                <p className="text-base lg:text-lg 2xl:text-xl max-w-xl lg:max-w-2xl mb-6 lg:mb-8 leading-relaxed text-slate-500 dark:text-gray-500">
+                  From AI strategy to transformed operations in 60 days. Find the highest-ROI AI opportunities. Then build only what pays back.
                 </p>
 
-                {/* Stats Row */}
-                <div className="flex items-stretch gap-4 mb-6">
+                {/* Stats Row - EXACTLY like UnifiedHero */}
+                <div className="flex flex-wrap items-stretch gap-3 lg:gap-4">
                   {stats.map((item, i) => (
                     <motion.div
                       key={i}
-                      className={`flex-1 min-w-[100px] rounded-xl border px-4 py-3 ${isDark ? 'border-gray-700 bg-gray-800/50' : 'border-slate-200/80 bg-white/50'}`}
+                      className="flex-1 min-w-[110px] rounded-xl border px-4 py-3 border-slate-200/80 bg-white/50 dark:border-gray-700 dark:bg-gray-800/50"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 + i * 0.1 }}
                     >
-                      <div className={`text-2xl 2xl:text-3xl font-semibold tracking-tight ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                      <div className="text-2xl lg:text-3xl 2xl:text-4xl font-serif font-normal text-slate-800 dark:text-white">
                         {item.value}
                       </div>
-                      <div className={`text-[9px] 2xl:text-[10px] uppercase tracking-[0.12em] font-medium mt-1 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                      <div className="text-[9px] 2xl:text-[10px] uppercase tracking-[0.12em] font-medium mt-1 text-slate-500 dark:text-gray-400">
                         {item.label}
                       </div>
                     </motion.div>
                   ))}
                 </div>
 
-                {/* CTA Buttons */}
+                {/* CTA Button */}
                 <motion.div
-                  className="flex items-center gap-4"
+                  className="mt-6 lg:mt-8"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
                   <Link
                     href="/demo"
-                    className="btn-primary h-14 px-8 rounded-xl text-base flex items-center justify-center gap-2"
+                    className="btn-primary h-12 lg:h-14 px-8 rounded-xl text-base flex items-center justify-center gap-2 w-full sm:w-auto"
                   >
-                    <FaCalendarCheck />
-                    <span>Get Started</span>
+                    <FaCalendarCheck className="w-4 h-4" />
+                    <span>Schedule Free Consultation</span>
                   </Link>
-                  <a
-                    href="tel:+16163263328"
-                    className={`h-14 px-8 rounded-xl flex items-center justify-center gap-2 border transition-colors ${
-                      isDark
-                        ? 'border-gray-600 text-gray-300 hover:bg-gray-800'
-                        : 'border-slate-200 text-slate-700 hover:bg-slate-50'
-                    }`}
-                  >
-                    <FaPhone className="text-sm" />
-                    <span>Talk to Expert</span>
-                  </a>
                 </motion.div>
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Our Approach (5 cols) */}
+            {/* Right Column - Our Approach with Timeline (5 cols) */}
             <motion.div
-              className={`col-span-5 rounded-2xl border p-6 xl:p-8 h-full flex flex-col ${isDark ? 'border-gray-700' : 'border-[#e2e8f0]'}`}
+              className="col-span-12 lg:col-span-5 rounded-2xl sm:rounded-[2rem] border p-5 lg:p-6 xl:p-8 h-full flex flex-col border-[#e2e8f0] dark:border-gray-700"
               style={glassStyle}
               initial={{ x: 20 }}
               animate={{ x: 0 }}
@@ -325,48 +283,52 @@ const About: React.FC = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.3 }}
               >
-                <h2 className={`text-3xl font-serif font-normal mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+                <h2 className="text-xl lg:text-2xl font-serif font-normal mb-1 text-slate-900 dark:text-gray-100">
                   Our Approach
                 </h2>
-
-                <p className={`text-base mb-6 leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-                  We combine deep industry expertise with cutting-edge AI to deliver solutions that work from day one.
+                <p className="text-sm mb-6 text-slate-500 dark:text-gray-400">
+                  From strategy to implementation in 60 days.
                 </p>
 
                 {/* Visual Timeline */}
                 <div className="flex-1 relative">
-                  {/* Connecting Line - stops before the last step */}
-                  <div className={`absolute left-[19px] top-4 h-[calc(100%-80px)] w-0.5 ${isDark ? 'bg-gradient-to-b from-blue-500 via-blue-400 to-blue-300' : 'bg-gradient-to-b from-blue-500 via-blue-400 to-blue-200'}`} />
-
-                  <div className="space-y-6">
+                  {/* Timeline items with integrated line segments */}
+                  <div className="space-y-0">
                     {[
-                      { num: '01', title: 'Discovery', desc: 'Key player interviews, workflow mapping, data identification (2 weeks)', icon: FaBrain },
-                      { num: '02', title: 'Assessment', desc: 'AI-readiness scoring, data maturity evaluation, ROI calculations (1 week)', icon: FaRocket },
-                      { num: '03', title: 'Deliverable', desc: 'AI Readiness Report with roadmap and investment analysis (Final week)', icon: FaShieldAlt },
-                      { num: '04', title: 'Build & Ship', desc: 'We implement the solutions you choose. ROI in weeks, not years.', icon: FaChartLine }
-                    ].map((step, index) => {
+                      { num: '01', title: 'Discovery', desc: 'Interviews & workflow mapping', icon: FaBrain },
+                      { num: '02', title: 'Assessment', desc: 'AI-readiness & ROI analysis', icon: FaRocket },
+                      { num: '03', title: 'Deliverable', desc: 'Roadmap & investment report', icon: FaShieldAlt },
+                      { num: '04', title: 'Build & Ship', desc: 'Implementation & launch', icon: FaChartLine }
+                    ].map((step, index, arr) => {
                       const Icon = step.icon
+                      const isLast = index === arr.length - 1
                       return (
                         <motion.div
                           key={index}
-                          className="flex items-start gap-4 relative"
+                          className="flex items-stretch gap-4 relative"
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.3 + index * 0.1 }}
                         >
-                          <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 relative z-10 ${isDark ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'bg-blue-500 text-white shadow-lg shadow-blue-500/25'}`}>
-                            <Icon className="w-4 h-4" />
-                          </div>
-                          <div className="flex-1 pb-2">
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className={`text-xs font-bold tracking-wider ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
-                                STEP {step.num}
-                              </span>
+                          {/* Icon column with line */}
+                          <div className="flex flex-col items-center">
+                            <div className="btn-primary w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 relative z-10 p-0">
+                              <Icon className="w-4 h-4" />
                             </div>
-                            <h3 className={`text-lg font-semibold mb-1 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+                            {/* Connecting line to next item */}
+                            {!isLast && (
+                              <div className="w-[3px] flex-1 min-h-[24px] bg-gradient-to-b from-blue-500 to-blue-400" />
+                            )}
+                          </div>
+                          {/* Content */}
+                          <div className={`flex-1 ${isLast ? 'pb-0' : 'pb-4'}`}>
+                            <span className="text-[11px] font-bold tracking-wider text-blue-600 dark:text-blue-400">
+                              STEP {step.num}
+                            </span>
+                            <h3 className="text-base font-semibold mt-0.5 text-slate-900 dark:text-gray-100">
                               {step.title}
                             </h3>
-                            <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+                            <p className="text-sm leading-relaxed mt-0.5 text-slate-500 dark:text-gray-400">
                               {step.desc}
                             </p>
                           </div>
@@ -378,15 +340,14 @@ const About: React.FC = () => {
 
                 {/* Bottom CTA */}
                 <motion.div
-                  className="mt-6 pt-5 border-t border-dashed"
-                  style={{ borderColor: isDark ? 'rgba(75, 85, 99, 0.5)' : 'rgba(203, 213, 225, 0.8)' }}
+                  className="mt-6 pt-5 border-t border-dashed border-slate-300/80 dark:border-gray-600/50"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8 }}
                 >
                   <Link
                     href="/demo"
-                    className={`inline-flex items-center gap-2 text-sm font-semibold ${isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'} transition-colors`}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
                   >
                     <span>Start your transformation</span>
                     <FaArrowRight className="text-xs" />
@@ -399,104 +360,74 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 relative ${isDark ? 'bg-gray-800/30' : 'bg-slate-50/50'}`}>
-        <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-700' : 'via-slate-200'}`} />
+      <section className="py-10 sm:py-16 lg:py-32 relative bg-slate-50/50 dark:bg-gray-800/30">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent via-slate-200 dark:via-gray-700" />
 
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-10 sm:mb-16"
+            className="text-center mb-8 sm:mb-12"
           >
-            <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full mb-4 sm:mb-6 ${isDark ? 'text-blue-400 bg-blue-900/30' : 'text-blue-600 bg-blue-50'}`}>
-              Our Story
-            </span>
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-              Born From a Simple Observation
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full mb-4 sm:mb-6 bg-blue-50 border border-blue-200 dark:bg-blue-500/20 dark:border-blue-400/30">
+              <span className="text-xs font-semibold tracking-wide text-blue-700 dark:text-blue-300">Our Story</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-light text-slate-900 dark:text-gray-100">
+              Data to Decisions
             </h2>
-            <p className={`text-base sm:text-lg max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-              Most companies are sitting on valuable data they can't use
-            </p>
           </motion.div>
 
-          {/* Story Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className={`rounded-xl sm:rounded-2xl border p-5 sm:p-8 lg:p-10 ${isDark ? 'border-gray-700' : 'border-slate-200'}`}
-              style={glassStyle}
-            >
-              <div className="space-y-4 sm:space-y-6">
-                <p className={`text-base sm:text-lg leading-relaxed ${isDark ? 'text-gray-200' : 'text-slate-700'}`}>
-                  Cognia AI was founded on a simple observation: most companies are sitting on
-                  valuable data they can't use.
-                </p>
-                <p className={`text-sm sm:text-base leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-                  They have the information. They just lack the systems and expertise to turn
-                  it into decisions.
-                </p>
-                <p className={`text-sm sm:text-base leading-relaxed ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-                  We bridge that gap — combining AI technology with deep business understanding
-                  to help enterprises operate smarter.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className={`rounded-xl sm:rounded-2xl border p-5 sm:p-8 lg:p-10 ${isDark ? 'border-gray-700' : 'border-slate-200'}`}
-              style={glassStyle}
-            >
-              <div className="space-y-3 sm:space-y-4">
-                {[
-                  { val: '76%', label: 'Cost Reduction vs. Traditional Staff' },
-                  { val: '10-20%', label: 'Revenue Increase from Captured Leads' },
-                  { val: '24/7', label: 'Availability - Never Miss a Call' },
-                  { val: '1 Week', label: 'Time to Launch' }
-                ].map((stat, i) => (
-                  <div key={i} className={`flex items-center justify-between py-3 sm:py-4 border-b last:border-0 ${isDark ? 'border-gray-700' : 'border-slate-200'}`}>
-                    <span className={`text-sm sm:text-base ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>{stat.label}</span>
-                    <span className={`text-xl sm:text-2xl font-semibold tracking-tight ${isDark ? 'text-white' : 'text-slate-800'}`}>{stat.val}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+          {/* Stats grid only - clean and simple */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6">
+            {[
+              { val: '76%', label: 'Cost Reduction' },
+              { val: '10-20%', label: 'Revenue Lift' },
+              { val: '24/7', label: 'Availability' },
+              { val: '1 Week', label: 'To Launch' }
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="rounded-xl border p-4 sm:p-6 text-center border-slate-200 dark:border-gray-700"
+                style={glassStyle}
+              >
+                <div className="text-2xl sm:text-3xl font-serif font-medium tracking-tight mb-1 text-slate-800 dark:text-white">{stat.val}</div>
+                <div className="text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-gray-500">{stat.label}</div>
+              </motion.div>
+            ))}
           </div>
         </div>
 
-        <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-700' : 'via-slate-200'}`} />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent to-transparent via-slate-200 dark:via-gray-700" />
       </section>
 
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+      <section className="py-10 sm:py-16 lg:py-32 bg-white dark:bg-gray-900">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-10 sm:mb-16"
+            className="text-center mb-6 sm:mb-16"
           >
-            <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full mb-4 sm:mb-6 ${isDark ? 'text-blue-400 bg-blue-900/30' : 'text-blue-600 bg-blue-50'}`}>
-              Our Philosophy
-            </span>
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full mb-4 sm:mb-6 bg-blue-50 border border-blue-200 dark:bg-blue-500/20 dark:border-blue-400/30">
+              <span className="text-xs font-semibold tracking-wide text-blue-700 dark:text-blue-300">Our Philosophy</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-light mb-3 sm:mb-6 text-slate-900 dark:text-gray-100">
               How We Think About AI
             </h2>
-            <p className={`text-base sm:text-lg max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+            <p className="text-sm sm:text-lg max-w-2xl mx-auto text-slate-600 dark:text-gray-400">
               Three principles that guide everything we do
             </p>
           </motion.div>
 
-          {/* Philosophy Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+          {/* Philosophy Cards - Compact list on mobile, grid on desktop */}
+          <div className="space-y-3 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-6">
             {philosophy.map((item, index) => {
               const Icon = item.icon
               return (
@@ -506,18 +437,23 @@ const About: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`rounded-xl sm:rounded-2xl border p-5 sm:p-8 text-center ${isDark ? 'border-gray-700' : 'border-slate-200'}`}
+                  className="rounded-xl sm:rounded-2xl border p-4 sm:p-8 border-slate-200 dark:border-gray-700"
                   style={glassStyle}
                 >
-                  <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 ${colorClasses[item.color as keyof typeof colorClasses]}`}>
-                    <Icon className="w-5 h-5 sm:w-7 sm:h-7" />
+                  {/* Mobile: Horizontal layout, Desktop: Centered */}
+                  <div className="flex items-start gap-3 lg:flex-col lg:items-center lg:text-center">
+                    <div className={`w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 lg:mb-6 ${colorClasses[item.color as keyof typeof colorClasses]}`}>
+                      <Icon className="w-4 h-4 sm:w-7 sm:h-7" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-sm sm:text-xl font-semibold mb-1 sm:mb-3 text-slate-900 dark:text-gray-100">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-gray-400">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className={`text-lg sm:text-xl font-semibold mb-2 sm:mb-3 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-                    {item.title}
-                  </h3>
-                  <p className={`text-xs sm:text-sm ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-                    {item.description}
-                  </p>
                 </motion.div>
               )
             })}
@@ -525,40 +461,40 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 relative ${isDark ? 'bg-gray-800/30' : 'bg-slate-50/50'}`}>
-        <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-700' : 'via-slate-200'}`} />
+      <section className="py-10 sm:py-16 lg:py-32 relative bg-slate-50/50 dark:bg-gray-800/30">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent via-slate-200 dark:via-gray-700" />
 
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-10 sm:mb-16"
+            className="text-center mb-6 sm:mb-16"
           >
-            <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full mb-4 sm:mb-6 ${isDark ? 'text-blue-400 bg-blue-900/30' : 'text-blue-600 bg-blue-50'}`}>
-              Global Presence
-            </span>
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
-              US + Turkey Operations
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full mb-4 sm:mb-6 bg-blue-50 border border-blue-200 dark:bg-blue-500/20 dark:border-blue-400/30">
+              <span className="text-xs font-semibold tracking-wide text-blue-700 dark:text-blue-300">Global Presence</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-light mb-3 sm:mb-6 text-slate-900 dark:text-gray-100">
+              US + Turkiye Operations
             </h2>
-            <p className={`text-base sm:text-lg max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-              We serve clients across both markets with local expertise and global perspective
+            <p className="text-sm sm:text-lg max-w-2xl mx-auto text-slate-600 dark:text-gray-400">
+              Local expertise. Global perspective.
             </p>
           </motion.div>
 
-          {/* Location Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
+          {/* Location Cards - Side by side on mobile */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-4xl mx-auto">
             {[
               {
                 country: 'United States',
                 flag: '\ud83c\uddfa\ud83c\uddf8',
-                description: 'Headquartered in the US, serving North American enterprises with dedicated local support and expertise.'
+                description: 'Serving North American enterprises.'
               },
               {
-                country: 'Turkey',
+                country: 'Turkiye',
                 flag: '\ud83c\uddf9\ud83c\uddf7',
-                description: 'Deep roots in the Turkish market, serving enterprises across the region with cultural understanding.'
+                description: 'Deep roots in the Turkish market.'
               }
             ].map((location, index) => (
               <motion.div
@@ -567,14 +503,14 @@ const About: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`rounded-xl sm:rounded-2xl border p-5 sm:p-8 text-center ${isDark ? 'border-gray-700' : 'border-slate-200'}`}
+                className="rounded-xl sm:rounded-2xl border p-4 sm:p-8 text-center border-slate-200 dark:border-gray-700"
                 style={glassStyle}
               >
-                <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">{location.flag}</div>
-                <h3 className={`text-lg sm:text-xl font-semibold mb-2 sm:mb-3 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+                <div className="text-3xl sm:text-5xl mb-2 sm:mb-4">{location.flag}</div>
+                <h3 className="text-sm sm:text-xl font-semibold mb-1 sm:mb-3 text-slate-900 dark:text-gray-100">
                   {location.country}
                 </h3>
-                <p className={`text-xs sm:text-sm ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+                <p className="text-[10px] sm:text-sm leading-relaxed text-slate-600 dark:text-gray-400">
                   {location.description}
                 </p>
               </motion.div>
@@ -582,51 +518,47 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? 'via-gray-700' : 'via-slate-200'}`} />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent to-transparent via-slate-200 dark:via-gray-700" />
       </section>
 
-      <section className={`py-12 sm:py-16 md:py-24 lg:py-32 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+      <section className="py-10 sm:py-16 lg:py-32 bg-white dark:bg-gray-900">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className={`rounded-2xl sm:rounded-[2rem] border p-6 sm:p-10 lg:p-16 text-center ${isDark ? 'border-gray-700' : 'border-slate-200'}`}
+            className="rounded-xl sm:rounded-[2rem] border p-5 sm:p-10 lg:p-16 text-center border-slate-200 dark:border-gray-700"
             style={glassStyle}
           >
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light mb-4 sm:mb-6 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+            <h2 className="text-xl sm:text-3xl lg:text-5xl font-serif font-light mb-3 sm:mb-6 text-slate-900 dark:text-gray-100">
               Let's Build the Future Together
             </h2>
-            <p className={`text-base sm:text-lg max-w-2xl mx-auto mb-6 sm:mb-8 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-              Ready to explore how AI can transform your operations? Schedule a free consultation call.
+            <p className="text-sm sm:text-lg max-w-2xl mx-auto mb-5 sm:mb-8 text-slate-600 dark:text-gray-400">
+              Ready to explore how AI can transform your operations?
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
                 href="/contact"
-                className="btn-primary h-12 sm:h-14 px-6 sm:px-8 rounded-xl flex items-center justify-center gap-2 text-base sm:text-lg w-full sm:w-auto"
+                className="btn-primary h-11 sm:h-14 px-6 sm:px-8 rounded-xl flex items-center justify-center gap-2 text-sm sm:text-lg w-full sm:w-auto"
               >
                 Get in Touch
-                <FaArrowRight className="text-sm" />
+                <FaArrowRight className="text-xs sm:text-sm" />
               </Link>
               <Link
                 href="/demo"
-                className={`h-12 sm:h-14 px-6 sm:px-8 rounded-xl flex items-center justify-center gap-2 text-base sm:text-lg border transition-colors w-full sm:w-auto ${
-                  isDark
-                    ? 'border-gray-600 text-gray-300 hover:bg-gray-800'
-                    : 'border-slate-200 text-slate-700 hover:bg-slate-50'
-                }`}
+                className="h-11 sm:h-14 px-6 sm:px-8 rounded-xl flex items-center justify-center gap-2 text-sm sm:text-lg border transition-colors w-full sm:w-auto border-slate-200 text-slate-700 hover:bg-slate-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
               >
                 Schedule Demo
               </Link>
             </div>
 
             {/* Trust indicators */}
-            <div className="mt-6 sm:mt-10 flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-[10px] sm:text-xs">
+            <div className="mt-5 sm:mt-10 grid grid-cols-2 sm:flex sm:flex-wrap justify-center items-center gap-2 sm:gap-6 text-[10px] sm:text-xs">
               {['Enterprise Ready', 'Secure Platform', 'Data Protection', '24/7 Support'].map((item, i) => (
-                <span key={i} className={`flex items-center gap-1 sm:gap-2 ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-                  <FaCheckCircle className={`text-[10px] sm:text-xs ${isDark ? 'text-blue-400' : 'text-blue-500'}`} />
+                <span key={i} className="flex items-center gap-1 sm:gap-2 text-slate-500 dark:text-gray-500">
+                  <FaCheckCircle className="text-[8px] sm:text-xs text-blue-500 dark:text-blue-400" />
                   {item}
                 </span>
               ))}

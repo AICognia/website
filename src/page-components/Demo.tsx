@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaSpinner, FaCheck, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
 import Link from 'next/link';
-import { useTheme } from 'next-themes';
 import conversionTracker from '../utils/conversionTracking';
 import HeroBackgroundGrid from '../components/HeroBackgroundGrid';
 import MobileHeroBackground from '../components/MobileHeroBackground';
@@ -23,8 +22,6 @@ const industries = [
 ];
 
 const Demo: React.FC = () => {
-  const [mounted, setMounted] = useState(false);
-  const { resolvedTheme } = useTheme();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -36,27 +33,13 @@ const Demo: React.FC = () => {
   const [error, setError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Default to dark to prevent flash
-  const isDark = !mounted || resolvedTheme === 'dark';
-
-  // Glass style matching site design
-  const glassOpacity = isDark ? 0.25 : 0.25;
-  const glassBlur = 16;
-
+  // Glass style matching site design - uses CSS variables from globals.css for theme-aware rendering
   const glassStyle = {
     borderWidth: '0.5px',
-    background: isDark
-      ? `rgba(31, 41, 55, ${glassOpacity})`
-      : `rgba(255, 255, 255, ${glassOpacity})`,
-    backdropFilter: `blur(${glassBlur}px)`,
-    WebkitBackdropFilter: `blur(${glassBlur}px)`,
-    boxShadow: isDark
-      ? 'inset 0 3px 6px rgba(120, 184, 255, 0.15), inset 0 1px 3px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.3)'
-      : 'inset 0 1px 2px rgba(14, 165, 233, 0.12), 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03)',
+    background: 'var(--hero-glass-bg)',
+    backdropFilter: 'blur(16px)',
+    WebkitBackdropFilter: 'blur(16px)',
+    boxShadow: 'var(--hero-glass-shadow)',
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -128,23 +111,24 @@ const Demo: React.FC = () => {
           <MobileHeroBackground />
         </div>
 
-        {/* Gradient Overlays */}
-        <div className={`absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none ${isDark ? 'from-gray-900/20 to-gray-900' : 'from-white/20 to-white'}`} />
+        {/* Mobile Gradient overlay for text readability */}
+        <div
+          className="lg:hidden absolute inset-0 pointer-events-none"
+          style={{ background: 'var(--hero-gradient-mobile)' }}
+        />
+
+        {/* Desktop Gradient Overlays */}
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-b via-transparent pointer-events-none from-white/20 to-white dark:from-gray-900/20 dark:to-gray-900" />
 
         {/* Centered radial gradient */}
         <div
-          className="absolute inset-0 pointer-events-none z-[5]"
-          style={{
-            background: isDark
-              ? 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(17,24,39,0.9) 0%, rgba(17,24,39,0.7) 40%, rgba(17,24,39,0.4) 70%, rgba(17,24,39,0) 100%)'
-              : 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0.2) 70%, rgba(255,255,255,0) 100%)',
-          }}
+          className="absolute inset-0 pointer-events-none z-[5] hero-centered-radial"
         />
 
         {/* Centered Form Container */}
         <div className="w-full max-w-lg mx-auto px-4 sm:px-6 relative z-10 py-20 sm:py-24">
           <motion.div
-            className={`rounded-2xl border p-6 sm:p-8 ${isDark ? 'border-gray-700' : 'border-[#e2e8f0]'}`}
+            className="rounded-2xl border p-6 sm:p-8 border-[#e2e8f0] dark:border-gray-700"
             style={glassStyle}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -158,17 +142,17 @@ const Demo: React.FC = () => {
                   exit={{ opacity: 0, y: -20 }}
                 >
                   <div className="text-center mb-6">
-                    <h1 className={`text-2xl sm:text-3xl font-serif font-normal mb-2 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+                    <h1 className="text-2xl sm:text-3xl font-serif font-normal mb-2 text-slate-900 dark:text-gray-100">
                       Schedule a Consultation
                     </h1>
-                    <p className={`text-sm sm:text-base ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                    <p className="text-sm sm:text-base text-slate-500 dark:text-gray-400">
                       Let's discuss how AI can transform your business.
                     </p>
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <label className={`block text-xs sm:text-sm font-semibold mb-1.5 ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
+                      <label className="block text-xs sm:text-sm font-semibold mb-1.5 text-slate-700 dark:text-gray-300">
                         Full Name *
                       </label>
                       <input
@@ -177,13 +161,13 @@ const Demo: React.FC = () => {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Jane Smith"
-                        className={`w-full px-4 py-3 rounded-xl border text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${isDark ? 'border-gray-600 bg-gray-800/80 text-gray-100 placeholder-gray-500' : 'border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400'}`}
+                        className="w-full px-4 py-3 rounded-xl border text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400 dark:border-gray-600 dark:bg-gray-800/80 dark:text-gray-100 dark:placeholder-gray-500"
                         autoComplete="name"
                       />
                     </div>
 
                     <div>
-                      <label className={`block text-xs sm:text-sm font-semibold mb-1.5 ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
+                      <label className="block text-xs sm:text-sm font-semibold mb-1.5 text-slate-700 dark:text-gray-300">
                         Work Email *
                       </label>
                       <input
@@ -192,13 +176,13 @@ const Demo: React.FC = () => {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="jane@company.com"
-                        className={`w-full px-4 py-3 rounded-xl border text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${isDark ? 'border-gray-600 bg-gray-800/80 text-gray-100 placeholder-gray-500' : 'border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400'}`}
+                        className="w-full px-4 py-3 rounded-xl border text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400 dark:border-gray-600 dark:bg-gray-800/80 dark:text-gray-100 dark:placeholder-gray-500"
                         autoComplete="email"
                       />
                     </div>
 
                     <div>
-                      <label className={`block text-xs sm:text-sm font-semibold mb-1.5 ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
+                      <label className="block text-xs sm:text-sm font-semibold mb-1.5 text-slate-700 dark:text-gray-300">
                         Company *
                       </label>
                       <input
@@ -207,13 +191,13 @@ const Demo: React.FC = () => {
                         value={formData.company}
                         onChange={handleChange}
                         placeholder="Acme Inc."
-                        className={`w-full px-4 py-3 rounded-xl border text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${isDark ? 'border-gray-600 bg-gray-800/80 text-gray-100 placeholder-gray-500' : 'border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400'}`}
+                        className="w-full px-4 py-3 rounded-xl border text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400 dark:border-gray-600 dark:bg-gray-800/80 dark:text-gray-100 dark:placeholder-gray-500"
                         autoComplete="organization"
                       />
                     </div>
 
                     <div>
-                      <label className={`block text-xs sm:text-sm font-semibold mb-1.5 ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
+                      <label className="block text-xs sm:text-sm font-semibold mb-1.5 text-slate-700 dark:text-gray-300">
                         Industry
                       </label>
                       <div className="relative">
@@ -221,25 +205,25 @@ const Demo: React.FC = () => {
                           name="industry"
                           value={formData.industry}
                           onChange={handleChange}
-                          className={`w-full px-4 py-3 rounded-xl border text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none cursor-pointer ${isDark ? 'border-gray-600 bg-gray-800/80 text-gray-100' : 'border-slate-200 bg-white/80 text-slate-900'}`}
+                          className="w-full px-4 py-3 rounded-xl border text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none cursor-pointer border-slate-200 bg-white/80 text-slate-900 dark:border-gray-600 dark:bg-gray-800/80 dark:text-gray-100"
                         >
-                          <option value="" className={isDark ? 'bg-gray-800' : 'bg-white'}>Select your industry</option>
+                          <option value="" className="bg-white dark:bg-gray-800">Select your industry</option>
                           {industries.map((industry) => (
-                            <option key={industry} value={industry} className={isDark ? 'bg-gray-800' : 'bg-white'}>
+                            <option key={industry} value={industry} className="bg-white dark:bg-gray-800">
                               {industry}
                             </option>
                           ))}
                         </select>
-                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 dark:text-gray-500">
                           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                            <path d="M2.5 4.5L6 8L9.5 4.5" stroke={isDark ? '#6B7280' : '#9CA3AF'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </div>
                       </div>
                     </div>
 
                     <div>
-                      <label className={`block text-xs sm:text-sm font-semibold mb-1.5 ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
+                      <label className="block text-xs sm:text-sm font-semibold mb-1.5 text-slate-700 dark:text-gray-300">
                         How can we help?
                       </label>
                       <textarea
@@ -248,7 +232,7 @@ const Demo: React.FC = () => {
                         onChange={handleChange}
                         placeholder="Tell us about your challenges..."
                         rows={3}
-                        className={`w-full px-4 py-3 rounded-xl border text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none ${isDark ? 'border-gray-600 bg-gray-800/80 text-gray-100 placeholder-gray-500' : 'border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400'}`}
+                        className="w-full px-4 py-3 rounded-xl border text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none border-slate-200 bg-white/80 text-slate-900 placeholder-slate-400 dark:border-gray-600 dark:bg-gray-800/80 dark:text-gray-100 dark:placeholder-gray-500"
                       />
                     </div>
 
@@ -258,7 +242,7 @@ const Demo: React.FC = () => {
                           initial={{ opacity: 0, y: -5 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -5 }}
-                          className={`text-sm ${isDark ? 'text-red-400' : 'text-red-500'}`}
+                          className="text-sm text-red-500 dark:text-red-400"
                         >
                           {error}
                         </motion.p>
@@ -284,9 +268,9 @@ const Demo: React.FC = () => {
                     </button>
                   </form>
 
-                  <p className={`mt-4 text-center text-xs ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
+                  <p className="mt-4 text-center text-xs text-slate-500 dark:text-gray-500">
                     By submitting, you agree to our{' '}
-                    <Link href="/privacy-policy" className={`underline underline-offset-2 transition-colors ${isDark ? 'text-gray-400 hover:text-gray-300' : 'text-slate-600 hover:text-slate-800'}`}>
+                    <Link href="/privacy-policy" className="underline underline-offset-2 transition-colors text-slate-600 hover:text-slate-800 dark:text-gray-400 dark:hover:text-gray-300">
                       Privacy Policy
                     </Link>
                   </p>
@@ -298,13 +282,13 @@ const Demo: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="py-8 text-center"
                 >
-                  <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${isDark ? 'bg-green-900/30 border border-green-500/30' : 'bg-green-50 border border-green-200'}`}>
-                    <FaCheck className={`text-2xl ${isDark ? 'text-green-400' : 'text-green-500'}`} />
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-green-50 border border-green-200 dark:bg-green-900/30 dark:border-green-500/30">
+                    <FaCheck className="text-2xl text-green-500 dark:text-green-400" />
                   </div>
-                  <h3 className={`text-xl sm:text-2xl font-serif font-normal mb-2 ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>
+                  <h3 className="text-xl sm:text-2xl font-serif font-normal mb-2 text-slate-900 dark:text-gray-100">
                     You're All Set
                   </h3>
-                  <p className={`text-sm sm:text-base mb-6 max-w-sm mx-auto ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                  <p className="text-sm sm:text-base mb-6 max-w-sm mx-auto text-slate-500 dark:text-gray-400">
                     Opening Calendly to schedule your consultation. If it doesn't open automatically, click below.
                   </p>
                   <a
@@ -324,8 +308,8 @@ const Demo: React.FC = () => {
             {!isSubmitted && (
               <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs">
                 {['Free Consultation', 'No Commitment', 'Expert Team'].map((item, i) => (
-                  <span key={i} className={`flex items-center gap-1.5 ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
-                    <FaCheckCircle className={`text-xs ${isDark ? 'text-blue-400' : 'text-blue-500'}`} />
+                  <span key={i} className="flex items-center gap-1.5 text-slate-500 dark:text-gray-500">
+                    <FaCheckCircle className="text-xs text-blue-500 dark:text-blue-400" />
                     {item}
                   </span>
                 ))}

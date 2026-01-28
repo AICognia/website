@@ -1,8 +1,8 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
-import { useTheme } from 'next-themes';
+import { useThemeWithoutFlash } from '@/src/hooks/useThemeWithoutFlash';
 
 // Testimonials data with images
 const testimonials = [
@@ -30,15 +30,7 @@ const SocialProofSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isImageAnimating, setIsImageAnimating] = useState(true);
-  const [mounted, setMounted] = useState(false);
-  const { resolvedTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Default to dark to prevent flash (dark is the default theme)
-  const isDark = !mounted || resolvedTheme === 'dark';
+  const { isDark } = useThemeWithoutFlash();
 
   // Run initial animation on mount
   React.useEffect(() => {
@@ -79,7 +71,7 @@ const SocialProofSection: React.FC = () => {
   const currentTestimonial = testimonials[activeIndex];
 
   return (
-    <section className={`overflow-hidden py-10 sm:py-14 lg:py-18 xl:py-22 px-4 sm:px-6 lg:px-8 transition-colors duration-300 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+    <section className="overflow-hidden py-10 sm:py-14 lg:py-18 xl:py-22 px-4 sm:px-6 lg:px-8 transition-colors duration-300 bg-white dark:bg-gray-900">
       <div className="relative z-10">
 
         {/* SVG Filter for rounded corners */}
@@ -97,7 +89,7 @@ const SocialProofSection: React.FC = () => {
         <div className="mb-8 sm:mb-10 md:mb-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 md:gap-8">
             <div className="space-y-2 sm:space-y-4">
-              <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl heading-2 ${isDark ? 'text-gray-100' : ''}`}>
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl heading-2 text-gray-100">
                 Trusted by Growing Businesses
               </h2>
             </div>
@@ -106,24 +98,20 @@ const SocialProofSection: React.FC = () => {
               <button
                 onClick={goPrev}
                 disabled={!canScrollLeft}
-                className={`w-9 sm:w-11 h-9 sm:h-11 flex items-center justify-center rounded-full border transition-all duration-300 ${canScrollLeft
-                  ? isDark
-                    ? 'bg-gray-800 border-gray-700 text-gray-300 hover:border-blue-500/30'
-                    : 'bg-white border-[#e2e8f0] text-[#37322f] hover:border-[#1E40AF]/30 hover:shadow-[inset_0_1px_2px_rgba(30,64,175,0.15),0_2px_8px_rgba(30,64,175,0.1)]'
+                className={`w-9 sm:w-11 h-9 sm:h-11 flex items-center justify-center rounded-full border transition-all duration-300 bg-white border-[#e2e8f0] dark:bg-gray-800 dark:border-gray-700 ${canScrollLeft
+                  ? 'text-[#37322f] hover:border-[#1E40AF]/30 hover:shadow-[inset_0_1px_2px_rgba(30,64,175,0.15),0_2px_8px_rgba(30,64,175,0.1)] dark:text-gray-300 dark:hover:border-blue-500/30 dark:hover:shadow-none'
                   : 'opacity-40 cursor-not-allowed'
-                } ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-[#e2e8f0]'}`}
+                }`}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 18 18"><path d="M11.5 16C11.308 16 11.116 15.9271 10.97 15.7801L4.71999 9.53005C4.42699 9.23705 4.42699 8.76202 4.71999 8.46902L10.97 2.21999C11.263 1.92699 11.738 1.92699 12.031 2.21999C12.324 2.51299 12.324 2.98803 12.031 3.28103L6.311 9.001L12.031 14.721C12.324 15.014 12.324 15.489 12.031 15.782C11.885 15.928 11.693 16.002 11.501 16.002L11.5 16Z" fill="currentColor"></path></svg>
               </button>
               <button
                 onClick={goNext}
                 disabled={!canScrollRight}
-                className={`w-9 sm:w-11 h-9 sm:h-11 flex items-center justify-center rounded-full border transition-all duration-300 ${canScrollRight
-                  ? isDark
-                    ? 'bg-gray-800 border-gray-700 text-gray-300 hover:border-blue-500/30'
-                    : 'bg-white border-[#e2e8f0] text-[#37322f] hover:border-[#1E40AF]/30 hover:shadow-[inset_0_1px_2px_rgba(30,64,175,0.15),0_2px_8px_rgba(30,64,175,0.1)]'
+                className={`w-9 sm:w-11 h-9 sm:h-11 flex items-center justify-center rounded-full border transition-all duration-300 bg-white border-[#e2e8f0] dark:bg-gray-800 dark:border-gray-700 ${canScrollRight
+                  ? 'text-[#37322f] hover:border-[#1E40AF]/30 hover:shadow-[inset_0_1px_2px_rgba(30,64,175,0.15),0_2px_8px_rgba(30,64,175,0.1)] dark:text-gray-300 dark:hover:border-blue-500/30 dark:hover:shadow-none'
                   : 'opacity-40 cursor-not-allowed'
-                } ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-[#e2e8f0]'}`}
+                }`}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 18 18"><path d="M13.28 8.46999L7.03 2.21999C6.737 1.92699 6.262 1.92699 5.969 2.21999C5.676 2.51299 5.676 2.98803 5.969 3.28103L11.689 9.001L5.969 14.721C5.676 15.014 5.676 15.489 5.969 15.782C6.115 15.928 6.307 16.002 6.499 16.002C6.691 16.002 6.883 15.929 7.029 15.782L13.279 9.53201C13.572 9.23901 13.572 8.76403 13.279 8.47103L13.28 8.46999Z" fill="currentColor"></path></svg>
               </button>
@@ -133,14 +121,14 @@ const SocialProofSection: React.FC = () => {
 
         {/* Main Content - Two Cards Side by Side */}
         <div className="relative hidden h-full w-full lg:flex lg:max-h-[750px] xl:max-h-[540px] aspect-[2274/1120]">
-          
+
           {/* Left Card - Text Content with shadow */}
-          <div 
+          <div
             className={`h-full absolute left-0 top-0 transition-all ease-in-out ${isImageAnimating ? 'w-[64%] duration-300 delay-0' : 'w-[55%] duration-700 delay-200'}`}
             style={{ filter: 'url(#rounded)' }}
           >
             <div
-              className={`h-full rounded-xl p-6 w-full transition-all ease-in-out ${isImageAnimating ? 'duration-300 delay-0' : 'duration-700 delay-200'} ${isDark ? 'bg-gray-900' : 'bg-gray-100'}`}
+              className={`h-full rounded-xl p-6 w-full transition-all ease-in-out ${isImageAnimating ? 'duration-300 delay-0' : 'duration-700 delay-200'} bg-gray-100 dark:bg-gray-900`}
               style={{
                 clipPath: isImageAnimating
                   ? 'polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)'
@@ -155,7 +143,7 @@ const SocialProofSection: React.FC = () => {
             style={{ filter: 'url(#rounded)' }}
           >
             <div
-              className={`rounded-xl p-6 overflow-hidden h-[calc(100%-2px)] w-[calc(100%-2px)] border transition-all ease-in-out ${isImageAnimating ? 'duration-300 delay-0' : 'duration-700 delay-200'} ${isDark ? 'bg-gray-800 text-gray-100 border-gray-600' : 'bg-white text-[#37322f] border-[#e2e8f0]'}`}
+              className={`rounded-xl p-6 overflow-hidden h-[calc(100%-2px)] w-[calc(100%-2px)] border transition-all ease-in-out ${isImageAnimating ? 'duration-300 delay-0' : 'duration-700 delay-200'} bg-white text-[#37322f] border-[#e2e8f0] dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600`}
               style={{
                 clipPath: isImageAnimating
                   ? 'polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)'
@@ -177,7 +165,7 @@ const SocialProofSection: React.FC = () => {
                           className={`h-12 w-auto sm:h-14 max-w-[180px] object-contain opacity-80 grayscale ${currentTestimonial.darkModeInvert ? 'dark:invert' : ''}`}
                         />
                       ) : (
-                        <span className={`text-xl sm:text-2xl font-bold tracking-tight ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <span className="text-xl sm:text-2xl font-bold tracking-tight text-gray-700 dark:text-gray-300">
                           {currentTestimonial.author}
                         </span>
                       )}
@@ -192,7 +180,7 @@ const SocialProofSection: React.FC = () => {
 
                   {/* Bottom content - author */}
                   <div className={`transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
-                    <p className={`text-sm lg:text-base ${isDark ? 'text-gray-400' : 'text-[#6b7280]'}`}>
+                    <p className="text-sm lg:text-base text-[#6b7280] dark:text-gray-400">
                       — {currentTestimonial.author}, {currentTestimonial.role}
                     </p>
                   </div>
@@ -202,17 +190,17 @@ const SocialProofSection: React.FC = () => {
           </div>
 
           {/* Right Card - Image */}
-          <div 
+          <div
             className={`absolute h-full rounded-[20px] pointer-events-none transition-all ease-in-out right-0 ${isImageAnimating ? 'w-[35%] duration-300 delay-0' : 'w-[55%] duration-700 delay-200'}`}
-            style={{ 
+            style={{
               filter: 'url(#rounded)'
             }}
           >
-            <div 
+            <div
               className={`h-full w-full overflow-hidden rounded-xl bg-gray-100 transition-all ease-in-out ${isImageAnimating ? 'duration-300 delay-0' : 'duration-700 delay-200'}`}
-              style={{ 
-                clipPath: isImageAnimating 
-                  ? 'polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)' 
+              style={{
+                clipPath: isImageAnimating
+                  ? 'polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)'
                   : 'polygon(100% 0%, 2% 0%, 18% 100%, 100% 100%)'
               }}
             >
@@ -230,7 +218,7 @@ const SocialProofSection: React.FC = () => {
 
           {/* Mobile Text Card */}
           <div
-            className={`w-full rounded-xl sm:rounded-2xl p-4 sm:p-6 border transition-all duration-500 ease-in-out ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-[#e2e8f0]'}`}
+            className="w-full rounded-xl sm:rounded-2xl p-4 sm:p-6 border transition-all duration-500 ease-in-out bg-white border-[#e2e8f0] dark:bg-gray-800 dark:border-gray-700"
             style={{
               boxShadow: isDark
                 ? 'inset 0 1px 2px rgba(59, 130, 246, 0.15), 0 4px 12px rgba(0, 0, 0, 0.4)'
@@ -246,20 +234,20 @@ const SocialProofSection: React.FC = () => {
                     className={`h-8 sm:h-12 w-auto max-w-[140px] sm:max-w-[160px] object-contain opacity-80 grayscale ${currentTestimonial.darkModeInvert ? 'dark:invert' : ''}`}
                   />
                 ) : (
-                  <span className={`text-lg sm:text-xl font-bold tracking-tight ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <span className="text-lg sm:text-xl font-bold tracking-tight text-gray-700 dark:text-gray-300">
                     {currentTestimonial.author}
                   </span>
                 )}
               </div>
 
               <div className="mb-4 sm:mb-6 flex-grow">
-                <h3 className={`text-sm sm:text-base md:text-lg leading-relaxed ${isDark ? 'text-gray-100' : 'text-[#37322f]'}`}>
+                <h3 className="text-sm sm:text-base md:text-lg leading-relaxed text-[#37322f] dark:text-gray-100">
                   "{currentTestimonial.quote}"
                 </h3>
               </div>
 
               <div className="mt-auto">
-                <p className={`text-xs sm:text-sm ${isDark ? 'text-gray-400' : 'text-[#6b7280]'}`}>
+                <p className="text-xs sm:text-sm text-[#6b7280] dark:text-gray-400">
                   - {currentTestimonial.author}, {currentTestimonial.role}
                 </p>
               </div>
@@ -282,11 +270,11 @@ const SocialProofSection: React.FC = () => {
                 className="absolute h-1 opacity-20 rounded-full transition-all duration-500 ease-in-out cursor-pointer bg-neutral-15"
                 style={{ left: `calc(100% / testimonials.length * ${activeIndex + 1})`, right: 0 }}
               />
-              <div 
-                className="absolute h-1 rounded-full transition-transform duration-500 ease-in-out bg-gradient-to-r from-coral-500 via-violet-500 to-blue-500" 
-                style={{ 
-                  width: 'calc(100% / testimonials.length - 10px)', 
-                  transform: `translateX(calc(100% / testimonials.length * ${activeIndex}))` 
+              <div
+                className="absolute h-1 rounded-full transition-transform duration-500 ease-in-out bg-gradient-to-r from-coral-500 via-violet-500 to-blue-500"
+                style={{
+                  width: 'calc(100% / testimonials.length - 10px)',
+                  transform: `translateX(calc(100% / testimonials.length * ${activeIndex}))`
                 }}
               />
             </div>
@@ -295,7 +283,7 @@ const SocialProofSection: React.FC = () => {
 
         {/* CTA Section */}
         <div className="mt-10 sm:mt-12 md:mt-16 text-center">
-          <p className={`text-xs sm:text-sm font-serif mb-4 sm:mb-6 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>Join 50+ businesses transforming with AI</p>
+          <p className="text-xs sm:text-sm font-serif mb-4 sm:mb-6 text-slate-500 dark:text-gray-400">Join 50+ businesses transforming with AI</p>
           <Link
             href="/demo"
             className="btn-primary h-10 sm:h-12 px-6 sm:px-8 rounded-full text-sm sm:text-base w-full sm:w-auto inline-flex justify-center"
