@@ -6,17 +6,10 @@ import './globals.css'
 import { ClerkProviderWrapper } from '@/src/providers/ClerkProviderWrapper'
 import { LanguageProvider } from '@/src/contexts/LanguageContext'
 import { LeadCaptureProvider } from '@/src/contexts/LeadCaptureContext'
-import Navbar from '@/src/components/Navbar'
-import MobileNavbar from '@/src/components/MobileNavbar'
-import Footer from '@/src/components/Footer'
-import CookieConsentBanner from '@/src/components/CookieConsent'
-import StickyMobileCTA from '@/src/components/StickyMobileCTA'
 import { VideoProvider } from '@/src/contexts/VideoContext'
 import { HelmetClientProvider } from '@/src/providers/HelmetClientProvider'
-// TactileBackground removed - redundant with HeroBackgroundGrid, was causing double canvas rendering
-// import TactileBackground from '@/src/components/TactileBackground'
 import { ThemeProvider } from '@/src/providers/ThemeProvider'
-import DarkModeToggle from '@/src/components/DarkModeToggle'
+import LayoutContent from '@/src/components/LayoutContent'
 
 const inter = Inter({
   variable: '--font-geist-sans',
@@ -224,31 +217,9 @@ export default function RootLayout({
             <LanguageProvider>
               <LeadCaptureProvider>
                 <VideoProvider>
-                  {/* TactileBackground removed for performance - was running 60fps canvas globally */}
-                  <DarkModeToggle />
-                  <div className="w-full min-h-screen relative mesh-gradient">
-                    {/* Level 2: Centering wrapper */}
-                    <div className="relative flex flex-col justify-start items-center w-full">
-                      {/* Level 3: Main content container - removed max-width to allow overflow */}
-                      <div className="w-full relative flex flex-col justify-start items-start min-h-screen">
-                        {/* Level 4: Actual content */}
-                        <div className="w-full relative z-10 flex flex-col flex-grow">
-                          <div className="w-full relative">
-                            <MobileNavbar />
-                            <div className="hidden lg:block">
-                              <Navbar />
-                            </div>
-                          </div>
-                          <main id="main-content" className="flex-grow" role="main" aria-label="Main content">
-                            {children}
-                          </main>
-                          <Footer />
-                          <CookieConsentBanner />
-                          <StickyMobileCTA />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <LayoutContent>
+                    {children}
+                  </LayoutContent>
                 </VideoProvider>
               </LeadCaptureProvider>
             </LanguageProvider>

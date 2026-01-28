@@ -69,7 +69,7 @@ import {
   Menu,
   Grip
 } from 'lucide-react';
-import SEO from '@/src/components/SEO';
+// SEO handled by page.tsx metadata export
 
 // ============================================================================
 // MOBILE DETECTION HOOK
@@ -2640,7 +2640,6 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-[#050810] text-white">
-      <SEO page="dashboard" />
 
       {/* Background effects - smaller on mobile */}
       <div className="fixed inset-0 pointer-events-none">
